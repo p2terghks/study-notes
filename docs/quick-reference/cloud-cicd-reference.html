@@ -1,0 +1,107 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docker · ECS CI/CD 요약</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+
+.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+</style></head><body><a href="../../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">프로젝트 3 NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">8개 항목</p><a href="#item-0"><span>01</span>목표와 선택한 방식</a><a href="#item-1"><span>02</span>컨테이너 이미지와 실행 환경</a><a href="#item-2"><span>03</span>로컬 개발 루프</a><a href="#item-3"><span>04</span>파이프라인의 각 단계</a><a href="#item-4"><span>05</span>최초 ECS 준비와 OIDC 설정</a><a href="#item-5"><span>06</span>롤링 배포가 요청을 유지하는 조건</a><a href="#item-6"><span>07</span>무중단 배포 실험과 롤백</a><a href="#item-7"><span>08</span>Terraform과 배포 도구의 관리 경계</a><div class="nav-group">다른 요약본</div><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-30<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>프로젝트 3<br><span>컨테이너 · CI/CD</span></h1><p class="lead">테스트부터 이미지·배포·롤백까지.<br>GitHub Actions와 ECS 롤링 배포.</p><div class="tags"><span>Docker</span><span>OIDC</span><span>ECS</span><span>배포 검증</span></div><div class="hero-bottom"><span>8개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>목표와 선택한 방식</h2><p><strong>테스트 → 이미지 빌드 → ECR push → 마이그레이션 → ECS 롤링 배포 → 결과 확인</strong>을 자동화합니다. 이 예제는 GitHub Actions와 ECS Fargate를 사용합니다. EKS 클러스터 운영과 Jenkins 서버 구축은 별도 확장 과제로 구분합니다.</p>
+<p><a href="sample-files/cloud-projects.zip">전체 코드 ZIP</a>의 <code>app/</code>, <code>infra/ecs/</code>, <code>scripts/deploy-ecs.py</code>, <code>workflows/deploy-ecs.yml.example</code>을 확인하세요. 현재는 로컬 테스트와 코드 검증만 수행하며 워크플로는 활성화하지 않습니다.</p>
+</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>컨테이너 이미지와 실행 환경</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>파일/설정</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>app/Dockerfile</td>
+<td>Node 22 런타임, npm ci, 일반 사용자 실행</td>
+</tr>
+<tr>
+<td>app/package-lock.json</td>
+<td>실제 의존성 버전 고정</td>
+</tr>
+<tr>
+<td>APP_VERSION</td>
+<td>요청을 처리한 릴리스 표시</td>
+</tr>
+<tr>
+<td>DB_SECRET_ARN</td>
+<td>AWS에서 관리 암호 조회</td>
+</tr>
+<tr>
+<td>DB_SSL=true</td>
+<td>RDS CA로 서버 인증서 검증</td>
+</tr>
+<tr>
+<td>SIGTERM 처리</td>
+<td>기존 요청 정리 후 프로세스 종료</td>
+</tr>
+</tbody></table>
+</div><p><code>latest</code> 태그 대신 ECR digest URI로 실행합니다. DB 암호를 이미지나 환경 예제에 복사하지 않습니다. 로컬 Compose 암호는 격리된 학습 DB에만 사용합니다. 베이스 이미지 태그도 시간이 지나면 바뀌므로 실제 운영에서는 검증한 digest 고정을 추가하세요.</p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>로컬 개발 루프</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>node --test app/test/*.test.cjs
+docker compose up -d --build --scale app=2
+curl -fsS http:<span class="cm">//localhost:8088/api/info</span>
+python3 scripts/test_deploy.py</code></pre></div><p>앱 내용을 변경한 뒤 이미지를 다시 만들고 저장·조회가 동작하는지 확인합니다. Compose의 재생성은 ECS 롤링 배포와 동일한 무중단 보장을 제공하지 않습니다. DB 테이블 변경은 <code>--migrate</code> 명령으로 분리되어 있으며 현재 마이그레이션은 테이블 생성만 합니다.</p>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>파이프라인의 각 단계</h2><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>main push
+  → npm ci / API 테스트 / 의존성 검사
+  → GitHub OIDC 임시 자격증명
+  → linux/amd64 이미지 빌드
+  → 실행별 고유 태그로 ECR push
+  → digest로 새 task definition 등록
+  → 같은 네트워크에서 마이그레이션 task 실행·종료 코드 확인
+  → ECS service 갱신
+  → 안정 상태 대기 + 정확한 새 revision인지 확인</code></pre></div><p>워크플로에 <code>concurrency</code>를 설정해 같은 환경 배포가 겹치지 않게 합니다. 재실행에서도 ECR 불변 태그와 충돌하지 않도록 commit SHA·run ID·attempt를 태그에 포함합니다.</p>
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>최초 ECS 준비와 OIDC 설정</h2><p>AWS 적용 단계는 이번 범위 밖입니다. 나중에 적용할 때는 IaC 가이드로 ECR 이미지를 먼저 준비한 뒤 ECS 스택을 만듭니다.</p>
+<ol>
+<li>첫 Terraform 적용은 <code>desired_count=0</code>으로 수행해 마이그레이션 전 앱이 반복 실패하지 않게 합니다.</li>
+<li>GitHub OIDC provider가 계정에 이미 있으면 해당 ARN을 사용합니다. 계정별 하나를 관리하고 중복 생성하지 않습니다.</li>
+<li><code>github_oidc_provider_arn</code>, <code>github_oidc_subject</code>, <code>ecr_repository_arn</code>을 입력하면 제한된 CI 역할이 생성됩니다.</li>
+<li>GitHub의 <code>dev</code> Environment를 만들고 배포 브랜치 규칙을 설정합니다.</li>
+<li>Environment 변수 <code>AWS_REGION</code>, <code>AWS_ROLE_ARN</code>, <code>ECR_REPOSITORY</code>(이름), <code>ECS_CLUSTER</code>, <code>ECS_SERVICE</code>를 채웁니다.</li>
+<li>템플릿을 저장소 루트의 <code>.github/workflows/deploy-ecs.yml</code>로 복사합니다. 현재의 <code>cloud-projects/</code> 경로 구조를 유지합니다.</li>
+<li>첫 수동 실행으로 마이그레이션과 서비스 2개 실행을 확인한 뒤 main push 배포를 사용합니다.</li>
+</ol>
+<p>OIDC의 <code>sub</code>는 실제 저장소의 형식을 정확히 넣습니다. Environment를 쓰므로 <code>...:environment:dev</code> 형태를 확인하고, 변경 불가능한 소유자/저장소 ID가 포함되는 계정 설정이라면 그 형식을 맞춰야 합니다. 전체 저장소/모든 브랜치 와일드카드로 풀지 않습니다. <a href="https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws">GitHub 공식 AWS OIDC</a></p>
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>롤링 배포가 요청을 유지하는 조건</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>deployment_minimum_healthy_percent = 100
+deployment_maximum_percent         = 200
+deployment_circuit_breaker {
+  enable   = true
+  rollback = true
+}</code></pre></div><p>정상 task 2개를 유지하면서 새 task를 추가할 공간을 허용합니다. CPU·메모리·IP·계정 할당량·DB 연결 여유가 필요합니다. <code>/readyz</code>가 성공한 새 대상에 트래픽이 가고 기존 대상은 draining 후 종료됩니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html">AWS ECS 롤링 배포</a></p>
+<p>circuit breaker는 실패 배포를 감지하고 이전에 완료된 배포로 돌아갈 수 있습니다. 첫 배포에는 성공 이력이 없을 수 있습니다. 안정 상태가 되었다고 새 버전 성공으로 단정하지 않도록 배포 스크립트는 PRIMARY task definition이 요청한 revision인지도 확인합니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeploymentCircuitBreaker.html">공식 circuit breaker</a></p>
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>무중단 배포 실험과 롤백</h2><ol>
+<li>배포 전 <code>scripts/probe.py</code>로 요청을 지속 기록합니다.</li>
+<li>APP_VERSION이 새 digest로 바뀌는지 확인합니다.</li>
+<li>새 컨테이너만 준비 검사에 실패하도록 만든 테스트 버전을 제한된 환경에서 배포합니다.</li>
+<li>이전 revision 복구, 오류 수, 복구 시간을 기록합니다.</li>
+<li>마이그레이션 실패 시 서비스 revision이 바뀌지 않는지도 확인합니다.</li>
+</ol>
+<p>자동 롤백과 별개로 이전 task definition ARN을 기록해 수동 복귀할 수 있게 합니다. 아래는 실제 대상 값을 확인한 뒤 실행하는 예시입니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>aws ecs update-service --cluster CLUSTER --service SERVICE --task-definition PREVIOUS_TASK_ARN
+aws ecs wait services-stable --cluster CLUSTER --services SERVICE</code></pre></div><p>DB 변경은 이미지 롤백으로 되돌아가지 않습니다. 새 컬럼 추가 → 구/신 버전 동시 호환 → 구 버전 제거 → 나중에 컬럼 삭제처럼 호환 가능한 마이그레이션을 설계합니다. 이번 기본 예제는 파괴적 마이그레이션을 수행하지 않습니다.</p>
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>Terraform과 배포 도구의 관리 경계</h2><p>Terraform은 네트워크·IAM·서비스 설정을 관리하고 CI가 앱 revision과 실행 수를 갱신합니다. <code>ignore_changes</code>로 반복 apply가 이전 이미지로 되돌리지 않게 했습니다. 초기 task definition을 Terraform에서 바꿨다고 실행 중 서비스에 자동 배포되지는 않습니다.</p>
+<p>task CPU·환경·역할 같은 정의를 변경할 때는 새 task definition과 실제 서비스 참조를 함께 검토하고 명시적으로 릴리스해야 합니다. <code>deploy-ecs.py</code>는 현재 서비스 정의를 복사해 이미지와 APP_VERSION을 바꾸므로 다른 변경을 자동으로 끌어오지 않습니다.</p>
+<p>Blue/Green은 별도 대상 그룹·전환·추가 용량·롤백 정책을 갖추는 확장 방식입니다. 이 코드에 구현된 방식은 <strong>Rolling</strong>입니다. <a href="https://github.com/aws-actions/configure-aws-credentials">공식 워크플로 액션</a>에서 버전 변경을 확인하고 운영 적용 때 액션도 검증한 SHA로 고정하세요.</p>
+</section><footer>공식 자료 확인일: 2026-09-30 · Docker · ECS CI/CD<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+
+
+const input=document.querySelector('#search');
+const sections=[...document.querySelectorAll('main>section')];
+input.addEventListener('input',()=>{
+ const terms=input.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ let count=0;
+ for(const s of sections){const show=terms.every(t=>s.textContent.toLocaleLowerCase().includes(t));s.hidden=!show;document.querySelector('nav a[href="#'+s.id+'"]').hidden=!show;if(show)count++;}
+ document.querySelector('#results').textContent=count+'개 항목';document.querySelector('#empty').hidden=count!==0;
+});
+</script></body></html>

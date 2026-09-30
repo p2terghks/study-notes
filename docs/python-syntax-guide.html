@@ -1,0 +1,446 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>처음 배우는 Python 문법</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+</style></head><body><a href="../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a>
+ <a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="학습 목차"><a class="brand" href="#top"><span class="brand-mark">Py</span>PYTHON LAB</a><p class="nav-label">들여쓰기 · 자료구조 · 함수</p><div class="nav-group">기본 문법부터 실습까지</div><a href="#step-1"><span>01</span>시작과 실행</a><a href="#step-2"><span>02</span>변수와 자료형</a><a href="#step-3"><span>03</span>연산자와 형 변환</a><a href="#step-4"><span>04</span>입력과 문자열</a><a href="#step-5"><span>05</span>조건문과 들여쓰기</a><a href="#step-6"><span>06</span>반복문 — for와 while</a><a href="#step-7"><span>07</span>리스트·튜플·딕셔너리·집합</a><a href="#step-8"><span>08</span>함수와 매개변수</a><a href="#step-9"><span>09</span>예외 처리와 파일</a><a href="#step-10"><span>10</span>클래스와 객체</a><a href="#step-11"><span>11</span>모듈과 실행 시작점</a><a href="#step-12"><span>12</span>확인 문제와 자주 하는 실수</a><div class="nav-group">전체 실습과 다른 가이드</div><a href="#reference"><span>↗</span>성적 집계 · 전체 코드</a><a href="c-syntax-guide.html"><span>↗</span>C 문법 가이드</a><a href="cpp-syntax-guide.html"><span>↗</span>C++ 문법 가이드</a><a href="spring-web-guide.html"><span>↗</span>Spring 가이드</a><a href="react-web-guide.html"><span>↗</span>React 가이드</a><div class="nav-note">Python 3 기준 · 입문 문법<br>추가 라이브러리 없는 기본 예제</div></nav>
+ <main id="content"><header id="top"><p class="eyebrow">BEGINNER’S GUIDE / 문법부터 차근차근</p><h1>처음 배우는<br><span>Python</span></h1><p class="lead">짧고 명확한 코드로 시작하기.<br>변수부터 클래스까지, 예제를 실행하며 익힙니다.</p><div class="tags"><span>변수와 타입</span><span>반복문</span><span>자료구조</span><span>함수와 클래스</span></div><div class="hero-bottom"><span>12개 학습 단계</span><span>실행 검증한 전체 예제</span><span>오프라인 열람 가능</span></div></header>
+ <div class="reading-guide"><strong>이렇게 읽어 보세요</strong><p>짧은 코드 → 설명 표 → 주의할 점 순서로 읽으세요. 발췌 코드는 문맥과 헤더가 필요할 수 있습니다. <a href="#reference">전체 실습 코드</a>는 그대로 저장해 실행할 수 있습니다.</p></div><section id="step-1"><div class="section-kicker">STEP 01</div><h2>시작과 실행</h2><p><strong>Python은 들여쓰기로 코드의 구조를 표현하는 언어입니다.</strong> 자동화, 데이터 처리, 서버 개발 등에 쓰입니다. 여기서는 Python 3 문법을 사용합니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># hello.py</span>
+print(<span class="str">&quot;안녕하세요!&quot;</span>)</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 --version
+python3 hello.py</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>코드</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>print(...)</code></td>
+<td>값을 화면에 출력</td>
+</tr>
+<tr>
+<td><code>&quot;안녕하세요!&quot;</code></td>
+<td>문자열</td>
+</tr>
+<tr>
+<td><code># 설명</code></td>
+<td>실행하지 않는 주석</td>
+</tr>
+</tbody></table>
+</div><p>Windows에서는 설치 환경에 따라 <code>py hello.py</code>를 사용합니다. Python이 없다면 <a href="https://www.python.org/downloads/">공식 다운로드</a>에서 설치하세요. 파일 확장자는 <code>.py</code>입니다.</p>
+<aside class="callout"><p>모든 짧은 코드는 해당 문법을 설명하는 예제입니다. 마지막의 <strong>전체 실습 코드</strong>는 그대로 파일로 저장해 실행할 수 있습니다.</p>
+</aside><a class="next" href="#step-2">다음 단계로 →</a></section><section id="step-2"><div class="section-kicker">STEP 02</div><h2>변수와 자료형</h2><p><strong>변수는 값을 가리키는 이름입니다. 타입을 미리 선언하지 않습니다.</strong></p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>name = <span class="str">&quot;민수&quot;</span>        <span class="cm"># str: 문자열</span>
+age = 20             <span class="cm"># int: 정수</span>
+height = 175.5       <span class="cm"># float: 실수</span>
+is_student = <span class="kw">True</span>    <span class="cm"># bool: 참/거짓</span>
+result = <span class="kw">None</span>        <span class="cm"># 아직 값이 없음</span>
+
+print(name, age)
+print(type(age))     <span class="cm"># &lt;class 'int'&gt;</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>문법</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>=</code></td>
+<td>오른쪽 값을 왼쪽 이름에 연결</td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>값이 같은지 비교</td>
+</tr>
+<tr>
+<td><code>True</code>, <code>False</code></td>
+<td>첫 글자가 대문자인 논리값</td>
+</tr>
+<tr>
+<td><code>None</code></td>
+<td>값이 없음을 나타내는 특별한 값</td>
+</tr>
+</tbody></table>
+</div><p>같은 이름에 다른 타입의 값을 연결할 수 있지만, 한 변수의 의미와 타입을 일관되게 유지하면 읽기 쉽습니다. 정수는 메모리가 허용하는 범위에서 커질 수 있습니다.</p>
+<a class="next" href="#step-3">다음 단계로 →</a></section><section id="step-3"><div class="section-kicker">STEP 03</div><h2>연산자와 형 변환</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>print(7 + 2)    <span class="cm"># 9</span>
+print(7 / 2)    <span class="cm"># 3.5: 나눗셈</span>
+print(7 <span class="cm">// 2)   # 3: 내림 나눗셈</span>
+print(7 % 2)    <span class="cm"># 1: 나머지</span>
+print(2 ** 3)   <span class="cm"># 8: 거듭제곱</span>
+print(<span class="kw">int</span>(<span class="str">&quot;20&quot;</span>) + 1)  <span class="cm"># 21</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>구분</th>
+<th>문법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>비교</td>
+<td><code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code></td>
+</tr>
+<tr>
+<td>논리</td>
+<td><code>and</code>, <code>or</code>, <code>not</code></td>
+</tr>
+<tr>
+<td>누적</td>
+<td><code>total += 10</code></td>
+</tr>
+<tr>
+<td>타입 변환</td>
+<td><code>int()</code>, <code>float()</code>, <code>str()</code></td>
+</tr>
+</tbody></table>
+</div><p><code>&quot;20&quot; + &quot;1&quot;</code>은 문자열 연결이므로 <code>&quot;201&quot;</code>입니다. 숫자 계산에는 <code>int(&quot;20&quot;)</code>처럼 변환합니다. 숫자로 바꿀 수 없는 문자열은 ValueError를 발생시킵니다.</p>
+<aside class="callout"><p><code>//</code>는 0 방향 절삭이 아니라 아래쪽 정수로 내립니다. <code>-7 // 2</code>는 <code>-4</code>입니다. C와 C++의 정수 나눗셈과 음수에서 결과가 다를 수 있습니다.</p>
+</aside><a class="next" href="#step-4">다음 단계로 →</a></section><section id="step-4"><div class="section-kicker">STEP 04</div><h2>입력과 문자열</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>name = input(<span class="str">&quot;이름: &quot;</span>).strip()
+age = <span class="kw">int</span>(input(<span class="str">&quot;나이: &quot;</span>))
+print(f<span class="str">&quot;{name}님은 {age}살입니다.&quot;</span>)</code></pre></div><ol>
+<li><code>input()</code>은 사용자가 입력한 내용을 <strong>문자열</strong>로 반환합니다.</li>
+<li><code>strip()</code>은 앞뒤 공백을 제거합니다.</li>
+<li><code>int()</code>는 정수로 변환합니다.</li>
+<li><code>f&quot;...{값}...&quot;</code>은 문자열 안에 값을 넣습니다.</li>
+</ol>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>text = <span class="str">&quot;Python&quot;</span>
+print(text[0])     <span class="cm"># P</span>
+print(text[-1])    <span class="cm"># n</span>
+print(text[0:3])   <span class="cm"># Pyt: 끝 인덱스 3은 제외</span>
+print(len(text))   <span class="cm"># 6</span></code></pre></div><p>문자열은 불변이므로 <code>text[0] = &quot;p&quot;</code>처럼 수정할 수 없습니다. 다른 문자열을 만들어 변수에 대입해야 합니다.</p>
+<a class="next" href="#step-5">다음 단계로 →</a></section><section id="step-5"><div class="section-kicker">STEP 05</div><h2>조건문과 들여쓰기</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>score = 85
+
+<span class="kw">if</span> score &gt;= 90:
+    print(<span class="str">&quot;A&quot;</span>)
+elif score &gt;= 80:
+    print(<span class="str">&quot;B&quot;</span>)
+<span class="kw">else</span>:
+    print(<span class="str">&quot;다시 도전&quot;</span>)</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>부분</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>if</code></td>
+<td>첫 조건 검사</td>
+</tr>
+<tr>
+<td><code>elif</code></td>
+<td>앞 조건이 거짓이면 다음 조건 검사</td>
+</tr>
+<tr>
+<td><code>else</code></td>
+<td>모두 거짓일 때 실행</td>
+</tr>
+<tr>
+<td><code>:</code></td>
+<td>코드 블록 시작</td>
+</tr>
+<tr>
+<td>들여쓰기</td>
+<td>같은 블록에 속하는 코드 표시</td>
+</tr>
+</tbody></table>
+</div><p><strong>들여쓰기는 단순 꾸밈이 아니라 문법입니다.</strong> 보통 공백 4칸을 사용하고 탭과 공백을 섞지 않습니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>age = 20
+has_ticket = <span class="kw">True</span>
+<span class="kw">if</span> age &gt;= 18 <span class="kw">and</span> has_ticket:
+    print(<span class="str">&quot;입장 가능&quot;</span>)</code></pre></div><a class="next" href="#step-6">다음 단계로 →</a></section><section id="step-6"><div class="section-kicker">STEP 06</div><h2>반복문 — for와 while</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">for</span> number <span class="kw">in</span> range(1, 4):
+    print(number)  <span class="cm"># 1, 2, 3</span>
+
+count = 0
+<span class="kw">while</span> count &lt; 3:
+    count += 1
+    print(count)</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>문법</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>range(1, 4)</code></td>
+<td>1부터 4 미만까지</td>
+</tr>
+<tr>
+<td><code>break</code></td>
+<td>가장 가까운 반복문 종료</td>
+</tr>
+<tr>
+<td><code>continue</code></td>
+<td>현재 회차를 건너뛰고 다음 반복</td>
+</tr>
+<tr>
+<td><code>enumerate(items)</code></td>
+<td>인덱스와 값을 함께 순회</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>names = [<span class="str">&quot;민수&quot;</span>, <span class="str">&quot;지수&quot;</span>]
+<span class="kw">for</span> index, name <span class="kw">in</span> enumerate(names, start=1):
+    print(index, name)</code></pre></div><p>while의 조건이 계속 참이면 반복이 끝나지 않습니다. 조건을 바꾸거나 break로 종료할 길을 만드세요.</p>
+<a class="next" href="#step-7">다음 단계로 →</a></section><section id="step-7"><div class="section-kicker">STEP 07</div><h2>리스트·튜플·딕셔너리·집합</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>자료구조</th>
+<th>예시</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>list</td>
+<td><code>[80, 90]</code></td>
+<td>순서 있음, 수정 가능</td>
+</tr>
+<tr>
+<td>tuple</td>
+<td><code>(10, 20)</code></td>
+<td>항목 연결을 바꿀 수 없음</td>
+</tr>
+<tr>
+<td>dict</td>
+<td><code>{&quot;name&quot;: &quot;민수&quot;}</code></td>
+<td>키로 값 조회</td>
+</tr>
+<tr>
+<td>set</td>
+<td><code>{&quot;C&quot;, &quot;Python&quot;}</code></td>
+<td>중복 제거, 순서에 의존하지 않음</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>scores = [80, 90]
+scores.append(100)
+print(scores[0])           <span class="cm"># 80</span>
+
+student = {<span class="str">&quot;name&quot;</span>: <span class="str">&quot;민수&quot;</span>, <span class="str">&quot;score&quot;</span>: 90}
+print(student[<span class="str">&quot;name&quot;</span>])    <span class="cm"># 민수</span>
+print(student.get(<span class="str">&quot;age&quot;</span>, 0))  <span class="cm"># 없는 키의 기본값</span>
+
+languages = {<span class="str">&quot;C&quot;</span>, <span class="str">&quot;C&quot;</span>, <span class="str">&quot;Python&quot;</span>}
+print(len(languages))     <span class="cm"># 2</span></code></pre></div><p>빈 집합은 <code>set()</code>으로 만듭니다. <code>{}</code>는 빈 딕셔너리입니다. 리스트 인덱스는 0부터 시작합니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>passed = [score <span class="kw">for</span> score <span class="kw">in</span> scores <span class="kw">if</span> score &gt;= 90]
+print(passed)  <span class="cm"># [90, 100]</span></code></pre></div><p>이를 <strong>리스트 컴프리헨션</strong>이라고 합니다. 먼저 일반 for문을 익힌 뒤 사용하세요.</p>
+<aside class="callout"><p><code>b = a</code>는 리스트 복사가 아니라 같은 객체를 가리키게 합니다. 독립적인 바깥 리스트가 필요하면 <code>b = a.copy()</code>를 사용합니다. 내부에 중첩된 객체까지 복사되는 것은 아닙니다.</p>
+</aside><a class="next" href="#step-8">다음 단계로 →</a></section><section id="step-8"><div class="section-kicker">STEP 08</div><h2>함수와 매개변수</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> add(a, b):
+    <span class="kw">return</span> a + b
+
+result = add(3, 5)
+print(result)  <span class="cm"># 8</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>코드</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>def</code></td>
+<td>함수 정의</td>
+</tr>
+<tr>
+<td><code>a, b</code></td>
+<td>입력을 받는 매개변수</td>
+</tr>
+<tr>
+<td><code>return</code></td>
+<td>결과를 돌려주고 함수 종료</td>
+</tr>
+<tr>
+<td><code>add(3, 5)</code></td>
+<td>인수를 전달해 호출</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> greet(name, message=<span class="str">&quot;안녕하세요&quot;</span>):
+    <span class="kw">return</span> f<span class="str">&quot;{name}님, {message}!&quot;</span>
+
+print(greet(<span class="str">&quot;민수&quot;</span>))
+print(greet(name=<span class="str">&quot;지수&quot;</span>, message=<span class="str">&quot;반가워요&quot;</span>))</code></pre></div><p>return을 생략하면 None을 반환합니다. <code>print</code>는 출력이고 <code>return</code>은 값의 전달이므로 역할이 다릅니다.</p>
+<aside class="callout"><p><code>def f(items=[]):</code>처럼 변경 가능한 기본값을 두면 호출 간 공유됩니다. 기본값을 None으로 받고 함수 안에서 새 리스트를 만드는 편이 좋습니다.</p>
+</aside><a class="next" href="#step-9">다음 단계로 →</a></section><section id="step-9"><div class="section-kicker">STEP 09</div><h2>예외 처리와 파일</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">try</span>:
+    age = <span class="kw">int</span>(input(<span class="str">&quot;나이: &quot;</span>))
+<span class="kw">except</span> ValueError:
+    print(<span class="str">&quot;정수를 입력해 주세요.&quot;</span>)
+<span class="kw">else</span>:
+    print(f<span class="str">&quot;입력한 나이: {age}&quot;</span>)</code></pre></div><p><code>try</code>에는 실패할 수 있는 작업, <code>except</code>에는 해당 예외의 처리, <code>else</code>에는 예외가 없었을 때의 작업을 씁니다. 필요한 예외를 구체적으로 처리합니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">with</span> open(<span class="str">&quot;memo.txt&quot;</span>, <span class="str">&quot;w&quot;</span>, encoding=<span class="str">&quot;utf-8&quot;</span>) <span class="kw">as</span> file:
+    file.write(<span class="str">&quot;파이썬 공부\n&quot;</span>)
+
+<span class="kw">with</span> open(<span class="str">&quot;memo.txt&quot;</span>, <span class="str">&quot;r&quot;</span>, encoding=<span class="str">&quot;utf-8&quot;</span>) <span class="kw">as</span> file:
+    print(file.read())</code></pre></div><p><code>with</code>는 블록을 벗어날 때 파일을 닫아 줍니다. <code>w</code>는 기존 내용을 덮어쓰고, <code>a</code>는 뒤에 추가하며, <code>r</code>은 읽기입니다. 상대 경로는 실행한 작업 폴더를 기준으로 합니다.</p>
+<a class="next" href="#step-10">다음 단계로 →</a></section><section id="step-10"><div class="section-kicker">STEP 10</div><h2>클래스와 객체</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">class</span> Student:
+    <span class="kw">def</span> __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    <span class="kw">def</span> is_passed(self):
+        <span class="kw">return</span> self.score &gt;= 60
+
+student = Student(<span class="str">&quot;민수&quot;</span>, 85)
+print(student.name)         <span class="cm"># 민수</span>
+print(student.is_passed())  <span class="cm"># True</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>개념</th>
+<th>코드</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>클래스: 설계도</td>
+<td>Student</td>
+</tr>
+<tr>
+<td>객체: 실제 값과 동작</td>
+<td>student</td>
+</tr>
+<tr>
+<td>초기화 메서드</td>
+<td><code>__init__</code></td>
+</tr>
+<tr>
+<td>현재 객체를 받는 매개변수</td>
+<td>self</td>
+</tr>
+<tr>
+<td>객체의 데이터</td>
+<td>self.name</td>
+</tr>
+</tbody></table>
+</div><p><code>self</code>는 인스턴스 메서드의 첫 매개변수로 관례적으로 사용하는 이름입니다. <code>student.is_passed()</code> 호출 시 해당 객체가 전달됩니다.</p>
+<a class="next" href="#step-11">다음 단계로 →</a></section><section id="step-11"><div class="section-kicker">STEP 11</div><h2>모듈과 실행 시작점</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> math
+
+print(math.sqrt(16))  <span class="cm"># 4.0</span>
+
+
+<span class="kw">def</span> main():
+    print(<span class="str">&quot;프로그램 시작&quot;</span>)
+
+
+<span class="kw">if</span> __name__ == <span class="str">&quot;__main__&quot;</span>:
+    main()</code></pre></div><p>모듈은 Python 파일 하나라고 생각하면 됩니다. <code>import</code>로 다른 모듈의 기능을 사용합니다. <code>__name__</code> 조건은 파일을 직접 실행할 때만 main을 호출하고, 다른 파일에서 import할 때는 호출하지 않도록 합니다.</p>
+<p>외부 패키지가 필요하면 프로젝트별 가상 환경을 사용할 수 있습니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 -m venv .venv</code></pre></div><p>가상 환경은 패키지 설치 공간을 분리합니다. 이번 실습은 표준 라이브러리만 사용하므로 추가 패키지는 필요 없습니다.</p>
+<a class="next" href="#step-12">다음 단계로 →</a></section><section id="step-12"><div class="section-kicker">STEP 12</div><h2>확인 문제와 자주 하는 실수</h2><ul>
+<li><input disabled="" type="checkbox"> <code>=</code>와 <code>==</code>를 구분할 수 있다.</li>
+<li><input disabled="" type="checkbox"> input 결과가 문자열임을 알고 변환할 수 있다.</li>
+<li><input disabled="" type="checkbox"> 리스트와 딕셔너리의 조회 방식을 구분한다.</li>
+<li><input disabled="" type="checkbox"> 함수의 출력과 반환을 구분한다.</li>
+<li><input disabled="" type="checkbox"> 숫자 입력 실패를 ValueError로 처리한다.</li>
+</ul>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>오류</th>
+<th>확인할 것</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IndentationError</td>
+<td>공백과 블록 정렬</td>
+</tr>
+<tr>
+<td>NameError</td>
+<td>변수 정의와 이름 철자</td>
+</tr>
+<tr>
+<td>TypeError</td>
+<td>숫자와 문자열을 섞었는지</td>
+</tr>
+<tr>
+<td>IndexError</td>
+<td>리스트 범위를 벗어났는지</td>
+</tr>
+<tr>
+<td>KeyError</td>
+<td>딕셔너리에 키가 있는지</td>
+</tr>
+</tbody></table>
+</div><p><strong>실습:</strong> 전체 예제에서 합격 기준 60을 70으로 바꾸고 결과가 어떻게 달라지는지 확인하세요.</p>
+<p>추가 학습: <a href="https://docs.python.org/3/tutorial/index.html">Python 공식 튜토리얼</a> · <a href="https://docs.python.org/3/tutorial/controlflow.html">제어 흐름과 함수</a></p>
+<a class="next" href="#reference">전체 실습 코드 보기 →</a></section>
+ <section id="reference"><div class="section-kicker">PRACTICE / 직접 실행하기</div><h2>성적 집계 · 전체 실습</h2><p>세 언어에서 같은 문제를 풀며 문법을 비교해 보세요. 점수 입력·평균·합격자 수를 다룹니다.</p><button id="expand" class="secondary">전체 펼치기</button><details class="reference" id="detail-1"><summary>성적 집계 — 전체 코드</summary><div class="reference-body"><p><strong>0~100점 정수 세 개를 입력받고 평균과 합격자 수를 출력합니다.</strong> 합격 기준은 60점입니다. 영어 출력은 터미널 환경 차이를 줄이기 위해 사용합니다.</p>
+<p><a href="../examples/languages/scores.py">소스 파일 보기</a> · 파일명: <code>scores.py</code></p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="str">&quot;&quot;</span><span class="str">&quot;세 점수를 입력받아 평균과 합격자 수를 출력합니다.&quot;</span><span class="str">&quot;&quot;</span>
+
+
+<span class="kw">def</span> read_score(index):
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="kw">try</span>:
+            score = <span class="kw">int</span>(input(f<span class="str">&quot;Score {index}: &quot;</span>))
+        <span class="kw">except</span> ValueError:
+            print(<span class="str">&quot;Enter an integer from 0 to 100.&quot;</span>)
+            <span class="kw">continue</span>
+        <span class="kw">if</span> 0 &lt;= score &lt;= 100:
+            <span class="kw">return</span> score
+        print(<span class="str">&quot;Enter an integer from 0 to 100.&quot;</span>)
+
+
+<span class="kw">def</span> main():
+    scores = []
+    <span class="kw">try</span>:
+        <span class="kw">for</span> index <span class="kw">in</span> range(1, 4):
+            scores.append(read_score(index))
+    <span class="kw">except</span> EOFError:
+        print(<span class="str">&quot;Input ended before all scores were entered.&quot;</span>)
+        <span class="kw">return</span> 1
+
+    average = sum(scores) / len(scores)
+    passed = sum(1 <span class="kw">for</span> score <span class="kw">in</span> scores <span class="kw">if</span> score &gt;= 60)
+    print(f<span class="str">&quot;Average: {average:.2f}&quot;</span>)
+    print(f<span class="str">&quot;Passed: {passed}&quot;</span>)
+    <span class="kw">return</span> 0
+
+
+<span class="kw">if</span> __name__ == <span class="str">&quot;__main__&quot;</span>:
+    <span class="kw">raise</span> SystemExit(main())</code></pre></div></div></details><details class="reference" id="detail-2"><summary>실행 방법과 예상 결과</summary><div class="reference-body"><p>소스 파일이 있는 <code>examples/languages</code> 폴더의 터미널에서 실행하세요. C와 C++ 예제는 각각 컴파일하면 실행 파일 scores가 교체됩니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 scores.py</code></pre></div><p>점수를 한 줄에 하나씩 입력합니다.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>80
+90
+50</code></pre></div><p>예상 결과:</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>Average: 73.33
+Passed: 2</code></pre></div><p><strong>직접 확인하기</strong></p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>입력</th>
+<th>기대 결과</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>80, 90, 50</td>
+<td>평균 73.33, 합격 2명</td>
+</tr>
+<tr>
+<td>0, 60, 100</td>
+<td>평균 53.33, 합격 2명</td>
+</tr>
+<tr>
+<td>abc 또는 101</td>
+<td>안내 메시지 후 다시 입력</td>
+</tr>
+<tr>
+<td>세 점수 전에 입력 종료</td>
+<td>종료 코드 1과 안내 메시지</td>
+</tr>
+</tbody></table>
+</div></div></details><details class="reference" id="detail-3"><summary>코드 읽는 순서</summary><div class="reference-body"><ol>
+<li>main에서 세 점수를 담을 공간을 준비합니다.</li>
+<li>입력 함수가 문자열을 정수로 변환하고 범위를 검사합니다.</li>
+<li>반복문에서 정상 점수를 저장합니다.</li>
+<li>전체 점수의 합과 60점 이상인 개수를 계산합니다.</li>
+<li>실수 나눗셈으로 평균을 구하고 출력합니다.</li>
+</ol>
+<p><code>read_score</code>는 입력이 올바를 때까지 반복합니다. ValueError는 숫자 변환 실패, EOFError는 입력 종료를 나타냅니다. <code>sum</code>과 <code>len</code>으로 평균을 계산하고, 생성기 표현식으로 합격자를 셉니다. <code>raise SystemExit(main())</code>은 main의 반환값을 프로그램 종료 코드로 사용합니다.</p>
+<aside class="callout"><p>파일 저장 기능은 포함하지 않습니다. 프로그램을 종료하면 점수는 사라집니다. 먼저 합격 기준을 바꿔 보고, 다음에는 입력받을 학생 수를 늘려 보세요.</p>
+</aside></div></details></section>
+ <footer>Python 문법 입문 · Python 3<br>실습 코드는 예제 파일과 동일하며 정상 입력·잘못된 입력·입력 종료를 검증했습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+document.querySelector('#expand').addEventListener('click',()=>{const items=[...document.querySelectorAll('details.reference')];const expand=items.some(d=>!d.open);items.forEach(d=>d.open=expand);document.querySelector('#expand').textContent=expand?'전체 접기':'전체 펼치기';});
+</script></body></html>

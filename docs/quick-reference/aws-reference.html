@@ -1,0 +1,355 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AWS 컴퓨팅 서비스 요약</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+
+.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+</style></head><body><a href="../../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">AWS NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">12개 항목</p><a href="#item-0"><span>01</span>전체 지도 — 무엇을 실행할까?</a><a href="#item-1"><span>02</span>EC2 — 가상 서버</a><a href="#item-2"><span>03</span>Lightsail — 간편한 서버 패키지</a><a href="#item-3"><span>04</span>Lambda — 이벤트로 함수 실행</a><a href="#item-4"><span>05</span>ECS — 컨테이너 서비스 관리</a><a href="#item-5"><span>06</span>Fargate — 컨테이너 실행 기반</a><a href="#item-6"><span>07</span>EKS — 관리형 Kubernetes</a><a href="#item-7"><span>08</span>Elastic Beanstalk — 앱 배포 환경 관리</a><a href="#item-8"><span>09</span>AWS Batch — 대량 작업 실행</a><a href="#item-9"><span>10</span>ECS Express Mode와 App Runner 변경 사항</a><a href="#item-10"><span>11</span>함께 사용하는 서비스 — ALB·Auto Scaling</a><a href="#item-11"><span>12</span>상황별 선택과 비용 확인</a><div class="nav-group">다른 요약본</div><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-29<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>AWS<br><span>컴퓨팅 서비스</span></h1><p class="lead">무엇을 어디에서 실행할까?<br>서비스별 설명·시작 순서·선택 기준을 정리했습니다.</p><div class="tags"><span>가상 서버</span><span>컨테이너</span><span>서버리스</span><span>배치 작업</span></div><div class="hero-bottom"><span>12개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>전체 지도 — 무엇을 실행할까?</h2><p><strong>컴퓨팅은 코드를 실행할 CPU·메모리·실행 환경을 제공하는 영역입니다.</strong> 이 문서는 주요 서비스 중심이며 모든 AWS 서비스를 나열하지 않습니다. 공식 자료 확인일은 <strong>2026-09-29</strong>입니다. 사용 가능 리전·정책·요금은 변경될 수 있습니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>서비스</th>
+<th>한 줄 설명</th>
+<th>대표 용도</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EC2</td>
+<td>가상 서버 직접 운영</td>
+<td>서버 설정을 직접 제어</td>
+</tr>
+<tr>
+<td>Lightsail</td>
+<td>간단한 서버 패키지</td>
+<td>소규모 웹·블로그</td>
+</tr>
+<tr>
+<td>Lambda</td>
+<td>이벤트에 따라 함수 실행</td>
+<td>파일 처리·짧은 API</td>
+</tr>
+<tr>
+<td>ECS</td>
+<td>컨테이너 배치·유지 관리</td>
+<td>컨테이너 웹·작업</td>
+</tr>
+<tr>
+<td>Fargate</td>
+<td>서버 관리 없는 컨테이너 실행 기반</td>
+<td>ECS/EKS 실행 용량</td>
+</tr>
+<tr>
+<td>EKS</td>
+<td>관리형 Kubernetes</td>
+<td>Kubernetes 기반 운영</td>
+</tr>
+<tr>
+<td>Elastic Beanstalk</td>
+<td>앱 배포와 인프라 구성 자동화</td>
+<td>플랫폼 기반 웹 앱</td>
+</tr>
+<tr>
+<td>Batch</td>
+<td>작업 큐·배치 실행 관리</td>
+<td>대량 계산·변환</td>
+</tr>
+<tr>
+<td>ECS Express Mode</td>
+<td>웹 컨테이너 배포 간소화</td>
+<td>이미지로 서비스 시작</td>
+</tr>
+<tr>
+<td>App Runner</td>
+<td>기존 고객용 관리형 웹 앱 서비스</td>
+<td>기존 서비스 운영·이전 검토</td>
+</tr>
+</tbody></table>
+</div><p><strong>중요:</strong> ECS와 EKS는 컨테이너를 관리하는 계층이고, EC2와 Fargate는 실행 자원 선택지입니다. 모두 같은 계층의 대체재는 아닙니다.</p>
+<p><a href="https://aws.amazon.com/products/compute/">공식 컴퓨팅 서비스 목록</a></p>
+</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>EC2 — 가상 서버</h2><p><strong>기능:</strong> OS, 인스턴스 사양, 네트워크와 실행 프로그램을 직접 제어합니다.</p>
+<p><strong>사용할 때:</strong> Spring JAR을 직접 운영하거나 특정 OS·에이전트·서버 설정이 필요할 때.</p>
+<p><strong>시작 순서</strong></p>
+<ol>
+<li>리전 선택 → EC2 인스턴스 시작.</li>
+<li>AMI(OS 이미지), 인스턴스 타입, 스토리지 선택.</li>
+<li>IAM 역할, 서브넷, 보안 그룹, 접속 방법 설정.</li>
+<li>인스턴스 상태 검사 통과 후 SSM 또는 설정한 SSH로 접속.</li>
+<li>JDK와 앱을 준비하고 실행 → 로그와 헬스 체크 확인.</li>
+</ol>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># JDK와 app.jar가 준비된 서버에서 실행하는 예시</span>
+java -jar app.jar</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>내가 관리할 것</th>
+<th>확인할 것</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OS·런타임 패치, 앱 실행 유지</td>
+<td>재부팅 후 자동 시작 설정</td>
+</tr>
+<tr>
+<td>보안 그룹·포트</td>
+<td>서버가 외부 요청을 받을 주소에 바인딩되는지</td>
+</tr>
+<tr>
+<td>저장소·백업</td>
+<td>종료 때 볼륨 삭제 설정</td>
+</tr>
+</tbody></table>
+</div><p>기존 로컬 예제의 <code>server.address=127.0.0.1</code>은 외부 접속을 받지 않습니다. 배포 환경의 바인딩·보안 그룹·프록시 구성을 함께 맞춰야 합니다. 운영 실행은 터미널 한 번 실행 대신 서비스 관리자 등을 사용합니다.</p>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html">EC2 공식 시작 안내</a></p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>Lightsail — 간편한 서버 패키지</h2><p><strong>기능:</strong> 서버·스토리지·네트워크 구성을 비교적 단순한 흐름으로 제공합니다. 정액형 번들이 있지만 모든 초과 사용·연결 서비스가 무료라는 뜻은 아닙니다.</p>
+<p><strong>사용할 때:</strong> 개인 웹사이트, 소규모 앱, 간단한 가상 서버 운영.</p>
+<p><strong>시작 순서</strong></p>
+<ol>
+<li>Lightsail에서 위치와 인스턴스 이미지 선택.</li>
+<li>OS 또는 WordPress 같은 앱 이미지 선택.</li>
+<li>번들 선택 → 인스턴스 생성.</li>
+<li>브라우저 SSH로 접속하거나 앱 화면 확인.</li>
+<li>필요하면 고정 IP·DNS·스냅샷 구성.</li>
+</ol>
+<p><strong>완료 확인:</strong> 앱 URL 접속과 서버 상태를 확인합니다. 단순한 생성 흐름이어도 OS·앱 보안 업데이트는 운영자의 역할이 남습니다. 복잡한 네트워크 요구가 생기면 EC2 구조도 비교하세요.</p>
+<p><a href="https://aws.amazon.com/lightsail/">Lightsail 공식 설명</a></p>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>Lambda — 이벤트로 함수 실행</h2><p><strong>기능:</strong> 서버를 직접 마련하지 않고 요청·파일 업로드·메시지 등의 이벤트에 따라 함수를 실행합니다.</p>
+<p><strong>사용할 때:</strong> 업로드 후 썸네일 처리, 짧은 API, 자동화 작업. 실행 시간과 런타임 등의 제한이 있으므로 장시간 상주 프로세스와 구분합니다.</p>
+<p><strong>시작 순서</strong></p>
+<ol>
+<li>Lambda 함수 생성 → 지원 런타임과 실행 역할 선택.</li>
+<li>코드 작성·배포 → 테스트 이벤트 입력.</li>
+<li>반환값과 CloudWatch 로그 확인.</li>
+<li>필요할 때 API Gateway·S3·큐 등의 트리거 연결.</li>
+<li>시간 제한·메모리·동시성·실패 처리 설정.</li>
+</ol>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># lambda_function.py, 핸들러: lambda_function.lambda_handler</span>
+
+def lambda_handler(event, context):
+    name = event.get(<span class="str">&quot;name&quot;</span>, <span class="str">&quot;방문자&quot;</span>)
+    <span class="kw">return</span> {<span class="str">&quot;message&quot;</span>: f<span class="str">&quot;{name}님, 안녕하세요!&quot;</span>}</code></pre></div><div class="codebox"><div class="codebar"><span>json</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>{&quot;name&quot;: &quot;민수&quot;}</code></pre></div><p>이 코드는 콘솔 테스트용 반환 객체입니다. API Gateway와 연결할 때는 해당 통합의 HTTP 응답 형식에 맞춰야 합니다. 재시도가 발생할 수 있는 작업은 같은 이벤트를 다시 처리해도 문제가 없도록 설계합니다.</p>
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html">Lambda 공식 시작 안내</a></p>
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>ECS — 컨테이너 서비스 관리</h2><p><strong>기능:</strong> 컨테이너를 어디에 몇 개 실행할지 관리하고 서비스를 유지합니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>용어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Image</td>
+<td>실행할 앱을 포장한 이미지</td>
+</tr>
+<tr>
+<td>Task definition</td>
+<td>이미지·CPU·메모리·포트·역할 설정</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>실행 중인 작업 단위</td>
+</tr>
+<tr>
+<td>Service</td>
+<td>원하는 수의 Task를 유지·교체</td>
+</tr>
+<tr>
+<td>Cluster</td>
+<td>Task와 서비스의 논리적 묶음</td>
+</tr>
+</tbody></table>
+</div><p><strong>시작 순서</strong></p>
+<ol>
+<li>앱 이미지를 빌드하고 ECR 같은 레지스트리에 업로드.</li>
+<li>Task definition에 이미지·포트·로그·IAM 역할 설정.</li>
+<li>Cluster와 실행 기반(Fargate/EC2 등) 구성.</li>
+<li>장기 실행 웹 앱이면 Service 생성.</li>
+<li>네트워크·헬스 체크·필요 시 ALB 연결.</li>
+<li>Task가 정상 실행되는지, 로그와 앱 응답 확인.</li>
+</ol>
+<p>Task execution role은 이미지 가져오기·로그 전송 등 실행 준비용이고, task role은 앱 코드의 AWS 접근 권한용입니다. 이미지가 있다고 자동으로 외부 웹 URL이 생기는 것은 아닙니다.</p>
+<p><a href="https://aws.amazon.com/ecs/faqs/">Amazon ECS 공식 FAQ</a></p>
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>Fargate — 컨테이너 실행 기반</h2><p><strong>기능:</strong> 컨테이너를 실행할 서버의 프로비저닝·패치를 직접 관리하지 않도록 합니다. 컨테이너 이미지 자체나 앱 버그를 대신 관리하지는 않습니다.</p>
+<p><strong>사용할 때:</strong> ECS/EKS로 컨테이너를 운영하면서 워커 서버 관리 부담을 줄이고 싶을 때.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>이미지 → ECS 서비스 또는 EKS Pod → Fargate 실행 환경</code></pre></div><p><strong>사용 순서:</strong> ECS Task를 Fargate 호환으로 정의하거나 EKS Fargate profile에서 대상 Pod를 선택 → CPU·메모리·네트워크·권한 설정 → 배포 → 로그와 실행 상태 확인.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>줄어드는 관리</th>
+<th>여전히 필요한 관리</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>호스트 OS와 서버 용량 마련</td>
+<td>이미지 업데이트·앱 보안</td>
+</tr>
+<tr>
+<td>컨테이너 실행 서버 운영</td>
+<td>Task/Pod 리소스·네트워크·권한</td>
+</tr>
+</tbody></table>
+</div><p>영구 데이터는 실행 중인 컨테이너의 임시 파일에만 의존하지 말고 적절한 저장소에 보관합니다. EKS에서의 지원 기능과 제약은 별도로 확인하세요.</p>
+<p><a href="https://aws.amazon.com/fargate/getting-started/">Fargate 시작 안내</a> · <a href="https://docs.aws.amazon.com/eks/latest/userguide/fargate.html">EKS Fargate</a></p>
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>EKS — 관리형 Kubernetes</h2><p><strong>기능:</strong> Kubernetes 컨트롤 플레인을 관리형으로 제공합니다. 앱·Pod·권한·네트워크와 실행 자원은 선택한 운영 방식에 맞게 구성합니다.</p>
+<p><strong>사용할 때:</strong> Kubernetes 생태계, 공통 배포 도구, 기존 Kubernetes 운영 경험이 필요할 때.</p>
+<p><strong>시작 순서</strong></p>
+<ol>
+<li>클러스터 IAM 역할과 VPC·서브넷 준비.</li>
+<li>EKS 클러스터 생성과 접근 권한 설정.</li>
+<li>노드 그룹 등 실행 용량 또는 Fargate profile 구성.</li>
+<li>kubectl이 사용할 클러스터 접속 정보 설정.</li>
+<li>Deployment·Service 등 매니페스트 적용.</li>
+<li>Pod 상태·로그·Service·Ingress 경로 확인.</li>
+</ol>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 접속 권한과 kubeconfig가 준비된 뒤 상태를 확인하는 명령</span>
+kubectl get nodes
+kubectl get pods -A
+kubectl get services -A</code></pre></div><p>클러스터가 생성됐다고 앱이 자동 배포되지는 않습니다. 기본 웹 하나만 올리는 목적이라면 ECS 등과 운영 복잡도를 비교하세요.</p>
+<p><a href="https://docs.aws.amazon.com/eks/latest/userguide/sample-deployment.html">EKS 공식 샘플 배포</a></p>
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>Elastic Beanstalk — 앱 배포 환경 관리</h2><p><strong>기능:</strong> 플랫폼에 맞는 앱을 배포하면 EC2, 로드 밸런싱, 확장, 상태 관리 구성을 도와줍니다. 인프라가 사라지는 서비스는 아닙니다.</p>
+<p><strong>사용할 때:</strong> 지원되는 플랫폼으로 웹 앱을 배포하며 개별 인프라 설정 부담을 줄이고 싶을 때.</p>
+<p><strong>시작 순서</strong></p>
+<ol>
+<li>Application과 Environment 생성.</li>
+<li>지원 플랫폼과 버전 선택.</li>
+<li>플랫폼 규칙에 맞는 소스 번들/JAR/컨테이너 설정 업로드.</li>
+<li>환경 변수·역할·네트워크·스케일링 설정.</li>
+<li>환경 URL·Health·로그 확인.</li>
+</ol>
+<p>새 버전은 애플리케이션 버전으로 배포하고 상태를 점검합니다. 기반 EC2·로드 밸런서 등의 비용이 발생합니다. 종료할 때는 환경과 외부 DB 등 별도 자원을 구분하세요.</p>
+<p><a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html">Elastic Beanstalk 공식 설명</a></p>
+</section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>AWS Batch — 대량 작업 실행</h2><p><strong>기능:</strong> Job을 큐에 넣고 실행 자원에 배치합니다. 실행할 코드나 컨테이너 이미지는 사용자가 준비합니다.</p>
+<p><strong>사용할 때:</strong> 대량 파일 변환, 시뮬레이션, 데이터 처리처럼 시작과 끝이 있는 작업.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>용어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Compute environment</td>
+<td>작업 실행 자원 설정</td>
+</tr>
+<tr>
+<td>Job queue</td>
+<td>작업 대기열</td>
+</tr>
+<tr>
+<td>Job definition</td>
+<td>이미지·명령·리소스 요구</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>제출한 실제 작업</td>
+</tr>
+</tbody></table>
+</div><p><strong>시작 순서:</strong> 실행 환경 생성 → Job queue 연결 → Job definition 등록 → Job 제출 → 상태와 로그 확인.</p>
+<p>재시도와 시간 제한을 설정하고 결과는 S3 같은 영구 저장소에 남깁니다. EC2/Fargate 등 선택한 자원에 따라 지원 조건이 달라집니다. 항상 떠 있어야 하는 웹 서버와 목적이 다릅니다.</p>
+<p><a href="https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html">Batch 공식 설명</a></p>
+</section><section id="item-9"><div class="section-kicker">REFERENCE 10</div><h2>ECS Express Mode와 App Runner 변경 사항</h2><h3>ECS Express Mode</h3>
+<p><strong>기능:</strong> 컨테이너 이미지와 IAM 역할 등을 받아 ECS/Fargate 웹 서비스, 로드 밸런싱과 확장 구성을 간소화합니다.</p>
+<p><strong>시작 순서:</strong> ECS 콘솔에서 Express Mode 선택 → 이미지·Task execution role·Infrastructure role 입력 → 앱 포트와 헬스 체크 경로 설정 → 생성 → 제공된 엔드포인트와 로그 확인.</p>
+<p>이미지를 먼저 준비해야 하며 기본 리소스 비용이 발생합니다. 기존 소스 기반 배포라면 이미지 빌드 과정도 필요합니다.</p>
+<p><a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-first-run.html">ECS Express Mode 공식 시작 안내</a></p>
+<h3>App Runner</h3>
+<p><strong>변경 사항:</strong> 2026-04-30부터 신규 고객을 받지 않습니다. 기존 고객은 계속 사용할 수 있고 새 리소스도 생성할 수 있지만 AWS는 새 기능 추가를 계획하지 않는다고 안내합니다.</p>
+<p>기존 고객의 사용 흐름은 소스/이미지 연결 → 빌드·시작 설정 → 배포 → 서비스 URL·로그 확인입니다. 신규 도입 및 이전 검토 시 AWS가 안내하는 ECS Express Mode를 함께 확인하세요.</p>
+<p><a href="https://aws.amazon.com/apprunner/">App Runner 서비스 공지</a> · <a href="https://docs.aws.amazon.com/apprunner/latest/dg/apprunner-availability-change.html">공식 가용성 변경·이전 안내</a></p>
+</section><section id="item-10"><div class="section-kicker">REFERENCE 11</div><h2>함께 사용하는 서비스 — ALB·Auto Scaling</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>기능</th>
+<th>역할</th>
+<th>사용 순서</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ALB</td>
+<td>HTTP/HTTPS 요청 분산</td>
+<td>Target group → Listener → 경로·헬스 체크</td>
+</tr>
+<tr>
+<td>EC2 Auto Scaling</td>
+<td>EC2 수량 유지·조절</td>
+<td>Launch template → ASG → 최소·희망·최대·정책</td>
+</tr>
+<tr>
+<td>CloudWatch</td>
+<td>로그·지표·경보</td>
+<td>로그 수집 → 지표 확인 → 경보</td>
+</tr>
+<tr>
+<td>ECR</td>
+<td>컨테이너 이미지 저장</td>
+<td>Repository → 이미지 push → 배포에서 참조</td>
+</tr>
+</tbody></table>
+</div><p>ALB는 서버를 실행하지 않고 트래픽을 전달합니다. Auto Scaling은 서버 수량을 조절하고, 앱 데이터 공유와 세션 설계까지 자동 해결하지는 않습니다.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>사용자 → ALB → 여러 EC2 또는 컨테이너
+                   ↓
+              공통 DB·파일 저장소</code></pre></div><p><a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html">ALB 공식 설명</a> · <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html">EC2 Auto Scaling 공식 설명</a></p>
+</section><section id="item-11"><div class="section-kicker">REFERENCE 12</div><h2>상황별 선택과 비용 확인</h2><p>아래는 서비스 특성을 기준으로 정리한 <strong>학습용 선택 기준</strong>입니다. 절대적인 정답이나 최저 비용 보장은 아닙니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>상황</th>
+<th>먼저 비교할 선택지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OS부터 직접 학습</td>
+<td>EC2</td>
+</tr>
+<tr>
+<td>작은 웹을 간단히 운영</td>
+<td>Lightsail</td>
+</tr>
+<tr>
+<td>이미지로 웹 앱 배포</td>
+<td>ECS + Fargate / ECS Express Mode</td>
+</tr>
+<tr>
+<td>이벤트 기반 짧은 작업</td>
+<td>Lambda</td>
+</tr>
+<tr>
+<td>Kubernetes 운영 필요</td>
+<td>EKS</td>
+</tr>
+<tr>
+<td>플랫폼 기반 앱 배포</td>
+<td>Elastic Beanstalk</td>
+</tr>
+<tr>
+<td>끝이 있는 대량 작업</td>
+<td>Batch</td>
+</tr>
+<tr>
+<td>React 정적 빌드 결과 배포</td>
+<td>S3·CloudFront 또는 Amplify Hosting 검토</td>
+</tr>
+</tbody></table>
+</div><p>React의 정적 파일 호스팅과 Spring의 서버 실행은 서로 다른 요구입니다. SSR 서버가 필요한 React 프레임워크는 별도의 실행 환경을 고려합니다.</p>
+<p><strong>시작 전에 볼 것:</strong> 리전 지원, IAM 역할, 네트워크, 예상 사용량, 예산 알림. <strong>학습 후 볼 것:</strong> 서버뿐 아니라 디스크·로드 밸런서·NAT·IP·로그 등 남은 자원. 정지와 삭제는 다르며 정지해도 저장소 등 비용이 남을 수 있습니다.</p>
+<p>이 문서의 AWS 생성 절차는 학습 설명입니다. 실제 계정에서 리소스를 만들거나 배포하지 않았습니다. 가격 수치를 고정하지 않았으므로 <a href="https://calculator.aws/">AWS 요금 계산기</a>와 각 서비스 요금 페이지에서 본인 구성으로 확인하세요.</p>
+</section><footer>공식 자료 확인일: 2026-09-29 · AWS 컴퓨팅 서비스<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+
+
+const input=document.querySelector('#search');
+const sections=[...document.querySelectorAll('main>section')];
+input.addEventListener('input',()=>{
+ const terms=input.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ let count=0;
+ for(const s of sections){const show=terms.every(t=>s.textContent.toLocaleLowerCase().includes(t));s.hidden=!show;document.querySelector('nav a[href="#'+s.id+'"]').hidden=!show;if(show)count++;}
+ document.querySelector('#results').textContent=count+'개 항목';document.querySelector('#empty').hidden=count!==0;
+});
+</script></body></html>

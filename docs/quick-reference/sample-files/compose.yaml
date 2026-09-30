@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    image: todo-learning:1.0
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      SERVER_ADDRESS: 0.0.0.0
+      SPRING_H2_CONSOLE_ENABLED: "false"
+    volumes:
+      - todo-data:/app/data
+    restart: unless-stopped
+volumes:
+  todo-data:

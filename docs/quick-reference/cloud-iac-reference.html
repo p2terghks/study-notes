@@ -1,0 +1,149 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Terraform 인프라 자동화 요약</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+
+.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+</style></head><body><a href="../../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">프로젝트 2 NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">8개 항목</p><a href="#item-0"><span>01</span>목표와 코드 구성</a><a href="#item-1"><span>02</span>핵심 명령과 책임 범위</a><a href="#item-2"><span>03</span>상태 파일 — S3 잠금과 기존 DynamoDB 방식</a><a href="#item-3"><span>04</span>계정 없이 로컬에서 검증하기</a><a href="#item-4"><span>05</span>AWS 적용 준비 순서 — 추후 배포할 때</a><a href="#item-5"><span>06</span>이미지 부트스트랩 — 최초 한 번</a><a href="#item-6"><span>07</span>Dev · Stg · Prd 분리</a><a href="#item-7"><span>08</span>삭제와 복구를 코드만큼 자세히 기록하기</a><div class="nav-group">다른 요약본</div><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-30<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>프로젝트 2<br><span>인프라 자동화</span></h1><p class="lead">환경별 인프라와 상태를 코드로 관리하기.<br>모듈·S3 잠금·Dev·Stg·Prd.</p><div class="tags"><span>Terraform</span><span>모듈</span><span>상태 잠금</span><span>환경 분리</span></div><div class="hero-bottom"><span>8개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>목표와 코드 구성</h2><p><strong>프로젝트 1의 구조를 코드로 선언하고 환경별 상태를 분리</strong>합니다. Terraform은 파일을 실행 순서대로 처리하는 셸이 아니라 리소스 의존 관계를 계산해 목표 상태로 맞추는 도구입니다.</p>
+<p><a href="sample-files/cloud-projects.zip">전체 코드 ZIP</a>의 <code>cloud-projects/infra</code>를 확인하세요.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>infra/
+├── bootstrap/        상태 버킷·ECR·선택적 기존 잠금 테이블
+├── modules/
+│   ├── network/      두 AZ의 VPC·서브넷·NAT
+│   ├── database/     RDS·DB SG·백업
+│   └── vm-tier/      EC2 템플릿·ASG·확장 정책
+├── three-tier/       프로젝트 1 EC2 구성
+├── ecs/              프로젝트 3 Fargate 구성
+└── serverless/       프로젝트 4 이벤트 구성</code></pre></div><p>각 스택에 Dev·Stg·Prd 변수 예시와 backend 예시가 있습니다. 프로젝트 1과 2는 같은 인프라를 설명과 코드 관점에서 다루므로 두 번 배포할 필요가 없습니다.</p>
+</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>핵심 명령과 책임 범위</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>명령</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>terraform fmt</td>
+<td>코드 서식 통일</td>
+</tr>
+<tr>
+<td>terraform init</td>
+<td>모듈·프로바이더·backend 초기화</td>
+</tr>
+<tr>
+<td>terraform validate</td>
+<td>문법·참조·프로바이더 스키마 검사</td>
+</tr>
+<tr>
+<td>terraform plan</td>
+<td>현재 상태와 목표 상태 차이 계산</td>
+</tr>
+<tr>
+<td>terraform apply</td>
+<td>계획에 따라 리소스 변경</td>
+</tr>
+<tr>
+<td>terraform destroy</td>
+<td>상태에 기록된 관리 리소스 삭제</td>
+</tr>
+</tbody></table>
+</div><p>현재 개발 범위에서는 <code>init -backend=false</code>, <code>validate</code>, AWS를 호출하지 않는 mock provider 기반 <code>terraform test</code>를 실행합니다. 실제 AWS plan/apply는 수행하지 않습니다. 정적 검증이 IAM 권한, 서비스 할당량, 실제 배포 성공을 보장하지는 않습니다.</p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>상태 파일 — S3 잠금과 기존 DynamoDB 방식</h2><p>상태 파일은 리소스와 Terraform 주소의 대응표입니다. 자격증명과 민감한 값이 들어갈 수 있으므로 Git에 올리지 않습니다. S3 버전 관리·암호화·공개 차단·TLS 강제를 사용합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>bucket       = &quot;계정-리전-고유한-상태버킷&quot;
+key          = &quot;three-tier/dev/terraform.tfstate&quot;
+region       = &quot;ap-northeast-2&quot;
+encrypt      = true
+use_lockfile = true</code></pre></div><p>새 코드는 <strong>S3 자체 잠금</strong>을 사용합니다. DynamoDB 잠금은 현재 deprecated이며, <code>bootstrap</code>의 <code>create_legacy_lock_table=true</code>는 기존 구성 이해·마이그레이션용 선택지입니다. 이 경우 기존 backend의 <code>dynamodb_table</code>에는 <code>portfolio-legacy-state-lock</code>을 지정하고, 팀의 Terraform 버전을 맞춰 S3 잠금으로 전환합니다. 활성 작업 중 잠금을 강제로 제거하지 않습니다. <a href="https://developer.hashicorp.com/terraform/language/backend/s3">HashiCorp 공식 S3 backend</a></p>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>계정 없이 로컬에서 검증하기</h2><p>Terraform 1.13 이상을 설치합니다. 서버리스 ZIP은 서버리스 가이드의 패키징 절차로 먼저 만듭니다. 다음 명령은 <code>cloud-projects</code>에서 실행합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform fmt -check -recursive infra
+terraform -chdir=infra/three-tier init -backend=<span class="kw">false</span>
+terraform -chdir=infra/three-tier validate</code></pre></div><p><code>bootstrap</code>, <code>ecs</code>, <code>serverless</code>에도 같은 방식으로 검사합니다. provider 잠금 파일은 커밋하고 <code>.terraform/</code>, 상태·계획·실제 tfvars·backend 파일은 제외합니다. 계획 파일도 민감할 수 있어 공개 저장소에 첨부하지 않습니다.</p>
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>AWS 적용 준비 순서 — 추후 배포할 때</h2><p>아래는 계정·리전·예산을 정한 뒤 사용하는 절차이며 이번 작업에서는 실행하지 않습니다.</p>
+<ol>
+<li>AWS CLI/SSO로 로그인하고 <code>aws sts get-caller-identity</code>로 대상 계정을 확인합니다.</li>
+<li><code>infra/bootstrap/terraform.tfvars.example</code>을 실제 값으로 복사합니다. 버킷 이름은 전역 고유해야 합니다.</li>
+<li>bootstrap은 로컬 상태로 plan/apply하여 S3와 ECR을 만듭니다. 이 상태도 안전하게 보관하고 별도 관리 backend로 이전할 수 있습니다. bootstrap 자원을 하위 프로젝트와 함께 삭제하지 않습니다.</li>
+<li><code>app/</code>에서 linux/amd64 이미지를 빌드하고 ECR에 push한 뒤 digest URI를 얻습니다.</li>
+<li>스택의 <code>dev.tfvars.example</code>을 <code>dev.auto.tfvars</code>로, <code>dev.backend.hcl.example</code>을 <code>backend.hcl</code>로 복사하여 계정 값·허용 IP·이미지를 채웁니다.</li>
+<li>실제 backend로 다시 <code>init</code>하고 저장한 계획을 검토합니다.</li>
+</ol>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform -chdir=infra/three-tier init -reconfigure -backend-config=backend.hcl
+terraform -chdir=infra/three-tier plan -out=review.tfplan
+terraform -chdir=infra/three-tier apply review.tfplan</code></pre></div><p><code>-backend=false</code> 초기화 후 로컬 리소스 상태가 이미 존재하는 경우에는 무조건 <code>-reconfigure</code>로 바꾸지 말고 <code>init -migrate-state</code>로 이전해야 하는지 확인하세요. 자격증명을 tfvars에 적지 않습니다.</p>
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>이미지 부트스트랩 — 최초 한 번</h2><p>리소스가 준비된 뒤에만 사용하는 명령 예시입니다. <code>ACCOUNT</code>, <code>REGION</code>, <code>REPOSITORY</code>를 실제 값으로 설정합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">export</span> AWS_REGION=ap-northeast-2
+ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+REPOSITORY=cloud-portfolio-app
+REGISTRY=<span class="str">&quot;$ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com&quot;</span>
+aws ecr get-login-password | docker login --username AWS --password-stdin <span class="str">&quot;$REGISTRY&quot;</span>
+docker build --platform linux/amd64 -t <span class="str">&quot;$REGISTRY/$REPOSITORY:bootstrap-1&quot;</span> app
+docker push <span class="str">&quot;$REGISTRY/$REPOSITORY:bootstrap-1&quot;</span>
+aws ecr describe-images --repository-name <span class="str">&quot;$REPOSITORY&quot;</span> --image-ids imageTag=bootstrap-1 --query <span class="str">'imageDetails[0].imageDigest'</span> --output text</code></pre></div><p><code>image_uri</code>에는 <code>레지스트리/저장소@sha256:다이제스트</code>를 넣습니다. ECR 태그는 불변이라 같은 태그를 덮어쓰지 말고 새 릴리스마다 새 태그를 사용합니다. Apple Silicon에서도 EC2·ECS 예제는 x86_64이므로 플랫폼을 맞춰 빌드합니다.</p>
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>Dev · Stg · Prd 분리</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>구분</th>
+<th>Dev</th>
+<th>Stg</th>
+<th>Prd</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>목적</td>
+<td>변경 실험</td>
+<td>운영 전 검증</td>
+<td>실제 운영</td>
+</tr>
+<tr>
+<td>상태 키</td>
+<td>스택/dev/...</td>
+<td>스택/stg/...</td>
+<td>스택/prd/...</td>
+</tr>
+<tr>
+<td>변수</td>
+<td>dev 예시 기반</td>
+<td>stg 예시 기반</td>
+<td>prd 예시 기반</td>
+</tr>
+<tr>
+<td>권한</td>
+<td>개발 범위</td>
+<td>검증 범위</td>
+<td>배포 권한 제한</td>
+</tr>
+</tbody></table>
+</div><p>실행 디렉터리나 체크아웃을 환경별로 나누고 한 폴더에 여러 <code>*.auto.tfvars</code>를 두지 않습니다. 예시는 이름·상태 분리를 제공하며, 더 강한 격리는 AWS 계정 자체를 분리해 구현합니다. 같은 VPC CIDR을 쓰는 환경끼리 연결할 예정이라면 주소도 겹치지 않게 계획합니다.</p>
+<p>NAT·Multi-AZ·삭제 보호는 기본 켜짐입니다. 비용 때문에 끌 경우 어떤 장애에 취약해지는지 기록합니다. 운영급 구성에서는 인증·DB 최소 권한·감사 로그·실제 백업 복원 검증을 추가해야 합니다.</p>
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>삭제와 복구를 코드만큼 자세히 기록하기</h2><ol>
+<li>서비스의 데이터·상태·백업을 확인합니다.</li>
+<li>RDS 삭제 보호를 해제하는 변경을 별도 검토·적용합니다.</li>
+<li><code>plan -destroy</code>로 삭제 대상을 확인하고 destroy를 실행합니다.</li>
+<li>RDS 최종 스냅샷 이름이 이미 존재하면 충돌하지 않는 이름으로 바꿉니다.</li>
+<li>S3는 비어 있지 않으면 삭제되지 않습니다. 버전 객체·delete marker도 확인합니다.</li>
+<li>최종 스냅샷·ECR 이미지·S3 상태·로그·Elastic IP가 남았는지 확인합니다.</li>
+</ol>
+<p>코드는 RDS 최종 스냅샷을 남기고 ECR/S3 강제 삭제를 기본으로 사용하지 않습니다. 잔존 데이터에는 비용이 발생할 수 있습니다. ‘destroy 성공=계정 비용 0’으로 기록하지 않습니다.</p>
+<p>포트폴리오에는 모듈 의존 관계, 환경별 계획 차이, 상태 잠금 충돌 실험, 재생성 과정, 남는 리소스 목록을 첨부합니다.</p>
+</section><footer>공식 자료 확인일: 2026-09-30 · Terraform 인프라 자동화<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+
+
+const input=document.querySelector('#search');
+const sections=[...document.querySelectorAll('main>section')];
+input.addEventListener('input',()=>{
+ const terms=input.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ let count=0;
+ for(const s of sections){const show=terms.every(t=>s.textContent.toLocaleLowerCase().includes(t));s.hidden=!show;document.querySelector('nav a[href="#'+s.id+'"]').hidden=!show;if(show)count++;}
+ document.querySelector('#results').textContent=count+'개 항목';document.querySelector('#empty').hidden=count!==0;
+});
+</script></body></html>

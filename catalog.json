@@ -1,0 +1,128 @@
+[
+  {
+    "path": "docs/spring-web-guide.html",
+    "title": "Spring · JPA 입문 가이드",
+    "category": "Spring · 백엔드",
+    "url": "docs/spring-web-guide.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/react-web-guide.html",
+    "title": "React 입문 가이드",
+    "category": "React",
+    "url": "docs/react-web-guide.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/python-syntax-guide.html",
+    "title": "Python 문법 가이드",
+    "category": "프로그래밍 언어",
+    "url": "docs/python-syntax-guide.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/c-syntax-guide.html",
+    "title": "C 문법 가이드",
+    "category": "프로그래밍 언어",
+    "url": "docs/c-syntax-guide.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/cpp-syntax-guide.html",
+    "title": "C++ 문법 가이드",
+    "category": "프로그래밍 언어",
+    "url": "docs/cpp-syntax-guide.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/spring-reference.html",
+    "title": "Spring 기능 · 사용법",
+    "category": "Spring · 백엔드",
+    "url": "docs/quick-reference/spring-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/react-reference.html",
+    "title": "React 함수 · Hook",
+    "category": "React",
+    "url": "docs/quick-reference/react-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/aws-reference.html",
+    "title": "AWS 컴퓨팅 서비스",
+    "category": "AWS · 클라우드",
+    "url": "docs/quick-reference/aws-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/github-reference.html",
+    "title": "GitHub · Git · 학습 기록 작성법",
+    "category": "GitHub · Docker",
+    "url": "docs/quick-reference/github-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/docker-reference.html",
+    "title": "Docker 사용법",
+    "category": "GitHub · Docker",
+    "url": "docs/quick-reference/docker-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/r-reference.html",
+    "title": "R 언어 · 문법과 데이터 처리",
+    "category": "프로그래밍 언어",
+    "url": "docs/quick-reference/r-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/coding-test-reference.html",
+    "title": "코딩 테스트 · 언어별 풀이",
+    "category": "코딩 테스트",
+    "url": "docs/quick-reference/coding-test-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/cloud-ha-reference.html",
+    "title": "프로젝트 1 · 3-Tier 고가용성",
+    "category": "클라우드 프로젝트",
+    "url": "docs/quick-reference/cloud-ha-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/cloud-iac-reference.html",
+    "title": "프로젝트 2 · Terraform 자동화",
+    "category": "클라우드 프로젝트",
+    "url": "docs/quick-reference/cloud-iac-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/cloud-cicd-reference.html",
+    "title": "프로젝트 3 · Docker · ECS CI/CD",
+    "category": "클라우드 프로젝트",
+    "url": "docs/quick-reference/cloud-cicd-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/cloud-serverless-reference.html",
+    "title": "프로젝트 4 · 서버리스 이미지 처리",
+    "category": "클라우드 프로젝트",
+    "url": "docs/quick-reference/cloud-serverless-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/computing-basics-reference.html",
+    "title": "컴퓨팅 기본 개념 · 코어·스레드·프로세스",
+    "category": "컴퓨터 · 네트워크 기초",
+    "url": "docs/quick-reference/computing-basics-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/network-basics-reference.html",
+    "title": "네트워크 기본 개념 · IP·DNS·TCP·HTTP",
+    "category": "컴퓨터 · 네트워크 기초",
+    "url": "docs/quick-reference/network-basics-reference.html",
+    "format": "HTML"
+  }
+]

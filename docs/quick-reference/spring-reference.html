@@ -1,0 +1,496 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spring 기능·사용법 요약</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+
+.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+</style></head><body><a href="../../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">SPRING NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">10개 항목</p><a href="#item-0"><span>01</span>먼저 보는 기능 지도</a><a href="#item-1"><span>02</span>실행과 빈 등록</a><a href="#item-2"><span>03</span>URL 처리 — Mapping</a><a href="#item-3"><span>04</span>입력 연결 — 경로·쿼리·JSON·폼</a><a href="#item-4"><span>05</span>응답 만들기 — Model·ResponseEntity</a><a href="#item-5"><span>06</span>입력 검증과 오류 처리</a><a href="#item-6"><span>07</span>DB 작업 — Repository 메서드</a><a href="#item-7"><span>08</span>페이징·정렬·검색</a><a href="#item-8"><span>09</span>트랜잭션과 변경 감지</a><a href="#item-9"><span>10</span>자주 헷갈리는 부분</a><div class="nav-group">다른 요약본</div><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-29<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>Spring<br><span>기능 · 사용법</span></h1><p class="lead">요청 처리부터 DB 저장까지.<br>메서드·어노테이션의 역할과 사용법을 한눈에.</p><div class="tags"><span>MVC</span><span>DTO · 검증</span><span>JPA</span><span>트랜잭션</span></div><div class="hero-bottom"><span>10개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>먼저 보는 기능 지도</h2><p><strong>Spring에서는 메서드, 어노테이션, 설정을 함께 사용합니다.</strong> 모두를 ‘함수’로 부르면 헷갈리므로 종류를 구분했습니다. Java 21 / Spring Boot 4 계열의 MVC·JPA 입문용 요약입니다. 아래 코드는 필요한 부분만 발췌했으며 import와 주변 클래스는 생략할 수 있습니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>하고 싶은 일</th>
+<th>사용할 기능</th>
+<th>종류</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>앱 실행</td>
+<td>SpringApplication.run</td>
+<td>메서드</td>
+</tr>
+<tr>
+<td>객체 등록</td>
+<td>@Service, @Component, @Bean</td>
+<td>어노테이션</td>
+</tr>
+<tr>
+<td>URL 처리</td>
+<td>@GetMapping, @PostMapping</td>
+<td>어노테이션</td>
+</tr>
+<tr>
+<td>입력 받기</td>
+<td>@PathVariable, @RequestParam, @RequestBody</td>
+<td>어노테이션</td>
+</tr>
+<tr>
+<td>화면에 데이터 전달</td>
+<td>Model.addAttribute</td>
+<td>메서드</td>
+</tr>
+<tr>
+<td>상태 코드와 JSON 응답</td>
+<td>ResponseEntity</td>
+<td>타입·메서드</td>
+</tr>
+<tr>
+<td>DB CRUD</td>
+<td>save, findById, findAll, deleteById</td>
+<td>Repository 메서드</td>
+</tr>
+<tr>
+<td>작업 단위 묶기</td>
+<td>@Transactional</td>
+<td>어노테이션</td>
+</tr>
+<tr>
+<td>입력 검증</td>
+<td>@Valid, @NotBlank</td>
+<td>어노테이션</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>요청 → Controller → Service → Repository → JPA/Hibernate → DB
+        DTO 입력       작업 단위       Entity 저장</code></pre></div></section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>실행과 빈 등록</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>기능</th>
+<th>언제 사용?</th>
+<th>간단한 사용법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SpringApplication.run</td>
+<td>앱 시작</td>
+<td>run(App.class, args)</td>
+</tr>
+<tr>
+<td>@SpringBootApplication</td>
+<td>시작 클래스</td>
+<td>자동 설정·컴포넌트 탐색</td>
+</tr>
+<tr>
+<td>@Component</td>
+<td>일반 객체 등록</td>
+<td>클래스 위에 선언</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>업무 처리 객체 등록</td>
+<td>서비스 클래스 위에 선언</td>
+</tr>
+<tr>
+<td>@Repository</td>
+<td>데이터 접근 계층 표현</td>
+<td>직접 만든 DAO 등에 사용</td>
+</tr>
+<tr>
+<td>@Configuration / @Bean</td>
+<td>직접 생성한 객체 등록</td>
+<td>설정 클래스의 메서드</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@SpringBootApplication</span>
+<span class="kw">public</span> <span class="kw">class</span> App {
+    <span class="kw">public</span> static <span class="kw">void</span> main(String[] args) {
+        SpringApplication.run(App.<span class="kw">class</span>, args);
+    }
+}</code></pre></div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Configuration</span>
+<span class="kw">class</span> AppConfig {
+    <span class="an">@Bean</span>
+    Clock clock() {
+        <span class="kw">return</span> Clock.systemUTC();
+    }
+}</code></pre></div><p>생성자가 하나이면 @Autowired 없이 생성자 주입을 사용할 수 있습니다. Spring Data의 JpaRepository 인터페이스는 보통 @Repository를 직접 붙이지 않아도 구현체가 등록됩니다.</p>
+<p><a href="https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html">Spring 공식: 빈과 의존성 주입</a></p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>URL 처리 — Mapping</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>기능</th>
+<th>목적</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@RequestMapping</td>
+<td>공통 경로</td>
+<td>클래스에 /api/todos</td>
+</tr>
+<tr>
+<td>@GetMapping</td>
+<td>조회</td>
+<td>목록, 상세</td>
+</tr>
+<tr>
+<td>@PostMapping</td>
+<td>생성·처리</td>
+<td>새 할 일 등록</td>
+</tr>
+<tr>
+<td>@PutMapping</td>
+<td>전체 교체 의미의 수정</td>
+<td>전체 수정 DTO</td>
+</tr>
+<tr>
+<td>@PatchMapping</td>
+<td>일부 변경</td>
+<td>완료 상태만 변경</td>
+</tr>
+<tr>
+<td>@DeleteMapping</td>
+<td>삭제</td>
+<td>ID로 삭제</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@RestController</span>
+<span class="an">@RequestMapping</span>(<span class="str">&quot;/api/todos&quot;</span>)
+<span class="kw">class</span> TodoApiController {
+    <span class="an">@GetMapping</span>(<span class="str">&quot;/hello&quot;</span>)
+    <span class="kw">public</span> Map&lt;String, String&gt; hello() {
+        <span class="kw">return</span> Map.of(<span class="str">&quot;message&quot;</span>, <span class="str">&quot;안녕하세요&quot;</span>);
+    }
+}</code></pre></div><p>GET /api/todos/hello 요청은 JSON 객체를 반환합니다. <code>@Controller</code>는 화면 처리에, <code>@RestController</code>는 응답 본문 데이터에 사용합니다. 같은 URL이라도 HTTP 메서드에 따라 다른 처리를 연결할 수 있습니다.</p>
+<p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc.html">Spring MVC 공식 문서</a></p>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>입력 연결 — 경로·쿼리·JSON·폼</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>어노테이션</th>
+<th>읽는 곳</th>
+<th>요청 예</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@PathVariable</td>
+<td>URL 경로</td>
+<td>/todos/3</td>
+</tr>
+<tr>
+<td>@RequestParam</td>
+<td>쿼리·폼 매개변수</td>
+<td>?page=0</td>
+</tr>
+<tr>
+<td>@RequestBody</td>
+<td>요청 본문</td>
+<td>JSON 객체</td>
+</tr>
+<tr>
+<td>@ModelAttribute</td>
+<td>폼·쿼리를 객체로 바인딩</td>
+<td>title=공부</td>
+</tr>
+<tr>
+<td>@RequestHeader</td>
+<td>HTTP 헤더</td>
+<td>X-Request-Id</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@GetMapping</span>(<span class="str">&quot;/{id}&quot;</span>)
+<span class="kw">public</span> TodoResponse detail(<span class="an">@PathVariable</span>(<span class="str">&quot;id&quot;</span>) Long id) {
+    <span class="kw">return</span> service.find(id);
+}
+
+<span class="an">@GetMapping</span>
+<span class="kw">public</span> List&lt;TodoResponse&gt; list(
+        <span class="an">@RequestParam</span>(name = <span class="str">&quot;page&quot;</span>, defaultValue = <span class="str">&quot;0&quot;</span>) int page) {
+    <span class="kw">return</span> service.list(page);
+}</code></pre></div><p>위 service와 TodoResponse는 애플리케이션이 정의하는 타입과 메서드입니다. Spring이 자동으로 만들어 주는 이름은 아닙니다.</p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> record TodoCreateRequest(
+    <span class="an">@NotBlank</span> <span class="an">@Size</span>(max = 100) String title
+) {}
+
+<span class="an">@PostMapping</span>
+<span class="kw">public</span> ResponseEntity&lt;TodoResponse&gt; create(
+        <span class="an">@Valid</span> <span class="an">@RequestBody</span> TodoCreateRequest request) {
+    TodoResponse saved = service.create(request);
+    <span class="kw">return</span> ResponseEntity.created(
+        URI.create(<span class="str">&quot;/api/todos/&quot;</span> + saved.id())
+    ).body(saved);
+}</code></pre></div><p><code>request.title()</code>은 Java record의 접근자입니다. JSON 본문을 받을 때 Content-Type은 application/json을 사용합니다. DTO는 입력 전달용이고 Entity는 영속 데이터용입니다.</p>
+<p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html">공식: @RequestBody</a></p>
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>응답 만들기 — Model·ResponseEntity</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>호출</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>model.addAttribute(&quot;todos&quot;, list)</td>
+<td>화면에서 읽을 이름과 값 추가</td>
+</tr>
+<tr>
+<td>return &quot;todos/list&quot;</td>
+<td>@Controller에서 템플릿 이름 선택</td>
+</tr>
+<tr>
+<td>return &quot;redirect:/todos&quot;</td>
+<td>다른 주소로 이동</td>
+</tr>
+<tr>
+<td>ResponseEntity.ok(dto)</td>
+<td>200과 응답 본문</td>
+</tr>
+<tr>
+<td>ResponseEntity.created(uri).body(dto)</td>
+<td>201, Location 헤더, 본문</td>
+</tr>
+<tr>
+<td>ResponseEntity.noContent().build()</td>
+<td>204, 본문 없음</td>
+</tr>
+<tr>
+<td>ResponseEntity.notFound().build()</td>
+<td>404</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@GetMapping</span>(<span class="str">&quot;/todos&quot;</span>)
+<span class="kw">public</span> String listPage(Model model) {
+    model.addAttribute(<span class="str">&quot;todos&quot;</span>, service.findAll());
+    <span class="kw">return</span> <span class="str">&quot;todos/list&quot;</span>;
+}</code></pre></div><p>위 메서드는 @Controller 안에서 사용합니다. @RestController에서 같은 문자열을 반환하면 화면이 아니라 문자열 본문이 됩니다.</p>
+<p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responseentity.html">공식: ResponseEntity</a></p>
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>입력 검증과 오류 처리</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>기능</th>
+<th>역할</th>
+<th>주의점</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@NotNull</td>
+<td>null 거부</td>
+<td>빈 문자열은 허용</td>
+</tr>
+<tr>
+<td>@NotBlank</td>
+<td>null·빈 값·공백 거부</td>
+<td>문자열용</td>
+</tr>
+<tr>
+<td>@Size</td>
+<td>길이·개수 제한</td>
+<td>null 자체는 보통 허용</td>
+</tr>
+<tr>
+<td>@Min / @Max</td>
+<td>숫자 범위</td>
+<td>null 금지는 별도</td>
+</tr>
+<tr>
+<td>@Valid</td>
+<td>객체의 검증 실행 요청</td>
+<td>규칙 선언과 함께 사용</td>
+</tr>
+<tr>
+<td>BindingResult.hasErrors</td>
+<td>폼 검증 오류 확인</td>
+<td>검증 대상 인자 바로 뒤</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@PostMapping</span>(<span class="str">&quot;/todos&quot;</span>)
+<span class="kw">public</span> String create(<span class="an">@Valid</span> <span class="an">@ModelAttribute</span>(<span class="str">&quot;todoForm&quot;</span>) TodoForm form,
+                     BindingResult errors) {
+    <span class="kw">if</span> (errors.hasErrors()) <span class="kw">return</span> <span class="str">&quot;todos/new&quot;</span>;
+    service.create(form);
+    <span class="kw">return</span> <span class="str">&quot;redirect:/todos&quot;</span>;
+}</code></pre></div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@RestControllerAdvice</span>
+<span class="kw">class</span> ApiErrors {
+    <span class="an">@ExceptionHandler</span>(TodoNotFoundException.<span class="kw">class</span>)
+    ResponseEntity&lt;Map&lt;String, String&gt;&gt; notFound() {
+        <span class="kw">return</span> ResponseEntity.status(404)
+            .body(Map.of(<span class="str">&quot;message&quot;</span>, <span class="str">&quot;할 일이 없습니다.&quot;</span>));
+    }
+}</code></pre></div><p>TodoNotFoundException은 직접 정의한 예외입니다. 예제 오류 응답은 ‘없는 할 일’만 처리하며 검증 오류와 모든 서버 오류를 한꺼번에 처리하지는 않습니다.</p>
+<p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html">공식: 검증</a> · <a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html">예외 처리</a></p>
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>DB 작업 — Repository 메서드</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> <span class="kw">interface</span> TodoRepository <span class="kw">extends</span> JpaRepository&lt;Todo, Long&gt; {
+    List&lt;Todo&gt; findByTitleContaining(String keyword);
+}</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>메서드</th>
+<th>용도</th>
+<th>반환·주의점</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>save(entity)</td>
+<td>신규 저장 또는 병합</td>
+<td>반환된 엔티티 사용 권장</td>
+</tr>
+<tr>
+<td>saveAll(list)</td>
+<td>여러 엔티티 저장</td>
+<td>한 번의 bulk SQL을 보장하지 않음</td>
+</tr>
+<tr>
+<td>findById(id)</td>
+<td>ID 조회</td>
+<td>Optional, 없는 경우 처리</td>
+</tr>
+<tr>
+<td>findAll()</td>
+<td>전체 조회</td>
+<td>데이터가 많으면 페이징</td>
+</tr>
+<tr>
+<td>existsById(id)</td>
+<td>존재 여부</td>
+<td>이후 변경까지 보장하지 않음</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>개수 조회</td>
+<td>long</td>
+</tr>
+<tr>
+<td>deleteById(id)</td>
+<td>ID 삭제</td>
+<td>404 정책은 직접 정의</td>
+</tr>
+<tr>
+<td>flush()</td>
+<td>보류된 변경을 DB와 동기화</td>
+<td>commit과 다름</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>Todo todo = repository.findById(id)
+    .orElseThrow(() -&gt; <span class="kw">new</span> TodoNotFoundException(id));</code></pre></div><p><code>orElseThrow</code>는 Spring이 아니라 Java Optional의 메서드입니다. save는 신규 여부 판정에 따라 persist 또는 merge를 사용하므로 무조건 INSERT라는 뜻이 아닙니다.</p>
+<p><a href="https://docs.spring.io/spring-data/jpa/reference/jpa/entity-persistence.html">공식: 엔티티 저장</a></p>
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>페이징·정렬·검색</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>Pageable pageable = PageRequest.of(
+    0, 20, Sort.by(Sort.Direction.DESC, <span class="str">&quot;id&quot;</span>)
+);
+Page&lt;Todo&gt; page = repository.findAll(pageable);
+List&lt;Todo&gt; items = page.getContent();</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>기능</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PageRequest.of(0, 20)</td>
+<td>첫 페이지, 최대 20개</td>
+</tr>
+<tr>
+<td>Sort.by(...)</td>
+<td>엔티티 속성으로 정렬</td>
+</tr>
+<tr>
+<td>Page.getContent()</td>
+<td>현재 페이지의 데이터</td>
+</tr>
+<tr>
+<td>Page.getTotalElements()</td>
+<td>전체 개수</td>
+</tr>
+<tr>
+<td>Page.getTotalPages()</td>
+<td>전체 페이지 수</td>
+</tr>
+</tbody></table>
+</div><p>페이지 번호는 0부터 시작합니다. 외부 입력 page는 0 이상, size는 합리적인 상한으로 검증하세요. Page는 전체 개수 조회가 필요할 수 있고 Slice는 다음 구간 존재 여부에 집중합니다.</p>
+<p><code>findByTitleContaining</code> 같은 메서드 이름은 엔티티의 title 속성을 기준으로 해석됩니다. DB 열 이름을 임의로 넣는 것이 아닙니다.</p>
+<p><a href="https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html">공식: 쿼리 메서드</a></p>
+</section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>트랜잭션과 변경 감지</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Service</span>
+<span class="kw">class</span> TodoService {
+    <span class="kw">private</span> <span class="kw">final</span> TodoRepository repository;
+
+    TodoService(TodoRepository repository) {
+        this.repository = repository;
+    }
+
+    <span class="an">@Transactional</span>
+    <span class="kw">public</span> <span class="kw">void</span> update(Long id, String title) {
+        Todo todo = repository.findById(id)
+            .orElseThrow(() -&gt; <span class="kw">new</span> TodoNotFoundException(id));
+        todo.changeTitle(title);
+    }
+}</code></pre></div><p>changeTitle은 직접 정의한 엔티티 메서드입니다. 트랜잭션에서 관리 중인 엔티티를 변경하면 JPA의 변경 감지로 반영되어 반드시 save를 다시 부를 필요는 없습니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>설정</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Transactional</td>
+<td>DB 작업의 트랜잭션 경계</td>
+</tr>
+<tr>
+<td>readOnly = true</td>
+<td>읽기 최적화 힌트, 쓰기 권한 통제가 아님</td>
+</tr>
+<tr>
+<td>rollbackFor = Exception.class</td>
+<td>checked 예외도 포함하도록 롤백 규칙 확장</td>
+</tr>
+</tbody></table>
+</div><p>기본 롤백은 RuntimeException과 Error에 적용됩니다. 프록시 방식에서 같은 객체 내부의 메서드 호출만으로 별도 트랜잭션 어노테이션이 적용되지는 않습니다.</p>
+<p><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html">공식: @Transactional</a></p>
+</section><section id="item-9"><div class="section-kicker">REFERENCE 10</div><h2>자주 헷갈리는 부분</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>오해</th>
+<th>정확한 구분</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Controller의 create는 Spring 내장 함수</td>
+<td>이름은 개발자가 정하고 Mapping이 요청 연결</td>
+</tr>
+<tr>
+<td>@Entity는 Service와 같은 빈</td>
+<td>JPA 엔티티와 스프링 빈은 관리 역할이 다름</td>
+</tr>
+<tr>
+<td>DTO에 붙인 검증은 언제나 자동 실행</td>
+<td>@Valid 등 검증을 호출하는 경계 필요</td>
+</tr>
+<tr>
+<td>JPA가 곧 DB</td>
+<td>JPA는 표준, Hibernate는 구현, DB는 저장소</td>
+</tr>
+<tr>
+<td>redirect가 JSON API에도 필수</td>
+<td>REST API는 보통 상태 코드·DTO 반환</td>
+</tr>
+<tr>
+<td>CORS가 로그인 권한 검사</td>
+<td>CORS는 브라우저 출처 정책, 인증·인가는 별도</td>
+</tr>
+</tbody></table>
+</div><p><strong>찾아보기 순서:</strong> URL → 입력 방식 → 검증 → Service → Repository → 응답. 기존 학습 프로젝트를 읽을 때 이 순서대로 추적해 보세요.</p>
+</section><footer>공식 자료 확인일: 2026-09-29 · Spring 기능·사용법<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+
+
+const input=document.querySelector('#search');
+const sections=[...document.querySelectorAll('main>section')];
+input.addEventListener('input',()=>{
+ const terms=input.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ let count=0;
+ for(const s of sections){const show=terms.every(t=>s.textContent.toLocaleLowerCase().includes(t));s.hidden=!show;document.querySelector('nav a[href="#'+s.id+'"]').hidden=!show;if(show)count++;}
+ document.querySelector('#results').textContent=count+'개 항목';document.querySelector('#empty').hidden=count!==0;
+});
+</script></body></html>

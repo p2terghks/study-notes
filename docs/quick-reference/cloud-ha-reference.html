@@ -1,0 +1,133 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>3-Tier 고가용성 웹 서비스 요약</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+
+.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+</style></head><body><a href="../../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">프로젝트 1 NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">8개 항목</p><a href="#item-0"><span>01</span>목표와 결과물</a><a href="#item-1"><span>02</span>구조 — 세 계층과 두 가용 영역</a><a href="#item-2"><span>03</span>네트워크와 접근 제어</a><a href="#item-3"><span>04</span>로컬 실행 — 먼저 요청 흐름 익히기</a><a href="#item-4"><span>05</span>코드 읽는 순서</a><a href="#item-5"><span>06</span>로컬 장애 실습과 관찰</a><a href="#item-6"><span>07</span>AWS에서 검증할 항목 — 이번에는 미실행</a><a href="#item-7"><span>08</span>비용·정리·포트폴리오 기록</a><div class="nav-group">다른 요약본</div><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-30<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>프로젝트 1<br><span>고가용성 웹 서비스</span></h1><p class="lead">웹·앱·DB 계층을 나누고 장애를 관찰하기.<br>EC2·ALB·ASG·RDS와 로컬 실습.</p><div class="tags"><span>3-Tier</span><span>2 AZ</span><span>장애·복구</span><span>전체 코드</span></div><div class="hero-bottom"><span>8개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>목표와 결과물</h2><p><strong>웹·앱·DB를 분리하고, 인스턴스가 교체되어도 데이터를 유지하는 웹 서비스</strong>를 만듭니다. 공통 앱은 Node.js와 PostgreSQL을 사용하는 ‘클라우드 실습 노트’입니다. 저장·목록 API와 인스턴스/버전 표시를 제공해 장애와 배포를 관찰할 수 있습니다.</p>
+<p><a href="sample-files/cloud-projects.zip">전체 코드 ZIP</a>에는 네 프로젝트의 코드·가이드가 함께 들어 있습니다. 압축을 풀고 <code>cloud-projects</code> 폴더에서 명령을 실행하세요. 현재 범위는 로컬 실습이며 AWS 적용은 수행하지 않습니다.</p>
+</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>구조 — 세 계층과 두 가용 영역</h2><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>사용자
+  ↓
+외부 ALB                  public subnet A / C
+  ↓
+Nginx 웹 EC2 ASG (최소 2)  private web subnet A / C
+  ↓
+내부 ALB                  private app subnet A / C
+  ↓
+Node.js 앱 EC2 ASG (최소 2) private app subnet A / C
+  ↓
+RDS PostgreSQL            isolated DB subnet A / C
+  └─ Multi-AZ standby</code></pre></div><p>웹은 HTTP 요청을 전달하고, 앱은 입력 검증·SQL 실행을 처리하며, DB는 데이터를 저장합니다. 외부/내부 ALB가 각 대상 그룹의 상태를 확인합니다. 웹·앱 ASG는 CPU 50% 목표 추적 정책으로 2~4대 사이에서 확장합니다. 자동 확장에는 시간이 걸리므로 급격한 트래픽을 무조건 무중단으로 처리한다고 설명하지 않습니다.</p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>네트워크와 접근 제어</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>계층</th>
+<th>들어오는 연결</th>
+<th>나가는 경로</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>외부 ALB</td>
+<td>allowed_cidr의 80/443</td>
+<td>웹 SG의 80</td>
+</tr>
+<tr>
+<td>웹</td>
+<td>외부 ALB SG의 80</td>
+<td>내부 ALB 80, 패키지 설치용 NAT</td>
+</tr>
+<tr>
+<td>내부 ALB</td>
+<td>웹 SG의 80</td>
+<td>앱 SG의 8080</td>
+</tr>
+<tr>
+<td>앱</td>
+<td>내부 ALB SG의 8080</td>
+<td>DB 5432, ECR·Secrets Manager 등 NAT</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>앱 SG의 5432</td>
+<td>인터넷 기본 경로 없음</td>
+</tr>
+</tbody></table>
+</div><p>Terraform의 인바운드는 SG 참조로 제한합니다. 웹/앱의 아웃바운드는 학습 편의상 허용하고 DB는 격리합니다. SSH 포트는 열지 않고 관리 접속에는 SSM을 사용합니다. ALB는 인터넷 진입점이고 NAT는 사설 서버의 외부 요청 경로입니다. NAT는 외부 사용자의 앱 접속 경로가 아닙니다.</p>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>로컬 실행 — 먼저 요청 흐름 익히기</h2><p>Docker Desktop을 실행하고 다음을 실행합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker compose up -d --build --scale app=2
+curl -fsS http:<span class="cm">//localhost:8088/readyz</span>
+curl -fsS http:<span class="cm">//localhost:8088/api/info</span></code></pre></div><p>브라우저에서 <code>http://localhost:8088</code>을 엽니다. 노트를 저장한 뒤 새로고침하면 같은 데이터를 조회합니다. 웹 컨테이너 → 앱 컨테이너 → DB 컨테이너 순서로 전달됩니다. <code>migrate</code> 서비스가 먼저 테이블을 생성하고 앱은 준비 상태 검사를 통과해야 웹에 연결됩니다.</p>
+<p>로컬 컨테이너 2개는 AWS의 서로 다른 AZ가 아닙니다. 네트워크 구조와 다중 앱의 공용 DB 사용을 연습하는 환경입니다.</p>
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>코드 읽는 순서</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>파일</th>
+<th>확인할 내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>compose.yaml</td>
+<td>웹·데이터 네트워크, DB 볼륨, 준비 순서</td>
+</tr>
+<tr>
+<td>web/default.conf.template</td>
+<td>Nginx 프록시, DNS 재조회</td>
+</tr>
+<tr>
+<td>app/server.cjs</td>
+<td>입력 검증, 매개변수 SQL, health/ready 분리</td>
+</tr>
+<tr>
+<td>infra/modules/network/main.tf</td>
+<td>2 AZ, 계층별 서브넷, NAT·라우팅</td>
+</tr>
+<tr>
+<td>infra/modules/database/main.tf</td>
+<td>Multi-AZ·백업·암호 관리</td>
+</tr>
+<tr>
+<td>infra/modules/vm-tier/main.tf</td>
+<td>ASG·Launch Template·CPU 확장</td>
+</tr>
+<tr>
+<td>infra/three-tier/main.tf</td>
+<td>SG·두 ALB·웹/앱 모듈 연결</td>
+</tr>
+</tbody></table>
+</div><p>EC2 앱은 ECR 이미지를 digest로 고정해 실행합니다. user-data는 Docker 설치 → 이미지 받기 → 테이블 마이그레이션 → systemd 서비스 등록 순서입니다. 이미지 준비와 Terraform 변수 입력은 <a href="cloud-iac-reference.html">IaC 가이드</a>에 있습니다.</p>
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>로컬 장애 실습과 관찰</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker compose ps
+python3 scripts/probe.py http:<span class="cm">//localhost:8088/api/notes --count 60</span></code></pre></div><p>다른 터미널에서 <code>docker compose ps -q app</code>으로 앱 컨테이너 ID 두 개를 확인하고 <strong>하나의 ID만</strong> <code>docker stop ID</code>로 중지합니다. 종료·DNS 재조회 사이에 오류가 나타날 수 있으므로 CSV의 실패 요청과 복구 시점을 기록하세요. 이후 <code>docker compose up -d --scale app=2</code>로 복구합니다.</p>
+<p>DB 장애는 <code>docker compose stop db</code> 후 <code>/readyz</code>와 목록 요청이 503인지 확인하고 <code>docker compose start db</code>로 복구합니다. 이 실습은 단일 DB 중지이며 RDS Multi-AZ failover와 동일하지 않습니다. 멈춘 컨테이너/DB는 다음 실습 전 복구하세요.</p>
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>AWS에서 검증할 항목 — 이번에는 미실행</h2><ol>
+<li>ALB 대상 그룹에 두 AZ의 정상 대상이 있는지 확인합니다.</li>
+<li>앱 ASG 인스턴스 한 개를 종료한 뒤 대체 인스턴스 생성과 요청 실패율을 기록합니다.</li>
+<li>통제한 부하를 점진적으로 늘려 CPU·응답 시간·ASG 개수 변화를 관찰합니다.</li>
+<li>RDS Multi-AZ 강제 장애조치 전후의 503 구간과 복구 시간을 측정합니다.</li>
+<li>백업을 <strong>별도 DB 인스턴스</strong>로 복구하고 노트 데이터의 시점·개수를 대조합니다.</li>
+</ol>
+<p>RDS Multi-AZ DB 인스턴스의 standby는 읽기 확장용이 아닙니다. 장애조치 과정에서 연결이 끊길 수 있으며, Multi-AZ와 백업은 각각 가용성과 과거 데이터 복구를 다룹니다. <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html">AWS 공식 Multi-AZ 설명</a></p>
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>비용·정리·포트폴리오 기록</h2><p>EC2 4대 이상, ALB 2개, NAT 2개, Multi-AZ RDS와 스토리지·로그·전송 비용이 발생할 수 있습니다. 단일 NAT로 줄이는 <code>ha_nat=false</code>는 비용 실험용이며 AZ 장애에 대한 외부 통신 복원력을 낮춥니다. 무료라고 가정하지 말고 리전별 계산기로 사용 시간과 수량을 계산하세요.</p>
+<p>로컬 종료는 <code>docker compose down</code>, 데이터까지 초기화하려면 <code>docker compose down -v</code>입니다. AWS 삭제 절차는 IaC 가이드를 따릅니다.</p>
+<p>포트폴리오는 <strong>구조도 → 요청 경로 → 장애 실험 → 측정값 → 비용·한계 → 개선점</strong>으로 작성합니다. 실제로 측정하지 않은 가용성 수치나 ‘완전 무중단’을 성과로 쓰지 않습니다. <a href="https://calculator.aws/">AWS 요금 계산기</a> · <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html">EC2 Auto Scaling</a></p>
+</section><footer>공식 자료 확인일: 2026-09-30 · 3-Tier 고가용성 웹 서비스<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+
+
+const input=document.querySelector('#search');
+const sections=[...document.querySelectorAll('main>section')];
+input.addEventListener('input',()=>{
+ const terms=input.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ let count=0;
+ for(const s of sections){const show=terms.every(t=>s.textContent.toLocaleLowerCase().includes(t));s.hidden=!show;document.querySelector('nav a[href="#'+s.id+'"]').hidden=!show;if(show)count++;}
+ document.querySelector('#results').textContent=count+'개 항목';document.querySelector('#empty').hidden=count!==0;
+});
+</script></body></html>

@@ -1,0 +1,407 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>코딩 테스트 · 언어별 풀이 요약</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+
+.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+</style></head><body><a href="../../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">코딩 테스트 NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">12개 항목</p><a href="#item-0"><span>01</span>문제를 읽고 풀이를 만드는 순서</a><a href="#item-1"><span>02</span>시간 · 공간 복잡도와 문제의 단서</a><a href="#item-2"><span>03</span>자료구조를 언어별로 대응하기</a><a href="#item-3"><span>04</span>공통 문제 — 여러 구간의 합</a><a href="#item-4"><span>05</span>Java — long · 컬렉션 · 출력 모으기</a><a href="#item-5"><span>06</span>Python — 빠른 입력 · dict · deque</a><a href="#item-6"><span>07</span>C — 메모리 · 정수 범위 · 비교 함수</a><a href="#item-7"><span>08</span>C++ — STL로 구현 줄이기</a><a href="#item-8"><span>09</span>이분 탐색 · 투 포인터 풀이 패턴</a><a href="#item-9"><span>10</span>BFS · DFS — 그래프 탐색</a><a href="#item-10"><span>11</span>DP · 그리디 · 백트래킹 구분</a><a href="#item-11"><span>12</span>실행 방법 · 제출 전 점검 · 오답 기록</a><div class="nav-group">다른 요약본</div><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-30<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>코딩 테스트<br><span>언어별 풀이</span></h1><p class="lead">같은 문제를 Java·Python·C·C++로 비교하기.<br>풀이 전략·자료구조·누적 합·탐색·DP를 정리했습니다.</p><div class="tags"><span>Java · Python</span><span>C · C++</span><span>복잡도</span><span>실행 가능한 풀이</span></div><div class="hero-bottom"><span>12개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>문제를 읽고 풀이를 만드는 순서</h2><p><strong>문제 조건 → 작은 예제 → 단순 풀이 → 복잡도 개선 → 구현 → 경계값 검증</strong> 순서로 접근합니다. 여기서는 Java 17 이상 문법, Python 3, C17, C++17 네 언어를 비교합니다. 실제 제출 언어·버전·함수 이름은 채점 환경을 확인하세요.</p>
+<ol>
+<li>입력 개수, 값 범위, 중복·음수·빈 입력 가능 여부를 적습니다.</li>
+<li>‘무엇을 출력해야 하는가’를 한 문장으로 바꿉니다.</li>
+<li>손으로 작은 사례를 풀고 가장 단순한 방법부터 생각합니다.</li>
+<li>가장 많이 반복하는 연산과 필요한 자료구조를 고릅니다.</li>
+<li>반복문이 유지하는 조건이나 점화식으로 정답인 이유를 설명합니다.</li>
+<li>최소 입력, 최댓값, 중복, 음수, 답이 없는 경우를 확인합니다.</li>
+</ol>
+<p>표준 입력 문제는 전체 프로그램을, 함수 완성형은 지정된 함수와 반환값을 제출합니다. 함수 완성형에서 임의로 입력 코드를 추가하지 마세요.</p>
+</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>시간 · 공간 복잡도와 문제의 단서</h2><p>N은 원소 수, Q는 질문 수, V·E는 정점·간선 수입니다. 시간 제한은 언어·상수·입출력에 따라 달라지므로 ‘초당 몇 번’ 같은 고정 규칙으로 판단하지 않습니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>단서</th>
+<th>먼저 검토할 방법</th>
+<th>대표 비용 / 조건</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>작은 후보를 모두 시도</td>
+<td>완전 탐색·백트래킹</td>
+<td>후보 수와 깊이를 계산</td>
+</tr>
+<tr>
+<td>중복·빈도·존재 여부</td>
+<td>해시 맵·집합</td>
+<td>일반적인 해시 구현에서 조회 평균 O(1)</td>
+</tr>
+<tr>
+<td>순서·순위·인접한 값</td>
+<td>정렬</td>
+<td>비교 정렬 보통 O(N log N)</td>
+</tr>
+<tr>
+<td>변하지 않는 배열의 구간 합</td>
+<td>누적 합</td>
+<td>전처리 O(N), 질의 O(1)</td>
+</tr>
+<tr>
+<td>정렬된 범위 또는 단조 조건</td>
+<td>이분 탐색</td>
+<td>O(log N)번 판단</td>
+</tr>
+<tr>
+<td>연속 구간</td>
+<td>투 포인터·슬라이딩 윈도</td>
+<td>포인터가 되돌아가지 않으면 O(N)</td>
+</tr>
+<tr>
+<td>같은 가중치의 최단 거리</td>
+<td>BFS</td>
+<td>인접 리스트 기준 O(V+E)</td>
+</tr>
+<tr>
+<td>연결·경로·모든 선택 탐색</td>
+<td>DFS·백트래킹</td>
+<td>그래프 방문과 경로 열거는 비용이 다름</td>
+</tr>
+<tr>
+<td>작은 답으로 큰 답 만들기</td>
+<td>동적 계획법(DP)</td>
+<td>상태 수 × 상태당 전이 비용</td>
+</tr>
+<tr>
+<td>가장 작은/큰 값 반복 추출</td>
+<td>힙</td>
+<td>삽입·삭제 O(log N)</td>
+</tr>
+</tbody></table>
+</div><p>N=100,000이면 이중 반복의 N²은 100억 번입니다. O(N) 배열도 원소 타입과 객체 오버헤드에 따라 메모리 사용량이 달라집니다. 가중치가 서로 다른 그래프는 BFS 최단 거리 전제가 성립하지 않습니다.</p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>자료구조를 언어별로 대응하기</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>목적</th>
+<th>Java</th>
+<th>Python</th>
+<th>C</th>
+<th>C++</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>배열</td>
+<td>배열·ArrayList</td>
+<td>list</td>
+<td>배열·malloc</td>
+<td>vector</td>
+</tr>
+<tr>
+<td>빈도</td>
+<td>HashMap</td>
+<td>dict·Counter</td>
+<td>범위 배열·직접 해시</td>
+<td>unordered_map</td>
+</tr>
+<tr>
+<td>중복 제거</td>
+<td>HashSet</td>
+<td>set</td>
+<td>정렬 후 제거</td>
+<td>set·unordered_set</td>
+</tr>
+<tr>
+<td>스택</td>
+<td>ArrayDeque</td>
+<td>list append/pop</td>
+<td>배열+top</td>
+<td>stack</td>
+</tr>
+<tr>
+<td>큐</td>
+<td>ArrayDeque</td>
+<td>deque</td>
+<td>배열+head/tail</td>
+<td>queue</td>
+</tr>
+<tr>
+<td>최소 힙</td>
+<td>PriorityQueue</td>
+<td>heapq</td>
+<td>직접 구현</td>
+<td>priority_queue+greater</td>
+</tr>
+</tbody></table>
+</div><p>C에서는 위 표의 힙을 직접 구현합니다. 외부 라이브러리 사용 여부는 채점 환경에서 확인하세요.</p>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>공통 문제 — 여러 구간의 합</h2><p><strong>입력:</strong> 첫 줄 N Q, 다음 N개의 정수, 이후 Q개의 <code>(L, R)</code> 질문. 배열의 위치는 1부터 시작하며 양 끝을 포함합니다. 조건은 <code>1 ≤ N ≤ 100000</code>, <code>0 ≤ Q ≤ 100000</code>, <code>|A[i]| ≤ 10⁹</code>, <code>1 ≤ L ≤ R ≤ N</code>입니다. 입력은 이 조건을 만족한다고 가정합니다.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>5 3
+2 -1 3 5 4
+1 3
+2 5
+4 4</code></pre></div><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>4
+11
+5</code></pre></div><p>매번 구간을 더하면 최악 O(NQ)입니다. <code>P[i] = 처음 i개 원소의 합</code>, <code>P[0] = 0</code>으로 두면 **답 = P[R] - P[L-1]**입니다. 앞부분을 빼서 원하는 구간만 남기는 원리입니다. 예제 P는 <code>0, 2, 1, 4, 9, 13</code>입니다.</p>
+<p>전처리 O(N) + 질문 처리 O(Q), 누적 합 저장 O(N)입니다. 아래 Python은 입력 전체와 출력을 저장하고 Java도 출력을 모으므로 전체 프로그램의 추가 메모리는 O(N+Q)까지 사용합니다. C·C++는 질문마다 바로 출력합니다. 값이 바뀌는 구간 합 문제라면 이 풀이를 그대로 쓰지 말고 갱신 비용을 따져야 합니다.</p>
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>Java — long · 컬렉션 · 출력 모으기</h2><p><strong>핵심:</strong> 입력은 버퍼로 읽고 토큰으로 나누며, 대량 출력은 <code>StringBuilder</code>로 모읍니다. 아래 파일은 <code>Main.java</code>, 클래스는 <code>Main</code>입니다.</p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">// 메서드 내부 발췌, import java.util.*; 필요</span>
+Map&lt;Integer, Integer&gt; freq = <span class="kw">new</span> HashMap&lt;&gt;();
+freq.merge(3, 1, Integer::sum);
+ArrayDeque&lt;Integer&gt; queue = <span class="kw">new</span> ArrayDeque&lt;&gt;();
+queue.offerLast(10);
+int first = queue.removeFirst();
+PriorityQueue&lt;Integer&gt; heap = <span class="kw">new</span> PriorityQueue&lt;&gt;();
+heap.offer(5);
+heap.offer(2); <span class="cm">// heap.peek() == 2</span></code></pre></div><p>문자열 내용 비교는 <code>equals()</code>, 값 비교 정렬은 <code>Integer.compare(a,b)</code>를 사용합니다. 누적 합은 <code>long</code>, 큰 곱셈은 <code>1L * a * b</code>로 계산합니다. 큐가 비었는지 확인하고 꺼내세요.</p>
+<h3>구간 합 전체 풀이</h3>
+<p><a href="sample-files/coding-test/Main.java">Main.java 내려받기</a></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> java.io.*;
+<span class="kw">import</span> java.util.*;
+
+<span class="kw">public</span> <span class="kw">class</span> Main {
+    static <span class="kw">class</span> FastInput {
+        <span class="kw">final</span> BufferedReader reader = <span class="kw">new</span> BufferedReader(<span class="kw">new</span> InputStreamReader(System.in));
+        StringTokenizer tokens;
+        String next() throws IOException {
+            while (tokens == null || !tokens.hasMoreTokens()) {
+                String line = reader.readLine();
+                <span class="kw">if</span> (line == null) <span class="kw">throw</span> <span class="kw">new</span> EOFException();
+                tokens = <span class="kw">new</span> StringTokenizer(line);
+            }
+            <span class="kw">return</span> tokens.nextToken();
+        }
+        int nextInt() throws IOException { <span class="kw">return</span> Integer.parseInt(next()); }
+        long nextLong() throws IOException { <span class="kw">return</span> Long.parseLong(next()); }
+    }
+    <span class="kw">public</span> static <span class="kw">void</span> main(String[] args) throws Exception {
+        FastInput in = <span class="kw">new</span> FastInput();
+        int n = in.nextInt(), q = in.nextInt();
+        long[] prefix = <span class="kw">new</span> long[n + 1];
+        for (int i = 1; i &lt;= n; i++) prefix[i] = prefix[i - 1] + in.nextLong();
+        StringBuilder out = <span class="kw">new</span> StringBuilder();
+        for (int i = 0; i &lt; q; i++) {
+            int left = in.nextInt(), right = in.nextInt();
+            out.append(prefix[right] - prefix[left - 1]).append(<span class="str">'\n'</span>);
+        }
+        System.out.print(out);
+    }
+}</code></pre></div><p>입력 줄바꿈 위치가 달라도 토큰 단위로 읽습니다. <a href="https://dev.java/learn/api/collections-framework/intro/">Java 공식 컬렉션</a></p>
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>Python — 빠른 입력 · dict · deque</h2><p><strong>핵심:</strong> <code>sys.stdin.buffer</code>, <code>dict</code>, <code>set</code>, <code>deque</code>, <code>heapq</code>를 익히세요. Python 정수는 고정 32비트 범위에 묶이지 않지만 큰 정수의 연산 비용은 증가합니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from collections <span class="kw">import</span> Counter, deque
+from heapq <span class="kw">import</span> heappush, heappop
+freq = Counter([3, 1, 3])
+print(freq[3])                 <span class="cm"># 2</span>
+queue = deque([10])
+queue.append(20)
+print(queue.popleft())         <span class="cm"># 10</span>
+heap = []
+heappush(heap, 5)
+heappush(heap, 2)
+print(heappop(heap))            <span class="cm"># 2</span>
+pairs = [(2, 3), (1, 5), (2, 1)]
+print(sorted(pairs, key=lambda p: (p[0], p[1])))</code></pre></div><p><code>list.pop(0)</code>을 반복하는 큐는 원소 이동 비용이 큽니다. 깊은 재귀는 제한에 걸릴 수 있으므로 반복형 DFS도 준비하세요. 2차원 배열은 <code>[[0] * m for _ in range(n)]</code>으로 만들어 행을 분리합니다.</p>
+<h3>구간 합 전체 풀이</h3>
+<p><a href="sample-files/coding-test/prefix_sum.py">prefix_sum.py 내려받기</a></p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> sys
+
+data = list(map(int, sys.stdin.buffer.read().split()))
+it = iter(data)
+n, q = next(it), next(it)
+prefix = [0] * (n + 1)
+for i in range(1, n + 1):
+    prefix[i] = prefix[i - 1] + next(it)
+answers = []
+for _ in range(q):
+    left, right = next(it), next(it)
+    answers.append(str(prefix[right] - prefix[left - 1]))
+sys.stdout.write(<span class="str">&quot;\n&quot;</span>.join(answers))</code></pre></div><p><code>prefix[0]</code>을 0으로 두어 L=1도 같은 식으로 처리합니다. <a href="https://docs.python.org/3/tutorial/datastructures.html">공식 자료구조</a> · <a href="https://docs.python.org/3/library/heapq.html">공식 heapq</a></p>
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>C — 메모리 · 정수 범위 · 비교 함수</h2><p><strong>핵심:</strong> 배열 크기, 인덱스, 메모리 해제, 출력 서식을 직접 관리합니다. 합계는 <code>long long</code>으로 저장하고 <code>%lld</code>로 읽고 씁니다.</p>
+<div class="codebox"><div class="codebar"><span>c</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>/* qsort용 비교 함수: &lt;stdlib.h&gt; 필요 */
+int compare_int(<span class="kw">const</span> <span class="kw">void</span> *left, <span class="kw">const</span> <span class="kw">void</span> *right) {
+    int a = *(<span class="kw">const</span> int *)left;
+    int b = *(<span class="kw">const</span> int *)right;
+    <span class="kw">return</span> (a &gt; b) - (a &lt; b);
+}
+/* qsort(values, n, sizeof values[0], compare_int); */</code></pre></div><p>비교 함수에서 <code>a-b</code>를 반환하면 오버플로할 수 있습니다. 값 범위가 작으면 빈도 배열, 일반 값이면 정렬이나 별도 해시 구현을 검토합니다. 배열 큐는 넣을 때 <code>queue[tail++] = x</code>, 꺼낼 때 <code>x = queue[head++]</code>로 구현하되 용량을 확보합니다.</p>
+<h3>구간 합 전체 풀이</h3>
+<p><a href="sample-files/coding-test/prefix_sum.c">prefix_sum.c 내려받기</a></p>
+<div class="codebox"><div class="codebar"><span>c</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;stdio.h&gt;</span>
+<span class="cm">#include &lt;stdlib.h&gt;</span>
+
+int main(<span class="kw">void</span>) {
+    int n, q;
+    <span class="kw">if</span> (scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;n, &amp;q) != 2) <span class="kw">return</span> 1;
+    long long *prefix = calloc((size_t)n + 1, sizeof *prefix);
+    <span class="kw">if</span> (prefix == NULL) <span class="kw">return</span> 1;
+    for (int i = 1; i &lt;= n; ++i) {
+        long long value;
+        <span class="kw">if</span> (scanf(<span class="str">&quot;%lld&quot;</span>, &amp;value) != 1) { free(prefix); <span class="kw">return</span> 1; }
+        prefix[i] = prefix[i - 1] + value;
+    }
+    for (int i = 0; i &lt; q; ++i) {
+        int left, right;
+        <span class="kw">if</span> (scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;left, &amp;right) != 2) { free(prefix); <span class="kw">return</span> 1; }
+        printf(<span class="str">&quot;%lld\n&quot;</span>, prefix[right] - prefix[left - 1]);
+    }
+    free(prefix);
+    <span class="kw">return</span> 0;
+}</code></pre></div><p><code>calloc()</code>으로 0으로 초기화하고 실패 여부를 검사한 뒤 <code>free()</code>로 해제합니다. <a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf">C 표준 초안 N1570: stdio·stdlib</a></p>
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>C++ — STL로 구현 줄이기</h2><p><strong>핵심:</strong> <code>vector</code>, <code>sort</code>, <code>lower_bound</code>, <code>queue</code>, <code>unordered_map</code>, <code>priority_queue</code>를 연결해 사용합니다.</p>
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">// 필요한 헤더: &lt;algorithm&gt;, &lt;vector&gt;, &lt;queue&gt;, &lt;functional&gt;</span>
+std::vector&lt;int&gt; a{4, 1, 4, 2};
+std::sort(a.begin(), a.end());
+a.erase(std::unique(a.begin(), a.end()), a.end());
+auto it = std::lower_bound(a.begin(), a.end(), 3);
+<span class="cm">// it는 3 이상인 첫 값 4를 가리킴. end() 여부 확인 후 역참조.</span>
+std::priority_queue&lt;int, std::vector&lt;int&gt;, std::greater&lt;int&gt;&gt; heap;
+heap.push(5);
+heap.push(2); <span class="cm">// heap.top() == 2</span></code></pre></div><p>기본 <code>priority_queue&lt;int&gt;</code>는 최대 힙입니다. <code>lower_bound()</code>는 정렬된 범위에서 사용하세요. <code>int</code>끼리 곱한 뒤 long long에 저장하면 곱셈 단계에서 이미 넘칠 수 있으므로 <code>1LL * a * b</code>처럼 먼저 확장합니다.</p>
+<h3>구간 합 전체 풀이</h3>
+<p><a href="sample-files/coding-test/prefix_sum.cpp">prefix_sum.cpp 내려받기</a></p>
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;iostream&gt;</span>
+<span class="cm">#include &lt;vector&gt;</span>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(<span class="kw">false</span>);
+    cin.tie(nullptr);
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    vector&lt;long long&gt; prefix(n + 1, 0);
+    for (int i = 1; i &lt;= n; ++i) {
+        long long value;
+        cin &gt;&gt; value;
+        prefix[i] = prefix[i - 1] + value;
+    }
+    while (q--) {
+        int left, right;
+        cin &gt;&gt; left &gt;&gt; right;
+        cout &lt;&lt; prefix[right] - prefix[left - 1] &lt;&lt; <span class="str">'\n'</span>;
+    }
+}</code></pre></div><p><code>sync_with_stdio(false)</code>를 썼다면 같은 프로그램에서 C의 stdio와 C++ 입출력을 섞지 않는 편이 명확합니다. <a href="https://eel.is/c++draft/alg.sort">C++ 정렬 규정</a></p>
+</section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>이분 탐색 · 투 포인터 풀이 패턴</h2><p>아래부터는 알고리즘 원리를 보여주는 <strong>독립 실행 가능한 Python 예제</strong>입니다. 앞의 자료구조 표를 참고해 다른 언어로 옮겨 보세요.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># target 이상인 첫 위치: 정렬된 배열, [left, right) 구간</span>
+
+def lower_bound(a, target):
+    left, right = 0, len(a)
+    while left &lt; right:
+        mid = (left + right) <span class="cm">// 2</span>
+        <span class="kw">if</span> a[mid] &lt; target:
+            left = mid + 1
+        else:
+            right = mid
+    <span class="kw">return</span> left
+
+assert lower_bound([1, 2, 2, 5], 2) == 1
+assert lower_bound([1, 2, 2, 5], 6) == 4
+assert lower_bound([], 2) == 0</code></pre></div><p>불변 조건은 ‘답 후보가 left부터 right 사이에 있다’입니다. 반환값이 배열 길이라면 해당 값이 없습니다. C/C++/Java에서 mid는 <code>left + (right-left)/2</code>로 계산해 덧셈 오버플로를 피할 수 있습니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 오름차순 배열에서 합이 target인 서로 다른 두 위치 찾기</span>
+
+def two_sum_sorted(a, target):
+    left, right = 0, len(a) - 1
+    while left &lt; right:
+        total = a[left] + a[right]
+        <span class="kw">if</span> total == target:
+            <span class="kw">return</span> left, right
+        <span class="kw">if</span> total &lt; target:
+            left += 1
+        else:
+            right -= 1
+    <span class="kw">return</span> None
+
+assert two_sum_sorted([1, 2, 4, 7], 6) == (1, 2)
+assert two_sum_sorted([1], 2) is None</code></pre></div><p>정렬 비용을 제외하면 O(N)입니다. 정렬하면 원래 인덱스가 바뀌므로 원래 위치가 필요하면 함께 보관하세요. 연속 구간 합을 늘리고 줄이는 슬라이딩 윈도는 음수가 섞이면 단조성이 깨질 수 있습니다.</p>
+</section><section id="item-9"><div class="section-kicker">REFERENCE 10</div><h2>BFS · DFS — 그래프 탐색</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from collections <span class="kw">import</span> deque
+
+<span class="cm"># 정점 0..3, 인접 리스트, 간선마다 비용 1</span>
+graph = [[1, 2], [0, 3], [0], [1]]
+distance = [-1] * len(graph)
+distance[0] = 0
+queue = deque([0])
+while queue:
+    node = queue.popleft()
+    for nxt in graph[node]:
+        <span class="kw">if</span> distance[nxt] == -1:
+            distance[nxt] = distance[node] + 1
+            queue.append(nxt)
+assert distance == [0, 1, 1, 2]
+
+seen = [False] * len(graph)
+seen[0] = True
+stack = [0]
+while stack:
+    node = stack.pop()
+    for nxt in graph[node]:
+        <span class="kw">if</span> not seen[nxt]:
+            seen[nxt] = True
+            stack.append(nxt)
+assert all(seen)</code></pre></div><p>BFS는 큐, DFS는 스택을 사용합니다. <strong>넣을 때 방문 표시</strong>를 해 중복 삽입을 막습니다. BFS의 거리 -1은 도달하지 못한 정점입니다. DFS 방문 순서는 BFS 최단 거리를 대신하지 않습니다.</p>
+</section><section id="item-10"><div class="section-kicker">REFERENCE 11</div><h2>DP · 그리디 · 백트래킹 구분</h2><p>DP는 상태·초깃값·전이·계산 순서를 먼저 정합니다. 예: 한 번에 1칸 또는 2칸을 오를 때 N칸에 도착하는 방법 수.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>def ways(n):
+    dp = [0] * (n + 1)
+    dp[0] = 1
+    for i in range(1, n + 1):
+        dp[i] = dp[i - 1]
+        <span class="kw">if</span> i &gt;= 2:
+            dp[i] += dp[i - 2]
+    <span class="kw">return</span> dp[n]
+
+assert ways(0) == 1
+assert ways(4) == 5</code></pre></div><p>마지막에 1칸 온 경우와 2칸 온 경우는 겹치지 않으므로 더합니다. 시간 O(N), 공간 O(N)이며 이전 두 값만 보관하면 공간 O(1)로 줄일 수 있습니다. 답이 매우 커지면 문제에서 지정한 나머지 연산이나 큰 정수가 필요합니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>방법</th>
+<th>판단 기준</th>
+<th>흔한 실수</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DP</td>
+<td>같은 부분 문제가 반복되는가?</td>
+<td>상태 정의 없이 배열부터 만들기</td>
+</tr>
+<tr>
+<td>그리디</td>
+<td>지금의 선택이 최적해를 보존함을 증명할 수 있는가?</td>
+<td>예제 몇 개로 최적성 단정</td>
+</tr>
+<tr>
+<td>백트래킹</td>
+<td>모든 선택을 보되 불가능한 가지를 제거할 수 있는가?</td>
+<td>재귀 복귀 후 상태 복원 누락</td>
+</tr>
+</tbody></table>
+</div><p>동전 <code>{1,3,4}</code>로 6을 만들 때 큰 동전부터 고르면 <code>4+1+1</code>, 최적은 <code>3+3</code>입니다. 그리디는 조건 확인 없이 적용할 수 없습니다.</p>
+</section><section id="item-11"><div class="section-kicker">REFERENCE 12</div><h2>실행 방법 · 제출 전 점검 · 오답 기록</h2><p><a href="sample-files/coding-test/input.txt">예제 입력</a>을 각 소스와 같은 폴더에 저장한 뒤 아래 명령을 실행합니다. Java JDK, Python 3, C/C++ 컴파일러는 해당 예제를 실행할 때 필요합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 prefix_sum.py &lt; input.txt
+cc -std=c17 -O2 prefix_sum.c -o prefix_c
+./prefix_c &lt; input.txt
+c++ -std=c++17 -O2 prefix_sum.cpp -o prefix_cpp
+./prefix_cpp &lt; input.txt
+javac Main.java
+java Main &lt; input.txt</code></pre></div><ul>
+<li>답만 출력하고 안내 문구·디버깅 출력을 제거했는가?</li>
+<li>입력 범위에 따라 int/long/long long과 Python 정수를 골랐는가?</li>
+<li>시작·끝 인덱스와 포함 범위를 확인했는가?</li>
+<li>중복값·음수·원소 1개·질문 0개에서도 동작하는가?</li>
+<li>시간·메모리 제한과 제출 함수/클래스 이름을 확인했는가?</li>
+</ul>
+<p>오답 기록은 <strong>문제의 단서 → 처음 접근 → 실패 입력 → 원인 → 수정한 원리 → 시간/공간 복잡도</strong> 순서로 짧게 남깁니다. 정답 코드를 암기하기보다 같은 풀이를 다른 언어로 옮길 때 달라지는 자료구조와 숫자 범위를 비교하세요.</p>
+</section><footer>공식 자료 확인일: 2026-09-30 · 코딩 테스트 · 언어별 풀이<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+
+
+const input=document.querySelector('#search');
+const sections=[...document.querySelectorAll('main>section')];
+input.addEventListener('input',()=>{
+ const terms=input.value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ let count=0;
+ for(const s of sections){const show=terms.every(t=>s.textContent.toLocaleLowerCase().includes(t));s.hidden=!show;document.querySelector('nav a[href="#'+s.id+'"]').hidden=!show;if(show)count++;}
+ document.querySelector('#results').textContent=count+'개 항목';document.querySelector('#empty').hidden=count!==0;
+});
+</script></body></html>

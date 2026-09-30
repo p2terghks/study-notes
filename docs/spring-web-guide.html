@@ -1,0 +1,1109 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>처음 배우는 Spring · JPA 웹 개발</title><style>:root{color-scheme:dark;--bg:#0f1117;--panel:#161925;--panel2:#1c2030;--border:#2a2f42;--text:#e6e8f0;--muted:#adb4c8;--green:#6ee7b7;--blue:#7dd3fc;--pink:#f9a8d4;--yellow:#fbbf24;--code:#0b0d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #387160;border-radius:9px;text-align:center;background:#17382f;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--blue)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#192b35;border:1px solid #2e4655;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#192f2a;border-color:#2e5145}.tags span:nth-child(3){color:var(--pink);background:#322333;border-color:#52364d}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:4px solid var(--blue);padding-left:14px;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#192631;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#151927;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #40485d;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#c4a1ff}.str{color:#86efac}.an{color:var(--yellow)}.cm{color:#9ba6bd}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#141722}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#214235;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
+@media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
+</style></head><body><a href="../index.html" style="display:block;padding:12px 20px;color:#88ceff;background:#10131b;font:14px sans-serif">← 학습 요약 전체 목록</a>
+<a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="학습 목차"><a class="brand" href="#top"><span class="brand-mark">S</span>SPRING LAB</a><p class="nav-label">처음 만드는 웹 애플리케이션</p><div class="nav-group">기초부터 CRUD까지</div><a href="#step-1"><span>01</span>웹의 전체 구조</a><a href="#step-2"><span>02</span>먼저 실행해 보기</a><a href="#step-3"><span>03</span>DB 연결하기</a><a href="#step-4"><span>04</span>Entity 만들기 — 무엇을 저장할까?</a><a href="#step-5"><span>05</span>Repository 만들기 — 어떻게 저장할까?</a><a href="#step-6"><span>06</span>Service 만들기 — 작업을 처리하는 곳</a><a href="#step-7"><span>07</span>Controller 만들기 — 주소와 코드 연결</a><a href="#step-8"><span>08</span>HTML 입력과 검증 연결하기</a><a href="#step-9"><span>09</span>수정과 삭제하기</a><a href="#step-10"><span>10</span>이해했는지 확인하기</a><div class="nav-group">필요할 때 찾아보기</div><a href="#reference"><span>↗</span>전체 코드 · 상세 설명</a><a href="#annotations"><span>@</span>어노테이션 빠른 사전</a><div class="nav-note">Spring Boot 4.1.1 · Java 21+<br>H2 · Spring Data JPA · Thymeleaf</div></nav>
+<main id="content"><header id="top"><p class="eyebrow">BEGINNER’S GUIDE / 실습으로 배우기</p><h1>처음 배우는<br><span>Spring & JPA</span></h1><p class="lead">화면에서 DB까지, 한 단계씩.<br>할 일 관리 웹을 만들며 코드가 연결되는 과정을 배웁니다.</p><div class="tags"><span>컨트롤러</span><span>DB 연동</span><span>어노테이션</span><span>CRUD 실습</span></div><div class="hero-bottom"><span>10개 학습 단계</span><span>실제 프로젝트 코드 수록</span><span>오프라인 열람 가능</span></div></header>
+<div class="reading-guide"><strong>이렇게 읽어 보세요</strong><p>왼쪽 목차에서 순서대로 읽고, 짧은 코드와 바로 아래 해설을 함께 확인하세요. 완전한 파일은 아래의 <a href="#reference">전체 코드</a>에서 펼쳐 볼 수 있습니다.</p></div>
+<section id="step-1"><div class="section-kicker">STEP 01</div><h2>웹의 전체 구조</h2><p>사용자가 <strong>저장 버튼</strong>을 누르면 다음 순서로 진행됩니다.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>화면         요청 접수        작업 처리        DB 접근        저장
+HTML    →    Controller   →   Service    →   Repository  →  DB
+                                                │
+                                        JPA / Hibernate 사용</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>이름</th>
+<th>역할</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTML</td>
+<td>사용자가 보는 화면</td>
+<td>입력창, 저장 버튼</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>요청을 받음</td>
+<td>“할 일을 저장해 주세요”</td>
+</tr>
+<tr>
+<td>Service</td>
+<td>작업을 수행함</td>
+<td>새 할 일을 미완료 상태로 생성</td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>DB에 접근함</td>
+<td>저장, 조회, 삭제</td>
+</tr>
+<tr>
+<td>Entity</td>
+<td>저장할 데이터의 모양</td>
+<td>번호, 제목, 완료 여부</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>데이터를 보관함</td>
+<td>저장된 할 일 목록</td>
+</tr>
+</tbody></table>
+</div><p><strong>JPA와 DB는 다릅니다.</strong></p>
+<ul>
+<li><strong>DB</strong>: 데이터를 저장하는 프로그램입니다. 여기서는 H2를 사용합니다.</li>
+<li><strong>JPA</strong>: Java 객체와 DB를 연결하는 표준입니다.</li>
+<li><strong>Hibernate</strong>: JPA를 구현해 SQL을 생성하고 DB에 전달합니다.</li>
+<li><strong>Spring Data JPA</strong>: Repository를 간단하게 작성하도록 돕습니다.</li>
+</ul>
+<a class="next" href="#step-2">다음 단계로 →</a></section><section id="step-2"><div class="section-kicker">STEP 02</div><h2>먼저 실행해 보기</h2><p>프로젝트 폴더의 터미널에서 실행합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>./mvnw spring-boot:run</code></pre></div><p>브라우저에서 <strong><a href="http://localhost:8080/todos">http://localhost:8080/todos</a></strong> 를 엽니다.</p>
+<ol>
+<li><strong>새 할 일 등록</strong>을 누릅니다.</li>
+<li><code>스프링 공부하기</code>를 입력하고 저장합니다.</li>
+<li>목록에서 <strong>수정</strong>을 누릅니다.</li>
+<li>제목을 바꾸고 <strong>완료했어요</strong>를 체크합니다.</li>
+<li>저장한 뒤 <strong>삭제</strong>를 눌러 봅니다.</li>
+</ol>
+<aside class="callout"><p>Java 21 이상과 첫 실행 시 인터넷 연결이 필요합니다.<br>실행 오류가 나면 <a href="spring-project-readme.md">실행 안내</a>를 확인하세요.</p>
+</aside><a class="next" href="#step-3">다음 단계로 →</a></section><section id="step-3"><div class="section-kicker">STEP 03</div><h2>DB 연결하기</h2><p><strong>배울 것: 서버가 어느 DB에 접속할지 설정합니다.</strong></p>
+<p>파일: <a href="../src/main/resources/application.properties">application.properties</a></p>
+<div class="codebox"><div class="codebar"><span>properties</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>spring.datasource.url=jdbc:h2:file:./data/todos
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>설정</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>url</code></td>
+<td>프로젝트의 <code>data/</code> 폴더에 H2 DB 파일 저장</td>
+</tr>
+<tr>
+<td><code>username</code></td>
+<td>DB 접속 계정</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>이 로컬 예제는 비밀번호 없이 접속</td>
+</tr>
+<tr>
+<td><code>ddl-auto=update</code></td>
+<td>엔티티를 보고 테이블 생성·변경 시도</td>
+</tr>
+</tbody></table>
+</div><p><strong>확인할 것:</strong> 같은 폴더에서 서버를 다시 실행하면 저장한 할 일이 남아 있습니다.</p>
+<aside class="callout"><p><code>update</code>는 학습용 설정입니다. 운영 DB의 구조 변경에는 별도의 마이그레이션 도구를 사용합니다.</p>
+</aside><a class="next" href="#step-4">다음 단계로 →</a></section><section id="step-4"><div class="section-kicker">STEP 04</div><h2>Entity 만들기 — 무엇을 저장할까?</h2><p><strong>배울 것: 할 일 한 개가 가진 값을 정의합니다.</strong></p>
+<p>파일: <a href="../src/main/java/com/example/todolearning/todo/Todo.java">Todo.java</a></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Entity</span>
+<span class="kw">public</span> <span class="kw">class</span> Todo {
+    <span class="an">@Id</span>
+    <span class="an">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="kw">private</span> Long id;
+
+    <span class="an">@Column</span>(nullable = <span class="kw">false</span>, length = 100)
+    <span class="kw">private</span> String title;
+
+    <span class="an">@Column</span>(nullable = <span class="kw">false</span>)
+    <span class="kw">private</span> <span class="kw">boolean</span> completed;
+
+    <span class="cm">// 생성자와 메서드는 실제 파일에 있습니다.</span>
+}</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>코드</th>
+<th>쉽게 이해하기</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Entity</code></td>
+<td>“이 클래스를 DB에 저장할 대상으로 사용해 주세요.”</td>
+</tr>
+<tr>
+<td><code>@Id</code></td>
+<td>각 할 일을 구별하는 번호입니다.</td>
+</tr>
+<tr>
+<td><code>@GeneratedValue</code></td>
+<td>DB가 번호를 자동으로 생성합니다.</td>
+</tr>
+<tr>
+<td><code>@Column</code></td>
+<td>DB 열의 제약을 설정합니다.</td>
+</tr>
+<tr>
+<td><code>String title</code></td>
+<td>제목을 담습니다.</td>
+</tr>
+<tr>
+<td><code>boolean completed</code></td>
+<td>완료 여부를 true 또는 false로 담습니다.</td>
+</tr>
+</tbody></table>
+</div><p>DB에서는 다음과 같은 행으로 저장됩니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>TITLE</th>
+<th>COMPLETED</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>스프링 공부하기</td>
+<td>false</td>
+</tr>
+<tr>
+<td>2</td>
+<td>예제 실행하기</td>
+<td>true</td>
+</tr>
+</tbody></table>
+</div><p><strong>기억할 것:</strong> <code>Todo</code> 객체 한 개가 테이블의 한 행에 대응합니다.</p>
+<a class="next" href="#step-5">다음 단계로 →</a></section><section id="step-5"><div class="section-kicker">STEP 05</div><h2>Repository 만들기 — 어떻게 저장할까?</h2><p><strong>배울 것: Java 코드에서 DB를 읽고 쓰는 창구를 만듭니다.</strong></p>
+<p>파일: <a href="../src/main/java/com/example/todolearning/todo/TodoRepository.java">TodoRepository.java</a></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> <span class="kw">interface</span> TodoRepository <span class="kw">extends</span> JpaRepository&lt;Todo, Long&gt; {
+}</code></pre></div><p><code>&lt;Todo, Long&gt;</code>은 다음 뜻입니다.</p>
+<ul>
+<li><code>Todo</code>: 관리할 데이터의 종류</li>
+<li><code>Long</code>: ID의 자료형</li>
+</ul>
+<p>이 선언만으로 기본 기능을 사용할 수 있습니다. 구현체는 Spring Data JPA가 만듭니다.</p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>repository.save(<span class="kw">new</span> Todo(<span class="str">&quot;공부하기&quot;</span>)); <span class="cm">// 새 할 일 저장</span>
+repository.findAll();                <span class="cm">// 전체 조회</span>
+repository.findById(1L);              <span class="cm">// 1번 조회</span>
+repository.delete(todo);             <span class="cm">// 해당 할 일 삭제</span></code></pre></div><p><strong>기억할 것:</strong> 기본 CRUD는 SQL을 직접 작성하지 않아도 됩니다.</p>
+<a class="next" href="#step-6">다음 단계로 →</a></section><section id="step-6"><div class="section-kicker">STEP 06</div><h2>Service 만들기 — 작업을 처리하는 곳</h2><p><strong>배울 것: 하나의 작업을 메서드로 묶습니다.</strong></p>
+<p>파일: <a href="../src/main/java/com/example/todolearning/todo/TodoService.java">TodoService.java</a></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Service</span>
+<span class="an">@Transactional</span>(readOnly = <span class="kw">true</span>)
+<span class="kw">public</span> <span class="kw">class</span> TodoService {
+    <span class="kw">private</span> <span class="kw">final</span> TodoRepository todoRepository;
+
+    <span class="kw">public</span> TodoService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
+
+    <span class="an">@Transactional</span>
+    <span class="kw">public</span> <span class="kw">void</span> create(TodoForm form) {
+        todoRepository.save(<span class="kw">new</span> Todo(form.getTitle().strip()));
+    }
+}</code></pre></div><ol>
+<li><code>@Service</code>: 스프링이 이 객체를 만들어 관리합니다.</li>
+<li>생성자: 스프링이 Repository를 전달합니다. 이를 <strong>의존성 주입</strong>이라고 합니다.</li>
+<li><code>@Transactional</code>: 저장 작업에 트랜잭션을 적용합니다.</li>
+<li><code>strip()</code>: 제목 앞뒤의 공백을 제거합니다.</li>
+<li><code>save()</code>: 새 할 일을 저장합니다.</li>
+</ol>
+<p><strong>트랜잭션</strong>은 DB 작업을 하나로 묶는 단위입니다. 작업이 실패하면 변경을 되돌릴 수 있습니다. 기본적으로 RuntimeException이 밖으로 전파될 때 롤백합니다.</p>
+<a class="next" href="#step-7">다음 단계로 →</a></section><section id="step-7"><div class="section-kicker">STEP 07</div><h2>Controller 만들기 — 주소와 코드 연결</h2><p><strong>배울 것: 어떤 요청에 어떤 메서드가 실행될지 정합니다.</strong></p>
+<p>파일: <a href="../src/main/java/com/example/todolearning/todo/TodoController.java">TodoController.java</a></p>
+<p>먼저 목록 조회 코드입니다.</p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@GetMapping</span>(<span class="str">&quot;/todos&quot;</span>)
+<span class="kw">public</span> String list(Model model) {
+    model.addAttribute(<span class="str">&quot;todos&quot;</span>, todoService.findAll());
+    <span class="kw">return</span> <span class="str">&quot;todos/list&quot;</span>;
+}</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>순서</th>
+<th>코드</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>@GetMapping(&quot;/todos&quot;)</code></td>
+<td>GET /todos 요청을 받음</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>todoService.findAll()</code></td>
+<td>할 일 목록 조회</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>model.addAttribute(...)</code></td>
+<td>화면에 목록 전달</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>return &quot;todos/list&quot;</code></td>
+<td>목록 HTML 선택</td>
+</tr>
+</tbody></table>
+</div><p>이 메서드는 <code>@Controller</code>가 붙은 클래스 안에 있습니다.</p>
+<aside class="callout"><p><strong>헷갈리지 않기</strong><br><code>@Controller</code>: HTML 화면을 보여줄 때 사용합니다.<br><code>@RestController</code>: JSON 같은 데이터를 응답 본문으로 보낼 때 사용합니다.</p>
+</aside><a class="next" href="#step-8">다음 단계로 →</a></section><section id="step-8"><div class="section-kicker">STEP 08</div><h2>HTML 입력과 검증 연결하기</h2><p><strong>배울 것: 입력창 → Java 객체 → 저장으로 이어지는 흐름입니다.</strong></p>
+<h3>① 화면에서 제목 보내기</h3>
+<p>파일: <a href="../src/main/resources/templates/todos/new.html">new.html</a></p>
+<div class="codebox"><div class="codebar"><span>html</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;form th:action=&quot;@{/todos}&quot; th:object=&quot;${todoForm}&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;text&quot; th:field=&quot;*{title}&quot; required maxlength=&quot;100&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;저장&lt;/button&gt;
+&lt;/form&gt;</code></pre></div><ul>
+<li><code>th:action</code>: 보낼 주소는 <code>/todos</code>입니다.</li>
+<li><code>method=&quot;post&quot;</code>: 저장 요청을 POST로 보냅니다.</li>
+<li><code>th:field=&quot;*{title}&quot;</code>: 입력값을 title이라는 이름으로 전달합니다.</li>
+</ul>
+<h3>② 입력받을 객체와 규칙 정의하기</h3>
+<p>파일: <a href="../src/main/java/com/example/todolearning/todo/TodoForm.java">TodoForm.java</a></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@NotBlank</span>(message = <span class="str">&quot;할 일을 입력해 주세요.&quot;</span>)
+<span class="an">@Size</span>(max = 100, message = <span class="str">&quot;할 일은 100자 이내로 입력해 주세요.&quot;</span>)
+<span class="kw">private</span> String title;</code></pre></div><ul>
+<li><code>@NotBlank</code>: 빈 값이나 공백뿐인 값을 거부합니다.</li>
+<li><code>@Size</code>: 길이를 제한합니다.</li>
+</ul>
+<h3>③ 컨트롤러에서 검사하고 저장하기</h3>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@PostMapping</span>(<span class="str">&quot;/todos&quot;</span>)
+<span class="kw">public</span> String create(<span class="an">@Valid</span> <span class="an">@ModelAttribute</span>(<span class="str">&quot;todoForm&quot;</span>) TodoForm form,
+                     BindingResult bindingResult) {
+    <span class="kw">if</span> (bindingResult.hasErrors()) {
+        <span class="kw">return</span> <span class="str">&quot;todos/new&quot;</span>;
+    }
+    todoService.create(form);
+    <span class="kw">return</span> <span class="str">&quot;redirect:/todos&quot;</span>;
+}</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>코드</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@ModelAttribute</code></td>
+<td>화면 입력을 TodoForm에 담음</td>
+</tr>
+<tr>
+<td><code>@Valid</code></td>
+<td>입력 검증 실행</td>
+</tr>
+<tr>
+<td><code>BindingResult</code></td>
+<td>검증 오류 보관. 검증 대상 바로 다음에 선언</td>
+</tr>
+<tr>
+<td><code>hasErrors()</code></td>
+<td>오류가 있으면 입력 화면을 다시 보여줌</td>
+</tr>
+<tr>
+<td><code>create(form)</code></td>
+<td>정상 입력이면 저장</td>
+</tr>
+<tr>
+<td><code>redirect:/todos</code></td>
+<td>저장 후 목록 주소로 이동</td>
+</tr>
+</tbody></table>
+</div><p><strong>기억할 것:</strong> 브라우저 검사는 우회할 수 있어 서버에서도 검사합니다.</p>
+<a class="next" href="#step-9">다음 단계로 →</a></section><section id="step-9"><div class="section-kicker">STEP 09</div><h2>수정과 삭제하기</h2><p><strong>배울 것: ID로 기존 데이터를 찾아 변경합니다.</strong></p>
+<h3>수정</h3>
+<p>서비스의 실제 수정 코드입니다.</p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Transactional</span>
+<span class="kw">public</span> <span class="kw">void</span> update(Long id, TodoForm form) {
+    Todo todo = findById(id);
+    todo.update(form.getTitle().strip(), form.isCompleted());
+}</code></pre></div><ol>
+<li>ID로 기존 할 일을 찾습니다.</li>
+<li>제목과 완료 여부를 바꿉니다.</li>
+<li>트랜잭션을 마칠 때 변경 내용이 DB에 반영됩니다.</li>
+</ol>
+<p><strong>왜 save()가 없을까요?</strong> 트랜잭션 안에서 조회한 엔티티를 JPA가 관리하고 있어 변경을 감지하기 때문입니다. 이를 <strong>변경 감지</strong>라고 합니다.</p>
+<h3>삭제</h3>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Transactional</span>
+<span class="kw">public</span> <span class="kw">void</span> delete(Long id) {
+    todoRepository.delete(findById(id));
+}</code></pre></div><p>ID로 할 일을 찾은 다음 삭제합니다. 존재하지 않는 ID는 예외로 처리해 <strong>404 응답</strong>을 보냅니다.</p>
+<h3>주소 정리</h3>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>작업</th>
+<th>HTTP 요청</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>목록 조회</td>
+<td>GET /todos</td>
+</tr>
+<tr>
+<td>등록 화면</td>
+<td>GET /todos/new</td>
+</tr>
+<tr>
+<td>등록 처리</td>
+<td>POST /todos</td>
+</tr>
+<tr>
+<td>수정 화면</td>
+<td>GET /todos/{id}/edit</td>
+</tr>
+<tr>
+<td>수정 처리</td>
+<td>POST /todos/{id}/edit</td>
+</tr>
+<tr>
+<td>삭제 처리</td>
+<td>POST /todos/{id}/delete</td>
+</tr>
+</tbody></table>
+</div><p>기본 HTML 폼은 GET과 POST를 지원하므로 이 예제의 수정·삭제도 POST로 처리합니다.</p>
+<a class="next" href="#step-10">다음 단계로 →</a></section><section id="step-10"><div class="section-kicker">STEP 10</div><h2>이해했는지 확인하기</h2><ul>
+<li><input disabled="" type="checkbox"> 저장 버튼에서 DB까지 이어지는 순서를 말할 수 있다.</li>
+<li><input disabled="" type="checkbox"> Entity와 Repository의 차이를 설명할 수 있다.</li>
+<li><input disabled="" type="checkbox"> <code>@GetMapping</code>과 <code>@PostMapping</code>을 구분할 수 있다.</li>
+<li><input disabled="" type="checkbox"> 공백 입력을 어느 코드에서 검사하는지 찾을 수 있다.</li>
+<li><input disabled="" type="checkbox"> 수정할 때 <code>save()</code> 없이 DB가 바뀌는 조건을 설명할 수 있다.</li>
+</ul>
+<p>테스트 실행:</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>./mvnw test</code></pre></div><p>더 자세히 읽기:</p>
+<ul>
+<li><a href="%EC%A0%84%EC%B2%B4%EC%BD%94%EB%93%9C%EC%99%80-%EC%83%81%EC%84%B8%EC%84%A4%EB%AA%85.md">전체 코드·어노테이션·Java 문법·오류 처리</a></li>
+<li><a href="spring-project-readme.md">실행 방법·DB 확인·문제 해결</a></li>
+</ul>
+<aside class="callout"><p>이 프로젝트는 로컬 학습용입니다. 로그인과 사용자별 권한은 다음 학습 단계에서 추가합니다.</p>
+</aside><a class="next" href="#reference">전체 코드와 상세 설명 보기 →</a></section>
+<section id="reference"><div class="section-kicker">REFERENCE / 더 자세히</div><h2>전체 코드와 상세 설명</h2><p>궁금한 항목을 펼쳐 보세요. import와 생성자 등을 포함한 전체 코드를 확인할 수 있습니다.</p><button id="expand" class="secondary">전체 펼치기</button><details id="detail-1" class="reference"><summary>1. 웹은 어떻게 움직일까요?</summary><div class="reference-body"><p>브라우저는 화면을 보여주고 사용자의 입력을 받습니다. 서버는 요청을 받아 처리하고 응답합니다. DB는 데이터를 저장합니다.</p>
+<p>예를 들어 <code>할 일 저장</code> 버튼을 누르면 다음 일이 일어납니다.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>브라우저: title=스프링 공부를 POST /todos로 보냄
+   ↓
+Controller: 입력을 TodoForm에 담고 검증
+   ↓
+Service: 새 할 일을 저장하는 작업 수행
+   ↓
+Repository: save(todo) 호출
+   ↓
+JPA 구현체(Hibernate): INSERT SQL 생성 및 JDBC로 전달
+   ↓
+H2 DB: 데이터 저장
+   ↓
+서버: /todos로 이동하라는 응답
+   ↓
+브라우저: GET /todos 요청 → 목록 HTML 표시</code></pre></div><p>HTTP는 브라우저와 서버의 요청·응답 규칙입니다. URL은 요청할 주소입니다. HTML은 화면의 구조, CSS는 모양을 표현합니다. 이 예제는 서버가 HTML을 완성해 보내므로 JavaScript 없이도 작동합니다.</p>
+</div></details><details id="detail-2" class="reference"><summary>2. 웹에는 어떤 기능이 필요할까요?</summary><div class="reference-body"><p>모든 웹이 같은 기능을 요구하지는 않습니다. 게시판, 쇼핑몰, 일정 관리에서는 다음 기능을 자주 씁니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>필요한 기능</th>
+<th>할 일 예제에서의 모습</th>
+<th>담당 코드</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>화면 표시</td>
+<td>목록·등록·수정 화면</td>
+<td>HTML + Thymeleaf</td>
+</tr>
+<tr>
+<td>요청 처리</td>
+<td>주소와 실행 메서드 연결</td>
+<td>Controller</td>
+</tr>
+<tr>
+<td>작업 규칙</td>
+<td>신규 등록은 미완료 상태로 시작</td>
+<td>Service + Entity</td>
+</tr>
+<tr>
+<td>저장·조회</td>
+<td>서버 재시작 후에도 할 일 유지</td>
+<td>Repository + JPA + DB</td>
+</tr>
+<tr>
+<td>입력 검증</td>
+<td>공백 거부, 100자 제한</td>
+<td>TodoForm + @Valid</td>
+</tr>
+<tr>
+<td>오류 처리</td>
+<td>없는 할 일은 404</td>
+<td>예외 클래스 + 오류 화면</td>
+</tr>
+<tr>
+<td>동작 확인</td>
+<td>저장부터 삭제까지 검증</td>
+<td>통합 테스트</td>
+</tr>
+<tr>
+<td>로그인·권한</td>
+<td>나의 할 일만 변경</td>
+<td>다음 학습 단계</td>
+</tr>
+</tbody></table>
+</div><p>등록(Create), 조회(Read), 수정(Update), 삭제(Delete)를 묶어 <strong>CRUD</strong>라고 합니다. 이번 예제는 이 네 기능을 모두 구현합니다.</p>
+</div></details><details id="detail-3" class="reference"><summary>3. 먼저 알아둘 Java 문법</summary><div class="reference-body"><ul>
+<li><code>class</code>: 객체의 설계도입니다. <code>Todo</code>는 할 일 한 개의 설계도입니다.</li>
+<li><code>new Todo(&quot;공부&quot;)</code>: 설계도로 실제 객체를 만듭니다.</li>
+<li>필드: 객체가 가진 값입니다. <code>title</code>, <code>completed</code>가 해당합니다.</li>
+<li>메서드: 객체가 수행하는 동작입니다. <code>update(...)</code>가 해당합니다.</li>
+<li>생성자: 객체가 만들어질 때 실행하는 코드입니다. 클래스 이름과 같습니다.</li>
+<li><code>private</code>: 클래스 바깥에서 필드를 직접 바꾸지 못하게 합니다.</li>
+<li>getter/setter: 값을 읽고 쓰는 메서드입니다. 스프링의 폼 입력 연결과 템플릿에서도 사용합니다.</li>
+<li><code>Long</code>: 정수 값을 담는 타입이며 <code>null</code>도 가능합니다. 저장 전에는 <code>id</code>가 없습니다.</li>
+<li><code>boolean</code>: <code>true</code> 또는 <code>false</code>입니다.</li>
+<li><code>List&lt;Todo&gt;</code>: 여러 할 일을 담은 목록입니다.</li>
+<li><code>interface</code>: 제공할 동작의 규약입니다. Repository 구현은 Spring Data JPA가 맡습니다.</li>
+<li><code>final</code>: 해당 필드에 다른 객체를 다시 대입하지 못하게 합니다.</li>
+<li><code>package</code>/<code>import</code>: 클래스의 소속과 다른 클래스를 가져오는 선언입니다.</li>
+</ul>
+</div></details><details id="detail-4" class="reference"><summary>4. 프로젝트 구성과 의존성</summary><div class="reference-body"><p><code>pom.xml</code>은 필요한 라이브러리와 빌드 설정을 선언합니다. Maven은 이 파일을 읽어 라이브러리를 내려받고 코드를 컴파일합니다. <code>mvnw</code>는 정해진 Maven을 실행하는 도우미입니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>라이브러리</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spring-boot-starter-webmvc</td>
+<td>HTTP 요청, 컨트롤러, 내장 웹 서버</td>
+</tr>
+<tr>
+<td>spring-boot-starter-thymeleaf</td>
+<td>HTML에 Java 데이터 연결</td>
+</tr>
+<tr>
+<td>spring-boot-starter-data-jpa</td>
+<td>객체를 통한 DB 접근</td>
+</tr>
+<tr>
+<td>h2</td>
+<td>별도 설치 없이 실행하는 DB</td>
+</tr>
+<tr>
+<td>spring-boot-starter-validation</td>
+<td>입력값 검증</td>
+</tr>
+<tr>
+<td>spring-boot-h2console</td>
+<td>브라우저에서 DB 확인</td>
+</tr>
+<tr>
+<td>이름이 -test로 끝나는 의존성</td>
+<td>테스트 지원</td>
+</tr>
+</tbody></table>
+</div><p>Spring Boot는 라이브러리와 설정을 보고 기본 구성을 자동으로 준비합니다. 아래 코드는 Spring Boot 4.1.1 기준이며, 예전 강의의 <code>javax.persistence</code> 대신 <code>jakarta.persistence</code>를 사용합니다.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>src/main/java/com/example/todolearning/
+  TodoLearningApplication.java   시작점
+  todo/
+    Todo.java                   DB에 저장할 객체
+    TodoForm.java               화면 입력
+    TodoRepository.java         DB 접근
+    TodoNotFoundException.java  없는 데이터 처리
+    TodoService.java            작업 단위
+    TodoController.java         URL 처리
+src/main/resources/
+  application.properties        DB와 서버 설정
+  templates/todos/              목록·등록·수정 HTML
+  templates/error/404.html      오류 화면
+  static/css/style.css          디자인
+src/test/java/                  테스트</code></pre></div><p>처음부터 생성하려면 <a href="https://start.spring.io">Spring Initializr</a>에서 Maven, Java 21, Spring Web, Thymeleaf, Spring Data JPA, H2 Database, Validation을 선택합니다. 이 폴더에는 이미 생성과 코드 작성을 마쳤습니다.</p>
+</div></details><details id="detail-5" class="reference"><summary>5. 첫 번째 파일: 앱 시작하기</summary><div class="reference-body"><p><code>main()</code>은 Java 프로그램의 시작점입니다. <code>SpringApplication.run()</code>은 스프링과 내장 웹 서버를 시작합니다.</p>
+<p><code>@SpringBootApplication</code>은 자동 설정, 컴포넌트 탐색 등의 기능을 묶은 어노테이션입니다. 이 클래스의 패키지와 하위 패키지에 Controller, Service 등을 두면 기본 탐색 범위에 들어갑니다.</p>
+<p>파일: <code>src/main/java/com/example/todolearning/TodoLearningApplication.java</code></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">package</span> com.example.todolearning;
+
+<span class="kw">import</span> org.springframework.boot.SpringApplication;
+<span class="kw">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
+
+<span class="an">@SpringBootApplication</span>
+<span class="kw">public</span> <span class="kw">class</span> TodoLearningApplication {
+
+	<span class="kw">public</span> static <span class="kw">void</span> main(String[] args) {
+		SpringApplication.run(TodoLearningApplication.<span class="kw">class</span>, args);
+	}
+
+}</code></pre></div></div></details><details id="detail-6" class="reference"><summary>6. DB 연결 설정하기</summary><div class="reference-body"><p>DB는 데이터를 저장하는 프로그램이고, 테이블은 행과 열로 데이터를 정리한 공간입니다. <code>TODO</code> 테이블에는 <code>ID</code>, <code>TITLE</code>, <code>COMPLETED</code> 열이 만들어집니다.</p>
+<p><code>jdbc:h2:file:./data/todos</code>는 H2 파일 DB의 주소입니다. <code>jdbc</code>는 Java의 DB 연결 방식을 가리키고, <code>file</code>은 디스크 저장 방식을 뜻합니다. 이 주소는 웹 브라우저 주소가 아닙니다.</p>
+<p>파일: <code>src/main/resources/application.properties</code></p>
+<div class="codebox"><div class="codebar"><span>properties</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>spring.application.name=todo-learning
+<span class="cm"># 개인 PC에서 학습하는 예제입니다.</span>
+server.address=127.0.0.1
+
+<span class="cm"># 프로젝트 폴더 아래 data/에 저장하여 서버를 재시작해도 유지합니다.</span>
+spring.datasource.url=jdbc:h2:file:./data/todos
+spring.datasource.username=sa
+spring.datasource.password=
+
+<span class="cm"># 학습용 자동 테이블 생성/변경. 운영에서는 마이그레이션 도구를 사용합니다.</span>
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.open-in-view=<span class="kw">false</span>
+spring.jpa.show-sql=<span class="kw">true</span>
+spring.jpa.properties.hibernate.format_sql=<span class="kw">true</span>
+
+<span class="cm"># 로컬 학습용 DB 확인 화면</span>
+spring.h2.console.enabled=<span class="kw">true</span>
+spring.h2.console.path=/h2-console
+spring.h2.console.settings.web-allow-others=<span class="kw">false</span></code></pre></div><p><code>ddl-auto=update</code>를 설정하면 Hibernate가 엔티티 정보를 보고 테이블 생성·변경을 시도합니다. 모든 스키마 변경을 안전하게 처리하는 기능은 아니므로 운영에서는 Flyway 같은 마이그레이션 도구를 사용합니다. <code>create</code> 또는 <code>create-drop</code>으로 바꾸면 기존 데이터가 사라질 수 있습니다.</p>
+<p><code>show-sql=true</code>로 DB에 실행되는 SQL을 서버 터미널에서 볼 수 있습니다. <code>open-in-view=false</code>는 화면 렌더링까지 JPA 영속성 컨텍스트를 계속 열어 두지 않도록 합니다. 지금은 단순 필드만 사용하므로 서비스가 반환한 값을 화면에서 바로 읽을 수 있습니다.</p>
+</div></details><details id="detail-7" class="reference"><summary>7. Entity: 저장할 데이터 정의하기</summary><div class="reference-body"><p><code>Todo</code> 객체 한 개를 DB 테이블 한 행에 대응시킵니다. JPA는 Java 객체와 관계형 DB를 연결하는 표준이고, Hibernate는 그 표준을 실제로 구현합니다. Spring Data JPA는 그 위에서 Repository 작성량을 줄여 줍니다. DB 자체가 JPA인 것은 아닙니다.</p>
+<p>파일: <code>src/main/java/com/example/todolearning/todo/Todo.java</code></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">package</span> com.example.todolearning.todo;
+
+<span class="kw">import</span> jakarta.persistence.Column;
+<span class="kw">import</span> jakarta.persistence.Entity;
+<span class="kw">import</span> jakarta.persistence.GeneratedValue;
+<span class="kw">import</span> jakarta.persistence.GenerationType;
+<span class="kw">import</span> jakarta.persistence.Id;
+
+<span class="cm">// 자바 객체를 DB 테이블의 한 행과 연결합니다.</span>
+<span class="an">@Entity</span>
+<span class="kw">public</span> <span class="kw">class</span> Todo {
+    <span class="an">@Id</span>
+    <span class="an">@GeneratedValue</span>(strategy = GenerationType.IDENTITY)
+    <span class="kw">private</span> Long id;
+
+    <span class="an">@Column</span>(nullable = <span class="kw">false</span>, length = 100)
+    <span class="kw">private</span> String title;
+
+    <span class="an">@Column</span>(nullable = <span class="kw">false</span>)
+    <span class="kw">private</span> <span class="kw">boolean</span> completed;
+
+    <span class="cm">// JPA가 DB 데이터를 객체로 만들 때 사용하는 기본 생성자입니다.</span>
+    <span class="kw">protected</span> Todo() {
+    }
+
+    <span class="kw">public</span> Todo(String title) {
+        this.title = title;
+        this.completed = <span class="kw">false</span>;
+    }
+
+    <span class="kw">public</span> <span class="kw">void</span> update(String title, <span class="kw">boolean</span> completed) {
+        this.title = title;
+        this.completed = completed;
+    }
+
+    <span class="kw">public</span> Long getId() { <span class="kw">return</span> id; }
+    <span class="kw">public</span> String getTitle() { <span class="kw">return</span> title; }
+    <span class="kw">public</span> <span class="kw">boolean</span> isCompleted() { <span class="kw">return</span> completed; }
+}</code></pre></div><ul>
+<li><code>@Entity</code>: 이 클래스를 JPA가 관리하는 엔티티로 등록합니다.</li>
+<li><code>@Id</code>: 각 행을 구분하는 기본 키입니다. 제목이 같아도 ID로 다른 할 일을 구별합니다.</li>
+<li><code>@GeneratedValue</code>: 기본 키 생성 방식을 정합니다. <code>IDENTITY</code>는 DB의 자동 증가 기능을 사용합니다.</li>
+<li><code>@Column(nullable=false, length=100)</code>: 열의 제약을 정의합니다. <code>length</code>는 문자열 열에 적용합니다.</li>
+<li><code>protected Todo()</code>: JPA가 객체를 복원할 때 필요한 기본 생성자입니다.</li>
+</ul>
+<p><code>@Column(nullable=false)</code>는 공백 문자열을 막는 규칙은 아닙니다. 공백 입력은 다음 단계의 검증으로 막습니다.</p>
+<p>새 객체는 <code>completed=false</code>로 만들어지며, 저장하면 DB가 ID를 생성합니다. 전 필드의 setter를 만드는 대신 <code>update()</code>로 변경 가능한 내용을 명시했습니다.</p>
+</div></details><details id="detail-8" class="reference"><summary>8. Form/DTO: 입력값 받기와 검증</summary><div class="reference-body"><p>폼에서 들어오는 값은 <code>TodoForm</code>으로 받습니다. DTO는 데이터를 옮기는 객체라는 뜻입니다. DB 엔티티를 그대로 입력 대상으로 쓰면 사용자가 바꾸면 안 되는 필드까지 입력받기 쉬워집니다.</p>
+<p>파일: <code>src/main/java/com/example/todolearning/todo/TodoForm.java</code></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">package</span> com.example.todolearning.todo;
+
+<span class="kw">import</span> jakarta.validation.constraints.NotBlank;
+<span class="kw">import</span> jakarta.validation.constraints.Size;
+
+<span class="cm">// 화면 입력 전용 객체(DTO). DB 객체인 Todo와 역할을 구분합니다.</span>
+<span class="kw">public</span> <span class="kw">class</span> TodoForm {
+    <span class="an">@NotBlank</span>(message = <span class="str">&quot;할 일을 입력해 주세요.&quot;</span>)
+    <span class="an">@Size</span>(max = 100, message = <span class="str">&quot;할 일은 100자 이내로 입력해 주세요.&quot;</span>)
+    <span class="kw">private</span> String title;
+
+    <span class="kw">private</span> <span class="kw">boolean</span> completed;
+
+    <span class="kw">public</span> String getTitle() { <span class="kw">return</span> title; }
+    <span class="kw">public</span> <span class="kw">void</span> setTitle(String title) { this.title = title; }
+    <span class="kw">public</span> <span class="kw">boolean</span> isCompleted() { <span class="kw">return</span> completed; }
+    <span class="kw">public</span> <span class="kw">void</span> setCompleted(<span class="kw">boolean</span> completed) { this.completed = completed; }
+}</code></pre></div><p><code>@NotBlank</code>는 null, 빈 문자열, 공백뿐인 문자열을 거부합니다. <code>@Size(max=100)</code>은 문자열 길이를 제한합니다. 어노테이션을 붙이는 것만으로 아무 때나 검증되지는 않습니다. 뒤에서 컨트롤러의 <code>@Valid</code>가 검증을 요청합니다.</p>
+<p>HTML의 <code>required</code>와 <code>maxlength</code>는 사용자 편의를 위한 브라우저 검사입니다. 직접 HTTP 요청을 보낼 수도 있으므로 서버에서도 검사해야 합니다.</p>
+</div></details><details id="detail-9" class="reference"><summary>9. Repository: DB 읽고 쓰기</summary><div class="reference-body"><p>파일: <code>src/main/java/com/example/todolearning/todo/TodoRepository.java</code></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">package</span> com.example.todolearning.todo;
+
+<span class="kw">import</span> org.springframework.data.jpa.repository.JpaRepository;
+
+<span class="cm">// &lt;관리할 엔티티, 기본 키 타입&gt;. 구현체는 Spring Data JPA가 생성합니다.</span>
+<span class="kw">public</span> <span class="kw">interface</span> TodoRepository <span class="kw">extends</span> JpaRepository&lt;Todo, Long&gt; {
+}</code></pre></div><p><code>JpaRepository&lt;Todo, Long&gt;</code>은 Todo 엔티티를 다루고 기본 키 타입은 Long이라는 뜻입니다. 일반 Java 인터페이스가 혼자 실행되는 것은 아닙니다. Spring Data JPA가 실행 시 구현체를 만들어 스프링에 등록합니다. 이 인터페이스에 <code>@Repository</code>를 추가하지 않아도 됩니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>Java 호출</th>
+<th>개념상 SQL</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>save(new Todo(&quot;공부&quot;))</code></td>
+<td><code>INSERT INTO todo ...</code></td>
+<td>새 행 저장</td>
+</tr>
+<tr>
+<td><code>findAll()</code></td>
+<td><code>SELECT ... FROM todo</code></td>
+<td>전체 조회</td>
+</tr>
+<tr>
+<td><code>findById(1L)</code></td>
+<td><code>SELECT ... WHERE id = ?</code></td>
+<td>ID로 조회</td>
+</tr>
+<tr>
+<td><code>delete(todo)</code></td>
+<td><code>DELETE FROM todo WHERE id = ?</code></td>
+<td>삭제</td>
+</tr>
+</tbody></table>
+</div><p>실제 SQL과 실행 시점은 엔티티 상태, 키 생성 방식, flush 시점 등에 따라 달라집니다. <code>save()</code>가 언제나 INSERT라는 뜻은 아닙니다. 위 표는 신규 객체 저장의 예입니다.</p>
+<p><code>findById()</code>는 <code>Optional&lt;Todo&gt;</code>를 반환합니다. 조회 결과가 없을 가능성을 표현하는 상자라고 생각하세요. 다음 서비스에서는 결과가 없으면 예외를 던집니다.</p>
+</div></details><details id="detail-10" class="reference"><summary>10. Service: 하나의 작업과 트랜잭션</summary><div class="reference-body"><p>파일: <code>src/main/java/com/example/todolearning/todo/TodoService.java</code></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">package</span> com.example.todolearning.todo;
+
+<span class="kw">import</span> java.util.List;
+<span class="kw">import</span> org.springframework.data.domain.Sort;
+<span class="kw">import</span> org.springframework.stereotype.Service;
+<span class="kw">import</span> org.springframework.transaction.annotation.Transactional;
+
+<span class="an">@Service</span>
+<span class="an">@Transactional</span>(readOnly = <span class="kw">true</span>)
+<span class="kw">public</span> <span class="kw">class</span> TodoService {
+    <span class="kw">private</span> <span class="kw">final</span> TodoRepository todoRepository;
+
+    <span class="cm">// 생성자 주입: 스프링이 필요한 Repository를 넣어 줍니다.</span>
+    <span class="kw">public</span> TodoService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
+
+    <span class="kw">public</span> List&lt;Todo&gt; findAll() {
+        <span class="kw">return</span> todoRepository.findAll(Sort.by(Sort.Direction.DESC, <span class="str">&quot;id&quot;</span>));
+    }
+
+    <span class="kw">public</span> Todo findById(Long id) {
+        <span class="kw">return</span> todoRepository.findById(id)
+                .orElseThrow(() -&gt; <span class="kw">new</span> TodoNotFoundException(id));
+    }
+
+    <span class="an">@Transactional</span>
+    <span class="kw">public</span> <span class="kw">void</span> create(TodoForm form) {
+        todoRepository.save(<span class="kw">new</span> Todo(form.getTitle().strip()));
+    }
+
+    <span class="an">@Transactional</span>
+    <span class="kw">public</span> <span class="kw">void</span> update(Long id, TodoForm form) {
+        Todo todo = findById(id);
+        todo.update(form.getTitle().strip(), form.isCompleted());
+        <span class="cm">// 트랜잭션 안에서 조회한 엔티티의 변경은 커밋 때 DB에 반영됩니다.</span>
+        <span class="cm">// 이 동작을 변경 감지(dirty checking)라고 부릅니다.</span>
+    }
+
+    <span class="an">@Transactional</span>
+    <span class="kw">public</span> <span class="kw">void</span> delete(Long id) {
+        todoRepository.delete(findById(id));
+    }
+}</code></pre></div><p><code>@Service</code>를 붙이면 스프링이 이 객체를 생성해 관리합니다. 이렇게 관리되는 객체를 **빈(bean)**이라고 합니다.</p>
+<p>생성자의 <code>TodoRepository</code>는 직접 <code>new</code>로 만들지 않습니다. 스프링이 이미 준비한 Repository를 전달합니다. 이를 **의존성 주입(DI)**이라고 합니다. 생성자가 하나이면 <code>@Autowired</code>를 생략할 수 있습니다.</p>
+<p>트랜잭션은 여러 DB 변경을 하나의 작업으로 묶는 경계입니다. 예를 들어 계좌 이체에서는 출금만 되고 입금은 실패하는 상황을 막아야 합니다. 스프링의 기본 설정에서는 처리 중 RuntimeException이 밖으로 전파되면 롤백합니다. 모든 예외가 기본적으로 롤백되는 것은 아닙니다.</p>
+<p>클래스의 <code>@Transactional(readOnly=true)</code>는 조회 중심의 기본 설정이고, 저장·수정·삭제 메서드의 <code>@Transactional</code>은 쓰기 작업 설정으로 덮어씁니다. <code>readOnly</code>는 최적화 힌트로, 접근 권한을 강제로 제한하는 보안 기능은 아닙니다.</p>
+<p>수정 메서드에서는 <code>save()</code>를 다시 호출하지 않습니다. 트랜잭션 안에서 조회한 엔티티를 JPA가 관리하고 있어 값의 변화를 감지합니다. 커밋할 때 필요한 UPDATE가 반영됩니다. 아무 객체나 바꿨다고 저장되는 것은 아닙니다.</p>
+<p>스프링 트랜잭션은 보통 프록시를 통해 적용됩니다. 이 예제는 컨트롤러가 서비스의 public 메서드를 호출하면서 경계가 시작됩니다. 같은 클래스 안의 메서드 호출만으로 새로운 트랜잭션 어노테이션이 적용되지는 않습니다.</p>
+</div></details><details id="detail-11" class="reference"><summary>11. 없는 데이터는 404로 처리하기</summary><div class="reference-body"><p>파일: <code>src/main/java/com/example/todolearning/todo/TodoNotFoundException.java</code></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">package</span> com.example.todolearning.todo;
+
+<span class="kw">import</span> org.springframework.http.HttpStatus;
+<span class="kw">import</span> org.springframework.web.bind.annotation.ResponseStatus;
+
+<span class="an">@ResponseStatus</span>(HttpStatus.NOT_FOUND)
+<span class="kw">public</span> <span class="kw">class</span> TodoNotFoundException <span class="kw">extends</span> RuntimeException {
+    <span class="kw">public</span> TodoNotFoundException(Long id) {
+        super(<span class="str">&quot;할 일을 찾을 수 없습니다: &quot;</span> + id);
+    }
+}</code></pre></div><p><code>orElseThrow(() -&gt; new TodoNotFoundException(id))</code>는 조회 결과가 없을 때 실행합니다. <code>() -&gt; ...</code>는 필요할 때 실행할 동작을 전달하는 람다 문법입니다.</p>
+<p><code>@ResponseStatus(HttpStatus.NOT_FOUND)</code>는 이 예외를 HTTP 404에 연결합니다. 200은 성공, 302는 다른 주소로 이동, 404는 대상 없음, 500은 서버 내부 오류를 나타냅니다.</p>
+</div></details><details id="detail-12" class="reference"><summary>12. Controller: 주소와 Java 메서드 연결하기</summary><div class="reference-body"><p>컨트롤러는 요청의 입구입니다. 입력을 받고, 서비스에 작업을 부탁하고, 어떤 화면을 보여줄지 결정합니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>요청</th>
+<th>목적</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET /todos</td>
+<td>목록 조회</td>
+</tr>
+<tr>
+<td>GET /todos/new</td>
+<td>등록 화면</td>
+</tr>
+<tr>
+<td>POST /todos</td>
+<td>등록 처리</td>
+</tr>
+<tr>
+<td>GET /todos/{id}/edit</td>
+<td>수정 화면</td>
+</tr>
+<tr>
+<td>POST /todos/{id}/edit</td>
+<td>수정 처리</td>
+</tr>
+<tr>
+<td>POST /todos/{id}/delete</td>
+<td>삭제 처리</td>
+</tr>
+</tbody></table>
+</div><p>GET은 조회에 사용합니다. 데이터를 변경하는 요청은 GET으로 만들지 않습니다. 기본 HTML 폼은 GET과 POST를 지원하므로 여기서는 수정·삭제도 POST로 처리합니다. JSON REST API에서는 PUT/PATCH/DELETE를 흔히 사용합니다.</p>
+<p>파일: <code>src/main/java/com/example/todolearning/todo/TodoController.java</code></p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">package</span> com.example.todolearning.todo;
+
+<span class="kw">import</span> jakarta.validation.Valid;
+<span class="kw">import</span> org.springframework.stereotype.Controller;
+<span class="kw">import</span> org.springframework.ui.Model;
+<span class="kw">import</span> org.springframework.validation.BindingResult;
+<span class="kw">import</span> org.springframework.web.bind.annotation.GetMapping;
+<span class="kw">import</span> org.springframework.web.bind.annotation.ModelAttribute;
+<span class="kw">import</span> org.springframework.web.bind.annotation.PathVariable;
+<span class="kw">import</span> org.springframework.web.bind.annotation.PostMapping;
+
+<span class="an">@Controller</span>
+<span class="kw">public</span> <span class="kw">class</span> TodoController {
+    <span class="kw">private</span> <span class="kw">final</span> TodoService todoService;
+
+    <span class="kw">public</span> TodoController(TodoService todoService) {
+        this.todoService = todoService;
+    }
+
+    <span class="an">@GetMapping</span>(<span class="str">&quot;/&quot;</span>)
+    <span class="kw">public</span> String home() {
+        <span class="kw">return</span> <span class="str">&quot;redirect:/todos&quot;</span>;
+    }
+
+    <span class="an">@GetMapping</span>(<span class="str">&quot;/todos&quot;</span>)
+    <span class="kw">public</span> String list(Model model) {
+        model.addAttribute(<span class="str">&quot;todos&quot;</span>, todoService.findAll());
+        <span class="kw">return</span> <span class="str">&quot;todos/list&quot;</span>;
+    }
+
+    <span class="an">@GetMapping</span>(<span class="str">&quot;/todos/new&quot;</span>)
+    <span class="kw">public</span> String newForm(Model model) {
+        model.addAttribute(<span class="str">&quot;todoForm&quot;</span>, <span class="kw">new</span> TodoForm());
+        <span class="kw">return</span> <span class="str">&quot;todos/new&quot;</span>;
+    }
+
+    <span class="an">@PostMapping</span>(<span class="str">&quot;/todos&quot;</span>)
+    <span class="kw">public</span> String create(<span class="an">@Valid</span> <span class="an">@ModelAttribute</span>(<span class="str">&quot;todoForm&quot;</span>) TodoForm form,
+                         BindingResult bindingResult) {
+        <span class="cm">// BindingResult는 검증 대상 매개변수 바로 다음에 둡니다.</span>
+        <span class="kw">if</span> (bindingResult.hasErrors()) {
+            <span class="kw">return</span> <span class="str">&quot;todos/new&quot;</span>;
+        }
+        todoService.create(form);
+        <span class="kw">return</span> <span class="str">&quot;redirect:/todos&quot;</span>;
+    }
+
+    <span class="an">@GetMapping</span>(<span class="str">&quot;/todos/{id}/edit&quot;</span>)
+    <span class="kw">public</span> String editForm(<span class="an">@PathVariable</span>(<span class="str">&quot;id&quot;</span>) Long id, Model model) {
+        Todo todo = todoService.findById(id);
+        TodoForm form = <span class="kw">new</span> TodoForm();
+        form.setTitle(todo.getTitle());
+        form.setCompleted(todo.isCompleted());
+        model.addAttribute(<span class="str">&quot;todoForm&quot;</span>, form);
+        model.addAttribute(<span class="str">&quot;todoId&quot;</span>, id);
+        <span class="kw">return</span> <span class="str">&quot;todos/edit&quot;</span>;
+    }
+
+    <span class="an">@PostMapping</span>(<span class="str">&quot;/todos/{id}/edit&quot;</span>)
+    <span class="kw">public</span> String update(<span class="an">@PathVariable</span>(<span class="str">&quot;id&quot;</span>) Long id,
+                         <span class="an">@Valid</span> <span class="an">@ModelAttribute</span>(<span class="str">&quot;todoForm&quot;</span>) TodoForm form,
+                         BindingResult bindingResult, Model model) {
+        <span class="kw">if</span> (bindingResult.hasErrors()) {
+            model.addAttribute(<span class="str">&quot;todoId&quot;</span>, id);
+            <span class="kw">return</span> <span class="str">&quot;todos/edit&quot;</span>;
+        }
+        todoService.update(id, form);
+        <span class="kw">return</span> <span class="str">&quot;redirect:/todos&quot;</span>;
+    }
+
+    <span class="an">@PostMapping</span>(<span class="str">&quot;/todos/{id}/delete&quot;</span>)
+    <span class="kw">public</span> String delete(<span class="an">@PathVariable</span>(<span class="str">&quot;id&quot;</span>) Long id) {
+        todoService.delete(id);
+        <span class="kw">return</span> <span class="str">&quot;redirect:/todos&quot;</span>;
+    }
+}</code></pre></div><p>목록 메서드를 먼저 읽어 보세요.</p>
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@GetMapping</span>(<span class="str">&quot;/todos&quot;</span>)
+<span class="kw">public</span> String list(Model model) {
+    model.addAttribute(<span class="str">&quot;todos&quot;</span>, todoService.findAll());
+    <span class="kw">return</span> <span class="str">&quot;todos/list&quot;</span>;
+}</code></pre></div><ol>
+<li>브라우저가 GET /todos를 요청하면 <code>list()</code>가 실행됩니다.</li>
+<li>서비스에서 할 일 목록을 가져옵니다.</li>
+<li><code>Model</code>이라는 화면용 데이터 보관함에 <code>todos</code>라는 이름으로 넣습니다.</li>
+<li><code>todos/list</code>를 반환하면 Thymeleaf가 <code>templates/todos/list.html</code>을 렌더링합니다.</li>
+</ol>
+<p>다음으로 등록 메서드를 읽어 보세요.</p>
+<ul>
+<li><code>@ModelAttribute(&quot;todoForm&quot;)</code>: 폼의 이름과 객체 필드를 연결하고 모델에도 제공합니다.</li>
+<li><code>@Valid</code>: TodoForm에 선언한 검증을 실행합니다.</li>
+<li><code>BindingResult</code>: 검증 오류를 담습니다. 반드시 해당 입력 매개변수 바로 뒤에 둡니다.</li>
+<li>오류가 있으면 등록 화면을 다시 보여줍니다. 입력값과 오류 정보가 유지됩니다.</li>
+<li>성공하면 <code>redirect:/todos</code>를 반환합니다. 브라우저가 새로운 GET 요청으로 목록을 엽니다.</li>
+</ul>
+<p>이 흐름을 Post/Redirect/Get이라고 합니다. 성공한 POST 화면을 새로고침할 때 같은 등록 요청을 다시 보내는 일을 줄입니다. 빠른 중복 클릭까지 모두 방지하는 기능은 아닙니다.</p>
+<p><code>@PathVariable(&quot;id&quot;)</code>는 <code>/todos/3/edit</code>에서 숫자 <code>3</code>을 받습니다. <code>@RequestParam</code>은 <code>/todos?keyword=공부</code>의 검색 조건 같은 쿼리 매개변수를 받을 때 사용합니다. <code>@RequestBody</code>는 JSON 요청 본문을 객체로 받을 때 사용하며, 이 HTML 폼 예제에는 필요하지 않습니다.</p>
+<p><code>@Controller</code>의 문자열 반환은 주로 화면 이름입니다. <code>@RestController</code>는 <code>@Controller</code>와 <code>@ResponseBody</code>를 합친 것으로, 반환값을 응답 본문에 씁니다. 객체는 보통 JSON으로 변환되고 문자열은 그 문자열 자체가 전달됩니다. 따라서 이 코드의 어노테이션만 RestController로 바꾸면 화면 대신 <code>todos/list</code>라는 글자가 나옵니다.</p>
+</div></details><details id="detail-13" class="reference"><summary>13. HTML: 실제로 보고 누르는 화면</summary><div class="reference-body"><p>Thymeleaf는 서버의 데이터를 HTML에 넣는 템플릿 엔진입니다. Java 코드에서 넣은 <code>todos</code>를 <code>${todos}</code>로 읽습니다.</p>
+<h3>목록 화면</h3>
+<p>파일: <code>src/main/resources/templates/todos/list.html</code></p>
+<div class="codebox"><div class="codebar"><span>html</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&lt;title&gt;할 일 목록&lt;/title&gt;&lt;link rel=&quot;stylesheet&quot; th:href=&quot;@{/css/style.css}&quot;&gt;&lt;/head&gt;
+&lt;body&gt;&lt;main&gt;
+    &lt;p class=&quot;eyebrow&quot;&gt;나의 첫 Spring 웹&lt;/p&gt;
+    &lt;h1&gt;할 일 목록&lt;/h1&gt;
+    &lt;p&gt;작은 할 일 하나부터 기록해 보세요.&lt;/p&gt;
+    &lt;a class=&quot;button&quot; th:href=&quot;@{/todos/new}&quot;&gt;새 할 일 등록&lt;/a&gt;
+    &lt;p th:if=&quot;${#lists.isEmpty(todos)}&quot; class=&quot;empty&quot;&gt;아직 할 일이 없습니다. 첫 할 일을 등록해 보세요.&lt;/p&gt;
+    &lt;ul class=&quot;todos&quot;&gt;
+        &lt;li th:each=&quot;todo : ${todos}&quot;&gt;
+            &lt;div&gt;&lt;span class=&quot;badge&quot; th:text=&quot;${todo.completed ? '완료' : '진행 중'}&quot;&gt;&lt;/span&gt;
+                &lt;strong th:text=&quot;${todo.title}&quot;&gt;&lt;/strong&gt;&lt;/div&gt;
+            &lt;div class=&quot;actions&quot;&gt;
+                &lt;a th:href=&quot;@{/todos/{id}/edit(id=${todo.id})}&quot;&gt;수정&lt;/a&gt;
+                &lt;form th:action=&quot;@{/todos/{id}/delete(id=${todo.id})}&quot; method=&quot;post&quot;&gt;
+                    &lt;button class=&quot;delete&quot; type=&quot;submit&quot;&gt;삭제&lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;</code></pre></div><ul>
+<li><code>th:each</code>: 목록만큼 반복합니다.</li>
+<li><code>th:text</code>: 텍스트를 출력하며 HTML 특수문자를 이스케이프합니다. 입력한 <code>&lt;script&gt;</code>가 코드로 실행되지 않게 합니다.</li>
+<li><code>th:if</code>: 조건이 맞을 때만 표시합니다.</li>
+<li><code>th:href</code>와 <code>th:action</code>: 링크와 폼 전송 주소를 만듭니다.</li>
+<li><code>@{/todos/{id}/edit(id=${todo.id})}</code>: 실제 ID가 들어간 주소를 생성합니다.</li>
+</ul>
+<h3>등록 화면</h3>
+<p>파일: <code>src/main/resources/templates/todos/new.html</code></p>
+<div class="codebox"><div class="codebar"><span>html</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&lt;title&gt;할 일 등록&lt;/title&gt;&lt;link rel=&quot;stylesheet&quot; th:href=&quot;@{/css/style.css}&quot;&gt;&lt;/head&gt;
+&lt;body&gt;&lt;main&gt;
+    &lt;p class=&quot;eyebrow&quot;&gt;CREATE · 등록&lt;/p&gt;&lt;h1&gt;새 할 일&lt;/h1&gt;
+    &lt;form th:action=&quot;@{/todos}&quot; th:object=&quot;${todoForm}&quot; method=&quot;post&quot;&gt;
+        &lt;label for=&quot;title&quot;&gt;할 일&lt;/label&gt;
+        &lt;input id=&quot;title&quot; type=&quot;text&quot; th:field=&quot;*{title}&quot; maxlength=&quot;100&quot; required placeholder=&quot;예: 컨트롤러 역할 이해하기&quot; aria-describedby=&quot;title-error&quot;&gt;
+        &lt;p id=&quot;title-error&quot; class=&quot;error&quot; th:if=&quot;${#fields.hasErrors('title')}&quot; th:errors=&quot;*{title}&quot;&gt;&lt;/p&gt;
+        &lt;div class=&quot;actions&quot;&gt;&lt;button type=&quot;submit&quot;&gt;저장&lt;/button&gt;&lt;a th:href=&quot;@{/todos}&quot;&gt;취소&lt;/a&gt;&lt;/div&gt;
+    &lt;/form&gt;
+&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;</code></pre></div><p><code>th:object=&quot;${todoForm}&quot;</code>은 이 폼이 사용할 객체입니다. <code>th:field=&quot;*{title}&quot;</code>은 해당 객체의 title과 입력을 연결하며 name, id, value 등을 생성합니다. 폼을 제출하면 title이라는 이름으로 입력값이 전송됩니다.</p>
+<p><code>th:errors</code>는 서버 검증 오류를 출력합니다. 이 예제는 검증 실패 시 HTML 화면을 200으로 다시 보여줍니다. 검증 오류를 반드시 400으로 응답해야 하는 것은 아닙니다. JSON API에서는 400과 오류 JSON을 흔히 사용합니다.</p>
+<h3>수정 화면</h3>
+<p>파일: <code>src/main/resources/templates/todos/edit.html</code></p>
+<div class="codebox"><div class="codebar"><span>html</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&lt;title&gt;할 일 수정&lt;/title&gt;&lt;link rel=&quot;stylesheet&quot; th:href=&quot;@{/css/style.css}&quot;&gt;&lt;/head&gt;
+&lt;body&gt;&lt;main&gt;
+    &lt;p class=&quot;eyebrow&quot;&gt;UPDATE · 수정&lt;/p&gt;&lt;h1&gt;할 일 수정&lt;/h1&gt;
+    &lt;form th:action=&quot;@{/todos/{id}/edit(id=${todoId})}&quot; th:object=&quot;${todoForm}&quot; method=&quot;post&quot;&gt;
+        &lt;label for=&quot;title&quot;&gt;할 일&lt;/label&gt;
+        &lt;input id=&quot;title&quot; type=&quot;text&quot; th:field=&quot;*{title}&quot; maxlength=&quot;100&quot; required aria-describedby=&quot;title-error&quot;&gt;
+        &lt;p id=&quot;title-error&quot; class=&quot;error&quot; th:if=&quot;${#fields.hasErrors('title')}&quot; th:errors=&quot;*{title}&quot;&gt;&lt;/p&gt;
+        &lt;label class=&quot;checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot; th:field=&quot;*{completed}&quot;&gt; 완료했어요&lt;/label&gt;
+        &lt;div class=&quot;actions&quot;&gt;&lt;button type=&quot;submit&quot;&gt;수정 저장&lt;/button&gt;&lt;a th:href=&quot;@{/todos}&quot;&gt;취소&lt;/a&gt;&lt;/div&gt;
+    &lt;/form&gt;
+&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;</code></pre></div><p>수정 화면에서는 기존 값을 TodoForm에 복사해서 보여줍니다. Thymeleaf의 체크박스 필드 처리는 체크를 해제했을 때도 boolean 값이 적절히 전달되도록 돕습니다.</p>
+<h3>404 화면</h3>
+<p>파일: <code>src/main/resources/templates/error/404.html</code></p>
+<div class="codebox"><div class="codebar"><span>html</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ko&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+&lt;head&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&lt;title&gt;찾을 수 없습니다&lt;/title&gt;&lt;link rel=&quot;stylesheet&quot; th:href=&quot;@{/css/style.css}&quot;&gt;&lt;/head&gt;
+&lt;body&gt;&lt;main&gt;&lt;p class=&quot;eyebrow&quot;&gt;404&lt;/p&gt;&lt;h1&gt;요청한 내용을 찾을 수 없습니다.&lt;/h1&gt;&lt;p&gt;삭제된 할 일이거나 잘못된 주소일 수 있습니다.&lt;/p&gt;&lt;a th:href=&quot;@{/todos}&quot;&gt;목록으로 돌아가기&lt;/a&gt;&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;</code></pre></div><p>Spring Boot의 기본 오류 처리에서 HTML 응답에 사용할 상태 코드별 화면입니다. 존재하지 않는 할 일뿐 아니라 없는 URL에도 사용할 수 있도록 문구를 작성했습니다.</p>
+<p>CSS는 <code>src/main/resources/static/css/style.css</code>에 있습니다. <code>static</code> 아래 파일은 정적 리소스로 제공되어 브라우저가 <code>/css/style.css</code>로 가져옵니다.</p>
+</div></details><details id="detail-14" class="reference"><summary>14. 어노테이션 한눈에 보기</summary><div class="reference-body"><p>어노테이션은 <code>@</code>로 붙이는 메타데이터입니다. 표시만으로 마법처럼 모든 것이 실행되는 것은 아니고, 스프링·JPA·검증 라이브러리가 이를 읽고 동작을 적용합니다. Java의 <code>@Override</code>처럼 컴파일러가 확인하는 어노테이션도 있습니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>어노테이션</th>
+<th>읽는 쪽</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@SpringBootApplication</td>
+<td>Spring Boot</td>
+<td>시작 설정, 자동 설정, 컴포넌트 탐색</td>
+</tr>
+<tr>
+<td>@Controller</td>
+<td>Spring MVC</td>
+<td>화면 요청 처리 빈</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>Spring</td>
+<td>서비스 빈 등록</td>
+</tr>
+<tr>
+<td>@GetMapping / @PostMapping</td>
+<td>Spring MVC</td>
+<td>HTTP 메서드와 경로 연결</td>
+</tr>
+<tr>
+<td>@PathVariable</td>
+<td>Spring MVC</td>
+<td>URL 경로 변수 연결</td>
+</tr>
+<tr>
+<td>@ModelAttribute</td>
+<td>Spring MVC</td>
+<td>폼 입력 연결, 모델 제공</td>
+</tr>
+<tr>
+<td>@Valid</td>
+<td>검증 연동</td>
+<td>객체의 검증 규칙 실행 요청</td>
+</tr>
+<tr>
+<td>@NotBlank / @Size</td>
+<td>Bean Validation</td>
+<td>공백 및 길이 제약</td>
+</tr>
+<tr>
+<td>@Transactional</td>
+<td>Spring 트랜잭션</td>
+<td>작업의 트랜잭션 경계</td>
+</tr>
+<tr>
+<td>@Entity</td>
+<td>JPA</td>
+<td>영속 엔티티 선언</td>
+</tr>
+<tr>
+<td>@Id / @GeneratedValue</td>
+<td>JPA</td>
+<td>기본 키와 생성 방식</td>
+</tr>
+<tr>
+<td>@Column</td>
+<td>JPA</td>
+<td>열 매핑과 제약</td>
+</tr>
+<tr>
+<td>@ResponseStatus</td>
+<td>Spring MVC</td>
+<td>응답 상태 코드 지정</td>
+</tr>
+</tbody></table>
+</div><p>Entity가 자동으로 Service와 같은 스프링 빈이 되는 것은 아닙니다. 엔티티 인스턴스의 영속 상태는 JPA가 관리하고, Controller와 Service의 객체 생명주기는 스프링 컨테이너가 관리합니다.</p>
+</div></details><details id="detail-15" class="reference"><summary>15. 실행하며 DB와 연결해 보기</summary><div class="reference-body"><p>프로젝트 터미널에서 실행합니다.</p>
+<div class="codebox"><div class="codebar"><span>sh</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>./mvnw spring-boot:run</code></pre></div><p><a href="http://localhost:8080/todos">http://localhost:8080/todos</a>에서 등록·수정·삭제를 해 보세요. 동시에 터미널의 SQL을 보면 Java 메서드가 실제 DB 작업으로 이어지는 것을 확인할 수 있습니다.</p>
+<p><a href="http://localhost:8080/h2-console">http://localhost:8080/h2-console</a>에 접속하고 JDBC URL을 <code>jdbc:h2:file:./data/todos</code>, 사용자명을 <code>sa</code>, 비밀번호를 빈 값으로 입력합니다.</p>
+<div class="codebox"><div class="codebar"><span>sql</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>SELECT id, title, completed FROM todo ORDER BY id DESC;</code></pre></div><p>목록의 한 항목이 DB의 한 행입니다. 수정 후 다시 SELECT를 실행해 title이나 completed가 바뀌었는지 확인하세요. 서버를 껐다 켜도 같은 실행 폴더를 사용하면 데이터가 남아 있습니다.</p>
+</div></details><details id="detail-16" class="reference"><summary>16. 테스트는 왜 필요할까요?</summary><div class="reference-body"><p>컴파일 성공은 문법과 타입 검사를 통과했다는 뜻입니다. 실제 요청이 올바른 테이블 변경으로 이어지는지까지 보장하지는 않습니다.</p>
+<div class="codebox"><div class="codebar"><span>sh</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>./mvnw test</code></pre></div><p><code>TodoWebIntegrationTests</code>는 실제 임시 포트의 서버로 HTTP 요청을 보냅니다. 등록 → 조회 → 수정 → 완료 해제 → 삭제, 공백·길이 검증, 없는 ID, 출력 이스케이프를 검사합니다. 테스트 DB는 메모리 기반이어서 학습 중 저장한 파일 DB에 영향을 주지 않습니다.</p>
+</div></details><details id="detail-17" class="reference"><summary>17. 다음에는 무엇을 만들까요?</summary><div class="reference-body"><p>한 번에 전부 외우기보다 다음 순서로 확장해 보세요.</p>
+<ol>
+<li><strong>설명 필드 추가</strong>: Entity → Form → Service → HTML에 description 추가. 값이 어디를 지나가는지 익힙니다.</li>
+<li><strong>검색</strong>: Repository에 <code>findByTitleContaining(String keyword)</code>를 선언하고 Controller에서 <code>@RequestParam</code>으로 검색어를 받습니다. Spring Data가 메서드 이름을 해석합니다.</li>
+<li><strong>페이징</strong>: 모든 데이터를 한 번에 읽는 대신 Pageable과 Page로 나눕니다.</li>
+<li><strong>JSON API</strong>: 별도의 RestController에서 DTO를 반환하고 화면과 서버를 분리해 봅니다.</li>
+<li><strong>로그인·권한</strong>: Spring Security로 사용자를 구분하고 본인의 할 일만 변경하도록 검증합니다. 비밀번호는 직접 평문 저장하지 않습니다.</li>
+<li><strong>운영 DB</strong>: MySQL/PostgreSQL 드라이버와 연결 설정, 환경변수, 마이그레이션을 익힙니다. DB를 바꾸면 SQL과 타입 차이도 확인해야 합니다.</li>
+</ol>
+<p>현재 예제는 인증과 CSRF 보호를 포함하지 않는 로컬 학습용입니다. 사용자별 권한과 외부 공개 설정은 위 확장 단계에서 다룹니다.</p>
+</div></details><details id="detail-18" class="reference"><summary>공식 문서로 더 보기</summary><div class="reference-body"><ul>
+<li><p><a href="https://spring.io/guides/gs/accessing-data-jpa/">Spring: JPA로 데이터 접근</a>: Repository와 엔티티 기본 흐름</p>
+</li>
+<li><p><a href="https://spring.io/guides/gs/serving-web-content">Spring: MVC로 웹 화면 제공</a>: Controller, Model, Thymeleaf 연결</p>
+</li>
+<li><p><a href="https://docs.spring.io/spring-boot/reference/data/sql.html">Spring Boot: SQL 데이터베이스</a>: DB 연결과 JPA 설정</p>
+</li>
+<li><p><a href="https://docs.spring.io/spring-data/jpa/reference/jpa.html">Spring Data JPA</a>: Repository 추상화</p>
+</li>
+</ul>
+<p>공식 문서는 개념과 설정을 확인하는 참고 자료이며, 이 프로젝트는 위 설명에 맞춘 독립적인 할 일 예제입니다.</p>
+</div></details></section>
+<section id="annotations"><div class="section-kicker">QUICK LOOKUP</div><h2>어노테이션 빠른 사전</h2><p>어노테이션은 <code>@</code>로 붙이는 메타데이터입니다. 표시만으로 마법처럼 모든 것이 실행되는 것은 아니고, 스프링·JPA·검증 라이브러리가 이를 읽고 동작을 적용합니다. Java의 <code>@Override</code>처럼 컴파일러가 확인하는 어노테이션도 있습니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>어노테이션</th>
+<th>읽는 쪽</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@SpringBootApplication</td>
+<td>Spring Boot</td>
+<td>시작 설정, 자동 설정, 컴포넌트 탐색</td>
+</tr>
+<tr>
+<td>@Controller</td>
+<td>Spring MVC</td>
+<td>화면 요청 처리 빈</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>Spring</td>
+<td>서비스 빈 등록</td>
+</tr>
+<tr>
+<td>@GetMapping / @PostMapping</td>
+<td>Spring MVC</td>
+<td>HTTP 메서드와 경로 연결</td>
+</tr>
+<tr>
+<td>@PathVariable</td>
+<td>Spring MVC</td>
+<td>URL 경로 변수 연결</td>
+</tr>
+<tr>
+<td>@ModelAttribute</td>
+<td>Spring MVC</td>
+<td>폼 입력 연결, 모델 제공</td>
+</tr>
+<tr>
+<td>@Valid</td>
+<td>검증 연동</td>
+<td>객체의 검증 규칙 실행 요청</td>
+</tr>
+<tr>
+<td>@NotBlank / @Size</td>
+<td>Bean Validation</td>
+<td>공백 및 길이 제약</td>
+</tr>
+<tr>
+<td>@Transactional</td>
+<td>Spring 트랜잭션</td>
+<td>작업의 트랜잭션 경계</td>
+</tr>
+<tr>
+<td>@Entity</td>
+<td>JPA</td>
+<td>영속 엔티티 선언</td>
+</tr>
+<tr>
+<td>@Id / @GeneratedValue</td>
+<td>JPA</td>
+<td>기본 키와 생성 방식</td>
+</tr>
+<tr>
+<td>@Column</td>
+<td>JPA</td>
+<td>열 매핑과 제약</td>
+</tr>
+<tr>
+<td>@ResponseStatus</td>
+<td>Spring MVC</td>
+<td>응답 상태 코드 지정</td>
+</tr>
+</tbody></table>
+</div><p>Entity가 자동으로 Service와 같은 스프링 빈이 되는 것은 아닙니다. 엔티티 인스턴스의 영속 상태는 JPA가 관리하고, Controller와 Service의 객체 생명주기는 스프링 컨테이너가 관리합니다.</p>
+</section>
+<footer>할 일 관리 예제로 배우는 Spring 웹 개발 · 로컬 학습용<br>문서의 핵심 코드와 전체 코드가 같은 프로젝트에 연결되어 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+const status=document.querySelector('#copy-status');
+for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
+ const text=button.closest('.codebox').querySelector('code').textContent;
+ try { await navigator.clipboard.writeText(text); button.textContent='복사 완료'; status.textContent='코드를 복사했습니다.'; }
+ catch { const range=document.createRange(); range.selectNodeContents(button.closest('.codebox').querySelector('code')); const selection=getSelection(); selection.removeAllRanges(); selection.addRange(range); status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.'; button.textContent='선택 완료'; }
+ setTimeout(()=>button.textContent='코드 복사',2000);
+});
+const links=[...document.querySelectorAll('nav a[href^="#"]')];
+const observer=new IntersectionObserver(entries=>{ for(const e of entries) if(e.isIntersecting) { links.forEach(a=>{const active=a.hash==='#'+e.target.id;a.classList.toggle('active',active); if(active)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});} },{rootMargin:'-10% 0px -65% 0px'});
+document.querySelectorAll('main>section').forEach(s=>observer.observe(s));
+document.querySelector('#expand').addEventListener('click',()=>{const items=[...document.querySelectorAll('details.reference')];const expand=items.some(d=>!d.open);items.forEach(d=>d.open=expand);document.querySelector('#expand').textContent=expand?'전체 접기':'전체 펼치기';});
+</script></body></html>
