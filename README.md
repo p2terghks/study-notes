@@ -2,7 +2,7 @@
 
 [모바일·웹에서 보기](https://p2terghks.github.io/study-notes/)
 
-Codex로 작성하고 명시적으로 등록한 18개 학습 자료입니다.
+Codex로 작성하고 명시적으로 등록한 20개 학습 자료입니다.
 
 프로그래밍 언어, Spring·React, Git·Docker, AWS 프로젝트, 컴퓨팅·네트워크 기초를 포함합니다.
 

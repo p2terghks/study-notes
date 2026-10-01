@@ -124,5 +124,19 @@
     "category": "컴퓨터 · 네트워크 기초",
     "url": "docs/quick-reference/network-basics-reference.html",
     "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/aws-cli-reference.html",
+    "title": "AWS CLI · 인증·프로파일·명령어",
+    "category": "AWS · 클라우드",
+    "url": "docs/quick-reference/aws-cli-reference.html",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/quick-reference/terraform-reference.html",
+    "title": "Terraform · 문법·명령어·상태 관리",
+    "category": "AWS · 클라우드",
+    "url": "docs/quick-reference/terraform-reference.html",
+    "format": "HTML"
   }
 ]
