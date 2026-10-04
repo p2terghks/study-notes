@@ -1,11 +1,53 @@
-# 학습 요약
+# p2terghks GitHub
 
-[모바일·웹에서 보기](https://p2terghks.github.io/study-notes/)
+---
 
-Codex로 작성하고 명시적으로 등록한 20개 학습 자료입니다.
+## 요약 파일들
 
-프로그래밍 언어, Spring·React, Git·Docker, AWS 프로젝트, 컴퓨팅·네트워크 기초를 포함합니다.
+개발하면서 배운 개념과 코드 사용법을 정리합니다. 제목을 누르면 요약 자료가 열립니다.
 
-`index.html`에서 검색·주제 필터로 찾아보세요. 실습 코드는 학습용이며 AWS 배포 시 별도 계정·비용이 필요합니다.
+[전체 요약 검색하기](https://p2terghks.github.io/study-notes/)
 
-GitHub Pages: main 브랜치 / (root) 폴더. 게시할 때 이 폴더의 내용만 업로드합니다.
+### Spring · 백엔드
+
+- [Spring · JPA 입문 가이드](https://p2terghks.github.io/study-notes/docs/spring-web-guide.html)
+- [Spring 기능 · 사용법](https://p2terghks.github.io/study-notes/docs/quick-reference/spring-reference.html)
+
+### React
+
+- [React 입문 가이드](https://p2terghks.github.io/study-notes/docs/react-web-guide.html)
+- [React 함수 · Hook](https://p2terghks.github.io/study-notes/docs/quick-reference/react-reference.html)
+
+### 프로그래밍 언어
+
+- [Python 문법](https://p2terghks.github.io/study-notes/docs/python-syntax-guide.html)
+- [C 문법](https://p2terghks.github.io/study-notes/docs/c-syntax-guide.html)
+- [C++ 문법](https://p2terghks.github.io/study-notes/docs/cpp-syntax-guide.html)
+- [R 문법과 데이터 처리](https://p2terghks.github.io/study-notes/docs/quick-reference/r-reference.html)
+
+### AWS · 클라우드
+
+- [AWS 컴퓨팅 서비스](https://p2terghks.github.io/study-notes/docs/quick-reference/aws-reference.html)
+- [AWS CLI 사용법](https://p2terghks.github.io/study-notes/docs/quick-reference/aws-cli-reference.html)
+- [Terraform 사용법](https://p2terghks.github.io/study-notes/docs/quick-reference/terraform-reference.html)
+
+### GitHub · Docker
+
+- [GitHub · Git 사용법](https://p2terghks.github.io/study-notes/docs/quick-reference/github-reference.html)
+- [Docker 사용법](https://p2terghks.github.io/study-notes/docs/quick-reference/docker-reference.html)
+
+### 코딩 테스트
+
+- [코딩 테스트 · 언어별 풀이](https://p2terghks.github.io/study-notes/docs/quick-reference/coding-test-reference.html)
+
+### 클라우드 프로젝트
+
+- [3-Tier 고가용성](https://p2terghks.github.io/study-notes/docs/quick-reference/cloud-ha-reference.html)
+- [Terraform 인프라 자동화](https://p2terghks.github.io/study-notes/docs/quick-reference/cloud-iac-reference.html)
+- [Docker · ECS CI/CD](https://p2terghks.github.io/study-notes/docs/quick-reference/cloud-cicd-reference.html)
+- [서버리스 이미지 처리](https://p2terghks.github.io/study-notes/docs/quick-reference/cloud-serverless-reference.html)
+
+### 컴퓨터 · 네트워크
+
+- [컴퓨팅 기본 개념](https://p2terghks.github.io/study-notes/docs/quick-reference/computing-basics-reference.html)
+- [네트워크 기본 개념](https://p2terghks.github.io/study-notes/docs/quick-reference/network-basics-reference.html)
