@@ -1,5 +1,12 @@
 [
   {
+    "path": "docs/quick-reference/devops-handbook-reference.html",
+    "title": "CI/CD 통합 개발환경 · 클라우드 개발 실무",
+    "category": "AWS · 클라우드",
+    "url": "docs/quick-reference/devops-handbook-reference.html",
+    "format": "HTML"
+  },
+  {
     "path": "docs/spring-web-guide.html",
     "title": "Spring · JPA 입문 가이드",
     "category": "Spring · 백엔드",
