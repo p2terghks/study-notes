@@ -30,6 +30,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
 .search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">PYTHON 심화 NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">16개 항목</p><a href="#item-0"><span>01</span>1. 학습 순서와 실행 환경</a><a href="#item-1"><span>02</span>2. 객체 참조와 얕은 복사·깊은 복사</a><a href="#item-2"><span>03</span>3. 함수 인자와 가변 기본값</a><a href="#item-3"><span>04</span>4. 스코프·클로저·늦은 바인딩</a><a href="#item-4"><span>05</span>5. 컴프리헨션과 언패킹</a><a href="#item-5"><span>06</span>6. 이터러블·이터레이터·제너레이터</a><a href="#item-6"><span>07</span>7. 데코레이터와 functools.wraps</a><a href="#item-7"><span>08</span>8. 클래스·프로퍼티·특수 메서드</a><a href="#item-8"><span>09</span>9. dataclass로 데이터 모델 만들기</a><a href="#item-9"><span>10</span>10. 예외 처리와 컨텍스트 매니저</a><a href="#item-10"><span>11</span>11. 타입 힌트·제네릭·Protocol</a><a href="#item-11"><span>12</span>12. 표준 라이브러리로 간결하게 풀기</a><a href="#item-12"><span>13</span>13. match 패턴과 입력 검증</a><a href="#item-13"><span>14</span>14. async·await와 TaskGroup</a><a href="#item-14"><span>15</span>15. 모듈 분리와 실행 진입점</a><a href="#item-15"><span>16</span>16. 복습 문제와 다음 단계</a><div class="nav-group">다른 요약본</div><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="terraform-reference.html"><span>↗</span>Terraform 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-10-07<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>Python 심화<br><span>문법 심화 과정</span></h1><p class="lead">객체 참조부터 비동기까지 단계별로.<br>클로저·제너레이터·데코레이터·타입과 실행 예제.</p><div class="tags"><span>함수 · 클로저</span><span>이터레이터</span><span>클래스 · 타입</span><span>async · await</span></div><div class="hero-bottom"><span>16개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>1. 학습 순서와 실행 환경</h2><p>함수·리스트·딕셔너리·반복문을 배운 뒤 읽는 과정입니다. 예제는 <strong>Python 3.11 이상</strong>을 대상으로 합니다. TaskGroup은 3.11부터 지원합니다. 각 Python 코드 블록은 독립적으로 실행할 수 있으며, <code>assert</code>가 통과하면 출력 없이 끝나는 예제도 있습니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -60,164 +64,164 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 <td>실행 흐름과 오류 검증</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 --version
-python3 -m venv .venv
-source .venv/bin/activate
+</div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">python3</span> --<span class="id">version</span>
+<span class="id">python3</span> -<span class="id">m</span> <span class="id">venv</span> .<span class="id">venv</span>
+<span class="kw">source</span> .<span class="id">venv</span>/<span class="id">bin</span>/<span class="id">activate</span>
 <span class="cm"># Windows PowerShell: .venv\Scripts\Activate.ps1</span>
-python example.py</code></pre></div><p>기초가 부족하면 <a href="../python-syntax-guide.html">Python 입문 가이드</a>를 먼저 읽으세요. 외부 패키지는 필요하지 않습니다.</p>
+<span class="id">python</span> <span class="id">example</span>.<span class="id">py</span></code></pre></div><p>기초가 부족하면 <a href="../python-syntax-guide.html">Python 입문 가이드</a>를 먼저 읽으세요. 외부 패키지는 필요하지 않습니다.</p>
 </section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>2. 객체 참조와 얕은 복사·깊은 복사</h2><p>변수는 객체에 붙인 이름입니다. 대입은 객체 복제가 아니며 <code>==</code>는 값, <code>is</code>는 같은 객체인지를 비교합니다. <code>None</code> 확인에는 <code>is None</code>을 사용합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from copy <span class="kw">import</span> deepcopy
-original = [[1], [2]]
-alias = original
-shallow = original.copy()
-deep = deepcopy(original)
-original[0].append(9)
-assert alias is original
-assert shallow == [[1, 9], [2]]  <span class="cm"># 내부 리스트는 공유</span>
-assert deep == [[1], [2]]
-assert shallow is not original</code></pre></div><p>튜플도 내부에 리스트를 담으면 그 리스트는 바뀔 수 있습니다. 깊은 복사는 필요한 경계에서만 사용하고, 가능한 한 데이터 구조를 단순하게 만드세요. <a href="https://docs.python.org/3.12/library/copy.html">공식 문서: copy</a></p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">from</span> <span class="id">copy</span> <span class="kw">import</span> <span class="id">deepcopy</span>
+<span class="id">original</span> = [[<span class="num">1</span>], [<span class="num">2</span>]]
+<span class="id">alias</span> = <span class="id">original</span>
+<span class="id">shallow</span> = <span class="id">original</span>.<span class="fn">copy</span>()
+<span class="id">deep</span> = <span class="fn">deepcopy</span>(<span class="id">original</span>)
+<span class="id">original</span>[<span class="num">0</span>].<span class="fn">append</span>(<span class="num">9</span>)
+<span class="kw">assert</span> <span class="id">alias</span> <span class="kw">is</span> <span class="id">original</span>
+<span class="kw">assert</span> <span class="id">shallow</span> == [[<span class="num">1</span>, <span class="num">9</span>], [<span class="num">2</span>]]  <span class="cm"># 내부 리스트는 공유</span>
+<span class="kw">assert</span> <span class="id">deep</span> == [[<span class="num">1</span>], [<span class="num">2</span>]]
+<span class="kw">assert</span> <span class="id">shallow</span> <span class="kw">is</span> <span class="kw">not</span> <span class="id">original</span></code></pre></div><p>튜플도 내부에 리스트를 담으면 그 리스트는 바뀔 수 있습니다. 깊은 복사는 필요한 경계에서만 사용하고, 가능한 한 데이터 구조를 단순하게 만드세요. <a href="https://docs.python.org/3.12/library/copy.html">공식 문서: copy</a></p>
 </section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>3. 함수 인자와 가변 기본값</h2><p><code>/</code> 앞은 위치 전용, <code>*</code> 뒤는 키워드 전용입니다. <code>*args</code>는 나머지 위치 인자를 튜플로, <code>**kwargs</code>는 나머지 키워드 인자를 딕셔너리로 받습니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>def discount(price, /, *, rate=0.1):
-    <span class="kw">return</span> price * (1 - rate)
-assert discount(100, rate=0.2) == 80
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> <span class="fn">discount</span>(<span class="id">price</span>, /, *, <span class="id">rate</span>=<span class="num">0.1</span>):
+    <span class="kw">return</span> <span class="id">price</span> * (<span class="num">1</span> - <span class="id">rate</span>)
+<span class="kw">assert</span> <span class="fn">discount</span>(<span class="num">100</span>, <span class="id">rate</span>=<span class="num">0.2</span>) == <span class="num">80</span>
 
-def collect(value, bucket=None):
-    <span class="kw">if</span> bucket is None:
-        bucket = []
-    bucket.append(value)
-    <span class="kw">return</span> bucket
-assert collect(1) == [1]
-assert collect(2) == [2]
+<span class="kw">def</span> <span class="fn">collect</span>(<span class="id">value</span>, <span class="id">bucket</span>=<span class="kw">None</span>):
+    <span class="kw">if</span> <span class="id">bucket</span> <span class="kw">is</span> <span class="kw">None</span>:
+        <span class="id">bucket</span> = []
+    <span class="id">bucket</span>.<span class="fn">append</span>(<span class="id">value</span>)
+    <span class="kw">return</span> <span class="id">bucket</span>
+<span class="kw">assert</span> <span class="fn">collect</span>(<span class="num">1</span>) == [<span class="num">1</span>]
+<span class="kw">assert</span> <span class="fn">collect</span>(<span class="num">2</span>) == [<span class="num">2</span>]
 
-def describe(*args, **kwargs):
-    <span class="kw">return</span> args, kwargs
-assert describe(1, 2, name=<span class="str">&quot;Kim&quot;</span>) == ((1, 2), {<span class="str">&quot;name&quot;</span>: <span class="str">&quot;Kim&quot;</span>})</code></pre></div><p><code>bucket=[]</code>를 기본값으로 쓰면 함수 정의 시 만든 리스트를 호출마다 공유합니다. <code>None</code>으로 구분한 뒤 호출 안에서 생성하세요. <a href="https://docs.python.org/3.12/tutorial/controlflow.html#more-on-defining-functions">공식 문서: 함수 인자</a></p>
+<span class="kw">def</span> <span class="fn">describe</span>(*<span class="id">args</span>, **<span class="id">kwargs</span>):
+    <span class="kw">return</span> <span class="id">args</span>, <span class="id">kwargs</span>
+<span class="kw">assert</span> <span class="fn">describe</span>(<span class="num">1</span>, <span class="num">2</span>, <span class="id">name</span>=<span class="str">&quot;Kim&quot;</span>) == ((<span class="num">1</span>, <span class="num">2</span>), {<span class="str">&quot;name&quot;</span>: <span class="str">&quot;Kim&quot;</span>})</code></pre></div><p><code>bucket=[]</code>를 기본값으로 쓰면 함수 정의 시 만든 리스트를 호출마다 공유합니다. <code>None</code>으로 구분한 뒤 호출 안에서 생성하세요. <a href="https://docs.python.org/3.12/tutorial/controlflow.html#more-on-defining-functions">공식 문서: 함수 인자</a></p>
 </section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>4. 스코프·클로저·늦은 바인딩</h2><p>이름은 보통 지역 → 바깥 함수 → 모듈 전역 → 내장 영역 순서로 찾습니다. 클로저는 바깥 함수의 변수를 기억하는 함수입니다. 바깥 변수에 다시 대입하려면 <code>nonlocal</code>을 사용합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>def counter():
-    count = 0
-    def increase():
-        nonlocal count
-        count += 1
-        <span class="kw">return</span> count
-    <span class="kw">return</span> increase
-c = counter()
-assert (c(), c()) == (1, 2)
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> <span class="fn">counter</span>():
+    <span class="id">count</span> = <span class="num">0</span>
+    <span class="kw">def</span> <span class="fn">increase</span>():
+        <span class="kw">nonlocal</span> <span class="id">count</span>
+        <span class="id">count</span> += <span class="num">1</span>
+        <span class="kw">return</span> <span class="id">count</span>
+    <span class="kw">return</span> <span class="id">increase</span>
+<span class="id">c</span> = <span class="fn">counter</span>()
+<span class="kw">assert</span> (<span class="fn">c</span>(), <span class="fn">c</span>()) == (<span class="num">1</span>, <span class="num">2</span>)
 
-wrong = [lambda: i for i in range(3)]
-right = [lambda i=i: i for i in range(3)]
-assert [f() for f in wrong] == [2, 2, 2]
-assert [f() for f in right] == [0, 1, 2]</code></pre></div><p>첫 리스트의 함수들은 호출할 때 같은 <code>i</code>를 읽습니다. 기본 인자로 값을 저장하면 각 함수가 생성된 시점의 값을 사용할 수 있습니다. <a href="https://docs.python.org/3.12/tutorial/classes.html#python-scopes-and-namespaces">공식 문서: 스코프</a></p>
+<span class="id">wrong</span> = [<span class="kw">lambda</span>: <span class="id">i</span> <span class="kw">for</span> <span class="id">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">3</span>)]
+<span class="id">right</span> = [<span class="kw">lambda</span> <span class="id">i</span>=<span class="id">i</span>: <span class="id">i</span> <span class="kw">for</span> <span class="id">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">3</span>)]
+<span class="kw">assert</span> [<span class="fn">f</span>() <span class="kw">for</span> <span class="id">f</span> <span class="kw">in</span> <span class="id">wrong</span>] == [<span class="num">2</span>, <span class="num">2</span>, <span class="num">2</span>]
+<span class="kw">assert</span> [<span class="fn">f</span>() <span class="kw">for</span> <span class="id">f</span> <span class="kw">in</span> <span class="id">right</span>] == [<span class="num">0</span>, <span class="num">1</span>, <span class="num">2</span>]</code></pre></div><p>첫 리스트의 함수들은 호출할 때 같은 <code>i</code>를 읽습니다. 기본 인자로 값을 저장하면 각 함수가 생성된 시점의 값을 사용할 수 있습니다. <a href="https://docs.python.org/3.12/tutorial/classes.html#python-scopes-and-namespaces">공식 문서: 스코프</a></p>
 </section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>5. 컴프리헨션과 언패킹</h2><p>짧은 변환·필터에는 컴프리헨션이 유용합니다. 조건과 중첩이 길어지면 일반 반복문으로 분리하세요. 리스트 컴프리헨션은 결과 전체를 즉시 만들고, 제너레이터 표현식은 요청할 때 계산합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>scores = {<span class="str">&quot;Kim&quot;</span>: 90, <span class="str">&quot;Lee&quot;</span>: 55, <span class="str">&quot;Park&quot;</span>: 80}
-passed = {name: score for name, score in scores.items() <span class="kw">if</span> score &gt;= 60}
-assert list(passed) == [<span class="str">&quot;Kim&quot;</span>, <span class="str">&quot;Park&quot;</span>]
-first, *middle, last = [1, 2, 3, 4]
-assert middle == [2, 3]
-assert sum(n * n for n in range(4)) == 14</code></pre></div><p><code>zip</code>은 기본적으로 짧은 입력에 맞춰 끝납니다. 길이가 같아야 하는 입력에는 <code>zip(a, b, strict=True)</code>를 사용해 누락을 탐지하세요. <a href="https://docs.python.org/3.12/tutorial/datastructures.html">공식 문서: 자료구조</a></p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">scores</span> = {<span class="str">&quot;Kim&quot;</span>: <span class="num">90</span>, <span class="str">&quot;Lee&quot;</span>: <span class="num">55</span>, <span class="str">&quot;Park&quot;</span>: <span class="num">80</span>}
+<span class="id">passed</span> = {<span class="id">name</span>: <span class="id">score</span> <span class="kw">for</span> <span class="id">name</span>, <span class="id">score</span> <span class="kw">in</span> <span class="id">scores</span>.<span class="fn">items</span>() <span class="kw">if</span> <span class="id">score</span> &gt;= <span class="num">60</span>}
+<span class="kw">assert</span> <span class="fn">list</span>(<span class="id">passed</span>) == [<span class="str">&quot;Kim&quot;</span>, <span class="str">&quot;Park&quot;</span>]
+<span class="id">first</span>, *<span class="id">middle</span>, <span class="id">last</span> = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>]
+<span class="kw">assert</span> <span class="id">middle</span> == [<span class="num">2</span>, <span class="num">3</span>]
+<span class="kw">assert</span> <span class="fn">sum</span>(<span class="id">n</span> * <span class="id">n</span> <span class="kw">for</span> <span class="id">n</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">4</span>)) == <span class="num">14</span></code></pre></div><p><code>zip</code>은 기본적으로 짧은 입력에 맞춰 끝납니다. 길이가 같아야 하는 입력에는 <code>zip(a, b, strict=True)</code>를 사용해 누락을 탐지하세요. <a href="https://docs.python.org/3.12/tutorial/datastructures.html">공식 문서: 자료구조</a></p>
 </section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>6. 이터러블·이터레이터·제너레이터</h2><p>이터러블은 <code>iter()</code>로 이터레이터를 얻을 수 있는 객체입니다. 이터레이터는 <code>next()</code>로 다음 항목을 꺼내며 끝나면 <code>StopIteration</code>이 발생합니다. 제너레이터는 <code>yield</code>로 중간 실행 상태를 보존하는 이터레이터입니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>def even_squares(limit):
-    for n in range(limit):
-        <span class="kw">if</span> n % 2 == 0:
-            yield n * n
-stream = even_squares(6)
-assert next(stream) == 0
-assert list(stream) == [4, 16]
-assert list(stream) == []  <span class="cm"># 이미 소비됨</span>
-assert next(stream, <span class="str">&quot;끝&quot;</span>) == <span class="str">&quot;끝&quot;</span>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> <span class="fn">even_squares</span>(<span class="id">limit</span>):
+    <span class="kw">for</span> <span class="id">n</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="id">limit</span>):
+        <span class="kw">if</span> <span class="id">n</span> % <span class="num">2</span> == <span class="num">0</span>:
+            <span class="kw">yield</span> <span class="id">n</span> * <span class="id">n</span>
+<span class="id">stream</span> = <span class="fn">even_squares</span>(<span class="num">6</span>)
+<span class="kw">assert</span> <span class="fn">next</span>(<span class="id">stream</span>) == <span class="num">0</span>
+<span class="kw">assert</span> <span class="fn">list</span>(<span class="id">stream</span>) == [<span class="num">4</span>, <span class="num">16</span>]
+<span class="kw">assert</span> <span class="fn">list</span>(<span class="id">stream</span>) == []  <span class="cm"># 이미 소비됨</span>
+<span class="kw">assert</span> <span class="fn">next</span>(<span class="id">stream</span>, <span class="str">&quot;끝&quot;</span>) == <span class="str">&quot;끝&quot;</span>
 
-def flatten(rows):
-    for row in rows:
-        yield from row
-assert list(flatten([[1, 2], [3]])) == [1, 2, 3]</code></pre></div><p>지연 계산은 중간 결과 메모리를 줄일 수 있지만 소비된 이터레이터를 자동으로 되돌리지는 않습니다. 다시 읽어야 하면 새로 생성하세요. <a href="https://docs.python.org/3.12/tutorial/classes.html#generators">공식 문서: 제너레이터</a></p>
+<span class="kw">def</span> <span class="fn">flatten</span>(<span class="id">rows</span>):
+    <span class="kw">for</span> <span class="id">row</span> <span class="kw">in</span> <span class="id">rows</span>:
+        <span class="kw">yield</span> <span class="kw">from</span> <span class="id">row</span>
+<span class="kw">assert</span> <span class="fn">list</span>(<span class="fn">flatten</span>([[<span class="num">1</span>, <span class="num">2</span>], [<span class="num">3</span>]])) == [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]</code></pre></div><p>지연 계산은 중간 결과 메모리를 줄일 수 있지만 소비된 이터레이터를 자동으로 되돌리지는 않습니다. 다시 읽어야 하면 새로 생성하세요. <a href="https://docs.python.org/3.12/tutorial/classes.html#generators">공식 문서: 제너레이터</a></p>
 </section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>7. 데코레이터와 functools.wraps</h2><p>데코레이터는 함수를 받아 확장한 함수를 반환합니다. <code>@decorate</code>는 함수 정의 후 <code>f = decorate(f)</code>를 적용하는 표현입니다. 아래는 호출 결과에 접두어를 붙이는 데코레이터 팩터리입니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from functools <span class="kw">import</span> wraps
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">from</span> <span class="id">functools</span> <span class="kw">import</span> <span class="id">wraps</span>
 
-def prefix(text):
-    def decorate(func):
-        <span class="an">@wraps</span>(func)
-        def wrapped(*args, **kwargs):
-            <span class="kw">return</span> text + func(*args, **kwargs)
-        <span class="kw">return</span> wrapped
-    <span class="kw">return</span> decorate
+<span class="kw">def</span> <span class="fn">prefix</span>(<span class="id">text</span>):
+    <span class="kw">def</span> <span class="fn">decorate</span>(<span class="id">func</span>):
+        <span class="an">@wraps</span>(<span class="id">func</span>)
+        <span class="kw">def</span> <span class="fn">wrapped</span>(*<span class="id">args</span>, **<span class="id">kwargs</span>):
+            <span class="kw">return</span> <span class="id">text</span> + <span class="fn">func</span>(*<span class="id">args</span>, **<span class="id">kwargs</span>)
+        <span class="kw">return</span> <span class="id">wrapped</span>
+    <span class="kw">return</span> <span class="id">decorate</span>
 
 <span class="an">@prefix</span>(<span class="str">&quot;안녕, &quot;</span>)
-def greet(name):
-    <span class="kw">return</span> name
-assert greet(<span class="str">&quot;Python&quot;</span>) == <span class="str">&quot;안녕, Python&quot;</span>
-assert greet.__name__ == <span class="str">&quot;greet&quot;</span></code></pre></div><p><code>wraps</code>는 원래 함수의 이름·문서 등 메타데이터를 보존합니다. 비동기 함수를 감싸는 경우에는 별도의 <code>async def</code> 래퍼에서 <code>await func(...)</code>가 필요할 수 있습니다. <a href="https://docs.python.org/3.12/library/functools.html#functools.wraps">공식 문서: wraps</a></p>
+<span class="kw">def</span> <span class="fn">greet</span>(<span class="id">name</span>):
+    <span class="kw">return</span> <span class="id">name</span>
+<span class="kw">assert</span> <span class="fn">greet</span>(<span class="str">&quot;Python&quot;</span>) == <span class="str">&quot;안녕, Python&quot;</span>
+<span class="kw">assert</span> <span class="id">greet</span>.<span class="id">__name__</span> == <span class="str">&quot;greet&quot;</span></code></pre></div><p><code>wraps</code>는 원래 함수의 이름·문서 등 메타데이터를 보존합니다. 비동기 함수를 감싸는 경우에는 별도의 <code>async def</code> 래퍼에서 <code>await func(...)</code>가 필요할 수 있습니다. <a href="https://docs.python.org/3.12/library/functools.html#functools.wraps">공식 문서: wraps</a></p>
 </section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>8. 클래스·프로퍼티·특수 메서드</h2><p>인스턴스 상태는 <code>self</code>에 저장합니다. 클래스 변수는 공유되므로 인스턴스별 리스트를 클래스 본문에 두지 마세요. 프로퍼티는 속성 접근 형태로 계산값을 제공할 때 유용합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">class</span> Basket:
-    def __init__(self):
-        self.items = []
-    def add(self, price):
-        <span class="kw">if</span> price &lt; 0:
-            raise ValueError(<span class="str">&quot;가격은 0 이상&quot;</span>)
-        self.items.append(price)
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">class</span> <span class="id">Basket</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="id">self</span>):
+        <span class="id">self</span>.<span class="id">items</span> = []
+    <span class="kw">def</span> <span class="fn">add</span>(<span class="id">self</span>, <span class="id">price</span>):
+        <span class="kw">if</span> <span class="id">price</span> &lt; <span class="num">0</span>:
+            <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;가격은 0 이상&quot;</span>)
+        <span class="id">self</span>.<span class="id">items</span>.<span class="fn">append</span>(<span class="id">price</span>)
     <span class="an">@property</span>
-    def total(self):
-        <span class="kw">return</span> sum(self.items)
-    def __len__(self):
-        <span class="kw">return</span> len(self.items)
-    def __repr__(self):
-        <span class="kw">return</span> f<span class="str">&quot;Basket(items={self.items!r})&quot;</span>
-a, b = Basket(), Basket()
-a.add(3000)
-assert a.total == 3000 and len(a) == 1
-assert len(b) == 0</code></pre></div><p><code>__repr__</code>는 개발자가 상태를 파악하는 표현, <code>__len__</code>는 <code>len()</code>의 동작을 정의합니다. 상속은 실제로 같은 종류인 관계에 쓰고, 기능 조합에는 객체를 멤버로 담는 구성을 고려하세요. <a href="https://docs.python.org/3.12/reference/datamodel.html">공식 문서: 데이터 모델</a></p>
+    <span class="kw">def</span> <span class="fn">total</span>(<span class="id">self</span>):
+        <span class="kw">return</span> <span class="fn">sum</span>(<span class="id">self</span>.<span class="id">items</span>)
+    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="id">self</span>):
+        <span class="kw">return</span> <span class="fn">len</span>(<span class="id">self</span>.<span class="id">items</span>)
+    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="id">self</span>):
+        <span class="kw">return</span> <span class="id">f</span><span class="str">&quot;Basket(items={self.items!r})&quot;</span>
+<span class="id">a</span>, <span class="id">b</span> = <span class="fn">Basket</span>(), <span class="fn">Basket</span>()
+<span class="id">a</span>.<span class="fn">add</span>(<span class="num">3000</span>)
+<span class="kw">assert</span> <span class="id">a</span>.<span class="id">total</span> == <span class="num">3000</span> <span class="kw">and</span> <span class="fn">len</span>(<span class="id">a</span>) == <span class="num">1</span>
+<span class="kw">assert</span> <span class="fn">len</span>(<span class="id">b</span>) == <span class="num">0</span></code></pre></div><p><code>__repr__</code>는 개발자가 상태를 파악하는 표현, <code>__len__</code>는 <code>len()</code>의 동작을 정의합니다. 상속은 실제로 같은 종류인 관계에 쓰고, 기능 조합에는 객체를 멤버로 담는 구성을 고려하세요. <a href="https://docs.python.org/3.12/reference/datamodel.html">공식 문서: 데이터 모델</a></p>
 </section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>9. dataclass로 데이터 모델 만들기</h2><p><code>dataclass</code>는 필드 선언을 바탕으로 초기화·표현·동등 비교 메서드 등을 생성합니다. 리스트는 <code>default_factory</code>로 인스턴스마다 새로 생성하세요.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from dataclasses <span class="kw">import</span> dataclass, field
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">from</span> <span class="id">dataclasses</span> <span class="kw">import</span> <span class="id">dataclass</span>, <span class="id">field</span>
 
 <span class="an">@dataclass</span>
-<span class="kw">class</span> Student:
-    name: str
-    scores: list[int] = field(default_factory=list)
-    def __post_init__(self):
-        <span class="kw">if</span> not self.name.strip():
-            raise ValueError(<span class="str">&quot;이름이 필요합니다&quot;</span>)
-a, b = Student(<span class="str">&quot;Kim&quot;</span>), Student(<span class="str">&quot;Lee&quot;</span>)
-a.scores.append(90)
-assert b.scores == []
-assert Student(<span class="str">&quot;Kim&quot;</span>, [90]) == a</code></pre></div><p>타입 선언만으로 입력 검증은 수행되지 않습니다. <code>frozen=True</code>는 필드 재대입을 막지만 필드 안의 리스트까지 불변으로 만들지는 않습니다. <a href="https://docs.python.org/3.12/library/dataclasses.html">공식 문서: dataclasses</a></p>
+<span class="kw">class</span> <span class="id">Student</span>:
+    <span class="id">name</span>: <span class="id">str</span>
+    <span class="id">scores</span>: <span class="id">list</span>[<span class="id">int</span>] = <span class="fn">field</span>(<span class="id">default_factory</span>=<span class="id">list</span>)
+    <span class="kw">def</span> <span class="fn">__post_init__</span>(<span class="id">self</span>):
+        <span class="kw">if</span> <span class="kw">not</span> <span class="id">self</span>.<span class="id">name</span>.<span class="fn">strip</span>():
+            <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;이름이 필요합니다&quot;</span>)
+<span class="id">a</span>, <span class="id">b</span> = <span class="fn">Student</span>(<span class="str">&quot;Kim&quot;</span>), <span class="fn">Student</span>(<span class="str">&quot;Lee&quot;</span>)
+<span class="id">a</span>.<span class="id">scores</span>.<span class="fn">append</span>(<span class="num">90</span>)
+<span class="kw">assert</span> <span class="id">b</span>.<span class="id">scores</span> == []
+<span class="kw">assert</span> <span class="fn">Student</span>(<span class="str">&quot;Kim&quot;</span>, [<span class="num">90</span>]) == <span class="id">a</span></code></pre></div><p>타입 선언만으로 입력 검증은 수행되지 않습니다. <code>frozen=True</code>는 필드 재대입을 막지만 필드 안의 리스트까지 불변으로 만들지는 않습니다. <a href="https://docs.python.org/3.12/library/dataclasses.html">공식 문서: dataclasses</a></p>
 </section><section id="item-9"><div class="section-kicker">REFERENCE 10</div><h2>10. 예외 처리와 컨텍스트 매니저</h2><p>예외는 처리할 수 있는 범위에서 구체적으로 잡으세요. <code>else</code>는 예외 없이 끝났을 때, <code>finally</code>는 정상 종료·예외 모두에서 정리 작업에 쓰입니다. <code>raise ... from exc</code>는 원인을 보존합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from contextlib <span class="kw">import</span> contextmanager
-from io <span class="kw">import</span> StringIO
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">from</span> <span class="id">contextlib</span> <span class="kw">import</span> <span class="id">contextmanager</span>
+<span class="kw">from</span> <span class="id">io</span> <span class="kw">import</span> <span class="id">StringIO</span>
 
-def parse_age(text):
-    try:
-        <span class="kw">return</span> int(text)
-    except ValueError as exc:
-        raise ValueError(<span class="str">&quot;나이는 정수여야 합니다&quot;</span>) from exc
+<span class="kw">def</span> <span class="fn">parse_age</span>(<span class="id">text</span>):
+    <span class="kw">try</span>:
+        <span class="kw">return</span> <span class="fn">int</span>(<span class="id">text</span>)
+    <span class="kw">except</span> <span class="id">ValueError</span> <span class="kw">as</span> <span class="id">exc</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;나이는 정수여야 합니다&quot;</span>) <span class="kw">from</span> <span class="id">exc</span>
 
 <span class="an">@contextmanager</span>
-def text_buffer(text):
-    buffer = StringIO(text)
-    try:
-        yield buffer
-    finally:
-        buffer.close()
+<span class="kw">def</span> <span class="fn">text_buffer</span>(<span class="id">text</span>):
+    <span class="id">buffer</span> = <span class="fn">StringIO</span>(<span class="id">text</span>)
+    <span class="kw">try</span>:
+        <span class="kw">yield</span> <span class="id">buffer</span>
+    <span class="kw">finally</span>:
+        <span class="id">buffer</span>.<span class="fn">close</span>()
 
-with text_buffer(<span class="str">&quot;42&quot;</span>) as buffer:
-    assert parse_age(buffer.read()) == 42
-assert buffer.closed</code></pre></div><p><code>@contextmanager</code> 함수는 정확히 한 번 <code>yield</code>해야 합니다. 실제 파일은 <code>with open(path, encoding=&quot;utf-8&quot;) as f:</code>로 관리하세요. <code>except Exception: pass</code>로 실패를 숨기지 마세요. <a href="https://docs.python.org/3.12/library/contextlib.html">공식 문서: contextlib</a></p>
+<span class="kw">with</span> <span class="fn">text_buffer</span>(<span class="str">&quot;42&quot;</span>) <span class="kw">as</span> <span class="id">buffer</span>:
+    <span class="kw">assert</span> <span class="fn">parse_age</span>(<span class="id">buffer</span>.<span class="fn">read</span>()) == <span class="num">42</span>
+<span class="kw">assert</span> <span class="id">buffer</span>.<span class="id">closed</span></code></pre></div><p><code>@contextmanager</code> 함수는 정확히 한 번 <code>yield</code>해야 합니다. 실제 파일은 <code>with open(path, encoding=&quot;utf-8&quot;) as f:</code>로 관리하세요. <code>except Exception: pass</code>로 실패를 숨기지 마세요. <a href="https://docs.python.org/3.12/library/contextlib.html">공식 문서: contextlib</a></p>
 </section><section id="item-10"><div class="section-kicker">REFERENCE 11</div><h2>11. 타입 힌트·제네릭·Protocol</h2><p>타입 힌트는 코드 이해와 정적 검사에 도움을 주지만 Python 실행기가 자동으로 타입을 강제하지는 않습니다. <code>str | None</code>은 문자열 또는 None, <code>list[int]</code>는 정수 리스트를 뜻합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from typing <span class="kw">import</span> Protocol, TypeVar
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">from</span> <span class="id">typing</span> <span class="kw">import</span> <span class="id">Protocol</span>, <span class="id">TypeVar</span>
 
-T = TypeVar(<span class="str">&quot;T&quot;</span>)
-def first(values: list[T]) -&gt; T | None:
-    <span class="kw">return</span> values[0] <span class="kw">if</span> values else None
+<span class="id">T</span> = <span class="fn">TypeVar</span>(<span class="str">&quot;T&quot;</span>)
+<span class="kw">def</span> <span class="fn">first</span>(<span class="id">values</span>: <span class="id">list</span>[<span class="id">T</span>]) -&gt; <span class="id">T</span> | <span class="kw">None</span>:
+    <span class="kw">return</span> <span class="id">values</span>[<span class="num">0</span>] <span class="kw">if</span> <span class="id">values</span> <span class="kw">else</span> <span class="kw">None</span>
 
-<span class="kw">class</span> HasTotal(Protocol):
-    def total(self) -&gt; int: ...
+<span class="kw">class</span> <span class="fn">HasTotal</span>(<span class="id">Protocol</span>):
+    <span class="kw">def</span> <span class="fn">total</span>(<span class="id">self</span>) -&gt; <span class="id">int</span>: ...
 
-<span class="kw">class</span> Bill:
-    def total(self) -&gt; int:
-        <span class="kw">return</span> 1200
+<span class="kw">class</span> <span class="id">Bill</span>:
+    <span class="kw">def</span> <span class="fn">total</span>(<span class="id">self</span>) -&gt; <span class="id">int</span>:
+        <span class="kw">return</span> <span class="num">1200</span>
 
-def checkout(bill: HasTotal) -&gt; int:
-    <span class="kw">return</span> bill.total()
-assert first([3, 4]) == 3
-assert first([]) is None
-assert checkout(Bill()) == 1200</code></pre></div><p>Protocol은 요구 메서드의 형태로 호환성을 표현합니다. <code>Bill</code>은 명시적으로 상속하지 않아도 정적 검사에서 구조가 맞으면 사용할 수 있습니다. <code>Any</code>를 남발하면 검사 효과가 줄어듭니다. <a href="https://docs.python.org/3.12/library/typing.html">공식 문서: typing</a></p>
+<span class="kw">def</span> <span class="fn">checkout</span>(<span class="id">bill</span>: <span class="id">HasTotal</span>) -&gt; <span class="id">int</span>:
+    <span class="kw">return</span> <span class="id">bill</span>.<span class="fn">total</span>()
+<span class="kw">assert</span> <span class="fn">first</span>([<span class="num">3</span>, <span class="num">4</span>]) == <span class="num">3</span>
+<span class="kw">assert</span> <span class="fn">first</span>([]) <span class="kw">is</span> <span class="kw">None</span>
+<span class="kw">assert</span> <span class="fn">checkout</span>(<span class="fn">Bill</span>()) == <span class="num">1200</span></code></pre></div><p>Protocol은 요구 메서드의 형태로 호환성을 표현합니다. <code>Bill</code>은 명시적으로 상속하지 않아도 정적 검사에서 구조가 맞으면 사용할 수 있습니다. <code>Any</code>를 남발하면 검사 효과가 줄어듭니다. <a href="https://docs.python.org/3.12/library/typing.html">공식 문서: typing</a></p>
 </section><section id="item-11"><div class="section-kicker">REFERENCE 12</div><h2>12. 표준 라이브러리로 간결하게 풀기</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -247,58 +251,58 @@ assert checkout(Bill()) == 1200</code></pre></div><p>Protocol은 요구 메서�
 <td>인자는 해시 가능해야 함</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from collections <span class="kw">import</span> Counter, defaultdict, deque
-from functools <span class="kw">import</span> lru_cache
-assert Counter(<span class="str">&quot;banana&quot;</span>)[<span class="str">&quot;a&quot;</span>] == 3
-groups = defaultdict(list)
-for name, team in [(<span class="str">&quot;Kim&quot;</span>, <span class="str">&quot;A&quot;</span>), (<span class="str">&quot;Lee&quot;</span>, <span class="str">&quot;A&quot;</span>)]:
-    groups[team].append(name)
-assert groups[<span class="str">&quot;A&quot;</span>] == [<span class="str">&quot;Kim&quot;</span>, <span class="str">&quot;Lee&quot;</span>]
-queue = deque([1, 2])
-assert queue.popleft() == 1
+</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">from</span> <span class="id">collections</span> <span class="kw">import</span> <span class="id">Counter</span>, <span class="id">defaultdict</span>, <span class="id">deque</span>
+<span class="kw">from</span> <span class="id">functools</span> <span class="kw">import</span> <span class="id">lru_cache</span>
+<span class="kw">assert</span> <span class="fn">Counter</span>(<span class="str">&quot;banana&quot;</span>)[<span class="str">&quot;a&quot;</span>] == <span class="num">3</span>
+<span class="id">groups</span> = <span class="fn">defaultdict</span>(<span class="id">list</span>)
+<span class="kw">for</span> <span class="id">name</span>, <span class="id">team</span> <span class="kw">in</span> [(<span class="str">&quot;Kim&quot;</span>, <span class="str">&quot;A&quot;</span>), (<span class="str">&quot;Lee&quot;</span>, <span class="str">&quot;A&quot;</span>)]:
+    <span class="id">groups</span>[<span class="id">team</span>].<span class="fn">append</span>(<span class="id">name</span>)
+<span class="kw">assert</span> <span class="id">groups</span>[<span class="str">&quot;A&quot;</span>] == [<span class="str">&quot;Kim&quot;</span>, <span class="str">&quot;Lee&quot;</span>]
+<span class="id">queue</span> = <span class="fn">deque</span>([<span class="num">1</span>, <span class="num">2</span>])
+<span class="kw">assert</span> <span class="id">queue</span>.<span class="fn">popleft</span>() == <span class="num">1</span>
 
-<span class="an">@lru_cache</span>(maxsize=128)
-def fib(n):
-    <span class="kw">if</span> n &lt; 0:
-        raise ValueError(<span class="str">&quot;n은 0 이상&quot;</span>)
-    <span class="kw">return</span> n <span class="kw">if</span> n &lt; 2 else fib(n - 1) + fib(n - 2)
-assert fib(10) == 55</code></pre></div><p>캐시는 외부 상태에 따라 바뀌는 결과를 오래 보관할 수 있습니다. 부작용 없는 계산에 적용하고, 필요하면 <code>cache_clear()</code>로 비우세요. 위 재귀 예제는 큰 n에서 재귀 한계가 있으므로 반복문을 고려하세요. <a href="https://docs.python.org/3.12/library/collections.html">collections</a> · <a href="https://docs.python.org/3.12/library/functools.html#functools.lru_cache">lru_cache</a></p>
+<span class="an">@lru_cache</span>(<span class="id">maxsize</span>=<span class="num">128</span>)
+<span class="kw">def</span> <span class="fn">fib</span>(<span class="id">n</span>):
+    <span class="kw">if</span> <span class="id">n</span> &lt; <span class="num">0</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;n은 0 이상&quot;</span>)
+    <span class="kw">return</span> <span class="id">n</span> <span class="kw">if</span> <span class="id">n</span> &lt; <span class="num">2</span> <span class="kw">else</span> <span class="fn">fib</span>(<span class="id">n</span> - <span class="num">1</span>) + <span class="fn">fib</span>(<span class="id">n</span> - <span class="num">2</span>)
+<span class="kw">assert</span> <span class="fn">fib</span>(<span class="num">10</span>) == <span class="num">55</span></code></pre></div><p>캐시는 외부 상태에 따라 바뀌는 결과를 오래 보관할 수 있습니다. 부작용 없는 계산에 적용하고, 필요하면 <code>cache_clear()</code>로 비우세요. 위 재귀 예제는 큰 n에서 재귀 한계가 있으므로 반복문을 고려하세요. <a href="https://docs.python.org/3.12/library/collections.html">collections</a> · <a href="https://docs.python.org/3.12/library/functools.html#functools.lru_cache">lru_cache</a></p>
 </section><section id="item-12"><div class="section-kicker">REFERENCE 13</div><h2>13. match 패턴과 입력 검증</h2><p><code>match</code>는 단순 값 비교를 넘어 자료의 구조를 분해합니다. <code>case</code> 안의 새 이름은 보통 값을 비교하는 상수가 아니라 값을 받는 변수입니다. <code>_</code>는 나머지 패턴입니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>def command(payload):
-    match payload:
-        case {<span class="str">&quot;action&quot;</span>: <span class="str">&quot;add&quot;</span>, <span class="str">&quot;value&quot;</span>: int(value)} <span class="kw">if</span> not isinstance(value, bool):
-            <span class="kw">return</span> value + 1
-        case {<span class="str">&quot;action&quot;</span>: <span class="str">&quot;quit&quot;</span>}:
-            <span class="kw">return</span> None
-        case _:
-            raise ValueError(<span class="str">&quot;알 수 없는 명령&quot;</span>)
-assert command({<span class="str">&quot;action&quot;</span>: <span class="str">&quot;add&quot;</span>, <span class="str">&quot;value&quot;</span>: 4}) == 5
-assert command({<span class="str">&quot;action&quot;</span>: <span class="str">&quot;quit&quot;</span>}) is None</code></pre></div><p>단순 캡처만으로 타입 검증은 되지 않습니다. 위에서는 <code>int(value)</code> 클래스 패턴과 가드로 검증합니다. 매핑 패턴은 명시하지 않은 추가 키를 허용합니다. <a href="https://docs.python.org/3.12/tutorial/controlflow.html#match-statements">공식 문서: match</a></p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> <span class="fn">command</span>(<span class="id">payload</span>):
+    <span class="kw">match</span> <span class="id">payload</span>:
+        <span class="kw">case</span> {<span class="str">&quot;action&quot;</span>: <span class="str">&quot;add&quot;</span>, <span class="str">&quot;value&quot;</span>: <span class="fn">int</span>(<span class="id">value</span>)} <span class="kw">if</span> <span class="kw">not</span> <span class="fn">isinstance</span>(<span class="id">value</span>, <span class="id">bool</span>):
+            <span class="kw">return</span> <span class="id">value</span> + <span class="num">1</span>
+        <span class="kw">case</span> {<span class="str">&quot;action&quot;</span>: <span class="str">&quot;quit&quot;</span>}:
+            <span class="kw">return</span> <span class="kw">None</span>
+        <span class="kw">case</span> <span class="id">_</span>:
+            <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;알 수 없는 명령&quot;</span>)
+<span class="kw">assert</span> <span class="fn">command</span>({<span class="str">&quot;action&quot;</span>: <span class="str">&quot;add&quot;</span>, <span class="str">&quot;value&quot;</span>: <span class="num">4</span>}) == <span class="num">5</span>
+<span class="kw">assert</span> <span class="fn">command</span>({<span class="str">&quot;action&quot;</span>: <span class="str">&quot;quit&quot;</span>}) <span class="kw">is</span> <span class="kw">None</span></code></pre></div><p>단순 캡처만으로 타입 검증은 되지 않습니다. 위에서는 <code>int(value)</code> 클래스 패턴과 가드로 검증합니다. 매핑 패턴은 명시하지 않은 추가 키를 허용합니다. <a href="https://docs.python.org/3.12/tutorial/controlflow.html#match-statements">공식 문서: match</a></p>
 </section><section id="item-13"><div class="section-kicker">REFERENCE 14</div><h2>14. async·await와 TaskGroup</h2><p><code>async def</code> 호출은 코루틴 객체를 만들며, <code>await</code> 또는 태스크 예약을 통해 실행됩니다. 비동기는 대기 시간을 활용하는 동시성 도구이며 CPU 계산을 자동 병렬화하지 않습니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> asyncio
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> <span class="id">asyncio</span>
 
-<span class="kw">async</span> def fetch_score(name, score):
-    <span class="kw">await</span> asyncio.sleep(0.01)  <span class="cm"># 네트워크 대기 모의</span>
-    <span class="kw">return</span> name, score
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">fetch_score</span>(<span class="id">name</span>, <span class="id">score</span>):
+    <span class="kw">await</span> <span class="id">asyncio</span>.<span class="fn">sleep</span>(<span class="num">0.01</span>)  <span class="cm"># 네트워크 대기 모의</span>
+    <span class="kw">return</span> <span class="id">name</span>, <span class="id">score</span>
 
-<span class="kw">async</span> def main():
-    <span class="kw">async</span> with asyncio.TaskGroup() as group:
-        tasks = [group.create_task(fetch_score(name, score))
-                 for name, score in [(<span class="str">&quot;Kim&quot;</span>, 90), (<span class="str">&quot;Lee&quot;</span>, 80)]]
-    results = [task.result() for task in tasks]
-    assert results == [(<span class="str">&quot;Kim&quot;</span>, 90), (<span class="str">&quot;Lee&quot;</span>, 80)]
+<span class="kw">async</span> <span class="kw">def</span> <span class="fn">main</span>():
+    <span class="kw">async</span> <span class="kw">with</span> <span class="id">asyncio</span>.<span class="fn">TaskGroup</span>() <span class="kw">as</span> <span class="id">group</span>:
+        <span class="id">tasks</span> = [<span class="id">group</span>.<span class="fn">create_task</span>(<span class="fn">fetch_score</span>(<span class="id">name</span>, <span class="id">score</span>))
+                 <span class="kw">for</span> <span class="id">name</span>, <span class="id">score</span> <span class="kw">in</span> [(<span class="str">&quot;Kim&quot;</span>, <span class="num">90</span>), (<span class="str">&quot;Lee&quot;</span>, <span class="num">80</span>)]]
+    <span class="id">results</span> = [<span class="id">task</span>.<span class="fn">result</span>() <span class="kw">for</span> <span class="id">task</span> <span class="kw">in</span> <span class="id">tasks</span>]
+    <span class="kw">assert</span> <span class="id">results</span> == [(<span class="str">&quot;Kim&quot;</span>, <span class="num">90</span>), (<span class="str">&quot;Lee&quot;</span>, <span class="num">80</span>)]
 
-<span class="kw">if</span> __name__ == <span class="str">&quot;__main__&quot;</span>:
-    asyncio.run(main())</code></pre></div><p>TaskGroup을 나갈 때 작업 완료를 기다립니다. 작업 하나가 취소 이외의 예외로 실패하면 다른 작업을 취소하고, 실패를 예외 그룹으로 전달합니다. 취소 예외를 함부로 삼키지 마세요. 이벤트 루프 안에서 <code>time.sleep()</code>이나 긴 동기 작업을 호출하면 다른 작업도 지연됩니다. 노트북처럼 이미 루프가 실행되는 곳에서는 <code>asyncio.run()</code> 대신 <code>await main()</code>을 사용하세요. <a href="https://docs.python.org/3.11/library/asyncio-task.html">공식 문서: asyncio 태스크</a></p>
+<span class="kw">if</span> <span class="id">__name__</span> == <span class="str">&quot;__main__&quot;</span>:
+    <span class="id">asyncio</span>.<span class="fn">run</span>(<span class="fn">main</span>())</code></pre></div><p>TaskGroup을 나갈 때 작업 완료를 기다립니다. 작업 하나가 취소 이외의 예외로 실패하면 다른 작업을 취소하고, 실패를 예외 그룹으로 전달합니다. 취소 예외를 함부로 삼키지 마세요. 이벤트 루프 안에서 <code>time.sleep()</code>이나 긴 동기 작업을 호출하면 다른 작업도 지연됩니다. 노트북처럼 이미 루프가 실행되는 곳에서는 <code>asyncio.run()</code> 대신 <code>await main()</code>을 사용하세요. <a href="https://docs.python.org/3.11/library/asyncio-task.html">공식 문서: asyncio 태스크</a></p>
 </section><section id="item-14"><div class="section-kicker">REFERENCE 15</div><h2>15. 모듈 분리와 실행 진입점</h2><p>모듈은 책임별 파일, 패키지는 모듈을 묶은 구조입니다. <code>if __name__ == &quot;__main__&quot;:</code>는 직접 실행했을 때만 진입 함수를 호출하게 합니다. import만 했는데 서버가 실행되거나 파일이 바뀌는 부작용을 피하세요.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>from pathlib <span class="kw">import</span> Path
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">from</span> <span class="id">pathlib</span> <span class="kw">import</span> <span class="id">Path</span>
 
-def main():
-    current = Path(__file__).resolve().parent
-    print(<span class="str">&quot;이 스크립트의 폴더:&quot;</span>, current)
+<span class="kw">def</span> <span class="fn">main</span>():
+    <span class="id">current</span> = <span class="fn">Path</span>(<span class="id">__file__</span>).<span class="fn">resolve</span>().<span class="id">parent</span>
+    <span class="fn">print</span>(<span class="str">&quot;이 스크립트의 폴더:&quot;</span>, <span class="id">current</span>)
 
-<span class="kw">if</span> __name__ == <span class="str">&quot;__main__&quot;</span>:
-    main()</code></pre></div><p>파일로 저장해 실행하는 예제입니다. 대화형 환경에서는 <code>__file__</code>이 없을 수 있습니다. 파일명을 <code>typing.py</code>, <code>json.py</code>, <code>asyncio.py</code>처럼 표준 라이브러리와 같게 만들면 import가 가려질 수 있습니다. <a href="https://docs.python.org/3.12/tutorial/modules.html">공식 문서: 모듈</a></p>
+<span class="kw">if</span> <span class="id">__name__</span> == <span class="str">&quot;__main__&quot;</span>:
+    <span class="fn">main</span>()</code></pre></div><p>파일로 저장해 실행하는 예제입니다. 대화형 환경에서는 <code>__file__</code>이 없을 수 있습니다. 파일명을 <code>typing.py</code>, <code>json.py</code>, <code>asyncio.py</code>처럼 표준 라이브러리와 같게 만들면 import가 가려질 수 있습니다. <a href="https://docs.python.org/3.12/tutorial/modules.html">공식 문서: 모듈</a></p>
 </section><section id="item-15"><div class="section-kicker">REFERENCE 16</div><h2>16. 복습 문제와 다음 단계</h2><ol>
 <li>얕은 복사 뒤 내부 리스트를 바꾸면 원본도 바뀌는 이유는? <strong>내부 객체의 참조를 공유하기 때문입니다.</strong></li>
 <li>제너레이터를 두 번 <code>list()</code>로 감싸면? <strong>첫 호출이 소비했으므로 다음은 빈 리스트입니다.</strong></li>

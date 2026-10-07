@@ -28,13 +28,17 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 .theme-toggle{position:fixed;right:18px;top:12px;z-index:20;padding:7px 12px;border:1px solid var(--border,var(--line));border-radius:6px;background:var(--bg);color:var(--text);font:12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;cursor:pointer;box-shadow:0 1px 4px #0000000a}
 .theme-toggle:focus-visible{outline:2px solid var(--text);outline-offset:3px}
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a>
  <a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="학습 목차"><a class="brand" href="#top"><span class="brand-mark">Py</span>PYTHON LAB</a><p class="nav-label">들여쓰기 · 자료구조 · 함수</p><div class="nav-group">기본 문법부터 실습까지</div><a href="#step-1"><span>01</span>시작과 실행</a><a href="#step-2"><span>02</span>변수와 자료형</a><a href="#step-3"><span>03</span>연산자와 형 변환</a><a href="#step-4"><span>04</span>입력과 문자열</a><a href="#step-5"><span>05</span>조건문과 들여쓰기</a><a href="#step-6"><span>06</span>반복문 — for와 while</a><a href="#step-7"><span>07</span>리스트·튜플·딕셔너리·집합</a><a href="#step-8"><span>08</span>함수와 매개변수</a><a href="#step-9"><span>09</span>예외 처리와 파일</a><a href="#step-10"><span>10</span>클래스와 객체</a><a href="#step-11"><span>11</span>모듈과 실행 시작점</a><a href="#step-12"><span>12</span>확인 문제와 자주 하는 실수</a><div class="nav-group">전체 실습과 다른 가이드</div><a href="#reference"><span>↗</span>성적 집계 · 전체 코드</a><a href="c-syntax-guide.html"><span>↗</span>C 문법 가이드</a><a href="cpp-syntax-guide.html"><span>↗</span>C++ 문법 가이드</a><a href="spring-web-guide.html"><span>↗</span>Spring 가이드</a><a href="react-web-guide.html"><span>↗</span>React 가이드</a><div class="nav-note">Python 3 기준 · 입문 문법<br>추가 라이브러리 없는 기본 예제</div></nav>
  <main id="content"><header id="top"><p class="eyebrow">BEGINNER’S GUIDE / 문법부터 차근차근</p><h1>처음 배우는<br><span>Python</span></h1><p class="lead">짧고 명확한 코드로 시작하기.<br>변수부터 클래스까지, 예제를 실행하며 익힙니다.</p><div class="tags"><span>변수와 타입</span><span>반복문</span><span>자료구조</span><span>함수와 클래스</span></div><div class="hero-bottom"><span>12개 학습 단계</span><span>실행 검증한 전체 예제</span><span>오프라인 열람 가능</span></div></header>
  <div class="reading-guide"><strong>이렇게 읽어 보세요</strong><p>짧은 코드 → 설명 표 → 주의할 점 순서로 읽으세요. 발췌 코드는 문맥과 헤더가 필요할 수 있습니다. <a href="#reference">전체 실습 코드</a>는 그대로 저장해 실행할 수 있습니다.</p></div><section id="step-1"><div class="section-kicker">STEP 01</div><h2>시작과 실행</h2><p><strong>Python은 들여쓰기로 코드의 구조를 표현하는 언어입니다.</strong> 자동화, 데이터 처리, 서버 개발 등에 쓰입니다. 여기서는 Python 3 문법을 사용합니다.</p>
 <div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># hello.py</span>
-print(<span class="str">&quot;안녕하세요!&quot;</span>)</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 --version
-python3 hello.py</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="fn">print</span>(<span class="str">&quot;안녕하세요!&quot;</span>)</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">python3</span> --<span class="id">version</span>
+<span class="id">python3</span> <span class="id">hello</span>.<span class="id">py</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>코드</th>
@@ -57,14 +61,14 @@ python3 hello.py</code></pre></div><div class="table-wrap" tabindex="0"><table>
 </div><p>Windows에서는 설치 환경에 따라 <code>py hello.py</code>를 사용합니다. Python이 없다면 <a href="https://www.python.org/downloads/">공식 다운로드</a>에서 설치하세요. 파일 확장자는 <code>.py</code>입니다.</p>
 <aside class="callout"><p>모든 짧은 코드는 해당 문법을 설명하는 예제입니다. 마지막의 <strong>전체 실습 코드</strong>는 그대로 파일로 저장해 실행할 수 있습니다.</p>
 </aside><a class="next" href="#step-2">다음 단계로 →</a></section><section id="step-2"><div class="section-kicker">STEP 02</div><h2>변수와 자료형</h2><p><strong>변수는 값을 가리키는 이름입니다. 타입을 미리 선언하지 않습니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>name = <span class="str">&quot;민수&quot;</span>        <span class="cm"># str: 문자열</span>
-age = 20             <span class="cm"># int: 정수</span>
-height = 175.5       <span class="cm"># float: 실수</span>
-is_student = <span class="kw">True</span>    <span class="cm"># bool: 참/거짓</span>
-result = <span class="kw">None</span>        <span class="cm"># 아직 값이 없음</span>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">name</span> = <span class="str">&quot;민수&quot;</span>        <span class="cm"># str: 문자열</span>
+<span class="id">age</span> = <span class="num">20</span>             <span class="cm"># int: 정수</span>
+<span class="id">height</span> = <span class="num">175.5</span>       <span class="cm"># float: 실수</span>
+<span class="id">is_student</span> = <span class="kw">True</span>    <span class="cm"># bool: 참/거짓</span>
+<span class="id">result</span> = <span class="kw">None</span>        <span class="cm"># 아직 값이 없음</span>
 
-print(name, age)
-print(type(age))     <span class="cm"># &lt;class 'int'&gt;</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="fn">print</span>(<span class="id">name</span>, <span class="id">age</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="id">age</span>))     <span class="cm"># &lt;class 'int'&gt;</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>문법</th>
@@ -89,12 +93,12 @@ print(type(age))     <span class="cm"># &lt;class 'int'&gt;</span></code></pre><
 </tr>
 </tbody></table>
 </div><p>같은 이름에 다른 타입의 값을 연결할 수 있지만, 한 변수의 의미와 타입을 일관되게 유지하면 읽기 쉽습니다. 정수는 메모리가 허용하는 범위에서 커질 수 있습니다.</p>
-<a class="next" href="#step-3">다음 단계로 →</a></section><section id="step-3"><div class="section-kicker">STEP 03</div><h2>연산자와 형 변환</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>print(7 + 2)    <span class="cm"># 9</span>
-print(7 / 2)    <span class="cm"># 3.5: 나눗셈</span>
-print(7 <span class="cm">// 2)   # 3: 내림 나눗셈</span>
-print(7 % 2)    <span class="cm"># 1: 나머지</span>
-print(2 ** 3)   <span class="cm"># 8: 거듭제곱</span>
-print(<span class="kw">int</span>(<span class="str">&quot;20&quot;</span>) + 1)  <span class="cm"># 21</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<a class="next" href="#step-3">다음 단계로 →</a></section><section id="step-3"><div class="section-kicker">STEP 03</div><h2>연산자와 형 변환</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="fn">print</span>(<span class="num">7</span> + <span class="num">2</span>)    <span class="cm"># 9</span>
+<span class="fn">print</span>(<span class="num">7</span> / <span class="num">2</span>)    <span class="cm"># 3.5: 나눗셈</span>
+<span class="fn">print</span>(<span class="num">7</span> // <span class="num">2</span>)   <span class="cm"># 3: 내림 나눗셈</span>
+<span class="fn">print</span>(<span class="num">7</span> % <span class="num">2</span>)    <span class="cm"># 1: 나머지</span>
+<span class="fn">print</span>(<span class="num">2</span> ** <span class="num">3</span>)   <span class="cm"># 8: 거듭제곱</span>
+<span class="fn">print</span>(<span class="fn">int</span>(<span class="str">&quot;20&quot;</span>) + <span class="num">1</span>)  <span class="cm"># 21</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>구분</th>
@@ -120,27 +124,27 @@ print(<span class="kw">int</span>(<span class="str">&quot;20&quot;</span>) + 1) 
 </tbody></table>
 </div><p><code>&quot;20&quot; + &quot;1&quot;</code>은 문자열 연결이므로 <code>&quot;201&quot;</code>입니다. 숫자 계산에는 <code>int(&quot;20&quot;)</code>처럼 변환합니다. 숫자로 바꿀 수 없는 문자열은 ValueError를 발생시킵니다.</p>
 <aside class="callout"><p><code>//</code>는 0 방향 절삭이 아니라 아래쪽 정수로 내립니다. <code>-7 // 2</code>는 <code>-4</code>입니다. C와 C++의 정수 나눗셈과 음수에서 결과가 다를 수 있습니다.</p>
-</aside><a class="next" href="#step-4">다음 단계로 →</a></section><section id="step-4"><div class="section-kicker">STEP 04</div><h2>입력과 문자열</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>name = input(<span class="str">&quot;이름: &quot;</span>).strip()
-age = <span class="kw">int</span>(input(<span class="str">&quot;나이: &quot;</span>))
-print(f<span class="str">&quot;{name}님은 {age}살입니다.&quot;</span>)</code></pre></div><ol>
+</aside><a class="next" href="#step-4">다음 단계로 →</a></section><section id="step-4"><div class="section-kicker">STEP 04</div><h2>입력과 문자열</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">name</span> = <span class="fn">input</span>(<span class="str">&quot;이름: &quot;</span>).<span class="fn">strip</span>()
+<span class="id">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">&quot;나이: &quot;</span>))
+<span class="fn">print</span>(<span class="id">f</span><span class="str">&quot;{name}님은 {age}살입니다.&quot;</span>)</code></pre></div><ol>
 <li><code>input()</code>은 사용자가 입력한 내용을 <strong>문자열</strong>로 반환합니다.</li>
 <li><code>strip()</code>은 앞뒤 공백을 제거합니다.</li>
 <li><code>int()</code>는 정수로 변환합니다.</li>
 <li><code>f&quot;...{값}...&quot;</code>은 문자열 안에 값을 넣습니다.</li>
 </ol>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>text = <span class="str">&quot;Python&quot;</span>
-print(text[0])     <span class="cm"># P</span>
-print(text[-1])    <span class="cm"># n</span>
-print(text[0:3])   <span class="cm"># Pyt: 끝 인덱스 3은 제외</span>
-print(len(text))   <span class="cm"># 6</span></code></pre></div><p>문자열은 불변이므로 <code>text[0] = &quot;p&quot;</code>처럼 수정할 수 없습니다. 다른 문자열을 만들어 변수에 대입해야 합니다.</p>
-<a class="next" href="#step-5">다음 단계로 →</a></section><section id="step-5"><div class="section-kicker">STEP 05</div><h2>조건문과 들여쓰기</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>score = 85
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">text</span> = <span class="str">&quot;Python&quot;</span>
+<span class="fn">print</span>(<span class="id">text</span>[<span class="num">0</span>])     <span class="cm"># P</span>
+<span class="fn">print</span>(<span class="id">text</span>[-<span class="num">1</span>])    <span class="cm"># n</span>
+<span class="fn">print</span>(<span class="id">text</span>[<span class="num">0</span>:<span class="num">3</span>])   <span class="cm"># Pyt: 끝 인덱스 3은 제외</span>
+<span class="fn">print</span>(<span class="fn">len</span>(<span class="id">text</span>))   <span class="cm"># 6</span></code></pre></div><p>문자열은 불변이므로 <code>text[0] = &quot;p&quot;</code>처럼 수정할 수 없습니다. 다른 문자열을 만들어 변수에 대입해야 합니다.</p>
+<a class="next" href="#step-5">다음 단계로 →</a></section><section id="step-5"><div class="section-kicker">STEP 05</div><h2>조건문과 들여쓰기</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">score</span> = <span class="num">85</span>
 
-<span class="kw">if</span> score &gt;= 90:
-    print(<span class="str">&quot;A&quot;</span>)
-elif score &gt;= 80:
-    print(<span class="str">&quot;B&quot;</span>)
+<span class="kw">if</span> <span class="id">score</span> &gt;= <span class="num">90</span>:
+    <span class="fn">print</span>(<span class="str">&quot;A&quot;</span>)
+<span class="kw">elif</span> <span class="id">score</span> &gt;= <span class="num">80</span>:
+    <span class="fn">print</span>(<span class="str">&quot;B&quot;</span>)
 <span class="kw">else</span>:
-    print(<span class="str">&quot;다시 도전&quot;</span>)</code></pre></div><div class="table-wrap" tabindex="0"><table>
+    <span class="fn">print</span>(<span class="str">&quot;다시 도전&quot;</span>)</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>부분</th>
@@ -169,16 +173,16 @@ elif score &gt;= 80:
 </tr>
 </tbody></table>
 </div><p><strong>들여쓰기는 단순 꾸밈이 아니라 문법입니다.</strong> 보통 공백 4칸을 사용하고 탭과 공백을 섞지 않습니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>age = 20
-has_ticket = <span class="kw">True</span>
-<span class="kw">if</span> age &gt;= 18 <span class="kw">and</span> has_ticket:
-    print(<span class="str">&quot;입장 가능&quot;</span>)</code></pre></div><a class="next" href="#step-6">다음 단계로 →</a></section><section id="step-6"><div class="section-kicker">STEP 06</div><h2>반복문 — for와 while</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">for</span> number <span class="kw">in</span> range(1, 4):
-    print(number)  <span class="cm"># 1, 2, 3</span>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">age</span> = <span class="num">20</span>
+<span class="id">has_ticket</span> = <span class="kw">True</span>
+<span class="kw">if</span> <span class="id">age</span> &gt;= <span class="num">18</span> <span class="kw">and</span> <span class="id">has_ticket</span>:
+    <span class="fn">print</span>(<span class="str">&quot;입장 가능&quot;</span>)</code></pre></div><a class="next" href="#step-6">다음 단계로 →</a></section><section id="step-6"><div class="section-kicker">STEP 06</div><h2>반복문 — for와 while</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">for</span> <span class="id">number</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">4</span>):
+    <span class="fn">print</span>(<span class="id">number</span>)  <span class="cm"># 1, 2, 3</span>
 
-count = 0
-<span class="kw">while</span> count &lt; 3:
-    count += 1
-    print(count)</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">count</span> = <span class="num">0</span>
+<span class="kw">while</span> <span class="id">count</span> &lt; <span class="num">3</span>:
+    <span class="id">count</span> += <span class="num">1</span>
+    <span class="fn">print</span>(<span class="id">count</span>)</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>문법</th>
@@ -202,9 +206,9 @@ count = 0
 <td>인덱스와 값을 함께 순회</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>names = [<span class="str">&quot;민수&quot;</span>, <span class="str">&quot;지수&quot;</span>]
-<span class="kw">for</span> index, name <span class="kw">in</span> enumerate(names, start=1):
-    print(index, name)</code></pre></div><p>while의 조건이 계속 참이면 반복이 끝나지 않습니다. 조건을 바꾸거나 break로 종료할 길을 만드세요.</p>
+</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">names</span> = [<span class="str">&quot;민수&quot;</span>, <span class="str">&quot;지수&quot;</span>]
+<span class="kw">for</span> <span class="id">index</span>, <span class="id">name</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="id">names</span>, <span class="id">start</span>=<span class="num">1</span>):
+    <span class="fn">print</span>(<span class="id">index</span>, <span class="id">name</span>)</code></pre></div><p>while의 조건이 계속 참이면 반복이 끝나지 않습니다. 조건을 바꾸거나 break로 종료할 길을 만드세요.</p>
 <a class="next" href="#step-7">다음 단계로 →</a></section><section id="step-7"><div class="section-kicker">STEP 07</div><h2>리스트·튜플·딕셔너리·집합</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -234,24 +238,24 @@ count = 0
 <td>중복 제거, 순서에 의존하지 않음</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>scores = [80, 90]
-scores.append(100)
-print(scores[0])           <span class="cm"># 80</span>
+</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">scores</span> = [<span class="num">80</span>, <span class="num">90</span>]
+<span class="id">scores</span>.<span class="fn">append</span>(<span class="num">100</span>)
+<span class="fn">print</span>(<span class="id">scores</span>[<span class="num">0</span>])           <span class="cm"># 80</span>
 
-student = {<span class="str">&quot;name&quot;</span>: <span class="str">&quot;민수&quot;</span>, <span class="str">&quot;score&quot;</span>: 90}
-print(student[<span class="str">&quot;name&quot;</span>])    <span class="cm"># 민수</span>
-print(student.get(<span class="str">&quot;age&quot;</span>, 0))  <span class="cm"># 없는 키의 기본값</span>
+<span class="id">student</span> = {<span class="str">&quot;name&quot;</span>: <span class="str">&quot;민수&quot;</span>, <span class="str">&quot;score&quot;</span>: <span class="num">90</span>}
+<span class="fn">print</span>(<span class="id">student</span>[<span class="str">&quot;name&quot;</span>])    <span class="cm"># 민수</span>
+<span class="fn">print</span>(<span class="id">student</span>.<span class="fn">get</span>(<span class="str">&quot;age&quot;</span>, <span class="num">0</span>))  <span class="cm"># 없는 키의 기본값</span>
 
-languages = {<span class="str">&quot;C&quot;</span>, <span class="str">&quot;C&quot;</span>, <span class="str">&quot;Python&quot;</span>}
-print(len(languages))     <span class="cm"># 2</span></code></pre></div><p>빈 집합은 <code>set()</code>으로 만듭니다. <code>{}</code>는 빈 딕셔너리입니다. 리스트 인덱스는 0부터 시작합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>passed = [score <span class="kw">for</span> score <span class="kw">in</span> scores <span class="kw">if</span> score &gt;= 90]
-print(passed)  <span class="cm"># [90, 100]</span></code></pre></div><p>이를 <strong>리스트 컴프리헨션</strong>이라고 합니다. 먼저 일반 for문을 익힌 뒤 사용하세요.</p>
+<span class="id">languages</span> = {<span class="str">&quot;C&quot;</span>, <span class="str">&quot;C&quot;</span>, <span class="str">&quot;Python&quot;</span>}
+<span class="fn">print</span>(<span class="fn">len</span>(<span class="id">languages</span>))     <span class="cm"># 2</span></code></pre></div><p>빈 집합은 <code>set()</code>으로 만듭니다. <code>{}</code>는 빈 딕셔너리입니다. 리스트 인덱스는 0부터 시작합니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">passed</span> = [<span class="id">score</span> <span class="kw">for</span> <span class="id">score</span> <span class="kw">in</span> <span class="id">scores</span> <span class="kw">if</span> <span class="id">score</span> &gt;= <span class="num">90</span>]
+<span class="fn">print</span>(<span class="id">passed</span>)  <span class="cm"># [90, 100]</span></code></pre></div><p>이를 <strong>리스트 컴프리헨션</strong>이라고 합니다. 먼저 일반 for문을 익힌 뒤 사용하세요.</p>
 <aside class="callout"><p><code>b = a</code>는 리스트 복사가 아니라 같은 객체를 가리키게 합니다. 독립적인 바깥 리스트가 필요하면 <code>b = a.copy()</code>를 사용합니다. 내부에 중첩된 객체까지 복사되는 것은 아닙니다.</p>
-</aside><a class="next" href="#step-8">다음 단계로 →</a></section><section id="step-8"><div class="section-kicker">STEP 08</div><h2>함수와 매개변수</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> add(a, b):
-    <span class="kw">return</span> a + b
+</aside><a class="next" href="#step-8">다음 단계로 →</a></section><section id="step-8"><div class="section-kicker">STEP 08</div><h2>함수와 매개변수</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> <span class="fn">add</span>(<span class="id">a</span>, <span class="id">b</span>):
+    <span class="kw">return</span> <span class="id">a</span> + <span class="id">b</span>
 
-result = add(3, 5)
-print(result)  <span class="cm"># 8</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">result</span> = <span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>)
+<span class="fn">print</span>(<span class="id">result</span>)  <span class="cm"># 8</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>코드</th>
@@ -275,34 +279,34 @@ print(result)  <span class="cm"># 8</span></code></pre></div><div class="table-w
 <td>인수를 전달해 호출</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> greet(name, message=<span class="str">&quot;안녕하세요&quot;</span>):
-    <span class="kw">return</span> f<span class="str">&quot;{name}님, {message}!&quot;</span>
+</div><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> <span class="fn">greet</span>(<span class="id">name</span>, <span class="id">message</span>=<span class="str">&quot;안녕하세요&quot;</span>):
+    <span class="kw">return</span> <span class="id">f</span><span class="str">&quot;{name}님, {message}!&quot;</span>
 
-print(greet(<span class="str">&quot;민수&quot;</span>))
-print(greet(name=<span class="str">&quot;지수&quot;</span>, message=<span class="str">&quot;반가워요&quot;</span>))</code></pre></div><p>return을 생략하면 None을 반환합니다. <code>print</code>는 출력이고 <code>return</code>은 값의 전달이므로 역할이 다릅니다.</p>
+<span class="fn">print</span>(<span class="fn">greet</span>(<span class="str">&quot;민수&quot;</span>))
+<span class="fn">print</span>(<span class="fn">greet</span>(<span class="id">name</span>=<span class="str">&quot;지수&quot;</span>, <span class="id">message</span>=<span class="str">&quot;반가워요&quot;</span>))</code></pre></div><p>return을 생략하면 None을 반환합니다. <code>print</code>는 출력이고 <code>return</code>은 값의 전달이므로 역할이 다릅니다.</p>
 <aside class="callout"><p><code>def f(items=[]):</code>처럼 변경 가능한 기본값을 두면 호출 간 공유됩니다. 기본값을 None으로 받고 함수 안에서 새 리스트를 만드는 편이 좋습니다.</p>
 </aside><a class="next" href="#step-9">다음 단계로 →</a></section><section id="step-9"><div class="section-kicker">STEP 09</div><h2>예외 처리와 파일</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">try</span>:
-    age = <span class="kw">int</span>(input(<span class="str">&quot;나이: &quot;</span>))
-<span class="kw">except</span> ValueError:
-    print(<span class="str">&quot;정수를 입력해 주세요.&quot;</span>)
+    <span class="id">age</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">&quot;나이: &quot;</span>))
+<span class="kw">except</span> <span class="id">ValueError</span>:
+    <span class="fn">print</span>(<span class="str">&quot;정수를 입력해 주세요.&quot;</span>)
 <span class="kw">else</span>:
-    print(f<span class="str">&quot;입력한 나이: {age}&quot;</span>)</code></pre></div><p><code>try</code>에는 실패할 수 있는 작업, <code>except</code>에는 해당 예외의 처리, <code>else</code>에는 예외가 없었을 때의 작업을 씁니다. 필요한 예외를 구체적으로 처리합니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">with</span> open(<span class="str">&quot;memo.txt&quot;</span>, <span class="str">&quot;w&quot;</span>, encoding=<span class="str">&quot;utf-8&quot;</span>) <span class="kw">as</span> file:
-    file.write(<span class="str">&quot;파이썬 공부\n&quot;</span>)
+    <span class="fn">print</span>(<span class="id">f</span><span class="str">&quot;입력한 나이: {age}&quot;</span>)</code></pre></div><p><code>try</code>에는 실패할 수 있는 작업, <code>except</code>에는 해당 예외의 처리, <code>else</code>에는 예외가 없었을 때의 작업을 씁니다. 필요한 예외를 구체적으로 처리합니다.</p>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">with</span> <span class="fn">open</span>(<span class="str">&quot;memo.txt&quot;</span>, <span class="str">&quot;w&quot;</span>, <span class="id">encoding</span>=<span class="str">&quot;utf-8&quot;</span>) <span class="kw">as</span> <span class="id">file</span>:
+    <span class="id">file</span>.<span class="fn">write</span>(<span class="str">&quot;파이썬 공부\n&quot;</span>)
 
-<span class="kw">with</span> open(<span class="str">&quot;memo.txt&quot;</span>, <span class="str">&quot;r&quot;</span>, encoding=<span class="str">&quot;utf-8&quot;</span>) <span class="kw">as</span> file:
-    print(file.read())</code></pre></div><p><code>with</code>는 블록을 벗어날 때 파일을 닫아 줍니다. <code>w</code>는 기존 내용을 덮어쓰고, <code>a</code>는 뒤에 추가하며, <code>r</code>은 읽기입니다. 상대 경로는 실행한 작업 폴더를 기준으로 합니다.</p>
-<a class="next" href="#step-10">다음 단계로 →</a></section><section id="step-10"><div class="section-kicker">STEP 10</div><h2>클래스와 객체</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">class</span> Student:
-    <span class="kw">def</span> __init__(self, name, score):
-        self.name = name
-        self.score = score
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">&quot;memo.txt&quot;</span>, <span class="str">&quot;r&quot;</span>, <span class="id">encoding</span>=<span class="str">&quot;utf-8&quot;</span>) <span class="kw">as</span> <span class="id">file</span>:
+    <span class="fn">print</span>(<span class="id">file</span>.<span class="fn">read</span>())</code></pre></div><p><code>with</code>는 블록을 벗어날 때 파일을 닫아 줍니다. <code>w</code>는 기존 내용을 덮어쓰고, <code>a</code>는 뒤에 추가하며, <code>r</code>은 읽기입니다. 상대 경로는 실행한 작업 폴더를 기준으로 합니다.</p>
+<a class="next" href="#step-10">다음 단계로 →</a></section><section id="step-10"><div class="section-kicker">STEP 10</div><h2>클래스와 객체</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">class</span> <span class="id">Student</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="id">self</span>, <span class="id">name</span>, <span class="id">score</span>):
+        <span class="id">self</span>.<span class="id">name</span> = <span class="id">name</span>
+        <span class="id">self</span>.<span class="id">score</span> = <span class="id">score</span>
 
-    <span class="kw">def</span> is_passed(self):
-        <span class="kw">return</span> self.score &gt;= 60
+    <span class="kw">def</span> <span class="fn">is_passed</span>(<span class="id">self</span>):
+        <span class="kw">return</span> <span class="id">self</span>.<span class="id">score</span> &gt;= <span class="num">60</span>
 
-student = Student(<span class="str">&quot;민수&quot;</span>, 85)
-print(student.name)         <span class="cm"># 민수</span>
-print(student.is_passed())  <span class="cm"># True</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">student</span> = <span class="fn">Student</span>(<span class="str">&quot;민수&quot;</span>, <span class="num">85</span>)
+<span class="fn">print</span>(<span class="id">student</span>.<span class="id">name</span>)         <span class="cm"># 민수</span>
+<span class="fn">print</span>(<span class="id">student</span>.<span class="fn">is_passed</span>())  <span class="cm"># True</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>개념</th>
@@ -331,19 +335,19 @@ print(student.is_passed())  <span class="cm"># True</span></code></pre></div><di
 </tr>
 </tbody></table>
 </div><p><code>self</code>는 인스턴스 메서드의 첫 매개변수로 관례적으로 사용하는 이름입니다. <code>student.is_passed()</code> 호출 시 해당 객체가 전달됩니다.</p>
-<a class="next" href="#step-11">다음 단계로 →</a></section><section id="step-11"><div class="section-kicker">STEP 11</div><h2>모듈과 실행 시작점</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> math
+<a class="next" href="#step-11">다음 단계로 →</a></section><section id="step-11"><div class="section-kicker">STEP 11</div><h2>모듈과 실행 시작점</h2><div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> <span class="id">math</span>
 
-print(math.sqrt(16))  <span class="cm"># 4.0</span>
-
-
-<span class="kw">def</span> main():
-    print(<span class="str">&quot;프로그램 시작&quot;</span>)
+<span class="fn">print</span>(<span class="id">math</span>.<span class="fn">sqrt</span>(<span class="num">16</span>))  <span class="cm"># 4.0</span>
 
 
-<span class="kw">if</span> __name__ == <span class="str">&quot;__main__&quot;</span>:
-    main()</code></pre></div><p>모듈은 Python 파일 하나라고 생각하면 됩니다. <code>import</code>로 다른 모듈의 기능을 사용합니다. <code>__name__</code> 조건은 파일을 직접 실행할 때만 main을 호출하고, 다른 파일에서 import할 때는 호출하지 않도록 합니다.</p>
+<span class="kw">def</span> <span class="fn">main</span>():
+    <span class="fn">print</span>(<span class="str">&quot;프로그램 시작&quot;</span>)
+
+
+<span class="kw">if</span> <span class="id">__name__</span> == <span class="str">&quot;__main__&quot;</span>:
+    <span class="fn">main</span>()</code></pre></div><p>모듈은 Python 파일 하나라고 생각하면 됩니다. <code>import</code>로 다른 모듈의 기능을 사용합니다. <code>__name__</code> 조건은 파일을 직접 실행할 때만 main을 호출하고, 다른 파일에서 import할 때는 호출하지 않도록 합니다.</p>
 <p>외부 패키지가 필요하면 프로젝트별 가상 환경을 사용할 수 있습니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 -m venv .venv</code></pre></div><p>가상 환경은 패키지 설치 공간을 분리합니다. 이번 실습은 표준 라이브러리만 사용하므로 추가 패키지는 필요 없습니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">python3</span> -<span class="id">m</span> <span class="id">venv</span> .<span class="id">venv</span></code></pre></div><p>가상 환경은 패키지 설치 공간을 분리합니다. 이번 실습은 표준 라이브러리만 사용하므로 추가 패키지는 필요 없습니다.</p>
 <a class="next" href="#step-12">다음 단계로 →</a></section><section id="step-12"><div class="section-kicker">STEP 12</div><h2>확인 문제와 자주 하는 실수</h2><ul>
 <li><input disabled="" type="checkbox"> <code>=</code>와 <code>==</code>를 구분할 수 있다.</li>
 <li><input disabled="" type="checkbox"> input 결과가 문자열임을 알고 변환할 수 있다.</li>
@@ -384,40 +388,40 @@ print(math.sqrt(16))  <span class="cm"># 4.0</span>
 <a class="next" href="#reference">전체 실습 코드 보기 →</a></section>
  <section id="reference"><div class="section-kicker">PRACTICE / 직접 실행하기</div><h2>성적 집계 · 전체 실습</h2><p>세 언어에서 같은 문제를 풀며 문법을 비교해 보세요. 점수 입력·평균·합격자 수를 다룹니다.</p><button id="expand" class="secondary">전체 펼치기</button><details class="reference" id="detail-1"><summary>성적 집계 — 전체 코드</summary><div class="reference-body"><p><strong>0~100점 정수 세 개를 입력받고 평균과 합격자 수를 출력합니다.</strong> 합격 기준은 60점입니다. 영어 출력은 터미널 환경 차이를 줄이기 위해 사용합니다.</p>
 <p><a href="../examples/languages/scores.py">소스 파일 보기</a> · 파일명: <code>scores.py</code></p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="str">&quot;&quot;</span><span class="str">&quot;세 점수를 입력받아 평균과 합격자 수를 출력합니다.&quot;</span><span class="str">&quot;&quot;</span>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="str">&quot;&quot;&quot;세 점수를 입력받아 평균과 합격자 수를 출력합니다.&quot;&quot;&quot;</span>
 
 
-<span class="kw">def</span> read_score(index):
+<span class="kw">def</span> <span class="fn">read_score</span>(<span class="id">index</span>):
     <span class="kw">while</span> <span class="kw">True</span>:
         <span class="kw">try</span>:
-            score = <span class="kw">int</span>(input(f<span class="str">&quot;Score {index}: &quot;</span>))
-        <span class="kw">except</span> ValueError:
-            print(<span class="str">&quot;Enter an integer from 0 to 100.&quot;</span>)
+            <span class="id">score</span> = <span class="fn">int</span>(<span class="fn">input</span>(<span class="id">f</span><span class="str">&quot;Score {index}: &quot;</span>))
+        <span class="kw">except</span> <span class="id">ValueError</span>:
+            <span class="fn">print</span>(<span class="str">&quot;Enter an integer from 0 to 100.&quot;</span>)
             <span class="kw">continue</span>
-        <span class="kw">if</span> 0 &lt;= score &lt;= 100:
-            <span class="kw">return</span> score
-        print(<span class="str">&quot;Enter an integer from 0 to 100.&quot;</span>)
+        <span class="kw">if</span> <span class="num">0</span> &lt;= <span class="id">score</span> &lt;= <span class="num">100</span>:
+            <span class="kw">return</span> <span class="id">score</span>
+        <span class="fn">print</span>(<span class="str">&quot;Enter an integer from 0 to 100.&quot;</span>)
 
 
-<span class="kw">def</span> main():
-    scores = []
+<span class="kw">def</span> <span class="fn">main</span>():
+    <span class="id">scores</span> = []
     <span class="kw">try</span>:
-        <span class="kw">for</span> index <span class="kw">in</span> range(1, 4):
-            scores.append(read_score(index))
-    <span class="kw">except</span> EOFError:
-        print(<span class="str">&quot;Input ended before all scores were entered.&quot;</span>)
-        <span class="kw">return</span> 1
+        <span class="kw">for</span> <span class="id">index</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">4</span>):
+            <span class="id">scores</span>.<span class="fn">append</span>(<span class="fn">read_score</span>(<span class="id">index</span>))
+    <span class="kw">except</span> <span class="id">EOFError</span>:
+        <span class="fn">print</span>(<span class="str">&quot;Input ended before all scores were entered.&quot;</span>)
+        <span class="kw">return</span> <span class="num">1</span>
 
-    average = sum(scores) / len(scores)
-    passed = sum(1 <span class="kw">for</span> score <span class="kw">in</span> scores <span class="kw">if</span> score &gt;= 60)
-    print(f<span class="str">&quot;Average: {average:.2f}&quot;</span>)
-    print(f<span class="str">&quot;Passed: {passed}&quot;</span>)
-    <span class="kw">return</span> 0
+    <span class="id">average</span> = <span class="fn">sum</span>(<span class="id">scores</span>) / <span class="fn">len</span>(<span class="id">scores</span>)
+    <span class="id">passed</span> = <span class="fn">sum</span>(<span class="num">1</span> <span class="kw">for</span> <span class="id">score</span> <span class="kw">in</span> <span class="id">scores</span> <span class="kw">if</span> <span class="id">score</span> &gt;= <span class="num">60</span>)
+    <span class="fn">print</span>(<span class="id">f</span><span class="str">&quot;Average: {average:.2f}&quot;</span>)
+    <span class="fn">print</span>(<span class="id">f</span><span class="str">&quot;Passed: {passed}&quot;</span>)
+    <span class="kw">return</span> <span class="num">0</span>
 
 
-<span class="kw">if</span> __name__ == <span class="str">&quot;__main__&quot;</span>:
-    <span class="kw">raise</span> SystemExit(main())</code></pre></div></div></details><details class="reference" id="detail-2"><summary>실행 방법과 예상 결과</summary><div class="reference-body"><p>소스 파일이 있는 <code>examples/languages</code> 폴더의 터미널에서 실행하세요. C와 C++ 예제는 각각 컴파일하면 실행 파일 scores가 교체됩니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>python3 scores.py</code></pre></div><p>점수를 한 줄에 하나씩 입력합니다.</p>
+<span class="kw">if</span> <span class="id">__name__</span> == <span class="str">&quot;__main__&quot;</span>:
+    <span class="kw">raise</span> <span class="fn">SystemExit</span>(<span class="fn">main</span>())</code></pre></div></div></details><details class="reference" id="detail-2"><summary>실행 방법과 예상 결과</summary><div class="reference-body"><p>소스 파일이 있는 <code>examples/languages</code> 폴더의 터미널에서 실행하세요. C와 C++ 예제는 각각 컴파일하면 실행 파일 scores가 교체됩니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">python3</span> <span class="id">scores</span>.<span class="id">py</span></code></pre></div><p>점수를 한 줄에 하나씩 입력합니다.</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>80
 90
 50</code></pre></div><p>예상 결과:</p>

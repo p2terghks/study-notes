@@ -30,6 +30,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
 .search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">GITHUB NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">19개 항목</p><a href="#item-0"><span>01</span>Git과 GitHub부터 구분하기</a><a href="#item-1"><span>02</span>설치 확인·사용자 정보·로그인</a><a href="#item-2"><span>03</span>기존 프로젝트 내려받기 — clone</a><a href="#item-3"><span>04</span>내 프로젝트 처음 올리기 — init</a><a href="#item-4"><span>05</span>저장·비교·이력 — 매일 쓰는 명령</a><a href="#item-5"><span>06</span>브랜치와 최신 변경 가져오기</a><a href="#item-6"><span>07</span>Pull Request — 검토하고 병합하기</a><a href="#item-7"><span>08</span>충돌 해결 — 같은 줄을 바꿨을 때</a><a href="#item-8"><span>09</span>되돌리기와 임시 보관</a><a href="#item-9"><span>10</span>.gitignore — 올리지 않을 파일</a><a href="#item-10"><span>11</span>GitHub Actions — push·PR 때 테스트</a><a href="#item-11"><span>12</span>예제 파일 다운로드</a><a href="#item-12"><span>13</span>오류별 확인과 전체 흐름</a><a href="#item-13"><span>14</span>공부한 내용 기록하기 — 학습 노트와 블로그</a><a href="#item-14"><span>15</span>Markdown 기본 문법 — .md 파일 작성하기</a><a href="#item-15"><span>16</span>학습 기록 템플릿 — 복사해서 채우기</a><a href="#item-16"><span>17</span>블로그 글 작성법 — 질문 하나를 끝까지 설명하기</a><a href="#item-17"><span>18</span>학습 파일 정리와 커밋 순서</a><a href="#item-18"><span>19</span>게시 전 확인 — 1분 점검</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="terraform-reference.html"><span>↗</span>Terraform 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-29<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>GitHub<br><span>기능 · 사용법</span></h1><p class="lead">코드와 공부한 내용을 기록하기.<br>Git 명령어·PR·자동 테스트·Markdown·블로그 작성법.</p><div class="tags"><span>Git 명령어</span><span>브랜치 · PR</span><span>Markdown · 학습 기록</span><span>블로그 작성</span></div><div class="hero-bottom"><span>19개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>Git과 GitHub부터 구분하기</h2><p><strong>Git은 변경 이력을 관리하는 도구, GitHub는 저장소를 공유하고 협업하는 서비스입니다.</strong> 터미널의 git 명령은 주로 Git 기능이고, gh 명령은 별도 설치하는 GitHub CLI입니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -70,14 +74,14 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </div><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>파일 수정 → git add → git commit → git push → GitHub
             준비 영역    로컬 기록     원격 전송</code></pre></div><p>이 문서는 학습용 명령 예시입니다. 실제 저장소 생성·게시·PR 작성은 수행하지 않았습니다. <code>OWNER</code>, <code>REPO</code>는 본인의 계정·저장소 이름으로 바꿔 실행하세요.</p>
 <p><a href="https://docs.github.com/en/get-started/using-git/about-git">GitHub 공식: Git 소개</a></p>
-</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>설치 확인·사용자 정보·로그인</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git --version
-gh --version
+</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>설치 확인·사용자 정보·로그인</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> --<span class="id">version</span>
+<span class="id">gh</span> --<span class="id">version</span>
 
-git config --global user.name <span class="str">&quot;내 이름&quot;</span>
-git config --global user.email <span class="str">&quot;내 GitHub 커밋 이메일&quot;</span>
+<span class="id">git</span> <span class="id">config</span> --<span class="id">global</span> <span class="id">user</span>.<span class="id">name</span> <span class="str">&quot;내 이름&quot;</span>
+<span class="id">git</span> <span class="id">config</span> --<span class="id">global</span> <span class="id">user</span>.<span class="id">email</span> <span class="str">&quot;내 GitHub 커밋 이메일&quot;</span>
 
-gh auth login
-gh auth status</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">gh</span> <span class="id">auth</span> <span class="id">login</span>
+<span class="id">gh</span> <span class="id">auth</span> <span class="id">status</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령</th>
@@ -108,10 +112,10 @@ gh auth status</code></pre></div><div class="table-wrap" tabindex="0"><table>
 </div><p><code>gh</code>가 없다면 <a href="https://cli.github.com/">GitHub CLI 설치 안내</a>를 따릅니다. 로그인에서 HTTPS를 선택하고 Git 인증도 설정하면 push/pull에 사용할 수 있습니다. SSH 방식도 가능합니다.</p>
 <p>GitHub 계정 비밀번호를 HTTPS Git 비밀번호로 쓰지 않습니다. 인증 도구·토큰·SSH를 사용하고 토큰을 소스나 원격 URL에 넣어 저장하지 마세요. 이메일 공개가 부담되면 GitHub 설정의 noreply 이메일을 사용할 수 있습니다.</p>
 <p><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github">공식: 인증 방식</a></p>
-</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>기존 프로젝트 내려받기 — clone</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git clone https:<span class="cm">//github.com/OWNER/REPO.git</span>
-cd REPO
-git status
-git remote -v</code></pre></div><p><strong>clone:</strong> 파일뿐 아니라 Git 이력도 내려받고 origin을 연결합니다. 이미 clone한 프로젝트에 다시 git init을 할 필요는 없습니다.</p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>기존 프로젝트 내려받기 — clone</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">clone</span> <span class="id">https</span>://<span class="id">github</span>.<span class="id">com</span>/<span class="id">OWNER</span>/<span class="id">REPO</span>.<span class="id">git</span>
+<span class="id">cd</span> <span class="id">REPO</span>
+<span class="id">git</span> <span class="id">status</span>
+<span class="id">git</span> <span class="id">remote</span> -<span class="id">v</span></code></pre></div><p><strong>clone:</strong> 파일뿐 아니라 Git 이력도 내려받고 origin을 연결합니다. 이미 clone한 프로젝트에 다시 git init을 할 필요는 없습니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -138,13 +142,13 @@ git remote -v</code></pre></div><p><strong>clone:</strong> 파일뿐 아니라 G
 </tbody></table>
 </div><p>GitHub의 Download ZIP은 파일을 받는 방식이고 일반적으로 Git 이력과 원격 연결이 포함되지 않습니다. 다른 사람의 저장소를 clone했다고 push 권한이 생기지는 않습니다.</p>
 </section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>내 프로젝트 처음 올리기 — init</h2><p><strong>전제:</strong> 아직 Git 저장소가 아닌 프로젝트 폴더에서 실행합니다. GitHub에서는 README·라이선스를 자동 생성하지 않은 빈 저장소를 먼저 만듭니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git init -b main
-git status</code></pre></div><p><code>.gitignore</code>를 먼저 작성하고 제외 대상을 확인한 뒤 실행합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git add .
-git diff --cached
-git commit -m <span class="str">&quot;Initial project&quot;</span>
-git remote add origin https:<span class="cm">//github.com/OWNER/REPO.git</span>
-git push -u origin main</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">init</span> -<span class="id">b</span> <span class="id">main</span>
+<span class="id">git</span> <span class="id">status</span></code></pre></div><p><code>.gitignore</code>를 먼저 작성하고 제외 대상을 확인한 뒤 실행합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">add</span> .
+<span class="id">git</span> <span class="id">diff</span> --<span class="id">cached</span>
+<span class="id">git</span> <span class="id">commit</span> -<span class="id">m</span> <span class="str">&quot;Initial project&quot;</span>
+<span class="id">git</span> <span class="id">remote</span> <span class="id">add</span> <span class="id">origin</span> <span class="id">https</span>://<span class="id">github</span>.<span class="id">com</span>/<span class="id">OWNER</span>/<span class="id">REPO</span>.<span class="id">git</span>
+<span class="id">git</span> <span class="id">push</span> -<span class="id">u</span> <span class="id">origin</span> <span class="id">main</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령</th>
@@ -173,13 +177,13 @@ git push -u origin main</code></pre></div><div class="table-wrap" tabindex="0"><
 </tr>
 </tbody></table>
 </div><p>GitHub에도 이미 커밋이 있다면 위 빈 저장소 절차 대신 clone한 폴더에 필요한 파일을 옮겨 커밋하는 방법이 초보자에게 명확합니다. origin이 이미 있다면 먼저 remote -v로 주소를 확인하세요.</p>
-</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>저장·비교·이력 — 매일 쓰는 명령</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git status
-git diff
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>저장·비교·이력 — 매일 쓰는 명령</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">status</span>
+<span class="id">git</span> <span class="id">diff</span>
 
-git add src/main/java/com/example/todolearning/todo/TodoController.java
-git diff --cached
-git commit -m <span class="str">&quot;Add todo validation&quot;</span>
-git push</code></pre></div><p>파일 경로는 현재 Spring 예제 기준입니다. 다른 저장소에서는 실제 경로로 바꿉니다.</p>
+<span class="id">git</span> <span class="id">add</span> <span class="id">src</span>/<span class="id">main</span>/<span class="id">java</span>/<span class="id">com</span>/<span class="id">example</span>/<span class="id">todolearning</span>/<span class="id">todo</span>/<span class="id">TodoController</span>.<span class="id">java</span>
+<span class="id">git</span> <span class="id">diff</span> --<span class="id">cached</span>
+<span class="id">git</span> <span class="id">commit</span> -<span class="id">m</span> <span class="str">&quot;Add todo validation&quot;</span>
+<span class="id">git</span> <span class="id">push</span></code></pre></div><p>파일 경로는 현재 Spring 예제 기준입니다. 다른 저장소에서는 실제 경로로 바꿉니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -209,10 +213,10 @@ git push</code></pre></div><p>파일 경로는 현재 Spring 예제 기준입니
 </tr>
 </tbody></table>
 </div><p><strong>commit은 로컬 기록, push는 원격 전송입니다.</strong> Git이 아직 추적하지 않는 새 파일은 일반 diff에 내용이 나오지 않으므로 status도 확인합니다. add 후 다시 수정했다면 그 수정까지 커밋하려면 다시 add해야 합니다.</p>
-</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>브랜치와 최신 변경 가져오기</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git switch main
-git pull --ff-only
-git switch -c feature/todo-search</code></pre></div><p>수정·테스트·커밋 후:</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git push -u origin feature/todo-search</code></pre></div><div class="table-wrap" tabindex="0"><table>
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>브랜치와 최신 변경 가져오기</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">switch</span> <span class="id">main</span>
+<span class="id">git</span> <span class="id">pull</span> --<span class="id">ff</span>-<span class="id">only</span>
+<span class="id">git</span> <span class="id">switch</span> -<span class="id">c</span> <span class="id">feature</span>/<span class="id">todo</span>-<span class="id">search</span></code></pre></div><p>수정·테스트·커밋 후:</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">push</span> -<span class="id">u</span> <span class="id">origin</span> <span class="id">feature</span>/<span class="id">todo</span>-<span class="id">search</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령</th>
@@ -237,14 +241,14 @@ git switch -c feature/todo-search</code></pre></div><p>수정·테스트·커밋
 </tr>
 </tbody></table>
 </div><p>브랜치 이동 전 작업 내용을 커밋하거나 stash로 보관합니다. <code>pull --ff-only</code>가 실패하면 로컬·원격에 각자 커밋이 있을 수 있습니다. 무조건 강제 push하지 말고 이력을 확인한 뒤 팀 정책에 따라 merge/rebase를 선택합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git fetch origin
-git log --oneline --graph --all -12</code></pre></div></section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>Pull Request — 검토하고 병합하기</h2><p><strong>흐름:</strong> 브랜치 push → PR 생성 → 변경 검토·자동 검사 → 병합 → 로컬 main 갱신.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>gh pr create --base main --head feature/todo-search \
-  --title <span class="str">&quot;할 일 검색 기능 추가&quot;</span> \
-  --body <span class="str">&quot;제목으로 할 일을 검색합니다. 검증: ./mvnw test&quot;</span>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">fetch</span> <span class="id">origin</span>
+<span class="id">git</span> <span class="id">log</span> --<span class="id">oneline</span> --<span class="id">graph</span> --<span class="id">all</span> -<span class="num">12</span></code></pre></div></section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>Pull Request — 검토하고 병합하기</h2><p><strong>흐름:</strong> 브랜치 push → PR 생성 → 변경 검토·자동 검사 → 병합 → 로컬 main 갱신.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">gh</span> <span class="id">pr</span> <span class="id">create</span> --<span class="id">base</span> <span class="id">main</span> --<span class="id">head</span> <span class="id">feature</span>/<span class="id">todo</span>-<span class="id">search</span> \
+  --<span class="id">title</span> <span class="str">&quot;할 일 검색 기능 추가&quot;</span> \
+  --<span class="id">body</span> <span class="str">&quot;제목으로 할 일을 검색합니다. 검증: ./mvnw test&quot;</span>
 
-gh pr view --web
-gh pr checks</code></pre></div><p>위 PR 본문의 검증 문구는 실제 테스트를 통과했을 때 작성합니다. gh 대신 GitHub 웹의 Compare &amp; pull request로 진행해도 됩니다.</p>
+<span class="id">gh</span> <span class="id">pr</span> <span class="id">view</span> --<span class="id">web</span>
+<span class="id">gh</span> <span class="id">pr</span> <span class="id">checks</span></code></pre></div><p>위 PR 본문의 검증 문구는 실제 테스트를 통과했을 때 작성합니다. gh 대신 GitHub 웹의 Compare &amp; pull request로 진행해도 됩니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -272,9 +276,9 @@ gh pr checks</code></pre></div><p>위 PR 본문의 검증 문구는 실제 테�
 </div><p>검토와 저장소 규칙을 충족한 뒤 웹에서 병합합니다. 병합 후 로컬 main에서 pull합니다. squash 병합은 커밋 이력이 달라져 <code>git branch -d</code>가 병합 여부를 인식하지 못할 수 있으므로 이력을 확인하고 정리하세요.</p>
 <p><a href="https://docs.github.com/en/pull-requests/get-started/pull-request-quickstart">GitHub 공식: PR 시작하기</a></p>
 </section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>충돌 해결 — 같은 줄을 바꿨을 때</h2><p>기능 브랜치에서 최신 main을 병합하는 예시입니다. 먼저 진행 중인 변경을 커밋해 작업 폴더를 정리합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git fetch origin
-git merge origin/main
-git status</code></pre></div><p>충돌 파일에는 다음 같은 표시가 나타납니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">fetch</span> <span class="id">origin</span>
+<span class="id">git</span> <span class="id">merge</span> <span class="id">origin</span>/<span class="id">main</span>
+<span class="id">git</span> <span class="id">status</span></code></pre></div><p>충돌 파일에는 다음 같은 표시가 나타납니다.</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 현재 브랜치의 내용
 =======
@@ -285,9 +289,9 @@ git status</code></pre></div><p>충돌 파일에는 다음 같은 표시가 나�
 <li>테스트 후 해당 파일을 add합니다.</li>
 <li>merge 커밋을 완성합니다.</li>
 </ol>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git add path/to/conflicted-file
-git commit
-git push</code></pre></div><p><code>path/to/conflicted-file</code>은 실제 충돌 파일로 바꿉니다. 진행 중인 merge를 취소하려면 <code>git merge --abort</code>를 사용합니다. 이것은 이미 완료된 병합을 되돌리는 명령은 아닙니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">add</span> <span class="id">path</span>/<span class="id">to</span>/<span class="id">conflicted</span>-<span class="id">file</span>
+<span class="id">git</span> <span class="id">commit</span>
+<span class="id">git</span> <span class="id">push</span></code></pre></div><p><code>path/to/conflicted-file</code>은 실제 충돌 파일로 바꿉니다. 진행 중인 merge를 취소하려면 <code>git merge --abort</code>를 사용합니다. 이것은 이미 완료된 병합을 되돌리는 명령은 아닙니다.</p>
 </section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>되돌리기와 임시 보관</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -331,44 +335,44 @@ git push</code></pre></div><p><code>path/to/conflicted-file</code>은 실제 충
 <p><a href="https://git-scm.com/docs/git-restore">Git 공식: restore</a></p>
 </section><section id="item-9"><div class="section-kicker">REFERENCE 10</div><h2>.gitignore — 올리지 않을 파일</h2><p>Spring·React 프로젝트에서 자주 쓰는 예시입니다. 프로젝트 루트에 <code>.gitignore</code>로 작성합니다.</p>
 <div class="codebox"><div class="codebar"><span>gitignore</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 빌드 결과와 의존성</span>
-target/
-build/
-node_modules/
-dist/
+<span class="id">target</span>/
+<span class="id">build</span>/
+<span class="id">node_modules</span>/
+<span class="id">dist</span>/
 
 <span class="cm"># 개인 설정·비밀값·로컬 DB</span>
-.idea/
-.DS_Store
-.env
-.env.*
-!.env.example
-data/
-*.pem</code></pre></div><p><code>.env.example</code>에는 실제 비밀번호 대신 변수 이름과 예시값만 넣습니다. .gitignore는 이미 추적 중인 파일을 자동으로 제외하거나 과거 커밋에서 지우지 않습니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git check-ignore -v .env</code></pre></div><p>이미 비밀키를 올렸다면 파일만 지우는 것으로 끝나지 않습니다. 해당 키를 폐기·교체하고 노출된 이력을 처리해야 합니다. 일반 빌드 파일의 추적 제외는 필요한 파일만 <code>git rm --cached FILE</code>로 처리합니다.</p>
+.<span class="id">idea</span>/
+.<span class="id">DS_Store</span>
+.<span class="id">env</span>
+.<span class="id">env</span>.*
+!.<span class="id">env</span>.<span class="id">example</span>
+<span class="id">data</span>/
+*.<span class="id">pem</span></code></pre></div><p><code>.env.example</code>에는 실제 비밀번호 대신 변수 이름과 예시값만 넣습니다. .gitignore는 이미 추적 중인 파일을 자동으로 제외하거나 과거 커밋에서 지우지 않습니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">check</span>-<span class="id">ignore</span> -<span class="id">v</span> .<span class="id">env</span></code></pre></div><p>이미 비밀키를 올렸다면 파일만 지우는 것으로 끝나지 않습니다. 해당 키를 폐기·교체하고 노출된 이력을 처리해야 합니다. 일반 빌드 파일의 추적 제외는 필요한 파일만 <code>git rm --cached FILE</code>로 처리합니다.</p>
 </section><section id="item-10"><div class="section-kicker">REFERENCE 11</div><h2>GitHub Actions — push·PR 때 테스트</h2><p><strong>기능:</strong> GitHub가 저장소 이벤트에 맞춰 자동 작업을 실행합니다. 아래는 배포가 아닌 Maven 테스트 워크플로입니다.</p>
 <p>파일: <code>.github/workflows/test.yml</code></p>
-<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>name: Java tests
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-permissions:
-  contents: read
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout<span class="an">@v7</span>
-      - uses: actions/setup-java<span class="an">@v6</span>
-        with:
-          distribution: temurin
-          java-version: <span class="str">'21'</span>
-          cache: maven
-      - name: Run tests
-        run: |
-          chmod +x mvnw
-          ./mvnw -B test</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">name</span>: <span class="id">Java</span> <span class="id">tests</span>
+<span class="id">on</span>:
+  <span class="id">push</span>:
+    <span class="id">branches</span>: [<span class="id">main</span>]
+  <span class="id">pull_request</span>:
+    <span class="id">branches</span>: [<span class="id">main</span>]
+<span class="id">permissions</span>:
+  <span class="id">contents</span>: <span class="id">read</span>
+<span class="id">jobs</span>:
+  <span class="id">test</span>:
+    <span class="id">runs</span>-<span class="id">on</span>: <span class="id">ubuntu</span>-<span class="id">latest</span>
+    <span class="id">steps</span>:
+      - <span class="id">uses</span>: <span class="id">actions</span>/<span class="id">checkout</span><span class="an">@v7</span>
+      - <span class="id">uses</span>: <span class="id">actions</span>/<span class="id">setup</span>-<span class="id">java</span><span class="an">@v6</span>
+        <span class="id">with</span>:
+          <span class="id">distribution</span>: <span class="id">temurin</span>
+          <span class="id">java</span>-<span class="id">version</span>: <span class="str">'21'</span>
+          <span class="id">cache</span>: <span class="id">maven</span>
+      - <span class="id">name</span>: <span class="id">Run</span> <span class="id">tests</span>
+        <span class="id">run</span>: |
+          <span class="id">chmod</span> +<span class="id">x</span> <span class="id">mvnw</span>
+          ./<span class="id">mvnw</span> -<span class="id">B</span> <span class="id">test</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>항목</th>
@@ -597,13 +601,13 @@ System.out.println(&quot;Hello, Spring!&quot;);
     ├── react/
     └── git/</code></pre></div><p>루트 README에는 <code>[컨트롤러와 서비스](til/spring/2026-09-29-controller-service.md)</code>처럼 학습 목록을 연결합니다. 파일 이름은 날짜와 주제를 일관되게 사용하면 찾기 쉽습니다.</p>
 <p><strong>전제:</strong> Git 저장소와 origin 연결이 되어 있어야 합니다. 처음이라면 앞의 ‘내 프로젝트 처음 올리기’ 절차를 먼저 확인하세요. 다음 명령은 위 구조의 <code>study-notes</code> 루트에서 실행하는 예시입니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git status
-git add README.md til/spring/2026-09-29-controller-service.md
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">status</span>
+<span class="id">git</span> <span class="id">add</span> <span class="id">README</span>.<span class="id">md</span> <span class="id">til</span>/<span class="id">spring</span>/<span class="num">2026</span>-<span class="num">09</span>-<span class="num">29</span>-<span class="id">controller</span>-<span class="id">service</span>.<span class="id">md</span>
 <span class="cm"># 이미지를 추가했다면 해당 파일도 준비 영역에 추가</span>
 <span class="cm"># git add til/spring/images/result.png</span>
-git diff --cached
-git commit -m <span class="str">&quot;docs: Spring 컨트롤러와 서비스 학습 정리&quot;</span>
-git push</code></pre></div><p>첫 push이고 원격 추적이 설정되지 않았다면 현재 브랜치를 확인하고 <code>git push -u origin 브랜치이름</code>을 사용합니다. <code>docs:</code>는 문서 변경을 나타내는 흔한 작성 관례이며 Git의 필수 문법은 아닙니다. 복습하며 고쳤다면 <code>docs: 서비스 역할 설명과 예제 보완</code>처럼 변경 내용을 적습니다.</p>
+<span class="id">git</span> <span class="id">diff</span> --<span class="id">cached</span>
+<span class="id">git</span> <span class="id">commit</span> -<span class="id">m</span> <span class="str">&quot;docs: Spring 컨트롤러와 서비스 학습 정리&quot;</span>
+<span class="id">git</span> <span class="id">push</span></code></pre></div><p>첫 push이고 원격 추적이 설정되지 않았다면 현재 브랜치를 확인하고 <code>git push -u origin 브랜치이름</code>을 사용합니다. <code>docs:</code>는 문서 변경을 나타내는 흔한 작성 관례이며 Git의 필수 문법은 아닙니다. 복습하며 고쳤다면 <code>docs: 서비스 역할 설명과 예제 보완</code>처럼 변경 내용을 적습니다.</p>
 <p><strong>한 주제의 의미 있는 변경을 한 커밋으로 묶으세요.</strong> GitHub에 Markdown을 push하면 저장소에서 읽을 수 있습니다. 별도 블로그에 공개하려면 해당 블로그 편집기에 옮겨 게시하거나 별도의 사이트 게시 설정이 필요합니다.</p>
 </section><section id="item-18"><div class="section-kicker">REFERENCE 19</div><h2>게시 전 확인 — 1분 점검</h2><ul>
 <li>제목만 보고 어떤 내용을 배웠는지 알 수 있는가?</li>

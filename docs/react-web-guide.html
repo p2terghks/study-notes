@@ -28,6 +28,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 .theme-toggle{position:fixed;right:18px;top:12px;z-index:20;padding:7px 12px;border:1px solid var(--border,var(--line));border-radius:6px;background:var(--bg);color:var(--text);font:12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;cursor:pointer;box-shadow:0 1px 4px #0000000a}
 .theme-toggle:focus-visible{outline:2px solid var(--text);outline-offset:3px}
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a>
 <a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="학습 목차"><a class="brand" href="#top"><span class="brand-mark">R</span>REACT LAB</a><p class="nav-label">처음 만드는 웹 애플리케이션</p><div class="nav-group">컴포넌트부터 서버 연결까지</div><a href="#step-1"><span>01</span>React는 어디에 사용할까?</a><a href="#step-2"><span>02</span>시작 전에 알아둘 JavaScript</a><a href="#step-3"><span>03</span>Component — 화면을 함수로 만들기</a><a href="#step-4"><span>04</span>JSX — JavaScript 안에 화면 쓰기</a><a href="#step-5"><span>05</span>Props — 부모에서 자식으로 값 전달</a><a href="#step-6"><span>06</span>State — 기억하고 변경하는 값</a><a href="#step-7"><span>07</span>Event — 클릭과 입력에 반응하기</a><a href="#step-8"><span>08</span>Input — 입력창과 State 연결</a><a href="#step-9"><span>09</span>List — 배열을 화면에 표시</a><a href="#step-10"><span>10</span>배열 수정 — 추가·완료·삭제</a><a href="#step-11"><span>11</span>직접 실행해 보기</a><a href="#step-12"><span>12</span>Spring과 연결하면 무엇이 달라질까?</a><a href="#step-13"><span>13</span>헷갈리는 개념 비교</a><a href="#step-14"><span>14</span>실습 체크리스트와 다음 단계</a><div class="nav-group">필요할 때 찾아보기</div><a href="#reference"><span>↗</span>전체 코드 · 상세 설명</a><a href="#annotations"><span>@</span>개념 빠른 사전</a><a href="spring-web-guide.html"><span>↗</span>Spring 가이드</a><div class="nav-note">React · JSX · JavaScript<br>Props · State · Event · Spring API</div></nav>
 <main id="content"><header id="top"><p class="eyebrow">BEGINNER’S GUIDE / 실습으로 배우기</p><h1>처음 배우는<br><span>React</span></h1><p class="lead">화면을 만들고, 데이터에 반응하기.<br>작은 할 일 예제로 React의 기본 원리를 배웁니다.</p><div class="tags"><span>컴포넌트</span><span>Props & State</span><span>이벤트</span><span>Spring 연결</span></div><div class="hero-bottom"><span>14개 학습 단계</span><span>실행 가능한 전체 예제</span><span>오프라인 열람 가능</span></div></header>
@@ -67,13 +71,13 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
              └──── 결과 데이터 ────────┘</code></pre></div><p>기존 Spring 예제는 Thymeleaf가 서버에서 HTML을 만듭니다. 이번에 배우는 방식에서는 React가 브라우저에서 화면을 만들고 Spring API와 데이터를 주고받습니다.</p>
 <aside class="callout"><p><strong>이번 학습 범위</strong> — 먼저 서버 없이 동작하는 할 일 예제를 이해합니다. Spring 연결 코드는 뒤에서 구조를 설명하는 예시로 다룹니다. 현재 Spring 프로젝트에 React나 JSON API가 추가된 것은 아닙니다.</p>
 </aside><a class="next" href="#step-2">다음 단계로 →</a></section><section id="step-2"><div class="section-kicker">STEP 02</div><h2>시작 전에 알아둘 JavaScript</h2><p><strong>JSX를 읽기 위해 자주 쓰는 문법만 먼저 익힙니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">const</span> title = <span class="str">&quot;리액트 공부&quot;</span>;
-<span class="kw">const</span> todo = { id: 1, title, completed: <span class="kw">false</span> };
-<span class="kw">const</span> todos = [todo];
+<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">const</span> <span class="id">title</span> = <span class="str">&quot;리액트 공부&quot;</span>;
+<span class="kw">const</span> <span class="id">todo</span> = { <span class="id">id</span>: <span class="num">1</span>, <span class="id">title</span>, <span class="id">completed</span>: <span class="kw">false</span> };
+<span class="kw">const</span> <span class="id">todos</span> = [<span class="id">todo</span>];
 
-<span class="kw">const</span> { id, completed } = todo;
-<span class="kw">const</span> titles = todos.map((item) =&gt; item.title);
-<span class="kw">const</span> nextTodos = [...todos, { id: 2, title: <span class="str">&quot;복습&quot;</span>, completed: <span class="kw">false</span> }];</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="kw">const</span> { <span class="id">id</span>, <span class="id">completed</span> } = <span class="id">todo</span>;
+<span class="kw">const</span> <span class="id">titles</span> = <span class="id">todos</span>.<span class="fn">map</span>((<span class="id">item</span>) =&gt; <span class="id">item</span>.<span class="id">title</span>);
+<span class="kw">const</span> <span class="id">nextTodos</span> = [...<span class="id">todos</span>, { <span class="id">id</span>: <span class="num">2</span>, <span class="id">title</span>: <span class="str">&quot;복습&quot;</span>, <span class="id">completed</span>: <span class="kw">false</span> }];</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>문법</th>
@@ -111,16 +115,16 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tbody></table>
 </div><p><code>const</code>는 객체 내부 값까지 불변으로 만드는 문법은 아닙니다. React 상태를 직접 바꾸지 않는 규칙은 별도로 지켜야 합니다.</p>
 <a class="next" href="#step-3">다음 단계로 →</a></section><section id="step-3"><div class="section-kicker">STEP 03</div><h2>Component — 화면을 함수로 만들기</h2><p><strong>컴포넌트는 화면을 구성하는 재사용 가능한 조각입니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> Welcome() {
-  <span class="kw">return</span> &lt;h1&gt;할 일 관리&lt;/h1&gt;;
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> <span class="fn">Welcome</span>() {
+  <span class="kw">return</span> &lt;<span class="id">h1</span>&gt;할 일 관리&lt;/<span class="id">h1</span>&gt;;
 }
 
-<span class="kw">export</span> <span class="kw">default</span> <span class="kw">function</span> App() {
+<span class="kw">export</span> <span class="kw">default</span> <span class="kw">function</span> <span class="fn">App</span>() {
   <span class="kw">return</span> (
-    &lt;main&gt;
-      &lt;Welcome /&gt;
-      &lt;p&gt;오늘 할 일을 기록해 보세요.&lt;/p&gt;
-    &lt;/main&gt;
+    &lt;<span class="id">main</span>&gt;
+      &lt;<span class="id">Welcome</span> /&gt;
+      &lt;<span class="id">p</span>&gt;오늘 할 일을 기록해 보세요.&lt;/<span class="id">p</span>&gt;
+    &lt;/<span class="id">main</span>&gt;
   );
 }</code></pre></div><ol>
 <li><code>Welcome()</code>은 제목 화면을 반환합니다.</li>
@@ -149,13 +153,13 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tbody></table>
 </div><aside class="callout"><p>컴포넌트 함수를 다른 컴포넌트 함수 안에 정의하지 말고 바깥에 정의하세요. 화면에서 사용할 때는 <code>&lt;Welcome /&gt;</code>처럼 JSX로 씁니다.</p>
 </aside><a class="next" href="#step-4">다음 단계로 →</a></section><section id="step-4"><div class="section-kicker">STEP 04</div><h2>JSX — JavaScript 안에 화면 쓰기</h2><p><strong>JSX는 HTML과 비슷한 화면 작성 문법입니다. JavaScript 값은 중괄호 안에 넣습니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> Greeting() {
-  <span class="kw">const</span> name = <span class="str">&quot;민수&quot;</span>;
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> <span class="fn">Greeting</span>() {
+  <span class="kw">const</span> <span class="id">name</span> = <span class="str">&quot;민수&quot;</span>;
 
   <span class="kw">return</span> (
     &lt;&gt;
-      &lt;h1 className=<span class="str">&quot;title&quot;</span>&gt;{name}님, 안녕하세요!&lt;/h1&gt;
-      &lt;p&gt;오늘 할 일은 {2 + 1}개입니다.&lt;/p&gt;
+      &lt;<span class="id">h1</span> <span class="id">className</span>=<span class="str">&quot;title&quot;</span>&gt;{<span class="id">name</span>}님, 안녕하세요!&lt;/<span class="id">h1</span>&gt;
+      &lt;<span class="id">p</span>&gt;오늘 할 일은 {<span class="num">2</span> + <span class="num">1</span>}개입니다.&lt;/<span class="id">p</span>&gt;
     &lt;/&gt;
   );
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
@@ -185,34 +189,34 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </div><p>JSX에서는 태그를 닫아야 합니다. 입력창은 <code>&lt;input /&gt;</code>으로 씁니다. <code>label</code>의 <code>for</code>는 <code>htmlFor</code>로 씁니다.</p>
 <p>JSX는 빌드 도구를 통해 JavaScript로 변환됩니다. 일반 HTML 파일에 JSX만 붙여 넣어서는 실행되지 않습니다. <a href="https://react.dev/learn/writing-markup-with-jsx">공식 JSX 안내</a></p>
 <a class="next" href="#step-5">다음 단계로 →</a></section><section id="step-5"><div class="section-kicker">STEP 05</div><h2>Props — 부모에서 자식으로 값 전달</h2><p><strong>Props는 컴포넌트가 외부에서 전달받는 값입니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> TodoItem({ title, completed }) {
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> <span class="fn">TodoItem</span>({ <span class="id">title</span>, <span class="id">completed</span> }) {
   <span class="kw">return</span> (
-    &lt;li&gt;
-      {title} · {completed ? <span class="str">&quot;완료&quot;</span> : <span class="str">&quot;진행 중&quot;</span>}
-    &lt;/li&gt;
+    &lt;<span class="id">li</span>&gt;
+      {<span class="id">title</span>} · {<span class="id">completed</span> ? <span class="str">&quot;완료&quot;</span> : <span class="str">&quot;진행 중&quot;</span>}
+    &lt;/<span class="id">li</span>&gt;
   );
 }
 
-<span class="kw">function</span> App() {
+<span class="kw">function</span> <span class="fn">App</span>() {
   <span class="kw">return</span> (
-    &lt;ul&gt;
-      &lt;TodoItem title=<span class="str">&quot;스프링 공부&quot;</span> completed={<span class="kw">true</span>} /&gt;
-      &lt;TodoItem title=<span class="str">&quot;리액트 공부&quot;</span> completed={<span class="kw">false</span>} /&gt;
-    &lt;/ul&gt;
+    &lt;<span class="id">ul</span>&gt;
+      &lt;<span class="id">TodoItem</span> <span class="id">title</span>=<span class="str">&quot;스프링 공부&quot;</span> <span class="id">completed</span>={<span class="kw">true</span>} /&gt;
+      &lt;<span class="id">TodoItem</span> <span class="id">title</span>=<span class="str">&quot;리액트 공부&quot;</span> <span class="id">completed</span>={<span class="kw">false</span>} /&gt;
+    &lt;/<span class="id">ul</span>&gt;
   );
 }</code></pre></div><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>App (부모)
   └─ title, completed 전달 → TodoItem (자식)</code></pre></div><p><code>{ title, completed }</code>는 props 객체에서 두 값을 꺼내는 문법입니다. <code>completed={false}</code>는 boolean 값이고, <code>completed=&quot;false&quot;</code>는 문자열이므로 다릅니다.</p>
 <aside class="callout"><p><strong>Props는 읽기 전용입니다.</strong> 자식이 값을 바꾸고 싶다면 부모가 전달한 함수를 호출해 변경을 요청합니다. 함수도 props로 전달할 수 있습니다. <a href="https://react.dev/learn/passing-props-to-a-component">공식 Props 안내</a></p>
 </aside><a class="next" href="#step-6">다음 단계로 →</a></section><section id="step-6"><div class="section-kicker">STEP 06</div><h2>State — 기억하고 변경하는 값</h2><p><strong>State는 컴포넌트가 기억하는 값입니다. setter를 호출하면 다음 렌더링에 새 값이 반영됩니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> { useState } from <span class="str">&quot;react&quot;</span>;
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> { <span class="id">useState</span> } <span class="kw">from</span> <span class="str">&quot;react&quot;</span>;
 
-<span class="kw">function</span> Counter() {
-  <span class="kw">const</span> [count, setCount] = useState(0);
+<span class="kw">function</span> <span class="fn">Counter</span>() {
+  <span class="kw">const</span> [<span class="id">count</span>, <span class="id">setCount</span>] = <span class="fn">useState</span>(<span class="num">0</span>);
 
   <span class="kw">return</span> (
-    &lt;button onClick={() =&gt; setCount((previous) =&gt; previous + 1)}&gt;
-      클릭 횟수: {count}
-    &lt;/button&gt;
+    &lt;<span class="id">button</span> <span class="id">onClick</span>={() =&gt; <span class="fn">setCount</span>((<span class="id">previous</span>) =&gt; <span class="id">previous</span> + <span class="num">1</span>)}&gt;
+      클릭 횟수: {<span class="id">count</span>}
+    &lt;/<span class="id">button</span>&gt;
   );
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -241,12 +245,12 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </div><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>버튼 클릭 → setCount → 컴포넌트 다시 렌더링 → 바뀐 화면 반영</code></pre></div><p><code>setCount</code>를 호출한 직후 같은 함수에서 읽는 <code>count</code>는 현재 렌더링의 값입니다. 변수를 즉시 덮어쓰는 대입문처럼 생각하지 마세요.</p>
 <p><code>useState</code>처럼 <code>use</code>로 시작하는 React 기능을 Hook이라고 합니다. Hook은 컴포넌트나 사용자 정의 Hook의 최상위에서 호출합니다. 조건문이나 반복문 안에서 호출하지 않습니다. <a href="https://react.dev/learn/state-a-components-memory">공식 State 안내</a></p>
 <a class="next" href="#step-7">다음 단계로 →</a></section><section id="step-7"><div class="section-kicker">STEP 07</div><h2>Event — 클릭과 입력에 반응하기</h2><p><strong>사용자의 행동에 실행할 함수를 연결합니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> SaveButton() {
-  <span class="kw">function</span> handleClick() {
-    alert(<span class="str">&quot;저장 버튼을 눌렀습니다.&quot;</span>);
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">function</span> <span class="fn">SaveButton</span>() {
+  <span class="kw">function</span> <span class="fn">handleClick</span>() {
+    <span class="fn">alert</span>(<span class="str">&quot;저장 버튼을 눌렀습니다.&quot;</span>);
   }
 
-  <span class="kw">return</span> &lt;button onClick={handleClick}&gt;저장&lt;/button&gt;;
+  <span class="kw">return</span> &lt;<span class="id">button</span> <span class="id">onClick</span>={<span class="id">handleClick</span>}&gt;저장&lt;/<span class="id">button</span>&gt;;
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -269,12 +273,12 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tbody></table>
 </div><p>폼 제출에서는 <code>event.preventDefault()</code>로 브라우저의 기본 제출 동작을 막고 JavaScript로 처리할 수 있습니다. <a href="https://react.dev/learn/responding-to-events">공식 이벤트 안내</a></p>
 <a class="next" href="#step-8">다음 단계로 →</a></section><section id="step-8"><div class="section-kicker">STEP 08</div><h2>Input — 입력창과 State 연결</h2><p><strong>입력값을 React 상태로 관리하는 입력창을 만듭니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">const</span> [title, setTitle] = useState(<span class="str">&quot;&quot;</span>);
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">const</span> [<span class="id">title</span>, <span class="id">setTitle</span>] = <span class="fn">useState</span>(<span class="str">&quot;&quot;</span>);
 
-&lt;input
-  value={title}
-  onChange={(event) =&gt; setTitle(event.target.value)}
-  placeholder=<span class="str">&quot;할 일을 입력하세요&quot;</span>
+&lt;<span class="id">input</span>
+  <span class="id">value</span>={<span class="id">title</span>}
+  <span class="id">onChange</span>={(<span class="id">event</span>) =&gt; <span class="fn">setTitle</span>(<span class="id">event</span>.<span class="id">target</span>.<span class="id">value</span>)}
+  <span class="id">placeholder</span>=<span class="str">&quot;할 일을 입력하세요&quot;</span>
 /&gt;</code></pre></div><ol>
 <li><code>value={title}</code>로 입력창에 현재 상태를 표시합니다.</li>
 <li>사용자가 글자를 입력하면 <code>onChange</code>가 실행됩니다.</li>
@@ -286,29 +290,29 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
     └─ setTitle ← onChange</code></pre></div><p>이 방식을 **제어 컴포넌트의 입력(controlled input)**이라고 합니다. <code>value</code>만 지정하고 값을 갱신하지 않으면 타이핑해도 입력값이 바뀌지 않습니다.</p>
 <p>위 코드는 컴포넌트 내부에 들어가는 발췌입니다. 완전한 코드는 아래 전체 예제에서 확인하세요.</p>
 <a class="next" href="#step-9">다음 단계로 →</a></section><section id="step-9"><div class="section-kicker">STEP 09</div><h2>List — 배열을 화면에 표시</h2><p><strong>배열의 각 항목을 JSX로 바꾸면 목록을 만들 수 있습니다.</strong></p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;ul&gt;
-  {todos.map((todo) =&gt; (
-    &lt;li key={todo.id}&gt;{todo.title}&lt;/li&gt;
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>&lt;<span class="id">ul</span>&gt;
+  {<span class="id">todos</span>.<span class="fn">map</span>((<span class="id">todo</span>) =&gt; (
+    &lt;<span class="id">li</span> <span class="id">key</span>={<span class="id">todo</span>.<span class="id">id</span>}&gt;{<span class="id">todo</span>.<span class="id">title</span>}&lt;/<span class="id">li</span>&gt;
   ))}
-&lt;/ul&gt;</code></pre></div><ul>
+&lt;/<span class="id">ul</span>&gt;</code></pre></div><ul>
 <li><code>map()</code>은 각 할 일을 <code>&lt;li&gt;</code>로 변환합니다.</li>
 <li><code>key</code>는 React가 형제 항목을 구별하는 기준입니다.</li>
 <li>DB ID처럼 고유하고 안정적인 값을 사용합니다.</li>
 <li>렌더링할 때마다 랜덤 key를 만들지 않습니다. 추가할 때 ID를 한 번 생성합니다.</li>
 </ul>
 <p>목록이 비어 있을 때는 조건부로 안내를 표시할 수 있습니다.</p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>{todos.length === 0 &amp;&amp; &lt;p&gt;아직 할 일이 없습니다.&lt;/p&gt;}</code></pre></div><a class="next" href="#step-10">다음 단계로 →</a></section><section id="step-10"><div class="section-kicker">STEP 10</div><h2>배열 수정 — 추가·완료·삭제</h2><p><strong>상태 배열을 직접 수정하지 않고 새 배열로 교체합니다.</strong></p>
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>{<span class="id">todos</span>.<span class="id">length</span> === <span class="num">0</span> &amp;&amp; &lt;<span class="id">p</span>&gt;아직 할 일이 없습니다.&lt;/<span class="id">p</span>&gt;}</code></pre></div><a class="next" href="#step-10">다음 단계로 →</a></section><section id="step-10"><div class="section-kicker">STEP 10</div><h2>배열 수정 — 추가·완료·삭제</h2><p><strong>상태 배열을 직접 수정하지 않고 새 배열로 교체합니다.</strong></p>
 <h3>추가: 펼치기</h3>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>setTodos((previous) =&gt; [...previous, newTodo]);</code></pre></div><h3>완료 변경: map</h3>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>setTodos((previous) =&gt;
-  previous.map((todo) =&gt;
-    todo.id === id
-      ? { ...todo, completed: !todo.completed }
-      : todo
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="fn">setTodos</span>((<span class="id">previous</span>) =&gt; [...<span class="id">previous</span>, <span class="id">newTodo</span>]);</code></pre></div><h3>완료 변경: map</h3>
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="fn">setTodos</span>((<span class="id">previous</span>) =&gt;
+  <span class="id">previous</span>.<span class="fn">map</span>((<span class="id">todo</span>) =&gt;
+    <span class="id">todo</span>.<span class="id">id</span> === <span class="id">id</span>
+      ? { ...<span class="id">todo</span>, <span class="id">completed</span>: !<span class="id">todo</span>.<span class="id">completed</span> }
+      : <span class="id">todo</span>
   )
 );</code></pre></div><p><code>{ ...todo, completed: ... }</code>는 기존 객체를 복사한 뒤 완료 여부만 바꿉니다.</p>
 <h3>삭제: filter</h3>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>setTodos((previous) =&gt; previous.filter((todo) =&gt; todo.id !== id));</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="fn">setTodos</span>((<span class="id">previous</span>) =&gt; <span class="id">previous</span>.<span class="fn">filter</span>((<span class="id">todo</span>) =&gt; <span class="id">todo</span>.<span class="id">id</span> !== <span class="id">id</span>));</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>목적</th>
@@ -336,10 +340,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 <a class="next" href="#step-11">다음 단계로 →</a></section><section id="step-11"><div class="section-kicker">STEP 11</div><h2>직접 실행해 보기</h2><p><strong>전체 예제를 React 개발 환경에서 실행합니다.</strong></p>
 <p>이 학습에는 Vite의 React 템플릿을 사용합니다. Node.js와 npm이 필요합니다. Vite 공식 안내의 Node.js 요구 조건은 20.19+ 또는 22.12+이며 템플릿이 더 높은 버전을 요구하면 해당 조건을 따르세요. <a href="https://vite.dev/guide/">Vite 시작 안내</a></p>
 <p>새 프로젝트를 만들 위치에서 한 줄씩 실행합니다. 이미 같은 이름의 폴더가 있다면 다른 이름을 사용하세요.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>npm create vite<span class="an">@latest</span> react-todo-learning -- --template react
-cd react-todo-learning
-npm install
-npm run dev</code></pre></div><p>터미널에 표시된 주소를 브라우저로 엽니다. 기본 주소는 보통 <code>http://localhost:5173</code>이며 포트가 사용 중이면 달라질 수 있습니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">npm</span> <span class="id">create</span> <span class="id">vite</span><span class="an">@latest</span> <span class="id">react</span>-<span class="id">todo</span>-<span class="id">learning</span> -- --<span class="id">template</span> <span class="id">react</span>
+<span class="id">cd</span> <span class="id">react</span>-<span class="id">todo</span>-<span class="id">learning</span>
+<span class="id">npm</span> <span class="id">install</span>
+<span class="id">npm</span> <span class="id">run</span> <span class="id">dev</span></code></pre></div><p>터미널에 표시된 주소를 브라우저로 엽니다. 기본 주소는 보통 <code>http://localhost:5173</code>이며 포트가 사용 중이면 달라질 수 있습니다.</p>
 <ol>
 <li>생성된 <code>src/App.jsx</code>를 아래 <strong>전체 예제</strong>로 교체합니다.</li>
 <li>예제에서 사용하는 <code>src/App.css</code>도 아래 코드로 교체합니다.</li>
@@ -380,18 +384,18 @@ npm run dev</code></pre></div><p>터미널에 표시된 주소를 브라우저�
 
 GET /api/todos
 응답: [{ &quot;id&quot;: 1, &quot;title&quot;: &quot;리액트 공부&quot;, &quot;completed&quot;: false }]</code></pre></div><p>다음 함수는 위 API가 준비되었을 때 사용하는 <strong>연결 예시</strong>입니다.</p>
-<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">async</span> <span class="kw">function</span> createTodo(title) {
-  <span class="kw">const</span> response = <span class="kw">await</span> fetch(<span class="str">&quot;/api/todos&quot;</span>, {
-    method: <span class="str">&quot;POST&quot;</span>,
-    headers: { <span class="str">&quot;Content-Type&quot;</span>: <span class="str">&quot;application/json&quot;</span> },
-    body: JSON.stringify({ title }),
+<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">async</span> <span class="kw">function</span> <span class="fn">createTodo</span>(<span class="id">title</span>) {
+  <span class="kw">const</span> <span class="id">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">&quot;/api/todos&quot;</span>, {
+    <span class="id">method</span>: <span class="str">&quot;POST&quot;</span>,
+    <span class="id">headers</span>: { <span class="str">&quot;Content-Type&quot;</span>: <span class="str">&quot;application/json&quot;</span> },
+    <span class="id">body</span>: <span class="id">JSON</span>.<span class="fn">stringify</span>({ <span class="id">title</span> }),
   });
 
-  <span class="kw">if</span> (!response.ok) {
-    <span class="kw">throw</span> <span class="kw">new</span> Error(<span class="str">&quot;저장하지 못했습니다.&quot;</span>);
+  <span class="kw">if</span> (!<span class="id">response</span>.<span class="id">ok</span>) {
+    <span class="kw">throw</span> <span class="kw">new</span> <span class="fn">Error</span>(<span class="str">&quot;저장하지 못했습니다.&quot;</span>);
   }
 
-  <span class="kw">return</span> response.json();
+  <span class="kw">return</span> <span class="id">response</span>.<span class="fn">json</span>();
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -534,104 +538,104 @@ GET /api/todos
 <p><a href="https://react.dev/learn">React 공식 빠른 시작</a> · <a href="spring-web-guide.html">Spring 가이드로 돌아가기</a></p>
 <a class="next" href="#reference">전체 코드와 상세 설명 보기 →</a></section>
 <section id="reference"><div class="section-kicker">REFERENCE / 더 자세히</div><h2>전체 코드와 상세 설명</h2><p>궁금한 항목을 펼쳐 보세요. App.jsx와 CSS를 복사해 Vite React 프로젝트에서 실행해 보세요.</p><button id="expand" class="secondary">전체 펼치기</button><details id="detail-1" class="reference"><summary>1. App.jsx — 할 일 등록·완료·삭제</summary><div class="reference-body"><p>Vite React 프로젝트의 <code>src/App.jsx</code> 전체를 교체합니다. 서버 없이 브라우저 상태로만 동작하므로 새로고침하면 초기화됩니다.</p>
-<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> { useState } from <span class="str">&quot;react&quot;</span>;
+<div class="codebox"><div class="codebar"><span>jsx</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> { <span class="id">useState</span> } <span class="kw">from</span> <span class="str">&quot;react&quot;</span>;
 <span class="kw">import</span> <span class="str">&quot;./App.css&quot;</span>;
 
-<span class="kw">function</span> TodoItem({ todo, onToggle, onDelete }) {
+<span class="kw">function</span> <span class="fn">TodoItem</span>({ <span class="id">todo</span>, <span class="id">onToggle</span>, <span class="id">onDelete</span> }) {
   <span class="kw">return</span> (
-    &lt;li className=<span class="str">&quot;todo-item&quot;</span>&gt;
-      &lt;label&gt;
-        &lt;input
-          type=<span class="str">&quot;checkbox&quot;</span>
-          checked={todo.completed}
-          onChange={() =&gt; onToggle(todo.id)}
+    &lt;<span class="id">li</span> <span class="id">className</span>=<span class="str">&quot;todo-item&quot;</span>&gt;
+      &lt;<span class="id">label</span>&gt;
+        &lt;<span class="id">input</span>
+          <span class="id">type</span>=<span class="str">&quot;checkbox&quot;</span>
+          <span class="id">checked</span>={<span class="id">todo</span>.<span class="id">completed</span>}
+          <span class="id">onChange</span>={() =&gt; <span class="fn">onToggle</span>(<span class="id">todo</span>.<span class="id">id</span>)}
         /&gt;
-        &lt;span className={todo.completed ? <span class="str">&quot;completed&quot;</span> : <span class="str">&quot;&quot;</span>}&gt;
-          {todo.title}
-        &lt;/span&gt;
-      &lt;/label&gt;
-      &lt;button type=<span class="str">&quot;button&quot;</span> onClick={() =&gt; onDelete(todo.id)}&gt;
+        &lt;<span class="id">span</span> <span class="id">className</span>={<span class="id">todo</span>.<span class="id">completed</span> ? <span class="str">&quot;completed&quot;</span> : <span class="str">&quot;&quot;</span>}&gt;
+          {<span class="id">todo</span>.<span class="id">title</span>}
+        &lt;/<span class="id">span</span>&gt;
+      &lt;/<span class="id">label</span>&gt;
+      &lt;<span class="id">button</span> <span class="id">type</span>=<span class="str">&quot;button&quot;</span> <span class="id">onClick</span>={() =&gt; <span class="fn">onDelete</span>(<span class="id">todo</span>.<span class="id">id</span>)}&gt;
         삭제
-      &lt;/button&gt;
-    &lt;/li&gt;
+      &lt;/<span class="id">button</span>&gt;
+    &lt;/<span class="id">li</span>&gt;
   );
 }
 
-<span class="kw">export</span> <span class="kw">default</span> <span class="kw">function</span> App() {
-  <span class="kw">const</span> [title, setTitle] = useState(<span class="str">&quot;&quot;</span>);
-  <span class="kw">const</span> [todos, setTodos] = useState([]);
-  <span class="kw">const</span> [error, setError] = useState(<span class="str">&quot;&quot;</span>);
+<span class="kw">export</span> <span class="kw">default</span> <span class="kw">function</span> <span class="fn">App</span>() {
+  <span class="kw">const</span> [<span class="id">title</span>, <span class="id">setTitle</span>] = <span class="fn">useState</span>(<span class="str">&quot;&quot;</span>);
+  <span class="kw">const</span> [<span class="id">todos</span>, <span class="id">setTodos</span>] = <span class="fn">useState</span>([]);
+  <span class="kw">const</span> [<span class="id">error</span>, <span class="id">setError</span>] = <span class="fn">useState</span>(<span class="str">&quot;&quot;</span>);
 
-  <span class="kw">function</span> handleSubmit(event) {
-    event.preventDefault();
-    <span class="kw">const</span> trimmedTitle = title.trim();
+  <span class="kw">function</span> <span class="fn">handleSubmit</span>(<span class="id">event</span>) {
+    <span class="id">event</span>.<span class="fn">preventDefault</span>();
+    <span class="kw">const</span> <span class="id">trimmedTitle</span> = <span class="id">title</span>.<span class="fn">trim</span>();
 
-    <span class="kw">if</span> (!trimmedTitle || trimmedTitle.length &gt; 100) {
-      setError(<span class="str">&quot;할 일을 1~100자로 입력해 주세요.&quot;</span>);
+    <span class="kw">if</span> (!<span class="id">trimmedTitle</span> || <span class="id">trimmedTitle</span>.<span class="id">length</span> &gt; <span class="num">100</span>) {
+      <span class="fn">setError</span>(<span class="str">&quot;할 일을 1~100자로 입력해 주세요.&quot;</span>);
       <span class="kw">return</span>;
     }
 
-    <span class="kw">const</span> newTodo = {
-      id: crypto.randomUUID(),
-      title: trimmedTitle,
-      completed: <span class="kw">false</span>,
+    <span class="kw">const</span> <span class="id">newTodo</span> = {
+      <span class="id">id</span>: <span class="id">crypto</span>.<span class="fn">randomUUID</span>(),
+      <span class="id">title</span>: <span class="id">trimmedTitle</span>,
+      <span class="id">completed</span>: <span class="kw">false</span>,
     };
 
-    setTodos((previous) =&gt; [...previous, newTodo]);
-    setTitle(<span class="str">&quot;&quot;</span>);
-    setError(<span class="str">&quot;&quot;</span>);
+    <span class="fn">setTodos</span>((<span class="id">previous</span>) =&gt; [...<span class="id">previous</span>, <span class="id">newTodo</span>]);
+    <span class="fn">setTitle</span>(<span class="str">&quot;&quot;</span>);
+    <span class="fn">setError</span>(<span class="str">&quot;&quot;</span>);
   }
 
-  <span class="kw">function</span> handleToggle(id) {
-    setTodos((previous) =&gt;
-      previous.map((todo) =&gt;
-        todo.id === id
-          ? { ...todo, completed: !todo.completed }
-          : todo
+  <span class="kw">function</span> <span class="fn">handleToggle</span>(<span class="id">id</span>) {
+    <span class="fn">setTodos</span>((<span class="id">previous</span>) =&gt;
+      <span class="id">previous</span>.<span class="fn">map</span>((<span class="id">todo</span>) =&gt;
+        <span class="id">todo</span>.<span class="id">id</span> === <span class="id">id</span>
+          ? { ...<span class="id">todo</span>, <span class="id">completed</span>: !<span class="id">todo</span>.<span class="id">completed</span> }
+          : <span class="id">todo</span>
       )
     );
   }
 
-  <span class="kw">function</span> handleDelete(id) {
-    setTodos((previous) =&gt; previous.filter((todo) =&gt; todo.id !== id));
+  <span class="kw">function</span> <span class="fn">handleDelete</span>(<span class="id">id</span>) {
+    <span class="fn">setTodos</span>((<span class="id">previous</span>) =&gt; <span class="id">previous</span>.<span class="fn">filter</span>((<span class="id">todo</span>) =&gt; <span class="id">todo</span>.<span class="id">id</span> !== <span class="id">id</span>));
   }
 
   <span class="kw">return</span> (
-    &lt;main className=<span class="str">&quot;todo-app&quot;</span>&gt;
-      &lt;h1&gt;나의 할 일&lt;/h1&gt;
-      &lt;p&gt;등록하고, 완료하고, 삭제하며 React를 익혀 보세요.&lt;/p&gt;
+    &lt;<span class="id">main</span> <span class="id">className</span>=<span class="str">&quot;todo-app&quot;</span>&gt;
+      &lt;<span class="id">h1</span>&gt;나의 할 일&lt;/<span class="id">h1</span>&gt;
+      &lt;<span class="id">p</span>&gt;등록하고, 완료하고, 삭제하며 <span class="id">React</span>를 익혀 보세요.&lt;/<span class="id">p</span>&gt;
 
-      &lt;form onSubmit={handleSubmit}&gt;
-        &lt;label htmlFor=<span class="str">&quot;title&quot;</span>&gt;새 할 일&lt;/label&gt;
-        &lt;div className=<span class="str">&quot;input-row&quot;</span>&gt;
-          &lt;input
-            id=<span class="str">&quot;title&quot;</span>
-            value={title}
-            onChange={(event) =&gt; setTitle(event.target.value)}
-            maxLength={100}
-            placeholder=<span class="str">&quot;예: 리액트 공부하기&quot;</span>
-            aria-describedby=<span class="str">&quot;input-error&quot;</span>
-            aria-invalid={Boolean(error)}
+      &lt;<span class="id">form</span> <span class="id">onSubmit</span>={<span class="id">handleSubmit</span>}&gt;
+        &lt;<span class="id">label</span> <span class="id">htmlFor</span>=<span class="str">&quot;title&quot;</span>&gt;새 할 일&lt;/<span class="id">label</span>&gt;
+        &lt;<span class="id">div</span> <span class="id">className</span>=<span class="str">&quot;input-row&quot;</span>&gt;
+          &lt;<span class="id">input</span>
+            <span class="id">id</span>=<span class="str">&quot;title&quot;</span>
+            <span class="id">value</span>={<span class="id">title</span>}
+            <span class="id">onChange</span>={(<span class="id">event</span>) =&gt; <span class="fn">setTitle</span>(<span class="id">event</span>.<span class="id">target</span>.<span class="id">value</span>)}
+            <span class="id">maxLength</span>={<span class="num">100</span>}
+            <span class="id">placeholder</span>=<span class="str">&quot;예: 리액트 공부하기&quot;</span>
+            <span class="id">aria</span>-<span class="id">describedby</span>=<span class="str">&quot;input-error&quot;</span>
+            <span class="id">aria</span>-<span class="id">invalid</span>={<span class="fn">Boolean</span>(<span class="id">error</span>)}
           /&gt;
-          &lt;button type=<span class="str">&quot;submit&quot;</span>&gt;추가&lt;/button&gt;
-        &lt;/div&gt;
-        &lt;p id=<span class="str">&quot;input-error&quot;</span> role=<span class="str">&quot;alert&quot;</span>&gt;{error}&lt;/p&gt;
-      &lt;/form&gt;
+          &lt;<span class="id">button</span> <span class="id">type</span>=<span class="str">&quot;submit&quot;</span>&gt;추가&lt;/<span class="id">button</span>&gt;
+        &lt;/<span class="id">div</span>&gt;
+        &lt;<span class="id">p</span> <span class="id">id</span>=<span class="str">&quot;input-error&quot;</span> <span class="id">role</span>=<span class="str">&quot;alert&quot;</span>&gt;{<span class="id">error</span>}&lt;/<span class="id">p</span>&gt;
+      &lt;/<span class="id">form</span>&gt;
 
-      &lt;p aria-live=<span class="str">&quot;polite&quot;</span>&gt;총 {todos.length}개의 할 일&lt;/p&gt;
-      {todos.length === 0 &amp;&amp; &lt;p&gt;아직 할 일이 없습니다.&lt;/p&gt;}
+      &lt;<span class="id">p</span> <span class="id">aria</span>-<span class="id">live</span>=<span class="str">&quot;polite&quot;</span>&gt;총 {<span class="id">todos</span>.<span class="id">length</span>}개의 할 일&lt;/<span class="id">p</span>&gt;
+      {<span class="id">todos</span>.<span class="id">length</span> === <span class="num">0</span> &amp;&amp; &lt;<span class="id">p</span>&gt;아직 할 일이 없습니다.&lt;/<span class="id">p</span>&gt;}
 
-      &lt;ul className=<span class="str">&quot;todo-list&quot;</span>&gt;
-        {todos.map((todo) =&gt; (
-          &lt;TodoItem
-            key={todo.id}
-            todo={todo}
-            onToggle={handleToggle}
-            onDelete={handleDelete}
+      &lt;<span class="id">ul</span> <span class="id">className</span>=<span class="str">&quot;todo-list&quot;</span>&gt;
+        {<span class="id">todos</span>.<span class="fn">map</span>((<span class="id">todo</span>) =&gt; (
+          &lt;<span class="id">TodoItem</span>
+            <span class="id">key</span>={<span class="id">todo</span>.<span class="id">id</span>}
+            <span class="id">todo</span>={<span class="id">todo</span>}
+            <span class="id">onToggle</span>={<span class="id">handleToggle</span>}
+            <span class="id">onDelete</span>={<span class="id">handleDelete</span>}
           /&gt;
         ))}
-      &lt;/ul&gt;
-    &lt;/main&gt;
+      &lt;/<span class="id">ul</span>&gt;
+    &lt;/<span class="id">main</span>&gt;
   );
 }</code></pre></div><h3>읽는 순서</h3>
 <ol>
@@ -643,25 +647,25 @@ GET /api/todos
 </ol>
 <p><code>crypto.randomUUID()</code>는 localhost 또는 HTTPS 같은 보안 컨텍스트에서 사용합니다. 위 Vite 로컬 실행 환경에서 사용할 수 있습니다.</p>
 </div></details><details id="detail-2" class="reference"><summary>2. App.css — 화면 꾸미기</summary><div class="reference-body"><p><code>src/App.css</code>에 작성합니다.</p>
-<div class="codebox"><div class="codebar"><span>css</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>.todo-app { max-width: 680px; margin: 48px auto; padding: 28px; }
-.todo-app h1 { margin-bottom: 8px; }
-.todo-app form { margin: 28px 0; }
-.input-row { display: flex; gap: 10px; margin-top: 8px; }
-.input-row input { flex: 1; min-width: 0; padding: 12px; }
-button { padding: 10px 16px; cursor: pointer; }
-.todo-list { list-style: none; padding: 0; }
-.todo-item { display: flex; justify-content: space-between; gap: 16px;
-  align-items: center; padding: 16px 0; border-bottom: 1px solid <span class="cm">#ccd5df; }</span>
-.todo-item label { display: flex; gap: 12px; align-items: center;
-  min-width: 0; overflow-wrap: anywhere; }
-.completed { text-decoration: line-through; color: <span class="cm">#5c6572; }</span>
-<span class="cm">#input-error { color: #ad2424; }</span>
-:focus-visible { outline: 3px solid <span class="cm">#226bc0; outline-offset: 3px; }</span>
-<span class="an">@media</span> (max-width: 480px) { .todo-app { margin: 16px auto; padding: 20px; } }</code></pre></div></div></details><details id="detail-3" class="reference"><summary>3. index.css — 기본 스타일 초기화</summary><div class="reference-body"><p>Vite 템플릿의 <code>src/index.css</code>를 교체합니다. <code>src/main.jsx</code>의 <code>import &#39;./index.css&#39;</code>는 유지하세요.</p>
-<div class="codebox"><div class="codebar"><span>css</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>* { box-sizing: border-box; }
-body { margin: 0; background: <span class="cm">#f4f6f8; color: #203044;</span>
-  font-family: system-ui, sans-serif; line-height: 1.6; }
-button, input { font: inherit; }</code></pre></div></div></details><details id="detail-4" class="reference"><summary>4. 동작 확인하기</summary><div class="reference-body"><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>css</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>.<span class="id">todo</span>-<span class="id">app</span> { <span class="id">max</span>-<span class="id">width</span>: 680<span class="id">px</span>; <span class="id">margin</span>: 48<span class="id">px</span> <span class="kw">auto</span>; <span class="id">padding</span>: 28<span class="id">px</span>; }
+.<span class="id">todo</span>-<span class="id">app</span> <span class="id">h1</span> { <span class="id">margin</span>-<span class="id">bottom</span>: 8<span class="id">px</span>; }
+.<span class="id">todo</span>-<span class="id">app</span> <span class="id">form</span> { <span class="id">margin</span>: 28<span class="id">px</span> <span class="num">0</span>; }
+.<span class="id">input</span>-<span class="id">row</span> { <span class="id">display</span>: <span class="id">flex</span>; <span class="id">gap</span>: 10<span class="id">px</span>; <span class="id">margin</span>-<span class="id">top</span>: 8<span class="id">px</span>; }
+.<span class="id">input</span>-<span class="id">row</span> <span class="id">input</span> { <span class="id">flex</span>: <span class="num">1</span>; <span class="id">min</span>-<span class="id">width</span>: <span class="num">0</span>; <span class="id">padding</span>: 12<span class="id">px</span>; }
+<span class="id">button</span> { <span class="id">padding</span>: 10<span class="id">px</span> 16<span class="id">px</span>; <span class="id">cursor</span>: <span class="id">pointer</span>; }
+.<span class="id">todo</span>-<span class="id">list</span> { <span class="id">list</span>-<span class="id">style</span>: <span class="kw">none</span>; <span class="id">padding</span>: <span class="num">0</span>; }
+.<span class="id">todo</span>-<span class="id">item</span> { <span class="id">display</span>: <span class="id">flex</span>; <span class="id">justify</span>-<span class="id">content</span>: <span class="id">space</span>-<span class="id">between</span>; <span class="id">gap</span>: 16<span class="id">px</span>;
+  <span class="id">align</span>-<span class="id">items</span>: <span class="id">center</span>; <span class="id">padding</span>: 16<span class="id">px</span> <span class="num">0</span>; <span class="id">border</span>-<span class="id">bottom</span>: 1<span class="id">px</span> <span class="id">solid</span> #<span class="id">ccd5df</span>; }
+.<span class="id">todo</span>-<span class="id">item</span> <span class="id">label</span> { <span class="id">display</span>: <span class="id">flex</span>; <span class="id">gap</span>: 12<span class="id">px</span>; <span class="id">align</span>-<span class="id">items</span>: <span class="id">center</span>;
+  <span class="id">min</span>-<span class="id">width</span>: <span class="num">0</span>; <span class="id">overflow</span>-<span class="id">wrap</span>: <span class="id">anywhere</span>; }
+.<span class="id">completed</span> { <span class="id">text</span>-<span class="id">decoration</span>: <span class="id">line</span>-<span class="id">through</span>; <span class="id">color</span>: #5<span class="id">c6572</span>; }
+#<span class="id">input</span>-<span class="id">error</span> { <span class="id">color</span>: #<span class="id">ad2424</span>; }
+:<span class="id">focus</span>-<span class="id">visible</span> { <span class="id">outline</span>: 3<span class="id">px</span> <span class="id">solid</span> #226<span class="id">bc0</span>; <span class="id">outline</span>-<span class="id">offset</span>: 3<span class="id">px</span>; }
+<span class="an">@media</span> (<span class="id">max</span>-<span class="id">width</span>: 480<span class="id">px</span>) { .<span class="id">todo</span>-<span class="id">app</span> { <span class="id">margin</span>: 16<span class="id">px</span> <span class="kw">auto</span>; <span class="id">padding</span>: 20<span class="id">px</span>; } }</code></pre></div></div></details><details id="detail-3" class="reference"><summary>3. index.css — 기본 스타일 초기화</summary><div class="reference-body"><p>Vite 템플릿의 <code>src/index.css</code>를 교체합니다. <code>src/main.jsx</code>의 <code>import &#39;./index.css&#39;</code>는 유지하세요.</p>
+<div class="codebox"><div class="codebar"><span>css</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>* { <span class="id">box</span>-<span class="id">sizing</span>: <span class="id">border</span>-<span class="id">box</span>; }
+<span class="id">body</span> { <span class="id">margin</span>: <span class="num">0</span>; <span class="id">background</span>: #<span class="id">f4f6f8</span>; <span class="id">color</span>: #<span class="num">203044</span>;
+  <span class="id">font</span>-<span class="id">family</span>: <span class="id">system</span>-<span class="id">ui</span>, <span class="id">sans</span>-<span class="id">serif</span>; <span class="id">line</span>-<span class="id">height</span>: <span class="num">1.6</span>; }
+<span class="id">button</span>, <span class="id">input</span> { <span class="id">font</span>: <span class="kw">inherit</span>; }</code></pre></div></div></details><details id="detail-4" class="reference"><summary>4. 동작 확인하기</summary><div class="reference-body"><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>실습</th>

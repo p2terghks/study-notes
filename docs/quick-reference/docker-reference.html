@@ -30,6 +30,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
 .search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">DOCKER NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">13개 항목</p><a href="#item-0"><span>01</span>이미지·컨테이너·Dockerfile</a><a href="#item-1"><span>02</span>설치 확인과 첫 실행</a><a href="#item-2"><span>03</span>웹 서버 실행과 포트 연결</a><a href="#item-3"><span>04</span>상태 확인·로그·접속·정리</a><a href="#item-4"><span>05</span>Dockerfile — 각 줄의 역할</a><a href="#item-5"><span>06</span>Spring 프로젝트용 Dockerfile</a><a href="#item-6"><span>07</span>.dockerignore와 build·run</a><a href="#item-7"><span>08</span>Volume·Bind mount — 데이터 유지</a><a href="#item-8"><span>09</span>Compose — 실행 설정을 파일로</a><a href="#item-9"><span>10</span>컨테이너끼리 연결하는 주소</a><a href="#item-10"><span>11</span>이미지 공유 — login·tag·push·pull</a><a href="#item-11"><span>12</span>예제 파일 다운로드</a><a href="#item-12"><span>13</span>오류 해결과 GitHub 연결 흐름</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="terraform-reference.html"><span>↗</span>Terraform 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-29<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>Docker<br><span>기능 · 사용법</span></h1><p class="lead">앱을 이미지로 만들고 실행하기.<br>명령어·Dockerfile·Compose를 예제로 익힙니다.</p><div class="tags"><span>이미지 · 컨테이너</span><span>명령어</span><span>Dockerfile</span><span>Compose</span></div><div class="hero-bottom"><span>13개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>이미지·컨테이너·Dockerfile</h2><p><strong>Docker는 앱과 실행에 필요한 환경을 이미지로 묶고 컨테이너로 실행합니다.</strong> GitHub는 주로 코드·협업, 이미지 레지스트리는 배포용 이미지 저장을 맡습니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -68,9 +72,9 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 이미지 → docker push → 레지스트리 → 다른 서버에서 pull</code></pre></div><p>컨테이너마다 독립된 전체 OS 커널을 설치하는 방식은 아닙니다. macOS/Windows의 Linux 컨테이너는 보통 Docker Desktop이 관리하는 Linux 가상 환경에서 실행됩니다.</p>
 <p><a href="https://docs.docker.com/get-started/">Docker 공식 시작 안내</a></p>
 </section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>설치 확인과 첫 실행</h2><p>Docker Desktop을 설치하고 실행한 뒤 터미널에서 확인합니다. Linux에서는 Docker Engine과 Compose 플러그인 구성을 사용할 수도 있습니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker version
-docker compose version
-docker run --rm hello-world</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">version</span>
+<span class="id">docker</span> <span class="id">compose</span> <span class="id">version</span>
+<span class="id">docker</span> <span class="id">run</span> --<span class="id">rm</span> <span class="id">hello</span>-<span class="id">world</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령</th>
@@ -95,8 +99,8 @@ docker run --rm hello-world</code></pre></div><div class="table-wrap" tabindex="
 </tr>
 </tbody></table>
 </div><p>hello-world 이미지가 없으면 다운로드합니다. Docker CLI가 있어도 엔진이 실행 중이 아니면 컨테이너를 실행할 수 없습니다. 설치 안내: <a href="https://docs.docker.com/desktop/">Docker Desktop</a></p>
-</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>웹 서버 실행과 포트 연결</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker run -d --name demo-web \
-  -p 127.0.0.1:8088:80 nginx:stable</code></pre></div><p>브라우저에서 <code>http://localhost:8088</code>로 접속합니다.</p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>웹 서버 실행과 포트 연결</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">run</span> -<span class="id">d</span> --<span class="id">name</span> <span class="id">demo</span>-<span class="id">web</span> \
+  -<span class="id">p</span> <span class="num">127.0</span>.<span class="num">0.1</span>:<span class="num">8088</span>:<span class="num">80</span> <span class="id">nginx</span>:<span class="id">stable</span></code></pre></div><p>브라우저에서 <code>http://localhost:8088</code>로 접속합니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -123,15 +127,15 @@ docker run --rm hello-world</code></pre></div><div class="table-wrap" tabindex="
 </tbody></table>
 </div><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>브라우저 localhost:8088 → 컨테이너의 Nginx 80</code></pre></div><p><code>-p 8088:80</code>처럼 호스트 주소를 생략하면 일반적으로 모든 호스트 인터페이스에 게시됩니다. <code>EXPOSE 80</code>만으로 호스트 포트가 열리는 것은 아닙니다.</p>
 <p><a href="https://docs.docker.com/engine/network/port-publishing/">공식: 포트 게시</a></p>
-</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>상태 확인·로그·접속·정리</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker ps
-docker ps -a
-docker logs --tail 50 demo-web
-docker logs -f demo-web
-docker exec -it demo-web sh</code></pre></div><p>exec는 실행 중인 컨테이너에 새 명령을 실행합니다. <code>sh</code>를 포함하지 않은 이미지도 있습니다. 셸에서 <code>exit</code>로 나오고, logs -f는 Ctrl+C로 로그 보기만 끝냅니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker stop demo-web
-docker start demo-web
-docker stop demo-web
-docker rm demo-web</code></pre></div><div class="table-wrap" tabindex="0"><table>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>상태 확인·로그·접속·정리</h2><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">ps</span>
+<span class="id">docker</span> <span class="id">ps</span> -<span class="id">a</span>
+<span class="id">docker</span> <span class="id">logs</span> --<span class="id">tail</span> <span class="num">50</span> <span class="id">demo</span>-<span class="id">web</span>
+<span class="id">docker</span> <span class="id">logs</span> -<span class="id">f</span> <span class="id">demo</span>-<span class="id">web</span>
+<span class="id">docker</span> <span class="id">exec</span> -<span class="id">it</span> <span class="id">demo</span>-<span class="id">web</span> <span class="id">sh</span></code></pre></div><p>exec는 실행 중인 컨테이너에 새 명령을 실행합니다. <code>sh</code>를 포함하지 않은 이미지도 있습니다. 셸에서 <code>exit</code>로 나오고, logs -f는 Ctrl+C로 로그 보기만 끝냅니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">stop</span> <span class="id">demo</span>-<span class="id">web</span>
+<span class="id">docker</span> <span class="id">start</span> <span class="id">demo</span>-<span class="id">web</span>
+<span class="id">docker</span> <span class="id">stop</span> <span class="id">demo</span>-<span class="id">web</span>
+<span class="id">docker</span> <span class="id">rm</span> <span class="id">demo</span>-<span class="id">web</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령</th>
@@ -203,23 +207,23 @@ docker rm demo-web</code></pre></div><div class="table-wrap" tabindex="0"><table
 </div><p><strong>RUN은 빌드 중, ENTRYPOINT는 컨테이너 실행 때</strong> 사용합니다. COPY는 내 PC의 모든 파일이 아니라 빌드 컨텍스트 안의 파일을 대상으로 합니다. 다음 예제에서는 프로젝트 루트에서 <code>docker build ... .</code>을 실행합니다.</p>
 <p><a href="https://docs.docker.com/build/building/multi-stage/">공식: 멀티 스테이지 빌드</a></p>
 </section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>Spring 프로젝트용 Dockerfile</h2><p><strong>기준:</strong> 현재 학습 프로젝트의 Java 21, Maven Wrapper, JAR 이름 <code>todo-learning-0.0.1-SNAPSHOT.jar</code>. 프로젝트 루트의 Dockerfile로 사용할 예시입니다.</p>
-<div class="codebox"><div class="codebar"><span>dockerfile</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>FROM eclipse-temurin:21-jdk AS build
-WORKDIR /workspace
-COPY .mvn .mvn
-COPY mvnw pom.xml ./
-COPY src src
-RUN chmod +x mvnw &amp;&amp; ./mvnw -B -DskipTests <span class="kw">package</span>
+<div class="codebox"><div class="codebar"><span>dockerfile</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">FROM</span> <span class="id">eclipse</span>-<span class="id">temurin</span>:<span class="num">21</span>-<span class="id">jdk</span> <span class="id">AS</span> <span class="id">build</span>
+<span class="kw">WORKDIR</span> /<span class="id">workspace</span>
+<span class="kw">COPY</span> .<span class="id">mvn</span> .<span class="id">mvn</span>
+<span class="kw">COPY</span> <span class="id">mvnw</span> <span class="id">pom</span>.<span class="id">xml</span> ./
+<span class="kw">COPY</span> <span class="id">src</span> <span class="id">src</span>
+<span class="kw">RUN</span> <span class="id">chmod</span> +<span class="id">x</span> <span class="id">mvnw</span> &amp;&amp; ./<span class="id">mvnw</span> -<span class="id">B</span> -<span class="id">DskipTests</span> <span class="id">package</span>
 
-FROM eclipse-temurin:21-jre
-WORKDIR /app
-RUN groupadd --system app &amp;&amp; useradd --system --gid app app \
-    &amp;&amp; mkdir -p /app/data &amp;&amp; chown app:app /app/data
-COPY --from=build /workspace/target/todo-learning-0.0.1-SNAPSHOT.jar app.jar
-ENV SERVER_ADDRESS=0.0.0.0
-ENV SPRING_H2_CONSOLE_ENABLED=<span class="kw">false</span>
-EXPOSE 8080
-USER app
-ENTRYPOINT [<span class="str">&quot;java&quot;</span>, <span class="str">&quot;-jar&quot;</span>, <span class="str">&quot;/app/app.jar&quot;</span>]</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="kw">FROM</span> <span class="id">eclipse</span>-<span class="id">temurin</span>:<span class="num">21</span>-<span class="id">jre</span>
+<span class="kw">WORKDIR</span> /<span class="id">app</span>
+<span class="kw">RUN</span> <span class="id">groupadd</span> --<span class="id">system</span> <span class="id">app</span> &amp;&amp; <span class="id">useradd</span> --<span class="id">system</span> --<span class="id">gid</span> <span class="id">app</span> <span class="id">app</span> \
+    &amp;&amp; <span class="id">mkdir</span> -<span class="id">p</span> /<span class="id">app</span>/<span class="id">data</span> &amp;&amp; <span class="id">chown</span> <span class="id">app</span>:<span class="id">app</span> /<span class="id">app</span>/<span class="id">data</span>
+<span class="kw">COPY</span> --<span class="id">from</span>=<span class="id">build</span> /<span class="id">workspace</span>/<span class="id">target</span>/<span class="id">todo</span>-<span class="id">learning</span>-<span class="num">0.0</span>.<span class="num">1</span>-<span class="id">SNAPSHOT</span>.<span class="id">jar</span> <span class="id">app</span>.<span class="id">jar</span>
+<span class="kw">ENV</span> <span class="id">SERVER_ADDRESS</span>=<span class="num">0.0</span>.<span class="num">0.0</span>
+<span class="kw">ENV</span> <span class="id">SPRING_H2_CONSOLE_ENABLED</span>=<span class="id">false</span>
+<span class="kw">EXPOSE</span> <span class="num">8080</span>
+<span class="kw">USER</span> <span class="id">app</span>
+<span class="kw">ENTRYPOINT</span> [<span class="str">&quot;java&quot;</span>, <span class="str">&quot;-jar&quot;</span>, <span class="str">&quot;/app/app.jar&quot;</span>]</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>단계</th>
@@ -258,14 +262,14 @@ data
 .env.*
 *.pem
 .idea</code></pre></div><p>.gitignore와 .dockerignore는 다른 기능입니다. 전자는 Git 추적 제외, 후자는 Docker 빌드 컨텍스트 제외입니다. Maven Wrapper에 필요한 <code>.mvn</code>은 제외하지 않습니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>./mvnw test
-docker build -t todo-learning:1.0 .
-docker run -d --name todo-app \
-  -p 127.0.0.1:8080:8080 \
-  --mount source=todo-data,target=/app/data \
-  todo-learning:1.0
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>./<span class="id">mvnw</span> <span class="id">test</span>
+<span class="id">docker</span> <span class="id">build</span> -<span class="id">t</span> <span class="id">todo</span>-<span class="id">learning</span>:<span class="num">1.0</span> .
+<span class="id">docker</span> <span class="id">run</span> -<span class="id">d</span> --<span class="id">name</span> <span class="id">todo</span>-<span class="id">app</span> \
+  -<span class="id">p</span> <span class="num">127.0</span>.<span class="num">0.1</span>:<span class="num">8080</span>:<span class="num">8080</span> \
+  --<span class="id">mount</span> <span class="kw">source</span>=<span class="id">todo</span>-<span class="id">data</span>,<span class="id">target</span>=/<span class="id">app</span>/<span class="id">data</span> \
+  <span class="id">todo</span>-<span class="id">learning</span>:<span class="num">1.0</span>
 
-docker logs -f todo-app</code></pre></div><p>서버 시작 로그를 확인한 뒤 <code>http://localhost:8080/todos</code>로 접속합니다. 로컬 Spring이 이미 8080을 사용하면 호스트 쪽만 <code>127.0.0.1:8081:8080</code>으로 바꾸세요.</p>
+<span class="id">docker</span> <span class="id">logs</span> -<span class="id">f</span> <span class="id">todo</span>-<span class="id">app</span></code></pre></div><p>서버 시작 로그를 확인한 뒤 <code>http://localhost:8080/todos</code>로 접속합니다. 로컬 Spring이 이미 8080을 사용하면 호스트 쪽만 <code>127.0.0.1:8081:8080</code>으로 바꾸세요.</p>
 <p>코드를 수정한 뒤에는 새 이미지를 build하고 기존 컨테이너를 stop·rm한 뒤 새 컨테이너를 run합니다. 이미지 빌드만으로 실행 중인 컨테이너가 바뀌지는 않습니다.</p>
 </section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>Volume·Bind mount — 데이터 유지</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -291,29 +295,29 @@ docker logs -f todo-app</code></pre></div><p>서버 시작 로그를 확인한 �
 <td>삭제해도 되는 임시 파일</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker volume ls
-docker volume inspect todo-data</code></pre></div><p>앞 단계의 <code>/app/data</code>는 named volume으로 연결되어 컨테이너를 삭제해도 데이터가 유지됩니다. 처음 만드는 빈 볼륨과 기존 볼륨의 파일 소유권은 다를 수 있습니다. 권한 오류가 나면 앱 사용자와 볼륨 파일 소유권을 확인하세요.</p>
+</div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">volume</span> <span class="id">ls</span>
+<span class="id">docker</span> <span class="id">volume</span> <span class="id">inspect</span> <span class="id">todo</span>-<span class="id">data</span></code></pre></div><p>앞 단계의 <code>/app/data</code>는 named volume으로 연결되어 컨테이너를 삭제해도 데이터가 유지됩니다. 처음 만드는 빈 볼륨과 기존 볼륨의 파일 소유권은 다를 수 있습니다. 권한 오류가 나면 앱 사용자와 볼륨 파일 소유권을 확인하세요.</p>
 <p>H2 파일 DB 하나를 여러 앱 컨테이너가 동시에 공유하는 구조로 확장하지 않습니다. 서버 여러 개로 운영하려면 별도의 DB 서버를 사용하세요.</p>
 <p><a href="https://docs.docker.com/engine/storage/volumes/">공식: Volumes</a></p>
 </section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>Compose — 실행 설정을 파일로</h2><p>프로젝트 루트에 <code>compose.yaml</code>을 작성합니다. 앞의 Dockerfile이 같은 폴더에 있다고 가정합니다.</p>
-<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>services:
-  app:
-    build: .
-    image: todo-learning:1.0
-    ports:
+<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">services</span>:
+  <span class="id">app</span>:
+    <span class="id">build</span>: .
+    <span class="id">image</span>: <span class="id">todo</span>-<span class="id">learning</span>:<span class="num">1.0</span>
+    <span class="id">ports</span>:
       - <span class="str">&quot;127.0.0.1:8080:8080&quot;</span>
-    environment:
-      SERVER_ADDRESS: 0.0.0.0
-      SPRING_H2_CONSOLE_ENABLED: <span class="str">&quot;false&quot;</span>
-    volumes:
-      - todo-data:/app/data
-    restart: unless-stopped
-volumes:
-  todo-data:</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker compose config
-docker compose up -d --build
-docker compose ps
-docker compose logs -f app
-docker compose down</code></pre></div><div class="table-wrap" tabindex="0"><table>
+    <span class="id">environment</span>:
+      <span class="id">SERVER_ADDRESS</span>: <span class="num">0.0</span>.<span class="num">0.0</span>
+      <span class="id">SPRING_H2_CONSOLE_ENABLED</span>: <span class="str">&quot;false&quot;</span>
+    <span class="id">volumes</span>:
+      - <span class="id">todo</span>-<span class="id">data</span>:/<span class="id">app</span>/<span class="id">data</span>
+    <span class="id">restart</span>: <span class="id">unless</span>-<span class="id">stopped</span>
+<span class="id">volumes</span>:
+  <span class="id">todo</span>-<span class="id">data</span>:</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">compose</span> <span class="id">config</span>
+<span class="id">docker</span> <span class="id">compose</span> <span class="id">up</span> -<span class="id">d</span> --<span class="id">build</span>
+<span class="id">docker</span> <span class="id">compose</span> <span class="id">ps</span>
+<span class="id">docker</span> <span class="id">compose</span> <span class="id">logs</span> -<span class="id">f</span> <span class="id">app</span>
+<span class="id">docker</span> <span class="id">compose</span> <span class="id">down</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령</th>
@@ -365,10 +369,10 @@ app 컨테이너 → db:5432 → db 컨테이너</code></pre></div><p>같은 Com
 </div><p>PostgreSQL로 전환할 때는 주소만 바꾸지 말고 JDBC 드라이버, 계정, 스키마 설정, 준비 완료 확인도 구성합니다. <code>depends_on</code>의 단순 시작 순서는 DB 준비 완료를 보장하지 않습니다. healthcheck와 <code>condition: service_healthy</code> 또는 앱 재시도 전략이 필요합니다. 위 H2 예제에는 별도 db 서비스가 없습니다.</p>
 <p><a href="https://docs.docker.com/compose/intro/compose-application-model/">공식: Compose 모델</a></p>
 </section><section id="item-10"><div class="section-kicker">REFERENCE 11</div><h2>이미지 공유 — login·tag·push·pull</h2><p>Docker Hub 계정과 본인 네임스페이스의 이미지 저장소가 준비되어 있다고 가정합니다. <code>MY_DOCKER_ID</code>를 실제 Docker Hub 계정명으로 바꿉니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker login
-docker tag todo-learning:1.0 MY_DOCKER_ID/todo-learning:1.0
-docker push MY_DOCKER_ID/todo-learning:1.0</code></pre></div><p>다른 환경에서:</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker pull MY_DOCKER_ID/todo-learning:1.0</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">login</span>
+<span class="id">docker</span> <span class="id">tag</span> <span class="id">todo</span>-<span class="id">learning</span>:<span class="num">1.0</span> <span class="id">MY_DOCKER_ID</span>/<span class="id">todo</span>-<span class="id">learning</span>:<span class="num">1.0</span>
+<span class="id">docker</span> <span class="id">push</span> <span class="id">MY_DOCKER_ID</span>/<span class="id">todo</span>-<span class="id">learning</span>:<span class="num">1.0</span></code></pre></div><p>다른 환경에서:</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">pull</span> <span class="id">MY_DOCKER_ID</span>/<span class="id">todo</span>-<span class="id">learning</span>:<span class="num">1.0</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령</th>

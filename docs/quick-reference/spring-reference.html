@@ -30,6 +30,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
 .search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">SPRING NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">10개 항목</p><a href="#item-0"><span>01</span>먼저 보는 기능 지도</a><a href="#item-1"><span>02</span>실행과 빈 등록</a><a href="#item-2"><span>03</span>URL 처리 — Mapping</a><a href="#item-3"><span>04</span>입력 연결 — 경로·쿼리·JSON·폼</a><a href="#item-4"><span>05</span>응답 만들기 — Model·ResponseEntity</a><a href="#item-5"><span>06</span>입력 검증과 오류 처리</a><a href="#item-6"><span>07</span>DB 작업 — Repository 메서드</a><a href="#item-7"><span>08</span>페이징·정렬·검색</a><a href="#item-8"><span>09</span>트랜잭션과 변경 감지</a><a href="#item-9"><span>10</span>자주 헷갈리는 부분</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="terraform-reference.html"><span>↗</span>Terraform 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-29<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>Spring<br><span>기능 · 사용법</span></h1><p class="lead">요청 처리부터 DB 저장까지.<br>메서드·어노테이션의 역할과 사용법을 한눈에.</p><div class="tags"><span>MVC</span><span>DTO · 검증</span><span>JPA</span><span>트랜잭션</span></div><div class="hero-bottom"><span>10개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>먼저 보는 기능 지도</h2><p><strong>Spring에서는 메서드, 어노테이션, 설정을 함께 사용합니다.</strong> 모두를 ‘함수’로 부르면 헷갈리므로 종류를 구분했습니다. Java 21 / Spring Boot 4 계열의 MVC·JPA 입문용 요약입니다. 아래 코드는 필요한 부분만 발췌했으며 import와 주변 클래스는 생략할 수 있습니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -126,15 +130,15 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tr>
 </tbody></table>
 </div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@SpringBootApplication</span>
-<span class="kw">public</span> <span class="kw">class</span> App {
-    <span class="kw">public</span> static <span class="kw">void</span> main(String[] args) {
-        SpringApplication.run(App.<span class="kw">class</span>, args);
+<span class="kw">public</span> <span class="kw">class</span> <span class="id">App</span> {
+    <span class="kw">public</span> <span class="kw">static</span> <span class="kw">void</span> <span class="fn">main</span>(<span class="id">String</span>[] <span class="id">args</span>) {
+        <span class="id">SpringApplication</span>.<span class="fn">run</span>(<span class="id">App</span>.<span class="kw">class</span>, <span class="id">args</span>);
     }
 }</code></pre></div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Configuration</span>
-<span class="kw">class</span> AppConfig {
+<span class="kw">class</span> <span class="id">AppConfig</span> {
     <span class="an">@Bean</span>
-    Clock clock() {
-        <span class="kw">return</span> Clock.systemUTC();
+    <span class="id">Clock</span> <span class="fn">clock</span>() {
+        <span class="kw">return</span> <span class="id">Clock</span>.<span class="fn">systemUTC</span>();
     }
 }</code></pre></div><p>생성자가 하나이면 @Autowired 없이 생성자 주입을 사용할 수 있습니다. Spring Data의 JpaRepository 인터페이스는 보통 @Repository를 직접 붙이지 않아도 구현체가 등록됩니다.</p>
 <p><a href="https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html">Spring 공식: 빈과 의존성 주입</a></p>
@@ -179,10 +183,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tbody></table>
 </div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@RestController</span>
 <span class="an">@RequestMapping</span>(<span class="str">&quot;/api/todos&quot;</span>)
-<span class="kw">class</span> TodoApiController {
+<span class="kw">class</span> <span class="id">TodoApiController</span> {
     <span class="an">@GetMapping</span>(<span class="str">&quot;/hello&quot;</span>)
-    <span class="kw">public</span> Map&lt;String, String&gt; hello() {
-        <span class="kw">return</span> Map.of(<span class="str">&quot;message&quot;</span>, <span class="str">&quot;안녕하세요&quot;</span>);
+    <span class="kw">public</span> <span class="id">Map</span>&lt;<span class="id">String</span>, <span class="id">String</span>&gt; <span class="fn">hello</span>() {
+        <span class="kw">return</span> <span class="id">Map</span>.<span class="fn">of</span>(<span class="str">&quot;message&quot;</span>, <span class="str">&quot;안녕하세요&quot;</span>);
     }
 }</code></pre></div><p>GET /api/todos/hello 요청은 JSON 객체를 반환합니다. <code>@Controller</code>는 화면 처리에, <code>@RestController</code>는 응답 본문 데이터에 사용합니다. 같은 URL이라도 HTTP 메서드에 따라 다른 처리를 연결할 수 있습니다.</p>
 <p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc.html">Spring MVC 공식 문서</a></p>
@@ -221,26 +225,26 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tr>
 </tbody></table>
 </div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@GetMapping</span>(<span class="str">&quot;/{id}&quot;</span>)
-<span class="kw">public</span> TodoResponse detail(<span class="an">@PathVariable</span>(<span class="str">&quot;id&quot;</span>) Long id) {
-    <span class="kw">return</span> service.find(id);
+<span class="kw">public</span> <span class="id">TodoResponse</span> <span class="fn">detail</span>(<span class="an">@PathVariable</span>(<span class="str">&quot;id&quot;</span>) <span class="id">Long</span> <span class="id">id</span>) {
+    <span class="kw">return</span> <span class="id">service</span>.<span class="fn">find</span>(<span class="id">id</span>);
 }
 
 <span class="an">@GetMapping</span>
-<span class="kw">public</span> List&lt;TodoResponse&gt; list(
-        <span class="an">@RequestParam</span>(name = <span class="str">&quot;page&quot;</span>, defaultValue = <span class="str">&quot;0&quot;</span>) int page) {
-    <span class="kw">return</span> service.list(page);
+<span class="kw">public</span> <span class="id">List</span>&lt;<span class="id">TodoResponse</span>&gt; <span class="fn">list</span>(
+        <span class="an">@RequestParam</span>(<span class="id">name</span> = <span class="str">&quot;page&quot;</span>, <span class="id">defaultValue</span> = <span class="str">&quot;0&quot;</span>) <span class="kw">int</span> <span class="id">page</span>) {
+    <span class="kw">return</span> <span class="id">service</span>.<span class="fn">list</span>(<span class="id">page</span>);
 }</code></pre></div><p>위 service와 TodoResponse는 애플리케이션이 정의하는 타입과 메서드입니다. Spring이 자동으로 만들어 주는 이름은 아닙니다.</p>
-<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> record TodoCreateRequest(
-    <span class="an">@NotBlank</span> <span class="an">@Size</span>(max = 100) String title
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> <span class="kw">record</span> <span class="fn">TodoCreateRequest</span>(
+    <span class="an">@NotBlank</span> <span class="an">@Size</span>(<span class="id">max</span> = <span class="num">100</span>) <span class="id">String</span> <span class="id">title</span>
 ) {}
 
 <span class="an">@PostMapping</span>
-<span class="kw">public</span> ResponseEntity&lt;TodoResponse&gt; create(
-        <span class="an">@Valid</span> <span class="an">@RequestBody</span> TodoCreateRequest request) {
-    TodoResponse saved = service.create(request);
-    <span class="kw">return</span> ResponseEntity.created(
-        URI.create(<span class="str">&quot;/api/todos/&quot;</span> + saved.id())
-    ).body(saved);
+<span class="kw">public</span> <span class="id">ResponseEntity</span>&lt;<span class="id">TodoResponse</span>&gt; <span class="fn">create</span>(
+        <span class="an">@Valid</span> <span class="an">@RequestBody</span> <span class="id">TodoCreateRequest</span> <span class="id">request</span>) {
+    <span class="id">TodoResponse</span> <span class="id">saved</span> = <span class="id">service</span>.<span class="fn">create</span>(<span class="id">request</span>);
+    <span class="kw">return</span> <span class="id">ResponseEntity</span>.<span class="fn">created</span>(
+        <span class="id">URI</span>.<span class="fn">create</span>(<span class="str">&quot;/api/todos/&quot;</span> + <span class="id">saved</span>.<span class="fn">id</span>())
+    ).<span class="fn">body</span>(<span class="id">saved</span>);
 }</code></pre></div><p><code>request.title()</code>은 Java record의 접근자입니다. JSON 본문을 받을 때 Content-Type은 application/json을 사용합니다. DTO는 입력 전달용이고 Entity는 영속 데이터용입니다.</p>
 <p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/requestbody.html">공식: @RequestBody</a></p>
 </section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>응답 만들기 — Model·ResponseEntity</h2><div class="table-wrap" tabindex="0"><table>
@@ -280,8 +284,8 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tr>
 </tbody></table>
 </div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@GetMapping</span>(<span class="str">&quot;/todos&quot;</span>)
-<span class="kw">public</span> String listPage(Model model) {
-    model.addAttribute(<span class="str">&quot;todos&quot;</span>, service.findAll());
+<span class="kw">public</span> <span class="id">String</span> <span class="fn">listPage</span>(<span class="id">Model</span> <span class="id">model</span>) {
+    <span class="id">model</span>.<span class="fn">addAttribute</span>(<span class="str">&quot;todos&quot;</span>, <span class="id">service</span>.<span class="fn">findAll</span>());
     <span class="kw">return</span> <span class="str">&quot;todos/list&quot;</span>;
 }</code></pre></div><p>위 메서드는 @Controller 안에서 사용합니다. @RestController에서 같은 문자열을 반환하면 화면이 아니라 문자열 본문이 됩니다.</p>
 <p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responseentity.html">공식: ResponseEntity</a></p>
@@ -325,22 +329,22 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tr>
 </tbody></table>
 </div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@PostMapping</span>(<span class="str">&quot;/todos&quot;</span>)
-<span class="kw">public</span> String create(<span class="an">@Valid</span> <span class="an">@ModelAttribute</span>(<span class="str">&quot;todoForm&quot;</span>) TodoForm form,
-                     BindingResult errors) {
-    <span class="kw">if</span> (errors.hasErrors()) <span class="kw">return</span> <span class="str">&quot;todos/new&quot;</span>;
-    service.create(form);
+<span class="kw">public</span> <span class="id">String</span> <span class="fn">create</span>(<span class="an">@Valid</span> <span class="an">@ModelAttribute</span>(<span class="str">&quot;todoForm&quot;</span>) <span class="id">TodoForm</span> <span class="id">form</span>,
+                     <span class="id">BindingResult</span> <span class="id">errors</span>) {
+    <span class="kw">if</span> (<span class="id">errors</span>.<span class="fn">hasErrors</span>()) <span class="kw">return</span> <span class="str">&quot;todos/new&quot;</span>;
+    <span class="id">service</span>.<span class="fn">create</span>(<span class="id">form</span>);
     <span class="kw">return</span> <span class="str">&quot;redirect:/todos&quot;</span>;
 }</code></pre></div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@RestControllerAdvice</span>
-<span class="kw">class</span> ApiErrors {
-    <span class="an">@ExceptionHandler</span>(TodoNotFoundException.<span class="kw">class</span>)
-    ResponseEntity&lt;Map&lt;String, String&gt;&gt; notFound() {
-        <span class="kw">return</span> ResponseEntity.status(404)
-            .body(Map.of(<span class="str">&quot;message&quot;</span>, <span class="str">&quot;할 일이 없습니다.&quot;</span>));
+<span class="kw">class</span> <span class="id">ApiErrors</span> {
+    <span class="an">@ExceptionHandler</span>(<span class="id">TodoNotFoundException</span>.<span class="kw">class</span>)
+    <span class="id">ResponseEntity</span>&lt;<span class="id">Map</span>&lt;<span class="id">String</span>, <span class="id">String</span>&gt;&gt; <span class="fn">notFound</span>() {
+        <span class="kw">return</span> <span class="id">ResponseEntity</span>.<span class="fn">status</span>(<span class="num">404</span>)
+            .<span class="fn">body</span>(<span class="id">Map</span>.<span class="fn">of</span>(<span class="str">&quot;message&quot;</span>, <span class="str">&quot;할 일이 없습니다.&quot;</span>));
     }
 }</code></pre></div><p>TodoNotFoundException은 직접 정의한 예외입니다. 예제 오류 응답은 ‘없는 할 일’만 처리하며 검증 오류와 모든 서버 오류를 한꺼번에 처리하지는 않습니다.</p>
 <p><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-validation.html">공식: 검증</a> · <a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html">예외 처리</a></p>
-</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>DB 작업 — Repository 메서드</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> <span class="kw">interface</span> TodoRepository <span class="kw">extends</span> JpaRepository&lt;Todo, Long&gt; {
-    List&lt;Todo&gt; findByTitleContaining(String keyword);
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>DB 작업 — Repository 메서드</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> <span class="kw">interface</span> <span class="id">TodoRepository</span> <span class="kw">extends</span> <span class="id">JpaRepository</span>&lt;<span class="id">Todo</span>, <span class="id">Long</span>&gt; {
+    <span class="id">List</span>&lt;<span class="id">Todo</span>&gt; <span class="fn">findByTitleContaining</span>(<span class="id">String</span> <span class="id">keyword</span>);
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -390,14 +394,14 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 <td>commit과 다름</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>Todo todo = repository.findById(id)
-    .orElseThrow(() -&gt; <span class="kw">new</span> TodoNotFoundException(id));</code></pre></div><p><code>orElseThrow</code>는 Spring이 아니라 Java Optional의 메서드입니다. save는 신규 여부 판정에 따라 persist 또는 merge를 사용하므로 무조건 INSERT라는 뜻이 아닙니다.</p>
+</div><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">Todo</span> <span class="id">todo</span> = <span class="id">repository</span>.<span class="fn">findById</span>(<span class="id">id</span>)
+    .<span class="fn">orElseThrow</span>(() -&gt; <span class="kw">new</span> <span class="fn">TodoNotFoundException</span>(<span class="id">id</span>));</code></pre></div><p><code>orElseThrow</code>는 Spring이 아니라 Java Optional의 메서드입니다. save는 신규 여부 판정에 따라 persist 또는 merge를 사용하므로 무조건 INSERT라는 뜻이 아닙니다.</p>
 <p><a href="https://docs.spring.io/spring-data/jpa/reference/jpa/entity-persistence.html">공식: 엔티티 저장</a></p>
-</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>페이징·정렬·검색</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>Pageable pageable = PageRequest.of(
-    0, 20, Sort.by(Sort.Direction.DESC, <span class="str">&quot;id&quot;</span>)
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>페이징·정렬·검색</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">Pageable</span> <span class="id">pageable</span> = <span class="id">PageRequest</span>.<span class="fn">of</span>(
+    <span class="num">0</span>, <span class="num">20</span>, <span class="id">Sort</span>.<span class="fn">by</span>(<span class="id">Sort</span>.<span class="id">Direction</span>.<span class="id">DESC</span>, <span class="str">&quot;id&quot;</span>)
 );
-Page&lt;Todo&gt; page = repository.findAll(pageable);
-List&lt;Todo&gt; items = page.getContent();</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">Page</span>&lt;<span class="id">Todo</span>&gt; <span class="id">page</span> = <span class="id">repository</span>.<span class="fn">findAll</span>(<span class="id">pageable</span>);
+<span class="id">List</span>&lt;<span class="id">Todo</span>&gt; <span class="id">items</span> = <span class="id">page</span>.<span class="fn">getContent</span>();</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>기능</th>
@@ -429,18 +433,18 @@ List&lt;Todo&gt; items = page.getContent();</code></pre></div><div class="table-
 <p><code>findByTitleContaining</code> 같은 메서드 이름은 엔티티의 title 속성을 기준으로 해석됩니다. DB 열 이름을 임의로 넣는 것이 아닙니다.</p>
 <p><a href="https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html">공식: 쿼리 메서드</a></p>
 </section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>트랜잭션과 변경 감지</h2><div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="an">@Service</span>
-<span class="kw">class</span> TodoService {
-    <span class="kw">private</span> <span class="kw">final</span> TodoRepository repository;
+<span class="kw">class</span> <span class="id">TodoService</span> {
+    <span class="kw">private</span> <span class="kw">final</span> <span class="id">TodoRepository</span> <span class="id">repository</span>;
 
-    TodoService(TodoRepository repository) {
-        this.repository = repository;
+    <span class="fn">TodoService</span>(<span class="id">TodoRepository</span> <span class="id">repository</span>) {
+        <span class="kw">this</span>.<span class="id">repository</span> = <span class="id">repository</span>;
     }
 
     <span class="an">@Transactional</span>
-    <span class="kw">public</span> <span class="kw">void</span> update(Long id, String title) {
-        Todo todo = repository.findById(id)
-            .orElseThrow(() -&gt; <span class="kw">new</span> TodoNotFoundException(id));
-        todo.changeTitle(title);
+    <span class="kw">public</span> <span class="kw">void</span> <span class="fn">update</span>(<span class="id">Long</span> <span class="id">id</span>, <span class="id">String</span> <span class="id">title</span>) {
+        <span class="id">Todo</span> <span class="id">todo</span> = <span class="id">repository</span>.<span class="fn">findById</span>(<span class="id">id</span>)
+            .<span class="fn">orElseThrow</span>(() -&gt; <span class="kw">new</span> <span class="fn">TodoNotFoundException</span>(<span class="id">id</span>));
+        <span class="id">todo</span>.<span class="fn">changeTitle</span>(<span class="id">title</span>);
     }
 }</code></pre></div><p>changeTitle은 직접 정의한 엔티티 메서드입니다. 트랜잭션에서 관리 중인 엔티티를 변경하면 JPA의 변경 감지로 반영되어 반드시 save를 다시 부를 필요는 없습니다.</p>
 <div class="table-wrap" tabindex="0"><table>

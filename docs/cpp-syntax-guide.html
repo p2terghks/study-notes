@@ -28,24 +28,28 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 .theme-toggle{position:fixed;right:18px;top:12px;z-index:20;padding:7px 12px;border:1px solid var(--border,var(--line));border-radius:6px;background:var(--bg);color:var(--text);font:12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;cursor:pointer;box-shadow:0 1px 4px #0000000a}
 .theme-toggle:focus-visible{outline:2px solid var(--text);outline-offset:3px}
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a>
  <a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="학습 목차"><a class="brand" href="#top"><span class="brand-mark">C+</span>C++ LAB</a><p class="nav-label">참조 · 클래스 · 표준 라이브러리</p><div class="nav-group">기본 문법부터 실습까지</div><a href="#step-1"><span>01</span>시작과 컴파일</a><a href="#step-2"><span>02</span>변수·타입·auto·const</a><a href="#step-3"><span>03</span>연산자와 형 변환</a><a href="#step-4"><span>04</span>입출력과 std::string</a><a href="#step-5"><span>05</span>조건문과 반복문</a><a href="#step-6"><span>06</span>함수와 오버로딩</a><a href="#step-7"><span>07</span>참조와 포인터</a><a href="#step-8"><span>08</span>vector와 map</a><a href="#step-9"><span>09</span>클래스와 생성자</a><a href="#step-10"><span>10</span>메모리 수명과 RAII</a><a href="#step-11"><span>11</span>템플릿·알고리즘·람다</a><a href="#step-12"><span>12</span>파일·예외·학습 점검</a><div class="nav-group">전체 실습과 다른 가이드</div><a href="#reference"><span>↗</span>성적 집계 · 전체 코드</a><a href="python-syntax-guide.html"><span>↗</span>Python 문법 가이드</a><a href="c-syntax-guide.html"><span>↗</span>C 문법 가이드</a><a href="spring-web-guide.html"><span>↗</span>Spring 가이드</a><a href="react-web-guide.html"><span>↗</span>React 가이드</a><div class="nav-note">C++17 기준 · 입문 문법<br>추가 라이브러리 없는 기본 예제</div></nav>
  <main id="content"><header id="top"><p class="eyebrow">BEGINNER’S GUIDE / 문법부터 차근차근</p><h1>처음 배우는<br><span>C++</span></h1><p class="lead">타입과 객체로 프로그램 구성하기.<br>기본 문법부터 표준 라이브러리까지 연결합니다.</p><div class="tags"><span>타입과 참조</span><span>string · vector</span><span>클래스</span><span>RAII</span></div><div class="hero-bottom"><span>12개 학습 단계</span><span>실행 검증한 전체 예제</span><span>오프라인 열람 가능</span></div></header>
  <div class="reading-guide"><strong>이렇게 읽어 보세요</strong><p>짧은 코드 → 설명 표 → 주의할 점 순서로 읽으세요. 발췌 코드는 문맥과 헤더가 필요할 수 있습니다. <a href="#reference">전체 실습 코드</a>는 그대로 저장해 실행할 수 있습니다.</p></div><section id="step-1"><div class="section-kicker">STEP 01</div><h2>시작과 컴파일</h2><p><strong>C++은 타입·함수에 더해 클래스와 표준 라이브러리로 프로그램을 구성합니다.</strong> 이 가이드는 C++17 기준입니다.</p>
-<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;iostream&gt;</span>
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">iostream</span>&gt;
 
-<span class="kw">int</span> main() {
-    std::cout &lt;&lt; <span class="str">&quot;Hello, C++!\n&quot;</span>;
-    <span class="kw">return</span> 0;
-}</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>c++ -std=c++17 -Wall -Wextra -pedantic hello.cpp -o hello
-./hello</code></pre></div><p>Clang 또는 GCC가 설치된 macOS/Linux 터미널 기준입니다. 파일 확장자는 <code>.cpp</code>입니다. <code>std::</code>는 표준 라이브러리의 이름 공간에 속한다는 뜻입니다.</p>
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;Hello, C++!\n&quot;</span>;
+    <span class="kw">return</span> <span class="num">0</span>;
+}</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">c</span>++ -<span class="id">std</span>=<span class="id">c</span>++<span class="num">17</span> -<span class="id">Wall</span> -<span class="id">Wextra</span> -<span class="id">pedantic</span> <span class="id">hello</span>.<span class="id">cpp</span> -<span class="id">o</span> <span class="id">hello</span>
+./<span class="id">hello</span></code></pre></div><p>Clang 또는 GCC가 설치된 macOS/Linux 터미널 기준입니다. 파일 확장자는 <code>.cpp</code>입니다. <code>std::</code>는 표준 라이브러리의 이름 공간에 속한다는 뜻입니다.</p>
 <aside class="callout"><p>C++은 단순히 C 문법에 class만 붙인 언어는 아닙니다. 처음부터 std::string, std::vector와 자동 자원 관리를 활용하세요. 짧은 코드는 문법 발췌이고 마지막 예제는 완전한 프로그램입니다.</p>
-</aside><a class="next" href="#step-2">다음 단계로 →</a></section><section id="step-2"><div class="section-kicker">STEP 02</div><h2>변수·타입·auto·const</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> age = 20;
-<span class="kw">double</span> height = 175.5;
-<span class="kw">bool</span> is_student = <span class="kw">true</span>;
-<span class="kw">char</span> grade = <span class="str">'A'</span>;
-<span class="kw">const</span> <span class="kw">int</span> max_score = 100;
-<span class="kw">auto</span> count = 3;  <span class="cm">// int로 추론</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+</aside><a class="next" href="#step-2">다음 단계로 →</a></section><section id="step-2"><div class="section-kicker">STEP 02</div><h2>변수·타입·auto·const</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> <span class="id">age</span> = <span class="num">20</span>;
+<span class="kw">double</span> <span class="id">height</span> = <span class="num">175.5</span>;
+<span class="kw">bool</span> <span class="id">is_student</span> = <span class="kw">true</span>;
+<span class="kw">char</span> <span class="id">grade</span> = <span class="str">'A'</span>;
+<span class="kw">const</span> <span class="kw">int</span> <span class="id">max_score</span> = <span class="num">100</span>;
+<span class="kw">auto</span> <span class="id">count</span> = <span class="num">3</span>;  <span class="cm">// int로 추론</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>문법</th>
@@ -70,11 +74,11 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tr>
 </tbody></table>
 </div><p>auto는 Python처럼 실행 중 타입이 바뀐다는 뜻이 아닙니다. 타입은 컴파일 시 정해집니다. 초기화되지 않은 지역 변수를 읽지 마세요.</p>
-<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> count{};
-std::cout &lt;&lt; count &lt;&lt; <span class="str">'\n'</span>;  <span class="cm">// 0</span></code></pre></div><a class="next" href="#step-3">다음 단계로 →</a></section><section id="step-3"><div class="section-kicker">STEP 03</div><h2>연산자와 형 변환</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> a = 7;
-<span class="kw">int</span> b = 2;
-std::cout &lt;&lt; a / b &lt;&lt; <span class="str">'\n'</span>;                      <span class="cm">// 3</span>
-std::cout &lt;&lt; static_cast&lt;<span class="kw">double</span>&gt;(a) / b &lt;&lt; <span class="str">'\n'</span>; <span class="cm">// 3.5</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> <span class="id">count</span>{};
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">count</span> &lt;&lt; <span class="str">'\n'</span>;  <span class="cm">// 0</span></code></pre></div><a class="next" href="#step-3">다음 단계로 →</a></section><section id="step-3"><div class="section-kicker">STEP 03</div><h2>연산자와 형 변환</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> <span class="id">a</span> = <span class="num">7</span>;
+<span class="kw">int</span> <span class="id">b</span> = <span class="num">2</span>;
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">a</span> / <span class="id">b</span> &lt;&lt; <span class="str">'\n'</span>;                      <span class="cm">// 3</span>
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">static_cast</span>&lt;<span class="kw">double</span>&gt;(<span class="id">a</span>) / <span class="id">b</span> &lt;&lt; <span class="str">'\n'</span>; <span class="cm">// 3.5</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>목적</th>
@@ -103,16 +107,16 @@ std::cout &lt;&lt; static_cast&lt;<span class="kw">double</span>&gt;(a) / b &lt;
 </tr>
 </tbody></table>
 </div><p>정수 나눗셈은 소수 부분을 0 방향으로 버립니다. 정수 범위 초과와 0 나눗셈에 주의합니다. <code>^</code>는 비트 XOR이며 거듭제곱이 아닙니다.</p>
-<a class="next" href="#step-4">다음 단계로 →</a></section><section id="step-4"><div class="section-kicker">STEP 04</div><h2>입출력과 std::string</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;iostream&gt;</span>
-<span class="cm">#include &lt;string&gt;</span>
+<a class="next" href="#step-4">다음 단계로 →</a></section><section id="step-4"><div class="section-kicker">STEP 04</div><h2>입출력과 std::string</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">iostream</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">string</span>&gt;
 
-<span class="kw">int</span> main() {
-    std::string name;
-    std::cout &lt;&lt; <span class="str">&quot;Name: &quot;</span>;
-    <span class="kw">if</span> (!std::getline(std::cin, name)) {
-        <span class="kw">return</span> 1;
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="id">std</span>::<span class="id">string</span> <span class="id">name</span>;
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;Name: &quot;</span>;
+    <span class="kw">if</span> (!<span class="id">std</span>::<span class="fn">getline</span>(<span class="id">std</span>::<span class="id">cin</span>, <span class="id">name</span>)) {
+        <span class="kw">return</span> <span class="num">1</span>;
     }
-    std::cout &lt;&lt; <span class="str">&quot;Hello, &quot;</span> &lt;&lt; name &lt;&lt; <span class="str">'\n'</span>;
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;Hello, &quot;</span> &lt;&lt; <span class="id">name</span> &lt;&lt; <span class="str">'\n'</span>;
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -145,40 +149,40 @@ std::cout &lt;&lt; static_cast&lt;<span class="kw">double</span>&gt;(a) / b &lt;
 <td>문자열을 관리하는 타입</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>std::string title = <span class="str">&quot;C++&quot;</span>;
-title += <span class="str">&quot; study&quot;</span>;
-std::cout &lt;&lt; title.size() &lt;&lt; <span class="str">'\n'</span>;</code></pre></div><p>std::string은 필요한 메모리를 관리합니다. size는 char 요소 수이므로 UTF-8 한글의 눈에 보이는 글자 수와 같지 않을 수 있습니다.</p>
+</div><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">std</span>::<span class="id">string</span> <span class="id">title</span> = <span class="str">&quot;C++&quot;</span>;
+<span class="id">title</span> += <span class="str">&quot; study&quot;</span>;
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">title</span>.<span class="fn">size</span>() &lt;&lt; <span class="str">'\n'</span>;</code></pre></div><p>std::string은 필요한 메모리를 관리합니다. size는 char 요소 수이므로 UTF-8 한글의 눈에 보이는 글자 수와 같지 않을 수 있습니다.</p>
 <aside class="callout"><p><code>std::cin &gt;&gt; number</code> 다음에 getline을 쓰면 남은 줄바꿈 때문에 빈 줄을 읽을 수 있습니다. 초보 단계에서는 입력 방식을 한 줄 읽기로 통일하면 이해하기 쉽습니다.</p>
-</aside><a class="next" href="#step-5">다음 단계로 →</a></section><section id="step-5"><div class="section-kicker">STEP 05</div><h2>조건문과 반복문</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> score = 85;
-<span class="kw">if</span> (score &gt;= 60) {
-    std::cout &lt;&lt; <span class="str">&quot;PASS\n&quot;</span>;
+</aside><a class="next" href="#step-5">다음 단계로 →</a></section><section id="step-5"><div class="section-kicker">STEP 05</div><h2>조건문과 반복문</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> <span class="id">score</span> = <span class="num">85</span>;
+<span class="kw">if</span> (<span class="id">score</span> &gt;= <span class="num">60</span>) {
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;PASS\n&quot;</span>;
 } <span class="kw">else</span> {
-    std::cout &lt;&lt; <span class="str">&quot;FAIL\n&quot;</span>;
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;FAIL\n&quot;</span>;
 }
 
-<span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; 3; ++i) {
-    std::cout &lt;&lt; i &lt;&lt; <span class="str">'\n'</span>;
+<span class="kw">for</span> (<span class="kw">int</span> <span class="id">i</span> = <span class="num">0</span>; <span class="id">i</span> &lt; <span class="num">3</span>; ++<span class="id">i</span>) {
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">i</span> &lt;&lt; <span class="str">'\n'</span>;
 }</code></pre></div><p>while은 조건이 참인 동안 반복하고, break는 반복 종료, continue는 다음 회차로 이동합니다. switch로 정수나 enum 값에 따라 분기할 수도 있습니다.</p>
 <p>범위 기반 for는 컨테이너를 읽기 편하게 순회합니다.</p>
-<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>std::vector&lt;<span class="kw">int</span>&gt; scores{80, 90, 100};
-<span class="kw">for</span> (<span class="kw">int</span> score : scores) {
-    std::cout &lt;&lt; score &lt;&lt; <span class="str">'\n'</span>;
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">std</span>::<span class="id">vector</span>&lt;<span class="kw">int</span>&gt; <span class="id">scores</span>{<span class="num">80</span>, <span class="num">90</span>, <span class="num">100</span>};
+<span class="kw">for</span> (<span class="kw">int</span> <span class="id">score</span> : <span class="id">scores</span>) {
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">score</span> &lt;&lt; <span class="str">'\n'</span>;
 }</code></pre></div><p>vector를 사용하려면 <code>#include &lt;vector&gt;</code>가 필요합니다.</p>
-<a class="next" href="#step-6">다음 단계로 →</a></section><section id="step-6"><div class="section-kicker">STEP 06</div><h2>함수와 오버로딩</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> add(<span class="kw">int</span> a, <span class="kw">int</span> b) {
-    <span class="kw">return</span> a + b;
+<a class="next" href="#step-6">다음 단계로 →</a></section><section id="step-6"><div class="section-kicker">STEP 06</div><h2>함수와 오버로딩</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> <span class="id">a</span>, <span class="kw">int</span> <span class="id">b</span>) {
+    <span class="kw">return</span> <span class="id">a</span> + <span class="id">b</span>;
 }
 
-<span class="kw">double</span> add(<span class="kw">double</span> a, <span class="kw">double</span> b) {
-    <span class="kw">return</span> a + b;
+<span class="kw">double</span> <span class="fn">add</span>(<span class="kw">double</span> <span class="id">a</span>, <span class="kw">double</span> <span class="id">b</span>) {
+    <span class="kw">return</span> <span class="id">a</span> + <span class="id">b</span>;
 }</code></pre></div><p>같은 이름의 함수라도 매개변수 구성이 다르면 정의할 수 있습니다. 이를 <strong>오버로딩</strong>이라고 합니다. 반환 타입만 다른 것으로는 구분할 수 없습니다.</p>
-<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>std::cout &lt;&lt; add(2, 3) &lt;&lt; <span class="str">'\n'</span>;       <span class="cm">// 정수 버전</span>
-std::cout &lt;&lt; add(2.5, 3.5) &lt;&lt; <span class="str">'\n'</span>;   <span class="cm">// 실수 버전</span></code></pre></div><p>함수 선언은 호출 전에 보여야 합니다. main 뒤에 정의하려면 앞에 <code>int add(int a, int b);</code> 같은 선언을 둡니다.</p>
-<a class="next" href="#step-7">다음 단계로 →</a></section><section id="step-7"><div class="section-kicker">STEP 07</div><h2>참조와 포인터</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">void</span> increase(<span class="kw">int</span>&amp; value) {
-    ++value;
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="fn">add</span>(<span class="num">2</span>, <span class="num">3</span>) &lt;&lt; <span class="str">'\n'</span>;       <span class="cm">// 정수 버전</span>
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="fn">add</span>(<span class="num">2.5</span>, <span class="num">3.5</span>) &lt;&lt; <span class="str">'\n'</span>;   <span class="cm">// 실수 버전</span></code></pre></div><p>함수 선언은 호출 전에 보여야 합니다. main 뒤에 정의하려면 앞에 <code>int add(int a, int b);</code> 같은 선언을 둡니다.</p>
+<a class="next" href="#step-7">다음 단계로 →</a></section><section id="step-7"><div class="section-kicker">STEP 07</div><h2>참조와 포인터</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">void</span> <span class="fn">increase</span>(<span class="kw">int</span>&amp; <span class="id">value</span>) {
+    ++<span class="id">value</span>;
 }
 
-<span class="kw">int</span> count = 10;
-increase(count);  <span class="cm">// count는 11</span></code></pre></div><p>참조는 기존 객체의 다른 이름이라고 생각하면 됩니다. <code>int&amp;</code> 매개변수는 원본을 변경할 수 있습니다.</p>
+<span class="kw">int</span> <span class="id">count</span> = <span class="num">10</span>;
+<span class="fn">increase</span>(<span class="id">count</span>);  <span class="cm">// count는 11</span></code></pre></div><p>참조는 기존 객체의 다른 이름이라고 생각하면 됩니다. <code>int&amp;</code> 매개변수는 원본을 변경할 수 있습니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -208,22 +212,22 @@ increase(count);  <span class="cm">// count는 11</span></code></pre></div><p>�
 <td>주소 전달, nullptr 표현 가능</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> value = 10;
-<span class="kw">int</span>* pointer = &amp;value;
-<span class="kw">if</span> (pointer != nullptr) {
-    *pointer = 20;
+</div><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">int</span> <span class="id">value</span> = <span class="num">10</span>;
+<span class="kw">int</span>* <span class="id">pointer</span> = &amp;<span class="id">value</span>;
+<span class="kw">if</span> (<span class="id">pointer</span> != <span class="kw">nullptr</span>) {
+    *<span class="id">pointer</span> = <span class="num">20</span>;
 }</code></pre></div><p>참조와 포인터 모두 대상의 수명이 끝난 뒤 사용하면 안 됩니다. 지역 변수의 참조나 주소를 반환하지 마세요.</p>
-<a class="next" href="#step-8">다음 단계로 →</a></section><section id="step-8"><div class="section-kicker">STEP 08</div><h2>vector와 map</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;vector&gt;</span>
-<span class="cm">#include &lt;map&gt;</span>
-<span class="cm">#include &lt;string&gt;</span>
+<a class="next" href="#step-8">다음 단계로 →</a></section><section id="step-8"><div class="section-kicker">STEP 08</div><h2>vector와 map</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">vector</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">map</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">string</span>&gt;
 
-std::vector&lt;<span class="kw">int</span>&gt; scores{80, 90};
-scores.push_back(100);
-std::cout &lt;&lt; scores.at(0) &lt;&lt; <span class="str">'\n'</span>;
+<span class="id">std</span>::<span class="id">vector</span>&lt;<span class="kw">int</span>&gt; <span class="id">scores</span>{<span class="num">80</span>, <span class="num">90</span>};
+<span class="id">scores</span>.<span class="fn">push_back</span>(<span class="num">100</span>);
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">scores</span>.<span class="fn">at</span>(<span class="num">0</span>) &lt;&lt; <span class="str">'\n'</span>;
 
-std::map&lt;std::string, <span class="kw">int</span>&gt; grades;
-grades[<span class="str">&quot;Minsu&quot;</span>] = 85;
-std::cout &lt;&lt; grades.at(<span class="str">&quot;Minsu&quot;</span>) &lt;&lt; <span class="str">'\n'</span>;</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">std</span>::<span class="id">map</span>&lt;<span class="id">std</span>::<span class="id">string</span>, <span class="kw">int</span>&gt; <span class="id">grades</span>;
+<span class="id">grades</span>[<span class="str">&quot;Minsu&quot;</span>] = <span class="num">85</span>;
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">grades</span>.<span class="fn">at</span>(<span class="str">&quot;Minsu&quot;</span>) &lt;&lt; <span class="str">'\n'</span>;</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>컨테이너</th>
@@ -245,22 +249,22 @@ std::cout &lt;&lt; grades.at(<span class="str">&quot;Minsu&quot;</span>) &lt;&lt
 </tbody></table>
 </div><p><code>vector.at()</code>은 범위를 벗어나면 예외를 던집니다. <code>vector[index]</code>는 일반적으로 범위를 검사하지 않습니다. <code>map[key]</code>는 키가 없으면 새 값을 삽입하므로 단순 존재 확인에는 find를 사용할 수 있습니다.</p>
 <p>vector의 크기 변경으로 재할당이 일어나면 기존 요소를 가리키던 참조·포인터·반복자가 무효가 될 수 있습니다.</p>
-<a class="next" href="#step-9">다음 단계로 →</a></section><section id="step-9"><div class="section-kicker">STEP 09</div><h2>클래스와 생성자</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;string&gt;</span>
+<a class="next" href="#step-9">다음 단계로 →</a></section><section id="step-9"><div class="section-kicker">STEP 09</div><h2>클래스와 생성자</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">string</span>&gt;
 
-<span class="kw">class</span> Student {
+<span class="kw">class</span> <span class="id">Student</span> {
 <span class="kw">private</span>:
-    std::string name_;
-    <span class="kw">int</span> score_;
+    <span class="id">std</span>::<span class="id">string</span> <span class="id">name_</span>;
+    <span class="kw">int</span> <span class="id">score_</span>;
 
 <span class="kw">public</span>:
-    Student(<span class="kw">const</span> std::string&amp; name, <span class="kw">int</span> score)
-        : name_(name), score_(score) {}
+    <span class="fn">Student</span>(<span class="kw">const</span> <span class="id">std</span>::<span class="id">string</span>&amp; <span class="id">name</span>, <span class="kw">int</span> <span class="id">score</span>)
+        : <span class="fn">name_</span>(<span class="id">name</span>), <span class="fn">score_</span>(<span class="id">score</span>) {}
 
-    <span class="kw">bool</span> isPassed() <span class="kw">const</span> {
-        <span class="kw">return</span> score_ &gt;= 60;
+    <span class="kw">bool</span> <span class="fn">isPassed</span>() <span class="kw">const</span> {
+        <span class="kw">return</span> <span class="id">score_</span> &gt;= <span class="num">60</span>;
     }
-};</code></pre></div><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>Student student(<span class="str">&quot;Minsu&quot;</span>, 85);
-std::cout &lt;&lt; student.isPassed() &lt;&lt; <span class="str">'\n'</span>;  <span class="cm">// 1</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+};</code></pre></div><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">Student</span> <span class="fn">student</span>(<span class="str">&quot;Minsu&quot;</span>, <span class="num">85</span>);
+<span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">student</span>.<span class="fn">isPassed</span>() &lt;&lt; <span class="str">'\n'</span>;  <span class="cm">// 1</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>코드</th>
@@ -291,11 +295,11 @@ std::cout &lt;&lt; student.isPassed() &lt;&lt; <span class="str">'\n'</span>;  <
 </div><p>클래스 정의 끝에는 <code>;</code>를 붙입니다. struct와 class는 기능 대부분이 같고 기본 접근 수준이 각각 public, private라는 차이가 있습니다.</p>
 <a class="next" href="#step-10">다음 단계로 →</a></section><section id="step-10"><div class="section-kicker">STEP 10</div><h2>메모리 수명과 RAII</h2><p><strong>객체 수명에 자원 관리를 연결하는 방식을 RAII라고 합니다.</strong></p>
 <p>std::string과 std::vector는 객체가 사라질 때 자신이 소유한 메모리를 정리합니다. 보통 직접 new/delete를 작성하지 않아도 됩니다.</p>
-<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;memory&gt;</span>
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">memory</span>&gt;
 
 {
-    <span class="kw">auto</span> value = std::make_unique&lt;<span class="kw">int</span>&gt;(42);
-    std::cout &lt;&lt; *value &lt;&lt; <span class="str">'\n'</span>;
+    <span class="kw">auto</span> <span class="id">value</span> = <span class="id">std</span>::<span class="id">make_unique</span>&lt;<span class="kw">int</span>&gt;(<span class="num">42</span>);
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; *<span class="id">value</span> &lt;&lt; <span class="str">'\n'</span>;
 } <span class="cm">// unique_ptr가 소멸하면서 소유한 int도 해제</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -317,40 +321,40 @@ std::cout &lt;&lt; student.isPassed() &lt;&lt; <span class="str">'\n'</span>;  <
 </tr>
 </tbody></table>
 </div><p>unique_ptr는 복사할 수 없고 필요하면 소유권을 이동합니다. 단순한 값은 우선 지역 변수로 만들고 동적 할당은 필요할 때 사용하세요.</p>
-<a class="next" href="#step-11">다음 단계로 →</a></section><section id="step-11"><div class="section-kicker">STEP 11</div><h2>템플릿·알고리즘·람다</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;
-T larger(T a, T b) {
-    <span class="kw">return</span> a &gt; b ? a : b;
+<a class="next" href="#step-11">다음 단계로 →</a></section><section id="step-11"><div class="section-kicker">STEP 11</div><h2>템플릿·알고리즘·람다</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">template</span> &lt;<span class="kw">typename</span> <span class="id">T</span>&gt;
+<span class="id">T</span> <span class="fn">larger</span>(<span class="id">T</span> <span class="id">a</span>, <span class="id">T</span> <span class="id">b</span>) {
+    <span class="kw">return</span> <span class="id">a</span> &gt; <span class="id">b</span> ? <span class="id">a</span> : <span class="id">b</span>;
 }</code></pre></div><p>템플릿은 여러 타입에 적용할 코드를 표현합니다. <code>larger(3, 5)</code>에서는 T가 int로 추론됩니다.</p>
-<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;algorithm&gt;</span>
-<span class="cm">#include &lt;vector&gt;</span>
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">algorithm</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">vector</span>&gt;
 
-std::vector&lt;<span class="kw">int</span>&gt; scores{80, 100, 90};
-std::sort(scores.begin(), scores.end());
+<span class="id">std</span>::<span class="id">vector</span>&lt;<span class="kw">int</span>&gt; <span class="id">scores</span>{<span class="num">80</span>, <span class="num">100</span>, <span class="num">90</span>};
+<span class="id">std</span>::<span class="fn">sort</span>(<span class="id">scores</span>.<span class="fn">begin</span>(), <span class="id">scores</span>.<span class="fn">end</span>());
 
-<span class="kw">int</span> passed = std::count_if(scores.begin(), scores.end(),
-    [](<span class="kw">int</span> score) { <span class="kw">return</span> score &gt;= 90; });</code></pre></div><ul>
+<span class="kw">int</span> <span class="id">passed</span> = <span class="id">std</span>::<span class="fn">count_if</span>(<span class="id">scores</span>.<span class="fn">begin</span>(), <span class="id">scores</span>.<span class="fn">end</span>(),
+    [](<span class="kw">int</span> <span class="id">score</span>) { <span class="kw">return</span> <span class="id">score</span> &gt;= <span class="num">90</span>; });</code></pre></div><ul>
 <li>sort는 범위를 정렬합니다.</li>
 <li>begin과 end는 시작과 마지막 다음 위치를 가리키는 반복자입니다.</li>
 <li><code>[](int score) { ... }</code>는 그 자리에서 만드는 함수인 람다입니다.</li>
 <li>count_if는 조건을 만족하는 항목 수를 셉니다.</li>
 </ul>
 <p>처음에는 반복문으로 같은 처리를 작성해 보고 표준 알고리즘으로 바꿔 보세요.</p>
-<a class="next" href="#step-12">다음 단계로 →</a></section><section id="step-12"><div class="section-kicker">STEP 12</div><h2>파일·예외·학습 점검</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;fstream&gt;</span>
-<span class="cm">#include &lt;string&gt;</span>
+<a class="next" href="#step-12">다음 단계로 →</a></section><section id="step-12"><div class="section-kicker">STEP 12</div><h2>파일·예외·학습 점검</h2><div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">fstream</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">string</span>&gt;
 
-std::ifstream file(<span class="str">&quot;memo.txt&quot;</span>);
-<span class="kw">if</span> (!file) {
-    std::cerr &lt;&lt; <span class="str">&quot;Cannot open file\n&quot;</span>;
-    <span class="kw">return</span> 1;
+<span class="id">std</span>::<span class="id">ifstream</span> <span class="fn">file</span>(<span class="str">&quot;memo.txt&quot;</span>);
+<span class="kw">if</span> (!<span class="id">file</span>) {
+    <span class="id">std</span>::<span class="id">cerr</span> &lt;&lt; <span class="str">&quot;Cannot open file\n&quot;</span>;
+    <span class="kw">return</span> <span class="num">1</span>;
 }
-std::string line;
-<span class="kw">while</span> (std::getline(file, line)) {
-    std::cout &lt;&lt; line &lt;&lt; <span class="str">'\n'</span>;
+<span class="id">std</span>::<span class="id">string</span> <span class="id">line</span>;
+<span class="kw">while</span> (<span class="id">std</span>::<span class="fn">getline</span>(<span class="id">file</span>, <span class="id">line</span>)) {
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">line</span> &lt;&lt; <span class="str">'\n'</span>;
 }</code></pre></div><p>위 코드는 main 안에서 사용하고 필요한 헤더는 파일 상단에 둡니다. 파일 스트림은 수명이 끝나면 닫힙니다. 기본 설정에서 파일 열기 실패는 보통 예외 대신 스트림 상태로 확인합니다.</p>
 <div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">try</span> {
-    std::cout &lt;&lt; scores.at(99) &lt;&lt; <span class="str">'\n'</span>;
-} catch (<span class="kw">const</span> std::out_of_range&amp; error) {
-    std::cerr &lt;&lt; error.what() &lt;&lt; <span class="str">'\n'</span>;
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">scores</span>.<span class="fn">at</span>(<span class="num">99</span>) &lt;&lt; <span class="str">'\n'</span>;
+} <span class="kw">catch</span> (<span class="kw">const</span> <span class="id">std</span>::<span class="id">out_of_range</span>&amp; <span class="id">error</span>) {
+    <span class="id">std</span>::<span class="id">cerr</span> &lt;&lt; <span class="id">error</span>.<span class="fn">what</span>() &lt;&lt; <span class="str">'\n'</span>;
 }</code></pre></div><p>두 번째 예시는 vector 변수 scores가 선언되어 있고 stdexcept 헤더를 포함한 문맥에서 사용합니다.</p>
 <ul>
 <li><input disabled="" type="checkbox"> auto가 동적 타입이 아님을 안다.</li>
@@ -363,58 +367,58 @@ std::string line;
 <a class="next" href="#reference">전체 실습 코드 보기 →</a></section>
  <section id="reference"><div class="section-kicker">PRACTICE / 직접 실행하기</div><h2>성적 집계 · 전체 실습</h2><p>세 언어에서 같은 문제를 풀며 문법을 비교해 보세요. 점수 입력·평균·합격자 수를 다룹니다.</p><button id="expand" class="secondary">전체 펼치기</button><details class="reference" id="detail-1"><summary>성적 집계 — 전체 코드</summary><div class="reference-body"><p><strong>0~100점 정수 세 개를 입력받고 평균과 합격자 수를 출력합니다.</strong> 합격 기준은 60점입니다. 영어 출력은 터미널 환경 차이를 줄이기 위해 사용합니다.</p>
 <p><a href="../examples/languages/scores.cpp">소스 파일 보기</a> · 파일명: <code>scores.cpp</code></p>
-<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#include &lt;iomanip&gt;</span>
-<span class="cm">#include &lt;iostream&gt;</span>
-<span class="cm">#include &lt;sstream&gt;</span>
-<span class="cm">#include &lt;string&gt;</span>
-<span class="cm">#include &lt;vector&gt;</span>
+<div class="codebox"><div class="codebar"><span>cpp</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>#<span class="id">include</span> &lt;<span class="id">iomanip</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">iostream</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">sstream</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">string</span>&gt;
+#<span class="id">include</span> &lt;<span class="id">vector</span>&gt;
 
 <span class="cm">// 성공하면 true, 입력이 끝났으면 false를 반환합니다.</span>
-<span class="kw">bool</span> readScore(<span class="kw">int</span> index, <span class="kw">int</span>&amp; result) {
-    std::string line;
+<span class="kw">bool</span> <span class="fn">readScore</span>(<span class="kw">int</span> <span class="id">index</span>, <span class="kw">int</span>&amp; <span class="id">result</span>) {
+    <span class="id">std</span>::<span class="id">string</span> <span class="id">line</span>;
     <span class="kw">while</span> (<span class="kw">true</span>) {
-        std::cout &lt;&lt; <span class="str">&quot;Score &quot;</span> &lt;&lt; index &lt;&lt; <span class="str">&quot;: &quot;</span>;
-        <span class="kw">if</span> (!std::getline(std::cin, line)) {
+        <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;Score &quot;</span> &lt;&lt; <span class="id">index</span> &lt;&lt; <span class="str">&quot;: &quot;</span>;
+        <span class="kw">if</span> (!<span class="id">std</span>::<span class="fn">getline</span>(<span class="id">std</span>::<span class="id">cin</span>, <span class="id">line</span>)) {
             <span class="kw">return</span> <span class="kw">false</span>;
         }
-        std::istringstream input(line);
-        <span class="kw">int</span> value = 0;
-        <span class="kw">char</span> extra = <span class="str">'\0'</span>;
-        <span class="kw">if</span> (!(input &gt;&gt; value) || (input &gt;&gt; extra)
-                || value &lt; 0 || value &gt; 100) {
-            std::cout &lt;&lt; <span class="str">&quot;Enter an integer from 0 to 100.\n&quot;</span>;
+        <span class="id">std</span>::<span class="id">istringstream</span> <span class="fn">input</span>(<span class="id">line</span>);
+        <span class="kw">int</span> <span class="id">value</span> = <span class="num">0</span>;
+        <span class="kw">char</span> <span class="id">extra</span> = <span class="str">'\0'</span>;
+        <span class="kw">if</span> (!(<span class="id">input</span> &gt;&gt; <span class="id">value</span>) || (<span class="id">input</span> &gt;&gt; <span class="id">extra</span>)
+                || <span class="id">value</span> &lt; <span class="num">0</span> || <span class="id">value</span> &gt; <span class="num">100</span>) {
+            <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;Enter an integer from 0 to 100.\n&quot;</span>;
             <span class="kw">continue</span>;
         }
-        result = value;
+        <span class="id">result</span> = <span class="id">value</span>;
         <span class="kw">return</span> <span class="kw">true</span>;
     }
 }
 
-<span class="kw">int</span> main() {
-    std::vector&lt;<span class="kw">int</span>&gt; scores;
-    <span class="kw">for</span> (<span class="kw">int</span> index = 1; index &lt;= 3; ++index) {
-        <span class="kw">int</span> score = 0;
-        <span class="kw">if</span> (!readScore(index, score)) {
-            std::cerr &lt;&lt; <span class="str">&quot;Input ended before all scores were entered.\n&quot;</span>;
-            <span class="kw">return</span> 1;
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="id">std</span>::<span class="id">vector</span>&lt;<span class="kw">int</span>&gt; <span class="id">scores</span>;
+    <span class="kw">for</span> (<span class="kw">int</span> <span class="id">index</span> = <span class="num">1</span>; <span class="id">index</span> &lt;= <span class="num">3</span>; ++<span class="id">index</span>) {
+        <span class="kw">int</span> <span class="id">score</span> = <span class="num">0</span>;
+        <span class="kw">if</span> (!<span class="fn">readScore</span>(<span class="id">index</span>, <span class="id">score</span>)) {
+            <span class="id">std</span>::<span class="id">cerr</span> &lt;&lt; <span class="str">&quot;Input ended before all scores were entered.\n&quot;</span>;
+            <span class="kw">return</span> <span class="num">1</span>;
         }
-        scores.push_back(score);
+        <span class="id">scores</span>.<span class="fn">push_back</span>(<span class="id">score</span>);
     }
-    <span class="kw">int</span> total = 0;
-    <span class="kw">int</span> passed = 0;
-    <span class="kw">for</span> (<span class="kw">int</span> score : scores) {
-        total += score;
-        <span class="kw">if</span> (score &gt;= 60) {
-            ++passed;
+    <span class="kw">int</span> <span class="id">total</span> = <span class="num">0</span>;
+    <span class="kw">int</span> <span class="id">passed</span> = <span class="num">0</span>;
+    <span class="kw">for</span> (<span class="kw">int</span> <span class="id">score</span> : <span class="id">scores</span>) {
+        <span class="id">total</span> += <span class="id">score</span>;
+        <span class="kw">if</span> (<span class="id">score</span> &gt;= <span class="num">60</span>) {
+            ++<span class="id">passed</span>;
         }
     }
-    <span class="kw">double</span> average = static_cast&lt;<span class="kw">double</span>&gt;(total) / scores.size();
-    std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(2);
-    std::cout &lt;&lt; <span class="str">&quot;Average: &quot;</span> &lt;&lt; average &lt;&lt; <span class="str">'\n'</span>;
-    std::cout &lt;&lt; <span class="str">&quot;Passed: &quot;</span> &lt;&lt; passed &lt;&lt; <span class="str">'\n'</span>;
+    <span class="kw">double</span> <span class="id">average</span> = <span class="id">static_cast</span>&lt;<span class="kw">double</span>&gt;(<span class="id">total</span>) / <span class="id">scores</span>.<span class="fn">size</span>();
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="id">std</span>::<span class="id">fixed</span> &lt;&lt; <span class="id">std</span>::<span class="fn">setprecision</span>(<span class="num">2</span>);
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;Average: &quot;</span> &lt;&lt; <span class="id">average</span> &lt;&lt; <span class="str">'\n'</span>;
+    <span class="id">std</span>::<span class="id">cout</span> &lt;&lt; <span class="str">&quot;Passed: &quot;</span> &lt;&lt; <span class="id">passed</span> &lt;&lt; <span class="str">'\n'</span>;
 }</code></pre></div></div></details><details class="reference" id="detail-2"><summary>실행 방법과 예상 결과</summary><div class="reference-body"><p>소스 파일이 있는 <code>examples/languages</code> 폴더의 터미널에서 실행하세요. C와 C++ 예제는 각각 컴파일하면 실행 파일 scores가 교체됩니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>c++ -std=c++17 -Wall -Wextra -pedantic scores.cpp -o scores
-./scores</code></pre></div><p>점수를 한 줄에 하나씩 입력합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">c</span>++ -<span class="id">std</span>=<span class="id">c</span>++<span class="num">17</span> -<span class="id">Wall</span> -<span class="id">Wextra</span> -<span class="id">pedantic</span> <span class="id">scores</span>.<span class="id">cpp</span> -<span class="id">o</span> <span class="id">scores</span>
+./<span class="id">scores</span></code></pre></div><p>점수를 한 줄에 하나씩 입력합니다.</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>80
 90
 50</code></pre></div><p>예상 결과:</p>

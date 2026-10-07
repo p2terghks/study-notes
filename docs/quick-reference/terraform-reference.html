@@ -30,15 +30,19 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
 .search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">TERRAFORM NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">15개 항목</p><a href="#item-0"><span>01</span>Terraform과 IaC의 의미</a><a href="#item-1"><span>02</span>설치·버전과 작업 디렉터리</a><a href="#item-2"><span>03</span>핵심 명령어: init → plan → apply</a><a href="#item-3"><span>04</span>HCL 블록·참조 읽는 법</a><a href="#item-4"><span>05</span>변수·타입·tfvars·우선순위</a><a href="#item-5"><span>06</span>Provider·resource·data의 차이</a><a href="#item-6"><span>07</span>plan 기호·저장 계획·종료 코드</a><a href="#item-7"><span>08</span>count·for_each·의존성</a><a href="#item-8"><span>09</span>모듈·환경 분리·workspace</a><a href="#item-9"><span>10</span>state·lock·Git 관리</a><a href="#item-10"><span>11</span>S3 원격 backend와 상태 잠금</a><a href="#item-11"><span>12</span>기존 자원 import·코드 이름 변경</a><a href="#item-12"><span>13</span>drift·교체·삭제를 다루는 법</a><a href="#item-13"><span>14</span>AWS 계정 없이 하는 로컬 실습</a><a href="#item-14"><span>15</span>오류 해결과 실무 순서</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-10-01<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>Terraform<br><span>문법 · 명령어</span></h1><p class="lead">인프라를 코드로 선언하고 변경을 검토하기.<br>HCL·plan/apply·모듈·state와 계정 없는 로컬 실습.</p><div class="tags"><span>HCL · 변수</span><span>명령어</span><span>상태 · 모듈</span><span>로컬 실습</span></div><div class="hero-bottom"><span>15개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>Terraform과 IaC의 의미</h2><p><strong>Terraform은 원하는 인프라 상태를 코드로 선언하고, 현재 상태와 비교하여 변경을 적용하는 도구입니다.</strong> IaC(Infrastructure as Code)는 이런 인프라 구성을 코드로 관리하는 방식입니다.</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>설정 코드(.tf) + state + provider가 조회한 실제 자원
     → plan: 무엇을 만들고·바꾸고·삭제할지 계산
     → apply: 계획을 적용하고 state 갱신</code></pre></div><p>AWS CLI가 “인스턴스를 시작해” 같은 API 작업을 직접 호출한다면 Terraform은 “이 설정의 인스턴스가 존재해야 해”를 선언합니다. Terraform이 모든 수동 변경을 자동 복구하는 상시 실행 데몬인 것은 아닙니다. plan/apply 등 실행 시 상태를 비교합니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/cli/commands">Terraform CLI 개요</a></p>
 </section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>설치·버전과 작업 디렉터리</h2><p><a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli">공식 설치 안내</a>에서 OS·CPU에 맞는 CLI를 설치한 뒤 확인합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform version
-terraform -help
-terraform plan -help</code></pre></div><p>같은 디렉터리의 <code>.tf</code> 파일들은 <strong>한 모듈의 설정으로 함께 읽힙니다.</strong> 파일 이름순으로 실행되는 스크립트가 아닙니다. 다른 실습의 <code>main.tf</code>를 같은 폴더에 모아 두지 마세요.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">version</span>
+<span class="id">terraform</span> -<span class="id">help</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">help</span></code></pre></div><p>같은 디렉터리의 <code>.tf</code> 파일들은 <strong>한 모듈의 설정으로 함께 읽힙니다.</strong> 파일 이름순으로 실행되는 스크립트가 아닙니다. 다른 실습의 <code>main.tf</code>를 같은 폴더에 모아 두지 마세요.</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>my-infra/
   versions.tf       Terraform·provider 버전 조건
   providers.tf      API 연결 대상·리전 설정
@@ -96,21 +100,21 @@ terraform plan -help</code></pre></div><p>같은 디렉터리의 <code>.tf</code
 </tr>
 </tbody></table>
 </div><p>설정·provider·backend·module을 추가하거나 바꾸면 필요한 초기화를 위해 <code>init</code>을 다시 실행합니다. <code>init -upgrade</code>는 허용된 버전 범위 안에서 의존성을 갱신하므로 일반 init과 구분합니다.</p>
-</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>HCL 블록·참조 읽는 법</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>variable &quot;environment&quot; {
-  type    = string
-  default = &quot;dev&quot;
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>HCL 블록·참조 읽는 법</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">variable</span> <span class="str">&quot;environment&quot;</span> {
+  <span class="id">type</span>    = <span class="id">string</span>
+  <span class="id">default</span> = <span class="str">&quot;dev&quot;</span>
 }
 
-locals {
-  label = &quot;study-${var.environment}&quot;
+<span class="kw">locals</span> {
+  <span class="id">label</span> = <span class="str">&quot;study-${var.environment}&quot;</span>
 }
 
-resource &quot;terraform_data&quot; &quot;note&quot; {
-  input = local.label
+<span class="kw">resource</span> <span class="str">&quot;terraform_data&quot;</span> <span class="str">&quot;note&quot;</span> {
+  <span class="id">input</span> = <span class="id">local</span>.<span class="id">label</span>
 }
 
-output &quot;label&quot; {
-  value = terraform_data.note.output
+<span class="kw">output</span> <span class="str">&quot;label&quot;</span> {
+  <span class="id">value</span> = <span class="id">terraform_data</span>.<span class="id">note</span>.<span class="kw">output</span>
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -149,23 +153,23 @@ output &quot;label&quot; {
 </tbody></table>
 </div><p>이 예제의 <code>terraform_data</code>는 내장 리소스로 외부 서버를 만들지 않습니다. 로컬 state에 값을 저장하여 리소스의 생성·갱신 흐름을 연습할 수 있습니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/language/resources/terraform-data">terraform_data 공식 설명</a></p>
-</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>변수·타입·tfvars·우선순위</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>variable &quot;environment&quot; {
-  type    = string
-  default = &quot;dev&quot;
-  validation {
-    condition     = contains([&quot;dev&quot;, &quot;stg&quot;, &quot;prd&quot;], var.environment)
-    error_message = &quot;environment는 dev, stg, prd 중 하나여야 합니다.&quot;
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>변수·타입·tfvars·우선순위</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">variable</span> <span class="str">&quot;environment&quot;</span> {
+  <span class="id">type</span>    = <span class="id">string</span>
+  <span class="id">default</span> = <span class="str">&quot;dev&quot;</span>
+  <span class="id">validation</span> {
+    <span class="id">condition</span>     = <span class="fn">contains</span>([<span class="str">&quot;dev&quot;</span>, <span class="str">&quot;stg&quot;</span>, <span class="str">&quot;prd&quot;</span>], <span class="id">var</span>.<span class="id">environment</span>)
+    <span class="id">error_message</span> = <span class="str">&quot;environment는 dev, stg, prd 중 하나여야 합니다.&quot;</span>
   }
 }
 
-variable &quot;labels&quot; {
-  type    = map(string)
-  default = { owner = &quot;study&quot; }
+<span class="kw">variable</span> <span class="str">&quot;labels&quot;</span> {
+  <span class="id">type</span>    = <span class="fn">map</span>(<span class="id">string</span>)
+  <span class="id">default</span> = { <span class="id">owner</span> = <span class="str">&quot;study&quot;</span> }
 }</code></pre></div><p><code>string</code>, <code>number</code>, <code>bool</code>, <code>list(string)</code>, <code>set(string)</code>, <code>map(string)</code>, <code>object({...})</code> 등으로 입력 구조를 정합니다. <code>dev.tfvars</code>에는 선언 블록 없이 값만 적습니다.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code># dev.tfvars
- environment = &quot;dev&quot;
- labels = { owner = &quot;study&quot;, project = &quot;practice&quot; }</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform plan -var-file=dev.tfvars
-terraform plan -var=<span class="str">'environment=stg'</span></code></pre></div><p>로컬 CLI의 일반적인 우선순위는 낮은 쪽부터 <code>default</code> → <code>TF_VAR_이름</code> 환경 변수 → <code>terraform.tfvars</code> → <code>terraform.tfvars.json</code> → 이름순의 <code>*.auto.tfvars</code>/JSON → 명령행 <code>-var</code>·<code>-var-file</code> 지정 순서입니다. <code>dev.tfvars</code>는 자동 로드 이름이 아니므로 <code>-var-file</code>로 지정합니다. HCP Terraform의 workspace 변수 등은 별도 적용 규칙을 확인합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># dev.tfvars</span>
+ <span class="id">environment</span> = <span class="str">&quot;dev&quot;</span>
+ <span class="id">labels</span> = { <span class="id">owner</span> = <span class="str">&quot;study&quot;</span>, <span class="id">project</span> = <span class="str">&quot;practice&quot;</span> }</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">plan</span> -<span class="id">var</span>-<span class="id">file</span>=<span class="id">dev</span>.<span class="id">tfvars</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">var</span>=<span class="str">'environment=stg'</span></code></pre></div><p>로컬 CLI의 일반적인 우선순위는 낮은 쪽부터 <code>default</code> → <code>TF_VAR_이름</code> 환경 변수 → <code>terraform.tfvars</code> → <code>terraform.tfvars.json</code> → 이름순의 <code>*.auto.tfvars</code>/JSON → 명령행 <code>-var</code>·<code>-var-file</code> 지정 순서입니다. <code>dev.tfvars</code>는 자동 로드 이름이 아니므로 <code>-var-file</code>로 지정합니다. HCP Terraform의 workspace 변수 등은 별도 적용 규칙을 확인합니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/language/values/variables">입력 변수</a></p>
 </section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>Provider·resource·data의 차이</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -192,27 +196,27 @@ terraform plan -var=<span class="str">'environment=stg'</span></code></pre></div
 </tr>
 </tbody></table>
 </div><p>AWS 연결 설정의 예시입니다. 실제 사용할 provider 버전 조건은 프로젝트에 맞게 검토합니다.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform {
-  required_version = &quot;&gt;= 1.10, &lt; 2.0&quot;
-  required_providers {
-    aws = {
-      source  = &quot;hashicorp/aws&quot;
-      version = &quot;~&gt; 6.14.0&quot;
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">terraform</span> {
+  <span class="id">required_version</span> = <span class="str">&quot;&gt;= 1.10, &lt; 2.0&quot;</span>
+  <span class="id">required_providers</span> {
+    <span class="id">aws</span> = {
+      <span class="id">source</span>  = <span class="str">&quot;hashicorp/aws&quot;</span>
+      <span class="id">version</span> = <span class="str">&quot;~&gt; 6.14.0&quot;</span>
     }
   }
 }
 
-provider &quot;aws&quot; {
-  region = &quot;ap-northeast-2&quot;
+<span class="kw">provider</span> <span class="str">&quot;aws&quot;</span> {
+  <span class="id">region</span> = <span class="str">&quot;ap-northeast-2&quot;</span>
 }
 
-data &quot;aws_caller_identity&quot; &quot;current&quot; {}
+<span class="kw">data</span> <span class="str">&quot;aws_caller_identity&quot;</span> <span class="str">&quot;current&quot;</span> {}
 
-output &quot;account_id&quot; {
-  value = data.aws_caller_identity.current.account_id
+<span class="kw">output</span> <span class="str">&quot;account_id&quot;</span> {
+  <span class="id">value</span> = <span class="kw">data</span>.<span class="id">aws_caller_identity</span>.<span class="id">current</span>.<span class="id">account_id</span>
 }</code></pre></div><p><code>~&gt; 6.14.0</code>은 6.14.x 범위이며 6.15는 포함하지 않습니다. <code>~&gt; 6.14</code>는 6.x의 이후 minor도 허용하므로 다릅니다. 인증 키를 HCL에 직접 쓰기보다 지원되는 프로파일·환경의 역할을 사용합니다.</p>
 <div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># bash/zsh: 이 명령에만 프로파일 적용</span>
-AWS_PROFILE=study terraform plan</code></pre></div><p>SSO 세션이 만료되면 AWS CLI로 다시 로그인합니다. AWS CLI의 새 로그인 방식은 provider·SDK 버전에 따라 지원 여부가 다를 수 있습니다.</p>
+<span class="id">AWS_PROFILE</span>=<span class="id">study</span> <span class="id">terraform</span> <span class="id">plan</span></code></pre></div><p>SSO 세션이 만료되면 AWS CLI로 다시 로그인합니다. AWS CLI의 새 로그인 방식은 provider·SDK 버전에 따라 지원 여부가 다를 수 있습니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/language/providers/configuration">Provider 설정</a></p>
 </section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>plan 기호·저장 계획·종료 코드</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -242,23 +246,23 @@ AWS_PROFILE=study terraform plan</code></pre></div><p>SSO 세션이 만료되면
 <td>적용 후 확정될 값</td>
 </tr>
 </tbody></table>
-</div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform plan -out=review.tfplan
-terraform show review.tfplan
-terraform apply review.tfplan</code></pre></div><p><strong>저장된 계획을 <code>apply review.tfplan</code>으로 적용하면 추가 yes 확인 없이 실행됩니다.</strong> 먼저 show 결과를 검토해야 합니다. 계획 파일에는 입력·민감한 데이터가 포함될 수 있어 Git에 올리지 않습니다. state가 변경되어 오래된 계획이 되었다면 새로 plan합니다.</p>
+</div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">plan</span> -<span class="id">out</span>=<span class="id">review</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">show</span> <span class="id">review</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">apply</span> <span class="id">review</span>.<span class="id">tfplan</span></code></pre></div><p><strong>저장된 계획을 <code>apply review.tfplan</code>으로 적용하면 추가 yes 확인 없이 실행됩니다.</strong> 먼저 show 결과를 검토해야 합니다. 계획 파일에는 입력·민감한 데이터가 포함될 수 있어 Git에 올리지 않습니다. state가 변경되어 오래된 계획이 되었다면 새로 plan합니다.</p>
 <p>자동화에서 <code>terraform plan -detailed-exitcode</code>는 0=변경 없음, 1=오류, 2=변경 있음입니다. 2를 무조건 장애로 처리하지 않도록 스크립트를 작성합니다. <code>plan</code>은 비용 견적이나 모든 실행 성공을 보장하는 단계가 아닙니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/cli/commands/plan">plan 옵션·모드</a></p>
 </section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>count·for_each·의존성</h2><p>같은 유형의 자원을 여러 개 선언할 때 <code>count</code> 또는 <code>for_each</code>를 사용합니다. 하나의 블록에 둘을 동시에 쓰지 않습니다.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>resource &quot;terraform_data&quot; &quot;service&quot; {
-  for_each = toset([&quot;web&quot;, &quot;api&quot;])
-  input    = &quot;${each.key}-dev&quot;
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;terraform_data&quot;</span> <span class="str">&quot;service&quot;</span> {
+  <span class="id">for_each</span> = <span class="fn">toset</span>([<span class="str">&quot;web&quot;</span>, <span class="str">&quot;api&quot;</span>])
+  <span class="id">input</span>    = <span class="str">&quot;${each.key}-dev&quot;</span>
 }</code></pre></div><p>주소는 <code>terraform_data.service[&quot;web&quot;]</code>, <code>terraform_data.service[&quot;api&quot;]</code>입니다. <code>count</code>는 <code>[0]</code>, <code>[1]</code> 같은 인덱스를 사용하므로 리스트 순서를 바꾸면 예상 밖 교체가 생길 수 있습니다. 안정적인 이름이 있으면 map/set 기반 <code>for_each</code>가 이해하기 쉽습니다. 키는 plan 때 결정 가능해야 하며 민감한 값을 키로 사용하지 않습니다.</p>
 <p>다른 자원의 속성을 참조하면 보통 의존성을 자동 추론합니다. 속성 참조로 표현되지 않는 실제 순서 제약이 있을 때만 <code>depends_on</code>을 검토합니다. <code>depends_on</code>은 잘못된 입력이나 앱 준비 상태를 해결하는 만능 옵션이 아닙니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/language/meta-arguments/for_each">for_each</a> · <a href="https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on">depends_on</a></p>
 </section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>모듈·환경 분리·workspace</h2><p>모듈은 <code>.tf</code> 설정의 재사용 단위입니다. 실행하는 디렉터리가 root module, <code>module</code> 블록으로 호출하는 구성이 child module입니다.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>module &quot;network&quot; {
-  source      = &quot;../../modules/network&quot;
-  environment = var.environment
-  vpc_cidr    = &quot;10.20.0.0/16&quot;
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">module</span> <span class="str">&quot;network&quot;</span> {
+  <span class="id">source</span>      = <span class="str">&quot;../../modules/network&quot;</span>
+  <span class="id">environment</span> = <span class="id">var</span>.<span class="id">environment</span>
+  <span class="id">vpc_cidr</span>    = <span class="str">&quot;10.20.0.0/16&quot;</span>
 }</code></pre></div><p>이 코드는 입력 변수를 갖춘 <code>modules/network</code>가 이미 있을 때의 예입니다. module의 출력은 <code>module.network.vpc_id</code>처럼 사용합니다. 재사용 코드가 같아도 Dev·Prd의 state·계정·권한·입력은 분리할 수 있습니다.</p>
 <p>CLI workspace는 같은 구성의 state 인스턴스를 구분하는 기능입니다. <code>terraform workspace show</code>로 현재 workspace를 확인합니다. <strong>workspace만 바꾼다고 AWS 계정·IAM 권한까지 자동 격리되지는 않습니다.</strong> 운영 환경에는 별도 root 구성과 backend key·계정·권한 분리를 함께 고려합니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/language/modules">모듈</a> · <a href="https://developer.hashicorp.com/terraform/cli/workspaces">CLI workspace</a></p>
@@ -294,48 +298,48 @@ terraform apply review.tfplan</code></pre></div><p><strong>저장된 계획을 <
 </div><p><strong><code>.terraform.lock.hcl</code>과 state lock은 서로 다릅니다.</strong> 전자는 의존성 잠금 파일, 후자는 같은 state의 동시 변경을 막는 장치입니다. <code>sensitive = true</code>는 출력 가림 표시이며 state에서 값을 제거하거나 암호화하는 기능이 아닙니다. 버전·provider가 지원하는 ephemeral·write-only 기능은 별도 개념입니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/language/manage-sensitive-data">민감한 값과 state</a> · <a href="https://developer.hashicorp.com/terraform/language/files/dependency-lock">의존성 lock 파일</a></p>
 </section><section id="item-10"><div class="section-kicker">REFERENCE 11</div><h2>S3 원격 backend와 상태 잠금</h2><p>팀 작업에서는 state를 원격 저장소에 보관하고 잠금을 사용합니다. S3 backend 예시는 <strong>이미 생성된 상태 보관용 버킷</strong>이 있어야 합니다. 앱에서 만드는 일반 버킷과 초기화 순서를 구분하세요.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform {
-  backend &quot;s3&quot; {
-    bucket       = &quot;YOUR_EXISTING_STATE_BUCKET&quot;
-    key          = &quot;study/dev/terraform.tfstate&quot;
-    region       = &quot;ap-northeast-2&quot;
-    encrypt      = true
-    use_lockfile = true
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">terraform</span> {
+  <span class="id">backend</span> <span class="str">&quot;s3&quot;</span> {
+    <span class="id">bucket</span>       = <span class="str">&quot;YOUR_EXISTING_STATE_BUCKET&quot;</span>
+    <span class="id">key</span>          = <span class="str">&quot;study/dev/terraform.tfstate&quot;</span>
+    <span class="id">region</span>       = <span class="str">&quot;ap-northeast-2&quot;</span>
+    <span class="id">encrypt</span>      = <span class="kw">true</span>
+    <span class="id">use_lockfile</span> = <span class="kw">true</span>
   }
 }</code></pre></div><p><code>use_lockfile = true</code>는 Terraform 1.10 이상에서 S3 잠금 파일을 사용합니다. 현재 공식 문서에서 DynamoDB 기반 잠금은 deprecated이므로 새 구성은 S3 잠금을 기준으로 확인합니다. 필요한 state·잠금 객체 권한을 설정하고 버킷 버전 관리와 접근 제한을 구성합니다.</p>
 <p>Backend 설정에서는 일반 입력 변수 <code>var.*</code>를 사용할 수 없습니다. 환경별 값은 부분 backend 설정과 <code>init -backend-config=...</code> 등으로 구분합니다. <strong>state를 옮길 때의 <code>init -migrate-state</code>와 새 설정을 다시 초기화하는 <code>-reconfigure</code>는 같은 동작이 아닙니다.</strong></p>
 <p><a href="https://developer.hashicorp.com/terraform/language/backend/s3">S3 backend·잠금·권한</a></p>
 </section><section id="item-11"><div class="section-kicker">REFERENCE 12</div><h2>기존 자원 import·코드 이름 변경</h2><p>기존 자원을 Terraform 관리에 편입할 때 import를 사용합니다. 다음은 <strong>이미 존재하는 S3 버킷</strong>에 대한 코드 예시이며 새로 만드는 연습 명령이 아닙니다.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>resource &quot;aws_s3_bucket&quot; &quot;existing&quot; {
-  bucket = &quot;YOUR_EXISTING_BUCKET&quot;
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket&quot;</span> <span class="str">&quot;existing&quot;</span> {
+  <span class="id">bucket</span> = <span class="str">&quot;YOUR_EXISTING_BUCKET&quot;</span>
 }
 
-import {
-  to = aws_s3_bucket.existing
-  id = &quot;YOUR_EXISTING_BUCKET&quot;
+<span class="id">import</span> {
+  <span class="id">to</span> = <span class="id">aws_s3_bucket</span>.<span class="id">existing</span>
+  <span class="id">id</span> = <span class="str">&quot;YOUR_EXISTING_BUCKET&quot;</span>
 }</code></pre></div><p>Terraform 1.5 이상에서 import 블록을 계획·적용할 수 있습니다. provider와 리소스별 import ID 형식은 다릅니다. 가져오기 전 plan에서 import 외의 변경·교체가 없는지 확인합니다. CLI <code>terraform import</code>는 기본적으로 state에 연결하는 동작이며 모든 HCL을 자동 작성하는 명령은 아닙니다.</p>
 <p>같은 자원의 코드 이름을 바꾸는 경우에는 삭제·재생성을 유도하지 않도록 이동을 표현할 수 있습니다.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>moved {
-  from = terraform_data.note
-  to   = terraform_data.memo
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">moved</span> {
+  <span class="id">from</span> = <span class="id">terraform_data</span>.<span class="id">note</span>
+  <span class="id">to</span>   = <span class="id">terraform_data</span>.<span class="id">memo</span>
 }</code></pre></div><p>위 블록은 기존 resource 이름도 <code>memo</code>로 변경한 상황의 예입니다. <code>state rm</code>은 실제 자원을 삭제하는 명령이 아니라 <strong>Terraform의 관리 연결을 제거</strong>하므로 목적을 구분합니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/language/import">기존 자원 import</a> · <a href="https://developer.hashicorp.com/terraform/language/modules/develop/refactoring">모듈 리팩터링·moved</a></p>
 </section><section id="item-12"><div class="section-kicker">REFERENCE 13</div><h2>drift·교체·삭제를 다루는 법</h2><p>Drift는 코드·state와 실제 자원 사이의 차이입니다. 콘솔·CLI로 수동 변경했다면 다음 plan에서 변경을 관찰하고 코드에 반영할지 원래 상태로 되돌릴지 결정합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform plan -refresh-only</code></pre></div><p>refresh-only는 실제 자원을 코드대로 수정하는 계획이 아니라 <strong>state와 output을 실제 상태에 맞추는 계획</strong>입니다. 적용은 state를 변경하므로 검토 후 진행합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">plan</span> -<span class="id">refresh</span>-<span class="id">only</span></code></pre></div><p>refresh-only는 실제 자원을 코드대로 수정하는 계획이 아니라 <strong>state와 output을 실제 상태에 맞추는 계획</strong>입니다. 적용은 state를 변경하므로 검토 후 진행합니다.</p>
 <p><code>lifecycle { prevent_destroy = true }</code>는 설정이 존재하는 동안 삭제를 요구하는 계획을 막는 보호 장치이며 백업이나 클라우드 전체의 삭제 방지 정책을 대신하지 않습니다. 블록을 코드에서 없애면 보호도 없어질 수 있습니다. <code>ignore_changes</code>를 넓게 사용하면 중요한 drift를 숨길 수 있습니다.</p>
 <p><code>terraform destroy</code>는 현재 state가 관리하는 자원을 대상으로 합니다. 삭제 전에 계정·리전·backend·workspace와 plan을 확인합니다. 실패한 apply는 이미 일부 자원을 바꿨을 수 있으며 자동으로 전체 롤백된다고 가정하지 않습니다.</p>
 <p><a href="https://developer.hashicorp.com/terraform/tutorials/state/refresh">refresh-only</a> · <a href="https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle">lifecycle</a></p>
 </section><section id="item-13"><div class="section-kicker">REFERENCE 14</div><h2>AWS 계정 없이 하는 로컬 실습</h2><p><a href="sample-files/terraform-basics/main.tf">전체 main.tf 받기</a>를 <strong>빈 실습 폴더</strong>에 저장하세요. Terraform 1.5 이상이면 내장 <code>terraform_data</code>로 AWS 계정·외부 provider 없이 진행할 수 있습니다. 이 파일에는 외부 명령을 실행하는 provisioner도 없습니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform init
-terraform fmt -check
-terraform validate
-terraform plan -out=local.tfplan
-terraform show local.tfplan
-terraform apply local.tfplan
-terraform output
-terraform state list
-terraform plan -detailed-exitcode</code></pre></div><p>첫 계획은 <code>terraform_data.service</code> 두 개를 만들고, 출력은 <code>api-dev</code>, <code>web-dev</code>를 포함합니다. 같은 입력으로 다시 plan하면 변경 없음(종료 코드 0)입니다. 변수 변경도 확인합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform plan -var=<span class="str">'environment=stg'</span></code></pre></div><p>두 리소스의 input이 바뀌는 계획만 확인하며 위 명령은 변경을 적용하지 않습니다. 실습 종료 시 <strong>이 실습 폴더에서</strong> <code>terraform destroy</code>를 실행해 확인 후 로컬 관리 항목을 정리합니다. 실제 AWS 리소스를 만드는 구성의 destroy와 혼동하지 마세요.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">init</span>
+<span class="id">terraform</span> <span class="id">fmt</span> -<span class="id">check</span>
+<span class="id">terraform</span> <span class="id">validate</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">out</span>=<span class="kw">local</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">show</span> <span class="kw">local</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">apply</span> <span class="kw">local</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">output</span>
+<span class="id">terraform</span> <span class="id">state</span> <span class="id">list</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">detailed</span>-<span class="id">exitcode</span></code></pre></div><p>첫 계획은 <code>terraform_data.service</code> 두 개를 만들고, 출력은 <code>api-dev</code>, <code>web-dev</code>를 포함합니다. 같은 입력으로 다시 plan하면 변경 없음(종료 코드 0)입니다. 변수 변경도 확인합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">plan</span> -<span class="id">var</span>=<span class="str">'environment=stg'</span></code></pre></div><p>두 리소스의 input이 바뀌는 계획만 확인하며 위 명령은 변경을 적용하지 않습니다. 실습 종료 시 <strong>이 실습 폴더에서</strong> <code>terraform destroy</code>를 실행해 확인 후 로컬 관리 항목을 정리합니다. 실제 AWS 리소스를 만드는 구성의 destroy와 혼동하지 마세요.</p>
 </section><section id="item-14"><div class="section-kicker">REFERENCE 15</div><h2>오류 해결과 실무 순서</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>

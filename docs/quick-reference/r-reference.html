@@ -30,43 +30,47 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
 .search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">R NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">12개 항목</p><a href="#item-0"><span>01</span>시작하기 — R과 Rscript</a><a href="#item-1"><span>02</span>변수 · 타입 · 연산자</a><a href="#item-2"><span>03</span>벡터 — 여러 값을 한 번에 계산하기</a><a href="#item-3"><span>04</span>인덱스 — 첫 원소는 1번</a><a href="#item-4"><span>05</span>결측값 — NA · NULL · NaN</a><a href="#item-5"><span>06</span>조건문 · 반복문</a><a href="#item-6"><span>07</span>함수와 반복 처리</a><a href="#item-7"><span>08</span>리스트 · 행렬 · 데이터 프레임</a><a href="#item-8"><span>09</span>정렬 · 빈도 · 문자열</a><a href="#item-9"><span>10</span>CSV · 기초 통계 · 그래프</a><a href="#item-10"><span>11</span>전체 실습 — 결측값을 제외한 성적 집계</a><a href="#item-11"><span>12</span>복습 체크 · 참고 자료</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="terraform-reference.html"><span>↗</span>Terraform 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-09-30<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>R<br><span>문법 · 데이터 처리</span></h1><p class="lead">벡터부터 데이터 프레임까지.<br>문법·결측값·통계·전체 실습을 함께 익힙니다.</p><div class="tags"><span>벡터 · 인덱스</span><span>함수</span><span>데이터 프레임</span><span>성적 집계</span></div><div class="hero-bottom"><span>12개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>시작하기 — R과 Rscript</h2><p>R은 통계 계산과 데이터 분석에 사용하는 언어입니다. 이 문서는 추가 패키지 없이 기본 R로 실습합니다. <code>.R</code> 파일에 코드를 저장하고 터미널에서 실행하세요.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>Rscript --version
-Rscript hello.R</code></pre></div><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># hello.R</span>
-message &lt;- <span class="str">&quot;R 공부 시작&quot;</span>
-print(message)
-cat(<span class="str">&quot;합계:&quot;</span>, sum(c(10, 20, 30)), <span class="str">&quot;\n&quot;</span>)</code></pre></div><p><code>print()</code>는 객체를 확인할 때, <code>cat()</code>은 원하는 출력 형식을 만들 때 사용합니다. <code>?mean</code> 또는 <code>help(&quot;mean&quot;)</code>으로 함수 도움말을 봅니다. R 콘솔의 <code>&gt;</code> 표시는 파일에 복사하지 않습니다. 설치는 <a href="https://www.r-project.org/">R 공식 사이트</a>에서 운영체제에 맞게 진행합니다.</p>
-</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>변수 · 타입 · 연산자</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>score &lt;- 85            <span class="cm"># double: 기본 숫자</span>
-count &lt;- 3L            <span class="cm"># integer: L을 붙인 정수</span>
-name &lt;- <span class="str">&quot;민수&quot;</span>         <span class="cm"># character</span>
-passed &lt;- TRUE         <span class="cm"># logical</span>
-print(typeof(score))   <span class="cm"># &quot;double&quot;</span>
-print(as.numeric(<span class="str">&quot;42&quot;</span>) + 1) <span class="cm"># 43</span>
-print(7 %/% 2)         <span class="cm"># 3: 몫</span>
-print(7 %% 2)          <span class="cm"># 1: 나머지</span>
-print(2 ^ 3)           <span class="cm"># 8: 거듭제곱</span></code></pre></div><p><code>&lt;-</code>는 대입, <code>==</code>는 비교입니다. <code>/</code>는 나눗셈이며 <code>!</code>는 부정입니다. 원자 벡터는 한 타입으로 맞춰지므로 <code>c(1, &quot;2&quot;)</code>는 문자열 벡터가 됩니다. 숫자 연산 전 타입을 확인하세요.</p>
-</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>벡터 — 여러 값을 한 번에 계산하기</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>x &lt;- c(60, 80, 100)
-print(x + 5)           <span class="cm"># 65 85 105</span>
-print(x &gt;= 80)         <span class="cm"># FALSE TRUE TRUE</span>
-print(sum(x))          <span class="cm"># 240</span>
-print(mean(x))         <span class="cm"># 80</span>
-print(length(x))       <span class="cm"># 3</span>
-print(seq(2, 8, by = 2)) <span class="cm"># 2 4 6 8</span>
-print(rep(0, 3))       <span class="cm"># 0 0 0</span></code></pre></div><p><code>c()</code>로 값을 묶고 벡터 연산으로 각 원소를 처리합니다. 길이가 다른 벡터를 연산하면 짧은 쪽이 반복되는 <strong>재활용 규칙</strong>이 적용됩니다. <code>c(1,2,3,4) + c(10,20)</code>은 <code>11 22 13 24</code>이므로 의도한 길이인지 확인하세요.</p>
-</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>인덱스 — 첫 원소는 1번</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>x &lt;- c(10, 20, 30, 40)
-print(x[1])            <span class="cm"># 10</span>
-print(x[c(1, 3)])      <span class="cm"># 10 30</span>
-print(x[-1])           <span class="cm"># 첫 원소 제외: 20 30 40</span>
-print(x[x &gt;= 25])      <span class="cm"># 30 40</span>
-print(which(x &gt;= 25))  <span class="cm"># 위치: 3 4</span>
-print(x[0])            <span class="cm"># numeric(0): 빈 벡터</span></code></pre></div><p>Python·C와 달리 R은 <strong>1부터 시작</strong>합니다. 음수 인덱스는 뒤에서 세는 것이 아니라 해당 위치를 제외합니다. 양수와 음수 인덱스를 함께 섞지 마세요. 범위를 벗어난 벡터 원소 조회는 <code>NA</code>가 될 수 있습니다. <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extract.html">공식: 인덱싱</a></p>
-</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>결측값 — NA · NULL · NaN</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>x &lt;- c(70, NA, 90)
-print(is.na(x))            <span class="cm"># FALSE TRUE FALSE</span>
-print(mean(x))             <span class="cm"># NA</span>
-print(mean(x, na.rm = TRUE)) <span class="cm"># 80</span>
-print(x[!is.na(x)])         <span class="cm"># 70 90</span>
-print(is.null(NULL))        <span class="cm"># TRUE</span>
-print(is.nan(0 / 0))        <span class="cm"># TRUE</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">Rscript</span> --<span class="id">version</span>
+<span class="id">Rscript</span> <span class="id">hello</span>.<span class="id">R</span></code></pre></div><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># hello.R</span>
+<span class="id">message</span> &lt;- <span class="str">&quot;R 공부 시작&quot;</span>
+<span class="fn">print</span>(<span class="id">message</span>)
+<span class="fn">cat</span>(<span class="str">&quot;합계:&quot;</span>, <span class="fn">sum</span>(<span class="fn">c</span>(<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>)), <span class="str">&quot;\n&quot;</span>)</code></pre></div><p><code>print()</code>는 객체를 확인할 때, <code>cat()</code>은 원하는 출력 형식을 만들 때 사용합니다. <code>?mean</code> 또는 <code>help(&quot;mean&quot;)</code>으로 함수 도움말을 봅니다. R 콘솔의 <code>&gt;</code> 표시는 파일에 복사하지 않습니다. 설치는 <a href="https://www.r-project.org/">R 공식 사이트</a>에서 운영체제에 맞게 진행합니다.</p>
+</section><section id="item-1"><div class="section-kicker">REFERENCE 02</div><h2>변수 · 타입 · 연산자</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">score</span> &lt;- <span class="num">85</span>            <span class="cm"># double: 기본 숫자</span>
+<span class="id">count</span> &lt;- 3<span class="id">L</span>            <span class="cm"># integer: L을 붙인 정수</span>
+<span class="id">name</span> &lt;- <span class="str">&quot;민수&quot;</span>         <span class="cm"># character</span>
+<span class="id">passed</span> &lt;- <span class="kw">TRUE</span>         <span class="cm"># logical</span>
+<span class="fn">print</span>(<span class="fn">typeof</span>(<span class="id">score</span>))   <span class="cm"># &quot;double&quot;</span>
+<span class="fn">print</span>(<span class="id">as</span>.<span class="fn">numeric</span>(<span class="str">&quot;42&quot;</span>) + <span class="num">1</span>) <span class="cm"># 43</span>
+<span class="fn">print</span>(<span class="num">7</span> %/% <span class="num">2</span>)         <span class="cm"># 3: 몫</span>
+<span class="fn">print</span>(<span class="num">7</span> %% <span class="num">2</span>)          <span class="cm"># 1: 나머지</span>
+<span class="fn">print</span>(<span class="num">2</span> ^ <span class="num">3</span>)           <span class="cm"># 8: 거듭제곱</span></code></pre></div><p><code>&lt;-</code>는 대입, <code>==</code>는 비교입니다. <code>/</code>는 나눗셈이며 <code>!</code>는 부정입니다. 원자 벡터는 한 타입으로 맞춰지므로 <code>c(1, &quot;2&quot;)</code>는 문자열 벡터가 됩니다. 숫자 연산 전 타입을 확인하세요.</p>
+</section><section id="item-2"><div class="section-kicker">REFERENCE 03</div><h2>벡터 — 여러 값을 한 번에 계산하기</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">x</span> &lt;- <span class="fn">c</span>(<span class="num">60</span>, <span class="num">80</span>, <span class="num">100</span>)
+<span class="fn">print</span>(<span class="id">x</span> + <span class="num">5</span>)           <span class="cm"># 65 85 105</span>
+<span class="fn">print</span>(<span class="id">x</span> &gt;= <span class="num">80</span>)         <span class="cm"># FALSE TRUE TRUE</span>
+<span class="fn">print</span>(<span class="fn">sum</span>(<span class="id">x</span>))          <span class="cm"># 240</span>
+<span class="fn">print</span>(<span class="fn">mean</span>(<span class="id">x</span>))         <span class="cm"># 80</span>
+<span class="fn">print</span>(<span class="fn">length</span>(<span class="id">x</span>))       <span class="cm"># 3</span>
+<span class="fn">print</span>(<span class="fn">seq</span>(<span class="num">2</span>, <span class="num">8</span>, <span class="id">by</span> = <span class="num">2</span>)) <span class="cm"># 2 4 6 8</span>
+<span class="fn">print</span>(<span class="fn">rep</span>(<span class="num">0</span>, <span class="num">3</span>))       <span class="cm"># 0 0 0</span></code></pre></div><p><code>c()</code>로 값을 묶고 벡터 연산으로 각 원소를 처리합니다. 길이가 다른 벡터를 연산하면 짧은 쪽이 반복되는 <strong>재활용 규칙</strong>이 적용됩니다. <code>c(1,2,3,4) + c(10,20)</code>은 <code>11 22 13 24</code>이므로 의도한 길이인지 확인하세요.</p>
+</section><section id="item-3"><div class="section-kicker">REFERENCE 04</div><h2>인덱스 — 첫 원소는 1번</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">x</span> &lt;- <span class="fn">c</span>(<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>, <span class="num">40</span>)
+<span class="fn">print</span>(<span class="id">x</span>[<span class="num">1</span>])            <span class="cm"># 10</span>
+<span class="fn">print</span>(<span class="id">x</span>[<span class="fn">c</span>(<span class="num">1</span>, <span class="num">3</span>)])      <span class="cm"># 10 30</span>
+<span class="fn">print</span>(<span class="id">x</span>[-<span class="num">1</span>])           <span class="cm"># 첫 원소 제외: 20 30 40</span>
+<span class="fn">print</span>(<span class="id">x</span>[<span class="id">x</span> &gt;= <span class="num">25</span>])      <span class="cm"># 30 40</span>
+<span class="fn">print</span>(<span class="fn">which</span>(<span class="id">x</span> &gt;= <span class="num">25</span>))  <span class="cm"># 위치: 3 4</span>
+<span class="fn">print</span>(<span class="id">x</span>[<span class="num">0</span>])            <span class="cm"># numeric(0): 빈 벡터</span></code></pre></div><p>Python·C와 달리 R은 <strong>1부터 시작</strong>합니다. 음수 인덱스는 뒤에서 세는 것이 아니라 해당 위치를 제외합니다. 양수와 음수 인덱스를 함께 섞지 마세요. 범위를 벗어난 벡터 원소 조회는 <code>NA</code>가 될 수 있습니다. <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extract.html">공식: 인덱싱</a></p>
+</section><section id="item-4"><div class="section-kicker">REFERENCE 05</div><h2>결측값 — NA · NULL · NaN</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">x</span> &lt;- <span class="fn">c</span>(<span class="num">70</span>, <span class="kw">NA</span>, <span class="num">90</span>)
+<span class="fn">print</span>(<span class="id">is</span>.<span class="fn">na</span>(<span class="id">x</span>))            <span class="cm"># FALSE TRUE FALSE</span>
+<span class="fn">print</span>(<span class="fn">mean</span>(<span class="id">x</span>))             <span class="cm"># NA</span>
+<span class="fn">print</span>(<span class="fn">mean</span>(<span class="id">x</span>, <span class="id">na</span>.<span class="id">rm</span> = <span class="kw">TRUE</span>)) <span class="cm"># 80</span>
+<span class="fn">print</span>(<span class="id">x</span>[!<span class="id">is</span>.<span class="fn">na</span>(<span class="id">x</span>)])         <span class="cm"># 70 90</span>
+<span class="fn">print</span>(<span class="id">is</span>.<span class="fn">null</span>(<span class="kw">NULL</span>))        <span class="cm"># TRUE</span>
+<span class="fn">print</span>(<span class="id">is</span>.<span class="fn">nan</span>(<span class="num">0</span> / <span class="num">0</span>))        <span class="cm"># TRUE</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>값</th>
@@ -91,34 +95,34 @@ print(is.nan(0 / 0))        <span class="cm"># TRUE</span></code></pre></div><di
 </tr>
 </tbody></table>
 </div><p><code>x == NA</code>로 검사하지 않습니다. <code>is.na()</code>는 NaN도 참으로 판단합니다. 결측값을 제외할지는 분석 목적에 따라 정하세요. <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/NA.html">공식: NA</a></p>
-</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>조건문 · 반복문</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>score &lt;- 75
-<span class="kw">if</span> (score &gt;= 60) {
-  print(<span class="str">&quot;합격&quot;</span>)
-} else {
-  print(<span class="str">&quot;재도전&quot;</span>)
+</section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>조건문 · 반복문</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">score</span> &lt;- <span class="num">75</span>
+<span class="kw">if</span> (<span class="id">score</span> &gt;= <span class="num">60</span>) {
+  <span class="fn">print</span>(<span class="str">&quot;합격&quot;</span>)
+} <span class="kw">else</span> {
+  <span class="fn">print</span>(<span class="str">&quot;재도전&quot;</span>)
 }
-x &lt;- c(3, 5, 7)
-for (i in seq_along(x)) {
-  cat(i, x[i], <span class="str">&quot;\n&quot;</span>)
+<span class="id">x</span> &lt;- <span class="fn">c</span>(<span class="num">3</span>, <span class="num">5</span>, <span class="num">7</span>)
+<span class="kw">for</span> (<span class="id">i</span> <span class="kw">in</span> <span class="fn">seq_along</span>(<span class="id">x</span>)) {
+  <span class="fn">cat</span>(<span class="id">i</span>, <span class="id">x</span>[<span class="id">i</span>], <span class="str">&quot;\n&quot;</span>)
 }
-print(ifelse(x &gt;= 5, <span class="str">&quot;큼&quot;</span>, <span class="str">&quot;작음&quot;</span>))</code></pre></div><p><code>if</code>에는 결측이 아닌 논리값 하나를 넣습니다. 벡터별 선택은 <code>ifelse()</code>를 사용합니다. <code>&amp;</code>·<code>|</code>는 원소별 논리 연산, <code>&amp;&amp;</code>·<code>||</code>는 단일 조건의 단락 평가입니다. <code>while (조건) { ... }</code>, <code>break</code>, <code>next</code>도 사용할 수 있습니다. 빈 벡터까지 고려하려면 <code>1:length(x)</code> 대신 <code>seq_along(x)</code>, 횟수 반복은 <code>seq_len(n)</code>을 사용하세요. <code>1:0</code>은 빈 벡터가 아닙니다.</p>
-</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>함수와 반복 처리</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>add_bonus &lt;- <span class="kw">function</span>(score, bonus = 5) {
-  pmin(score + bonus, 100)
+<span class="fn">print</span>(<span class="fn">ifelse</span>(<span class="id">x</span> &gt;= <span class="num">5</span>, <span class="str">&quot;큼&quot;</span>, <span class="str">&quot;작음&quot;</span>))</code></pre></div><p><code>if</code>에는 결측이 아닌 논리값 하나를 넣습니다. 벡터별 선택은 <code>ifelse()</code>를 사용합니다. <code>&amp;</code>·<code>|</code>는 원소별 논리 연산, <code>&amp;&amp;</code>·<code>||</code>는 단일 조건의 단락 평가입니다. <code>while (조건) { ... }</code>, <code>break</code>, <code>next</code>도 사용할 수 있습니다. 빈 벡터까지 고려하려면 <code>1:length(x)</code> 대신 <code>seq_along(x)</code>, 횟수 반복은 <code>seq_len(n)</code>을 사용하세요. <code>1:0</code>은 빈 벡터가 아닙니다.</p>
+</section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>함수와 반복 처리</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">add_bonus</span> &lt;- <span class="kw">function</span>(<span class="id">score</span>, <span class="id">bonus</span> = <span class="num">5</span>) {
+  <span class="fn">pmin</span>(<span class="id">score</span> + <span class="id">bonus</span>, <span class="num">100</span>)
 }
-print(add_bonus(c(60, 98))) <span class="cm"># 65 100</span>
-values &lt;- list(c(1, 2), c(3, 4))
-print(lapply(values, sum))
-print(vapply(values, sum, numeric(1))) <span class="cm"># 3 7</span></code></pre></div><p>함수는 마지막 식의 값을 반환하며 <code>return()</code>으로 일찍 반환할 수도 있습니다. <code>lapply()</code>는 리스트, <code>vapply()</code>는 지정한 결과 타입·길이에 맞춰 반환합니다. <code>pmin()</code>은 원소별 최솟값이고 <code>min()</code>은 전체 최솟값입니다. <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html">공식: lapply·vapply</a></p>
-</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>리스트 · 행렬 · 데이터 프레임</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>person &lt;- list(name = <span class="str">&quot;민수&quot;</span>, scores = c(80, 90))
-print(person$name)
-print(person[[2]])         <span class="cm"># 벡터를 꺼냄</span>
-print(person[2])           <span class="cm"># 리스트 형태 유지</span>
-m &lt;- matrix(1:6, nrow = 2, byrow = TRUE)
-print(m[1, 2])             <span class="cm"># 2</span>
-print(m[, 1])              <span class="cm"># 1 4</span>
-students &lt;- data.frame(name = c(<span class="str">&quot;민수&quot;</span>, <span class="str">&quot;지수&quot;</span>), score = c(80, 95))
-print(students$score)
-print(students[students$score &gt;= 90, , drop = FALSE])</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="fn">print</span>(<span class="fn">add_bonus</span>(<span class="fn">c</span>(<span class="num">60</span>, <span class="num">98</span>))) <span class="cm"># 65 100</span>
+<span class="id">values</span> &lt;- <span class="fn">list</span>(<span class="fn">c</span>(<span class="num">1</span>, <span class="num">2</span>), <span class="fn">c</span>(<span class="num">3</span>, <span class="num">4</span>))
+<span class="fn">print</span>(<span class="fn">lapply</span>(<span class="id">values</span>, <span class="id">sum</span>))
+<span class="fn">print</span>(<span class="fn">vapply</span>(<span class="id">values</span>, <span class="id">sum</span>, <span class="fn">numeric</span>(<span class="num">1</span>))) <span class="cm"># 3 7</span></code></pre></div><p>함수는 마지막 식의 값을 반환하며 <code>return()</code>으로 일찍 반환할 수도 있습니다. <code>lapply()</code>는 리스트, <code>vapply()</code>는 지정한 결과 타입·길이에 맞춰 반환합니다. <code>pmin()</code>은 원소별 최솟값이고 <code>min()</code>은 전체 최솟값입니다. <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/lapply.html">공식: lapply·vapply</a></p>
+</section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>리스트 · 행렬 · 데이터 프레임</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">person</span> &lt;- <span class="fn">list</span>(<span class="id">name</span> = <span class="str">&quot;민수&quot;</span>, <span class="id">scores</span> = <span class="fn">c</span>(<span class="num">80</span>, <span class="num">90</span>))
+<span class="fn">print</span>(<span class="id">person</span><span class="id">$name</span>)
+<span class="fn">print</span>(<span class="id">person</span>[[<span class="num">2</span>]])         <span class="cm"># 벡터를 꺼냄</span>
+<span class="fn">print</span>(<span class="id">person</span>[<span class="num">2</span>])           <span class="cm"># 리스트 형태 유지</span>
+<span class="id">m</span> &lt;- <span class="fn">matrix</span>(<span class="num">1</span>:<span class="num">6</span>, <span class="id">nrow</span> = <span class="num">2</span>, <span class="id">byrow</span> = <span class="kw">TRUE</span>)
+<span class="fn">print</span>(<span class="id">m</span>[<span class="num">1</span>, <span class="num">2</span>])             <span class="cm"># 2</span>
+<span class="fn">print</span>(<span class="id">m</span>[, <span class="num">1</span>])              <span class="cm"># 1 4</span>
+<span class="id">students</span> &lt;- <span class="id">data</span>.<span class="fn">frame</span>(<span class="id">name</span> = <span class="fn">c</span>(<span class="str">&quot;민수&quot;</span>, <span class="str">&quot;지수&quot;</span>), <span class="id">score</span> = <span class="fn">c</span>(<span class="num">80</span>, <span class="num">95</span>))
+<span class="fn">print</span>(<span class="id">students</span><span class="id">$score</span>)
+<span class="fn">print</span>(<span class="id">students</span>[<span class="id">students</span><span class="id">$score</span> &gt;= <span class="num">90</span>, , <span class="id">drop</span> = <span class="kw">FALSE</span>])</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>구조</th>
@@ -143,32 +147,32 @@ print(students[students$score &gt;= 90, , drop = FALSE])</code></pre></div><div 
 </tr>
 </tbody></table>
 </div><p>행렬의 기본 채우기는 열 방향이며 위 예제는 <code>byrow=TRUE</code>로 행 방향을 지정했습니다. <code>drop=FALSE</code>는 선택 후 차원이 사라지는 것을 막습니다. <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/data.frame.html">공식: 데이터 프레임</a></p>
-</section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>정렬 · 빈도 · 문자열</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>x &lt;- c(30, 10, 30, 20)
-print(sort(x))          <span class="cm"># 10 20 30 30</span>
-print(order(x))         <span class="cm"># 2 4 1 3: 정렬될 위치</span>
-print(unique(x))        <span class="cm"># 30 10 20</span>
-print(table(x))         <span class="cm"># 값별 개수</span>
-print(paste(<span class="str">&quot;R&quot;</span>, <span class="str">&quot;공부&quot;</span>))   <span class="cm"># &quot;R 공부&quot;</span>
-print(paste0(<span class="str">&quot;day&quot;</span>, 1:3)) <span class="cm"># &quot;day1&quot; &quot;day2&quot; &quot;day3&quot;</span>
-print(strsplit(<span class="str">&quot;a,b,c&quot;</span>, <span class="str">&quot;,&quot;</span>, fixed = TRUE)[[1]])</code></pre></div><p><code>sort()</code>는 정렬된 값, <code>order()</code>는 정렬 순서의 인덱스를 반환합니다. 표를 정렬할 때는 <code>df[order(df$score), , drop=FALSE]</code>처럼 씁니다. <a href="https://search.r-project.org/R/refmans/base/html/sort.html">공식: 정렬</a></p>
+</section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>정렬 · 빈도 · 문자열</h2><div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">x</span> &lt;- <span class="fn">c</span>(<span class="num">30</span>, <span class="num">10</span>, <span class="num">30</span>, <span class="num">20</span>)
+<span class="fn">print</span>(<span class="fn">sort</span>(<span class="id">x</span>))          <span class="cm"># 10 20 30 30</span>
+<span class="fn">print</span>(<span class="fn">order</span>(<span class="id">x</span>))         <span class="cm"># 2 4 1 3: 정렬될 위치</span>
+<span class="fn">print</span>(<span class="fn">unique</span>(<span class="id">x</span>))        <span class="cm"># 30 10 20</span>
+<span class="fn">print</span>(<span class="fn">table</span>(<span class="id">x</span>))         <span class="cm"># 값별 개수</span>
+<span class="fn">print</span>(<span class="fn">paste</span>(<span class="str">&quot;R&quot;</span>, <span class="str">&quot;공부&quot;</span>))   <span class="cm"># &quot;R 공부&quot;</span>
+<span class="fn">print</span>(<span class="fn">paste0</span>(<span class="str">&quot;day&quot;</span>, <span class="num">1</span>:<span class="num">3</span>)) <span class="cm"># &quot;day1&quot; &quot;day2&quot; &quot;day3&quot;</span>
+<span class="fn">print</span>(<span class="fn">strsplit</span>(<span class="str">&quot;a,b,c&quot;</span>, <span class="str">&quot;,&quot;</span>, <span class="id">fixed</span> = <span class="kw">TRUE</span>)[[<span class="num">1</span>]])</code></pre></div><p><code>sort()</code>는 정렬된 값, <code>order()</code>는 정렬 순서의 인덱스를 반환합니다. 표를 정렬할 때는 <code>df[order(df$score), , drop=FALSE]</code>처럼 씁니다. <a href="https://search.r-project.org/R/refmans/base/html/sort.html">공식: 정렬</a></p>
 </section><section id="item-9"><div class="section-kicker">REFERENCE 10</div><h2>CSV · 기초 통계 · 그래프</h2><p>아래는 독립적으로 실행하는 예제입니다. 현재 작업 폴더에 CSV와 PNG를 생성합니다.</p>
-<div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>df &lt;- data.frame(name = c(<span class="str">&quot;민수&quot;</span>, <span class="str">&quot;지수&quot;</span>, <span class="str">&quot;현우&quot;</span>), score = c(70, 90, 80))
-write.csv(df, <span class="str">&quot;scores.csv&quot;</span>, row.names = FALSE, fileEncoding = <span class="str">&quot;UTF-8&quot;</span>)
-loaded &lt;- read.csv(<span class="str">&quot;scores.csv&quot;</span>, fileEncoding = <span class="str">&quot;UTF-8&quot;</span>)
-print(summary(loaded$score))
-print(median(loaded$score)) <span class="cm"># 80</span>
-print(sd(loaded$score))     <span class="cm"># 표본 표준편차: 10</span>
-png(<span class="str">&quot;scores.png&quot;</span>, width = 800, height = 500)
-barplot(loaded$score, names.arg = c(<span class="str">&quot;A&quot;</span>, <span class="str">&quot;B&quot;</span>, <span class="str">&quot;C&quot;</span>), ylab = <span class="str">&quot;Score&quot;</span>)
-dev.off()</code></pre></div><p><code>getwd()</code>로 저장 위치를 확인합니다. <code>head(df)</code>, <code>str(df)</code>, <code>nrow(df)</code>, <code>names(df)</code>로 데이터 구조부터 살펴보세요. 그래프 장치를 열었다면 <code>dev.off()</code>로 닫아 저장을 완료합니다.</p>
+<div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">df</span> &lt;- <span class="id">data</span>.<span class="fn">frame</span>(<span class="id">name</span> = <span class="fn">c</span>(<span class="str">&quot;민수&quot;</span>, <span class="str">&quot;지수&quot;</span>, <span class="str">&quot;현우&quot;</span>), <span class="id">score</span> = <span class="fn">c</span>(<span class="num">70</span>, <span class="num">90</span>, <span class="num">80</span>))
+<span class="id">write</span>.<span class="fn">csv</span>(<span class="id">df</span>, <span class="str">&quot;scores.csv&quot;</span>, <span class="id">row</span>.<span class="id">names</span> = <span class="kw">FALSE</span>, <span class="id">fileEncoding</span> = <span class="str">&quot;UTF-8&quot;</span>)
+<span class="id">loaded</span> &lt;- <span class="id">read</span>.<span class="fn">csv</span>(<span class="str">&quot;scores.csv&quot;</span>, <span class="id">fileEncoding</span> = <span class="str">&quot;UTF-8&quot;</span>)
+<span class="fn">print</span>(<span class="fn">summary</span>(<span class="id">loaded</span><span class="id">$score</span>))
+<span class="fn">print</span>(<span class="fn">median</span>(<span class="id">loaded</span><span class="id">$score</span>)) <span class="cm"># 80</span>
+<span class="fn">print</span>(<span class="fn">sd</span>(<span class="id">loaded</span><span class="id">$score</span>))     <span class="cm"># 표본 표준편차: 10</span>
+<span class="fn">png</span>(<span class="str">&quot;scores.png&quot;</span>, <span class="id">width</span> = <span class="num">800</span>, <span class="id">height</span> = <span class="num">500</span>)
+<span class="fn">barplot</span>(<span class="id">loaded</span><span class="id">$score</span>, <span class="id">names</span>.<span class="id">arg</span> = <span class="fn">c</span>(<span class="str">&quot;A&quot;</span>, <span class="str">&quot;B&quot;</span>, <span class="str">&quot;C&quot;</span>), <span class="id">ylab</span> = <span class="str">&quot;Score&quot;</span>)
+<span class="id">dev</span>.<span class="fn">off</span>()</code></pre></div><p><code>getwd()</code>로 저장 위치를 확인합니다. <code>head(df)</code>, <code>str(df)</code>, <code>nrow(df)</code>, <code>names(df)</code>로 데이터 구조부터 살펴보세요. 그래프 장치를 열었다면 <code>dev.off()</code>로 닫아 저장을 완료합니다.</p>
 </section><section id="item-10"><div class="section-kicker">REFERENCE 11</div><h2>전체 실습 — 결측값을 제외한 성적 집계</h2><p>아래 전체 코드는 <a href="sample-files/grade-summary.R">grade-summary.R</a>로 제공됩니다. 파일을 저장한 폴더에서 <code>Rscript grade-summary.R</code>로 실행합니다.</p>
-<div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>scores &lt;- c(55, 80, NA, 95, 70)
-valid &lt;- scores[!is.na(scores)]
-stopifnot(length(valid) &gt; 0)
-cat(<span class="str">&quot;인원:&quot;</span>, length(valid), <span class="str">&quot;\n&quot;</span>)
-cat(<span class="str">&quot;평균:&quot;</span>, mean(valid), <span class="str">&quot;\n&quot;</span>)
-cat(<span class="str">&quot;합격:&quot;</span>, sum(valid &gt;= 60), <span class="str">&quot;\n&quot;</span>)
-cat(<span class="str">&quot;정렬:&quot;</span>, sort(valid), <span class="str">&quot;\n&quot;</span>)</code></pre></div><p>예상 결과는 인원 <code>4</code>, 평균 <code>75</code>, 합격 <code>3</code>, 정렬 <code>55 70 80 95</code>입니다. 점수를 모두 <code>NA</code>로 바꾸면 <code>stopifnot()</code>에서 중단합니다. 데이터가 없을 때 평균을 표시할지 별도 메시지를 낼지는 요구사항에 맞게 정합니다.</p>
+<div class="codebox"><div class="codebar"><span>r</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">scores</span> &lt;- <span class="fn">c</span>(<span class="num">55</span>, <span class="num">80</span>, <span class="kw">NA</span>, <span class="num">95</span>, <span class="num">70</span>)
+<span class="id">valid</span> &lt;- <span class="id">scores</span>[!<span class="id">is</span>.<span class="fn">na</span>(<span class="id">scores</span>)]
+<span class="fn">stopifnot</span>(<span class="fn">length</span>(<span class="id">valid</span>) &gt; <span class="num">0</span>)
+<span class="fn">cat</span>(<span class="str">&quot;인원:&quot;</span>, <span class="fn">length</span>(<span class="id">valid</span>), <span class="str">&quot;\n&quot;</span>)
+<span class="fn">cat</span>(<span class="str">&quot;평균:&quot;</span>, <span class="fn">mean</span>(<span class="id">valid</span>), <span class="str">&quot;\n&quot;</span>)
+<span class="fn">cat</span>(<span class="str">&quot;합격:&quot;</span>, <span class="fn">sum</span>(<span class="id">valid</span> &gt;= <span class="num">60</span>), <span class="str">&quot;\n&quot;</span>)
+<span class="fn">cat</span>(<span class="str">&quot;정렬:&quot;</span>, <span class="fn">sort</span>(<span class="id">valid</span>), <span class="str">&quot;\n&quot;</span>)</code></pre></div><p>예상 결과는 인원 <code>4</code>, 평균 <code>75</code>, 합격 <code>3</code>, 정렬 <code>55 70 80 95</code>입니다. 점수를 모두 <code>NA</code>로 바꾸면 <code>stopifnot()</code>에서 중단합니다. 데이터가 없을 때 평균을 표시할지 별도 메시지를 낼지는 요구사항에 맞게 정합니다.</p>
 </section><section id="item-11"><div class="section-kicker">REFERENCE 12</div><h2>복습 체크 · 참고 자료</h2><p>R 문법을 복습할 때는 다음 항목을 확인하세요.</p>
 <ul>
 <li>1부터 시작하는 인덱스를 확인합니다.</li>

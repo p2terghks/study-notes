@@ -30,6 +30,10 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
 .search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
 </style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">CI/CD · 클라우드 NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">38개 항목</p><a href="#item-0"><span>01</span>이 가이드의 목표와 읽는 순서</a><a href="#item-1"><span>02</span>CI · CD · IDE · DevOps부터 구분하기</a><a href="#item-2"><span>03</span>전체 구조: 코드 한 줄이 사용자에게 도착하는 과정</a><a href="#item-3"><span>04</span>클라우드 개발자가 하는 일과 결과물</a><a href="#item-4"><span>05</span>1단계: 저장소 구조와 버전 규칙 정하기</a><a href="#item-5"><span>06</span>2단계: IDE에서 실행·디버깅 연결하기</a><a href="#item-6"><span>07</span>3단계: Docker Compose로 개발 DB 통일하기</a><a href="#item-7"><span>08</span>4단계: Spring 설정과 배포에 필요한 기능</a><a href="#item-8"><span>09</span>5단계: DTO · 서비스 · API와 필요한 메서드</a><a href="#item-9"><span>10</span>6단계: React에서 API 연결과 배포 설정 이해하기</a><a href="#item-10"><span>11</span>7단계: 테스트를 어디까지 자동화할까</a><a href="#item-11"><span>12</span>8단계: 브랜치 · PR · 코드 검토 규칙</a><a href="#item-12"><span>13</span>9단계: GitHub Actions CI 파일 작성하기</a><a href="#item-13"><span>14</span>10단계: 캐시 · 산출물 · 보안 검사를 구분하기</a><a href="#item-14"><span>15</span>11단계: Spring Dockerfile과 이미지 식별</a><a href="#item-15"><span>16</span>12단계: AWS 배포 전에 준비할 리소스</a><a href="#item-16"><span>17</span>13단계: IAM 역할 4개를 구분하기</a><a href="#item-17"><span>18</span>14단계: GitHub OIDC 인증과 신뢰 정책</a><a href="#item-18"><span>19</span>15단계: CD 파이프라인 설계와 승격</a><a href="#item-19"><span>20</span>16단계: ECS 배포 Action 사용법</a><a href="#item-20"><span>21</span>17단계: Task definition에 어떤 값이 필요한가</a><a href="#item-21"><span>22</span>18단계: 배포 검증에 필요한 Python 함수</a><a href="#item-22"><span>23</span>19단계: Terraform으로 인프라 관리하기</a><a href="#item-23"><span>24</span>20단계: 원격 state와 환경 분리</a><a href="#item-24"><span>25</span>21단계: 네트워크와 연결 오류 읽는 방법</a><a href="#item-25"><span>26</span>22단계: DB 마이그레이션과 호환성</a><a href="#item-26"><span>27</span>23단계: 롤링 · Blue/Green · Canary와 롤백</a><a href="#item-27"><span>28</span>24단계: React 정적 웹 배포</a><a href="#item-28"><span>29</span>25단계: 로그 · 메트릭 · 트레이스</a><a href="#item-29"><span>30</span>26단계: 알람 · SLI · SLO 설계</a><a href="#item-30"><span>31</span>27단계: 장애 대응 순서와 조회 명령</a><a href="#item-31"><span>32</span>28단계: 보안과 비밀값 운영</a><a href="#item-32"><span>33</span>29단계: 백업 · 복원 · RTO · RPO</a><a href="#item-33"><span>34</span>30단계: 성능 · 확장 · 비용 관리</a><a href="#item-34"><span>35</span>31단계: 자주 쓰는 명령 · 함수 빠른 사전</a><a href="#item-35"><span>36</span>32단계: 매일 · 매주 · 릴리스마다 하는 일</a><a href="#item-36"><span>37</span>33단계: 혼자 완성해 보는 학습 과제</a><a href="#item-37"><span>38</span>예제 파일 · 검증 범위 · 공식 문서</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="terraform-reference.html"><span>↗</span>Terraform 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-10-05<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>CI/CD · 클라우드<br><span>구축부터 운영까지</span></h1><p class="lead">로컬 개발부터 자동 테스트·AWS 배포·운영까지.<br>기능·설정·명령어·실패 대응을 순서대로 익힙니다.</p><div class="tags"><span>개발환경 · CI/CD</span><span>Spring · React</span><span>AWS · Terraform</span><span>운영 · 장애 대응</span></div><div class="hero-bottom"><span>38개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>이 가이드의 목표와 읽는 순서</h2><p><strong>목표는 “코드가 내 컴퓨터에서 실행된다”를 넘어, 팀이 같은 방법으로 개발하고 안전하게 배포하며 장애를 복구할 수 있게 만드는 것입니다.</strong> Spring Boot API + React 웹 + PostgreSQL을 기준으로 GitHub Actions, Docker, AWS ECS, Terraform을 연결합니다.</p>
 <aside class="callout"><p>이 문서는 구축 순서와 실무 판단을 자세히 설명하는 가이드입니다. 코드에는 <strong>완성된 파일</strong>, <strong>기존 파일에 추가하는 발췌</strong>, <strong>환경값을 바꿔야 하는 템플릿</strong>을 구분했습니다. AWS 리소스를 실제 생성하거나 배포한 결과를 뜻하지 않습니다. 예제 코드 묶음은 마지막 항목에서 받을 수 있습니다.</p>
 </aside><div class="table-wrap" tabindex="0"><table>
@@ -236,17 +240,17 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 </tr>
 </tbody></table>
 </div><p>버전 숫자는 최신 버전을 의미하지 않습니다. 신규 프로젝트 생성 시 지원 정책을 확인하고, 버전 변경을 별도 PR로 테스트합니다. 비밀값·빌드 결과·개발자 개인 IDE 설정은 커밋 대상에서 구분합니다.</p>
-<div class="codebox"><div class="codebar"><span>gitignore</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>.env
-.env.*
-!.env.example
-backend/target/
-frontend/node_modules/
-frontend/dist/
-**/.terraform/
-*.tfstate
-*.tfstate.*
-*.tfplan
-crash.log</code></pre></div><p><code>.terraform.lock.hcl</code>은 커밋합니다. <code>.env.example</code>에는 변수 이름과 가짜 값만 넣습니다. 이미 커밋된 비밀은 <code>.gitignore</code>에 추가해도 사라지지 않으므로 폐기·회전이 먼저입니다.</p>
+<div class="codebox"><div class="codebar"><span>gitignore</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>.<span class="id">env</span>
+.<span class="id">env</span>.*
+!.<span class="id">env</span>.<span class="id">example</span>
+<span class="id">backend</span>/<span class="id">target</span>/
+<span class="id">frontend</span>/<span class="id">node_modules</span>/
+<span class="id">frontend</span>/<span class="id">dist</span>/
+**/.<span class="id">terraform</span>/
+*.<span class="id">tfstate</span>
+*.<span class="id">tfstate</span>.*
+*.<span class="id">tfplan</span>
+<span class="id">crash</span>.<span class="id">log</span></code></pre></div><p><code>.terraform.lock.hcl</code>은 커밋합니다. <code>.env.example</code>에는 변수 이름과 가짜 값만 넣습니다. 이미 커밋된 비밀은 <code>.gitignore</code>에 추가해도 사라지지 않으므로 폐기·회전이 먼저입니다.</p>
 </section><section id="item-5"><div class="section-kicker">REFERENCE 06</div><h2>2단계: IDE에서 실행·디버깅 연결하기</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -282,10 +286,10 @@ crash.log</code></pre></div><p><code>.terraform.lock.hcl</code>은 커밋합니�
 </tr>
 </tbody></table>
 </div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 터미널 A: backend 폴더에서</span>
-./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+./<span class="id">mvnw</span> <span class="id">spring</span>-<span class="id">boot</span>:<span class="id">run</span> -<span class="id">Dspring</span>-<span class="id">boot</span>.<span class="id">run</span>.<span class="id">profiles</span>=<span class="kw">local</span>
 <span class="cm"># 터미널 B: frontend 폴더에서</span>
-npm ci
-npm run dev</code></pre></div><p>브레이크포인트는 “이 줄을 실행하기 직전에 멈추기”입니다. 컨트롤러에 설정하고 요청을 보내면 DTO의 값, 서비스 호출, 쿼리 결과를 순서대로 살펴볼 수 있습니다. Step Over는 현재 줄을 실행하고 다음 줄로, Step Into는 호출한 메서드 안으로 들어갑니다.</p>
+<span class="id">npm</span> <span class="id">ci</span>
+<span class="id">npm</span> <span class="id">run</span> <span class="id">dev</span></code></pre></div><p>브레이크포인트는 “이 줄을 실행하기 직전에 멈추기”입니다. 컨트롤러에 설정하고 요청을 보내면 DTO의 값, 서비스 호출, 쿼리 결과를 순서대로 살펴볼 수 있습니다. Step Over는 현재 줄을 실행하고 다음 줄로, Step Into는 호출한 메서드 안으로 들어갑니다.</p>
 <p>VS Code의 <code>.vscode/launch.json</code> 예시입니다. <code>mainClass</code>는 실제 클래스의 전체 이름으로 바꿉니다. 환경변수는 IDE의 실행 구성에도 별도로 전달해야 합니다. Compose가 읽는 <code>.env</code>가 Java 실행에 자동 전달되지는 않습니다.</p>
 <div class="codebox"><div class="codebar"><span>json</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>{
   &quot;version&quot;: &quot;0.2.0&quot;,
@@ -299,29 +303,29 @@ npm run dev</code></pre></div><p>브레이크포인트는 “이 줄을 실행�
   }]
 }</code></pre></div><p>DB 사용자·비밀번호는 개인 실행 설정 또는 셸 환경에서 주입합니다. 원격 디버그 포트를 인터넷에 공개하지 않습니다. <a href="https://code.visualstudio.com/docs/java/java-debugging">VS Code Java 디버깅</a>.</p>
 </section><section id="item-6"><div class="section-kicker">REFERENCE 07</div><h2>3단계: Docker Compose로 개발 DB 통일하기</h2><p><strong>완성 파일: <code>compose.yaml</code></strong>. 앱은 IDE에서 실행하고 DB만 컨테이너로 띄우는 구성입니다.</p>
-<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>services:
-  db:
-    image: postgres:16
-    environment:
-      POSTGRES_DB: app
-      POSTGRES_USER: app
-      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
-    ports:
+<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">services</span>:
+  <span class="id">db</span>:
+    <span class="id">image</span>: <span class="id">postgres</span>:<span class="num">16</span>
+    <span class="id">environment</span>:
+      <span class="id">POSTGRES_DB</span>: <span class="id">app</span>
+      <span class="id">POSTGRES_USER</span>: <span class="id">app</span>
+      <span class="id">POSTGRES_PASSWORD</span>: ${<span class="id">DB_PASSWORD</span>:?<span class="id">set</span> <span class="id">DB_PASSWORD</span> <span class="id">in</span> .<span class="id">env</span>}
+    <span class="id">ports</span>:
       - <span class="str">&quot;127.0.0.1:5432:5432&quot;</span>
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: [<span class="str">&quot;CMD-SHELL&quot;</span>, <span class="str">&quot;pg_isready -U app -d app&quot;</span>]
-      interval: 5s
-      timeout: 3s
-      retries: 10
-volumes:
-  pgdata:</code></pre></div><p><code>.env.example</code>을 <code>.env</code>로 복사하고 개발용 비밀번호를 입력합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>cp .env.example .env
+    <span class="id">volumes</span>:
+      - <span class="id">pgdata</span>:/<span class="id">var</span>/<span class="id">lib</span>/<span class="id">postgresql</span>/<span class="id">data</span>
+    <span class="id">healthcheck</span>:
+      <span class="id">test</span>: [<span class="str">&quot;CMD-SHELL&quot;</span>, <span class="str">&quot;pg_isready -U app -d app&quot;</span>]
+      <span class="id">interval</span>: 5<span class="id">s</span>
+      <span class="id">timeout</span>: 3<span class="id">s</span>
+      <span class="id">retries</span>: <span class="num">10</span>
+<span class="id">volumes</span>:
+  <span class="id">pgdata</span>:</code></pre></div><p><code>.env.example</code>을 <code>.env</code>로 복사하고 개발용 비밀번호를 입력합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">cp</span> .<span class="id">env</span>.<span class="id">example</span> .<span class="id">env</span>
 <span class="cm"># .env의 DB_PASSWORD 값을 편집한 다음 실행</span>
- docker compose up -d --wait db
- docker compose ps
- docker compose logs --tail=50 db</code></pre></div><div class="table-wrap" tabindex="0"><table>
+ <span class="id">docker</span> <span class="id">compose</span> <span class="id">up</span> -<span class="id">d</span> --<span class="id">wait</span> <span class="id">db</span>
+ <span class="id">docker</span> <span class="id">compose</span> <span class="id">ps</span>
+ <span class="id">docker</span> <span class="id">compose</span> <span class="id">logs</span> --<span class="id">tail</span>=<span class="num">50</span> <span class="id">db</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>설정·명령</th>
@@ -363,28 +367,28 @@ volumes:
 </div><p>앱도 Compose에 넣으면 DB 주소는 <code>localhost</code>가 아니라 서비스 이름 <code>db</code>입니다. <code>depends_on</code>만으로 준비 완료가 보장되지는 않으며 <code>condition: service_healthy</code>로 연결할 수 있습니다. 시작 후 DB가 끊기는 문제는 앱의 재연결·오류 처리로 다룹니다. <a href="https://docs.docker.com/compose/how-tos/startup-order/">Compose 시작 순서</a>.</p>
 </section><section id="item-7"><div class="section-kicker">REFERENCE 08</div><h2>4단계: Spring 설정과 배포에 필요한 기능</h2><p>기존 Maven 프로젝트에 Web, Validation, Data JPA, PostgreSQL driver, Actuator, Flyway 의존성을 구성합니다. 의존성 버전은 Spring Boot가 관리하는 조합을 우선 사용하고, PostgreSQL용 Flyway 모듈이 필요한 버전이면 함께 추가합니다.</p>
 <p><strong><code>application-local.yml</code> 설정 발췌</strong>:</p>
-<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>spring:
-  datasource:
-    url: ${DB_URL:jdbc:postgresql:<span class="cm">//localhost:5432/app}</span>
-    username: ${DB_USER:app}
-    password: ${DB_PASSWORD}
-  jpa:
-    hibernate:
-      ddl-auto: validate
-  flyway:
-    enabled: <span class="kw">true</span>
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-  endpoint:
-    health:
-      show-details: never
-      probes:
-        enabled: <span class="kw">true</span>
-server:
-  shutdown: graceful</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">spring</span>:
+  <span class="id">datasource</span>:
+    <span class="id">url</span>: ${<span class="id">DB_URL</span>:<span class="id">jdbc</span>:<span class="id">postgresql</span>://<span class="id">localhost</span>:<span class="num">5432</span>/<span class="id">app</span>}
+    <span class="id">username</span>: ${<span class="id">DB_USER</span>:<span class="id">app</span>}
+    <span class="id">password</span>: ${<span class="id">DB_PASSWORD</span>}
+  <span class="id">jpa</span>:
+    <span class="id">hibernate</span>:
+      <span class="id">ddl</span>-<span class="id">auto</span>: <span class="id">validate</span>
+  <span class="id">flyway</span>:
+    <span class="id">enabled</span>: <span class="kw">true</span>
+<span class="id">management</span>:
+  <span class="id">endpoints</span>:
+    <span class="id">web</span>:
+      <span class="id">exposure</span>:
+        <span class="id">include</span>: <span class="id">health</span>,<span class="id">info</span>
+  <span class="id">endpoint</span>:
+    <span class="id">health</span>:
+      <span class="id">show</span>-<span class="id">details</span>: <span class="id">never</span>
+      <span class="id">probes</span>:
+        <span class="id">enabled</span>: <span class="kw">true</span>
+<span class="id">server</span>:
+  <span class="id">shutdown</span>: <span class="id">graceful</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>기능</th>
@@ -437,31 +441,31 @@ server:
 <p>Actuator 경로를 전부 외부 공개하지 않습니다. liveness는 재시작 필요 여부, readiness는 요청 수용 가능 여부입니다. 공유 DB 장애를 liveness에 묶으면 모든 인스턴스가 재시작할 수 있습니다. readiness에도 DB를 넣을지는 트래픽 차단의 영향을 보고 결정합니다. <a href="https://docs.spring.io/spring-boot/reference/actuator/endpoints.html">Actuator</a>.</p>
 </section><section id="item-8"><div class="section-kicker">REFERENCE 09</div><h2>5단계: DTO · 서비스 · API와 필요한 메서드</h2><p>클라우드에 올릴 앱도 기본은 요청·검증·처리·응답입니다. DTO는 요청/응답 모양, Entity는 DB 저장 구조, Service는 업무 규칙을 담당합니다.</p>
 <p><strong>구조 설명용 발췌</strong>입니다. import, Entity, Repository 구현과 예외 처리는 기존 Spring 가이드에 이어 붙입니다.</p>
-<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> record CreateTodoRequest(<span class="an">@NotBlank</span> String title) {}
-<span class="kw">public</span> record TodoResponse(Long id, String title) {}
+<div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">public</span> <span class="kw">record</span> <span class="fn">CreateTodoRequest</span>(<span class="an">@NotBlank</span> <span class="id">String</span> <span class="id">title</span>) {}
+<span class="kw">public</span> <span class="kw">record</span> <span class="fn">TodoResponse</span>(<span class="id">Long</span> <span class="id">id</span>, <span class="id">String</span> <span class="id">title</span>) {}
 
 <span class="an">@RestController</span>
 <span class="an">@RequestMapping</span>(<span class="str">&quot;/api/todos&quot;</span>)
 <span class="an">@RequiredArgsConstructor</span>
-<span class="kw">class</span> TodoController {
-    <span class="kw">private</span> <span class="kw">final</span> TodoService service;
+<span class="kw">class</span> <span class="id">TodoController</span> {
+    <span class="kw">private</span> <span class="kw">final</span> <span class="id">TodoService</span> <span class="id">service</span>;
 
     <span class="an">@PostMapping</span>
-    <span class="an">@ResponseStatus</span>(HttpStatus.CREATED)
-    TodoResponse create(<span class="an">@Valid</span> <span class="an">@RequestBody</span> CreateTodoRequest request) {
-        <span class="kw">return</span> service.create(request.title());
+    <span class="an">@ResponseStatus</span>(<span class="id">HttpStatus</span>.<span class="id">CREATED</span>)
+    <span class="id">TodoResponse</span> <span class="fn">create</span>(<span class="an">@Valid</span> <span class="an">@RequestBody</span> <span class="id">CreateTodoRequest</span> <span class="id">request</span>) {
+        <span class="kw">return</span> <span class="id">service</span>.<span class="fn">create</span>(<span class="id">request</span>.<span class="fn">title</span>());
     }
 }
 
 <span class="an">@Service</span>
 <span class="an">@RequiredArgsConstructor</span>
-<span class="kw">class</span> TodoService {
-    <span class="kw">private</span> <span class="kw">final</span> TodoRepository repository;
+<span class="kw">class</span> <span class="id">TodoService</span> {
+    <span class="kw">private</span> <span class="kw">final</span> <span class="id">TodoRepository</span> <span class="id">repository</span>;
 
     <span class="an">@Transactional</span>
-    <span class="kw">public</span> TodoResponse create(String title) {
-        Todo saved = repository.save(<span class="kw">new</span> Todo(title));
-        <span class="kw">return</span> <span class="kw">new</span> TodoResponse(saved.getId(), saved.getTitle());
+    <span class="kw">public</span> <span class="id">TodoResponse</span> <span class="fn">create</span>(<span class="id">String</span> <span class="id">title</span>) {
+        <span class="id">Todo</span> <span class="id">saved</span> = <span class="id">repository</span>.<span class="fn">save</span>(<span class="kw">new</span> <span class="fn">Todo</span>(<span class="id">title</span>));
+        <span class="kw">return</span> <span class="kw">new</span> <span class="fn">TodoResponse</span>(<span class="id">saved</span>.<span class="fn">getId</span>(), <span class="id">saved</span>.<span class="fn">getTitle</span>());
     }
 }</code></pre></div><p><code>@RequiredArgsConstructor</code>는 Lombok이 필요합니다. Lombok을 쓰지 않으면 생성자를 직접 작성해 주입합니다. 사용자 소유 데이터라면 인증 사용자와 소유권 검증을 추가해야 합니다.</p>
 <div class="table-wrap" tabindex="0"><table>
@@ -510,26 +514,26 @@ server:
 </tbody></table>
 </div><p><code>save()</code> 직후에 SQL INSERT가 항상 바로 실행된다고 단정하지 않습니다. flush/commit과 ID 전략에 영향을 받습니다. 데이터 무결성은 검증 코드뿐 아니라 DB의 NOT NULL, UNIQUE, FK로도 보장합니다.</p>
 </section><section id="item-9"><div class="section-kicker">REFERENCE 10</div><h2>6단계: React에서 API 연결과 배포 설정 이해하기</h2><p>개발에서는 Vite 프록시로 <code>/api</code> 요청을 Spring에 전달할 수 있습니다. <strong><code>vite.config.js</code> 발췌</strong>:</p>
-<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> { defineConfig } from <span class="str">'vite'</span>;
-<span class="kw">import</span> react from <span class="str">'@vitejs/plugin-react'</span>;
+<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">import</span> { <span class="id">defineConfig</span> } <span class="kw">from</span> <span class="str">'vite'</span>;
+<span class="kw">import</span> <span class="id">react</span> <span class="kw">from</span> <span class="str">'@vitejs/plugin-react'</span>;
 
-<span class="kw">export</span> <span class="kw">default</span> defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: { <span class="str">'/api'</span>: <span class="str">'http://localhost:8080'</span> }
+<span class="kw">export</span> <span class="kw">default</span> <span class="fn">defineConfig</span>({
+  <span class="id">plugins</span>: [<span class="fn">react</span>()],
+  <span class="id">server</span>: {
+    <span class="id">proxy</span>: { <span class="str">'/api'</span>: <span class="str">'http://localhost:8080'</span> }
   }
 });</code></pre></div><p><strong>API 함수 발췌</strong>. 서버가 JSON 응답을 준다는 계약을 전제로 합니다.</p>
-<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">export</span> <span class="kw">async</span> <span class="kw">function</span> createTodo(title, signal) {
-  <span class="kw">const</span> response = <span class="kw">await</span> fetch(<span class="str">'/api/todos'</span>, {
-    method: <span class="str">'POST'</span>,
-    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
-    body: JSON.stringify({ title }),
-    signal
+<div class="codebox"><div class="codebar"><span>js</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">export</span> <span class="kw">async</span> <span class="kw">function</span> <span class="fn">createTodo</span>(<span class="id">title</span>, <span class="id">signal</span>) {
+  <span class="kw">const</span> <span class="id">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'/api/todos'</span>, {
+    <span class="id">method</span>: <span class="str">'POST'</span>,
+    <span class="id">headers</span>: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+    <span class="id">body</span>: <span class="id">JSON</span>.<span class="fn">stringify</span>({ <span class="id">title</span> }),
+    <span class="id">signal</span>
   });
-  <span class="kw">if</span> (!response.ok) {
-    <span class="kw">throw</span> <span class="kw">new</span> Error(`저장 실패 (${response.status})`);
+  <span class="kw">if</span> (!<span class="id">response</span>.<span class="id">ok</span>) {
+    <span class="kw">throw</span> <span class="kw">new</span> <span class="fn">Error</span>(<span class="str">`저장 실패 (${response.status})`</span>);
   }
-  <span class="kw">return</span> response.json();
+  <span class="kw">return</span> <span class="id">response</span>.<span class="fn">json</span>();
 }</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -624,12 +628,12 @@ server:
 </tbody></table>
 </div><p>테스트의 개수보다 실패를 잡는 능력이 중요합니다. 정상 생성, 입력 오류, 권한 오류, 데이터 없음, 동시 수정, 외부 장애를 대표 사례로 잡습니다. CI에서 테스트를 건너뛰거나 실패해도 성공으로 처리하면 배포 게이트가 무력해집니다.</p>
 <div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># backend 폴더: 프로젝트 설정에 따라 통합 테스트 플러그인도 연결</span>
-./mvnw -B verify
+./<span class="id">mvnw</span> -<span class="id">B</span> <span class="id">verify</span>
 <span class="cm"># frontend 폴더: package.json에 해당 scripts와 도구가 있어야 함</span>
-npm ci
-npm run lint
-npm run test:ci
-npm run build</code></pre></div><p><code>verify</code>가 모든 통합 테스트를 자동 발견하는 것은 아닙니다. Failsafe 등의 설정과 클래스 이름 규칙을 확인합니다. 테스트 DB는 운영 DB와 분리하고, 테스트 종료 시 격리 데이터가 정리되게 합니다.</p>
+<span class="id">npm</span> <span class="id">ci</span>
+<span class="id">npm</span> <span class="id">run</span> <span class="id">lint</span>
+<span class="id">npm</span> <span class="id">run</span> <span class="id">test</span>:<span class="id">ci</span>
+<span class="id">npm</span> <span class="id">run</span> <span class="id">build</span></code></pre></div><p><code>verify</code>가 모든 통합 테스트를 자동 발견하는 것은 아닙니다. Failsafe 등의 설정과 클래스 이름 규칙을 확인합니다. 테스트 DB는 운영 DB와 분리하고, 테스트 종료 시 격리 데이터가 정리되게 합니다.</p>
 </section><section id="item-11"><div class="section-kicker">REFERENCE 12</div><h2>8단계: 브랜치 · PR · 코드 검토 규칙</h2><ol>
 <li><code>feature/todo-create</code> 같은 짧은 작업 브랜치를 만듭니다.</li>
 <li>기능과 실패 사례 테스트를 함께 커밋합니다.</li>
@@ -637,58 +641,58 @@ npm run build</code></pre></div><p><code>verify</code>가 모든 통합 테스�
 <li>CI 통과와 리뷰 후 main에 병합합니다.</li>
 <li>main의 특정 커밋으로 릴리스를 만들고 배포 기록에 연결합니다.</li>
 </ol>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>git switch -c feature/todo-create
-git add backend/src frontend/src
-git commit -m <span class="str">&quot;feat: add todo creation with validation&quot;</span>
-git push -u origin feature/todo-create</code></pre></div><p>GitHub ruleset/브랜치 보호에서 필수 체크, 리뷰, 직접 push 제한을 구성합니다. 워크플로 파일을 만들기만 해서는 병합 제한이 생기지 않습니다. 배포 Environment에는 운영 배포 브랜치와 승인자를 설정하며, 사용 가능한 보호 기능은 요금제·저장소 공개 여부에 따라 확인합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">git</span> <span class="id">switch</span> -<span class="id">c</span> <span class="id">feature</span>/<span class="id">todo</span>-<span class="id">create</span>
+<span class="id">git</span> <span class="id">add</span> <span class="id">backend</span>/<span class="id">src</span> <span class="id">frontend</span>/<span class="id">src</span>
+<span class="id">git</span> <span class="id">commit</span> -<span class="id">m</span> <span class="str">&quot;feat: add todo creation with validation&quot;</span>
+<span class="id">git</span> <span class="id">push</span> -<span class="id">u</span> <span class="id">origin</span> <span class="id">feature</span>/<span class="id">todo</span>-<span class="id">create</span></code></pre></div><p>GitHub ruleset/브랜치 보호에서 필수 체크, 리뷰, 직접 push 제한을 구성합니다. 워크플로 파일을 만들기만 해서는 병합 제한이 생기지 않습니다. 배포 Environment에는 운영 배포 브랜치와 승인자를 설정하며, 사용 가능한 보호 기능은 요금제·저장소 공개 여부에 따라 확인합니다.</p>
 <p><strong><code>.github/CODEOWNERS</code> 예시</strong>:</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>/backend/ @example/backend-team
 /infra/ @example/platform-team
 /.github/workflows/ @example/platform-team</code></pre></div><p>팀 핸들은 실제 접근 권한이 있는 팀으로 바꿉니다. 소유자를 선언하는 것과 리뷰를 필수로 요구하는 것은 별도 설정입니다. <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments">환경과 배포 보호</a>.</p>
 </section><section id="item-12"><div class="section-kicker">REFERENCE 13</div><h2>9단계: GitHub Actions CI 파일 작성하기</h2><p><strong>완성 형태의 템플릿: <code>.github/workflows/ci.yml</code></strong>. 저장소 구조와 npm scripts가 앞의 조건을 만족해야 실행됩니다. JDK 21과 Node 22를 사용하며 버전은 팀 기준에 맞게 바꿉니다.</p>
-<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>name: CI
-on:
-  pull_request:
-  push:
-    branches: [main]
-permissions:
-  contents: read
-concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: <span class="kw">true</span>
-jobs:
-  backend:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    defaults:
-      run:
-        working-directory: backend
-    steps:
-      - uses: actions/checkout<span class="an">@v4</span>
-      - uses: actions/setup-java<span class="an">@v4</span>
-        with:
-          distribution: temurin
-          java-version: <span class="str">'21'</span>
-          cache: maven
-      - run: chmod +x mvnw
-      - run: ./mvnw -B verify
-  frontend:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    defaults:
-      run:
-        working-directory: frontend
-    steps:
-      - uses: actions/checkout<span class="an">@v4</span>
-      - uses: actions/setup-node<span class="an">@v4</span>
-        with:
-          node-version: <span class="str">'22'</span>
-          cache: npm
-          cache-dependency-path: frontend/<span class="kw">package</span>-lock.json
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run test:ci
-      - run: npm run build</code></pre></div><p>읽기 편하게 major 태그를 썼습니다. 운영 저장소는 검토한 Action의 전체 commit SHA로 고정하고 업데이트 PR을 받는 방식을 권장합니다. 이 예제의 버전은 “최신 버전 목록”이 아닙니다.</p>
+<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">name</span>: <span class="id">CI</span>
+<span class="id">on</span>:
+  <span class="id">pull_request</span>:
+  <span class="id">push</span>:
+    <span class="id">branches</span>: [<span class="id">main</span>]
+<span class="id">permissions</span>:
+  <span class="id">contents</span>: <span class="id">read</span>
+<span class="id">concurrency</span>:
+  <span class="id">group</span>: <span class="id">ci</span>-${{ <span class="id">github</span>.<span class="id">workflow</span> }}-${{ <span class="id">github</span>.<span class="id">ref</span> }}
+  <span class="id">cancel</span>-<span class="id">in</span>-<span class="id">progress</span>: <span class="kw">true</span>
+<span class="id">jobs</span>:
+  <span class="id">backend</span>:
+    <span class="id">runs</span>-<span class="id">on</span>: <span class="id">ubuntu</span>-<span class="id">latest</span>
+    <span class="id">timeout</span>-<span class="id">minutes</span>: <span class="num">15</span>
+    <span class="id">defaults</span>:
+      <span class="id">run</span>:
+        <span class="id">working</span>-<span class="id">directory</span>: <span class="id">backend</span>
+    <span class="id">steps</span>:
+      - <span class="id">uses</span>: <span class="id">actions</span>/<span class="id">checkout</span><span class="an">@v4</span>
+      - <span class="id">uses</span>: <span class="id">actions</span>/<span class="id">setup</span>-<span class="id">java</span><span class="an">@v4</span>
+        <span class="id">with</span>:
+          <span class="id">distribution</span>: <span class="id">temurin</span>
+          <span class="id">java</span>-<span class="id">version</span>: <span class="str">'21'</span>
+          <span class="id">cache</span>: <span class="id">maven</span>
+      - <span class="id">run</span>: <span class="id">chmod</span> +<span class="id">x</span> <span class="id">mvnw</span>
+      - <span class="id">run</span>: ./<span class="id">mvnw</span> -<span class="id">B</span> <span class="id">verify</span>
+  <span class="id">frontend</span>:
+    <span class="id">runs</span>-<span class="id">on</span>: <span class="id">ubuntu</span>-<span class="id">latest</span>
+    <span class="id">timeout</span>-<span class="id">minutes</span>: <span class="num">15</span>
+    <span class="id">defaults</span>:
+      <span class="id">run</span>:
+        <span class="id">working</span>-<span class="id">directory</span>: <span class="id">frontend</span>
+    <span class="id">steps</span>:
+      - <span class="id">uses</span>: <span class="id">actions</span>/<span class="id">checkout</span><span class="an">@v4</span>
+      - <span class="id">uses</span>: <span class="id">actions</span>/<span class="id">setup</span>-<span class="id">node</span><span class="an">@v4</span>
+        <span class="id">with</span>:
+          <span class="id">node</span>-<span class="id">version</span>: <span class="str">'22'</span>
+          <span class="id">cache</span>: <span class="id">npm</span>
+          <span class="id">cache</span>-<span class="id">dependency</span>-<span class="id">path</span>: <span class="id">frontend</span>/<span class="id">package</span>-<span class="id">lock</span>.<span class="id">json</span>
+      - <span class="id">run</span>: <span class="id">npm</span> <span class="id">ci</span>
+      - <span class="id">run</span>: <span class="id">npm</span> <span class="id">run</span> <span class="id">lint</span>
+      - <span class="id">run</span>: <span class="id">npm</span> <span class="id">run</span> <span class="id">test</span>:<span class="id">ci</span>
+      - <span class="id">run</span>: <span class="id">npm</span> <span class="id">run</span> <span class="id">build</span></code></pre></div><p>읽기 편하게 major 태그를 썼습니다. 운영 저장소는 검토한 Action의 전체 commit SHA로 고정하고 업데이트 PR을 받는 방식을 권장합니다. 이 예제의 버전은 “최신 버전 목록”이 아닙니다.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -782,29 +786,29 @@ jobs:
 </div><p>보안 게이트는 비밀 유출 탐지, 의존성 취약점, 정적 분석, 이미지 검사, IaC 정책 검사로 나눌 수 있습니다. 발견 건수만으로 운영 가능 여부를 결정하지 말고 심각도·악용 가능성·노출 경로·해결 가능성을 고려합니다. 예외를 허용할 때는 담당자와 만료일을 남깁니다.</p>
 <p>CI 파일의 기본 테스트만으로 이 검사가 전부 실행되는 것은 아닙니다. 팀의 스캐너를 별도 step으로 추가하고 <strong>종료 코드가 실제로 실패를 전달하는지</strong> 확인합니다.</p>
 </section><section id="item-14"><div class="section-kicker">REFERENCE 15</div><h2>11단계: Spring Dockerfile과 이미지 식별</h2><p><strong><code>backend/Dockerfile</code> 템플릿</strong>. Maven이 최종 파일을 <code>target/app.jar</code>로 만들도록 <code>pom.xml</code>의 <code>&lt;build&gt;</code> 아래에 <code>&lt;finalName&gt;app&lt;/finalName&gt;</code>을 설정합니다. 프로젝트 의존성 다운로드가 가능한 빌드 환경이 필요합니다.</p>
-<div class="codebox"><div class="codebar"><span>dockerfile</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>FROM eclipse-temurin:21-jdk AS build
-WORKDIR /src
-COPY .mvn .mvn
-COPY mvnw pom.xml ./
-RUN chmod +x mvnw
-COPY src src
-RUN ./mvnw -B -DskipTests <span class="kw">package</span>
+<div class="codebox"><div class="codebar"><span>dockerfile</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">FROM</span> <span class="id">eclipse</span>-<span class="id">temurin</span>:<span class="num">21</span>-<span class="id">jdk</span> <span class="id">AS</span> <span class="id">build</span>
+<span class="kw">WORKDIR</span> /<span class="id">src</span>
+<span class="kw">COPY</span> .<span class="id">mvn</span> .<span class="id">mvn</span>
+<span class="kw">COPY</span> <span class="id">mvnw</span> <span class="id">pom</span>.<span class="id">xml</span> ./
+<span class="kw">RUN</span> <span class="id">chmod</span> +<span class="id">x</span> <span class="id">mvnw</span>
+<span class="kw">COPY</span> <span class="id">src</span> <span class="id">src</span>
+<span class="kw">RUN</span> ./<span class="id">mvnw</span> -<span class="id">B</span> -<span class="id">DskipTests</span> <span class="id">package</span>
 
-FROM eclipse-temurin:21-jre
-WORKDIR /app
-COPY --from=build /src/target/app.jar /app/app.jar
-USER 10001:10001
-EXPOSE 8080
-ENTRYPOINT [<span class="str">&quot;java&quot;</span>, <span class="str">&quot;-jar&quot;</span>, <span class="str">&quot;/app/app.jar&quot;</span>]</code></pre></div><p>이 빌드는 <strong>앞선 CI 테스트가 통과한 동일 커밋</strong>을 패키징하는 용도입니다. 단독 사용이면 먼저 테스트를 실행합니다. <code>USER</code>는 root 대신 숫자 UID/GID로 실행하며, 앱이 쓰는 경로는 권한을 별도로 설계합니다. 실행 이미지는 운영에서 digest로 고정하고 주기적으로 갱신합니다.</p>
+<span class="kw">FROM</span> <span class="id">eclipse</span>-<span class="id">temurin</span>:<span class="num">21</span>-<span class="id">jre</span>
+<span class="kw">WORKDIR</span> /<span class="id">app</span>
+<span class="kw">COPY</span> --<span class="id">from</span>=<span class="id">build</span> /<span class="id">src</span>/<span class="id">target</span>/<span class="id">app</span>.<span class="id">jar</span> /<span class="id">app</span>/<span class="id">app</span>.<span class="id">jar</span>
+<span class="kw">USER</span> <span class="num">10001</span>:<span class="num">10001</span>
+<span class="kw">EXPOSE</span> <span class="num">8080</span>
+<span class="kw">ENTRYPOINT</span> [<span class="str">&quot;java&quot;</span>, <span class="str">&quot;-jar&quot;</span>, <span class="str">&quot;/app/app.jar&quot;</span>]</code></pre></div><p>이 빌드는 <strong>앞선 CI 테스트가 통과한 동일 커밋</strong>을 패키징하는 용도입니다. 단독 사용이면 먼저 테스트를 실행합니다. <code>USER</code>는 root 대신 숫자 UID/GID로 실행하며, 앱이 쓰는 경로는 권한을 별도로 설계합니다. 실행 이미지는 운영에서 digest로 고정하고 주기적으로 갱신합니다.</p>
 <p><strong><code>backend/.dockerignore</code></strong>:</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>target
 .git
 .env
 .env.*
-*.log</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>docker build --platform linux/amd64 -t team-api:local backend
+*.log</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">docker</span> <span class="id">build</span> --<span class="id">platform</span> <span class="id">linux</span>/<span class="id">amd64</span> -<span class="id">t</span> <span class="id">team</span>-<span class="id">api</span>:<span class="kw">local</span> <span class="id">backend</span>
 <span class="cm"># .env.backend에는 Spring용 DB_URL/DB_USER/DB_PASSWORD 등을 별도로 작성</span>
 <span class="cm"># macOS Docker Desktop에서 호스트 DB에 접근할 때 host.docker.internal 사용 가능</span>
-docker run --rm -p 127.0.0.1:8080:8080 --env-file .env.backend team-api:local</code></pre></div><p><code>EXPOSE</code>는 문서 성격의 포트 선언이며 호스트 포트를 공개하지 않습니다. <code>-p</code>가 전달을 설정합니다. ARM Mac에서 빌드한 이미지와 ECS의 CPU 아키텍처가 일치해야 합니다. <code>latest</code>만으로 배포하면 무엇을 실행 중인지 불명확해지므로 커밋 태그와 <code>sha256</code> digest를 기록합니다.</p>
+<span class="id">docker</span> <span class="id">run</span> --<span class="id">rm</span> -<span class="id">p</span> <span class="num">127.0</span>.<span class="num">0.1</span>:<span class="num">8080</span>:<span class="num">8080</span> --<span class="id">env</span>-<span class="id">file</span> .<span class="id">env</span>.<span class="id">backend</span> <span class="id">team</span>-<span class="id">api</span>:<span class="kw">local</span></code></pre></div><p><code>EXPOSE</code>는 문서 성격의 포트 선언이며 호스트 포트를 공개하지 않습니다. <code>-p</code>가 전달을 설정합니다. ARM Mac에서 빌드한 이미지와 ECS의 CPU 아키텍처가 일치해야 합니다. <code>latest</code>만으로 배포하면 무엇을 실행 중인지 불명확해지므로 커밋 태그와 <code>sha256</code> digest를 기록합니다.</p>
 </section><section id="item-15"><div class="section-kicker">REFERENCE 16</div><h2>12단계: AWS 배포 전에 준비할 리소스</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
@@ -933,15 +937,15 @@ docker run --rm -p 127.0.0.1:8080:8080 --env-file .env.backend team-api:local</c
   }]
 }</code></pre></div><p>GitHub <code>sub</code> 형태는 저장소 설정, 생성 시점, Environment 사용 여부에 영향을 받습니다. 공식 문서의 현재 subject 형식과 자신의 설정을 확인해야 하며, 오래된 <code>repo:조직/저장소:...</code> 예제를 무조건 복사하지 않습니다. Environment를 쓰면 subject의 문맥이 branch 대신 environment가 될 수 있으므로 해당 Environment의 배포 브랜치 제한도 구성합니다. 토큰 원문을 로그에 남기지 않습니다.</p>
 <p><strong>job에 추가하는 인증 발췌</strong>:</p>
-<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>permissions:
-  contents: read
-  id-token: write
-steps:
-  - uses: aws-actions/configure-aws-credentials<span class="an">@v6.3.0</span>
-    with:
-      role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-      aws-region: ${{ vars.AWS_REGION }}
-  - run: aws sts get-caller-identity</code></pre></div><p><code>get-caller-identity</code>로 계정·역할을 확인하고 의도한 환경과 다르면 중단합니다. <a href="https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws">GitHub OIDC와 AWS</a>, <a href="https://github.com/aws-actions/configure-aws-credentials">AWS 공식 인증 Action</a>.</p>
+<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">permissions</span>:
+  <span class="id">contents</span>: <span class="id">read</span>
+  <span class="id">id</span>-<span class="id">token</span>: <span class="id">write</span>
+<span class="id">steps</span>:
+  - <span class="id">uses</span>: <span class="id">aws</span>-<span class="id">actions</span>/<span class="id">configure</span>-<span class="id">aws</span>-<span class="id">credentials</span><span class="an">@v6.3.0</span>
+    <span class="id">with</span>:
+      <span class="id">role</span>-<span class="id">to</span>-<span class="id">assume</span>: ${{ <span class="id">vars</span>.<span class="id">AWS_ROLE_ARN</span> }}
+      <span class="id">aws</span>-<span class="id">region</span>: ${{ <span class="id">vars</span>.<span class="id">AWS_REGION</span> }}
+  - <span class="id">run</span>: <span class="id">aws</span> <span class="id">sts</span> <span class="id">get</span>-<span class="id">caller</span>-<span class="id">identity</span></code></pre></div><p><code>get-caller-identity</code>로 계정·역할을 확인하고 의도한 환경과 다르면 중단합니다. <a href="https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws">GitHub OIDC와 AWS</a>, <a href="https://github.com/aws-actions/configure-aws-credentials">AWS 공식 인증 Action</a>.</p>
 </section><section id="item-18"><div class="section-kicker">REFERENCE 19</div><h2>15단계: CD 파이프라인 설계와 승격</h2><p><strong>안전한 순서</strong>: 테스트 → 이미지 생성 → 검사 → digest 기록 → 개발 배포 → 검증 → 승인 → 동일 digest 운영 배포 → 관찰.</p>
 <div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -999,30 +1003,30 @@ steps:
 <p>CI와 CD가 서로 다른 workflow라면 main push만 받는다는 이유로 CI 통과가 보장되지는 않습니다. 같은 workflow의 <code>needs</code>로 연결하거나, 성공한 CI 실행과 정확한 commit/artifact를 검증하는 승격 절차를 사용합니다.</p>
 <p>운영 배포는 <code>cancel-in-progress: false</code>로 중간 취소를 피하고 같은 환경의 concurrency group을 공유합니다. 다만 이것만으로 모든 대기 배포의 순서·보존을 보장한다고 생각하지 않습니다. 긴급 배포와 이전 커밋 재배포를 구분하는 운영 규칙도 필요합니다.</p>
 </section><section id="item-19"><div class="section-kicker">REFERENCE 20</div><h2>16단계: ECS 배포 Action 사용법</h2><p>다음은 <strong>인증·이미지 게시·migration이 완료된 CD job에 넣는 발췌</strong>입니다. <code>IMAGE_URI</code>는 태그가 아닌 <code>registry/repository@sha256:...</code> 형태로 앞 단계에서 확보한 값입니다.</p>
-<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>- uses: actions/checkout<span class="an">@v4</span>
-- name: Render task definition
-  id: render
-  uses: aws-actions/amazon-ecs-render-task-definition<span class="an">@v1</span>
-  with:
-    task-definition: deploy/task-definition.json
-    container-name: api
-    image: ${{ env.IMAGE_URI }}
-- name: Deploy
-  id: deploy
-  uses: aws-actions/amazon-ecs-deploy-task-definition<span class="an">@v2</span>
-  with:
-    task-definition: ${{ steps.render.outputs.task-definition }}
-    cluster: ${{ vars.ECS_CLUSTER }}
-    service: ${{ vars.ECS_SERVICE }}
-    wait-for-service-stability: <span class="kw">true</span>
-- name: Check exact release
-  env:
-    EXPECTED_TASK: ${{ steps.deploy.outputs.task-definition-arn }}
-    CLUSTER: ${{ vars.ECS_CLUSTER }}
-    SERVICE: ${{ vars.ECS_SERVICE }}
-  run: |
-    aws ecs describe-services --cluster <span class="str">&quot;$CLUSTER&quot;</span> --services <span class="str">&quot;$SERVICE&quot;</span> &gt; service.json
-    python3 scripts/verify-release.py service.json <span class="str">&quot;$EXPECTED_TASK&quot;</span></code></pre></div><p><code>render</code>는 JSON 안의 특정 컨테이너 이미지를 바꾸고 새 파일 경로를 출력합니다. <code>deploy</code>는 task definition을 등록하고 ECS service를 갱신합니다. 안정화 대기 후에도 <strong>내가 요청한 revision이 실제 활성화되었는지</strong> 확인합니다. 이전 버전으로 자동 롤백되어 안정화된 경우를 성공으로 오인하지 않기 위해서입니다.</p>
+<div class="codebox"><div class="codebar"><span>yaml</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>- <span class="id">uses</span>: <span class="id">actions</span>/<span class="id">checkout</span><span class="an">@v4</span>
+- <span class="id">name</span>: <span class="id">Render</span> <span class="id">task</span> <span class="id">definition</span>
+  <span class="id">id</span>: <span class="id">render</span>
+  <span class="id">uses</span>: <span class="id">aws</span>-<span class="id">actions</span>/<span class="id">amazon</span>-<span class="id">ecs</span>-<span class="id">render</span>-<span class="id">task</span>-<span class="id">definition</span><span class="an">@v1</span>
+  <span class="id">with</span>:
+    <span class="id">task</span>-<span class="id">definition</span>: <span class="id">deploy</span>/<span class="id">task</span>-<span class="id">definition</span>.<span class="id">json</span>
+    <span class="id">container</span>-<span class="id">name</span>: <span class="id">api</span>
+    <span class="id">image</span>: ${{ <span class="id">env</span>.<span class="id">IMAGE_URI</span> }}
+- <span class="id">name</span>: <span class="id">Deploy</span>
+  <span class="id">id</span>: <span class="id">deploy</span>
+  <span class="id">uses</span>: <span class="id">aws</span>-<span class="id">actions</span>/<span class="id">amazon</span>-<span class="id">ecs</span>-<span class="id">deploy</span>-<span class="id">task</span>-<span class="id">definition</span><span class="an">@v2</span>
+  <span class="id">with</span>:
+    <span class="id">task</span>-<span class="id">definition</span>: ${{ <span class="id">steps</span>.<span class="id">render</span>.<span class="id">outputs</span>.<span class="id">task</span>-<span class="id">definition</span> }}
+    <span class="id">cluster</span>: ${{ <span class="id">vars</span>.<span class="id">ECS_CLUSTER</span> }}
+    <span class="id">service</span>: ${{ <span class="id">vars</span>.<span class="id">ECS_SERVICE</span> }}
+    <span class="id">wait</span>-<span class="id">for</span>-<span class="id">service</span>-<span class="id">stability</span>: <span class="kw">true</span>
+- <span class="id">name</span>: <span class="id">Check</span> <span class="id">exact</span> <span class="id">release</span>
+  <span class="id">env</span>:
+    <span class="id">EXPECTED_TASK</span>: ${{ <span class="id">steps</span>.<span class="id">deploy</span>.<span class="id">outputs</span>.<span class="id">task</span>-<span class="id">definition</span>-<span class="id">arn</span> }}
+    <span class="id">CLUSTER</span>: ${{ <span class="id">vars</span>.<span class="id">ECS_CLUSTER</span> }}
+    <span class="id">SERVICE</span>: ${{ <span class="id">vars</span>.<span class="id">ECS_SERVICE</span> }}
+  <span class="id">run</span>: |
+    <span class="id">aws</span> <span class="id">ecs</span> <span class="id">describe</span>-<span class="id">services</span> --<span class="id">cluster</span> <span class="str">&quot;$CLUSTER&quot;</span> --<span class="id">services</span> <span class="str">&quot;$SERVICE&quot;</span> &gt; <span class="id">service</span>.<span class="id">json</span>
+    <span class="id">python3</span> <span class="id">scripts</span>/<span class="id">verify</span>-<span class="id">release</span>.<span class="id">py</span> <span class="id">service</span>.<span class="id">json</span> <span class="str">&quot;$EXPECTED_TASK&quot;</span></code></pre></div><p><code>render</code>는 JSON 안의 특정 컨테이너 이미지를 바꾸고 새 파일 경로를 출력합니다. <code>deploy</code>는 task definition을 등록하고 ECS service를 갱신합니다. 안정화 대기 후에도 <strong>내가 요청한 revision이 실제 활성화되었는지</strong> 확인합니다. 이전 버전으로 자동 롤백되어 안정화된 경우를 성공으로 오인하지 않기 위해서입니다.</p>
 <p>복사 가능한 전체 파이프라인은 <a href="cloud-cicd-reference.html">기존 Docker·ECS 실습</a>에 있습니다. 그 프로젝트는 Node 앱이며 이 장의 Spring 프로젝트와 파일 구조가 다릅니다. 두 예제를 섞을 때 빌드 경로·컨테이너 이름·포트·헬스 경로를 맞춥니다. <a href="https://github.com/aws-actions/amazon-ecs-render-task-definition">Render Action</a>, <a href="https://github.com/aws-actions/amazon-ecs-deploy-task-definition">Deploy Action</a>.</p>
 </section><section id="item-20"><div class="section-kicker">REFERENCE 21</div><h2>17단계: Task definition에 어떤 값이 필요한가</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -1105,32 +1109,32 @@ steps:
 }</code></pre></div><p>여기서는 secret 문자열 전체가 비밀번호라고 가정합니다. JSON secret의 일부 키를 쓰려면 ECS의 key selector 형식과 플랫폼 지원 조건을 확인합니다. 새 secret 값이 저장되어도 이미 시작한 컨테이너의 환경변수가 자동 변경되지 않으므로 회전 시 재배포 전략을 정합니다.</p>
 <p>Task definition은 실행 설계도, Task는 실행 인스턴스, Service는 원하는 개수와 교체를 관리하는 관리자입니다. Cluster 자체가 EC2 서버 한 대를 의미하는 것은 아닙니다.</p>
 </section><section id="item-21"><div class="section-kicker">REFERENCE 22</div><h2>18단계: 배포 검증에 필요한 Python 함수</h2><p>다운로드의 <code>scripts/verify-release.py</code>는 AWS CLI JSON을 읽는 <strong>로컬 검증기</strong>입니다. AWS를 호출하거나 변경하지 않습니다.</p>
-<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>def verify(payload, expected):
-    <span class="kw">if</span> payload.get(<span class="str">&quot;failures&quot;</span>):
-        raise ValueError(<span class="str">&quot;ECS 조회 실패&quot;</span>)
-    services = payload.get(<span class="str">&quot;services&quot;</span>, [])
-    <span class="kw">if</span> len(services) != 1:
-        raise ValueError(<span class="str">&quot;서비스를 하나만 조회해야 합니다&quot;</span>)
-    service = services[0]
-    deployments = service.get(<span class="str">&quot;deployments&quot;</span>, [])
-    <span class="kw">if</span> len(deployments) != 1:
-        raise ValueError(<span class="str">&quot;교체 중인 deployment가 남아 있습니다&quot;</span>)
-    deployment = deployments[0]
-    <span class="kw">if</span> service.get(<span class="str">&quot;status&quot;</span>) != <span class="str">&quot;ACTIVE&quot;</span>:
-        raise ValueError(<span class="str">&quot;서비스가 ACTIVE 상태가 아닙니다&quot;</span>)
-    <span class="kw">if</span> deployment.get(<span class="str">&quot;status&quot;</span>) != <span class="str">&quot;PRIMARY&quot;</span>:
-        raise ValueError(<span class="str">&quot;PRIMARY deployment가 아닙니다&quot;</span>)
-    <span class="kw">if</span> service.get(<span class="str">&quot;taskDefinition&quot;</span>) != expected:
-        raise ValueError(<span class="str">&quot;서비스 revision 불일치: 롤백 여부 확인&quot;</span>)
-    <span class="kw">if</span> deployment.get(<span class="str">&quot;taskDefinition&quot;</span>) != expected:
-        raise ValueError(<span class="str">&quot;deployment revision 불일치&quot;</span>)
-    <span class="kw">if</span> deployment.get(<span class="str">&quot;rolloutState&quot;</span>) != <span class="str">&quot;COMPLETED&quot;</span>:
-        raise ValueError(<span class="str">&quot;롤링 배포가 완료되지 않았습니다&quot;</span>)
-    desired = service.get(<span class="str">&quot;desiredCount&quot;</span>, 0)
-    <span class="kw">if</span> desired &lt; 1 or service.get(<span class="str">&quot;runningCount&quot;</span>) != desired:
-        raise ValueError(<span class="str">&quot;목표 태스크 개수에 도달하지 못했습니다&quot;</span>)
-    <span class="kw">if</span> service.get(<span class="str">&quot;pendingCount&quot;</span>) != 0:
-        raise ValueError(<span class="str">&quot;시작 대기 태스크가 있습니다&quot;</span>)</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<div class="codebox"><div class="codebar"><span>python</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">def</span> <span class="fn">verify</span>(<span class="id">payload</span>, <span class="id">expected</span>):
+    <span class="kw">if</span> <span class="id">payload</span>.<span class="fn">get</span>(<span class="str">&quot;failures&quot;</span>):
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;ECS 조회 실패&quot;</span>)
+    <span class="id">services</span> = <span class="id">payload</span>.<span class="fn">get</span>(<span class="str">&quot;services&quot;</span>, [])
+    <span class="kw">if</span> <span class="fn">len</span>(<span class="id">services</span>) != <span class="num">1</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;서비스를 하나만 조회해야 합니다&quot;</span>)
+    <span class="id">service</span> = <span class="id">services</span>[<span class="num">0</span>]
+    <span class="id">deployments</span> = <span class="id">service</span>.<span class="fn">get</span>(<span class="str">&quot;deployments&quot;</span>, [])
+    <span class="kw">if</span> <span class="fn">len</span>(<span class="id">deployments</span>) != <span class="num">1</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;교체 중인 deployment가 남아 있습니다&quot;</span>)
+    <span class="id">deployment</span> = <span class="id">deployments</span>[<span class="num">0</span>]
+    <span class="kw">if</span> <span class="id">service</span>.<span class="fn">get</span>(<span class="str">&quot;status&quot;</span>) != <span class="str">&quot;ACTIVE&quot;</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;서비스가 ACTIVE 상태가 아닙니다&quot;</span>)
+    <span class="kw">if</span> <span class="id">deployment</span>.<span class="fn">get</span>(<span class="str">&quot;status&quot;</span>) != <span class="str">&quot;PRIMARY&quot;</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;PRIMARY deployment가 아닙니다&quot;</span>)
+    <span class="kw">if</span> <span class="id">service</span>.<span class="fn">get</span>(<span class="str">&quot;taskDefinition&quot;</span>) != <span class="id">expected</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;서비스 revision 불일치: 롤백 여부 확인&quot;</span>)
+    <span class="kw">if</span> <span class="id">deployment</span>.<span class="fn">get</span>(<span class="str">&quot;taskDefinition&quot;</span>) != <span class="id">expected</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;deployment revision 불일치&quot;</span>)
+    <span class="kw">if</span> <span class="id">deployment</span>.<span class="fn">get</span>(<span class="str">&quot;rolloutState&quot;</span>) != <span class="str">&quot;COMPLETED&quot;</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;롤링 배포가 완료되지 않았습니다&quot;</span>)
+    <span class="id">desired</span> = <span class="id">service</span>.<span class="fn">get</span>(<span class="str">&quot;desiredCount&quot;</span>, <span class="num">0</span>)
+    <span class="kw">if</span> <span class="id">desired</span> &lt; <span class="num">1</span> <span class="kw">or</span> <span class="id">service</span>.<span class="fn">get</span>(<span class="str">&quot;runningCount&quot;</span>) != <span class="id">desired</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;목표 태스크 개수에 도달하지 못했습니다&quot;</span>)
+    <span class="kw">if</span> <span class="id">service</span>.<span class="fn">get</span>(<span class="str">&quot;pendingCount&quot;</span>) != <span class="num">0</span>:
+        <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&quot;시작 대기 태스크가 있습니다&quot;</span>)</code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>함수·문법</th>
@@ -1167,30 +1171,30 @@ steps:
 </div><p>이 검증기는 <strong>ECS rolling 배포</strong>를 대상으로 합니다. CodeDeploy blue/green이나 task set 기반 배포에는 맞는 검증기를 별도로 작성해야 합니다. 통과 후에도 ALB를 거친 스모크 테스트와 오류율 관찰이 필요합니다. AWS control plane 상태만으로 업무 기능을 검증할 수는 없습니다.</p>
 </section><section id="item-22"><div class="section-kicker">REFERENCE 23</div><h2>19단계: Terraform으로 인프라 관리하기</h2><p>Terraform의 기본 단위는 provider(서비스 연결), resource(만들 대상), data(기존 정보 조회), variable(입력), output(출력), module(재사용 묶음)입니다.</p>
 <p><strong>HCL 발췌</strong>:</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>variable &quot;environment&quot; {
-  type = string
-  validation {
-    condition     = contains([&quot;dev&quot;, &quot;stg&quot;, &quot;prod&quot;], var.environment)
-    error_message = &quot;dev, stg, prod 중 하나를 선택하세요.&quot;
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">variable</span> <span class="str">&quot;environment&quot;</span> {
+  <span class="id">type</span> = <span class="id">string</span>
+  <span class="id">validation</span> {
+    <span class="id">condition</span>     = <span class="fn">contains</span>([<span class="str">&quot;dev&quot;</span>, <span class="str">&quot;stg&quot;</span>, <span class="str">&quot;prod&quot;</span>], <span class="id">var</span>.<span class="id">environment</span>)
+    <span class="id">error_message</span> = <span class="str">&quot;dev, stg, prod 중 하나를 선택하세요.&quot;</span>
   }
 }
-locals {
-  name = &quot;team-api-${var.environment}&quot;
-  tags = { Project = &quot;team-web&quot;, Environment = var.environment }
+<span class="kw">locals</span> {
+  <span class="id">name</span> = <span class="str">&quot;team-api-${var.environment}&quot;</span>
+  <span class="id">tags</span> = { <span class="id">Project</span> = <span class="str">&quot;team-web&quot;</span>, <span class="id">Environment</span> = <span class="id">var</span>.<span class="id">environment</span> }
 }
-resource &quot;aws_ecr_repository&quot; &quot;api&quot; {
-  name                 = local.name
-  image_tag_mutability = &quot;IMMUTABLE&quot;
-  tags                 = local.tags
+<span class="kw">resource</span> <span class="str">&quot;aws_ecr_repository&quot;</span> <span class="str">&quot;api&quot;</span> {
+  <span class="id">name</span>                 = <span class="id">local</span>.<span class="id">name</span>
+  <span class="id">image_tag_mutability</span> = <span class="str">&quot;IMMUTABLE&quot;</span>
+  <span class="id">tags</span>                 = <span class="id">local</span>.<span class="id">tags</span>
 }
-output &quot;repository_url&quot; {
-  value = aws_ecr_repository.api.repository_url
-}</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform fmt -check -recursive
-terraform init
-terraform validate
-terraform plan -out=review.tfplan
+<span class="kw">output</span> <span class="str">&quot;repository_url&quot;</span> {
+  <span class="id">value</span> = <span class="id">aws_ecr_repository</span>.<span class="id">api</span>.<span class="id">repository_url</span>
+}</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">fmt</span> -<span class="id">check</span> -<span class="id">recursive</span>
+<span class="id">terraform</span> <span class="id">init</span>
+<span class="id">terraform</span> <span class="id">validate</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">out</span>=<span class="id">review</span>.<span class="id">tfplan</span>
 <span class="cm"># 계획의 생성·변경·삭제 대상과 계정을 확인한 뒤 적용</span>
-terraform apply review.tfplan</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">terraform</span> <span class="id">apply</span> <span class="id">review</span>.<span class="id">tfplan</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>명령·함수</th>
@@ -1246,13 +1250,13 @@ terraform apply review.tfplan</code></pre></div><div class="table-wrap" tabindex
 </tbody></table>
 </div><p>Terraform이 ECS service의 task revision도 관리하고 CD가 같은 값을 바꾸면 다음 apply에서 되돌릴 수 있습니다. “인프라 속성은 Terraform, 릴리스 revision은 CD”처럼 소유권을 정하고 필요한 항목에 한해 <code>ignore_changes</code> 등을 설계합니다. 모든 drift를 무시하면 실제 설정 오류도 감춰집니다. <a href="terraform-reference.html">Terraform 상세 가이드</a>.</p>
 </section><section id="item-23"><div class="section-kicker">REFERENCE 24</div><h2>20단계: 원격 state와 환경 분리</h2><p>state는 Terraform 리소스와 실제 AWS 리소스의 대응표입니다. 민감한 값이 포함될 수 있어 일반 소스 코드처럼 공개하면 안 됩니다. <code>sensitive = true</code>는 화면 표시를 가릴 뿐 state에서 값을 제거하는 기능이 아닙니다.</p>
-<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>terraform {
-  backend &quot;s3&quot; {
-    bucket       = &quot;REPLACE_WITH_EXISTING_STATE_BUCKET&quot;
-    key          = &quot;team-web/dev/terraform.tfstate&quot;
-    region       = &quot;ap-northeast-2&quot;
-    encrypt      = true
-    use_lockfile = true
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">terraform</span> {
+  <span class="id">backend</span> <span class="str">&quot;s3&quot;</span> {
+    <span class="id">bucket</span>       = <span class="str">&quot;REPLACE_WITH_EXISTING_STATE_BUCKET&quot;</span>
+    <span class="id">key</span>          = <span class="str">&quot;team-web/dev/terraform.tfstate&quot;</span>
+    <span class="id">region</span>       = <span class="str">&quot;ap-northeast-2&quot;</span>
+    <span class="id">encrypt</span>      = <span class="kw">true</span>
+    <span class="id">use_lockfile</span> = <span class="kw">true</span>
   }
 }</code></pre></div><p>state용 버킷은 별도의 bootstrap으로 먼저 만들고 접근 통제·버전 관리·암호화를 설정합니다. S3 native locking을 지원하는 Terraform 버전을 사용합니다. state 읽기/쓰기 권한과 <code>.tflock</code> 객체의 읽기/쓰기/삭제 권한을 구분합니다. <a href="https://developer.hashicorp.com/terraform/language/backend/s3">S3 backend 공식 문서</a>.</p>
 <div class="table-wrap" tabindex="0"><table>
@@ -1338,9 +1342,9 @@ ALB SG → 앱 SG:8080
 </tbody></table>
 </div><p>접속 실패는 <strong>DNS → 연결/TLS → HTTP → 앱 → DB</strong> 순서로 좁힙니다. 응답 시간 초과는 네트워크·과부하 등 여러 원인이고, HTTP 500은 요청이 서버까지 도착했지만 내부 처리에 실패한 것입니다. 502/503/504도 ALB와 target 로그를 함께 봐야 합니다.</p>
 <div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 본인 서비스 도메인으로 교체</span>
-curl --connect-timeout 5 --max-time 15 -I https:<span class="cm">//api.example.com</span>
+<span class="id">curl</span> --<span class="id">connect</span>-<span class="id">timeout</span> <span class="num">5</span> --<span class="id">max</span>-<span class="id">time</span> <span class="num">15</span> -<span class="id">I</span> <span class="id">https</span>://<span class="id">api</span>.<span class="id">example</span>.<span class="id">com</span>
 <span class="cm"># AWS 인증 후 대상 상태 확인</span>
-aws elbv2 describe-target-health --target-group-arn <span class="str">&quot;$TARGET_GROUP_ARN&quot;</span></code></pre></div><p>보안 그룹을 <code>0.0.0.0/0</code> 전체 개방해서 문제를 덮지 말고, 실패한 연결의 출발지·목적지·포트를 확인합니다.</p>
+<span class="id">aws</span> <span class="id">elbv2</span> <span class="id">describe</span>-<span class="id">target</span>-<span class="id">health</span> --<span class="id">target</span>-<span class="id">group</span>-<span class="id">arn</span> <span class="str">&quot;$TARGET_GROUP_ARN&quot;</span></code></pre></div><p>보안 그룹을 <code>0.0.0.0/0</code> 전체 개방해서 문제를 덮지 말고, 실패한 연결의 출발지·목적지·포트를 확인합니다.</p>
 </section><section id="item-25"><div class="section-kicker">REFERENCE 26</div><h2>22단계: DB 마이그레이션과 호환성</h2><p>코드 롤백과 DB 롤백은 다릅니다. 이전 이미지로 되돌려도 삭제된 컬럼·데이터가 돌아오지 않습니다. 운영에서는 보통 <strong>확장 → 데이터 이관 → 전환 → 나중에 정리</strong> 순서를 사용합니다.</p>
 <p>예: <code>title</code>을 <code>name</code>으로 바꾸려면 바로 rename하여 구버전을 깨뜨리기보다 새 컬럼을 추가하고 양쪽 호환 기간을 설계합니다.</p>
 <div class="codebox"><div class="codebar"><span>sql</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>-- V2__add_description.sql : 기존 행을 유지하는 확장 예
@@ -1415,18 +1419,18 @@ ALTER TABLE todos ADD COLUMN description varchar(500);</code></pre></div><ol>
 <p>Deployment circuit breaker는 시작·상태 검사 실패를 탐지할 수 있습니다. 자동 rollback에는 이전에 완료된 deployment가 필요하며, 업무 오류나 DB 파괴적 변경까지 되돌리는 장치는 아닙니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html">ECS circuit breaker</a>.</p>
 <p>수동 롤백도 승인된 이전 task definition을 지정하는 <strong>서비스 변경</strong>입니다. 먼저 DB 호환성을 확인합니다.</p>
 <div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># PREVIOUS_TASK_ARN은 배포 기록에 보관한 이전 정상 revision</span>
-aws ecs update-service --cluster <span class="str">&quot;$CLUSTER&quot;</span> --service <span class="str">&quot;$SERVICE&quot;</span> \
-  --task-definition <span class="str">&quot;$PREVIOUS_TASK_ARN&quot;</span>
-aws ecs wait services-stable --cluster <span class="str">&quot;$CLUSTER&quot;</span> --services <span class="str">&quot;$SERVICE&quot;</span>
+<span class="id">aws</span> <span class="id">ecs</span> <span class="id">update</span>-<span class="id">service</span> --<span class="id">cluster</span> <span class="str">&quot;$CLUSTER&quot;</span> --<span class="id">service</span> <span class="str">&quot;$SERVICE&quot;</span> \
+  --<span class="id">task</span>-<span class="id">definition</span> <span class="str">&quot;$PREVIOUS_TASK_ARN&quot;</span>
+<span class="id">aws</span> <span class="id">ecs</span> <span class="id">wait</span> <span class="id">services</span>-<span class="id">stable</span> --<span class="id">cluster</span> <span class="str">&quot;$CLUSTER&quot;</span> --<span class="id">services</span> <span class="str">&quot;$SERVICE&quot;</span>
 <span class="cm"># 이후 정확한 revision 확인과 스모크 테스트를 다시 수행</span></code></pre></div></section><section id="item-27"><div class="section-kicker">REFERENCE 28</div><h2>24단계: React 정적 웹 배포</h2><p>React SPA의 <code>dist/</code>는 S3에 저장하고 CloudFront로 서비스할 수 있습니다. S3를 비공개로 두고 CloudFront OAC로 접근하게 하는 구성이 일반적입니다. 웹사이트 endpoint 방식과 S3 REST origin + OAC 방식은 다르므로 섞지 않습니다.</p>
 <p>빌드 결과는 파일명 hash가 있는 JS/CSS와 <code>index.html</code>로 구분해 캐시 정책을 다르게 둡니다. 정적 자산은 길게, 진입 HTML은 짧게 또는 재검증하게 관리합니다. 새 자산을 먼저 업로드한 다음 새 HTML을 반영해야 전환 중 파일 누락을 줄일 수 있습니다.</p>
 <p><strong>전용 SPA 버킷 루트가 준비된 경우의 업로드 예</strong>:</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>aws s3 sync frontend/dist/ <span class="str">&quot;s3://$WEB_BUCKET/&quot;</span> \
-  --exclude <span class="str">'index.html'</span> --cache-control <span class="str">'public,max-age=31536000,immutable'</span>
-aws s3 cp frontend/dist/index.html <span class="str">&quot;s3://$WEB_BUCKET/index.html&quot;</span> \
-  --cache-control <span class="str">'no-cache'</span> --content-type <span class="str">'text/html'</span>
-aws cloudfront create-invalidation --distribution-id <span class="str">&quot;$DISTRIBUTION_ID&quot;</span> \
-  --paths <span class="str">'/index.html'</span> <span class="str">'/'</span></code></pre></div><p>이 장기 캐시는 <strong>HTML 외 파일도 내용 hash로 버전이 바뀐다는 전제</strong>입니다. Vite <code>public/</code>처럼 고정 이름 파일은 별도 짧은 캐시 정책으로 업로드합니다. 이전 자산은 롤백·열린 탭을 고려해 일정 기간 유지하고 나중에 정리합니다. <code>/todos/123</code> 새로고침의 SPA 라우팅은 별도 설정하며 <code>/api</code> 오류를 index.html로 덮지 않습니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">aws</span> <span class="id">s3</span> <span class="id">sync</span> <span class="id">frontend</span>/<span class="id">dist</span>/ <span class="str">&quot;s3://$WEB_BUCKET/&quot;</span> \
+  --<span class="id">exclude</span> <span class="str">'index.html'</span> --<span class="id">cache</span>-<span class="id">control</span> <span class="str">'public,max-age=31536000,immutable'</span>
+<span class="id">aws</span> <span class="id">s3</span> <span class="id">cp</span> <span class="id">frontend</span>/<span class="id">dist</span>/<span class="id">index</span>.<span class="id">html</span> <span class="str">&quot;s3://$WEB_BUCKET/index.html&quot;</span> \
+  --<span class="id">cache</span>-<span class="id">control</span> <span class="str">'no-cache'</span> --<span class="id">content</span>-<span class="id">type</span> <span class="str">'text/html'</span>
+<span class="id">aws</span> <span class="id">cloudfront</span> <span class="id">create</span>-<span class="id">invalidation</span> --<span class="id">distribution</span>-<span class="id">id</span> <span class="str">&quot;$DISTRIBUTION_ID&quot;</span> \
+  --<span class="id">paths</span> <span class="str">'/index.html'</span> <span class="str">'/'</span></code></pre></div><p>이 장기 캐시는 <strong>HTML 외 파일도 내용 hash로 버전이 바뀐다는 전제</strong>입니다. Vite <code>public/</code>처럼 고정 이름 파일은 별도 짧은 캐시 정책으로 업로드합니다. 이전 자산은 롤백·열린 탭을 고려해 일정 기간 유지하고 나중에 정리합니다. <code>/todos/123</code> 새로고침의 SPA 라우팅은 별도 설정하며 <code>/api</code> 오류를 index.html로 덮지 않습니다.</p>
 <p>프런트 롤백에는 이전 HTML과 연결된 정적 자산 세트가 필요합니다. API 응답 변경도 이미 열린 구버전 브라우저와 호환되어야 합니다. <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html">CloudFront OAC</a>.</p>
 </section><section id="item-28"><div class="section-kicker">REFERENCE 29</div><h2>25단계: 로그 · 메트릭 · 트레이스</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
@@ -1454,13 +1458,13 @@ aws cloudfront create-invalidation --distribution-id <span class="str">&quot;$DI
 </tbody></table>
 </div><p>로그에는 시각, level, 서비스, 환경, release, request/trace ID, 작업명, 결과를 담습니다. 비밀번호·토큰·전체 개인정보 본문은 기록하지 않습니다. 사용자 입력을 그대로 문자열에 합쳐 로그 구조를 깨뜨리지 않게 합니다.</p>
 <div class="codebox"><div class="codebar"><span>java</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">// SLF4J Logger가 선언된 서비스 내부의 설명용 발췌</span>
-long started = System.nanoTime();
-try {
-    <span class="kw">return</span> repository.findById(id)
-        .orElseThrow(() -&gt; <span class="kw">new</span> TodoNotFoundException(id));
-} finally {
-    long elapsedMs = (System.nanoTime() - started) / 1_000_000;
-    log.info(<span class="str">&quot;operation=todo_lookup elapsed_ms={}&quot;</span>, elapsedMs);
+<span class="kw">long</span> <span class="id">started</span> = <span class="id">System</span>.<span class="fn">nanoTime</span>();
+<span class="kw">try</span> {
+    <span class="kw">return</span> <span class="id">repository</span>.<span class="fn">findById</span>(<span class="id">id</span>)
+        .<span class="fn">orElseThrow</span>(() -&gt; <span class="kw">new</span> <span class="fn">TodoNotFoundException</span>(<span class="id">id</span>));
+} <span class="kw">finally</span> {
+    <span class="kw">long</span> <span class="id">elapsedMs</span> = (<span class="id">System</span>.<span class="fn">nanoTime</span>() - <span class="id">started</span>) / 1<span class="id">_000_000</span>;
+    <span class="id">log</span>.<span class="fn">info</span>(<span class="str">&quot;operation=todo_lookup elapsed_ms={}&quot;</span>, <span class="id">elapsedMs</span>);
 }</code></pre></div><p>이 코드는 수행 시간을 로그에 남길 뿐 분산 트레이싱 전체를 구현하지 않습니다. request ID 전파·MDC 정리·비동기 전파는 필터/계측 라이브러리로 일관되게 구성합니다. metric label에 사용자 ID·request ID를 넣으면 cardinality가 폭증할 수 있습니다.</p>
 <p>처음 대시보드는 요청량, 오류율, p95/p99 응답 시간, 정상 태스크 수, CPU/메모리, DB 연결 수·지연으로 시작합니다. 평균만 보면 일부 사용자의 긴 대기가 숨겨집니다.</p>
 </section><section id="item-29"><div class="section-kicker">REFERENCE 30</div><h2>26단계: 알람 · SLI · SLO 설계</h2><p>SLI는 측정 지표, SLO는 목표, SLA는 계약상 약속입니다. 예를 들어 “30일 동안 유효 요청의 99.9%가 성공해야 한다”가 SLO이고, 성공률 계산이 SLI입니다.</p>
@@ -1509,16 +1513,16 @@ try {
 </div><p>알람에는 담당자, 심각도, 런북 링크, 환경, 관련 대시보드를 연결합니다. 일시적 1회 실패와 지속 장애를 구분하고, 데이터 없음 처리도 정합니다. 고정 CPU 임계치만으로 사용자 영향을 판단하지 않습니다.</p>
 </section><section id="item-30"><div class="section-kicker">REFERENCE 31</div><h2>27단계: 장애 대응 순서와 조회 명령</h2><p><strong>목표는 우선 사용자 영향을 줄이고, 그다음 원인을 설명하는 것입니다.</strong> 담당자 지정 → 범위 확인 → 최근 변경 확인 → 완화 → 정상 검증 → 원인 분석 순서로 진행합니다.</p>
 <div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 현재 계정 확인</span>
-aws sts get-caller-identity
+<span class="id">aws</span> <span class="id">sts</span> <span class="id">get</span>-<span class="id">caller</span>-<span class="id">identity</span>
 <span class="cm"># 서비스 상태와 최근 event</span>
-aws ecs describe-services --cluster <span class="str">&quot;$CLUSTER&quot;</span> --services <span class="str">&quot;$SERVICE&quot;</span>
+<span class="id">aws</span> <span class="id">ecs</span> <span class="id">describe</span>-<span class="id">services</span> --<span class="id">cluster</span> <span class="str">&quot;$CLUSTER&quot;</span> --<span class="id">services</span> <span class="str">&quot;$SERVICE&quot;</span>
 <span class="cm"># 최근 중단된 task ARN</span>
-aws ecs list-tasks --cluster <span class="str">&quot;$CLUSTER&quot;</span> --service-name <span class="str">&quot;$SERVICE&quot;</span> \
-  --desired-status STOPPED
+<span class="id">aws</span> <span class="id">ecs</span> <span class="id">list</span>-<span class="id">tasks</span> --<span class="id">cluster</span> <span class="str">&quot;$CLUSTER&quot;</span> --<span class="id">service</span>-<span class="id">name</span> <span class="str">&quot;$SERVICE&quot;</span> \
+  --<span class="id">desired</span>-<span class="id">status</span> <span class="id">STOPPED</span>
 <span class="cm"># 조회한 ARN을 넣어 중단 사유와 컨테이너 종료 코드 확인</span>
-aws ecs describe-tasks --cluster <span class="str">&quot;$CLUSTER&quot;</span> --tasks <span class="str">&quot;$TASK_ARN&quot;</span>
+<span class="id">aws</span> <span class="id">ecs</span> <span class="id">describe</span>-<span class="id">tasks</span> --<span class="id">cluster</span> <span class="str">&quot;$CLUSTER&quot;</span> --<span class="id">tasks</span> <span class="str">&quot;$TASK_ARN&quot;</span>
 <span class="cm"># 앱 로그: 로그 그룹은 실제 값으로 설정</span>
-aws logs tail <span class="str">&quot;$LOG_GROUP&quot;</span> --since 30m --format short</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<span class="id">aws</span> <span class="id">logs</span> <span class="id">tail</span> <span class="str">&quot;$LOG_GROUP&quot;</span> --<span class="id">since</span> 30<span class="id">m</span> --<span class="id">format</span> <span class="id">short</span></code></pre></div><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
 <th>증상</th>
@@ -1776,17 +1780,17 @@ aws logs tail <span class="str">&quot;$LOG_GROUP&quot;</span> --since 30m --form
 </tr>
 </tbody></table>
 </div><p><strong>Bash 함수 발췌</strong>. 재사용할 명령을 이름으로 묶습니다. AWS 명령은 함수여서 달라지는 것이 아니라 같은 CLI를 실행합니다.</p>
-<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>require_var() {
-  local key=<span class="str">&quot;$1&quot;</span>
-  <span class="kw">if</span> [ -z <span class="str">&quot;${!key:-}&quot;</span> ]; then
-    printf <span class="str">'필수 환경변수 누락: %s\n'</span> <span class="str">&quot;$key&quot;</span> &gt;&amp;2
-    <span class="kw">return</span> 1
-  fi
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="fn">require_var</span>() {
+  <span class="kw">local</span> <span class="id">key</span>=<span class="str">&quot;$1&quot;</span>
+  <span class="kw">if</span> [ -<span class="id">z</span> <span class="str">&quot;${!key:-}&quot;</span> ]; <span class="kw">then</span>
+    <span class="id">printf</span> <span class="str">'필수 환경변수 누락: %s\n'</span> <span class="str">&quot;$key&quot;</span> &gt;&amp;<span class="num">2</span>
+    <span class="kw">return</span> <span class="num">1</span>
+  <span class="kw">fi</span>
 }
 <span class="cm"># Bash에서 실행. zsh의 간접 변수 문법과는 다름.</span>
-require_var CLUSTER || exit 1
-require_var SERVICE || exit 1
-aws ecs describe-services --cluster <span class="str">&quot;$CLUSTER&quot;</span> --services <span class="str">&quot;$SERVICE&quot;</span></code></pre></div><p><code>&quot;$VAR&quot;</code>처럼 인용하면 공백·패턴 확장 문제를 줄입니다. <code>set -euo pipefail</code>은 유용하지만 모든 논리 오류를 막지는 않으며, if/조건문/파이프의 동작을 이해하고 명시적 성공 조건을 확인해야 합니다.</p>
+<span class="id">require_var</span> <span class="id">CLUSTER</span> || <span class="id">exit</span> <span class="num">1</span>
+<span class="id">require_var</span> <span class="id">SERVICE</span> || <span class="id">exit</span> <span class="num">1</span>
+<span class="id">aws</span> <span class="id">ecs</span> <span class="id">describe</span>-<span class="id">services</span> --<span class="id">cluster</span> <span class="str">&quot;$CLUSTER&quot;</span> --<span class="id">services</span> <span class="str">&quot;$SERVICE&quot;</span></code></pre></div><p><code>&quot;$VAR&quot;</code>처럼 인용하면 공백·패턴 확장 문제를 줄입니다. <code>set -euo pipefail</code>은 유용하지만 모든 논리 오류를 막지는 않으며, if/조건문/파이프의 동작을 이해하고 명시적 성공 조건을 확인해야 합니다.</p>
 </section><section id="item-35"><div class="section-kicker">REFERENCE 36</div><h2>32단계: 매일 · 매주 · 릴리스마다 하는 일</h2><div class="table-wrap" tabindex="0"><table>
 <thead>
 <tr>
