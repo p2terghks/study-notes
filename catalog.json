@@ -28,6 +28,13 @@
     "format": "HTML"
   },
   {
+    "path": "docs/quick-reference/python-advanced-reference.html",
+    "title": "Python 문법 심화 · 클로저·데코레이터·비동기",
+    "category": "프로그래밍 언어",
+    "url": "docs/quick-reference/python-advanced-reference.html",
+    "format": "HTML"
+  },
+  {
     "path": "docs/c-syntax-guide.html",
     "title": "C 문법 가이드",
     "category": "프로그래밍 언어",
