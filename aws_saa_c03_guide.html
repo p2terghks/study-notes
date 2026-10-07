@@ -129,9 +129,56 @@
     main { padding: 32px 20px 80px; }
     .grid2, .grid3 { grid-template-columns: 1fr; }
   }
+.kw{color:#6f32a8}.str{color:#216340}.an{color:#935700}.cm{color:#626b75}
+/* Shared optional dark theme. Light remains the default. */
+html[data-theme="dark"]{color-scheme:dark;--bg:#111318;--panel:#181b22;--panel2:#222630;--border:#343a46;--text:#f0f1f3;--muted:#b0b6c2;--green:#e1e4ea;--blue:#f0f1f3;--pink:#e1e4ea;--yellow:#c5cad3;--code:#15181e;--line:#343a46;--accent:#d7dbe3}
+html[data-theme="dark"] .tags span,html[data-theme="dark"] .tags span:nth-child(2),html[data-theme="dark"] .tags span:nth-child(3),html[data-theme="dark"] .brand-mark{background:#222630;border-color:#343a46}
+html[data-theme="dark"] p code,html[data-theme="dark"] li code,html[data-theme="dark"] td code,html[data-theme="dark"] .codebar{background:#222630}
+html[data-theme="dark"] tr:nth-child(even) td,html[data-theme="dark"] .card:hover{background:#1c2028}
+html[data-theme="dark"] .kw{color:#c4b5fd}html[data-theme="dark"] .str{color:#86efac}html[data-theme="dark"] .an{color:#fcd34d}html[data-theme="dark"] .cm{color:#9ba6bd}html[data-theme="dark"] .copy{border-color:#596272}
+html[data-theme="dark"] input{background:#181b22}html[data-theme="dark"] button.active{color:#111318}
+html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!important;border-color:#343a46!important}
+.theme-toggle{position:fixed;right:18px;top:12px;z-index:20;padding:7px 12px;border:1px solid var(--border,var(--line));border-radius:6px;background:var(--bg);color:var(--text);font:12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;cursor:pointer;box-shadow:0 1px 4px #0000000a}
+.theme-toggle:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+@media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
+
+.id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
+html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
+@media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
+
+
+:root{color-scheme:light;--bg:#ffffff;--panel:#fafafa;--panel2:#f5f5f5;--border:#e2e2e2;--text:#171717;--muted:#626262;--accent:#292929;--accent2:#333333;--accent3:#333333;--warn:#404040;--code-bg:#f8f8f8;--danger:#a53030;--orange:#171717}
+header.hero h1{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--text);font-size:clamp(28px,4vw,40px);letter-spacing:-.04em;line-height:1.35}
+h2.section-title{border-left:0;padding-left:0;letter-spacing:-.025em}
+p code,li code,td code{background:var(--panel2);color:var(--text)}
+a{color:var(--text);text-underline-offset:3px}main{min-width:0}p,li,td{overflow-wrap:anywhere}.diagram svg{max-width:100%;height:auto}
+.table-wrap{overflow-x:auto;margin:16px 0 24px}.table-wrap table{margin:0}
+.saa-code{margin:12px 0 20px;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--code-bg)}.saa-code pre{border:0;border-radius:0;margin:0}
+.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;font-size:11px;color:var(--muted);background:var(--panel2);border-bottom:1px solid var(--border)}.copy{font:inherit;cursor:pointer;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--text);padding:4px 9px}
+.home-link{display:block;padding:12px 20px;border-bottom:1px solid var(--border);background:var(--bg);font-size:13px;text-decoration:none}.copy-status{position:fixed;right:18px;bottom:18px;background:var(--panel);color:var(--text);padding:10px 16px;border:1px solid var(--border);border-radius:6px;font-size:13px}.copy-status:empty{display:none}
+html[data-theme="dark"]{--accent2:#d7dbe3;--accent3:#d7dbe3;--warn:#d7dbe3;--code-bg:#15181e;--danger:#fda4af;--orange:#f0f1f3}
+.diagram [fill="#e6e8f0"]{fill:var(--text)}.diagram [fill="#9aa0b4"],.diagram [fill="#6b7280"]{fill:var(--muted)}.diagram [fill="#1c2030"]{fill:var(--panel2)}.diagram [fill="#161925"]{fill:var(--panel)}.diagram [stroke="#2a2f42"]{stroke:var(--border)}
+.diagram [fill="#ff9900"]{fill:#b65d00}.diagram [stroke="#ff9900"]{stroke:#b65d00}.diagram [fill="#7dd3fc"]{fill:#075e8f}.diagram [stroke="#7dd3fc"]{stroke:#075e8f}.diagram [fill="#6ee7b7"]{fill:#216340}.diagram [stroke="#6ee7b7"]{stroke:#216340}.diagram [fill="#fbbf24"]{fill:#935700}.diagram [stroke="#fbbf24"]{stroke:#935700}.diagram [fill="#f87171"]{fill:#a53030}
+html[data-theme="dark"] .diagram [fill="#ff9900"]{fill:#fdba74}html[data-theme="dark"] .diagram [fill="#7dd3fc"]{fill:#7dd3fc}html[data-theme="dark"] .diagram [fill="#6ee7b7"]{fill:#86efac}html[data-theme="dark"] .diagram [fill="#fbbf24"]{fill:#fcd34d}html[data-theme="dark"] .diagram [fill="#f87171"]{fill:#fda4af}
+@media(max-width:900px){nav.toc{padding-top:48px}main{width:100%}}@media print{.home-link,.copy,.copy-status,nav.toc{display:none}body{background:#fff;color:#171717}main{max-width:none;padding:0}.diagram svg{max-width:100%}}
 </style>
+<script data-study-theme>(()=>{
+ const key='study-notes-theme';
+ let current='light';
+ try {if(localStorage.getItem(key)==='dark')current='dark';}catch{}
+ document.documentElement.dataset.theme=current;
+ document.addEventListener('DOMContentLoaded',()=>{
+  const button=document.createElement('button');
+  button.type='button';button.className='theme-toggle';
+  function update(){const dark=document.documentElement.dataset.theme==='dark';button.textContent=dark?'라이트 모드':'다크 모드';button.setAttribute('aria-label',dark?'라이트 모드로 전환':'다크 모드로 전환');button.setAttribute('aria-pressed',String(dark));}
+  button.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;try{localStorage.setItem(key,next);}catch{}update();});
+  update();document.body.append(button);
+ });
+})();
+</script>
 </head>
 <body>
+<a class="home-link" href="https://p2terghks.github.io/study-notes/?v=20261007-colors">← 학습 요약 전체 목록</a>
 <div class="layout">
   <nav class="toc">
     <h2>목차</h2>
@@ -196,7 +243,7 @@
     <!-- ============ 0. 시험 개요 ============ -->
     <section id="exam-info">
       <h2 class="section-title">0. 시험 개요 & 학습 전략</h2>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>항목</th><th>내용</th></tr>
         <tr><td>시험 코드</td><td>SAA-C03 (AWS Certified Solutions Architect – Associate)</td></tr>
         <tr><td>문항 수</td><td>65문항 (채점 50문항 + 비채점 15문항)</td></tr>
@@ -204,7 +251,7 @@
         <tr><td>합격 점수</td><td>720점 / 1000점 (스케일 스코어)</td></tr>
         <tr><td>문제 유형</td><td>객관식(택1), 복수 응답(택2~3)</td></tr>
         <tr><td>응시 방식</td><td>테스트센터 또는 온라인 프록터링(Pearson VUE)</td></tr>
-      </table>
+      </table></div>
 
       <h3>시험 도메인 비중</h3>
       <div class="diagram">
@@ -246,41 +293,41 @@
     </section>
 
     <!-- ============ 1. 보안 ============ -->
-    <section id="iam">
+    <section id="security-section">
       <h2 class="section-title">1. 보안 / 계정 관리 <span class="badge hot">30%</span></h2>
 
       <h3 id="iam">1-1. IAM (Identity and Access Management)</h3>
       <p>AWS 리소스에 <b>누가(Principal)</b>, <b>무엇에(Resource)</b>, <b>어떤 작업을(Action)</b> 할 수 있는지 제어하는 글로벌 서비스입니다. 리전 개념이 없습니다.</p>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>구성 요소</th><th>설명</th></tr>
         <tr><td>User</td><td>사람 또는 애플리케이션에 대응하는 개별 자격 증명. 액세스 키/비밀번호 보유</td></tr>
         <tr><td>Group</td><td>User의 묶음. 정책을 그룹 단위로 부여해 관리 효율화 (그룹은 다른 그룹을 포함할 수 없음)</td></tr>
         <tr><td>Role</td><td>임시 자격 증명을 발급받아 사용하는 '역할'. EC2·Lambda·크로스 계정 접근에 사용 <b>(시험 핵심)</b></td></tr>
         <tr><td>Policy</td><td>권한을 정의한 JSON 문서. Identity 기반 / Resource 기반으로 구분</td></tr>
-      </table>
+      </table></div>
 
       <h4>정책(Policy) JSON 구조</h4>
-      <pre><code>{
-  <span class="str">"Version"</span>: <span class="str">"2012-10-17"</span>,
-  <span class="str">"Statement"</span>: [
+      <div class="saa-code"><div class="codebar"><span>JSON · 설명용 주석 포함</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>{
+  <span class="str">&quot;Version&quot;</span>: <span class="str">&quot;2012-10-17&quot;</span>,
+  <span class="str">&quot;Statement&quot;</span>: [
     {
-      <span class="str">"Sid"</span>: <span class="str">"AllowS3ReadOnly"</span>,
-      <span class="str">"Effect"</span>: <span class="str">"Allow"</span>,              <span class="cm">// Allow 또는 Deny</span>
-      <span class="str">"Action"</span>: [                     <span class="cm">// 허용할 API 작업</span>
-        <span class="str">"s3:GetObject"</span>,
-        <span class="str">"s3:ListBucket"</span>
+      <span class="str">&quot;Sid&quot;</span>: <span class="str">&quot;AllowS3ReadOnly&quot;</span>,
+      <span class="str">&quot;Effect&quot;</span>: <span class="str">&quot;Allow&quot;</span>,              <span class="cm">// Allow 또는 Deny</span>
+      <span class="str">&quot;Action&quot;</span>: [                     <span class="cm">// 허용할 API 작업</span>
+        <span class="str">&quot;s3:GetObject&quot;</span>,
+        <span class="str">&quot;s3:ListBucket&quot;</span>
       ],
-      <span class="str">"Resource"</span>: [                   <span class="cm">// 대상 리소스 ARN</span>
-        <span class="str">"arn:aws:s3:::my-bucket"</span>,
-        <span class="str">"arn:aws:s3:::my-bucket/*"</span>
+      <span class="str">&quot;Resource&quot;</span>: [                   <span class="cm">// 대상 리소스 ARN</span>
+        <span class="str">&quot;arn:aws:s3:::my-bucket&quot;</span>,
+        <span class="str">&quot;arn:aws:s3:::my-bucket/*&quot;</span>
       ],
-      <span class="str">"Condition"</span>: {                  <span class="cm">// 조건부 허용</span>
-        <span class="str">"IpAddress"</span>: { <span class="str">"aws:SourceIp"</span>: <span class="str">"203.0.113.0/24"</span> },
-        <span class="str">"Bool"</span>: { <span class="str">"aws:MultiFactorAuthPresent"</span>: <span class="str">"true"</span> }
+      <span class="str">&quot;Condition&quot;</span>: {                  <span class="cm">// 조건부 허용</span>
+        <span class="str">&quot;IpAddress&quot;</span>: { <span class="str">&quot;aws:SourceIp&quot;</span>: <span class="str">&quot;203.0.113.0/24&quot;</span> },
+        <span class="str">&quot;Bool&quot;</span>: { <span class="str">&quot;aws:MultiFactorAuthPresent&quot;</span>: <span class="str">&quot;true&quot;</span> }
       }
     }
   ]
-}</code></pre>
+}</code></pre></div>
 
       <div class="callout danger">
         <b>권한 평가 순서 (시험 빈출)</b><br>
@@ -292,58 +339,58 @@
 
       <h4>IAM Role이 중요한 이유</h4>
       <p>EC2 인스턴스나 Lambda가 S3에 접근해야 할 때, 액세스 키를 코드에 하드코딩하거나 인스턴스에 저장하면 안 됩니다. 대신 <b>IAM Role을 인스턴스 프로파일로 연결</b>하면 STS가 임시 자격 증명을 자동 발급/교체해줍니다.</p>
-      <pre><code><span class="cm"># EC2에 Role이 연결되면 메타데이터로 임시 자격 증명 확인 가능 (IMDSv2)</span>
-TOKEN=$(curl -X PUT <span class="str">"http://169.254.169.254/latest/api/token"</span> \
-  -H <span class="str">"X-aws-ec2-metadata-token-ttl-seconds: 21600"</span>)
+      <div class="saa-code"><div class="codebar"><span>BASH</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># EC2에 Role이 연결되면 메타데이터로 임시 자격 증명 확인 가능 (IMDSv2)</span>
+<span class="id">TOKEN</span>=$(<span class="id">curl</span> -<span class="id">X</span> <span class="id">PUT</span> <span class="str">&quot;http://169.254.169.254/latest/api/token&quot;</span> \
+  -<span class="id">H</span> <span class="str">&quot;X-aws-ec2-metadata-token-ttl-seconds: 21600&quot;</span>)
 
-curl -H <span class="str">"X-aws-ec2-metadata-token: $TOKEN"</span> \
-  http://169.254.169.254/latest/meta-data/iam/security-credentials/
+<span class="id">curl</span> -<span class="id">H</span> <span class="str">&quot;X-aws-ec2-metadata-token: $TOKEN&quot;</span> \
+  <span class="id">http</span>://<span class="num">169.254</span>.<span class="num">169.254</span>/<span class="id">latest</span>/<span class="id">meta</span>-<span class="id">data</span>/<span class="id">iam</span>/<span class="id">security</span>-<span class="id">credentials</span>/
 
 <span class="cm"># 크로스 계정 접근: 다른 계정의 Role을 AssumeRole로 위임받음</span>
-aws sts assume-role \
-  --role-arn <span class="str">"arn:aws:iam::222222222222:role/CrossAccountS3Role"</span> \
-  --role-session-name <span class="str">"chaehwan-session"</span></code></pre>
+<span class="id">aws</span> <span class="id">sts</span> <span class="id">assume</span>-<span class="id">role</span> \
+  --<span class="id">role</span>-<span class="id">arn</span> <span class="str">&quot;arn:aws:iam::222222222222:role/CrossAccountS3Role&quot;</span> \
+  --<span class="id">role</span>-<span class="id">session</span>-<span class="id">name</span> <span class="str">&quot;chaehwan-session&quot;</span></code></pre></div>
 
       <div class="callout exam">
         <b>시험 포인트</b>: "EC2가 S3에 접근해야 한다" → 정답은 <b>항상 IAM Role 연결</b>. 액세스 키를 인스턴스에 저장/환경변수 설정/AMI에 포함하는 선택지는 전부 오답입니다.
       </div>
 
       <h3 id="org">1-2. Organizations / SCP</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>개념</th><th>설명</th></tr>
         <tr><td>AWS Organizations</td><td>여러 AWS 계정을 하나의 조직으로 묶어 중앙 관리. 통합 결제(Consolidated Billing) 제공</td></tr>
         <tr><td>OU (Organizational Unit)</td><td>계정을 용도별(Dev/Prod/Security)로 묶는 논리적 그룹</td></tr>
         <tr><td>SCP (Service Control Policy)</td><td>OU/계정에 적용되는 <b>권한의 상한선(Guardrail)</b>. 권한을 부여하지 않고 <b>제한만</b> 함</td></tr>
         <tr><td>AWS Control Tower</td><td>멀티 계정 환경을 모범 사례에 맞춰 자동 구성 (Landing Zone)</td></tr>
-      </table>
+      </table></div>
       <div class="callout">
         <b>SCP의 특징</b>: 관리 계정(Management Account)에는 SCP가 적용되지 않습니다. 또한 SCP는 "허용"을 실제로 부여하지 않으며, IAM 정책과 SCP 모두에서 허용되어야 최종 허용됩니다.<br>
         <b>통합 결제 이점</b>: 여러 계정의 사용량을 합산해 볼륨 할인 티어에 도달하기 쉽고, RI/Savings Plans를 조직 내 계정 간 공유할 수 있습니다.
       </div>
-      <pre><code><span class="cm">// SCP 예시: 승인된 리전 외 사용 차단</span>
+      <div class="saa-code"><div class="codebar"><span>JSON · 설명용 주석 포함</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">// SCP 예시: 승인된 리전 외 사용 차단</span>
 {
-  <span class="str">"Version"</span>: <span class="str">"2012-10-17"</span>,
-  <span class="str">"Statement"</span>: [{
-    <span class="str">"Effect"</span>: <span class="str">"Deny"</span>,
-    <span class="str">"NotAction"</span>: [<span class="str">"iam:*"</span>, <span class="str">"cloudfront:*"</span>, <span class="str">"route53:*"</span>],  <span class="cm">// 글로벌 서비스는 예외</span>
-    <span class="str">"Resource"</span>: <span class="str">"*"</span>,
-    <span class="str">"Condition"</span>: {
-      <span class="str">"StringNotEquals"</span>: {
-        <span class="str">"aws:RequestedRegion"</span>: [<span class="str">"ap-northeast-2"</span>, <span class="str">"us-east-1"</span>]
+  <span class="str">&quot;Version&quot;</span>: <span class="str">&quot;2012-10-17&quot;</span>,
+  <span class="str">&quot;Statement&quot;</span>: [{
+    <span class="str">&quot;Effect&quot;</span>: <span class="str">&quot;Deny&quot;</span>,
+    <span class="str">&quot;NotAction&quot;</span>: [<span class="str">&quot;iam:*&quot;</span>, <span class="str">&quot;cloudfront:*&quot;</span>, <span class="str">&quot;route53:*&quot;</span>],  <span class="cm">// 글로벌 서비스는 예외</span>
+    <span class="str">&quot;Resource&quot;</span>: <span class="str">&quot;*&quot;</span>,
+    <span class="str">&quot;Condition&quot;</span>: {
+      <span class="str">&quot;StringNotEquals&quot;</span>: {
+        <span class="str">&quot;aws:RequestedRegion&quot;</span>: [<span class="str">&quot;ap-northeast-2&quot;</span>, <span class="str">&quot;us-east-1&quot;</span>]
       }
     }
   }]
-}</code></pre>
+}</code></pre></div>
 
       <h3 id="kms">1-3. KMS / Secrets Manager / 암호화</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>용도</th><th>시험 키워드</th></tr>
         <tr><td>KMS</td><td>암호화 키 생성·관리. 대부분의 AWS 서비스와 통합</td><td>"저장 데이터 암호화", "키 관리"</td></tr>
         <tr><td>CloudHSM</td><td>전용 하드웨어 보안 모듈. 고객이 키를 <b>단독 제어</b></td><td>"FIPS 140-2 Level 3", "전용 HSM", "AWS도 키에 접근 불가"</td></tr>
         <tr><td>Secrets Manager</td><td>DB 비밀번호 등 시크릿 저장 + <b>자동 교체(rotation)</b></td><td>"자격 증명 자동 교체", "RDS 암호 로테이션"</td></tr>
         <tr><td>Parameter Store</td><td>설정값/시크릿 저장. <b>무료</b>, 자동 교체 없음</td><td>"저비용 설정 저장"</td></tr>
         <tr><td>ACM</td><td>SSL/TLS 인증서 무료 발급·자동 갱신 (ELB, CloudFront, API GW)</td><td>"HTTPS 적용", "인증서 자동 갱신"</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         <b>KMS 키 유형</b><br>
         · <b>AWS 관리형 키</b>: AWS가 자동 생성/관리, 무료, 연 1회 자동 교체<br>
@@ -353,7 +400,7 @@ aws sts assume-role \
       </div>
 
       <h3 id="sec-service">1-4. 보안 관련 서비스 정리</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>역할</th><th>계층</th></tr>
         <tr><td>Security Group</td><td>인스턴스 레벨 방화벽. <b>Stateful</b>, Allow 규칙만 존재</td><td>인스턴스(ENI)</td></tr>
         <tr><td>Network ACL</td><td>서브넷 레벨 방화벽. <b>Stateless</b>, Allow/Deny 모두 가능, 규칙 번호 순 평가</td><td>서브넷</td></tr>
@@ -365,7 +412,7 @@ aws sts assume-role \
         <tr><td>Macie</td><td>S3 내 <b>개인정보(PII) 탐지</b> 및 분류</td><td>데이터</td></tr>
         <tr><td>Security Hub</td><td>여러 보안 서비스 결과를 <b>통합 대시보드</b>로 집계</td><td>계정/조직</td></tr>
         <tr><td>Detective</td><td>보안 사고의 <b>근본 원인 분석</b></td><td>조사</td></tr>
-      </table>
+      </table></div>
       <div class="callout danger">
         <b>SG vs NACL (단골 문제)</b><br>
         SG는 <b>Stateful</b> — 인바운드를 허용하면 아웃바운드 응답은 자동 허용됩니다.<br>
@@ -390,7 +437,7 @@ aws sts assume-role \
       </div>
 
       <h4>요금 모델 <span class="badge hot">빈출</span></h4>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>모델</th><th>할인율</th><th>적합한 상황</th></tr>
         <tr><td>On-Demand</td><td>0% (기준)</td><td>예측 불가능한 단기 워크로드, 개발/테스트</td></tr>
         <tr><td>Reserved Instance (1~3년)</td><td>최대 72%</td><td>사용량이 <b>안정적으로 예측</b>되는 상시 운영 서버</td></tr>
@@ -398,7 +445,7 @@ aws sts assume-role \
         <tr><td>Spot Instance</td><td>최대 90%</td><td><b>중단 허용 가능한</b> 워크로드 — 배치 처리, 빅데이터 분석, CI/CD</td></tr>
         <tr><td>Dedicated Host</td><td>-</td><td>물리 서버 전용 점유. <b>서버 바운드 라이선스(BYOL)</b> 요구 시</td></tr>
         <tr><td>Dedicated Instance</td><td>-</td><td>전용 하드웨어에서 실행되지만 물리 서버 가시성은 없음</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>키워드 매칭</b><br>
         "중단되어도 괜찮은 / 내결함성 있는 / 배치 작업" → <b>Spot</b><br>
@@ -408,23 +455,23 @@ aws sts assume-role \
       </div>
 
       <h4>Placement Group</h4>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>유형</th><th>배치 방식</th><th>목적</th></tr>
         <tr><td>Cluster</td><td>단일 AZ의 같은 랙에 밀집 배치</td><td><b>낮은 네트워크 지연, 높은 처리량</b> (HPC). AZ 장애에 취약</td></tr>
         <tr><td>Spread</td><td>서로 다른 하드웨어에 분산 (AZ당 최대 7개)</td><td><b>중요한 소수 인스턴스</b>의 동시 장애 방지</td></tr>
         <tr><td>Partition</td><td>파티션 단위로 분리, 파티션끼리 랙 공유 안 함</td><td>HDFS, Kafka, Cassandra 등 <b>대규모 분산 시스템</b></td></tr>
-      </table>
+      </table></div>
 
       <h3 id="asg">2-2. Auto Scaling Group (ASG)</h3>
       <p>워크로드에 따라 EC2 인스턴스 수를 자동으로 조절해 <b>가용성과 비용 효율</b>을 동시에 확보합니다. Min / Desired / Max 용량을 정의합니다.</p>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>스케일링 정책</th><th>설명</th></tr>
         <tr><td>Target Tracking</td><td>특정 지표(예: 평균 CPU 50%)를 목표로 자동 조절. <b>가장 권장·간단</b></td></tr>
         <tr><td>Step Scaling</td><td>경보 수준에 따라 단계별로 다른 수의 인스턴스 추가/제거</td></tr>
         <tr><td>Simple Scaling</td><td>경보 발생 시 고정된 수만큼 조절 (쿨다운 대기 필요, 레거시)</td></tr>
         <tr><td>Scheduled Scaling</td><td>예측 가능한 시간대에 맞춰 조절 (예: 수강신청 오픈 10시)</td></tr>
         <tr><td>Predictive Scaling</td><td>ML로 과거 패턴을 학습해 <b>사전에</b> 용량 확보</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         <b>시험 포인트</b>: "매주 금요일 오후에 트래픽이 급증한다" → <b>Scheduled Scaling</b>.<br>
         "트래픽 급증을 미리 대비해야 하고 패턴이 반복된다" → <b>Predictive Scaling</b>.<br>
@@ -432,7 +479,7 @@ aws sts assume-role \
       </div>
 
       <h3 id="lambda">2-3. Lambda / 서버리스</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>항목</th><th>내용</th></tr>
         <tr><td>실행 시간 제한</td><td>최대 <b>15분</b> (초과 작업은 Fargate/Batch/Step Functions로)</td></tr>
         <tr><td>메모리</td><td>128MB ~ 10,240MB (메모리 늘리면 CPU도 비례 증가)</td></tr>
@@ -440,21 +487,21 @@ aws sts assume-role \
         <tr><td>배포 패키지</td><td>ZIP 50MB(압축) / 250MB(압축 해제), 컨테이너 이미지 10GB</td></tr>
         <tr><td>동시 실행</td><td>기본 리전당 1,000 (Reserved/Provisioned Concurrency로 제어)</td></tr>
         <tr><td>과금</td><td>요청 수 + 실행 시간(GB-초). <b>유휴 시 비용 0</b></td></tr>
-      </table>
+      </table></div>
       <div class="callout">
         <b>콜드 스타트 대응</b>: 지연에 민감한 API라면 <b>Provisioned Concurrency</b>를 설정해 미리 실행 환경을 준비해둡니다.<br>
         <b>VPC 연결</b>: Lambda가 프라이빗 서브넷의 RDS에 접근하려면 VPC에 연결해야 하며, 이 경우 인터넷 접근에는 NAT Gateway 또는 VPC 엔드포인트가 필요합니다.
       </div>
 
       <h3 id="container">2-4. 컨테이너: ECS / EKS / Fargate</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>설명</th><th>선택 기준</th></tr>
         <tr><td>ECS</td><td>AWS 자체 컨테이너 오케스트레이션</td><td>AWS 환경에 단순하게 컨테이너 운영</td></tr>
         <tr><td>EKS</td><td>관리형 Kubernetes</td><td><b>쿠버네티스 표준</b> 필요, 멀티클라우드/온프레미스 호환</td></tr>
         <tr><td>Fargate</td><td>서버리스 컨테이너 <b>실행 엔진</b> (ECS/EKS와 함께 사용)</td><td>"EC2 인스턴스를 관리하고 싶지 않다", <b>운영 오버헤드 최소</b></td></tr>
         <tr><td>ECR</td><td>컨테이너 이미지 레지스트리</td><td>이미지 저장 + 취약점 스캔</td></tr>
         <tr><td>App Runner</td><td>소스/이미지만 주면 자동 배포·스케일링</td><td>가장 빠른 웹앱 배포</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>시험 키워드</b>: "서버를 프로비저닝하거나 관리하지 않고 컨테이너 실행" → <b>Fargate</b>가 정답입니다. EC2 Launch Type은 인스턴스 관리 책임이 남습니다.
       </div>
@@ -466,7 +513,7 @@ aws sts assume-role \
 
       <h3>3-1. S3 (Simple Storage Service)</h3>
       <p>무제한 용량의 <b>객체 스토리지</b>. 객체 하나당 최대 5TB, 버킷 이름은 <b>전 세계적으로 고유</b>해야 합니다. 기본 내구성은 <b>99.999999999%(11 nines)</b>입니다.</p>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>기능</th><th>설명</th></tr>
         <tr><td>Versioning</td><td>객체 변경/삭제 이력 보존. 실수 삭제 복구 가능 (삭제 시 Delete Marker 생성)</td></tr>
         <tr><td>Lifecycle Policy</td><td>일정 기간 후 저렴한 클래스로 자동 전환(Transition) 또는 만료(Expiration)</td></tr>
@@ -477,19 +524,19 @@ aws sts assume-role \
         <tr><td>Pre-signed URL</td><td>일시적으로 특정 객체 접근 권한을 부여하는 서명된 URL</td></tr>
         <tr><td>S3 Event Notification</td><td>객체 생성/삭제 시 Lambda·SQS·SNS 트리거</td></tr>
         <tr><td>Requester Pays</td><td>데이터 전송 비용을 요청자가 부담하도록 설정</td></tr>
-      </table>
+      </table></div>
 
       <h4>S3 암호화 방식</h4>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>방식</th><th>키 관리 주체</th><th>특징</th></tr>
         <tr><td>SSE-S3</td><td>AWS가 완전 관리 (AES-256)</td><td>기본값, 가장 간단. 현재 모든 버킷에 기본 적용</td></tr>
         <tr><td>SSE-KMS</td><td>KMS의 CMK 사용</td><td><b>키 사용 감사(CloudTrail) 및 접근 제어</b> 가능. API 호출 제한 주의</td></tr>
         <tr><td>SSE-C</td><td>고객이 키를 제공</td><td>AWS가 키를 저장하지 않음. HTTPS 필수</td></tr>
         <tr><td>Client-Side</td><td>고객이 업로드 전 직접 암호화</td><td>AWS는 암호문만 저장</td></tr>
-      </table>
+      </table></div>
 
       <h3 id="s3-class">3-2. S3 스토리지 클래스 <span class="badge hot">빈출</span></h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>클래스</th><th>검색 시간</th><th>최소 보관</th><th>사용 시나리오</th></tr>
         <tr><td>S3 Standard</td><td>즉시 (ms)</td><td>없음</td><td>자주 접근하는 데이터, 웹사이트 콘텐츠</td></tr>
         <tr><td>S3 Intelligent-Tiering</td><td>즉시</td><td>없음</td><td><b>접근 패턴을 알 수 없을 때</b>. 자동으로 계층 이동, 모니터링 수수료</td></tr>
@@ -498,7 +545,7 @@ aws sts assume-role \
         <tr><td>Glacier Instant Retrieval</td><td>즉시 (ms)</td><td>90일</td><td>분기 1회 접근하지만 <b>즉시 조회</b> 필요 (의료 이미지)</td></tr>
         <tr><td>Glacier Flexible Retrieval</td><td>1분~12시간</td><td>90일</td><td>연 1~2회 접근하는 아카이브. 대량 검색 무료 옵션</td></tr>
         <tr><td>Glacier Deep Archive</td><td>12~48시간</td><td>180일</td><td><b>가장 저렴</b>. 7~10년 법적 보관 요건</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>시나리오 매칭</b><br>
         "접근 패턴이 불규칙하고 예측 불가" → <b>Intelligent-Tiering</b><br>
@@ -509,28 +556,28 @@ aws sts assume-role \
 
       <h3 id="ebs">3-3. EBS (Elastic Block Store)</h3>
       <p>EC2에 연결하는 <b>네트워크 블록 스토리지</b>. 기본적으로 <b>단일 AZ에 종속</b>되며, 다른 AZ로 옮기려면 스냅샷 → 새 AZ에 볼륨 생성 방식을 씁니다.</p>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>볼륨 타입</th><th>특성</th><th>용도</th></tr>
         <tr><td>gp3</td><td>SSD, 기본 3,000 IOPS / 125MB/s, <b>용량과 성능 독립 설정</b></td><td>대부분의 워크로드 기본 선택 (gp2보다 저렴)</td></tr>
         <tr><td>gp2</td><td>SSD, 용량에 비례해 IOPS 증가 (3 IOPS/GB)</td><td>레거시 범용</td></tr>
         <tr><td>io1 / io2 Block Express</td><td>SSD, 최대 256,000 IOPS, <b>Multi-Attach 지원</b></td><td>고성능 DB (SAP HANA, Oracle), 미션 크리티컬</td></tr>
         <tr><td>st1</td><td>HDD, 처리량 최적화</td><td>빅데이터, 로그 처리, 데이터 웨어하우스</td></tr>
         <tr><td>sc1</td><td>HDD, 최저 비용</td><td>접근 빈도가 매우 낮은 콜드 데이터</td></tr>
-      </table>
+      </table></div>
       <div class="callout danger">
         <b>주의</b>: HDD 계열(st1, sc1)은 <b>부트 볼륨으로 사용할 수 없습니다</b>. "IOPS가 매우 높아야 한다" → io1/io2, "처리량(Throughput)이 중요하다" → st1 또는 gp3.<br>
         <b>Instance Store</b>는 물리적으로 인스턴스에 부착된 임시 스토리지로, 성능은 최고지만 <b>인스턴스 중지/종료 시 데이터가 소실</b>됩니다. 캐시·버퍼·스크래치 용도로만 사용하세요.
       </div>
 
       <h3 id="efs">3-4. EFS / FSx</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>프로토콜</th><th>핵심 특징</th></tr>
         <tr><td>EFS</td><td>NFS (Linux)</td><td><b>여러 AZ의 여러 EC2가 동시 마운트</b>. 자동 확장, 공유 파일 시스템</td></tr>
         <tr><td>FSx for Windows</td><td>SMB</td><td>Windows 파일 서버, <b>Active Directory 통합</b></td></tr>
         <tr><td>FSx for Lustre</td><td>Lustre</td><td><b>HPC·머신러닝</b>용 초고성능. S3와 연동 가능</td></tr>
         <tr><td>FSx for NetApp ONTAP</td><td>NFS/SMB/iSCSI</td><td>온프레미스 NetApp 환경 마이그레이션</td></tr>
         <tr><td>FSx for OpenZFS</td><td>NFS</td><td>ZFS 기반 워크로드 이전</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>정답 고르기</b><br>
         "여러 EC2 인스턴스가 <b>동일한 파일</b>에 동시에 접근해야 한다" → <b>EFS</b> (EBS는 기본적으로 1:1)<br>
@@ -539,7 +586,7 @@ aws sts assume-role \
       </div>
 
       <h3 id="hybrid-storage">3-5. 하이브리드 / 데이터 마이그레이션</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>용도</th></tr>
         <tr><td>Storage Gateway - File Gateway</td><td>온프레미스에서 NFS/SMB로 접근하지만 실제 저장은 S3</td></tr>
         <tr><td>Storage Gateway - Volume Gateway</td><td>iSCSI 블록 스토리지. 캐시형/저장형 모드</td></tr>
@@ -548,7 +595,7 @@ aws sts assume-role \
         <tr><td>Snowball Edge</td><td><b>수십~수백 TB</b>를 물리 디바이스로 전송. 네트워크가 느릴 때</td></tr>
         <tr><td>Snowmobile</td><td><b>수 PB~EB</b> 규모 데이터를 컨테이너 트럭으로 전송</td></tr>
         <tr><td>AWS Backup</td><td>여러 서비스(EBS, RDS, EFS, DynamoDB)의 백업을 중앙에서 정책 관리</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         <b>판단 기준</b>: 전송 기간이 <b>일주일 이상</b> 걸릴 정도로 데이터가 크거나 대역폭이 부족하면 <b>Snowball</b>, 네트워크로 주기적 동기화가 필요하면 <b>DataSync</b>입니다.
       </div>
@@ -594,7 +641,7 @@ aws sts assume-role \
           </g>
         </svg>
       </div>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>구성 요소</th><th>설명</th></tr>
         <tr><td>VPC</td><td>논리적으로 격리된 가상 네트워크. CIDR 블록 /16 ~ /28 지정</td></tr>
         <tr><td>Subnet</td><td>AZ 단위로 생성되는 IP 대역. AWS가 각 서브넷에서 <b>5개 IP를 예약</b></td></tr>
@@ -603,13 +650,13 @@ aws sts assume-role \
         <tr><td>NAT Instance</td><td>EC2로 직접 구성하는 레거시 방식. 직접 관리 필요 (현재는 비권장)</td></tr>
         <tr><td>Route Table</td><td>서브넷의 트래픽 경로 정의</td></tr>
         <tr><td>Elastic IP</td><td>고정 퍼블릭 IPv4. 미사용 시 <b>요금 부과</b></td></tr>
-      </table>
+      </table></div>
       <div class="callout danger">
         <b>NAT Gateway 고가용성</b>: NAT Gateway는 <b>단일 AZ 리소스</b>입니다. 해당 AZ가 장애 나면 그 AZ를 경유하던 프라이빗 서브넷이 인터넷에 나가지 못합니다. 따라서 <b>각 AZ마다 NAT Gateway를 배치</b>하고 해당 AZ의 라우팅 테이블이 자기 AZ의 NAT를 가리키게 해야 합니다.
       </div>
 
       <h3 id="vpc-connect">4-2. VPC 연결 옵션 <span class="badge hot">빈출</span></h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>옵션</th><th>용도</th><th>핵심 포인트</th></tr>
         <tr><td>VPC Peering</td><td>VPC 간 1:1 사설 연결</td><td><b>전이적 라우팅(transitive) 불가</b>, CIDR 중복 불가</td></tr>
         <tr><td>Transit Gateway</td><td>다수 VPC·온프레미스를 <b>허브-스포크</b>로 중앙 연결</td><td>VPC가 많아질 때 Peering의 복잡성 해결 (n² 문제)</td></tr>
@@ -618,7 +665,7 @@ aws sts assume-role \
         <tr><td>Site-to-Site VPN</td><td>온프레미스 ↔ AWS 암호화 터널</td><td>인터넷 경유, <b>빠른 구축</b>이지만 대역폭 변동</td></tr>
         <tr><td>Direct Connect (DX)</td><td>전용 물리 회선</td><td><b>일관된 저지연·고대역폭</b>. 구축에 수주~수개월 소요</td></tr>
         <tr><td>DX + VPN</td><td>DX를 주 경로, VPN을 백업</td><td>DX의 단일 장애점 해소 (가장 견고)</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>시나리오</b><br>
         "프라이빗 서브넷의 EC2가 <b>인터넷을 거치지 않고</b> S3에 접근" → <b>Gateway VPC Endpoint</b> (NAT Gateway 비용도 절감)<br>
@@ -628,20 +675,20 @@ aws sts assume-role \
       </div>
 
       <h3 id="elb">4-3. Elastic Load Balancer</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>유형</th><th>계층</th><th>특징 / 사용 시점</th></tr>
         <tr><td>ALB (Application)</td><td>L7 (HTTP/HTTPS)</td><td><b>경로·호스트 기반 라우팅</b>, 컨테이너(동적 포트), WebSocket, WAF 연동</td></tr>
         <tr><td>NLB (Network)</td><td>L4 (TCP/UDP/TLS)</td><td><b>초고성능·초저지연</b>, <b>고정 IP(Elastic IP)</b> 제공, 수백만 RPS</td></tr>
         <tr><td>GWLB (Gateway)</td><td>L3</td><td>서드파티 방화벽·IDS/IPS 어플라이언스 앞단 배치</td></tr>
         <tr><td>CLB (Classic)</td><td>L4/L7</td><td>레거시. 신규 설계에는 사용하지 않음</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         <b>ALB vs NLB 판단</b>: "URL 경로(<code>/api</code>, <code>/img</code>)에 따라 다른 타겟 그룹으로" → <b>ALB</b>. "고정 IP가 필요하다 / 극단적으로 낮은 지연 / TCP·UDP 프로토콜" → <b>NLB</b>.<br>
         <b>Sticky Session</b>은 같은 사용자를 같은 인스턴스로 보내는 기능으로, 세션 상태를 인스턴스에 저장할 때 씁니다. 다만 시험에서는 <b>ElastiCache나 DynamoDB에 세션을 외부화</b>하는 무상태(stateless) 설계가 더 좋은 답인 경우가 많습니다.
       </div>
 
       <h3 id="route53">4-4. Route 53</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>라우팅 정책</th><th>동작</th><th>시나리오</th></tr>
         <tr><td>Simple</td><td>단일 레코드로 응답</td><td>단순 단일 리소스</td></tr>
         <tr><td>Weighted</td><td>지정한 가중치 비율로 분배</td><td><b>블루/그린·카나리 배포</b>, A/B 테스트</td></tr>
@@ -650,7 +697,7 @@ aws sts assume-role \
         <tr><td>Geolocation</td><td>사용자의 <b>지리적 위치</b> 기준</td><td>국가별 콘텐츠·언어 제공, 규정 준수</td></tr>
         <tr><td>Geoproximity</td><td>위치 + <b>Bias</b> 값으로 트래픽 이동</td><td>특정 리전으로 트래픽 비중 조정</td></tr>
         <tr><td>Multivalue Answer</td><td>여러 IP를 반환 + 상태 확인</td><td>간단한 클라이언트 측 분산</td></tr>
-      </table>
+      </table></div>
       <div class="callout">
         <b>Alias 레코드 vs CNAME</b><br>
         · <b>Alias</b>: AWS 리소스(ELB, CloudFront, S3 웹사이트)를 가리킴. <b>Zone Apex(example.com)에 사용 가능</b>, 쿼리 요금 <b>무료</b><br>
@@ -659,11 +706,11 @@ aws sts assume-role \
       </div>
 
       <h3 id="cloudfront">4-5. CloudFront / Global Accelerator</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>계층</th><th>용도</th></tr>
         <tr><td>CloudFront</td><td>L7 (HTTP)</td><td><b>정적/동적 콘텐츠 캐싱 CDN</b>. 엣지 로케이션에서 캐시 응답</td></tr>
         <tr><td>Global Accelerator</td><td>L4 (TCP/UDP)</td><td><b>Anycast 고정 IP</b> 2개 제공, AWS 백본망으로 라우팅. 캐싱 없음</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>구분 포인트</b><br>
         "정적 콘텐츠·이미지·동영상 전송 속도 향상, 캐싱" → <b>CloudFront</b><br>
@@ -678,14 +725,14 @@ aws sts assume-role \
 
       <h3>5-1. RDS / Aurora</h3>
       <p>관리형 관계형 DB. 패치·백업·복구를 AWS가 담당하며, MySQL·PostgreSQL·MariaDB·Oracle·SQL Server·Aurora를 지원합니다.</p>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>기능</th><th>Multi-AZ 배포</th><th>Read Replica</th></tr>
         <tr><td>목적</td><td><b>고가용성 / 재해 복구</b></td><td><b>읽기 성능 확장</b></td></tr>
         <tr><td>복제 방식</td><td>동기식 (Synchronous)</td><td>비동기식 (Asynchronous)</td></tr>
         <tr><td>읽기 가능 여부</td><td>❌ Standby는 읽기 불가 (대기 전용)</td><td>✅ 읽기 트래픽 처리</td></tr>
         <tr><td>장애 조치</td><td>자동 Failover (DNS 엔드포인트 전환)</td><td>수동 승격(Promote) 필요</td></tr>
         <tr><td>리전</td><td>같은 리전의 다른 AZ</td><td>같은 리전 또는 <b>다른 리전 가능</b></td></tr>
-      </table>
+      </table></div>
       <div class="callout danger">
         <b>가장 많이 틀리는 지점</b>: "읽기 부하를 줄이고 싶다" → <b>Read Replica</b>. "AZ 장애에도 서비스가 계속되어야 한다" → <b>Multi-AZ</b>. Multi-AZ의 Standby는 읽기 요청을 처리하지 <b>않습니다</b>.
       </div>
@@ -705,7 +752,7 @@ aws sts assume-role \
 
       <h3 id="dynamodb">5-2. DynamoDB</h3>
       <p>완전관리형 <b>서버리스 NoSQL</b> 키-값/문서 DB. 한 자릿수 밀리초 지연, 사실상 무제한 확장이 가능합니다.</p>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>개념</th><th>설명</th></tr>
         <tr><td>Partition Key / Sort Key</td><td>기본 키 구성. 파티션 키로 데이터 분산, 정렬 키로 범위 조회</td></tr>
         <tr><td>LSI (Local Secondary Index)</td><td>같은 파티션 키 + 다른 정렬 키. <b>테이블 생성 시에만</b> 정의 가능</td></tr>
@@ -716,25 +763,25 @@ aws sts assume-role \
         <tr><td>DynamoDB Streams</td><td>데이터 변경 이벤트 스트림 → Lambda 트리거</td></tr>
         <tr><td>Global Tables</td><td>멀티 리전 <b>다중 활성(Active-Active)</b> 복제</td></tr>
         <tr><td>TTL</td><td>지정 시각 이후 항목 자동 삭제 (세션 데이터 정리)</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>시나리오</b>: "세션 저장소 / 사용자 프로필 / IoT 데이터 수집 + 서버리스 + 밀리초 응답" → <b>DynamoDB</b>.<br>
         "DynamoDB 읽기가 여전히 느리다, 마이크로초가 필요" → <b>DAX</b> (ElastiCache가 아닙니다).
       </div>
 
       <h3 id="cache">5-3. ElastiCache</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>엔진</th><th>특징</th><th>선택 기준</th></tr>
         <tr><td>Memcached</td><td>단순 키-값, 멀티스레드, <b>영속성·복제 없음</b></td><td>단순 캐싱, 수평 확장만 필요</td></tr>
         <tr><td>Redis</td><td>영속성, 복제, Multi-AZ, Pub/Sub, 정렬 집합, 트랜잭션</td><td><b>고가용성 필요</b>, 리더보드, 세션 저장, 실시간 순위</td></tr>
-      </table>
+      </table></div>
       <div class="callout">
         시험에서 "고가용성 / 백업 / 복제 / 리더보드" 키워드가 나오면 <b>Redis</b>, "단순하고 저렴한 캐시"면 <b>Memcached</b>입니다.<br>
         <b>캐시 전략</b>: Lazy Loading(요청 시 캐시 적재, 캐시 미스 발생), Write-Through(쓰기 시 함께 갱신, 데이터 최신성 보장), TTL 조합.
       </div>
 
       <h3 id="analytics">5-4. 분석 서비스</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>역할</th><th>키워드</th></tr>
         <tr><td>Redshift</td><td>페타바이트급 <b>데이터 웨어하우스</b>(OLAP), 컬럼형 저장</td><td>"복잡한 BI 분석 쿼리", "데이터 웨어하우스"</td></tr>
         <tr><td>Redshift Spectrum</td><td>S3 데이터를 로드 없이 직접 쿼리</td><td>"S3의 대용량 데이터를 Redshift에서 조인"</td></tr>
@@ -743,7 +790,7 @@ aws sts assume-role \
         <tr><td>EMR</td><td>Hadoop/Spark 관리형 클러스터</td><td>"대규모 분산 빅데이터 처리", "Spark"</td></tr>
         <tr><td>QuickSight</td><td>BI 시각화 대시보드</td><td>"대시보드", "시각화"</td></tr>
         <tr><td>OpenSearch</td><td>로그 검색·분석·시각화</td><td>"전문 검색", "로그 분석 대시보드"</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         <b>Athena vs Redshift</b>: 임시·간헐적 쿼리에 서버 관리 없이 저비용이면 <b>Athena</b>, 지속적·복잡한 대규모 분석이면 <b>Redshift</b>. Athena는 <b>Parquet/ORC 등 컬럼형 포맷 + 압축 + 파티셔닝</b>으로 스캔량을 줄이는 것이 비용 최적화의 정답입니다.
       </div>
@@ -755,19 +802,19 @@ aws sts assume-role \
 
       <h3>6-1. SQS (Simple Queue Service)</h3>
       <p>컴포넌트 간 <b>결합도를 낮추는(decoupling)</b> 메시지 큐. 생산자와 소비자가 서로를 몰라도 되며, 소비자 장애 시에도 메시지가 보존됩니다.</p>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>큐 유형</th><th>순서</th><th>처리량</th><th>중복</th></tr>
         <tr><td>Standard Queue</td><td>최선 노력(순서 보장 X)</td><td>사실상 무제한</td><td>최소 1회 전달 (중복 가능)</td></tr>
         <tr><td>FIFO Queue</td><td><b>엄격한 순서 보장</b></td><td>초당 300~3,000 메시지</td><td><b>정확히 1회</b> 처리</td></tr>
-      </table>
-      <table>
+      </table></div>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>주요 개념</th><th>설명</th></tr>
         <tr><td>Visibility Timeout</td><td>소비자가 메시지를 가져간 뒤 다른 소비자에게 보이지 않는 시간(기본 30초). 처리 시간보다 짧으면 <b>중복 처리</b> 발생</td></tr>
         <tr><td>Dead Letter Queue (DLQ)</td><td>지정 횟수 이상 처리 실패한 메시지를 격리해 분석</td></tr>
         <tr><td>Long Polling</td><td>메시지가 올 때까지 최대 20초 대기. <b>빈 응답 감소 → 비용 절감</b></td></tr>
         <tr><td>Delay Queue</td><td>메시지를 최대 15분 지연 후 소비 가능하게 함</td></tr>
         <tr><td>메시지 보존</td><td>기본 4일, 최대 14일</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>단골 문제</b>: "메시지가 여러 번 처리되고 있다" → <b>Visibility Timeout을 처리 시간보다 길게 설정</b>.<br>
         "주문 처리 순서가 반드시 지켜져야 한다" → <b>FIFO Queue</b>.<br>
@@ -775,24 +822,24 @@ aws sts assume-role \
       </div>
 
       <h3 id="sns">6-2. SNS / EventBridge</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>패턴</th><th>용도</th></tr>
         <tr><td>SNS</td><td>Pub/Sub <b>팬아웃</b></td><td>하나의 메시지를 여러 구독자(SQS, Lambda, HTTP, 이메일, SMS)에 동시 전달</td></tr>
         <tr><td>EventBridge</td><td>이벤트 버스 + <b>규칙 기반 라우팅</b></td><td>AWS 서비스 이벤트, SaaS 연동, <b>스케줄(cron)</b> 실행</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         <b>SNS + SQS 팬아웃 패턴</b>: SNS 토픽에 여러 SQS 큐를 구독시키면, 하나의 이벤트를 여러 시스템이 <b>각자의 속도로 독립 처리</b>할 수 있습니다. 시험에 자주 나오는 아키텍처입니다.<br>
         "정해진 시간마다 Lambda 실행" → <b>EventBridge Scheduler</b> (구 CloudWatch Events).
       </div>
 
       <h3 id="kinesis">6-3. Kinesis</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>용도</th></tr>
         <tr><td>Kinesis Data Streams</td><td><b>실시간</b> 스트리밍 데이터 수집. 샤드 단위, 데이터 1~365일 보존, <b>재처리 가능</b></td></tr>
         <tr><td>Kinesis Data Firehose</td><td>스트리밍 데이터를 <b>S3·Redshift·OpenSearch로 자동 적재</b>. 완전관리형, 준실시간(최소 60초 버퍼)</td></tr>
         <tr><td>Kinesis Data Analytics</td><td>스트림에 대해 실시간 SQL/Flink 분석</td></tr>
         <tr><td>Kinesis Video Streams</td><td>비디오 스트림 수집·저장</td></tr>
-      </table>
+      </table></div>
       <div class="callout exam">
         <b>SQS vs Kinesis</b><br>
         · SQS: 메시지를 <b>소비하면 삭제</b>, 작업 큐(task queue) 성격, 소비자 수 제한 없음<br>
@@ -802,13 +849,13 @@ aws sts assume-role \
       </div>
 
       <h3 id="stepfunctions">6-4. Step Functions / API Gateway</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>설명</th></tr>
         <tr><td>Step Functions</td><td>여러 Lambda·서비스를 <b>상태 머신(워크플로)</b>으로 오케스트레이션. 재시도·에러 처리·분기를 시각적으로 관리. 15분 초과 장기 실행 가능</td></tr>
         <tr><td>API Gateway</td><td>REST/HTTP/WebSocket API 관리. 인증(Cognito·IAM·Lambda Authorizer), <b>스로틀링</b>, 캐싱, 사용량 계획</td></tr>
         <tr><td>Cognito</td><td>User Pools(사용자 인증/회원가입), Identity Pools(AWS 리소스 접근용 임시 자격 증명)</td></tr>
         <tr><td>AppSync</td><td>관리형 GraphQL API. 실시간 구독, 오프라인 동기화</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         "여러 단계로 이루어진 복잡한 비즈니스 프로세스를 <b>오류 처리와 재시도 포함</b>해 조율" → <b>Step Functions</b>.<br>
         "모바일 앱 사용자 인증 + 소셜 로그인" → <b>Cognito User Pool</b>.<br>
@@ -821,13 +868,13 @@ aws sts assume-role \
       <h2 class="section-title">7. 운영 / 아키텍처 설계</h2>
 
       <h3>7-1. 모니터링 3종 세트 <span class="badge hot">빈출</span></h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>서비스</th><th>무엇을 보는가</th><th>시험 키워드</th></tr>
         <tr><td>CloudWatch</td><td><b>성능 지표·로그·알람</b> (CPU, 메모리, 디스크, 커스텀 지표)</td><td>"모니터링", "임계값 알림", "로그 수집"</td></tr>
         <tr><td>CloudTrail</td><td><b>API 호출 기록</b> — 누가·언제·어디서·무엇을 했는가</td><td>"<b>누가</b> 리소스를 삭제했는지 조사", "감사(audit)"</td></tr>
         <tr><td>AWS Config</td><td><b>리소스 구성 변경 이력 + 규정 준수 평가</b></td><td>"규정 준수", "구성이 정책을 위반했는지", "변경 이력"</td></tr>
         <tr><td>X-Ray</td><td>분산 애플리케이션 <b>요청 추적(트레이싱)</b>, 병목 구간 파악</td><td>"마이크로서비스 성능 병목 분석"</td></tr>
-      </table>
+      </table></div>
       <div class="callout danger">
         <b>절대 헷갈리면 안 되는 구분</b><br>
         · "<b>누가</b> S3 버킷을 삭제했는가?" → <b>CloudTrail</b><br>
@@ -837,13 +884,13 @@ aws sts assume-role \
       </div>
 
       <h3 id="ha-dr">7-2. 고가용성 & 재해 복구 (DR)</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>전략</th><th>RTO / RPO</th><th>비용</th><th>설명</th></tr>
         <tr><td>Backup & Restore</td><td>수 시간 ~ 일</td><td>최저</td><td>데이터만 백업. 장애 시 인프라를 새로 구축</td></tr>
         <tr><td>Pilot Light</td><td>수십 분</td><td>낮음</td><td>DB 등 <b>핵심 코어만</b> 켜두고 나머지는 꺼둠</td></tr>
         <tr><td>Warm Standby</td><td>수 분</td><td>중간</td><td>축소된 규모로 <b>전체 스택 상시 가동</b>, 장애 시 확장</td></tr>
         <tr><td>Multi-Site Active/Active</td><td>거의 0</td><td>최고</td><td>여러 리전에서 동시에 트래픽 처리</td></tr>
-      </table>
+      </table></div>
       <div class="callout">
         <b>RTO(Recovery Time Objective)</b>: 복구까지 허용되는 <b>시간</b><br>
         <b>RPO(Recovery Point Objective)</b>: 허용되는 <b>데이터 손실량(시점)</b><br>
@@ -860,14 +907,14 @@ aws sts assume-role \
       </ul>
 
       <h3 id="cost">7-3. 비용 최적화</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>영역</th><th>최적화 방법</th></tr>
         <tr><td>컴퓨팅</td><td>Spot(중단 허용), Savings Plans/RI(예측 가능), 라이트사이징, Graviton(ARM) 전환</td></tr>
         <tr><td>스토리지</td><td>S3 Lifecycle 정책, Intelligent-Tiering, gp2→gp3 전환, 미사용 EBS/스냅샷 정리</td></tr>
         <tr><td>네트워크</td><td>VPC Endpoint로 NAT Gateway 트래픽 절감, CloudFront로 오리진 전송량 감소, <b>같은 AZ 내 통신</b> 활용</td></tr>
         <tr><td>DB</td><td>Aurora Serverless, Read Replica로 인스턴스 다운사이징, 미사용 RDS 중지</td></tr>
         <tr><td>가시성</td><td>Cost Explorer(분석), Budgets(예산 알림), Cost and Usage Report(상세), Trusted Advisor(권장 사항)</td></tr>
-      </table>
+      </table></div>
       <div class="callout tip">
         <b>데이터 전송 비용 원칙</b>: 인바운드(AWS로 들어오는 것)는 대부분 <b>무료</b>, 아웃바운드(인터넷으로 나가는 것)는 <b>유료</b>입니다. 같은 AZ 내 프라이빗 IP 통신은 무료, AZ 간 통신은 유료, 리전 간 통신은 더 비쌉니다. 비용 문제에서는 <b>트래픽이 어디를 지나가는지</b>를 따지면 답이 보입니다.
       </div>
@@ -888,7 +935,7 @@ aws sts assume-role \
       <h2 class="section-title">8. 마무리 정리</h2>
 
       <h3>8-1. 헷갈리는 서비스 비교 총정리</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>비교</th><th>선택 기준</th></tr>
         <tr><td>Multi-AZ vs Read Replica</td><td>가용성 → Multi-AZ / 읽기 성능 → Read Replica</td></tr>
         <tr><td>SG vs NACL</td><td>Stateful·Allow만 → SG / Stateless·Deny 가능 → NACL</td></tr>
@@ -905,10 +952,10 @@ aws sts assume-role \
         <tr><td>VPC Peering vs Transit Gateway</td><td>소수 VPC 1:1 → Peering / 다수 VPC 허브 → TGW</td></tr>
         <tr><td>Redis vs Memcached</td><td>고가용성·영속성·리더보드 → Redis / 단순 캐시 → Memcached</td></tr>
         <tr><td>Cluster vs Spread Placement</td><td>저지연 HPC → Cluster / 장애 분산 → Spread</td></tr>
-      </table>
+      </table></div>
 
       <h3 id="keywords">8-2. 시나리오 키워드 사전</h3>
-      <table>
+      <div class="table-wrap" tabindex="0"><table>
         <tr><th>문제에 등장하는 표현</th><th>정답 방향</th></tr>
         <tr><td>"운영 오버헤드를 최소화" / "관리 부담 없이"</td><td>서버리스·관리형 서비스 (Lambda, Fargate, Aurora Serverless, S3, DynamoDB)</td></tr>
         <tr><td>"가장 비용 효율적인"</td><td>Spot, S3 Lifecycle, Glacier, Athena, 서버리스</td></tr>
@@ -929,7 +976,7 @@ aws sts assume-role \
         <tr><td>"블루/그린 배포 트래픽 분배"</td><td>Route 53 Weighted Routing</td></tr>
         <tr><td>"루트 도메인을 ALB에 연결"</td><td>Route 53 Alias 레코드</td></tr>
         <tr><td>"15분 넘게 걸리는 처리"</td><td>Fargate / ECS / Step Functions (Lambda 아님)</td></tr>
-      </table>
+      </table></div>
 
       <h3 id="checklist">8-3. 최종 점검 체크리스트</h3>
       <div class="grid2">
@@ -976,5 +1023,8 @@ aws sts assume-role \
     </footer>
   </main>
 </div>
+<div class="copy-status" role="status" aria-live="polite"></div><script>
+for(const button of document.querySelectorAll('.copy'))button.addEventListener('click',async()=>{const code=button.closest('.saa-code').querySelector('code');const status=document.querySelector('.copy-status');try{await navigator.clipboard.writeText(code.textContent);status.textContent='코드를 복사했습니다.';}catch{const range=document.createRange();range.selectNodeContents(code);const selection=getSelection();selection.removeAllRanges();selection.addRange(range);status.textContent='코드를 선택했습니다. Ctrl+C 또는 Command+C로 복사하세요.';}button.textContent='복사 완료';setTimeout(()=>button.textContent='코드 복사',2000);});
+</script>
 </body>
 </html>
