@@ -48,3 +48,49 @@ main>.theme-toggle {position:fixed;right:18px;top:14px;z-index:10}
   .theme-toggle {display:none!important}
   pre code span {-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+/* 기존 학습 요약본과 같은 목차·본문·코드 상자 구성. */
+:root {--page:#fff;--panel:#fafafa;--border:#e2e2e2;--text:#171717;--muted:#626262;--link:#333;--code-bg:#f8f8f8;--hover:#f0f0f0}
+:root[data-theme="dark"] {--page:#111318;--panel:#181b22;--border:#343a46;--text:#f0f1f3;--muted:#b0b6c2;--link:#d7dbe3;--code-bg:#15181e;--hover:#222630}
+.home-link {display:block;padding:12px 20px;color:var(--link);background:var(--page);border-bottom:1px solid var(--border);font:14px/1.5 sans-serif;text-decoration:none}
+.layout {display:flex;max-width:1600px;margin:auto}
+.layout>.sidebar {width:280px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border);padding:32px 18px;font-size:13px}
+.sidebar .brand {font-size:17px;letter-spacing:.08em;font-weight:750;color:var(--text);margin:0 8px 12px}
+.sidebar .nav-label {font-size:12px;color:var(--muted);margin:14px 8px 22px}
+.sidebar a {display:flex;gap:10px;margin:3px 0;padding:9px 12px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;border-radius:7px}
+.sidebar a:hover,.sidebar a:focus-visible {background:var(--hover);color:var(--text)}
+.sidebar .nav-group {font-size:11px;font-weight:700;letter-spacing:.08em;margin:25px 12px 12px;color:var(--text)}
+.sidebar .nav-note {font-size:11px;color:var(--muted);margin:30px 12px 0;border-top:1px solid var(--border);padding-top:16px}
+.sidebar label {display:block;font-size:12px;color:var(--muted);margin:20px 8px 6px}
+.sidebar input {width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code-bg);color:var(--text);font:inherit;font-size:13px}
+.sidebar .result-count {font-size:12px;color:var(--muted);margin:10px 8px}
+:root .layout>main {width:100%;min-width:0;max-width:1040px;margin:0;padding:56px 64px 70px}
+:root .layout header {padding:0 0 28px;margin-bottom:28px;border-bottom:1px solid var(--border)}
+:root .layout header h1 {font-size:48px;line-height:1.22;letter-spacing:-.045em;margin:24px 0}
+.layout header p {font-size:17px;color:var(--muted)}
+:root .layout .toolbar {position:static;justify-content:flex-start;padding:0 0 22px;margin-bottom:24px;z-index:auto;background:transparent;border:0;gap:8px}
+:root .layout .toolbar a,:root .layout .toolbar button {padding:7px 12px;font-size:12px;border-radius:6px}
+:root .layout article+article {margin-top:56px;padding-top:36px;border-top:1px solid var(--border)}
+:root .layout article h1 {font-size:30px;line-height:1.45;letter-spacing:-.03em}
+:root .layout h2 {font-size:26px;line-height:1.5;letter-spacing:-.03em;margin:44px 0 24px;padding:0;border:0;color:var(--text)}
+:root .layout h3 {font-size:20px;color:var(--text)}
+:root .layout .source-file h3 {font-size:17px}
+:root .layout .codebox {margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code-bg)}
+:root .layout .codebar {display:flex;justify-content:space-between;align-items:center;padding:8px 16px;background:var(--hover);border-bottom:1px solid var(--border);font:10px/1.6 ui-monospace,monospace;letter-spacing:.08em;color:var(--muted)}
+:root .layout .copy {background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:3px 9px;font:11px/1.5 sans-serif;cursor:pointer;letter-spacing:0}
+:root .layout .copy:hover {color:var(--text);border-color:var(--muted)}
+:root .layout .codebox>pre {margin:0;border:0;border-radius:0;padding:20px;font-size:13px;line-height:1.8}
+:root .layout .codebox>pre.full-code {padding:12px 0;font-size:12px}
+:root .layout pre:before {display:none}
+:root .layout .line-no {flex-basis:46px;font-size:11px;margin-right:12px;border-right:1px solid var(--border)}
+.theme-toggle {position:fixed;right:18px;top:12px;z-index:20;padding:7px 12px;font:12px/1.5 sans-serif;background:var(--page);color:var(--text);border:1px solid var(--border);border-radius:6px}
+#copy-status:empty {display:none}
+#copy-status {position:fixed;right:20px;bottom:20px;z-index:25;background:var(--text);color:var(--page);border-radius:8px;padding:10px 18px;font-size:13px;max-width:calc(100vw - 40px)}
+[hidden] {display:none!important}
+@media(max-width:1000px) {.layout>.sidebar{width:235px;padding:24px 10px}:root .layout>main{padding:36px 28px}:root .layout header h1{font-size:40px}}
+@media(max-width:720px) {.layout{display:block}.layout>.sidebar{position:relative;width:100%;height:auto;max-height:360px;border:0;border-bottom:1px solid var(--border);padding:22px}.sidebar .nav-note{display:none}:root .layout>main{padding:30px 20px 50px}:root .layout header h1{font-size:38px}:root .layout h2{font-size:23px}:root .layout .codebox>pre{padding:16px}.theme-toggle{top:10px;right:12px}}
+@media(prefers-reduced-motion:reduce) {html{scroll-behavior:auto}}
+@media print {.home-link,.sidebar,.toolbar,.copy,#copy-status{display:none!important}.layout{display:block}:root .layout>main{padding:0;max-width:none}:root .layout header h1{font-size:24pt}:root .layout .codebox>pre{font-size:8pt}.codebar{background:#f5f5f5!important;color:#333!important}}
+
+:root .layout header h1 span {color:var(--text)}
+
+@media print {:root,:root[data-theme="dark"]{--page:#fff;--panel:#fafafa;--code-bg:#f8f8f8;--text:#171717;--muted:#626262;--border:#e2e2e2;--link:#333;--hover:#f0f0f0}}

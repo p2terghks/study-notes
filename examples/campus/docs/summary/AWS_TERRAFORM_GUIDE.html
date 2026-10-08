@@ -23,7 +23,7 @@ pre.full-code{padding:12px 0;font-size:13px;line-height:1.9}
 .source-details summary{color:#33455e}
 @media(max-width:650px){pre.full-code{font-size:11px}.line-no{flex-basis:34px;margin-right:8px;padding-right:7px;font-size:10px}.source-line{padding-right:8px}}
 @media print{pre.full-code{font-size:7.5pt}.source-line:hover{background:#fff}.line-no{color:#777}pre code span{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style><link rel="stylesheet" href="campus-theme.css?v=20261008"><script src="campus-theme.js?v=20261008"></script></head><body><header><div class="eyebrow">DEPLOYMENT STUDY NOTES · 2026.10.08</div><h1>AWS에 올리는 과정<br><span>Terraform으로 차근차근</span></h1><p>수강2 · React + Spring Boot · ECS Fargate + RDS</p><div class="cover-links"><a href="#chapter-27">전체 순서</a><a href="#chapter-28">Terraform 전체 코드</a><a href="aws-terraform-example.zip" download="">예제 ZIP</a></div></header><nav class="toolbar"><a href="#contents">목차</a><a href="#chapter-7">기존 AWS 방식</a><a href="#chapter-9">Terraform 시작</a><a href="#chapter-22">문제 해결</a><button onclick="window.print()">인쇄 · PDF 저장</button></nav><main><details id="contents" class="toc"><summary>전체 목차 · 29개 주제</summary><nav id="toc-links"><a href="#chapter-1">1. 이번에 올리는 프로그램의 범위</a><a href="#chapter-2">2. 전체 연결 구조</a><a href="#chapter-3">3. AWS 용어를 프로젝트에 연결하기</a><a href="#chapter-4">4. 기존 AWS 배포와 Terraform의 차이</a><a href="#chapter-5">5. 시작 전에 준비할 것</a><a href="#chapter-6">6. AWS 계정·리전 확인</a><a href="#chapter-7">7. 현재 CloudFormation으로 올리는 경우의 순서</a><a href="#chapter-8">8. Terraform 명령과 파일의 의미</a><a href="#chapter-9">9. 원격 state 버킷을 먼저 준비</a><a href="#chapter-10">10. 예제 폴더를 실행용 폴더로 복사</a><a href="#chapter-11">11. 환경값 작성</a><a href="#chapter-12">12. 네트워크 코드를 읽는 방법</a><a href="#chapter-13">13. RDS·비밀번호·state 설계</a><a href="#chapter-14">14. 도메인과 HTTPS는 어떻게 만들어지나</a><a href="#chapter-15">15. 1차 적용 — 인프라만 생성</a><a href="#chapter-16">16. 앱 Secret 값을 등록</a><a href="#chapter-17">17. 비공개 RDS에 앱 계정을 생성</a><a href="#chapter-18">18. React·Spring 이미지를 ECR에 올리기</a><a href="#chapter-19">19. 2차 적용 — 앱 태스크와 서비스 시작</a><a href="#chapter-20">20. 첫 시작에서 일어나는 일</a><a href="#chapter-21">21. 배포가 잘 되었는지 확인</a><a href="#chapter-22">22. 자주 발생하는 오류와 확인 순서</a><a href="#chapter-23">23. 수정한 코드를 다시 배포하기</a><a href="#chapter-24">24. 실패한 배포와 롤백</a><a href="#chapter-25">25. 기존 CloudFormation 환경을 Terraform으로 옮길 때</a><a href="#chapter-26">26. 운영과 비용 정리</a><a href="#chapter-27">27. 한 번에 기억하는 실행 순서</a><a href="#chapter-28">28. 예제 전체 코드와 파일별 해설</a><a href="#chapter-29">29. 검증 범위와 공식 참고 자료</a></nav></details><div id="content">
+</style><link rel="stylesheet" href="campus-theme.css?v=20261008-archive"><script src="campus-theme.js?v=20261008-archive"></script></head><body><a class="home-link" href="../../../../index.html">← 학습 요약 전체 목록</a><div class="layout"><aside class="sidebar" aria-label="문서 목차"><p class="brand">CAMPUS DEPLOY NOTES</p><p class="nav-label">설명 · 코드 · 실행 흐름</p><label for="toc-search">목차 검색</label><input id="toc-search" type="search" placeholder="키워드로 찾아보기"><p id="toc-count" class="result-count" aria-live="polite"></p><nav class="chapter-links" aria-label="항목 목록"><a href="#chapter-1"><span>01</span>이번에 올리는 프로그램의 범위</a><a href="#chapter-2"><span>02</span>전체 연결 구조</a><a href="#chapter-3"><span>03</span>AWS 용어를 프로젝트에 연결하기</a><a href="#chapter-4"><span>04</span>기존 AWS 배포와 Terraform의 차이</a><a href="#chapter-5"><span>05</span>시작 전에 준비할 것</a><a href="#chapter-6"><span>06</span>AWS 계정·리전 확인</a><a href="#chapter-7"><span>07</span>현재 CloudFormation으로 올리는 경우의 순서</a><a href="#chapter-8"><span>08</span>Terraform 명령과 파일의 의미</a><a href="#chapter-9"><span>09</span>원격 state 버킷을 먼저 준비</a><a href="#chapter-10"><span>10</span>예제 폴더를 실행용 폴더로 복사</a><a href="#chapter-11"><span>11</span>환경값 작성</a><a href="#chapter-12"><span>12</span>네트워크 코드를 읽는 방법</a><a href="#chapter-13"><span>13</span>RDS·비밀번호·state 설계</a><a href="#chapter-14"><span>14</span>도메인과 HTTPS는 어떻게 만들어지나</a><a href="#chapter-15"><span>15</span>1차 적용 — 인프라만 생성</a><a href="#chapter-16"><span>16</span>앱 Secret 값을 등록</a><a href="#chapter-17"><span>17</span>비공개 RDS에 앱 계정을 생성</a><a href="#chapter-18"><span>18</span>React·Spring 이미지를 ECR에 올리기</a><a href="#chapter-19"><span>19</span>2차 적용 — 앱 태스크와 서비스 시작</a><a href="#chapter-20"><span>20</span>첫 시작에서 일어나는 일</a><a href="#chapter-21"><span>21</span>배포가 잘 되었는지 확인</a><a href="#chapter-22"><span>22</span>자주 발생하는 오류와 확인 순서</a><a href="#chapter-23"><span>23</span>수정한 코드를 다시 배포하기</a><a href="#chapter-24"><span>24</span>실패한 배포와 롤백</a><a href="#chapter-25"><span>25</span>기존 CloudFormation 환경을 Terraform으로 옮길 때</a><a href="#chapter-26"><span>26</span>운영과 비용 정리</a><a href="#chapter-27"><span>27</span>한 번에 기억하는 실행 순서</a><a href="#chapter-28"><span>28</span>예제 전체 코드와 파일별 해설</a><a href="#chapter-29"><span>29</span>검증 범위와 공식 참고 자료</a></nav><p class="nav-group">다른 요약본</p><a href="CODE_SUMMARY.html">↗ React·Spring·Python 전체 코드</a><a href="AWS_TROUBLESHOOTING.html">↗ AWS·Terraform 트러블슈팅</a><a href="../../../../index.html">↗ 요약 파일들 전체 목록</a><p class="nav-note">2026-10-08 버전<br>라이트·다크 모드 · 코드 복사</p></aside><main id="page-content"><header><div class="eyebrow">DEPLOYMENT STUDY NOTES · 2026.10.08</div><h1>AWS에 올리는 과정<br><span>Terraform으로 차근차근</span></h1><p>수강2 · React + Spring Boot · ECS Fargate + RDS</p><div class="cover-links"><a href="#chapter-27">전체 순서</a><a href="#chapter-28">Terraform 전체 코드</a><a href="aws-terraform-example.zip" download="">예제 ZIP</a></div></header><nav class="toolbar"><a href="#contents">목차</a><a href="#chapter-7">기존 AWS 방식</a><a href="#chapter-9">Terraform 시작</a><a href="#chapter-22">문제 해결</a><button onclick="window.print()">인쇄 · PDF 저장</button></nav><details id="contents" class="toc"><summary>전체 목차 · 29개 주제</summary><nav id="toc-links"><a href="#chapter-1">1. 이번에 올리는 프로그램의 범위</a><a href="#chapter-2">2. 전체 연결 구조</a><a href="#chapter-3">3. AWS 용어를 프로젝트에 연결하기</a><a href="#chapter-4">4. 기존 AWS 배포와 Terraform의 차이</a><a href="#chapter-5">5. 시작 전에 준비할 것</a><a href="#chapter-6">6. AWS 계정·리전 확인</a><a href="#chapter-7">7. 현재 CloudFormation으로 올리는 경우의 순서</a><a href="#chapter-8">8. Terraform 명령과 파일의 의미</a><a href="#chapter-9">9. 원격 state 버킷을 먼저 준비</a><a href="#chapter-10">10. 예제 폴더를 실행용 폴더로 복사</a><a href="#chapter-11">11. 환경값 작성</a><a href="#chapter-12">12. 네트워크 코드를 읽는 방법</a><a href="#chapter-13">13. RDS·비밀번호·state 설계</a><a href="#chapter-14">14. 도메인과 HTTPS는 어떻게 만들어지나</a><a href="#chapter-15">15. 1차 적용 — 인프라만 생성</a><a href="#chapter-16">16. 앱 Secret 값을 등록</a><a href="#chapter-17">17. 비공개 RDS에 앱 계정을 생성</a><a href="#chapter-18">18. React·Spring 이미지를 ECR에 올리기</a><a href="#chapter-19">19. 2차 적용 — 앱 태스크와 서비스 시작</a><a href="#chapter-20">20. 첫 시작에서 일어나는 일</a><a href="#chapter-21">21. 배포가 잘 되었는지 확인</a><a href="#chapter-22">22. 자주 발생하는 오류와 확인 순서</a><a href="#chapter-23">23. 수정한 코드를 다시 배포하기</a><a href="#chapter-24">24. 실패한 배포와 롤백</a><a href="#chapter-25">25. 기존 CloudFormation 환경을 Terraform으로 옮길 때</a><a href="#chapter-26">26. 운영과 비용 정리</a><a href="#chapter-27">27. 한 번에 기억하는 실행 순서</a><a href="#chapter-28">28. 예제 전체 코드와 파일별 해설</a><a href="#chapter-29">29. 검증 범위와 공식 참고 자료</a></nav></details><div id="content">
 <p>수강2 프로젝트 기준 · 2026-10-08 · ECS Fargate + RDS PostgreSQL</p>
 <p>흰색 배경과 IntelliJ IDEA 라이트 스타일 코드 색상을 사용한 새 문서입니다. 명령을 어디에서 실행하는지, 무엇이 만들어지는지, 어떤 결과를 확인해야 하는지 순서대로 설명합니다. 문서와 예제를 준비한 것이며 AWS 계정에 배포한 상태는 아닙니다.</p>
 <h2 id="chapter-1">1. 이번에 올리는 프로그램의 범위</h2>
@@ -70,7 +70,7 @@ pre.full-code{padding:12px 0;font-size:13px;line-height:1.9}
 </tbody></table></div>
 <p>독립 챗봇은 이번 경로에 자동으로 합쳐지지 않습니다. 별도 배포하려면 별도 이미지·ECS 서비스·라우팅과 세션 저장 방식을 준비해야 합니다. 현재 수강 서버에 남아 있는 <code>campus/advisor</code> Java 패키지는 JAR에 포함되지만, 별도 챗봇 React 화면과는 다릅니다.</p>
 <h2 id="chapter-2">2. 전체 연결 구조</h2>
-<pre data-language="plaintext"><code class="language-text">사용자 브라우저
+<div class="codebox"><div class="codebar"><span>PLAINTEXT</span><button class="copy" type="button" aria-label="PLAINTEXT 코드 복사">복사</button></div><pre data-language="plaintext"><code class="language-text">사용자 브라우저
     │ https://campus.내도메인
     ▼
 Route 53 DNS ── 도메인 → ALB 주소
@@ -91,7 +91,7 @@ CloudWatch Logs ← 앱 표준 출력
 private app subnet → NAT Gateway → ECR / Logs / Secrets API
 Terraform → 위 AWS 리소스를 생성·갱신
 S3 state bucket ← Terraform의 리소스 관리 상태와 잠금 파일
-</code></pre>
+</code></pre></div>
 <p><strong>public/private는 단순 이름이 아니라 라우팅과 접근 설정의 차이</strong>입니다. ALB만 인터넷 요청을 받습니다. 앱은 공인 IP가 없고, DB는 인터넷 기본 경로도 없는 서브넷을 사용합니다. NAT는 앱이 외부 AWS API로 나가는 통로이며 외부 사용자가 앱으로 직접 들어오는 통로가 아닙니다.</p>
 <h2 id="chapter-3">3. AWS 용어를 프로젝트에 연결하기</h2>
 <div class="table-wrap"><table>
@@ -224,18 +224,18 @@ S3 state bucket ← Terraform의 리소스 관리 상태와 잠금 파일
 <li>Terraform state용 S3 버킷 접근과 VPC·EC2 네트워크·ECS·ECR·RDS·IAM·ACM·Route 53·Logs·Secrets 리소스 생성 권한. ECS role 전달에는 <code>iam:PassRole</code>도 필요합니다.</li>
 </ol>
 <p>맥에서 Terraform을 설치하는 공식 Homebrew 경로는 다음과 같습니다. 도구 설치와 <code>version</code> 확인은 PC에서 합니다. 기존 설치가 있다면 중복 설치할 필요가 없습니다. <a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli">HashiCorp 설치 안내</a></p>
-<pre data-language="bash"><code class="language-bash">brew tap hashicorp/tap
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 
 aws --version
 docker version
 docker buildx version
 terraform version
-</code></pre>
+</code></pre></div>
 <p><code>docker version</code>에서 서버 연결이 실패하면 Docker Desktop을 먼저 실행합니다. Terraform은 AWS 서버를 생성하는 도구이며 Spring 소스의 Java 라이브러리가 아닙니다.</p>
 <h2 id="chapter-6">6. AWS 계정·리전 확인</h2>
 <p><strong>실행 위치: 개발 PC 터미널.</strong> 프로필 이름은 본인이 설정한 값으로 바꿉니다.</p>
-<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 최초 한 번: 조직에서 받은 SSO URL·리전·계정·역할로 설정</span>
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 최초 한 번: 조직에서 받은 SSO URL·리전·계정·역할로 설정</span>
 aws configure sso --profile campus-deploy
 
 <span class="hljs-built_in">export</span> AWS_PROFILE=campus-deploy
@@ -243,9 +243,9 @@ aws configure sso --profile campus-deploy
 <span class="hljs-built_in">export</span> AWS_DEFAULT_REGION=<span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span>
 aws sso login --profile <span class="hljs-string">"<span class="hljs-variable">$AWS_PROFILE</span>"</span>
 aws sts get-caller-identity
-</code></pre>
+</code></pre></div>
 <p>Account와 Arn이 의도한 계정·역할인지 확인합니다. Terraform provider와 S3 backend 모두 이 프로필의 권한을 사용합니다. 토큰이 만료되면 SSO 로그인을 갱신합니다. 액세스 키를 <code>.tf</code>나 HTML 문서에 적을 필요가 없습니다.</p>
-<pre data-language="bash"><code class="language-bash">aws rds describe-db-engine-versions \
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">aws rds describe-db-engine-versions \
   --engine postgres --region <span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span> \
   --query <span class="hljs-string">'DBEngineVersions[].EngineVersion'</span> --output table
 
@@ -256,19 +256,19 @@ aws rds describe-orderable-db-instance-options \
   --db-instance-class db.t4g.micro --region <span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span> \
   --query <span class="hljs-string">'OrderableDBInstanceOptions[].{Version:EngineVersion,Class:DBInstanceClass,MultiAZ:MultiAZCapable}'</span> \
   --output table
-</code></pre>
+</code></pre></div>
 <p>결과가 비어 있으면 해당 버전·클래스 조합을 사용하지 않습니다. 문서의 예제는 임의 최신 버전을 박아 넣지 않고 확인한 버전을 입력하도록 되어 있습니다.</p>
 <h2 id="chapter-7">7. 현재 CloudFormation으로 올리는 경우의 순서</h2>
 <p>Terraform 경로로 진행할 예정이면 <strong>이 절의 생성 명령은 실행하지 않고</strong> 다음 절부터 따라갑니다. 기존 코드가 무엇을 하는지 이해하기 위한 비교입니다.</p>
-<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 수강2 프로젝트 루트에서, 이미 발급 완료된 같은 리전 ACM ARN 사용</span>
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 수강2 프로젝트 루트에서, 이미 발급 완료된 같은 리전 ACM ARN 사용</span>
 <span class="hljs-built_in">export</span> STACK_NAME=campus-prod
 <span class="hljs-built_in">export</span> CERTIFICATE_ARN=<span class="hljs-string">'REPLACE_WITH_ISSUED_CERTIFICATE_ARN'</span>
 ./deploy/deploy.sh infra
-</code></pre>
+</code></pre></div>
 <p><code>infra</code>는 VPC·서브넷·NAT·ALB·RDS·ECR 등을 만듭니다. 출력의 AdminSecretArn·AppSecretArn·DatabaseEndpoint로 앱 DB 계정을 초기화한 뒤 이미지를 올립니다. 비공개 DB 초기화 방법은 17절을 참고하세요. 기존 CloudFormation은 앱 Secret 값도 생성하지만, 새 Terraform 예제는 Secret 이름만 만들고 값을 수동 등록합니다.</p>
-<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">export</span> IMAGE_TAG=<span class="hljs-string">"release-<span class="hljs-subst">$(date -u +%Y%m%dT%H%M%SZ)</span>"</span>
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">export</span> IMAGE_TAG=<span class="hljs-string">"release-<span class="hljs-subst">$(date -u +%Y%m%dT%H%M%SZ)</span>"</span>
 ./deploy/deploy.sh app
-</code></pre>
+</code></pre></div>
 <p><code>app</code>은 ECR 로그인 → linux/amd64 빌드·push → ECS 태스크·서비스 생성 또는 업데이트를 수행합니다. 마지막으로 도메인을 ALB에 연결하고 HTTPS를 확인합니다. 기존 스크립트는 Terraform state를 만들지 않습니다. 실제 상세 명령은 프로젝트의 <code>deploy/README.md</code>에 있습니다.</p>
 <h2 id="chapter-8">8. Terraform 명령과 파일의 의미</h2>
 <div class="table-wrap"><table>
@@ -331,15 +331,15 @@ aws rds describe-orderable-db-instance-options \
 </tr>
 </tbody></table></div>
 <p>HCL의 <code>resource</code>는 만들 대상, <code>data</code>는 기존 정보 조회, <code>variable</code>은 외부 입력, <code>output</code>은 확인할 결과, <code>locals</code>는 중간 계산입니다. 파일 이름으로 실행 순서가 정해지지 않고 리소스 참조 관계로 순서를 계산합니다.</p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecr_repository"</span> <span class="hljs-string">"app"</span> {
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecr_repository"</span> <span class="hljs-string">"app"</span> {
   <span class="hljs-attr">name</span>                 = var.name
   <span class="hljs-attr">image_tag_mutability</span> = <span class="hljs-string">"IMMUTABLE"</span>
 }
-</code></pre>
+</code></pre></div>
 <p><code>aws_ecr_repository</code>는 리소스 종류, <code>app</code>은 Terraform 안의 이름입니다. <code>var.name</code>은 tfvars 입력입니다. 다른 리소스에서 <code>aws_ecr_repository.app.repository_url</code>을 참조하면 Terraform이 의존성을 인식합니다.</p>
 <h2 id="chapter-9">9. 원격 state 버킷을 먼저 준비</h2>
 <p>Terraform이 관리할 AWS 인프라보다 <strong>state 버킷을 먼저</strong> 준비합니다. 아래는 서울 리전용 AWS CLI 초기 준비 예시입니다. 이미 보안 설정된 팀 state 버킷이 있다면 재생성하지 않고 전용 key를 사용합니다.</p>
-<pre data-language="bash"><code class="language-bash">ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 STATE_BUCKET=<span class="hljs-string">"campus-tfstate-<span class="hljs-variable">${ACCOUNT_ID}</span>-<span class="hljs-subst">$(date -u +%Y%m%d%H%M%S)</span>"</span>
 
 aws s3api create-bucket --bucket <span class="hljs-string">"<span class="hljs-variable">$STATE_BUCKET</span>"</span> \
@@ -356,20 +356,20 @@ aws s3api put-bucket-versioning --bucket <span class="hljs-string">"<span class=
 aws s3api put-bucket-encryption --bucket <span class="hljs-string">"<span class="hljs-variable">$STATE_BUCKET</span>"</span> \
   --server-side-encryption-configuration \
   <span class="hljs-string">'{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'</span>
-</code></pre>
+</code></pre></div>
 <p>버킷 이름은 전체 AWS에서 고유해야 합니다. 이름 충돌이면 새 접미사를 씁니다. state를 저장하는 버킷은 사이트 파일 공개용 버킷이 아닙니다. 이 버킷을 앱 Terraform에 포함하지 않았으므로 앱 정리 후에도 남으며 별도로 관리해야 합니다.</p>
 <p>S3 backend는 <code>use_lockfile = true</code>로 동시 작업 잠금을 사용할 수 있습니다. 버전 관리는 실수로 덮어쓴 state 복구에 도움을 줍니다. backend 권한에는 버킷 ListBucket, state 객체 Get/Put, <code>.tflock</code> 객체 Get/Put/Delete가 필요합니다. 신규 예제는 DynamoDB 잠금 대신 S3 잠금을 사용합니다. <a href="https://developer.hashicorp.com/terraform/language/backend/s3">HashiCorp S3 backend</a></p>
 <p>state·저장된 plan은 민감한 자료로 취급합니다. Terraform의 sensitive 표시는 화면 노출 제한이지 state 암호화 자체가 아닙니다. 이 예제는 비밀번호 값을 Terraform에 넘기지 않지만 다른 리소스 추가 시에도 같은 보장이 자동으로 유지되는 것은 아닙니다. <a href="https://developer.hashicorp.com/terraform/language/manage-sensitive-data">민감한 데이터 관리</a></p>
 <h2 id="chapter-10">10. 예제 폴더를 실행용 폴더로 복사</h2>
 <p>새 예제는 이 문서 옆 <code>aws-terraform-example/</code>에 있습니다. <strong>문서용 예제를 바로 운영 상태 저장소로 쓰지 않고</strong>, 루트의 <code>infra/terraform/</code>로 복사하여 환경 입력을 작성합니다. 기존 폴더가 있다면 덮어쓰지 말고 내용을 먼저 비교합니다.</p>
-<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 수강2 루트에서, infra/terraform이 아직 없는 경우</span>
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 수강2 루트에서, infra/terraform이 아직 없는 경우</span>
 <span class="hljs-built_in">mkdir</span> -p infra
 <span class="hljs-built_in">cp</span> -R docs/summary/aws-terraform-example infra/terraform
 <span class="hljs-built_in">cd</span> infra/terraform
 <span class="hljs-built_in">cp</span> terraform.tfvars.example terraform.tfvars
 <span class="hljs-built_in">cp</span> backend.hcl.example backend.hcl
-</code></pre>
-<pre data-language="plaintext"><code class="language-text">infra/terraform/
+</code></pre></div>
+<div class="codebox"><div class="codebar"><span>PLAINTEXT</span><button class="copy" type="button" aria-label="PLAINTEXT 코드 복사">복사</button></div><pre data-language="plaintext"><code class="language-text">infra/terraform/
 ├── versions.tf          # Terraform·provider·S3 backend
 ├── variables.tf         # 도메인·리전·이미지 등 입력
 ├── network.tf           # VPC·6개 서브넷·NAT·라우팅·보안 그룹
@@ -380,18 +380,18 @@ aws s3api put-bucket-encryption --bucket <span class="hljs-string">"<span class=
 ├── backend.hcl          # 본인 state 버킷 정보
 ├── terraform.tfvars     # 본인 환경 입력
 └── .terraform.lock.hcl  # init 후 생성, 버전 관리에 포함
-</code></pre>
+</code></pre></div>
 <p>이 폴더의 <code>.gitignore</code>는 state·plan·실제 tfvars를 제외합니다. <code>.terraform.lock.hcl</code>과 <code>.tf</code>, <code>.example</code>은 버전 관리에 포함합니다. 문서 예제에 검증 당시 provider 버전을 고정한 lock 파일도 포함했습니다. 운영 코드를 복사한 뒤에는 루트 <code>.dockerignore</code>에도 <code>infra/</code>와 <code>docs/summary/aws-terraform-example/</code>를 추가해 Terraform 작업 폴더가 Docker 빌드 입력으로 전송되지 않게 정리하세요.</p>
 <h2 id="chapter-11">11. 환경값 작성</h2>
 <p><code>backend.hcl</code>의 bucket을 9절에서 만든 실제 이름으로 바꿉니다. 리전도 버킷 리전과 같아야 합니다. dev/prod를 분리할 때 같은 key를 공유하지 않습니다.</p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">bucket</span>       = <span class="hljs-string">"본인이_만든_실제_버킷_이름"</span>
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">bucket</span>       = <span class="hljs-string">"본인이_만든_실제_버킷_이름"</span>
 <span class="hljs-attr">key</span>          = <span class="hljs-string">"campus/prod/terraform.tfstate"</span>
 <span class="hljs-attr">region</span>       = <span class="hljs-string">"ap-northeast-2"</span>
 <span class="hljs-attr">encrypt</span>      = <span class="hljs-literal">true</span>
 <span class="hljs-attr">use_lockfile</span> = <span class="hljs-literal">true</span>
-</code></pre>
+</code></pre></div>
 <p><code>terraform.tfvars</code>는 아래 입력을 채웁니다. 예제 문자열 그대로 실행하지 않습니다. domain은 내가 소유한 호스트명, zone_id는 해당 이름을 관리하는 기존 public hosted zone입니다.</p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">region</span>            = <span class="hljs-string">"ap-northeast-2"</span>
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">region</span>            = <span class="hljs-string">"ap-northeast-2"</span>
 <span class="hljs-attr">name</span>              = <span class="hljs-string">"campus-tf"</span>
 <span class="hljs-attr">domain</span>            = <span class="hljs-string">"campus.내가소유한도메인.com"</span>
 <span class="hljs-attr">zone_id</span>           = <span class="hljs-string">"실제_PUBLIC_HOSTED_ZONE_ID"</span>
@@ -400,7 +400,7 @@ aws s3api put-bucket-encryption --bucket <span class="hljs-string">"<span class=
 <span class="hljs-attr">app_enabled</span>       = <span class="hljs-literal">false</span>
 <span class="hljs-attr">image_uri</span>         = <span class="hljs-string">""</span>
 <span class="hljs-attr">desired_count</span>     = <span class="hljs-number">2</span>
-</code></pre>
+</code></pre></div>
 <p>처음에는 <code>app_enabled=false</code>입니다. 인프라를 만든 뒤 DB 계정·Secret·ECR 이미지가 준비되어야 앱을 시작할 수 있기 때문입니다. 서비스가 가동된 다음에는 false로 되돌리면 서비스와 태스크 정의의 삭제 계획이 나오므로 첫 단계 설정을 그대로 재사용하지 않습니다.</p>
 <h2 id="chapter-12">12. 네트워크 코드를 읽는 방법</h2>
 <p><code>network.tf</code>는 두 가용 영역에 public·app·db 서브넷을 각각 하나씩 만듭니다. <code>count=2</code>와 <code>count.index</code>로 같은 구조를 두 번 만들고, <code>cidrsubnet</code>으로 /16 안에서 /24 구간을 나눕니다. 기존 VPC·VPN 주소와 겹치면 생성 전에 주소 설계를 바꿉니다.</p>
@@ -442,40 +442,40 @@ aws s3api put-bucket-encryption --bucket <span class="hljs-string">"<span class=
 <p>외부 DNS 업체를 계속 사용한다면 현재 예제의 Route 53 레코드 리소스를 그대로 사용할 수 없습니다. 인증서 검증 레코드와 서비스 레코드를 외부 업체에 생성하는 흐름으로 수정해야 합니다. 이 예제는 Route 53에서 권한 있는 public zone을 이미 보유한 경우를 전제로 합니다.</p>
 <h2 id="chapter-15">15. 1차 적용 — 인프라만 생성</h2>
 <p><strong>실행 위치: <code>infra/terraform/</code>.</strong> AWS 프로필·리전 환경변수가 같은 터미널에 설정되어 있어야 합니다.</p>
-<pre data-language="bash"><code class="language-bash">terraform init -backend-config=backend.hcl
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">terraform init -backend-config=backend.hcl
 terraform <span class="hljs-built_in">fmt</span> -check
 terraform validate
 terraform plan -out=infra.tfplan
-</code></pre>
+</code></pre></div>
 <p>plan의 <code>+</code>는 생성, <code>~</code>는 변경, <code>-</code>는 삭제, <code>-/+</code>는 교체입니다. 최초 새 환경에서는 생성 계획이 중심이어야 합니다. 예상하지 않은 기존 DB 삭제·교체가 보이면 apply하지 않고 계정·state key·리소스 이름부터 확인합니다. plan이 계정 권한·DNS·리전 가용성까지 모두 보증하지는 않습니다.</p>
-<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 계획을 검토한 뒤 실행</span>
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 계획을 검토한 뒤 실행</span>
 terraform apply infra.tfplan
 terraform output
-</code></pre>
+</code></pre></div>
 <p>RDS 생성과 ACM 검증은 시간이 걸릴 수 있습니다. DNS 검증 대기가 길면 NS 위임과 CNAME을 확인합니다. 아직 앱을 만들지 않았으므로 ALB가 503을 내는 것은 이 단계에서는 예상되는 상태입니다.</p>
 <p>출력 확인 항목: repository_url, database_endpoint, admin_secret_arn, app_secret_arn, vpc_id, app_subnet_ids, app_security_group_id, log_group, site_url. 아직 service_name은 출력되지 않거나 null인 상태입니다.</p>
 <h2 id="chapter-16">16. 앱 Secret 값을 등록</h2>
 <p>AWS 콘솔 → Secrets Manager → 출력된 <code>app_secret_arn</code>에 해당하는 Secret → 비밀 값 편집 화면에서 아래 <strong>두 키</strong>를 저장합니다. 콘솔 명칭은 화면 버전에 따라 조금 다를 수 있습니다.</p>
-<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+<div class="codebox"><div class="codebar"><span>JSON</span><button class="copy" type="button" aria-label="JSON 코드 복사">복사</button></div><pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"username"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"campus_app"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"password"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"새로_생성한_충분히_긴_실제_비밀번호"</span>
 <span class="hljs-punctuation">}</span>
-</code></pre>
+</code></pre></div>
 <p>실제 비밀번호는 비밀번호 관리 도구로 생성·보관하고 이 문서·tfvars·Git에 복사하지 않습니다. Secret 버전의 <code>AWSCURRENT</code>에 두 키가 있어야 합니다. 자동 회전은 이 예제에 포함하지 않았습니다.</p>
 <p>태스크 정의의 <code>:username::</code>와 <code>:password::</code>는 Secret JSON 안의 해당 키를 읽습니다. Linux Fargate의 JSON 키 선택 주입에는 플랫폼 1.4.0 이상이 필요하므로 예제는 1.4.0을 지정했습니다. Secret을 바꾸어도 이미 실행 중인 컨테이너 환경변수는 즉시 바뀌지 않아 새 태스크 배포가 필요합니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html">ECS Secret 환경변수</a></p>
 <h2 id="chapter-17">17. 비공개 RDS에 앱 계정을 생성</h2>
 <p><strong>실행 위치: VPC에 접근 가능한 관리 환경.</strong> 개인 노트북이나 기본 CloudShell은 private RDS에 바로 접속할 수 없습니다.</p>
 <p>CloudShell의 VPC 환경을 만들 때 이 Terraform 출력의 VPC, app subnet 중 하나, app security group을 선택합니다. app subnet의 NAT로 HTTPS 다운로드가 가능하고 보안 그룹으로 RDS 5432 접속이 가능합니다. 해당 리전·계정에서 VPC CloudShell을 사용할 수 없는 경우 SSM으로 접속 가능한 관리 호스트 등 대체 경로가 필요합니다. <a href="https://docs.aws.amazon.com/cloudshell/latest/userguide/using-cshell-in-vpc.html">CloudShell VPC 환경</a></p>
 <p>먼저 <code>psql --version</code>으로 클라이언트를 확인합니다. 없으면 관리 환경의 OS에 맞는 PostgreSQL 클라이언트를 준비합니다. 로컬 파일이 VPC 환경에 자동으로 복사되지는 않으므로 <code>deploy/bootstrap-db.sql</code>의 내용을 관리 환경에 가져옵니다.</p>
-<pre data-language="bash"><code class="language-bash">curl --fail --location \
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">curl --fail --location \
   https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem \
   -o global-bundle.pem
 
 <span class="hljs-comment"># 실제 database_endpoint를 넣고 실행. 관리자 비밀번호는 -W 프롬프트에 입력</span>
 psql <span class="hljs-string">"host=실제_RDS_ENDPOINT port=5432 dbname=campus user=campus_admin sslmode=verify-full sslrootcert=global-bundle.pem"</span> -W
-</code></pre>
+</code></pre></div>
 <p>관리자 비밀번호는 Secrets Manager의 <code>admin_secret_arn</code>에서 확인합니다. 관리자용과 앱용 Secret을 혼동하지 않습니다. <code>verify-full</code>은 암호화뿐 아니라 CA와 호스트명을 검증합니다. 인증 오류를 무작정 sslmode=disable로 해결하지 않습니다. <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Concepts.General.SSL.html">RDS PostgreSQL TLS</a></p>
-<pre data-language="sql"><code class="language-sql"><span class="hljs-comment">-- psql 안에서 최초 한 번 실행: 기존 deploy/bootstrap-db.sql과 같은 내용</span>
+<div class="codebox"><div class="codebar"><span>SQL</span><button class="copy" type="button" aria-label="SQL 코드 복사">복사</button></div><pre data-language="sql"><code class="language-sql"><span class="hljs-comment">-- psql 안에서 최초 한 번 실행: 기존 deploy/bootstrap-db.sql과 같은 내용</span>
 <span class="hljs-keyword">CREATE</span> ROLE campus_app LOGIN;
 <span class="hljs-keyword">REVOKE</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">ON</span> SCHEMA public <span class="hljs-keyword">FROM</span> PUBLIC;
 <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">CONNECT</span> <span class="hljs-keyword">ON</span> DATABASE campus <span class="hljs-keyword">TO</span> campus_app;
@@ -483,15 +483,15 @@ psql <span class="hljs-string">"host=실제_RDS_ENDPOINT port=5432 dbname=campus
 
 <span class="hljs-comment">-- SQL 문자열에 비밀번호를 적지 않고 psql 프롬프트 사용</span>
 \password campus_app
-</code></pre>
+</code></pre></div>
 <p>여기에는 <strong>16절 앱 Secret의 password와 동일한 값</strong>을 입력합니다. 이미 계정이 있다면 CREATE ROLE을 다시 실행하는 대신 역할·권한·소유권을 확인합니다. 새 빈 DB를 기준으로 한 절차이며 기존 테이블 소유권 변경이나 데이터 이관까지 자동으로 해주지는 않습니다.</p>
-<pre data-language="sql"><code class="language-sql"><span class="hljs-comment">-- 세션 종료</span>
+<div class="codebox"><div class="codebar"><span>SQL</span><button class="copy" type="button" aria-label="SQL 코드 복사">복사</button></div><pre data-language="sql"><code class="language-sql"><span class="hljs-comment">-- 세션 종료</span>
 \q
-</code></pre>
+</code></pre></div>
 <p>같은 psql 접속 문자열에서 user를 campus_app으로 바꾸어 재접속하고 <code>SELECT current_user, current_database();</code>로 확인합니다. 실제 앱 계정으로 접속이 되어야 다음 단계로 갑니다. 초기화용 VPC 환경을 정리한 뒤에도 ECS가 쓰는 app 보안 그룹 자체는 삭제하지 않습니다.</p>
 <h2 id="chapter-18">18. React·Spring 이미지를 ECR에 올리기</h2>
 <p><strong>실행 위치: 개발 PC의 수강2 루트.</strong> 아래 TF_DIR는 10절에서 복사한 폴더 기준입니다.</p>
-<pre data-language="bash"><code class="language-bash">TF_DIR=infra/terraform
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">TF_DIR=infra/terraform
 REPOSITORY_URL=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw repository_url)
 REPOSITORY_NAME=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw repository_name)
 REGISTRY=<span class="hljs-string">"<span class="hljs-variable">${REPOSITORY_URL%%/*}</span>"</span>
@@ -509,25 +509,25 @@ IMAGE_DIGEST=$(aws ecr describe-images --region <span class="hljs-string">"<span
   --query <span class="hljs-string">'imageDetails[0].imageDigest'</span> --output text)
 IMAGE_URI=<span class="hljs-string">"<span class="hljs-variable">$REPOSITORY_URL</span>@<span class="hljs-variable">$IMAGE_DIGEST</span>"</span>
 <span class="hljs-built_in">printf</span> <span class="hljs-string">'%s\n'</span> <span class="hljs-string">"<span class="hljs-variable">$IMAGE_URI</span>"</span>
-</code></pre>
+</code></pre></div>
 <p>마지막 <code>.</code>은 현재 디렉터리를 Docker 빌드 입력으로 사용한다는 뜻입니다. <code>infra/terraform</code> 안에서 실행하면 루트 Dockerfile을 찾지 못하므로 프로젝트 루트로 돌아옵니다. Apple Silicon Mac에서도 명시한 linux/amd64가 ECS의 X86_64와 일치해야 합니다.</p>
 <p>ECR 태그는 IMMUTABLE이라 같은 태그로 덮어쓰기하지 않습니다. 매번 새 IMAGE_TAG를 사용하고 실제 배포는 <code>@sha256:...</code> digest로 고정합니다. digest가 <code>None</code>이면 업로드와 태그를 확인하고 진행하지 않습니다. <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html">ECR 이미지 업로드</a></p>
 <p>Dockerfile은 React 테스트·빌드 → Maven verify → JRE 실행 이미지 순으로 묶습니다. Node 개발 서버는 운영에서 실행되지 않습니다. 독립 academic-advisor 디렉터리는 <code>.dockerignore</code>로 제외됩니다. PostgreSQL 전용 테스트는 별도 임시 DB 검증이며 이미지 빌드 성공만으로 실제 RDS 접속을 확인한 것은 아닙니다.</p>
 <h2 id="chapter-19">19. 2차 적용 — 앱 태스크와 서비스 시작</h2>
 <p><code>infra/terraform/terraform.tfvars</code>에서 두 값을 수정하여 <strong>파일에 유지</strong>합니다. CLI의 임시 <code>-var</code>만 쓰고 파일을 false로 남겨두면 다음 plan이 앱을 제거할 수 있습니다.</p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">app_enabled</span> = <span class="hljs-literal">true</span>
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">app_enabled</span> = <span class="hljs-literal">true</span>
 <span class="hljs-attr">image_uri</span>   = <span class="hljs-string">"123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/campus-tf@sha256:실제_DIGEST"</span>
-</code></pre>
+</code></pre></div>
 <p>위 URI는 형식 예시입니다. 18절에서 출력한 실제 IMAGE_URI 전체를 그대로 넣습니다. Secret 값 등록과 DB 앱 계정 확인을 마친 상태여야 합니다.</p>
-<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">cd</span> infra/terraform
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">cd</span> infra/terraform
 terraform plan -out=app.tfplan
 terraform apply app.tfplan
-</code></pre>
+</code></pre></div>
 <p>plan에는 Task Definition과 ECS Service 생성이 나타나야 합니다. <code>ecs.tf</code>는 컨테이너 8080, CPU 512(0.5 vCPU), 메모리 1024 MiB, 태스크 기본 2개, private subnet, public IP 없음으로 정의합니다. 태스크에 prod·DB_URL·DB_POOL_SIZE와 Secret의 username/password가 주입됩니다.</p>
 <p>Execution Role은 ECS 에이전트가 ECR 이미지·로그·Secret을 다루기 위한 권한입니다. Task Role은 컨테이너 앱 코드가 AWS SDK를 사용할 때의 권한입니다. 현재 앱은 DB에 JDBC로 연결하므로 Task Role에 광범위한 AWS 권한을 줄 이유가 없습니다. 사용자 관리 KMS 키로 Secret을 바꾼다면 Execution Role의 해당 키 복호화 권한도 검토해야 합니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html">ECS Execution Role</a></p>
 <p>예제는 wait_for_steady_state를 사용하지만 Terraform 종료 코드만으로 최종 버전을 단정하지 않습니다. 회로 차단기가 이전 버전으로 복구했을 수도 있으므로 다음 절에서 서비스 이벤트·실제 Task Definition·이미지 digest를 확인합니다.</p>
 <h2 id="chapter-20">20. 첫 시작에서 일어나는 일</h2>
-<pre data-language="plaintext"><code class="language-text">태스크 생성
+<div class="codebox"><div class="codebar"><span>PLAINTEXT</span><button class="copy" type="button" aria-label="PLAINTEXT 코드 복사">복사</button></div><pre data-language="plaintext"><code class="language-text">태스크 생성
 → Execution Role로 ECR pull / Secret 읽기 / 로그 스트림 준비
 → Spring prod 시작
 → RDS TLS 접속
@@ -536,12 +536,12 @@ terraform apply app.tfplan
 → readiness UP
 → ALB가 정상 대상으로 등록
 → HTTPS 사용자 요청 전달
-</code></pre>
+</code></pre></div>
 <p>현재 소스에는 <strong>V1·V2·V3</strong>가 있습니다. 다음 DB 변경은 기존 파일을 수정하지 않고 새 V4 이상으로 추가합니다. 여러 태스크가 동시에 부팅하면 Flyway가 마이그레이션 실행을 조정합니다.</p>
 <p>운영에서는 데모 강의·체험 계정 자동 생성이 꺼져 있습니다. 최초 DB가 비어 있으면 회원가입은 가능하지만 강의 목록은 비어 있습니다. 실제 강의와 수업 시간을 승인된 입력·마이그레이션 절차로 준비해야 하며 현재 관리자 강의 관리 화면은 없습니다. 로컬 H2 데이터를 RDS에 자동 복사하지 않습니다.</p>
 <h2 id="chapter-21">21. 배포가 잘 되었는지 확인</h2>
 <p><strong>실행 위치: 개발 PC, 수강2 루트.</strong> 다음은 읽기용 상태 확인입니다.</p>
-<pre data-language="bash"><code class="language-bash">TF_DIR=infra/terraform
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">TF_DIR=infra/terraform
 CLUSTER=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw cluster_name)
 SERVICE=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw service_name)
 SITE_URL=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw site_url)
@@ -554,13 +554,13 @@ aws ecs describe-services --cluster <span class="hljs-string">"<span class="hljs
 aws elbv2 describe-target-health --target-group-arn <span class="hljs-string">"<span class="hljs-variable">$TG_ARN</span>"</span>
 curl --fail --show-error <span class="hljs-string">"<span class="hljs-variable">$SITE_URL</span>/actuator/health/readiness"</span>
 aws logs <span class="hljs-built_in">tail</span> <span class="hljs-string">"<span class="hljs-variable">$LOG_GROUP</span>"</span> --since 15m
-</code></pre>
+</code></pre></div>
 <p>확인할 결과는 runningCount=desiredCount, 배포 rolloutState=COMPLETED, target health=healthy, readiness HTTP 200·UP입니다. Events에 반복 종료가 없는지도 봅니다. Secrets나 비밀번호가 포함된 로그를 공유하지 않습니다.</p>
-<pre data-language="bash"><code class="language-bash">TASK_DEF=$(aws ecs describe-services --cluster <span class="hljs-string">"<span class="hljs-variable">$CLUSTER</span>"</span> --services <span class="hljs-string">"<span class="hljs-variable">$SERVICE</span>"</span> \
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">TASK_DEF=$(aws ecs describe-services --cluster <span class="hljs-string">"<span class="hljs-variable">$CLUSTER</span>"</span> --services <span class="hljs-string">"<span class="hljs-variable">$SERVICE</span>"</span> \
   --query <span class="hljs-string">'services[0].taskDefinition'</span> --output text)
 aws ecs describe-task-definition --task-definition <span class="hljs-string">"<span class="hljs-variable">$TASK_DEF</span>"</span> \
   --query <span class="hljs-string">'taskDefinition.containerDefinitions[].{Name:name,Image:image}'</span> --output table
-</code></pre>
+</code></pre></div>
 <p>배포한 IMAGE_URI와 일치하는지 확인합니다. 브라우저에서는 회원가입 → 로그인 → 새로고침 → 강의 조회 → 장바구니 → 신청 → 시간표 → 취소 → 로그아웃을 확인합니다. 강의가 없다면 먼저 강의 데이터를 준비합니다. 현재 회원가입은 자체 학번 입력 방식이므로 실제 학교 인증 연동이 완료된 시스템으로 설명하지 않습니다.</p>
 <h2 id="chapter-22">22. 자주 발생하는 오류와 확인 순서</h2><p id="troubleshooting-link">증상별 진단 명령과 해결 순서는 <a href="AWS_TROUBLESHOOTING.html">별도 트러블슈팅 요약본</a>에서 자세히 확인할 수 있습니다.</p>
 <div class="table-wrap"><table>
@@ -656,10 +656,10 @@ aws ecs describe-task-definition --task-definition <span class="hljs-string">"<s
 <li>plan에서 새 Task Definition·Service 갱신을 확인하고 apply합니다.</li>
 <li>실제 서비스가 새 digest와 정상 health로 완료됐는지 21절을 반복합니다.</li>
 </ol>
-<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># infra/terraform 안에서</span>
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># infra/terraform 안에서</span>
 terraform plan -out=release.tfplan
 terraform apply release.tfplan
-</code></pre>
+</code></pre></div>
 <p>태스크 수 2개, minimumHealthyPercent=100, maximumPercent=200이므로 교체 중 최대 4개가 일시 실행될 수 있습니다. 현재 DB pool이 태스크당 10이면 앱 연결의 설정상 상한은 교체 중 40개가 될 수 있고, 여기에 관리 접속 등도 더해집니다. DB 연결 한도와 사용량을 함께 확인합니다.</p>
 <p>DB 비밀번호만 바꾼 경우에는 DB 계정 값과 Secret 값을 함께 조정하고 새 태스크가 Secret을 다시 읽도록 배포해야 합니다. 이 예제에는 자동 회전·무중단 자격증명 교체 자동화가 없습니다.</p>
 <h2 id="chapter-24">24. 실패한 배포와 롤백</h2>
@@ -676,22 +676,22 @@ terraform apply release.tfplan
 <li>Terraform import 후 plan이 의도하지 않은 변경 없이 맞는지 확인합니다.</li>
 <li>그 다음 변경부터 Terraform만 소유권을 가지고 관리합니다.</li>
 </ol>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-comment"># 개념 예시. 실제 ID와 resource 정의를 함께 맞춰야 한다.</span>
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-comment"># 개념 예시. 실제 ID와 resource 정의를 함께 맞춰야 한다.</span>
 <span class="hljs-keyword">import</span> {
   <span class="hljs-attr">to</span> = aws_ecr_repository.app
   <span class="hljs-attr">id</span> = <span class="hljs-string">"실제_기존_ECR_저장소_이름"</span>
 }
-</code></pre>
+</code></pre></div>
 <p>import는 데이터를 새로 복사하거나 AWS 리소스를 재생성하는 기능이 아닙니다. 서비스 중단 없는 이관은 리소스별 별도 계획이 필요합니다. 새 환경을 사용한다면 기존 사용자 데이터 이관, 도메인 전환, TTL, 세션 만료와 롤백 기준도 따로 정합니다.</p>
 <h2 id="chapter-26">26. 운영과 비용 정리</h2>
 <p>CloudWatch에서 앱 오류·태스크 재시작·ALB 5xx·DB 연결 수와 저장량을 확인합니다. 예제에는 자동 스케일링, WAF, 운영 알람, ALB 액세스 로그 저장, CI/CD 파이프라인이 포함되어 있지 않습니다. 현재 부하를 측정한 후 단계적으로 추가합니다.</p>
 <p><strong>리소스 정리도 plan으로 먼저 확인합니다.</strong> 아래는 삭제 실행 명령이 아닌 검토용 명령입니다.</p>
-<pre data-language="bash"><code class="language-bash">terraform plan -destroy
-</code></pre>
+<div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="BASH 코드 복사">복사</button></div><pre data-language="bash"><code class="language-bash">terraform plan -destroy
+</code></pre></div>
 <p>현재 prevent_destroy 때문에 일부 삭제 계획은 차단됩니다. 실제 삭제가 필요하면 보존 대상·백업·최종 스냅샷 이름을 확정하고, RDS·ALB의 삭제 방지와 Terraform lifecycle 보호를 각각 이해한 상태에서 변경합니다. Terraform 설정 블록 자체를 제거하면 prevent_destroy만으로 보호되지 않는 경우도 있으므로 이 값을 백업으로 생각하면 안 됩니다.</p>
 <p>ECR force_delete=false는 이미지가 남은 저장소 삭제를 거부합니다. Secret은 30일 복구 유예를 사용합니다. RDS 스냅샷, state S3 버킷·버전, ECR 이미지, 남아 있는 NAT/EIP·CloudWatch 리소스의 비용도 별도로 확인합니다. 이 가이드 작성 중에는 어떤 destroy/apply도 AWS에 실행하지 않았습니다.</p>
 <h2 id="chapter-27">27. 한 번에 기억하는 실행 순서</h2>
-<pre data-language="plaintext"><code class="language-text">AWS 로그인·계정 확인
+<div class="codebox"><div class="codebar"><span>PLAINTEXT</span><button class="copy" type="button" aria-label="PLAINTEXT 코드 복사">복사</button></div><pre data-language="plaintext"><code class="language-text">AWS 로그인·계정 확인
 → 도메인 public zone 위임 확인
 → state S3 버킷 준비
 → 예제 복사 / backend.hcl·tfvars 작성
@@ -703,14 +703,14 @@ terraform apply release.tfplan
 → app plan → apply
 → ECS 실제 버전·ALB·HTTPS·DB·로그인·신청 확인
 → 다음 배포는 새 이미지 digest로 반복
-</code></pre>
+</code></pre></div>
 <p>설명 중 실행하지 않은 계정별 항목: DNS 권한 위임, 계정 IAM 정책, 리전별 인스턴스/엔진 가용성, 실제 RDS TLS 연결, 도메인 HTTPS, 서비스 부하. 로컬 코드 검증 결과와 AWS 실제 배포 검증 결과를 구분합니다.</p>
 <h2 id="chapter-28">28. 예제 전체 코드와 파일별 해설</h2>
 <p>아래 코드는 문서 옆 <code>aws-terraform-example/</code> 파일과 같습니다. 환경별 입력과 외부 Secret·DB 계정 준비를 마친 다음 새 환경에서 적용하는 예제입니다. 아직 실제 AWS 계정의 plan/apply를 거친 배포 결과물이 아닙니다.</p>
 <h3 id="example-versions-tf">versions.tf</h3>
 <p>Terraform 버전 범위와 AWS provider 6.x, S3 backend를 지정합니다. backend의 실제 bucket/key는 init의 backend.hcl에서 받습니다. provider는 AWS_PROFILE 환경변수와 region 입력을 사용합니다.</p>
 <p><a href="aws-terraform-example/versions.tf">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">terraform</span> {
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">terraform</span> {
   <span class="hljs-attr">required_version</span> = <span class="hljs-string">"&gt;= 1.10, &lt; 2.0"</span>
   required_providers {
     <span class="hljs-attr">aws</span> = {
@@ -726,11 +726,11 @@ terraform apply release.tfplan
     <span class="hljs-attr">tags</span> = { <span class="hljs-attr">Project</span> = var.name, <span class="hljs-attr">ManagedBy</span> = <span class="hljs-string">"Terraform"</span> }
   }
 }
-</code></pre>
+</code></pre></div>
 <h3 id="example-variables-tf">variables.tf</h3>
 <p>도메인·public hosted zone·DB 엔진 버전은 사용자가 채워야 합니다. app_enabled는 첫 인프라 생성과 앱 배포를 분리합니다. name 길이를 제한해 ALB와 DB 리소스 이름을 유효하게 유지합니다.</p>
 <p><a href="aws-terraform-example/variables.tf">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">variable</span> <span class="hljs-string">"region"</span> {
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">variable</span> <span class="hljs-string">"region"</span> {
   <span class="hljs-attr">type</span>    = string
   <span class="hljs-attr">default</span> = <span class="hljs-string">"ap-northeast-2"</span>
 }
@@ -774,11 +774,11 @@ terraform apply release.tfplan
     <span class="hljs-attr">error_message</span> = <span class="hljs-string">"desired_count must be a positive integer."</span>
   }
 }
-</code></pre>
+</code></pre></div>
 <h3 id="example-network-tf">network.tf</h3>
 <p>가용 영역 2개와 public/app/db 서브넷 6개를 생성합니다. 앱만 NAT를 통한 기본 경로를 가지고 DB는 VPC 내부 경로만 사용합니다. SG 규칙을 별도 리소스로 선언해 ALB↔app↔DB 참조를 명확히 합니다.</p>
 <p><a href="aws-terraform-example/network.tf">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">data</span> <span class="hljs-string">"aws_availability_zones"</span> <span class="hljs-string">"available"</span> { <span class="hljs-attr">state</span> = <span class="hljs-string">"available"</span> }
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">data</span> <span class="hljs-string">"aws_availability_zones"</span> <span class="hljs-string">"available"</span> { <span class="hljs-attr">state</span> = <span class="hljs-string">"available"</span> }
 <span class="hljs-keyword">locals</span> {
   <span class="hljs-attr">azs</span> = <span class="hljs-title function_">slice</span>(<span class="hljs-keyword">data</span>.aws_availability_zones.available.names, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
 }
@@ -910,11 +910,11 @@ terraform apply release.tfplan
   <span class="hljs-attr">from_port</span>                    = <span class="hljs-number">5432</span>
   <span class="hljs-attr">to_port</span>                      = <span class="hljs-number">5432</span>
 }
-</code></pre>
+</code></pre></div>
 <h3 id="example-data-tf">data.tf</h3>
 <p>ECR·로그 그룹·RDS·앱 Secret의 이름을 생성합니다. RDS 관리자 비밀번호는 AWS에서 관리하고 앱 Secret 값은 외부에서 넣습니다. prevent_destroy는 의도치 않은 삭제 계획을 막지만 백업을 대체하지 않습니다.</p>
 <p><a href="aws-terraform-example/data.tf">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecr_repository"</span> <span class="hljs-string">"app"</span> {
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecr_repository"</span> <span class="hljs-string">"app"</span> {
   <span class="hljs-attr">name</span>                 = var.name
   <span class="hljs-attr">image_tag_mutability</span> = <span class="hljs-string">"IMMUTABLE"</span>
   <span class="hljs-attr">force_delete</span>         = <span class="hljs-literal">false</span>
@@ -962,11 +962,11 @@ terraform apply release.tfplan
   <span class="hljs-attr">recovery_window_in_days</span> = <span class="hljs-number">30</span>
   <span class="hljs-keyword">lifecycle</span> { <span class="hljs-attr">prevent_destroy</span> = <span class="hljs-literal">true</span> }
 }
-</code></pre>
+</code></pre></div>
 <h3 id="example-web-tf">web.tf</h3>
 <p>DNS 검증용 CNAME과 실제 서비스 A Alias는 별개입니다. certificate_validation 완료 후 HTTPS Listener를 연결하고 HTTP는 리다이렉트합니다. Fargate용 타깃 그룹은 instance가 아니라 ip 타입입니다.</p>
 <p><a href="aws-terraform-example/web.tf">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_acm_certificate"</span> <span class="hljs-string">"site"</span> {
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_acm_certificate"</span> <span class="hljs-string">"site"</span> {
   <span class="hljs-attr">domain_name</span>       = var.domain
   <span class="hljs-attr">validation_method</span> = <span class="hljs-string">"DNS"</span>
   <span class="hljs-keyword">lifecycle</span> { <span class="hljs-attr">create_before_destroy</span> = <span class="hljs-literal">true</span> }
@@ -1048,11 +1048,11 @@ terraform apply release.tfplan
     <span class="hljs-attr">evaluate_target_health</span> = <span class="hljs-literal">true</span>
   }
 }
-</code></pre>
+</code></pre></div>
 <h3 id="example-ecs-tf">ecs.tf</h3>
 <p>Execution Role과 Task Role을 분리합니다. JSON 환경변수·Secret 주입·awslogs 설정은 jsonencode로 Task Definition에 넣습니다. 이미지 digest 준비 여부를 precondition으로 확인하고 app_enabled가 true일 때만 태스크·서비스를 만듭니다.</p>
 <p><a href="aws-terraform-example/ecs.tf">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">data</span> <span class="hljs-string">"aws_partition"</span> <span class="hljs-string">"current"</span> {}
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">data</span> <span class="hljs-string">"aws_partition"</span> <span class="hljs-string">"current"</span> {}
 <span class="hljs-keyword">data</span> <span class="hljs-string">"aws_iam_policy_document"</span> <span class="hljs-string">"ecs_assume"</span> {
   statement {
     <span class="hljs-attr">actions</span> = [<span class="hljs-string">"sts:AssumeRole"</span>]
@@ -1172,11 +1172,11 @@ terraform apply release.tfplan
     aws_vpc_security_group_egress_rule.app_db
   ]
 }
-</code></pre>
+</code></pre></div>
 <h3 id="example-outputs-tf">outputs.tf</h3>
 <p>배포 후 필요한 주소와 리소스 ID를 보여 줍니다. 비밀번호 자체를 출력하지 않습니다. ARN은 비밀 값 그 자체는 아니지만 계정 인프라 식별 정보이므로 공개 저장소에 불필요하게 노출하지 않습니다.</p>
 <p><a href="aws-terraform-example/outputs.tf">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">output</span> <span class="hljs-string">"repository_url"</span> { <span class="hljs-attr">value</span> = aws_ecr_repository.app.repository_url }
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">output</span> <span class="hljs-string">"repository_url"</span> { <span class="hljs-attr">value</span> = aws_ecr_repository.app.repository_url }
 <span class="hljs-keyword">output</span> <span class="hljs-string">"repository_name"</span> { <span class="hljs-attr">value</span> = aws_ecr_repository.app.name }
 <span class="hljs-keyword">output</span> <span class="hljs-string">"cluster_name"</span> { <span class="hljs-attr">value</span> = aws_ecs_cluster.main.name }
 <span class="hljs-keyword">output</span> <span class="hljs-string">"service_name"</span> { <span class="hljs-attr">value</span> = var.app_enabled ? aws_ecs_service.app[<span class="hljs-number">0</span>].name : <span class="hljs-literal">null</span> }
@@ -1189,20 +1189,20 @@ terraform apply release.tfplan
 <span class="hljs-keyword">output</span> <span class="hljs-string">"log_group"</span> { <span class="hljs-attr">value</span> = aws_cloudwatch_log_group.app.name }
 <span class="hljs-keyword">output</span> <span class="hljs-string">"target_group_arn"</span> { <span class="hljs-attr">value</span> = aws_lb_target_group.app.arn }
 <span class="hljs-keyword">output</span> <span class="hljs-string">"site_url"</span> { <span class="hljs-attr">value</span> = <span class="hljs-string">"https://${var.domain}"</span> }
-</code></pre>
+</code></pre></div>
 <h3 id="example-backend-hcl-example">backend.hcl.example</h3>
 <p>실제 state 버킷 이름으로 변경하고 backend.hcl로 저장합니다. AWS 비밀 키를 넣는 파일이 아닙니다. S3 native locking을 사용하므로 이 예제에서는 DynamoDB 테이블이 필요하지 않습니다.</p>
 <p><a href="aws-terraform-example/backend.hcl.example">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">bucket</span>       = <span class="hljs-string">"REPLACE_WITH_YOUR_STATE_BUCKET"</span>
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">bucket</span>       = <span class="hljs-string">"REPLACE_WITH_YOUR_STATE_BUCKET"</span>
 <span class="hljs-attr">key</span>          = <span class="hljs-string">"campus/prod/terraform.tfstate"</span>
 <span class="hljs-attr">region</span>       = <span class="hljs-string">"ap-northeast-2"</span>
 <span class="hljs-attr">encrypt</span>      = <span class="hljs-literal">true</span>
 <span class="hljs-attr">use_lockfile</span> = <span class="hljs-literal">true</span>
-</code></pre>
+</code></pre></div>
 <h3 id="example-terraform-tfvars-example">terraform.tfvars.example</h3>
 <p>REPLACE와 예시 도메인을 실제 계정 값으로 바꿉니다. first apply에서는 app_enabled=false이며 다음 배포부터 true와 실제 이미지 digest를 파일에 유지합니다.</p>
 <p><a href="aws-terraform-example/terraform.tfvars.example">파일 열기</a></p>
-<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">region</span>            = <span class="hljs-string">"ap-northeast-2"</span>
+<div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">region</span>            = <span class="hljs-string">"ap-northeast-2"</span>
 <span class="hljs-attr">name</span>              = <span class="hljs-string">"campus-tf"</span>
 <span class="hljs-attr">domain</span>            = <span class="hljs-string">"campus.YOUR-DOMAIN.com"</span>
 <span class="hljs-attr">zone_id</span>           = <span class="hljs-string">"REPLACE_WITH_PUBLIC_ROUTE53_ZONE_ID"</span>
@@ -1212,11 +1212,11 @@ terraform apply release.tfplan
 <span class="hljs-attr">app_enabled</span>       = <span class="hljs-literal">false</span>
 <span class="hljs-attr">image_uri</span>         = <span class="hljs-string">""</span>
 <span class="hljs-attr">desired_count</span>     = <span class="hljs-number">2</span>
-</code></pre>
+</code></pre></div>
 <h3 id="example--gitignore">.gitignore</h3>
 <p>로컬 provider 설치·state·plan·실제 입력 파일은 Git에서 제외합니다. provider 버전 고정용 .terraform.lock.hcl은 제외하지 않습니다.</p>
 <p><a href="aws-terraform-example/.gitignore">파일 열기</a></p>
-<pre data-language="plaintext"><code class="language-plaintext">.terraform/
+<div class="codebox"><div class="codebar"><span>PLAINTEXT</span><button class="copy" type="button" aria-label="PLAINTEXT 코드 복사">복사</button></div><pre data-language="plaintext"><code class="language-plaintext">.terraform/
 *.tfstate
 *.tfstate.*
 *.tfplan
@@ -1224,9 +1224,9 @@ terraform.tfvars
 backend.hcl
 crash.log
 # .terraform.lock.hcl은 provider 버전 고정을 위해 Git에 포함한다.
-</code></pre>
+</code></pre></div>
 <h2 id="chapter-29">29. 검증 범위와 공식 참고 자료</h2>
 <p>검증 완료: Terraform 1.14.0 + AWS provider 6.68.0에서 init -backend=false, validate, fmt -check가 통과했습니다. backend=false로 state 버킷에 연결하지 않았고 AWS plan/apply는 실행하지 않았습니다. 예제 파일과 HTML 코드의 일치, 문서 목차·모바일 배치는 별도로 확인했습니다. 실제 계정 배포 성공을 보증하는 결과는 아닙니다.</p>
 <p>Terraform 예제 전체를 <a href="aws-terraform-example.zip">ZIP 파일로 받기</a>. 소스 코드를 공부하려면 <a href="CODE_SUMMARY.html">기존 전체 코드 설명</a>을 참고하세요.</p>
 <p>공식 문서는 설명 중 해당 단계에 연결했습니다. 핵심 확인 항목은 <a href="https://developer.hashicorp.com/terraform/language/backend/s3">S3 backend 잠금</a>, <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html">ECS Secret 주입</a>, <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Concepts.General.SSL.html">RDS TLS</a>, <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html">ECS 롤백</a>, <a href="https://developer.hashicorp.com/terraform/language/import">Terraform import</a>입니다.</p>
-</div></main><footer>흰색 배경 · IntelliJ IDEA 라이트 스타일 · AWS 리소스 생성 미실행</footer></body></html>
+</div></main></div><div id="copy-status" role="status" aria-live="polite"></div><footer>흰색 배경 · IntelliJ IDEA 라이트 스타일 · AWS 리소스 생성 미실행</footer></body></html>

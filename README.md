@@ -6,7 +6,7 @@
 
 개발하면서 배운 개념과 코드 사용법을 정리합니다. 제목을 누르면 요약 자료가 열립니다.
 
-[전체 요약 검색하기](https://p2terghks.github.io/study-notes/?v=20261007-colors) · [학습 자료 저장소](https://github.com/p2terghks/study-notes)
+[전체 요약 검색하기](https://p2terghks.github.io/study-notes/?v=20261008-campus-archive) · [학습 자료 저장소](https://github.com/p2terghks/study-notes)
 
 ### Spring · 백엔드
 
