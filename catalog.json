@@ -157,21 +157,21 @@
     "path": "docs/projects/campus/CODE_SUMMARY.html",
     "title": "수강신청 · React·Spring·Python 전체 코드와 상세 설명",
     "category": "수강신청 프로젝트",
-    "url": "docs/projects/campus/CODE_SUMMARY.html?v=0e0140bb6bcf",
+    "url": "docs/projects/campus/CODE_SUMMARY.html?v=ba300ba88c81",
     "format": "HTML"
   },
   {
     "path": "docs/projects/campus/AWS_TERRAFORM_GUIDE.html",
     "title": "수강신청 · AWS·Terraform 배포 과정",
     "category": "수강신청 프로젝트",
-    "url": "docs/projects/campus/AWS_TERRAFORM_GUIDE.html?v=bb82ee2c92a3",
+    "url": "docs/projects/campus/AWS_TERRAFORM_GUIDE.html?v=abde7f5c42a5",
     "format": "HTML"
   },
   {
     "path": "docs/projects/campus/AWS_TROUBLESHOOTING.html",
     "title": "수강신청 · AWS·Terraform 트러블슈팅",
     "category": "수강신청 프로젝트",
-    "url": "docs/projects/campus/AWS_TROUBLESHOOTING.html?v=9a6c6c44bf39",
+    "url": "docs/projects/campus/AWS_TROUBLESHOOTING.html?v=61de132b9039",
     "format": "HTML"
   }
 ]
