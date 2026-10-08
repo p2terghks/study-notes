@@ -1,0 +1,8 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+terraform.tfvars
+backend.hcl
+crash.log
+# .terraform.lock.hcl은 provider 버전 고정을 위해 Git에 포함한다.

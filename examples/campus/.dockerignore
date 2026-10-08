@@ -1,0 +1,12 @@
+.git
+.idea
+.DS_Store
+target
+data
+.env
+.env.*
+deploy
+
+frontend/node_modules/
+
+academic-advisor/

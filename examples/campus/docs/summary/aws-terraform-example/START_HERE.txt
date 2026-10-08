@@ -1,0 +1,19 @@
+AWS + Terraform 수강2 배포 예제
+
+먼저 한 단계 위 AWS_TERRAFORM_GUIDE.html을 읽으세요.
+새 환경 생성용 예제이며 기존 CloudFormation 리소스의 자동 이관 도구가 아닙니다.
+Terraform 1.14.0 / AWS provider 6.68.0: validate 및 fmt 검사 통과.
+AWS plan/apply와 실제 리소스 생성은 실행하지 않았습니다.
+
+1. 프로젝트 루트 infra/terraform으로 예제 폴더를 복사합니다.
+2. backend.hcl.example과 terraform.tfvars.example을 복사하고 본인 값으로 수정합니다.
+3. 원격 state 버킷은 미리 준비합니다.
+4. app_enabled=false로 인프라를 생성합니다.
+5. Secrets Manager에 앱 비밀번호를 저장하고 비공개 RDS에 campus_app을 만듭니다.
+6. 프로젝트 루트 Dockerfile로 ECR 이미지를 업로드합니다.
+7. app_enabled=true와 이미지 digest를 tfvars에 저장한 뒤 plan/apply합니다.
+
+NAT 2개·ALB·Fargate·Multi-AZ RDS 등은 지속 비용이 발생합니다.
+비밀번호를 tfvars에 쓰지 마세요. Secret 값은 예제가 만들지 않습니다.
+실제 DB 데이터/도메인/권한은 사용자 환경에 맞춰 준비해야 합니다.
+가동 후 app_enabled를 false로 되돌리면 서비스 삭제 계획이 됩니다.

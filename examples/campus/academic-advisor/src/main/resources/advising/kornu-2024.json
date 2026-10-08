@@ -1,0 +1,2198 @@
+{
+  "university": "나사렛대학교",
+  "departments": [
+    "인공지능학부",
+    "IT인공지능학부"
+  ],
+  "admissionYear": 2024,
+  "source": "사용자 제공 설명 및 교육과정 사진 3장 (공식 원문 URL 미확인)",
+  "receivedOn": "2026-09-23",
+  "tracks": [
+    "인공지능빅데이터",
+    "정보통신보안",
+    "스마트미디어"
+  ],
+  "requirements": [
+    "총 졸업 이수 학점: 127학점.",
+    "교양 34학점: 기초교양 10, 나사렛교양 6, 핵심교양 15, 소양교양 3학점.",
+    "전공 최저 36학점: 전공필수 12학점 + 전공선택 24학점.",
+    "전공심화 21학점: 졸업하려는 트랙의 파란색 과목 중 합계 21학점을 선택 이수합니다. 파란색 과목 전체를 필수 이수하는 것은 아닙니다. (사용자 최종 설명 반영)",
+    "나머지는 자율선택으로 이수합니다. 34 + 36 + 21을 서로 별도 합산하면 잔여는 36학점입니다. 아래 복수전공 30학점과의 관계는 별도 확인이 필요합니다.",
+    "제공 자료의 복수전공 안내: 자율선택 중 타 전공 30학점 이수, 기존 전공선택 중 최대 6학점 포함 가능. 인정 과목·중복 산정·승인 조건은 확인되지 않아 학위 취득을 자동 판정하지 않습니다.",
+    "사진의 이수구분 칸에서 전공필수로 표시된 과목과 파란색 과목 표시는 서로 다릅니다. 파란색이 전공선택·전공심화에도 있으므로 전공필수로 바꾸어 해석하지 않습니다.",
+    "사진의 전공필수 칸은 세 트랙 모두 9과목·27학점으로 읽힙니다. 사용자 설명의 최소 12학점과 차이가 있어 적용 기준 확인 전에는 졸업 충족 여부를 판정하지 않습니다."
+  ],
+  "cautions": [
+    "출처는 사용자 제공 설명과 사진입니다. 사진에는 대학명·학번·트랙 제목이 잘려 있어 2024학번 및 트랙 연결은 사용자 설명과 과목 구성을 근거로 정리했습니다.",
+    "누적 이수 성적표가 없어 남은 졸업 학점이나 졸업 가능 여부를 판정하지 않습니다.",
+    "표의 전공필수·전공선택·전공심화 구분과 파란색 표시를 별도로 유지합니다. 21학점 인정과 다른 영역의 중복 산정 방식은 별도 확인이 필요합니다.",
+    "교육과정 과목과 앱의 샘플 개설 강의는 별개입니다. 과목명이 비슷해도 동일 강의나 이수 인정으로 자동 연결하지 않습니다."
+  ],
+  "courses": [
+    {
+      "name": "파이썬프로그래밍",
+      "year": 1,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "컴퓨터프로그래밍1",
+      "year": 1,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "컴퓨터프로그래밍2",
+      "year": 1,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "웹프로그래밍기초",
+      "year": 1,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "컴퓨터그래픽기초",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "IT개론",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "대학수학",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab1(기초설계)",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "이산구조",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "객체지향프로그래밍",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab2(기초설계)",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "JAVA",
+      "year": 2,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "DB이론및실습",
+      "year": 2,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "UNIX",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "컴퓨터네트워크",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "촬영실무",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "2D융합디자인",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab3(기초설계)",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "운영체제",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "윈도우즈프로그래밍",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "JAVA실무",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "서버구축실무",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "콘텐츠기획론",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "JSP/Servlet",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab4(기초설계)",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "자료구조",
+      "year": 2,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "컴퓨터구조",
+      "year": 2,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "알고리즘",
+      "year": 2,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "모바일프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "시스템프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "시스코네트워크",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "고급웹프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "게임프로그래밍기초",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "그래픽프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "데이터분석론",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "3D영상제작",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab5(종합설계Startup)",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "소프트웨어공학",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "JAVA프레임워크",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "모바일프로그래밍응용",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "고급게임프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "임베디드시스템",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "네트워크프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab6(종합설계Startup)",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "인공지능이론및실습",
+      "year": 3,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "멀티미디어신호처리",
+      "year": 3,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "고급AI프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "빅데이터실무",
+      "year": 3,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "컴퓨터비전및응용",
+      "year": 3,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "프로젝트실무1(종합설계)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "프로젝트실무2(종합설계)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "증강및가상현실",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "디지털포렌식",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "정보통신특론",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "데이터마이닝",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "현장실습1(ICT프로젝트인턴쉽1)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 12,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab7(종합설계Startup)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "IT실무특강",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "현장실습2(ICT프로젝트인턴쉽2)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 12,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "Lab8(종합설계Startup)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "인공지능빅데이터"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 2 (11.24.12)"
+    },
+    {
+      "name": "파이썬프로그래밍",
+      "year": 1,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "컴퓨터프로그래밍1",
+      "year": 1,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "컴퓨터프로그래밍2",
+      "year": 1,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "웹프로그래밍기초",
+      "year": 1,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "컴퓨터그래픽기초",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "IT개론",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "대학수학",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab1(기초설계)",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "이산구조",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "객체지향프로그래밍",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab2(기초설계)",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "JAVA",
+      "year": 2,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "DB이론및실습",
+      "year": 2,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "UNIX",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "컴퓨터구조",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "촬영실무",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "2D융합디자인",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab3(기초설계)",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "컴퓨터네트워크응용",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "JAVA실무",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "서버구축실무",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "콘텐츠기획론",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "윈도우즈프로그래밍",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab4(기초설계)",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "자료구조",
+      "year": 2,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "컴퓨터네트워크",
+      "year": 2,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "운영체제",
+      "year": 2,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "정보보호개론",
+      "year": 2,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "JSP&Servlet",
+      "year": 2,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "모바일프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "시스템프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "시스코네트워크",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "고급웹프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "게임프로그래밍기초",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "그래픽프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "데이터분석론",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "3D영상제작",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "인공지능이론및실습",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab5(종합설계Startup)",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "소프트웨어공학",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "JAVA프레임워크",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "모바일프로그래밍응용",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "고급게임프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "임베디드시스템",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "고급AI프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab6(종합설계Startup)",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "시스템보안실무",
+      "year": 3,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "네트워크프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "네트워크보안실무",
+      "year": 3,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "프로젝트실무1(종합설계)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "프로젝트실무2(종합설계)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "증강및가상현실",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "디지털포렌식",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "정보통신특론",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "데이터마이닝",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "현장실습1(ICT프로젝트인턴쉽1)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 12,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab7(종합설계Startup)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "IT실무특강",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "현장실습2(ICT프로젝트인턴쉽2)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 12,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "Lab8(종합설계Startup)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "정보통신보안"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 3 (11.24.28)"
+    },
+    {
+      "name": "파이썬프로그래밍",
+      "year": 1,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "컴퓨터프로그래밍1",
+      "year": 1,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "컴퓨터프로그래밍2",
+      "year": 1,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "웹프로그래밍기초",
+      "year": 1,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "컴퓨터그래픽기초",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "IT개론",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "대학수학",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab1(기초설계)",
+      "year": 1,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "일러스트레이션",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "웹디자인",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab2(기초설계)",
+      "year": 1,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "JAVA",
+      "year": 2,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "DB이론및실습",
+      "year": 2,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "멀티미디어이론및실습",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "UNIX",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "촬영실무",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "2D융합디자인",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab3(기초설계)",
+      "year": 2,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "JAVA실무",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "서버구축실무",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "콘텐츠기획론",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "JSP/Servlet",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "윈도우즈프로그래밍",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab4(기초설계)",
+      "year": 2,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "영상편집실무1",
+      "year": 2,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "3D그래픽",
+      "year": 2,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "영상편집실무2",
+      "year": 2,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "3D그래픽응용",
+      "year": 2,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "디지털애니메이션",
+      "year": 2,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "모바일프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "멀티미디어신호처리",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "시스코네트워크",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "고급웹프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "게임프로그래밍기초",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "그래픽프로그래밍",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "데이터분석론",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "3D영상제작",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "인공지능이론및실습",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab5(종합설계Startup)",
+      "year": 3,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "컴퓨터비전및응용",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "JAVA프레임워크",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "모바일프로그래밍응용",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "고급게임프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "임베디드시스템",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "고급AI프로그래밍",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab6(종합설계Startup)",
+      "year": 3,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "매트페인팅",
+      "year": 3,
+      "semester": 1,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "UI/UX디자인",
+      "year": 3,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "VFX",
+      "year": 3,
+      "semester": 2,
+      "category": "전공심화",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": true,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "프로젝트실무1(종합설계)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "프로젝트실무2(종합설계)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공필수",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "증강및가상현실",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "디지털포렌식",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "정보통신특론",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "데이터마이닝",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "현장실습1(ICT프로젝트인턴쉽1)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 12,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab7(종합설계Startup)",
+      "year": 4,
+      "semester": 1,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "IT실무특강",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 3,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "현장실습2(ICT프로젝트인턴쉽2)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 12,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    },
+    {
+      "name": "Lab8(종합설계Startup)",
+      "year": 4,
+      "semester": 2,
+      "category": "전공선택",
+      "tracks": [
+        "스마트미디어"
+      ],
+      "credits": 1,
+      "blue": false,
+      "sourcePage": "사용자 첨부 사진 1 (11.24.37)"
+    }
+  ],
+  "unresolvedRows": [
+    "정보통신보안 사진의 3학년 1학기 심화에는 과목명이 비어 있고 3학점만 적힌 행이 있습니다. 이름이 없으므로 과목으로 등록하지 않았습니다.",
+    "정보통신보안 사진에서 이름 있는 과목을 합하면 1학기 32과목·97학점, 2학기 28과목·85학점입니다. 사진 하단 2학기 합계 27과목·82학점과 차이가 있어 표 합계 확인이 필요합니다.",
+    "교육과정 전체 합계는 졸업에 필요한 개인 이수학점이 아닙니다."
+  ]
+}

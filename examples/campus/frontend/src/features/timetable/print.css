@@ -1,0 +1,48 @@
+/* 인쇄 시 시간표만 표시 */
+@media print {
+  body {
+    background: white;
+  }
+  .sidebar,
+  .topbar,
+  .page-title,
+  .summary-grid,
+  .catalog,
+  .notice-card,
+  .saved-note,
+  .page-footer,
+  .preview-message,
+  .icon-button,
+  #toast {
+    display: none !important;
+  }
+  .workspace {
+    margin: 0;
+  }
+  main {
+    padding: 0;
+  }
+  .content-grid,
+  .schedule-column {
+    display: block;
+  }
+  .schedule-panel {
+    max-width: 750px;
+    margin: 20px auto;
+  }
+  .schedule-body {
+    height: 720px;
+  }
+  .week-grid {
+    background-size:
+      20% 100%,
+      100% 80px;
+  }
+  .course-block {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .course-block.preview {
+    display: none;
+  }
+}

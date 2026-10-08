@@ -1,0 +1,13 @@
+output "repository_url" { value = aws_ecr_repository.app.repository_url }
+output "repository_name" { value = aws_ecr_repository.app.name }
+output "cluster_name" { value = aws_ecs_cluster.main.name }
+output "service_name" { value = var.app_enabled ? aws_ecs_service.app[0].name : null }
+output "database_endpoint" { value = aws_db_instance.main.address }
+output "admin_secret_arn" { value = aws_db_instance.main.master_user_secret[0].secret_arn }
+output "app_secret_arn" { value = aws_secretsmanager_secret.app.arn }
+output "vpc_id" { value = aws_vpc.main.id }
+output "app_subnet_ids" { value = aws_subnet.app[*].id }
+output "app_security_group_id" { value = aws_security_group.app.id }
+output "log_group" { value = aws_cloudwatch_log_group.app.name }
+output "target_group_arn" { value = aws_lb_target_group.app.arn }
+output "site_url" { value = "https://${var.domain}" }

@@ -1,0 +1,9 @@
+/* 스타일 진입점: 기존 적용 순서를 유지합니다. 실제 스타일은 features/의 해당 기능 또는 shared/에서 수정하세요. */
+@import "./shared/styles/common.css";
+@import "./features/dashboard/layout.css";
+@import "./features/courses/courses.css";
+@import "./features/timetable/timetable.css";
+@import "./shared/ui/feedback.css";
+@import "./features/auth/auth.css";
+@import "./shared/styles/responsive.css";
+@import "./features/timetable/print.css";

@@ -1,0 +1,233 @@
+/* 넓은 데스크톱 화면 */
+@media (min-width: 1600px) {
+  main {
+    padding: 42px;
+  }
+  .content-grid {
+    grid-template-columns: minmax(0, 1.7fr) minmax(400px, 1fr);
+  }
+  td {
+    padding-top: 21px;
+    padding-bottom: 21px;
+  }
+  .schedule-body {
+    height: 540px;
+  }
+  .week-grid {
+    background-size:
+      20% 100%,
+      100% 60px;
+  }
+}
+/* 중간 화면: 강의 목록 아래로 시간표 이동 */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 190px;
+    padding: 30px 15px;
+  }
+  .workspace {
+    margin-left: 190px;
+  }
+  main {
+    padding: 26px;
+  }
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .schedule-column {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .schedule-panel {
+    grid-row: span 2;
+  }
+  .notice-card {
+    margin-top: 0;
+  }
+  .saved-note {
+    align-self: start;
+  }
+  .schedule-body {
+    height: 450px;
+  }
+  .catalog-footer {
+    font-size: 9px;
+  }
+  .stat-caption {
+    display: none;
+  }
+  .credit-track {
+    width: 45px;
+  }
+  .filter-row select {
+    max-width: 180px;
+  }
+}
+/* 모바일 화면: 메뉴와 카드 간격 조정 */
+@media (max-width: 760px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    padding: 15px 20px;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .sidebar .brand {
+    font-size: 16px;
+  }
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    font-size: 25px;
+  }
+  .sidebar .semester-tag,
+  .nav-label,
+  .sidebar-bottom {
+    display: none;
+  }
+  .sidebar nav {
+    display: flex;
+    margin-left: auto;
+    gap: 5px;
+  }
+  .nav-item {
+    font-size: 11px;
+    padding: 10px 9px;
+    gap: 5px;
+    margin: 0;
+  }
+  .nav-item svg,
+  .nav-arrow,
+  .nav-badge {
+    display: none;
+  }
+  .workspace {
+    margin-left: 0;
+  }
+  .topbar {
+    height: 66px;
+    padding: 0 20px;
+  }
+  .header-term,
+  .header-divider {
+    display: none;
+  }
+  .header-right {
+    gap: 8px;
+  }
+  main {
+    padding: 25px 16px;
+  }
+  .page-title {
+    align-items: flex-start;
+    gap: 10px;
+  }
+  h1 {
+    font-size: 26px;
+  }
+  .registration-status {
+    font-size: 8px;
+    padding: 7px;
+    white-space: nowrap;
+  }
+  .registration-status .status-line {
+    display: none;
+  }
+  .page-title p {
+    font-size: 10px;
+  }
+  .summary-grid {
+    gap: 8px;
+  }
+  .summary-card {
+    padding: 14px 10px;
+    gap: 8px;
+    min-height: 90px;
+  }
+  .stat-icon {
+    width: 29px;
+    height: 29px;
+    border-radius: 8px;
+  }
+  .stat-icon svg {
+    width: 16px;
+  }
+  .stat-value {
+    gap: 3px;
+  }
+  .stat-value b {
+    font-size: 22px;
+  }
+  .stat-value small {
+    font-size: 8px;
+  }
+  .summary-card > div > span {
+    font-size: 9px;
+  }
+  .credit-track,
+  .stat-link {
+    display: none;
+  }
+  .schedule-column {
+    display: block;
+  }
+  .notice-card {
+    margin-top: 15px;
+  }
+  .filter-row {
+    flex-wrap: wrap;
+  }
+  .available-filter {
+    margin-left: 0;
+  }
+  .filter-row select {
+    flex: 1;
+  }
+  .panel-heading,
+  .catalog-controls {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .list-tabs {
+    padding-left: 16px;
+  }
+  .table-wrap table {
+    min-width: 590px;
+  }
+  .catalog-footer {
+    padding: 14px 16px;
+    flex-wrap: wrap;
+    font-size: 8px;
+  }
+  .auth-page {
+    display: block;
+  }
+  .auth-story {
+    padding: 22px;
+  }
+  .auth-story .eyebrow,
+  .auth-story h1,
+  .auth-story p,
+  .art-schedule,
+  .auth-story > small {
+    display: none;
+  }
+  .auth-panel {
+    padding: 45px 25px;
+  }
+  .page-footer span {
+    display: none;
+  }
+  .schedule-panel .panel-heading {
+    padding-top: 20px;
+  }
+}
+/* 동작 감소 접근성 설정 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

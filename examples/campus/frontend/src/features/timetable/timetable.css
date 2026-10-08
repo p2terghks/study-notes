@@ -1,0 +1,243 @@
+/* 주간 시간표와 미리보기 */
+.small-pill {
+  font-size: 8px;
+  color: #9c8bbc;
+  font-weight: 400;
+  background: #f5f0fc;
+  padding: 3px 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+.schedule-panel .panel-heading {
+  padding: 23px 20px 17px;
+}
+.schedule-panel .panel-heading p {
+  font-size: 9px;
+  color: #aaa1b5;
+  margin: 8px 0 0;
+}
+.schedule-legend {
+  padding: 0 20px 16px;
+  display: flex;
+  gap: 12px;
+  font-size: 8px;
+  color: #afa6ba;
+  align-items: center;
+}
+.schedule-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.schedule-legend i {
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: #b09adf;
+}
+.schedule-legend span:nth-child(2) i {
+  background: #fff;
+  border: 1px dashed #b09adf;
+}
+.schedule-legend b {
+  margin-left: auto;
+  font-weight: 500;
+  color: #9985b5;
+}
+.timetable {
+  padding: 0 15px;
+}
+.day-header {
+  display: grid;
+  grid-template-columns: 28px repeat(5, 1fr);
+  height: 31px;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: #958b9f;
+  font-size: 9px;
+}
+.schedule-body {
+  display: flex;
+  height: 450px;
+}
+.time-labels {
+  width: 28px;
+  flex-shrink: 0;
+  position: relative;
+}
+.time-labels span {
+  position: absolute;
+  color: #b7adbf;
+  font-size: 8px;
+  left: 0;
+  transform: translateY(-50%);
+}
+.time-labels span:first-child {
+  transform: translateY(3px);
+}
+.week-grid {
+  position: relative;
+  flex: 1;
+  background-image:
+    linear-gradient(to right, #f0edf5 1px, transparent 1px),
+    linear-gradient(to bottom, #f0edf5 1px, transparent 1px);
+  background-size:
+    20% 100%,
+    100% 50px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+/* 수업 블록: 요일·시간 좌표는 Schedule.jsx에서 계산 */
+.course-block {
+  position: absolute;
+  border-radius: 4px;
+  padding: 7px 5px;
+  overflow: hidden;
+  border-left: 2px solid var(--block-line);
+  background: var(--block-bg);
+  color: var(--block-text);
+  z-index: 1;
+  inset: auto;
+  font-size: 9px;
+  line-height: 1.5;
+}
+.course-block b {
+  font-size: 9px;
+  display: block;
+  word-break: keep-all;
+  line-height: 1.5;
+  letter-spacing: -0.35px;
+}
+.course-block small {
+  font-size: 7px;
+  display: block;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+.course-block.preview {
+  border: 1.5px dashed var(--purple);
+  background: repeating-linear-gradient(
+    135deg,
+    #e9e0fcbb,
+    #e9e0fcbb 5px,
+    #f6f0ffcc 5px,
+    #f6f0ffcc 10px
+  );
+  color: var(--purple);
+  z-index: 3;
+}
+.course-block.preview.conflict {
+  border-color: #e0838a;
+  background: #ffe1e6dc;
+  color: #b95463;
+}
+/* 강의별 색상 토큰 */
+.violet {
+  --block-bg: #eee7fb;
+  --block-line: #c1a6e7;
+  --block-text: #88719f;
+}
+.blue {
+  --block-bg: #e7eefb;
+  --block-line: #a4bfe8;
+  --block-text: #738dae;
+}
+.teal {
+  --block-bg: #e4f2ee;
+  --block-line: #9bcbbc;
+  --block-text: #699a8a;
+}
+.peach {
+  --block-bg: #faece3;
+  --block-line: #e7b491;
+  --block-text: #b38a71;
+}
+.rose {
+  --block-bg: #f9e6ee;
+  --block-line: #e5a6c0;
+  --block-text: #b57491;
+}
+.yellow {
+  --block-bg: #faf2d9;
+  --block-line: #dac382;
+  --block-text: #a99456;
+}
+.preview-message {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin: 15px;
+  padding: 10px 9px;
+  border-radius: 5px;
+  background: #f9f7fc;
+  color: #aea0c0;
+  font-size: 8px;
+  min-height: 35px;
+}
+.preview-message svg {
+  width: 12px;
+  height: 12px;
+}
+.preview-message.warning {
+  background: #fff0f1;
+  color: #c07180;
+}
+/* 안내 문구와 빈 목록 */
+.notice-card {
+  display: flex;
+  gap: 9px;
+  background: #f0eef9;
+  border: 1px solid #e9e5f5;
+  border-radius: 8px;
+  padding: 17px 15px;
+  margin-top: 16px;
+  color: #9d90b6;
+}
+.notice-card > span svg {
+  width: 14px;
+  height: 14px;
+}
+.notice-card b {
+  font-size: 10px;
+  font-weight: 600;
+  color: #8c7da7;
+}
+.notice-card ul {
+  margin: 10px 0 0;
+  padding-left: 12px;
+  font-size: 9px;
+  line-height: 2;
+}
+.notice-card strong {
+  font-weight: 600;
+}
+.saved-note {
+  text-align: center;
+  font-size: 8px;
+  color: #b7aebe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin: 16px 0;
+}
+.saved-note svg {
+  width: 11px;
+  height: 11px;
+}
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  color: #bfb8c7;
+  font-size: 9px;
+  margin-top: 34px;
+  border-top: 1px solid #eae7ef;
+  padding-top: 20px;
+}
+.page-footer span {
+  font-size: 7px;
+  letter-spacing: 1px;
+}
