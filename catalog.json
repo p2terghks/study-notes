@@ -152,5 +152,26 @@
     "category": "AWS · 클라우드",
     "url": "docs/quick-reference/terraform-reference.html?v=7b8c054f467b",
     "format": "HTML"
+  },
+  {
+    "path": "docs/projects/campus/CODE_SUMMARY.html",
+    "title": "수강신청 · 전체 코드와 상세 설명",
+    "category": "수강신청 프로젝트",
+    "url": "docs/projects/campus/CODE_SUMMARY.html?v=171661d9387b",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/projects/campus/AWS_TERRAFORM_GUIDE.html",
+    "title": "수강신청 · AWS·Terraform 배포 과정",
+    "category": "수강신청 프로젝트",
+    "url": "docs/projects/campus/AWS_TERRAFORM_GUIDE.html?v=bb82ee2c92a3",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/projects/campus/AWS_TROUBLESHOOTING.html",
+    "title": "수강신청 · AWS·Terraform 트러블슈팅",
+    "category": "수강신청 프로젝트",
+    "url": "docs/projects/campus/AWS_TROUBLESHOOTING.html?v=9a6c6c44bf39",
+    "format": "HTML"
   }
 ]

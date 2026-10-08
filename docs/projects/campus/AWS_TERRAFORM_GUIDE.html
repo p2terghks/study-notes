@@ -1,0 +1,1232 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AWS · Terraform 배포 상세 가이드 | 수강2</title><style>:root{color-scheme:light}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;color:#243041;background:#fff;font:16px/1.9 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;overflow-wrap:anywhere}header{max-width:1060px;margin:auto;padding:56px 30px 40px}.eyebrow{font-size:12px;letter-spacing:2px;color:#566d8c}header h1{font-size:38px;line-height:1.45;letter-spacing:-1px;margin:16px 0}header h1 span{color:#24558d}header p{color:#556376}.cover-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.cover-links a{border:1px solid #c7d4e5;padding:8px 17px;border-radius:7px;text-decoration:none;font-size:14px}.toolbar{position:sticky;top:0;background:#fff;z-index:3;border-top:1px solid #e1e7ef;border-bottom:1px solid #e1e7ef;display:flex;flex-wrap:wrap;gap:20px;justify-content:center;padding:12px 18px;font-size:14px}.toolbar a{text-decoration:none;align-self:center}.toolbar button{font:inherit;padding:5px 12px;color:#304969;background:white;border:1px solid #c8d2df;border-radius:5px;cursor:pointer}main{max-width:1060px;padding:32px 30px 100px;margin:auto}h2{font-size:25px;line-height:1.5;margin:62px 0 20px;padding:0 0 15px;border-bottom:2px solid #d8e3f0;color:#233b5b;break-after:avoid}h3{font-size:20px;margin:38px 0 15px;padding:11px 16px;background:#f4f7fb;border-left:3px solid #537caa;break-after:avoid}p{margin:15px 0}li{margin:7px 0}a{color:#24558d;text-underline-offset:4px}strong{font-weight:650}code{background:#f2f5f8;border-radius:3px;padding:2px 5px;font-size:.86em;color:#223852;font-family:"JetBrains Mono",Menlo,Consolas,monospace}pre{position:relative;margin:22px 0;padding:25px 22px 20px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8;font-size:13px;border-radius:5px}pre:before{content:attr(data-language);display:block;color:#687789;font:11px/1.5 Menlo,monospace;text-transform:uppercase;margin-bottom:12px;letter-spacing:1px}pre code{padding:0;font-size:inherit;background:none}.table-wrap{overflow-x:auto;max-width:100%}table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.8;margin:18px 0 25px}th{text-align:left;background:#f2f6fa;font-weight:650;color:#243d5b}th,td{border-bottom:1px solid #dbe3ed;padding:12px 14px;vertical-align:top;min-width:110px}.toc{border:1px solid #d5dfeb;border-radius:8px;padding:16px 20px}.toc summary{cursor:pointer;font-weight:600}.toc nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 28px;margin-top:18px;font-size:14px}.toc a{text-decoration:none}footer{padding:28px;text-align:center;color:#5d6c80;border-top:1px solid #dbe3ed;font-size:13px}@media(max-width:650px){header{padding:35px 20px}header h1{font-size:29px}main{padding:24px 18px 60px}h2{font-size:22px}.toolbar{gap:12px;font-size:12px}.toc nav{grid-template-columns:minmax(0,1fr)}pre{font-size:11px;padding:16px 12px}}@page{size:A4;margin:16mm}@media print{header{padding:0 0 20px}.toolbar,.toc,.cover-links,footer{display:none}main{padding:0;font-size:10pt}h2{font-size:16pt;break-before:page}h3{font-size:13pt}pre{font-size:8pt}table{font-size:8pt}tr{break-inside:avoid}a{color:inherit;text-decoration:none}pre:before{font-size:7pt}}
+/* IntelliJ IDEA Classic Light-inspired palette; static, offline syntax colors. */
+pre{background:#ffffff;border:1px solid #d7dce2;border-left:3px solid #b8c8df;color:#000000}
+pre code,pre.full-code code{color:#000000;font-family:"JetBrains Mono",Menlo,Consolas,monospace}
+pre code .hljs-keyword,pre code .hljs-selector-tag,pre code .hljs-doctag{color:#000080;font-weight:600;font-style:normal}
+pre code .hljs-string,pre code .hljs-regexp,pre code .hljs-addition{color:#067d17;font-weight:400}
+pre code .hljs-comment,pre code .hljs-quote{color:#808080;font-style:italic;font-weight:400}
+pre code .hljs-number,pre code .hljs-literal{color:#0000ff;font-weight:400}
+pre code .hljs-title,pre code .hljs-section,pre code .hljs-title.function_{color:#00627a;font-weight:400}
+pre code .hljs-title.class_,pre code .hljs-type,pre code .hljs-built_in{color:#000000;font-weight:400}
+pre code .hljs-attr,pre code .hljs-attribute,pre code .hljs-property,pre code .hljs-selector-class{color:#660e7a;font-weight:400}
+pre code .hljs-tag,pre code .hljs-name{color:#000080;font-weight:400}
+pre code .hljs-meta{color:#808000;font-weight:400;font-style:normal}
+pre code .hljs-symbol,pre code .hljs-variable{color:#660e7a;font-weight:400}
+pre code .hljs-subst,pre code .hljs-params{color:#000000}
+pre code .hljs-deletion{color:#b00020}
+pre.full-code{padding:12px 0;font-size:13px;line-height:1.9}
+.source-line{min-height:1.9em;padding-right:16px}
+.line-no{flex-basis:52px;background:#f5f5f5;border-right:1px solid #e3e3e3;color:#777777;padding-right:12px;margin-right:14px;font-size:12px;font-style:normal}
+.source-line:hover{background:#edf3ff}
+.source-line:hover .line-no{background:#e5ecf7;color:#434f65}
+.source-file h3{color:#26364a;background:#f5f7fa;border:1px solid #e0e5eb;border-radius:5px;padding:12px 16px}
+.source-details summary{color:#33455e}
+@media(max-width:650px){pre.full-code{font-size:11px}.line-no{flex-basis:34px;margin-right:8px;padding-right:7px;font-size:10px}.source-line{padding-right:8px}}
+@media print{pre.full-code{font-size:7.5pt}.source-line:hover{background:#fff}.line-no{color:#777}pre code span{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body><header><div class="eyebrow">DEPLOYMENT STUDY NOTES · 2026.10.08</div><h1>AWS에 올리는 과정<br><span>Terraform으로 차근차근</span></h1><p>수강2 · React + Spring Boot · ECS Fargate + RDS</p><div class="cover-links"><a href="#chapter-27">전체 순서</a><a href="#chapter-28">Terraform 전체 코드</a><a href="aws-terraform-example.zip" download="">예제 ZIP</a></div></header><nav class="toolbar"><a href="index.html">프로젝트 요약 목록</a><a href="#contents">목차</a><a href="#chapter-7">기존 AWS 방식</a><a href="#chapter-9">Terraform 시작</a><a href="#chapter-22">문제 해결</a><button onclick="window.print()">인쇄 · PDF 저장</button></nav><main><details id="contents" class="toc"><summary>전체 목차 · 29개 주제</summary><nav id="toc-links"><a href="#chapter-1">1. 이번에 올리는 프로그램의 범위</a><a href="#chapter-2">2. 전체 연결 구조</a><a href="#chapter-3">3. AWS 용어를 프로젝트에 연결하기</a><a href="#chapter-4">4. 기존 AWS 배포와 Terraform의 차이</a><a href="#chapter-5">5. 시작 전에 준비할 것</a><a href="#chapter-6">6. AWS 계정·리전 확인</a><a href="#chapter-7">7. 현재 CloudFormation으로 올리는 경우의 순서</a><a href="#chapter-8">8. Terraform 명령과 파일의 의미</a><a href="#chapter-9">9. 원격 state 버킷을 먼저 준비</a><a href="#chapter-10">10. 예제 폴더를 실행용 폴더로 복사</a><a href="#chapter-11">11. 환경값 작성</a><a href="#chapter-12">12. 네트워크 코드를 읽는 방법</a><a href="#chapter-13">13. RDS·비밀번호·state 설계</a><a href="#chapter-14">14. 도메인과 HTTPS는 어떻게 만들어지나</a><a href="#chapter-15">15. 1차 적용 — 인프라만 생성</a><a href="#chapter-16">16. 앱 Secret 값을 등록</a><a href="#chapter-17">17. 비공개 RDS에 앱 계정을 생성</a><a href="#chapter-18">18. React·Spring 이미지를 ECR에 올리기</a><a href="#chapter-19">19. 2차 적용 — 앱 태스크와 서비스 시작</a><a href="#chapter-20">20. 첫 시작에서 일어나는 일</a><a href="#chapter-21">21. 배포가 잘 되었는지 확인</a><a href="#chapter-22">22. 자주 발생하는 오류와 확인 순서</a><a href="#chapter-23">23. 수정한 코드를 다시 배포하기</a><a href="#chapter-24">24. 실패한 배포와 롤백</a><a href="#chapter-25">25. 기존 CloudFormation 환경을 Terraform으로 옮길 때</a><a href="#chapter-26">26. 운영과 비용 정리</a><a href="#chapter-27">27. 한 번에 기억하는 실행 순서</a><a href="#chapter-28">28. 예제 전체 코드와 파일별 해설</a><a href="#chapter-29">29. 검증 범위와 공식 참고 자료</a></nav></details><div id="content">
+<p>수강2 프로젝트 기준 · 2026-10-08 · ECS Fargate + RDS PostgreSQL</p>
+<p>흰색 배경과 IntelliJ IDEA 라이트 스타일 코드 색상을 사용한 새 문서입니다. 명령을 어디에서 실행하는지, 무엇이 만들어지는지, 어떤 결과를 확인해야 하는지 순서대로 설명합니다. 문서와 예제를 준비한 것이며 AWS 계정에 배포한 상태는 아닙니다.</p>
+<h2 id="chapter-1">1. 이번에 올리는 프로그램의 범위</h2>
+<p>배포 대상은 <strong>수강신청 React + Spring Boot + JPA</strong>입니다. 기존 Dockerfile이 React를 빌드한 후 결과를 Spring JAR에 넣으므로 브라우저와 API가 같은 도메인을 사용합니다. S3나 별도 React 서버 없이 이 구성을 먼저 배포할 수 있습니다.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>현재 파일</th>
+<th>AWS에서의 역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>frontend/src/</code></td>
+<td>빌드하면 정적 HTML·JS·CSS가 됨</td>
+</tr>
+<tr>
+<td><code>src/main/java/</code></td>
+<td>Spring API·인증·신청 업무 실행</td>
+</tr>
+<tr>
+<td><code>src/main/resources/static/</code></td>
+<td>JAR 안에 들어가는 React 빌드 결과</td>
+</tr>
+<tr>
+<td><code>application-prod.properties</code></td>
+<td>RDS 연결·Flyway·운영 쿠키 설정</td>
+</tr>
+<tr>
+<td><code>Dockerfile</code></td>
+<td>React와 Java를 하나의 실행 이미지로 묶음</td>
+</tr>
+<tr>
+<td><code>deploy/ecs-fargate.json</code></td>
+<td>현재 준비된 CloudFormation 인프라 정의</td>
+</tr>
+<tr>
+<td><code>deploy/deploy.sh</code></td>
+<td>기존 CloudFormation 배포 스크립트</td>
+</tr>
+<tr>
+<td><code>academic-advisor/</code></td>
+<td>독립 챗봇. 현재 Docker 이미지에서 제외됨</td>
+</tr>
+</tbody></table></div>
+<p>독립 챗봇은 이번 경로에 자동으로 합쳐지지 않습니다. 별도 배포하려면 별도 이미지·ECS 서비스·라우팅과 세션 저장 방식을 준비해야 합니다. 현재 수강 서버에 남아 있는 <code>campus/advisor</code> Java 패키지는 JAR에 포함되지만, 별도 챗봇 React 화면과는 다릅니다.</p>
+<h2 id="chapter-2">2. 전체 연결 구조</h2>
+<pre data-language="plaintext"><code class="language-text">사용자 브라우저
+    │ https://campus.내도메인
+    ▼
+Route 53 DNS ── 도메인 → ALB 주소
+    ▼
+ALB (public subnet 2개, ACM 인증서로 HTTPS)
+    │ HTTP 8080 — ALB 보안 그룹에서만 허용
+    ├── Fargate 태스크 A (private app subnet / 가용 영역 A)
+    └── Fargate 태스크 B (private app subnet / 가용 영역 B)
+                │ PostgreSQL 5432 + TLS verify-full
+                ▼
+          RDS PostgreSQL (private DB subnets)
+           ├─ 학생 / 강의 / 신청 / 장바구니
+           └─ Spring Session 공용 세션
+
+개발 PC → Docker 이미지 빌드 → ECR → Fargate가 이미지 내려받기
+Secrets Manager → 태스크 시작 시 DB 자격증명 주입
+CloudWatch Logs ← 앱 표준 출력
+private app subnet → NAT Gateway → ECR / Logs / Secrets API
+Terraform → 위 AWS 리소스를 생성·갱신
+S3 state bucket ← Terraform의 리소스 관리 상태와 잠금 파일
+</code></pre>
+<p><strong>public/private는 단순 이름이 아니라 라우팅과 접근 설정의 차이</strong>입니다. ALB만 인터넷 요청을 받습니다. 앱은 공인 IP가 없고, DB는 인터넷 기본 경로도 없는 서브넷을 사용합니다. NAT는 앱이 외부 AWS API로 나가는 통로이며 외부 사용자가 앱으로 직접 들어오는 통로가 아닙니다.</p>
+<h2 id="chapter-3">3. AWS 용어를 프로젝트에 연결하기</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>용어</th>
+<th>의미</th>
+<th>이 프로젝트에서 하는 일</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Region / AZ</td>
+<td>리전 / 리전 안의 가용 영역</td>
+<td>서울 리전 예시, 서로 다른 AZ 2개 사용</td>
+</tr>
+<tr>
+<td>VPC / Subnet</td>
+<td>사설 네트워크 / 주소 구역</td>
+<td>ALB·앱·DB 배치 구분</td>
+</tr>
+<tr>
+<td>Security Group</td>
+<td>리소스별 통신 허용 규칙</td>
+<td>인터넷→443/80, ALB→8080, 앱→5432</td>
+</tr>
+<tr>
+<td>ECR</td>
+<td>컨테이너 이미지 저장소</td>
+<td>버전별 앱 이미지 보관</td>
+</tr>
+<tr>
+<td>ECS Cluster</td>
+<td>태스크를 관리하는 논리적 그룹</td>
+<td>campus-tf 클러스터</td>
+</tr>
+<tr>
+<td>Task Definition</td>
+<td>컨테이너 실행 명세</td>
+<td>이미지·메모리·포트·환경변수</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>실제 실행 중인 명세의 인스턴스</td>
+<td>Spring 프로세스가 실행되는 단위</td>
+</tr>
+<tr>
+<td>ECS Service</td>
+<td>원하는 수의 태스크 유지</td>
+<td>기본 2개와 롤링 배포 관리</td>
+</tr>
+<tr>
+<td>Fargate</td>
+<td>EC2 서버를 직접 관리하지 않는 실행 방식</td>
+<td>태스크 CPU·메모리만 지정</td>
+</tr>
+<tr>
+<td>ALB / Target Group</td>
+<td>요청 분배 / 대상 태스크 묶음</td>
+<td>정상 태스크에 트래픽 전달</td>
+</tr>
+<tr>
+<td>RDS</td>
+<td>관리형 관계형 DB</td>
+<td>운영 PostgreSQL 저장소</td>
+</tr>
+<tr>
+<td>ACM</td>
+<td>HTTPS 인증서 관리</td>
+<td>소유 도메인의 인증서</td>
+</tr>
+<tr>
+<td>Secrets Manager</td>
+<td>비밀정보 저장</td>
+<td>DB 앱 계정 비밀번호</td>
+</tr>
+<tr>
+<td>IAM Role</td>
+<td>AWS API 접근 권한</td>
+<td>실행 에이전트 권한과 앱 권한 분리</td>
+</tr>
+</tbody></table></div>
+<p>예제 기본 구성은 NAT 2개, ALB, Fargate 2개, Multi-AZ RDS입니다. 가용성을 고려한 학습·운영 출발점이며 최소 비용 구성은 아닙니다. 리소스를 생성하면 계속 비용이 발생하므로 계정의 예산 알림과 현재 리전 요금을 확인한 후 실행합니다. 정확한 월 비용은 트래픽·저장량·사용 시간에 따라 달라집니다.</p>
+<h2 id="chapter-4">4. 기존 AWS 배포와 Terraform의 차이</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>현재 프로젝트 방식</th>
+<th>새 요약본의 Terraform 방식</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>인프라 문법</td>
+<td>CloudFormation JSON</td>
+<td>Terraform HCL (<code>.tf</code>)</td>
+</tr>
+<tr>
+<td>인프라 실행</td>
+<td><code>deploy.sh infra/app</code></td>
+<td><code>terraform plan/apply</code></td>
+</tr>
+<tr>
+<td>변경 추적</td>
+<td>CloudFormation 스택</td>
+<td>Terraform state</td>
+</tr>
+<tr>
+<td>이미지 빌드</td>
+<td>deploy.sh 내부</td>
+<td>Docker·AWS CLI 명령으로 별도 수행</td>
+</tr>
+<tr>
+<td>실제 앱 코드</td>
+<td>같은 React·Spring·Dockerfile</td>
+<td>그대로 재사용</td>
+</tr>
+<tr>
+<td>초기 상태</td>
+<td>기존 파일이 있음</td>
+<td>문서 옆에 새 예제 파일 제공</td>
+</tr>
+</tbody></table></div>
+<p><strong>같은 리소스를 두 도구가 동시에 관리하지 않게 합니다.</strong> 이 문서의 Terraform 예제는 별도 이름 <code>campus-tf</code>의 새 환경을 만드는 흐름입니다. 이미 운영 중인 CloudFormation 스택이 있다면 기존 도메인·DB를 그대로 덮어쓰지 말고, 새 서브도메인에서 검증하거나 후반의 이관 절차를 사용하세요.</p>
+<h2 id="chapter-5">5. 시작 전에 준비할 것</h2>
+<ol>
+<li>AWS 계정과 권한 있는 배포용 로그인. 이 문서는 IAM Identity Center 프로필 예시를 사용합니다.</li>
+<li>소유 도메인과 같은 계정의 <strong>실제로 권한 위임된 public Route 53 hosted zone</strong>. hosted zone을 만들기만 해서는 DNS 권한 위임이 완료되지 않습니다. 도메인 등록기관의 NS가 맞아야 합니다.</li>
+<li>AWS CLI v2, Docker Desktop/Buildx, Terraform 1.10 이상 2 미만. 예제는 AWS provider 6.x 계열을 사용합니다.</li>
+<li>서울 리전에서 사용할 PostgreSQL 버전과 DB 인스턴스 지원 여부 확인.</li>
+<li>Terraform state용 S3 버킷 접근과 VPC·EC2 네트워크·ECS·ECR·RDS·IAM·ACM·Route 53·Logs·Secrets 리소스 생성 권한. ECS role 전달에는 <code>iam:PassRole</code>도 필요합니다.</li>
+</ol>
+<p>맥에서 Terraform을 설치하는 공식 Homebrew 경로는 다음과 같습니다. 도구 설치와 <code>version</code> 확인은 PC에서 합니다. 기존 설치가 있다면 중복 설치할 필요가 없습니다. <a href="https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli">HashiCorp 설치 안내</a></p>
+<pre data-language="bash"><code class="language-bash">brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+
+aws --version
+docker version
+docker buildx version
+terraform version
+</code></pre>
+<p><code>docker version</code>에서 서버 연결이 실패하면 Docker Desktop을 먼저 실행합니다. Terraform은 AWS 서버를 생성하는 도구이며 Spring 소스의 Java 라이브러리가 아닙니다.</p>
+<h2 id="chapter-6">6. AWS 계정·리전 확인</h2>
+<p><strong>실행 위치: 개발 PC 터미널.</strong> 프로필 이름은 본인이 설정한 값으로 바꿉니다.</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 최초 한 번: 조직에서 받은 SSO URL·리전·계정·역할로 설정</span>
+aws configure sso --profile campus-deploy
+
+<span class="hljs-built_in">export</span> AWS_PROFILE=campus-deploy
+<span class="hljs-built_in">export</span> AWS_REGION=ap-northeast-2
+<span class="hljs-built_in">export</span> AWS_DEFAULT_REGION=<span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span>
+aws sso login --profile <span class="hljs-string">"<span class="hljs-variable">$AWS_PROFILE</span>"</span>
+aws sts get-caller-identity
+</code></pre>
+<p>Account와 Arn이 의도한 계정·역할인지 확인합니다. Terraform provider와 S3 backend 모두 이 프로필의 권한을 사용합니다. 토큰이 만료되면 SSO 로그인을 갱신합니다. 액세스 키를 <code>.tf</code>나 HTML 문서에 적을 필요가 없습니다.</p>
+<pre data-language="bash"><code class="language-bash">aws rds describe-db-engine-versions \
+  --engine postgres --region <span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span> \
+  --query <span class="hljs-string">'DBEngineVersions[].EngineVersion'</span> --output table
+
+<span class="hljs-comment"># 위에서 고른 실제 버전을 대입</span>
+DB_VERSION=<span class="hljs-string">'REPLACE_WITH_SUPPORTED_VERSION'</span>
+aws rds describe-orderable-db-instance-options \
+  --engine postgres --engine-version <span class="hljs-string">"<span class="hljs-variable">$DB_VERSION</span>"</span> \
+  --db-instance-class db.t4g.micro --region <span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span> \
+  --query <span class="hljs-string">'OrderableDBInstanceOptions[].{Version:EngineVersion,Class:DBInstanceClass,MultiAZ:MultiAZCapable}'</span> \
+  --output table
+</code></pre>
+<p>결과가 비어 있으면 해당 버전·클래스 조합을 사용하지 않습니다. 문서의 예제는 임의 최신 버전을 박아 넣지 않고 확인한 버전을 입력하도록 되어 있습니다.</p>
+<h2 id="chapter-7">7. 현재 CloudFormation으로 올리는 경우의 순서</h2>
+<p>Terraform 경로로 진행할 예정이면 <strong>이 절의 생성 명령은 실행하지 않고</strong> 다음 절부터 따라갑니다. 기존 코드가 무엇을 하는지 이해하기 위한 비교입니다.</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 수강2 프로젝트 루트에서, 이미 발급 완료된 같은 리전 ACM ARN 사용</span>
+<span class="hljs-built_in">export</span> STACK_NAME=campus-prod
+<span class="hljs-built_in">export</span> CERTIFICATE_ARN=<span class="hljs-string">'REPLACE_WITH_ISSUED_CERTIFICATE_ARN'</span>
+./deploy/deploy.sh infra
+</code></pre>
+<p><code>infra</code>는 VPC·서브넷·NAT·ALB·RDS·ECR 등을 만듭니다. 출력의 AdminSecretArn·AppSecretArn·DatabaseEndpoint로 앱 DB 계정을 초기화한 뒤 이미지를 올립니다. 비공개 DB 초기화 방법은 17절을 참고하세요. 기존 CloudFormation은 앱 Secret 값도 생성하지만, 새 Terraform 예제는 Secret 이름만 만들고 값을 수동 등록합니다.</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">export</span> IMAGE_TAG=<span class="hljs-string">"release-<span class="hljs-subst">$(date -u +%Y%m%dT%H%M%SZ)</span>"</span>
+./deploy/deploy.sh app
+</code></pre>
+<p><code>app</code>은 ECR 로그인 → linux/amd64 빌드·push → ECS 태스크·서비스 생성 또는 업데이트를 수행합니다. 마지막으로 도메인을 ALB에 연결하고 HTTPS를 확인합니다. 기존 스크립트는 Terraform state를 만들지 않습니다. 실제 상세 명령은 프로젝트의 <code>deploy/README.md</code>에 있습니다.</p>
+<h2 id="chapter-8">8. Terraform 명령과 파일의 의미</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>명령·파일</th>
+<th>의미</th>
+<th>AWS 변경 여부</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>terraform init</code></td>
+<td>backend·provider 초기화</td>
+<td>일반적으로 인프라 생성 안 함; state 접근 가능</td>
+</tr>
+<tr>
+<td><code>terraform fmt</code></td>
+<td>HCL 들여쓰기 정리</td>
+<td>없음</td>
+</tr>
+<tr>
+<td><code>terraform validate</code></td>
+<td>설정 구조·참조·타입 검증</td>
+<td>리소스 생성 없음</td>
+</tr>
+<tr>
+<td><code>terraform plan -out=파일</code></td>
+<td>원하는 구성과 현재 상태의 차이 계산</td>
+<td>보통 조회; 변경 계획 저장</td>
+</tr>
+<tr>
+<td><code>terraform apply 파일</code></td>
+<td>저장한 변경 계획 실행</td>
+<td>생성·변경·삭제 가능</td>
+</tr>
+<tr>
+<td><code>terraform output</code></td>
+<td>선언한 출력값 읽기</td>
+<td>없음</td>
+</tr>
+<tr>
+<td><code>.terraform.lock.hcl</code></td>
+<td>provider 버전·체크섬 고정</td>
+<td>Git에 포함</td>
+</tr>
+<tr>
+<td><code>terraform.tfstate</code></td>
+<td>코드 주소와 실제 AWS ID의 대응</td>
+<td>민감한 관리 데이터; Git 제외</td>
+</tr>
+<tr>
+<td><code>backend.hcl</code></td>
+<td>state 버킷·경로·잠금 설정</td>
+<td>비밀번호를 넣지 않음</td>
+</tr>
+<tr>
+<td><code>terraform.tfvars</code></td>
+<td>이 환경의 도메인·버전 등 입력</td>
+<td>비밀정보 없이 관리</td>
+</tr>
+</tbody></table></div>
+<p>HCL의 <code>resource</code>는 만들 대상, <code>data</code>는 기존 정보 조회, <code>variable</code>은 외부 입력, <code>output</code>은 확인할 결과, <code>locals</code>는 중간 계산입니다. 파일 이름으로 실행 순서가 정해지지 않고 리소스 참조 관계로 순서를 계산합니다.</p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecr_repository"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">name</span>                 = var.name
+  <span class="hljs-attr">image_tag_mutability</span> = <span class="hljs-string">"IMMUTABLE"</span>
+}
+</code></pre>
+<p><code>aws_ecr_repository</code>는 리소스 종류, <code>app</code>은 Terraform 안의 이름입니다. <code>var.name</code>은 tfvars 입력입니다. 다른 리소스에서 <code>aws_ecr_repository.app.repository_url</code>을 참조하면 Terraform이 의존성을 인식합니다.</p>
+<h2 id="chapter-9">9. 원격 state 버킷을 먼저 준비</h2>
+<p>Terraform이 관리할 AWS 인프라보다 <strong>state 버킷을 먼저</strong> 준비합니다. 아래는 서울 리전용 AWS CLI 초기 준비 예시입니다. 이미 보안 설정된 팀 state 버킷이 있다면 재생성하지 않고 전용 key를 사용합니다.</p>
+<pre data-language="bash"><code class="language-bash">ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+STATE_BUCKET=<span class="hljs-string">"campus-tfstate-<span class="hljs-variable">${ACCOUNT_ID}</span>-<span class="hljs-subst">$(date -u +%Y%m%d%H%M%S)</span>"</span>
+
+aws s3api create-bucket --bucket <span class="hljs-string">"<span class="hljs-variable">$STATE_BUCKET</span>"</span> \
+  --region <span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span> \
+  --create-bucket-configuration <span class="hljs-string">"LocationConstraint=<span class="hljs-variable">$AWS_REGION</span>"</span>
+
+aws s3api put-public-access-block --bucket <span class="hljs-string">"<span class="hljs-variable">$STATE_BUCKET</span>"</span> \
+  --public-access-block-configuration \
+  <span class="hljs-string">'BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true'</span>
+
+aws s3api put-bucket-versioning --bucket <span class="hljs-string">"<span class="hljs-variable">$STATE_BUCKET</span>"</span> \
+  --versioning-configuration Status=Enabled
+
+aws s3api put-bucket-encryption --bucket <span class="hljs-string">"<span class="hljs-variable">$STATE_BUCKET</span>"</span> \
+  --server-side-encryption-configuration \
+  <span class="hljs-string">'{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'</span>
+</code></pre>
+<p>버킷 이름은 전체 AWS에서 고유해야 합니다. 이름 충돌이면 새 접미사를 씁니다. state를 저장하는 버킷은 사이트 파일 공개용 버킷이 아닙니다. 이 버킷을 앱 Terraform에 포함하지 않았으므로 앱 정리 후에도 남으며 별도로 관리해야 합니다.</p>
+<p>S3 backend는 <code>use_lockfile = true</code>로 동시 작업 잠금을 사용할 수 있습니다. 버전 관리는 실수로 덮어쓴 state 복구에 도움을 줍니다. backend 권한에는 버킷 ListBucket, state 객체 Get/Put, <code>.tflock</code> 객체 Get/Put/Delete가 필요합니다. 신규 예제는 DynamoDB 잠금 대신 S3 잠금을 사용합니다. <a href="https://developer.hashicorp.com/terraform/language/backend/s3">HashiCorp S3 backend</a></p>
+<p>state·저장된 plan은 민감한 자료로 취급합니다. Terraform의 sensitive 표시는 화면 노출 제한이지 state 암호화 자체가 아닙니다. 이 예제는 비밀번호 값을 Terraform에 넘기지 않지만 다른 리소스 추가 시에도 같은 보장이 자동으로 유지되는 것은 아닙니다. <a href="https://developer.hashicorp.com/terraform/language/manage-sensitive-data">민감한 데이터 관리</a></p>
+<h2 id="chapter-10">10. 예제 폴더를 실행용 폴더로 복사</h2>
+<p>새 예제는 이 문서 옆 <code>aws-terraform-example/</code>에 있습니다. <strong>문서용 예제를 바로 운영 상태 저장소로 쓰지 않고</strong>, 루트의 <code>infra/terraform/</code>로 복사하여 환경 입력을 작성합니다. 기존 폴더가 있다면 덮어쓰지 말고 내용을 먼저 비교합니다.</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 수강2 루트에서, infra/terraform이 아직 없는 경우</span>
+<span class="hljs-built_in">mkdir</span> -p infra
+<span class="hljs-built_in">cp</span> -R docs/summary/aws-terraform-example infra/terraform
+<span class="hljs-built_in">cd</span> infra/terraform
+<span class="hljs-built_in">cp</span> terraform.tfvars.example terraform.tfvars
+<span class="hljs-built_in">cp</span> backend.hcl.example backend.hcl
+</code></pre>
+<pre data-language="plaintext"><code class="language-text">infra/terraform/
+├── versions.tf          # Terraform·provider·S3 backend
+├── variables.tf         # 도메인·리전·이미지 등 입력
+├── network.tf           # VPC·6개 서브넷·NAT·라우팅·보안 그룹
+├── data.tf              # ECR·CloudWatch·RDS·Secret 이름
+├── web.tf               # ACM·검증 DNS·ALB·도메인 Alias
+├── ecs.tf               # IAM·클러스터·태스크·서비스
+├── outputs.tf           # 접속·배포에 필요한 출력
+├── backend.hcl          # 본인 state 버킷 정보
+├── terraform.tfvars     # 본인 환경 입력
+└── .terraform.lock.hcl  # init 후 생성, 버전 관리에 포함
+</code></pre>
+<p>이 폴더의 <code>.gitignore</code>는 state·plan·실제 tfvars를 제외합니다. <code>.terraform.lock.hcl</code>과 <code>.tf</code>, <code>.example</code>은 버전 관리에 포함합니다. 문서 예제에 검증 당시 provider 버전을 고정한 lock 파일도 포함했습니다. 운영 코드를 복사한 뒤에는 루트 <code>.dockerignore</code>에도 <code>infra/</code>와 <code>docs/summary/aws-terraform-example/</code>를 추가해 Terraform 작업 폴더가 Docker 빌드 입력으로 전송되지 않게 정리하세요.</p>
+<h2 id="chapter-11">11. 환경값 작성</h2>
+<p><code>backend.hcl</code>의 bucket을 9절에서 만든 실제 이름으로 바꿉니다. 리전도 버킷 리전과 같아야 합니다. dev/prod를 분리할 때 같은 key를 공유하지 않습니다.</p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">bucket</span>       = <span class="hljs-string">"본인이_만든_실제_버킷_이름"</span>
+<span class="hljs-attr">key</span>          = <span class="hljs-string">"campus/prod/terraform.tfstate"</span>
+<span class="hljs-attr">region</span>       = <span class="hljs-string">"ap-northeast-2"</span>
+<span class="hljs-attr">encrypt</span>      = <span class="hljs-literal">true</span>
+<span class="hljs-attr">use_lockfile</span> = <span class="hljs-literal">true</span>
+</code></pre>
+<p><code>terraform.tfvars</code>는 아래 입력을 채웁니다. 예제 문자열 그대로 실행하지 않습니다. domain은 내가 소유한 호스트명, zone_id는 해당 이름을 관리하는 기존 public hosted zone입니다.</p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">region</span>            = <span class="hljs-string">"ap-northeast-2"</span>
+<span class="hljs-attr">name</span>              = <span class="hljs-string">"campus-tf"</span>
+<span class="hljs-attr">domain</span>            = <span class="hljs-string">"campus.내가소유한도메인.com"</span>
+<span class="hljs-attr">zone_id</span>           = <span class="hljs-string">"실제_PUBLIC_HOSTED_ZONE_ID"</span>
+<span class="hljs-attr">db_engine_version</span> = <span class="hljs-string">"6절에서_확인한_정확한_버전"</span>
+<span class="hljs-attr">db_multi_az</span>       = <span class="hljs-literal">true</span>
+<span class="hljs-attr">app_enabled</span>       = <span class="hljs-literal">false</span>
+<span class="hljs-attr">image_uri</span>         = <span class="hljs-string">""</span>
+<span class="hljs-attr">desired_count</span>     = <span class="hljs-number">2</span>
+</code></pre>
+<p>처음에는 <code>app_enabled=false</code>입니다. 인프라를 만든 뒤 DB 계정·Secret·ECR 이미지가 준비되어야 앱을 시작할 수 있기 때문입니다. 서비스가 가동된 다음에는 false로 되돌리면 서비스와 태스크 정의의 삭제 계획이 나오므로 첫 단계 설정을 그대로 재사용하지 않습니다.</p>
+<h2 id="chapter-12">12. 네트워크 코드를 읽는 방법</h2>
+<p><code>network.tf</code>는 두 가용 영역에 public·app·db 서브넷을 각각 하나씩 만듭니다. <code>count=2</code>와 <code>count.index</code>로 같은 구조를 두 번 만들고, <code>cidrsubnet</code>으로 /16 안에서 /24 구간을 나눕니다. 기존 VPC·VPN 주소와 겹치면 생성 전에 주소 설계를 바꿉니다.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>영역</th>
+<th>기본 외부 경로</th>
+<th>쓰임</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public 2개</td>
+<td>Internet Gateway</td>
+<td>ALB와 NAT 배치</td>
+</tr>
+<tr>
+<td>private app 2개</td>
+<td>같은 AZ의 NAT</td>
+<td>Fargate, DB 초기화용 VPC 관리 환경</td>
+</tr>
+<tr>
+<td>private db 2개</td>
+<td>외부 기본 경로 없음</td>
+<td>RDS</td>
+</tr>
+</tbody></table></div>
+<p>보안 그룹은 ALB의 80·443만 인터넷에 공개합니다. app의 8080은 ALB 보안 그룹만, DB의 5432는 app 보안 그룹만 허용합니다. 앱 outbound는 HTTPS 443과 DB 5432를 허용합니다. DNS는 VPC 기본 Resolver를 사용합니다.</p>
+<p><code>depends_on</code>은 값 참조만으로 드러나지 않는 실행 순서를 보충합니다. 앱 생성 전에 HTTPS Listener와 라우팅·실행 권한·보안 규칙이 준비되도록 설정했습니다. 운영에서 NAT를 VPC endpoint로 대체하려면 ECR API·ECR DKR·S3·Logs·Secrets 등의 경로를 함께 설계해야 합니다.</p>
+<h2 id="chapter-13">13. RDS·비밀번호·state 설계</h2>
+<p><code>data.tf</code>의 RDS는 <code>campus</code> DB와 관리자 <code>campus_admin</code>을 만듭니다. <code>manage_master_user_password=true</code>로 관리자 비밀번호는 RDS가 Secrets Manager에서 관리합니다. 앱에는 관리자 계정을 주지 않고 이후에 만들 <code>campus_app</code>을 사용합니다. <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance">aws_db_instance 공식 스키마</a></p>
+<p>앱 Secret 리소스는 <strong>이름과 ARN만</strong> 생성합니다. <code>secret_string</code>, <code>random_password</code>의 결과, 비밀번호를 읽는 data source를 이 예제에 넣지 않았습니다. 실제 앱 비밀번호는 16절에서 콘솔에 저장하고 DB 계정에도 같은 값을 설정합니다. 이름만 존재하고 값 버전이 없는 Secret을 ECS에 전달하면 태스크 시작이 실패합니다.</p>
+<p><code>deletion_protection=true</code>는 AWS의 DB 삭제 방지이고 <code>prevent_destroy=true</code>는 Terraform의 삭제 계획 방지입니다. 서로 다른 장치입니다. <code>skip_final_snapshot=false</code>는 삭제 시 마지막 스냅샷을 요구합니다. 스냅샷 이름이 이미 존재하면 삭제 시 새 고유 이름을 지정해야 합니다.</p>
+<p>예제의 자동 백업은 7일, 암호화는 활성화, Multi-AZ는 기본 true입니다. Multi-AZ는 장애 대응용이며 읽기 부하를 분산하는 read replica와 다릅니다. 앱 데이터·로컬 H2 파일을 이 리소스가 자동으로 이관하지는 않습니다.</p>
+<h2 id="chapter-14">14. 도메인과 HTTPS는 어떻게 만들어지나</h2>
+<p><code>web.tf</code>는 ACM 인증서 신청 → DNS 검증 CNAME 생성 → 검증 완료 대기 → ALB HTTPS Listener 생성 순으로 연결됩니다. Route 53 A Alias는 사용자 도메인을 ALB에 연결합니다. ACM 검증 CNAME은 이후 인증서 갱신에 필요하므로 남겨둡니다. <a href="https://docs.aws.amazon.com/acm/latest/userguide/dns-validation.html">ACM DNS 검증</a></p>
+<p>ALB와 인증서는 같은 AWS provider 리전에서 생성됩니다. 이 앱은 CloudFront 경로가 아니므로 인증서를 무조건 버지니아 리전에 만들지 않습니다. 접속은 ALB의 긴 기본 DNS 이름이 아니라 <strong>인증서에 등록한 사용자 도메인</strong>으로 합니다.</p>
+<p>80번 Listener는 HTTPS로 리다이렉트하고 443번 Listener가 타깃 그룹의 8080으로 전달합니다. <code>target_type="ip"</code>는 awsvpc로 실행하는 Fargate의 태스크 IP를 대상으로 하기 때문입니다. readiness 경로는 실제 프로젝트에서 공개되고 DB 상태도 포함하는 <code>/actuator/health/readiness</code>입니다.</p>
+<p>외부 DNS 업체를 계속 사용한다면 현재 예제의 Route 53 레코드 리소스를 그대로 사용할 수 없습니다. 인증서 검증 레코드와 서비스 레코드를 외부 업체에 생성하는 흐름으로 수정해야 합니다. 이 예제는 Route 53에서 권한 있는 public zone을 이미 보유한 경우를 전제로 합니다.</p>
+<h2 id="chapter-15">15. 1차 적용 — 인프라만 생성</h2>
+<p><strong>실행 위치: <code>infra/terraform/</code>.</strong> AWS 프로필·리전 환경변수가 같은 터미널에 설정되어 있어야 합니다.</p>
+<pre data-language="bash"><code class="language-bash">terraform init -backend-config=backend.hcl
+terraform <span class="hljs-built_in">fmt</span> -check
+terraform validate
+terraform plan -out=infra.tfplan
+</code></pre>
+<p>plan의 <code>+</code>는 생성, <code>~</code>는 변경, <code>-</code>는 삭제, <code>-/+</code>는 교체입니다. 최초 새 환경에서는 생성 계획이 중심이어야 합니다. 예상하지 않은 기존 DB 삭제·교체가 보이면 apply하지 않고 계정·state key·리소스 이름부터 확인합니다. plan이 계정 권한·DNS·리전 가용성까지 모두 보증하지는 않습니다.</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># 계획을 검토한 뒤 실행</span>
+terraform apply infra.tfplan
+terraform output
+</code></pre>
+<p>RDS 생성과 ACM 검증은 시간이 걸릴 수 있습니다. DNS 검증 대기가 길면 NS 위임과 CNAME을 확인합니다. 아직 앱을 만들지 않았으므로 ALB가 503을 내는 것은 이 단계에서는 예상되는 상태입니다.</p>
+<p>출력 확인 항목: repository_url, database_endpoint, admin_secret_arn, app_secret_arn, vpc_id, app_subnet_ids, app_security_group_id, log_group, site_url. 아직 service_name은 출력되지 않거나 null인 상태입니다.</p>
+<h2 id="chapter-16">16. 앱 Secret 값을 등록</h2>
+<p>AWS 콘솔 → Secrets Manager → 출력된 <code>app_secret_arn</code>에 해당하는 Secret → 비밀 값 편집 화면에서 아래 <strong>두 키</strong>를 저장합니다. 콘솔 명칭은 화면 버전에 따라 조금 다를 수 있습니다.</p>
+<pre data-language="json"><code class="language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"username"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"campus_app"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"password"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"새로_생성한_충분히_긴_실제_비밀번호"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<p>실제 비밀번호는 비밀번호 관리 도구로 생성·보관하고 이 문서·tfvars·Git에 복사하지 않습니다. Secret 버전의 <code>AWSCURRENT</code>에 두 키가 있어야 합니다. 자동 회전은 이 예제에 포함하지 않았습니다.</p>
+<p>태스크 정의의 <code>:username::</code>와 <code>:password::</code>는 Secret JSON 안의 해당 키를 읽습니다. Linux Fargate의 JSON 키 선택 주입에는 플랫폼 1.4.0 이상이 필요하므로 예제는 1.4.0을 지정했습니다. Secret을 바꾸어도 이미 실행 중인 컨테이너 환경변수는 즉시 바뀌지 않아 새 태스크 배포가 필요합니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html">ECS Secret 환경변수</a></p>
+<h2 id="chapter-17">17. 비공개 RDS에 앱 계정을 생성</h2>
+<p><strong>실행 위치: VPC에 접근 가능한 관리 환경.</strong> 개인 노트북이나 기본 CloudShell은 private RDS에 바로 접속할 수 없습니다.</p>
+<p>CloudShell의 VPC 환경을 만들 때 이 Terraform 출력의 VPC, app subnet 중 하나, app security group을 선택합니다. app subnet의 NAT로 HTTPS 다운로드가 가능하고 보안 그룹으로 RDS 5432 접속이 가능합니다. 해당 리전·계정에서 VPC CloudShell을 사용할 수 없는 경우 SSM으로 접속 가능한 관리 호스트 등 대체 경로가 필요합니다. <a href="https://docs.aws.amazon.com/cloudshell/latest/userguide/using-cshell-in-vpc.html">CloudShell VPC 환경</a></p>
+<p>먼저 <code>psql --version</code>으로 클라이언트를 확인합니다. 없으면 관리 환경의 OS에 맞는 PostgreSQL 클라이언트를 준비합니다. 로컬 파일이 VPC 환경에 자동으로 복사되지는 않으므로 <code>deploy/bootstrap-db.sql</code>의 내용을 관리 환경에 가져옵니다.</p>
+<pre data-language="bash"><code class="language-bash">curl --fail --location \
+  https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem \
+  -o global-bundle.pem
+
+<span class="hljs-comment"># 실제 database_endpoint를 넣고 실행. 관리자 비밀번호는 -W 프롬프트에 입력</span>
+psql <span class="hljs-string">"host=실제_RDS_ENDPOINT port=5432 dbname=campus user=campus_admin sslmode=verify-full sslrootcert=global-bundle.pem"</span> -W
+</code></pre>
+<p>관리자 비밀번호는 Secrets Manager의 <code>admin_secret_arn</code>에서 확인합니다. 관리자용과 앱용 Secret을 혼동하지 않습니다. <code>verify-full</code>은 암호화뿐 아니라 CA와 호스트명을 검증합니다. 인증 오류를 무작정 sslmode=disable로 해결하지 않습니다. <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Concepts.General.SSL.html">RDS PostgreSQL TLS</a></p>
+<pre data-language="sql"><code class="language-sql"><span class="hljs-comment">-- psql 안에서 최초 한 번 실행: 기존 deploy/bootstrap-db.sql과 같은 내용</span>
+<span class="hljs-keyword">CREATE</span> ROLE campus_app LOGIN;
+<span class="hljs-keyword">REVOKE</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">ON</span> SCHEMA public <span class="hljs-keyword">FROM</span> PUBLIC;
+<span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">CONNECT</span> <span class="hljs-keyword">ON</span> DATABASE campus <span class="hljs-keyword">TO</span> campus_app;
+<span class="hljs-keyword">GRANT</span> USAGE, <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">ON</span> SCHEMA public <span class="hljs-keyword">TO</span> campus_app;
+
+<span class="hljs-comment">-- SQL 문자열에 비밀번호를 적지 않고 psql 프롬프트 사용</span>
+\password campus_app
+</code></pre>
+<p>여기에는 <strong>16절 앱 Secret의 password와 동일한 값</strong>을 입력합니다. 이미 계정이 있다면 CREATE ROLE을 다시 실행하는 대신 역할·권한·소유권을 확인합니다. 새 빈 DB를 기준으로 한 절차이며 기존 테이블 소유권 변경이나 데이터 이관까지 자동으로 해주지는 않습니다.</p>
+<pre data-language="sql"><code class="language-sql"><span class="hljs-comment">-- 세션 종료</span>
+\q
+</code></pre>
+<p>같은 psql 접속 문자열에서 user를 campus_app으로 바꾸어 재접속하고 <code>SELECT current_user, current_database();</code>로 확인합니다. 실제 앱 계정으로 접속이 되어야 다음 단계로 갑니다. 초기화용 VPC 환경을 정리한 뒤에도 ECS가 쓰는 app 보안 그룹 자체는 삭제하지 않습니다.</p>
+<h2 id="chapter-18">18. React·Spring 이미지를 ECR에 올리기</h2>
+<p><strong>실행 위치: 개발 PC의 수강2 루트.</strong> 아래 TF_DIR는 10절에서 복사한 폴더 기준입니다.</p>
+<pre data-language="bash"><code class="language-bash">TF_DIR=infra/terraform
+REPOSITORY_URL=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw repository_url)
+REPOSITORY_NAME=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw repository_name)
+REGISTRY=<span class="hljs-string">"<span class="hljs-variable">${REPOSITORY_URL%%/*}</span>"</span>
+IMAGE_TAG=<span class="hljs-string">"release-<span class="hljs-subst">$(date -u +%Y%m%dT%H%M%SZ)</span>"</span>
+
+aws ecr get-login-password --region <span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span> \
+  | docker login --username AWS --password-stdin <span class="hljs-string">"<span class="hljs-variable">$REGISTRY</span>"</span>
+
+docker buildx build --platform linux/amd64 --provenance=<span class="hljs-literal">false</span> \
+  --tag <span class="hljs-string">"<span class="hljs-variable">$REPOSITORY_URL</span>:<span class="hljs-variable">$IMAGE_TAG</span>"</span> --push .
+
+IMAGE_DIGEST=$(aws ecr describe-images --region <span class="hljs-string">"<span class="hljs-variable">$AWS_REGION</span>"</span> \
+  --repository-name <span class="hljs-string">"<span class="hljs-variable">$REPOSITORY_NAME</span>"</span> \
+  --image-ids <span class="hljs-string">"imageTag=<span class="hljs-variable">$IMAGE_TAG</span>"</span> \
+  --query <span class="hljs-string">'imageDetails[0].imageDigest'</span> --output text)
+IMAGE_URI=<span class="hljs-string">"<span class="hljs-variable">$REPOSITORY_URL</span>@<span class="hljs-variable">$IMAGE_DIGEST</span>"</span>
+<span class="hljs-built_in">printf</span> <span class="hljs-string">'%s\n'</span> <span class="hljs-string">"<span class="hljs-variable">$IMAGE_URI</span>"</span>
+</code></pre>
+<p>마지막 <code>.</code>은 현재 디렉터리를 Docker 빌드 입력으로 사용한다는 뜻입니다. <code>infra/terraform</code> 안에서 실행하면 루트 Dockerfile을 찾지 못하므로 프로젝트 루트로 돌아옵니다. Apple Silicon Mac에서도 명시한 linux/amd64가 ECS의 X86_64와 일치해야 합니다.</p>
+<p>ECR 태그는 IMMUTABLE이라 같은 태그로 덮어쓰기하지 않습니다. 매번 새 IMAGE_TAG를 사용하고 실제 배포는 <code>@sha256:...</code> digest로 고정합니다. digest가 <code>None</code>이면 업로드와 태그를 확인하고 진행하지 않습니다. <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html">ECR 이미지 업로드</a></p>
+<p>Dockerfile은 React 테스트·빌드 → Maven verify → JRE 실행 이미지 순으로 묶습니다. Node 개발 서버는 운영에서 실행되지 않습니다. 독립 academic-advisor 디렉터리는 <code>.dockerignore</code>로 제외됩니다. PostgreSQL 전용 테스트는 별도 임시 DB 검증이며 이미지 빌드 성공만으로 실제 RDS 접속을 확인한 것은 아닙니다.</p>
+<h2 id="chapter-19">19. 2차 적용 — 앱 태스크와 서비스 시작</h2>
+<p><code>infra/terraform/terraform.tfvars</code>에서 두 값을 수정하여 <strong>파일에 유지</strong>합니다. CLI의 임시 <code>-var</code>만 쓰고 파일을 false로 남겨두면 다음 plan이 앱을 제거할 수 있습니다.</p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">app_enabled</span> = <span class="hljs-literal">true</span>
+<span class="hljs-attr">image_uri</span>   = <span class="hljs-string">"123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/campus-tf@sha256:실제_DIGEST"</span>
+</code></pre>
+<p>위 URI는 형식 예시입니다. 18절에서 출력한 실제 IMAGE_URI 전체를 그대로 넣습니다. Secret 값 등록과 DB 앱 계정 확인을 마친 상태여야 합니다.</p>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-built_in">cd</span> infra/terraform
+terraform plan -out=app.tfplan
+terraform apply app.tfplan
+</code></pre>
+<p>plan에는 Task Definition과 ECS Service 생성이 나타나야 합니다. <code>ecs.tf</code>는 컨테이너 8080, CPU 512(0.5 vCPU), 메모리 1024 MiB, 태스크 기본 2개, private subnet, public IP 없음으로 정의합니다. 태스크에 prod·DB_URL·DB_POOL_SIZE와 Secret의 username/password가 주입됩니다.</p>
+<p>Execution Role은 ECS 에이전트가 ECR 이미지·로그·Secret을 다루기 위한 권한입니다. Task Role은 컨테이너 앱 코드가 AWS SDK를 사용할 때의 권한입니다. 현재 앱은 DB에 JDBC로 연결하므로 Task Role에 광범위한 AWS 권한을 줄 이유가 없습니다. 사용자 관리 KMS 키로 Secret을 바꾼다면 Execution Role의 해당 키 복호화 권한도 검토해야 합니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html">ECS Execution Role</a></p>
+<p>예제는 wait_for_steady_state를 사용하지만 Terraform 종료 코드만으로 최종 버전을 단정하지 않습니다. 회로 차단기가 이전 버전으로 복구했을 수도 있으므로 다음 절에서 서비스 이벤트·실제 Task Definition·이미지 digest를 확인합니다.</p>
+<h2 id="chapter-20">20. 첫 시작에서 일어나는 일</h2>
+<pre data-language="plaintext"><code class="language-text">태스크 생성
+→ Execution Role로 ECR pull / Secret 읽기 / 로그 스트림 준비
+→ Spring prod 시작
+→ RDS TLS 접속
+→ Flyway: V1 업무 테이블 → V2 공유 세션 → V3 상담 프로필
+→ JPA ddl-auto=validate로 매핑 검증
+→ readiness UP
+→ ALB가 정상 대상으로 등록
+→ HTTPS 사용자 요청 전달
+</code></pre>
+<p>현재 소스에는 <strong>V1·V2·V3</strong>가 있습니다. 다음 DB 변경은 기존 파일을 수정하지 않고 새 V4 이상으로 추가합니다. 여러 태스크가 동시에 부팅하면 Flyway가 마이그레이션 실행을 조정합니다.</p>
+<p>운영에서는 데모 강의·체험 계정 자동 생성이 꺼져 있습니다. 최초 DB가 비어 있으면 회원가입은 가능하지만 강의 목록은 비어 있습니다. 실제 강의와 수업 시간을 승인된 입력·마이그레이션 절차로 준비해야 하며 현재 관리자 강의 관리 화면은 없습니다. 로컬 H2 데이터를 RDS에 자동 복사하지 않습니다.</p>
+<h2 id="chapter-21">21. 배포가 잘 되었는지 확인</h2>
+<p><strong>실행 위치: 개발 PC, 수강2 루트.</strong> 다음은 읽기용 상태 확인입니다.</p>
+<pre data-language="bash"><code class="language-bash">TF_DIR=infra/terraform
+CLUSTER=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw cluster_name)
+SERVICE=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw service_name)
+SITE_URL=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw site_url)
+LOG_GROUP=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw log_group)
+TG_ARN=$(terraform -<span class="hljs-built_in">chdir</span>=<span class="hljs-string">"<span class="hljs-variable">$TF_DIR</span>"</span> output -raw target_group_arn)
+
+aws ecs <span class="hljs-built_in">wait</span> services-stable --cluster <span class="hljs-string">"<span class="hljs-variable">$CLUSTER</span>"</span> --services <span class="hljs-string">"<span class="hljs-variable">$SERVICE</span>"</span>
+aws ecs describe-services --cluster <span class="hljs-string">"<span class="hljs-variable">$CLUSTER</span>"</span> --services <span class="hljs-string">"<span class="hljs-variable">$SERVICE</span>"</span> \
+  --query <span class="hljs-string">'services[0].{Running:runningCount,Desired:desiredCount,Deployments:deployments,Events:events[0:5]}'</span>
+aws elbv2 describe-target-health --target-group-arn <span class="hljs-string">"<span class="hljs-variable">$TG_ARN</span>"</span>
+curl --fail --show-error <span class="hljs-string">"<span class="hljs-variable">$SITE_URL</span>/actuator/health/readiness"</span>
+aws logs <span class="hljs-built_in">tail</span> <span class="hljs-string">"<span class="hljs-variable">$LOG_GROUP</span>"</span> --since 15m
+</code></pre>
+<p>확인할 결과는 runningCount=desiredCount, 배포 rolloutState=COMPLETED, target health=healthy, readiness HTTP 200·UP입니다. Events에 반복 종료가 없는지도 봅니다. Secrets나 비밀번호가 포함된 로그를 공유하지 않습니다.</p>
+<pre data-language="bash"><code class="language-bash">TASK_DEF=$(aws ecs describe-services --cluster <span class="hljs-string">"<span class="hljs-variable">$CLUSTER</span>"</span> --services <span class="hljs-string">"<span class="hljs-variable">$SERVICE</span>"</span> \
+  --query <span class="hljs-string">'services[0].taskDefinition'</span> --output text)
+aws ecs describe-task-definition --task-definition <span class="hljs-string">"<span class="hljs-variable">$TASK_DEF</span>"</span> \
+  --query <span class="hljs-string">'taskDefinition.containerDefinitions[].{Name:name,Image:image}'</span> --output table
+</code></pre>
+<p>배포한 IMAGE_URI와 일치하는지 확인합니다. 브라우저에서는 회원가입 → 로그인 → 새로고침 → 강의 조회 → 장바구니 → 신청 → 시간표 → 취소 → 로그아웃을 확인합니다. 강의가 없다면 먼저 강의 데이터를 준비합니다. 현재 회원가입은 자체 학번 입력 방식이므로 실제 학교 인증 연동이 완료된 시스템으로 설명하지 않습니다.</p>
+<h2 id="chapter-22">22. 자주 발생하는 오류와 확인 순서</h2><p id="troubleshooting-link">증상별 진단 명령과 해결 순서는 <a href="AWS_TROUBLESHOOTING.html">별도 트러블슈팅 요약본</a>에서 자세히 확인할 수 있습니다.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>증상</th>
+<th>먼저 볼 곳</th>
+<th>수정 방향</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>init: AccessDenied</td>
+<td>AWS_PROFILE, 버킷·key·lock 권한</td>
+<td>의도 계정인지 확인, state 객체와 .tflock 권한 구분</td>
+</tr>
+<tr>
+<td>state lock 실패</td>
+<td>다른 plan/apply 진행 여부</td>
+<td>진행 중인 작업 종료를 기다림. force-unlock은 소유 작업이 끝났음을 확인한 뒤에만 사용</td>
+</tr>
+<tr>
+<td>ACM Pending validation</td>
+<td>public zone NS 위임·CNAME</td>
+<td>zone만 만들고 실제 도메인 위임을 안 했는지 확인</td>
+</tr>
+<tr>
+<td>CannotPullContainerError</td>
+<td>ECR URI·digest·NAT 경로·Execution Role</td>
+<td>태그 존재, 아키텍처, 이미지 pull 권한 확인</td>
+</tr>
+<tr>
+<td>ResourceInitializationError</td>
+<td>Secret 버전/키·Logs·네트워크</td>
+<td>빈 Secret, 잘못된 ARN, Secrets Get 권한 확인</td>
+</tr>
+<tr>
+<td>exec format error</td>
+<td>이미지 CPU 아키텍처</td>
+<td>linux/amd64 이미지와 X86_64 태스크 일치</td>
+</tr>
+<tr>
+<td>DB connection timeout</td>
+<td>app→DB 5432·subnet·엔드포인트</td>
+<td>RDS를 public으로 바꾸기보다 보안 그룹과 경로 확인</td>
+</tr>
+<tr>
+<td>password authentication failed</td>
+<td>campus_app 비밀번호</td>
+<td>DB 계정과 Secret 값을 동일하게 맞춤</td>
+</tr>
+<tr>
+<td>permission denied for schema public</td>
+<td>계정 GRANT·객체 소유권</td>
+<td>새 DB 초기화 SQL 및 Flyway 실행 계정 확인</td>
+</tr>
+<tr>
+<td>Flyway validation failed</td>
+<td>수정된 기존 migration·이력</td>
+<td>기존 파일 복원 또는 명시적인 변경 계획 수립; 임의 repair/clean 금지</td>
+</tr>
+<tr>
+<td>ALB 503</td>
+<td>앱 생성 여부·정상 타깃 개수</td>
+<td>1차 infra만 적용했다면 앱 준비 후 2차 적용</td>
+</tr>
+<tr>
+<td>ALB 502 또는 unhealthy</td>
+<td>컨테이너 로그·8080·health path</td>
+<td>앱 부팅 실패/포트/SG와 readiness 응답 확인</td>
+</tr>
+<tr>
+<td>로그인 직후 다시 로그아웃</td>
+<td>HTTPS·Secure cookie·공유 세션 테이블</td>
+<td>도메인 HTTPS 접속, prod 세션 설정·V2 확인</td>
+</tr>
+<tr>
+<td>403 CSRF</td>
+<td>토큰·쿠키·요청 메서드</td>
+<td>프론트 정상 로그인 흐름과 재조회 확인</td>
+</tr>
+<tr>
+<td>강의 목록 비어 있음</td>
+<td>운영 DB 강의 데이터</td>
+<td>데모 데이터 비활성화는 정상, 실데이터 준비</td>
+</tr>
+</tbody></table></div>
+<p>중지된 태스크의 원인은 ECS 콘솔 Service의 Tasks/Events 또는 describe-tasks의 stoppedReason과 containers.reason에서 확인합니다. 단순 재시작을 반복하기보다 마지막 중지 사유를 먼저 읽습니다.</p>
+<h2 id="chapter-23">23. 수정한 코드를 다시 배포하기</h2>
+<ol>
+<li>앱 코드를 수정하고 로컬 테스트를 통과시킵니다.</li>
+<li>18절처럼 <strong>새 태그</strong>로 이미지를 push하고 새 digest를 조회합니다.</li>
+<li>terraform.tfvars의 image_uri만 새 digest로 갱신합니다. app_enabled는 true를 유지합니다.</li>
+<li>plan에서 새 Task Definition·Service 갱신을 확인하고 apply합니다.</li>
+<li>실제 서비스가 새 digest와 정상 health로 완료됐는지 21절을 반복합니다.</li>
+</ol>
+<pre data-language="bash"><code class="language-bash"><span class="hljs-comment"># infra/terraform 안에서</span>
+terraform plan -out=release.tfplan
+terraform apply release.tfplan
+</code></pre>
+<p>태스크 수 2개, minimumHealthyPercent=100, maximumPercent=200이므로 교체 중 최대 4개가 일시 실행될 수 있습니다. 현재 DB pool이 태스크당 10이면 앱 연결의 설정상 상한은 교체 중 40개가 될 수 있고, 여기에 관리 접속 등도 더해집니다. DB 연결 한도와 사용량을 함께 확인합니다.</p>
+<p>DB 비밀번호만 바꾼 경우에는 DB 계정 값과 Secret 값을 함께 조정하고 새 태스크가 Secret을 다시 읽도록 배포해야 합니다. 이 예제에는 자동 회전·무중단 자격증명 교체 자동화가 없습니다.</p>
+<h2 id="chapter-24">24. 실패한 배포와 롤백</h2>
+<p>ECS rolling 배포에는 circuit breaker와 rollback이 활성화되어 있습니다. 이전에 성공한 배포가 있어야 자동 복귀할 수 있고 최초 배포에는 되돌아갈 정상 버전이 없을 수 있습니다. <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html">ECS 배포 회로 차단기</a></p>
+<p>수동 앱 롤백은 ECR에 남아 있는 이전 정상 digest를 tfvars에 다시 넣고 plan/apply합니다. ECR 정리 정책을 추가할 때 롤백 후보 이미지를 함께 지우지 않도록 보존 규칙을 설계합니다. 이 예제는 ECR 이미지를 자동 삭제하지 않습니다.</p>
+<p>앱 롤백은 <strong>DB 스키마 롤백과 다릅니다.</strong> 새 Flyway 버전이 적용된 뒤 이전 코드가 실행되어도 되는지 검토해야 합니다. 먼저 새 컬럼을 추가하고 양쪽 코드가 읽을 수 있게 한 뒤, 나중에 불필요한 컬럼을 제거하는 식으로 단계적으로 바꿉니다. DB 복구가 필요하면 백업/PITR에서 새 인스턴스로 복구하는 계획과 데이터 손실 범위를 따로 다룹니다.</p>
+<h2 id="chapter-25">25. 기존 CloudFormation 환경을 Terraform으로 옮길 때</h2>
+<p>이 문서의 기본 경로는 새 환경 생성입니다. 이미 실제 서비스가 있다면 <code>terraform apply</code>로 똑같은 이름의 리소스를 다시 만드는 것이 이관이 아닙니다. Terraform import는 기존 AWS 리소스를 state의 주소에 연결하는 과정입니다. <a href="https://developer.hashicorp.com/terraform/language/import">Terraform import</a></p>
+<ol>
+<li>실제 CloudFormation 스택·리소스 ID·데이터 백업·현재 구성부터 기록합니다.</li>
+<li>각 리소스와 관계를 HCL로 정확히 작성합니다. 새 예제의 주소를 기존 ID에 무조건 끼워 맞추지 않습니다.</li>
+<li>해당 리소스의 CloudFormation 삭제·교체 시 Retain 정책을 준비하고 변경 계획을 검토합니다.</li>
+<li>유지한 실제 리소스를 기존 스택 관리에서 분리하는 절차를 수행합니다. 스택 전체를 무심코 삭제하지 않습니다.</li>
+<li>Terraform import 후 plan이 의도하지 않은 변경 없이 맞는지 확인합니다.</li>
+<li>그 다음 변경부터 Terraform만 소유권을 가지고 관리합니다.</li>
+</ol>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-comment"># 개념 예시. 실제 ID와 resource 정의를 함께 맞춰야 한다.</span>
+<span class="hljs-keyword">import</span> {
+  <span class="hljs-attr">to</span> = aws_ecr_repository.app
+  <span class="hljs-attr">id</span> = <span class="hljs-string">"실제_기존_ECR_저장소_이름"</span>
+}
+</code></pre>
+<p>import는 데이터를 새로 복사하거나 AWS 리소스를 재생성하는 기능이 아닙니다. 서비스 중단 없는 이관은 리소스별 별도 계획이 필요합니다. 새 환경을 사용한다면 기존 사용자 데이터 이관, 도메인 전환, TTL, 세션 만료와 롤백 기준도 따로 정합니다.</p>
+<h2 id="chapter-26">26. 운영과 비용 정리</h2>
+<p>CloudWatch에서 앱 오류·태스크 재시작·ALB 5xx·DB 연결 수와 저장량을 확인합니다. 예제에는 자동 스케일링, WAF, 운영 알람, ALB 액세스 로그 저장, CI/CD 파이프라인이 포함되어 있지 않습니다. 현재 부하를 측정한 후 단계적으로 추가합니다.</p>
+<p><strong>리소스 정리도 plan으로 먼저 확인합니다.</strong> 아래는 삭제 실행 명령이 아닌 검토용 명령입니다.</p>
+<pre data-language="bash"><code class="language-bash">terraform plan -destroy
+</code></pre>
+<p>현재 prevent_destroy 때문에 일부 삭제 계획은 차단됩니다. 실제 삭제가 필요하면 보존 대상·백업·최종 스냅샷 이름을 확정하고, RDS·ALB의 삭제 방지와 Terraform lifecycle 보호를 각각 이해한 상태에서 변경합니다. Terraform 설정 블록 자체를 제거하면 prevent_destroy만으로 보호되지 않는 경우도 있으므로 이 값을 백업으로 생각하면 안 됩니다.</p>
+<p>ECR force_delete=false는 이미지가 남은 저장소 삭제를 거부합니다. Secret은 30일 복구 유예를 사용합니다. RDS 스냅샷, state S3 버킷·버전, ECR 이미지, 남아 있는 NAT/EIP·CloudWatch 리소스의 비용도 별도로 확인합니다. 이 가이드 작성 중에는 어떤 destroy/apply도 AWS에 실행하지 않았습니다.</p>
+<h2 id="chapter-27">27. 한 번에 기억하는 실행 순서</h2>
+<pre data-language="plaintext"><code class="language-text">AWS 로그인·계정 확인
+→ 도메인 public zone 위임 확인
+→ state S3 버킷 준비
+→ 예제 복사 / backend.hcl·tfvars 작성
+→ init → fmt → validate → infra plan → apply
+→ 앱 Secret 값 등록
+→ VPC 관리 환경에서 campus_app 생성·비밀번호 설정
+→ 개발 PC에서 Docker 이미지 빌드·ECR push
+→ digest를 tfvars에 기록 / app_enabled=true
+→ app plan → apply
+→ ECS 실제 버전·ALB·HTTPS·DB·로그인·신청 확인
+→ 다음 배포는 새 이미지 digest로 반복
+</code></pre>
+<p>설명 중 실행하지 않은 계정별 항목: DNS 권한 위임, 계정 IAM 정책, 리전별 인스턴스/엔진 가용성, 실제 RDS TLS 연결, 도메인 HTTPS, 서비스 부하. 로컬 코드 검증 결과와 AWS 실제 배포 검증 결과를 구분합니다.</p>
+<h2 id="chapter-28">28. 예제 전체 코드와 파일별 해설</h2>
+<p>아래 코드는 문서 옆 <code>aws-terraform-example/</code> 파일과 같습니다. 환경별 입력과 외부 Secret·DB 계정 준비를 마친 다음 새 환경에서 적용하는 예제입니다. 아직 실제 AWS 계정의 plan/apply를 거친 배포 결과물이 아닙니다.</p>
+<h3 id="example-versions-tf">versions.tf</h3>
+<p>Terraform 버전 범위와 AWS provider 6.x, S3 backend를 지정합니다. backend의 실제 bucket/key는 init의 backend.hcl에서 받습니다. provider는 AWS_PROFILE 환경변수와 region 입력을 사용합니다.</p>
+<p><a href="aws-terraform-example/versions.tf">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">terraform</span> {
+  <span class="hljs-attr">required_version</span> = <span class="hljs-string">"&gt;= 1.10, &lt; 2.0"</span>
+  required_providers {
+    <span class="hljs-attr">aws</span> = {
+      <span class="hljs-attr">source</span>  = <span class="hljs-string">"hashicorp/aws"</span>
+      <span class="hljs-attr">version</span> = <span class="hljs-string">"~&gt; 6.0"</span>
+    }
+  }
+  backend <span class="hljs-string">"s3"</span> {}
+}
+<span class="hljs-keyword">provider</span> <span class="hljs-string">"aws"</span> {
+  <span class="hljs-attr">region</span> = var.region
+  default_tags {
+    <span class="hljs-attr">tags</span> = { <span class="hljs-attr">Project</span> = var.name, <span class="hljs-attr">ManagedBy</span> = <span class="hljs-string">"Terraform"</span> }
+  }
+}
+</code></pre>
+<h3 id="example-variables-tf">variables.tf</h3>
+<p>도메인·public hosted zone·DB 엔진 버전은 사용자가 채워야 합니다. app_enabled는 첫 인프라 생성과 앱 배포를 분리합니다. name 길이를 제한해 ALB와 DB 리소스 이름을 유효하게 유지합니다.</p>
+<p><a href="aws-terraform-example/variables.tf">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">variable</span> <span class="hljs-string">"region"</span> {
+  <span class="hljs-attr">type</span>    = string
+  <span class="hljs-attr">default</span> = <span class="hljs-string">"ap-northeast-2"</span>
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"name"</span> {
+  <span class="hljs-attr">type</span>    = string
+  <span class="hljs-attr">default</span> = <span class="hljs-string">"campus-tf"</span>
+  validation {
+    <span class="hljs-attr">condition</span>     = <span class="hljs-title function_">can</span>(<span class="hljs-title function_">regex</span>(<span class="hljs-string">"^[a-z][a-z0-9-]{2,19}$"</span>, var.name))
+    <span class="hljs-attr">error_message</span> = <span class="hljs-string">"Use 3-20 lowercase letters, numbers, hyphens; start with a letter."</span>
+  }
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"domain"</span> {
+  <span class="hljs-attr">type</span>        = string
+  <span class="hljs-attr">description</span> = <span class="hljs-string">"Owned hostname, e.g. campus.your-domain.com."</span>
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"zone_id"</span> {
+  <span class="hljs-attr">type</span>        = string
+  <span class="hljs-attr">description</span> = <span class="hljs-string">"Existing authoritative PUBLIC Route 53 hosted zone ID in this account."</span>
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"db_engine_version"</span> {
+  <span class="hljs-attr">type</span>        = string
+  <span class="hljs-attr">description</span> = <span class="hljs-string">"Exact PostgreSQL version available with db.t4g.micro in the selected region."</span>
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"db_multi_az"</span> {
+  <span class="hljs-attr">type</span>    = bool
+  <span class="hljs-attr">default</span> = <span class="hljs-literal">true</span>
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"app_enabled"</span> {
+  <span class="hljs-attr">type</span>    = bool
+  <span class="hljs-attr">default</span> = <span class="hljs-literal">false</span>
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"image_uri"</span> {
+  <span class="hljs-attr">type</span>    = string
+  <span class="hljs-attr">default</span> = <span class="hljs-string">""</span>
+}
+<span class="hljs-keyword">variable</span> <span class="hljs-string">"desired_count"</span> {
+  <span class="hljs-attr">type</span>    = number
+  <span class="hljs-attr">default</span> = <span class="hljs-number">2</span>
+  validation {
+    <span class="hljs-attr">condition</span>     = var.desired_count &gt;= <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-title function_">floor</span>(var.desired_count) == var.desired_count
+    <span class="hljs-attr">error_message</span> = <span class="hljs-string">"desired_count must be a positive integer."</span>
+  }
+}
+</code></pre>
+<h3 id="example-network-tf">network.tf</h3>
+<p>가용 영역 2개와 public/app/db 서브넷 6개를 생성합니다. 앱만 NAT를 통한 기본 경로를 가지고 DB는 VPC 내부 경로만 사용합니다. SG 규칙을 별도 리소스로 선언해 ALB↔app↔DB 참조를 명확히 합니다.</p>
+<p><a href="aws-terraform-example/network.tf">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">data</span> <span class="hljs-string">"aws_availability_zones"</span> <span class="hljs-string">"available"</span> { <span class="hljs-attr">state</span> = <span class="hljs-string">"available"</span> }
+<span class="hljs-keyword">locals</span> {
+  <span class="hljs-attr">azs</span> = <span class="hljs-title function_">slice</span>(<span class="hljs-keyword">data</span>.aws_availability_zones.available.names, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>)
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc"</span> <span class="hljs-string">"main"</span> {
+  <span class="hljs-attr">cidr_block</span>           = <span class="hljs-string">"10.42.0.0/16"</span>
+  <span class="hljs-attr">enable_dns_support</span>   = <span class="hljs-literal">true</span>
+  <span class="hljs-attr">enable_dns_hostnames</span> = <span class="hljs-literal">true</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_internet_gateway"</span> <span class="hljs-string">"main"</span> { <span class="hljs-attr">vpc_id</span> = aws_vpc.main.id }
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_subnet"</span> <span class="hljs-string">"public"</span> {
+  <span class="hljs-attr">count</span>             = <span class="hljs-number">2</span>
+  <span class="hljs-attr">vpc_id</span>            = aws_vpc.main.id
+  <span class="hljs-attr">availability_zone</span> = local.azs[<span class="hljs-keyword">count</span>.index]
+  <span class="hljs-attr">cidr_block</span>        = <span class="hljs-title function_">cidrsubnet</span>(aws_vpc.main.cidr_block, <span class="hljs-number">8</span>, <span class="hljs-keyword">count</span>.index)
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_subnet"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">count</span>             = <span class="hljs-number">2</span>
+  <span class="hljs-attr">vpc_id</span>            = aws_vpc.main.id
+  <span class="hljs-attr">availability_zone</span> = local.azs[<span class="hljs-keyword">count</span>.index]
+  <span class="hljs-attr">cidr_block</span>        = <span class="hljs-title function_">cidrsubnet</span>(aws_vpc.main.cidr_block, <span class="hljs-number">8</span>, <span class="hljs-number">10</span> + <span class="hljs-keyword">count</span>.index)
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_subnet"</span> <span class="hljs-string">"db"</span> {
+  <span class="hljs-attr">count</span>             = <span class="hljs-number">2</span>
+  <span class="hljs-attr">vpc_id</span>            = aws_vpc.main.id
+  <span class="hljs-attr">availability_zone</span> = local.azs[<span class="hljs-keyword">count</span>.index]
+  <span class="hljs-attr">cidr_block</span>        = <span class="hljs-title function_">cidrsubnet</span>(aws_vpc.main.cidr_block, <span class="hljs-number">8</span>, <span class="hljs-number">20</span> + <span class="hljs-keyword">count</span>.index)
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route_table"</span> <span class="hljs-string">"public"</span> {
+  <span class="hljs-attr">vpc_id</span> = aws_vpc.main.id
+  route {
+    <span class="hljs-attr">cidr_block</span> = <span class="hljs-string">"0.0.0.0/0"</span>
+    <span class="hljs-attr">gateway_id</span> = aws_internet_gateway.main.id
+  }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route_table_association"</span> <span class="hljs-string">"public"</span> {
+  <span class="hljs-attr">count</span>          = <span class="hljs-number">2</span>
+  <span class="hljs-attr">subnet_id</span>      = aws_subnet.public[<span class="hljs-keyword">count</span>.index].id
+  <span class="hljs-attr">route_table_id</span> = aws_route_table.public.id
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_eip"</span> <span class="hljs-string">"nat"</span> {
+  <span class="hljs-attr">count</span>  = <span class="hljs-number">2</span>
+  <span class="hljs-attr">domain</span> = <span class="hljs-string">"vpc"</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_nat_gateway"</span> <span class="hljs-string">"main"</span> {
+  <span class="hljs-attr">count</span>         = <span class="hljs-number">2</span>
+  <span class="hljs-attr">subnet_id</span>     = aws_subnet.public[<span class="hljs-keyword">count</span>.index].id
+  <span class="hljs-attr">allocation_id</span> = aws_eip.nat[<span class="hljs-keyword">count</span>.index].id
+  <span class="hljs-attr">depends_on</span>    = [aws_internet_gateway.main]
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route_table"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">count</span>  = <span class="hljs-number">2</span>
+  <span class="hljs-attr">vpc_id</span> = aws_vpc.main.id
+  route {
+    <span class="hljs-attr">cidr_block</span>     = <span class="hljs-string">"0.0.0.0/0"</span>
+    <span class="hljs-attr">nat_gateway_id</span> = aws_nat_gateway.main[<span class="hljs-keyword">count</span>.index].id
+  }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route_table_association"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">count</span>          = <span class="hljs-number">2</span>
+  <span class="hljs-attr">subnet_id</span>      = aws_subnet.app[<span class="hljs-keyword">count</span>.index].id
+  <span class="hljs-attr">route_table_id</span> = aws_route_table.app[<span class="hljs-keyword">count</span>.index].id
+}
+<span class="hljs-comment"># DB 서브넷에는 인터넷 기본 경로를 넣지 않는다.</span>
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route_table"</span> <span class="hljs-string">"db"</span> { <span class="hljs-attr">vpc_id</span> = aws_vpc.main.id }
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route_table_association"</span> <span class="hljs-string">"db"</span> {
+  <span class="hljs-attr">count</span>          = <span class="hljs-number">2</span>
+  <span class="hljs-attr">subnet_id</span>      = aws_subnet.db[<span class="hljs-keyword">count</span>.index].id
+  <span class="hljs-attr">route_table_id</span> = aws_route_table.db.id
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_security_group"</span> <span class="hljs-string">"alb"</span> {
+  <span class="hljs-attr">name_prefix</span> = <span class="hljs-string">"${var.name}-alb-"</span>
+  <span class="hljs-attr">vpc_id</span>      = aws_vpc.main.id
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_security_group"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">name_prefix</span> = <span class="hljs-string">"${var.name}-app-"</span>
+  <span class="hljs-attr">vpc_id</span>      = aws_vpc.main.id
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_security_group"</span> <span class="hljs-string">"db"</span> {
+  <span class="hljs-attr">name_prefix</span> = <span class="hljs-string">"${var.name}-db-"</span>
+  <span class="hljs-attr">vpc_id</span>      = aws_vpc.main.id
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc_security_group_ingress_rule"</span> <span class="hljs-string">"http"</span> {
+  <span class="hljs-attr">security_group_id</span> = aws_security_group.alb.id
+  <span class="hljs-attr">cidr_ipv4</span>         = <span class="hljs-string">"0.0.0.0/0"</span>
+  <span class="hljs-attr">ip_protocol</span>       = <span class="hljs-string">"tcp"</span>
+  <span class="hljs-attr">from_port</span>         = <span class="hljs-number">80</span>
+  <span class="hljs-attr">to_port</span>           = <span class="hljs-number">80</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc_security_group_ingress_rule"</span> <span class="hljs-string">"https"</span> {
+  <span class="hljs-attr">security_group_id</span> = aws_security_group.alb.id
+  <span class="hljs-attr">cidr_ipv4</span>         = <span class="hljs-string">"0.0.0.0/0"</span>
+  <span class="hljs-attr">ip_protocol</span>       = <span class="hljs-string">"tcp"</span>
+  <span class="hljs-attr">from_port</span>         = <span class="hljs-number">443</span>
+  <span class="hljs-attr">to_port</span>           = <span class="hljs-number">443</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc_security_group_egress_rule"</span> <span class="hljs-string">"alb_app"</span> {
+  <span class="hljs-attr">security_group_id</span>            = aws_security_group.alb.id
+  <span class="hljs-attr">referenced_security_group_id</span> = aws_security_group.app.id
+  <span class="hljs-attr">ip_protocol</span>                  = <span class="hljs-string">"tcp"</span>
+  <span class="hljs-attr">from_port</span>                    = <span class="hljs-number">8080</span>
+  <span class="hljs-attr">to_port</span>                      = <span class="hljs-number">8080</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc_security_group_ingress_rule"</span> <span class="hljs-string">"app_alb"</span> {
+  <span class="hljs-attr">security_group_id</span>            = aws_security_group.app.id
+  <span class="hljs-attr">referenced_security_group_id</span> = aws_security_group.alb.id
+  <span class="hljs-attr">ip_protocol</span>                  = <span class="hljs-string">"tcp"</span>
+  <span class="hljs-attr">from_port</span>                    = <span class="hljs-number">8080</span>
+  <span class="hljs-attr">to_port</span>                      = <span class="hljs-number">8080</span>
+}
+<span class="hljs-comment"># ECR·Logs·Secrets Manager 등 AWS API로의 HTTPS 통신</span>
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc_security_group_egress_rule"</span> <span class="hljs-string">"app_https"</span> {
+  <span class="hljs-attr">security_group_id</span> = aws_security_group.app.id
+  <span class="hljs-attr">cidr_ipv4</span>         = <span class="hljs-string">"0.0.0.0/0"</span>
+  <span class="hljs-attr">ip_protocol</span>       = <span class="hljs-string">"tcp"</span>
+  <span class="hljs-attr">from_port</span>         = <span class="hljs-number">443</span>
+  <span class="hljs-attr">to_port</span>           = <span class="hljs-number">443</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc_security_group_egress_rule"</span> <span class="hljs-string">"app_db"</span> {
+  <span class="hljs-attr">security_group_id</span>            = aws_security_group.app.id
+  <span class="hljs-attr">referenced_security_group_id</span> = aws_security_group.db.id
+  <span class="hljs-attr">ip_protocol</span>                  = <span class="hljs-string">"tcp"</span>
+  <span class="hljs-attr">from_port</span>                    = <span class="hljs-number">5432</span>
+  <span class="hljs-attr">to_port</span>                      = <span class="hljs-number">5432</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_vpc_security_group_ingress_rule"</span> <span class="hljs-string">"db_app"</span> {
+  <span class="hljs-attr">security_group_id</span>            = aws_security_group.db.id
+  <span class="hljs-attr">referenced_security_group_id</span> = aws_security_group.app.id
+  <span class="hljs-attr">ip_protocol</span>                  = <span class="hljs-string">"tcp"</span>
+  <span class="hljs-attr">from_port</span>                    = <span class="hljs-number">5432</span>
+  <span class="hljs-attr">to_port</span>                      = <span class="hljs-number">5432</span>
+}
+</code></pre>
+<h3 id="example-data-tf">data.tf</h3>
+<p>ECR·로그 그룹·RDS·앱 Secret의 이름을 생성합니다. RDS 관리자 비밀번호는 AWS에서 관리하고 앱 Secret 값은 외부에서 넣습니다. prevent_destroy는 의도치 않은 삭제 계획을 막지만 백업을 대체하지 않습니다.</p>
+<p><a href="aws-terraform-example/data.tf">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecr_repository"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">name</span>                 = var.name
+  <span class="hljs-attr">image_tag_mutability</span> = <span class="hljs-string">"IMMUTABLE"</span>
+  <span class="hljs-attr">force_delete</span>         = <span class="hljs-literal">false</span>
+  image_scanning_configuration { <span class="hljs-attr">scan_on_push</span> = <span class="hljs-literal">true</span> }
+  encryption_configuration { <span class="hljs-attr">encryption_type</span> = <span class="hljs-string">"AES256"</span> }
+  <span class="hljs-keyword">lifecycle</span> { <span class="hljs-attr">prevent_destroy</span> = <span class="hljs-literal">true</span> }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_cloudwatch_log_group"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">name</span>              = <span class="hljs-string">"/ecs/${var.name}"</span>
+  <span class="hljs-attr">retention_in_days</span> = <span class="hljs-number">30</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_db_subnet_group"</span> <span class="hljs-string">"main"</span> {
+  <span class="hljs-attr">name</span>       = <span class="hljs-string">"${var.name}-db"</span>
+  <span class="hljs-attr">subnet_ids</span> = aws_subnet.db[*].id
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_db_instance"</span> <span class="hljs-string">"main"</span> {
+  <span class="hljs-attr">identifier</span>                  = <span class="hljs-string">"${var.name}-db"</span>
+  <span class="hljs-attr">engine</span>                      = <span class="hljs-string">"postgres"</span>
+  <span class="hljs-attr">engine_version</span>              = var.db_engine_version
+  <span class="hljs-attr">instance_class</span>              = <span class="hljs-string">"db.t4g.micro"</span>
+  <span class="hljs-attr">db_name</span>                     = <span class="hljs-string">"campus"</span>
+  <span class="hljs-attr">username</span>                    = <span class="hljs-string">"campus_admin"</span>
+  <span class="hljs-attr">manage_master_user_password</span> = <span class="hljs-literal">true</span>
+  <span class="hljs-attr">allocated_storage</span>           = <span class="hljs-number">20</span>
+  <span class="hljs-attr">max_allocated_storage</span>       = <span class="hljs-number">100</span>
+  <span class="hljs-attr">storage_type</span>                = <span class="hljs-string">"gp3"</span>
+  <span class="hljs-attr">storage_encrypted</span>           = <span class="hljs-literal">true</span>
+  <span class="hljs-attr">db_subnet_group_name</span>        = aws_db_subnet_group.main.name
+  <span class="hljs-attr">vpc_security_group_ids</span>      = [aws_security_group.db.id]
+  <span class="hljs-attr">publicly_accessible</span>         = <span class="hljs-literal">false</span>
+  <span class="hljs-attr">multi_az</span>                    = var.db_multi_az
+  <span class="hljs-attr">backup_retention_period</span>     = <span class="hljs-number">7</span>
+  <span class="hljs-attr">deletion_protection</span>         = <span class="hljs-literal">true</span>
+  <span class="hljs-attr">skip_final_snapshot</span>         = <span class="hljs-literal">false</span>
+  <span class="hljs-attr">final_snapshot_identifier</span>   = <span class="hljs-string">"${var.name}-final"</span>
+  <span class="hljs-attr">auto_minor_version_upgrade</span>  = <span class="hljs-literal">true</span>
+  <span class="hljs-attr">copy_tags_to_snapshot</span>       = <span class="hljs-literal">true</span>
+  <span class="hljs-attr">apply_immediately</span>           = <span class="hljs-literal">false</span>
+  <span class="hljs-keyword">lifecycle</span> { <span class="hljs-attr">prevent_destroy</span> = <span class="hljs-literal">true</span> }
+}
+<span class="hljs-comment"># 비밀정보의 이름만 생성. 실제 값은 나중에 Secrets Manager 콘솔에서 저장한다.</span>
+<span class="hljs-comment"># secret_string이나 비밀번호 data source를 사용하지 않아 실제 값을 state로 읽지 않는다.</span>
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_secretsmanager_secret"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">name</span>                    = <span class="hljs-string">"${var.name}/database"</span>
+  <span class="hljs-attr">recovery_window_in_days</span> = <span class="hljs-number">30</span>
+  <span class="hljs-keyword">lifecycle</span> { <span class="hljs-attr">prevent_destroy</span> = <span class="hljs-literal">true</span> }
+}
+</code></pre>
+<h3 id="example-web-tf">web.tf</h3>
+<p>DNS 검증용 CNAME과 실제 서비스 A Alias는 별개입니다. certificate_validation 완료 후 HTTPS Listener를 연결하고 HTTP는 리다이렉트합니다. Fargate용 타깃 그룹은 instance가 아니라 ip 타입입니다.</p>
+<p><a href="aws-terraform-example/web.tf">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_acm_certificate"</span> <span class="hljs-string">"site"</span> {
+  <span class="hljs-attr">domain_name</span>       = var.domain
+  <span class="hljs-attr">validation_method</span> = <span class="hljs-string">"DNS"</span>
+  <span class="hljs-keyword">lifecycle</span> { <span class="hljs-attr">create_before_destroy</span> = <span class="hljs-literal">true</span> }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route53_record"</span> <span class="hljs-string">"validation"</span> {
+  <span class="hljs-attr">for_each</span> = {
+    for d in aws_acm_certificate.site.domain_validation_options : d.<span class="hljs-attr">domain_name</span> =&gt; {
+      <span class="hljs-attr">name</span>  = d.resource_record_name
+      <span class="hljs-attr">type</span>  = d.resource_record_type
+      <span class="hljs-attr">value</span> = d.resource_record_value
+    }
+  }
+  <span class="hljs-attr">zone_id</span> = var.zone_id
+  <span class="hljs-attr">name</span>    = each.value.name
+  <span class="hljs-attr">type</span>    = each.value.type
+  <span class="hljs-attr">ttl</span>     = <span class="hljs-number">60</span>
+  <span class="hljs-attr">records</span> = [each.value.value]
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_acm_certificate_validation"</span> <span class="hljs-string">"site"</span> {
+  <span class="hljs-attr">certificate_arn</span>         = aws_acm_certificate.site.arn
+  <span class="hljs-attr">validation_record_fqdns</span> = [for r in aws_route53_record.validation : r.fqdn]
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_lb"</span> <span class="hljs-string">"main"</span> {
+  <span class="hljs-attr">name</span>                       = <span class="hljs-string">"${var.name}-alb"</span>
+  <span class="hljs-attr">load_balancer_type</span>         = <span class="hljs-string">"application"</span>
+  <span class="hljs-attr">internal</span>                   = <span class="hljs-literal">false</span>
+  <span class="hljs-attr">subnets</span>                    = aws_subnet.public[*].id
+  <span class="hljs-attr">security_groups</span>            = [aws_security_group.alb.id]
+  <span class="hljs-attr">enable_deletion_protection</span> = <span class="hljs-literal">true</span>
+  <span class="hljs-attr">depends_on</span>                 = [aws_internet_gateway.main]
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_lb_target_group"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">name</span>                 = <span class="hljs-string">"${var.name}-app"</span>
+  <span class="hljs-attr">vpc_id</span>               = aws_vpc.main.id
+  <span class="hljs-attr">target_type</span>          = <span class="hljs-string">"ip"</span>
+  <span class="hljs-attr">port</span>                 = <span class="hljs-number">8080</span>
+  <span class="hljs-attr">protocol</span>             = <span class="hljs-string">"HTTP"</span>
+  <span class="hljs-attr">deregistration_delay</span> = <span class="hljs-number">60</span>
+  health_check {
+    <span class="hljs-attr">path</span>                = <span class="hljs-string">"/actuator/health/readiness"</span>
+    <span class="hljs-attr">matcher</span>             = <span class="hljs-string">"200"</span>
+    <span class="hljs-attr">interval</span>            = <span class="hljs-number">30</span>
+    <span class="hljs-attr">timeout</span>             = <span class="hljs-number">5</span>
+    <span class="hljs-attr">healthy_threshold</span>   = <span class="hljs-number">2</span>
+    <span class="hljs-attr">unhealthy_threshold</span> = <span class="hljs-number">3</span>
+  }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_lb_listener"</span> <span class="hljs-string">"http"</span> {
+  <span class="hljs-attr">load_balancer_arn</span> = aws_lb.main.arn
+  <span class="hljs-attr">port</span>              = <span class="hljs-number">80</span>
+  <span class="hljs-attr">protocol</span>          = <span class="hljs-string">"HTTP"</span>
+  default_action {
+    <span class="hljs-attr">type</span> = <span class="hljs-string">"redirect"</span>
+    redirect {
+      <span class="hljs-attr">port</span>        = <span class="hljs-string">"443"</span>
+      <span class="hljs-attr">protocol</span>    = <span class="hljs-string">"HTTPS"</span>
+      <span class="hljs-attr">status_code</span> = <span class="hljs-string">"HTTP_301"</span>
+    }
+  }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_lb_listener"</span> <span class="hljs-string">"https"</span> {
+  <span class="hljs-attr">load_balancer_arn</span> = aws_lb.main.arn
+  <span class="hljs-attr">port</span>              = <span class="hljs-number">443</span>
+  <span class="hljs-attr">protocol</span>          = <span class="hljs-string">"HTTPS"</span>
+  <span class="hljs-attr">certificate_arn</span>   = aws_acm_certificate_validation.site.certificate_arn
+  <span class="hljs-attr">ssl_policy</span>        = <span class="hljs-string">"ELBSecurityPolicy-TLS13-1-2-2021-06"</span>
+  default_action {
+    <span class="hljs-attr">type</span>             = <span class="hljs-string">"forward"</span>
+    <span class="hljs-attr">target_group_arn</span> = aws_lb_target_group.app.arn
+  }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_route53_record"</span> <span class="hljs-string">"site"</span> {
+  <span class="hljs-attr">zone_id</span> = var.zone_id
+  <span class="hljs-attr">name</span>    = var.domain
+  <span class="hljs-attr">type</span>    = <span class="hljs-string">"A"</span>
+  alias {
+    <span class="hljs-attr">name</span>                   = aws_lb.main.dns_name
+    <span class="hljs-attr">zone_id</span>                = aws_lb.main.zone_id
+    <span class="hljs-attr">evaluate_target_health</span> = <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<h3 id="example-ecs-tf">ecs.tf</h3>
+<p>Execution Role과 Task Role을 분리합니다. JSON 환경변수·Secret 주입·awslogs 설정은 jsonencode로 Task Definition에 넣습니다. 이미지 digest 준비 여부를 precondition으로 확인하고 app_enabled가 true일 때만 태스크·서비스를 만듭니다.</p>
+<p><a href="aws-terraform-example/ecs.tf">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">data</span> <span class="hljs-string">"aws_partition"</span> <span class="hljs-string">"current"</span> {}
+<span class="hljs-keyword">data</span> <span class="hljs-string">"aws_iam_policy_document"</span> <span class="hljs-string">"ecs_assume"</span> {
+  statement {
+    <span class="hljs-attr">actions</span> = [<span class="hljs-string">"sts:AssumeRole"</span>]
+    principals {
+      <span class="hljs-attr">type</span>        = <span class="hljs-string">"Service"</span>
+      <span class="hljs-attr">identifiers</span> = [<span class="hljs-string">"ecs-tasks.amazonaws.com"</span>]
+    }
+  }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_iam_role"</span> <span class="hljs-string">"execution"</span> {
+  <span class="hljs-attr">name</span>               = <span class="hljs-string">"${var.name}-execution"</span>
+  <span class="hljs-attr">assume_role_policy</span> = <span class="hljs-keyword">data</span>.aws_iam_policy_document.ecs_assume.json
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_iam_role_policy_attachment"</span> <span class="hljs-string">"execution"</span> {
+  <span class="hljs-attr">role</span>       = aws_iam_role.execution.name
+  <span class="hljs-attr">policy_arn</span> = <span class="hljs-string">"arn:${data.aws_partition.current.partition}:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"</span>
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_iam_role_policy"</span> <span class="hljs-string">"secret"</span> {
+  <span class="hljs-attr">name</span> = <span class="hljs-string">"read-app-secret"</span>
+  <span class="hljs-attr">role</span> = aws_iam_role.execution.id
+  <span class="hljs-attr">policy</span> = <span class="hljs-title function_">jsonencode</span>({
+    <span class="hljs-attr">Version</span> = <span class="hljs-string">"2012-10-17"</span>
+    <span class="hljs-attr">Statement</span> = [{
+      <span class="hljs-attr">Effect</span>   = <span class="hljs-string">"Allow"</span>
+      <span class="hljs-attr">Action</span>   = [<span class="hljs-string">"secretsmanager:GetSecretValue"</span>]
+      <span class="hljs-attr">Resource</span> = aws_secretsmanager_secret.app.arn
+    }]
+  })
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_iam_role"</span> <span class="hljs-string">"task"</span> {
+  <span class="hljs-attr">name</span>               = <span class="hljs-string">"${var.name}-task"</span>
+  <span class="hljs-attr">assume_role_policy</span> = <span class="hljs-keyword">data</span>.aws_iam_policy_document.ecs_assume.json
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecs_cluster"</span> <span class="hljs-string">"main"</span> { <span class="hljs-attr">name</span> = var.name }
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecs_task_definition"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">count</span>                    = var.app_enabled ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>
+  <span class="hljs-attr">family</span>                   = var.name
+  <span class="hljs-attr">network_mode</span>             = <span class="hljs-string">"awsvpc"</span>
+  <span class="hljs-attr">requires_compatibilities</span> = [<span class="hljs-string">"FARGATE"</span>]
+  <span class="hljs-attr">cpu</span>                      = <span class="hljs-string">"512"</span>
+  <span class="hljs-attr">memory</span>                   = <span class="hljs-string">"1024"</span>
+  <span class="hljs-attr">execution_role_arn</span>       = aws_iam_role.execution.arn
+  <span class="hljs-attr">task_role_arn</span>            = aws_iam_role.task.arn
+  runtime_platform {
+    <span class="hljs-attr">cpu_architecture</span>        = <span class="hljs-string">"X86_64"</span>
+    <span class="hljs-attr">operating_system_family</span> = <span class="hljs-string">"LINUX"</span>
+  }
+  <span class="hljs-attr">container_definitions</span> = <span class="hljs-title function_">jsonencode</span>([{
+    <span class="hljs-attr">name</span>         = <span class="hljs-string">"campus"</span>
+    <span class="hljs-attr">image</span>        = var.image_uri
+    <span class="hljs-attr">essential</span>    = <span class="hljs-literal">true</span>
+    <span class="hljs-attr">user</span>         = <span class="hljs-string">"10001:10001"</span>
+    <span class="hljs-attr">stopTimeout</span>  = <span class="hljs-number">60</span>
+    <span class="hljs-attr">portMappings</span> = [{ <span class="hljs-attr">containerPort</span> = <span class="hljs-number">8080</span>, <span class="hljs-attr">protocol</span> = <span class="hljs-string">"tcp"</span> }]
+    <span class="hljs-attr">environment</span> = [
+      { <span class="hljs-attr">name</span> = <span class="hljs-string">"SPRING_PROFILES_ACTIVE"</span>, <span class="hljs-attr">value</span> = <span class="hljs-string">"prod"</span> },
+      { <span class="hljs-attr">name</span> = <span class="hljs-string">"DB_POOL_SIZE"</span>, <span class="hljs-attr">value</span> = <span class="hljs-string">"10"</span> },
+      {
+        <span class="hljs-attr">name</span>  = <span class="hljs-string">"DB_URL"</span>
+        <span class="hljs-attr">value</span> = <span class="hljs-string">"jdbc:postgresql://${aws_db_instance.main.address}:5432/campus?sslmode=verify-full&amp;sslrootcert=/app/certs/global-bundle.pem"</span>
+      }
+    ]
+    <span class="hljs-attr">secrets</span> = [
+      { <span class="hljs-attr">name</span> = <span class="hljs-string">"DB_USERNAME"</span>, <span class="hljs-attr">valueFrom</span> = <span class="hljs-string">"${aws_secretsmanager_secret.app.arn}:username::"</span> },
+      { <span class="hljs-attr">name</span> = <span class="hljs-string">"DB_PASSWORD"</span>, <span class="hljs-attr">valueFrom</span> = <span class="hljs-string">"${aws_secretsmanager_secret.app.arn}:password::"</span> }
+    ]
+    <span class="hljs-attr">logConfiguration</span> = {
+      <span class="hljs-attr">logDriver</span> = <span class="hljs-string">"awslogs"</span>
+      <span class="hljs-attr">options</span> = {
+        <span class="hljs-attr">awslogs-group</span>         = aws_cloudwatch_log_group.app.name
+        <span class="hljs-attr">awslogs-region</span>        = var.region
+        <span class="hljs-attr">awslogs-stream-prefix</span> = <span class="hljs-string">"campus"</span>
+      }
+    }
+  }])
+  <span class="hljs-keyword">lifecycle</span> {
+    <span class="hljs-keyword">precondition</span> {
+      <span class="hljs-attr">condition</span>     = <span class="hljs-title function_">startswith</span>(var.image_uri, <span class="hljs-string">"${aws_ecr_repository.app.repository_url}@sha256:"</span>)
+      <span class="hljs-attr">error_message</span> = <span class="hljs-string">"Enable the app only after pushing its ECR image; use its sha256 digest URI."</span>
+    }
+  }
+}
+<span class="hljs-keyword">resource</span> <span class="hljs-string">"aws_ecs_service"</span> <span class="hljs-string">"app"</span> {
+  <span class="hljs-attr">count</span>                              = var.app_enabled ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>
+  <span class="hljs-attr">name</span>                               = <span class="hljs-string">"${var.name}-service"</span>
+  <span class="hljs-attr">cluster</span>                            = aws_ecs_cluster.main.id
+  <span class="hljs-attr">task_definition</span>                    = aws_ecs_task_definition.app[<span class="hljs-number">0</span>].arn
+  <span class="hljs-attr">launch_type</span>                        = <span class="hljs-string">"FARGATE"</span>
+  <span class="hljs-attr">platform_version</span>                   = <span class="hljs-string">"1.4.0"</span>
+  <span class="hljs-attr">desired_count</span>                      = var.desired_count
+  <span class="hljs-attr">health_check_grace_period_seconds</span>  = <span class="hljs-number">180</span>
+  <span class="hljs-attr">deployment_minimum_healthy_percent</span> = <span class="hljs-number">100</span>
+  <span class="hljs-attr">deployment_maximum_percent</span>         = <span class="hljs-number">200</span>
+  <span class="hljs-attr">wait_for_steady_state</span>              = <span class="hljs-literal">true</span>
+  deployment_circuit_breaker {
+    <span class="hljs-attr">enable</span>   = <span class="hljs-literal">true</span>
+    <span class="hljs-attr">rollback</span> = <span class="hljs-literal">true</span>
+  }
+  network_configuration {
+    <span class="hljs-attr">subnets</span>          = aws_subnet.app[*].id
+    <span class="hljs-attr">security_groups</span>  = [aws_security_group.app.id]
+    <span class="hljs-attr">assign_public_ip</span> = <span class="hljs-literal">false</span>
+  }
+  load_balancer {
+    <span class="hljs-attr">target_group_arn</span> = aws_lb_target_group.app.arn
+    <span class="hljs-attr">container_name</span>   = <span class="hljs-string">"campus"</span>
+    <span class="hljs-attr">container_port</span>   = <span class="hljs-number">8080</span>
+  }
+  <span class="hljs-attr">depends_on</span> = [
+    aws_lb_listener.https,
+    aws_route_table_association.app,
+    aws_iam_role_policy_attachment.execution,
+    aws_iam_role_policy.secret,
+    aws_vpc_security_group_ingress_rule.app_alb,
+    aws_vpc_security_group_ingress_rule.db_app,
+    aws_vpc_security_group_egress_rule.app_https,
+    aws_vpc_security_group_egress_rule.app_db
+  ]
+}
+</code></pre>
+<h3 id="example-outputs-tf">outputs.tf</h3>
+<p>배포 후 필요한 주소와 리소스 ID를 보여 줍니다. 비밀번호 자체를 출력하지 않습니다. ARN은 비밀 값 그 자체는 아니지만 계정 인프라 식별 정보이므로 공개 저장소에 불필요하게 노출하지 않습니다.</p>
+<p><a href="aws-terraform-example/outputs.tf">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-keyword">output</span> <span class="hljs-string">"repository_url"</span> { <span class="hljs-attr">value</span> = aws_ecr_repository.app.repository_url }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"repository_name"</span> { <span class="hljs-attr">value</span> = aws_ecr_repository.app.name }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"cluster_name"</span> { <span class="hljs-attr">value</span> = aws_ecs_cluster.main.name }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"service_name"</span> { <span class="hljs-attr">value</span> = var.app_enabled ? aws_ecs_service.app[<span class="hljs-number">0</span>].name : <span class="hljs-literal">null</span> }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"database_endpoint"</span> { <span class="hljs-attr">value</span> = aws_db_instance.main.address }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"admin_secret_arn"</span> { <span class="hljs-attr">value</span> = aws_db_instance.main.master_user_secret[<span class="hljs-number">0</span>].secret_arn }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"app_secret_arn"</span> { <span class="hljs-attr">value</span> = aws_secretsmanager_secret.app.arn }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"vpc_id"</span> { <span class="hljs-attr">value</span> = aws_vpc.main.id }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"app_subnet_ids"</span> { <span class="hljs-attr">value</span> = aws_subnet.app[*].id }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"app_security_group_id"</span> { <span class="hljs-attr">value</span> = aws_security_group.app.id }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"log_group"</span> { <span class="hljs-attr">value</span> = aws_cloudwatch_log_group.app.name }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"target_group_arn"</span> { <span class="hljs-attr">value</span> = aws_lb_target_group.app.arn }
+<span class="hljs-keyword">output</span> <span class="hljs-string">"site_url"</span> { <span class="hljs-attr">value</span> = <span class="hljs-string">"https://${var.domain}"</span> }
+</code></pre>
+<h3 id="example-backend-hcl-example">backend.hcl.example</h3>
+<p>실제 state 버킷 이름으로 변경하고 backend.hcl로 저장합니다. AWS 비밀 키를 넣는 파일이 아닙니다. S3 native locking을 사용하므로 이 예제에서는 DynamoDB 테이블이 필요하지 않습니다.</p>
+<p><a href="aws-terraform-example/backend.hcl.example">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">bucket</span>       = <span class="hljs-string">"REPLACE_WITH_YOUR_STATE_BUCKET"</span>
+<span class="hljs-attr">key</span>          = <span class="hljs-string">"campus/prod/terraform.tfstate"</span>
+<span class="hljs-attr">region</span>       = <span class="hljs-string">"ap-northeast-2"</span>
+<span class="hljs-attr">encrypt</span>      = <span class="hljs-literal">true</span>
+<span class="hljs-attr">use_lockfile</span> = <span class="hljs-literal">true</span>
+</code></pre>
+<h3 id="example-terraform-tfvars-example">terraform.tfvars.example</h3>
+<p>REPLACE와 예시 도메인을 실제 계정 값으로 바꿉니다. first apply에서는 app_enabled=false이며 다음 배포부터 true와 실제 이미지 digest를 파일에 유지합니다.</p>
+<p><a href="aws-terraform-example/terraform.tfvars.example">파일 열기</a></p>
+<pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">region</span>            = <span class="hljs-string">"ap-northeast-2"</span>
+<span class="hljs-attr">name</span>              = <span class="hljs-string">"campus-tf"</span>
+<span class="hljs-attr">domain</span>            = <span class="hljs-string">"campus.YOUR-DOMAIN.com"</span>
+<span class="hljs-attr">zone_id</span>           = <span class="hljs-string">"REPLACE_WITH_PUBLIC_ROUTE53_ZONE_ID"</span>
+<span class="hljs-attr">db_engine_version</span> = <span class="hljs-string">"REPLACE_WITH_SUPPORTED_POSTGRES_VERSION"</span>
+<span class="hljs-attr">db_multi_az</span>       = <span class="hljs-literal">true</span>
+<span class="hljs-comment"># 첫 인프라 생성 때만 false. 서비스 가동 후 false로 되돌리면 삭제 계획이 된다.</span>
+<span class="hljs-attr">app_enabled</span>       = <span class="hljs-literal">false</span>
+<span class="hljs-attr">image_uri</span>         = <span class="hljs-string">""</span>
+<span class="hljs-attr">desired_count</span>     = <span class="hljs-number">2</span>
+</code></pre>
+<h3 id="example--gitignore">.gitignore</h3>
+<p>로컬 provider 설치·state·plan·실제 입력 파일은 Git에서 제외합니다. provider 버전 고정용 .terraform.lock.hcl은 제외하지 않습니다.</p>
+<p><a href="aws-terraform-example/.gitignore">파일 열기</a></p>
+<pre data-language="plaintext"><code class="language-plaintext">.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+terraform.tfvars
+backend.hcl
+crash.log
+# .terraform.lock.hcl은 provider 버전 고정을 위해 Git에 포함한다.
+</code></pre>
+<h2 id="chapter-29">29. 검증 범위와 공식 참고 자료</h2>
+<p>검증 완료: Terraform 1.14.0 + AWS provider 6.68.0에서 init -backend=false, validate, fmt -check가 통과했습니다. backend=false로 state 버킷에 연결하지 않았고 AWS plan/apply는 실행하지 않았습니다. 예제 파일과 HTML 코드의 일치, 문서 목차·모바일 배치는 별도로 확인했습니다. 실제 계정 배포 성공을 보증하는 결과는 아닙니다.</p>
+<p>Terraform 예제 전체를 <a href="aws-terraform-example.zip">ZIP 파일로 받기</a>. 소스 코드를 공부하려면 <a href="CODE_SUMMARY.html">기존 전체 코드 설명</a>을 참고하세요.</p>
+<p>공식 문서는 설명 중 해당 단계에 연결했습니다. 핵심 확인 항목은 <a href="https://developer.hashicorp.com/terraform/language/backend/s3">S3 backend 잠금</a>, <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/secrets-envvar-secrets-manager.html">ECS Secret 주입</a>, <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Concepts.General.SSL.html">RDS TLS</a>, <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html">ECS 롤백</a>, <a href="https://developer.hashicorp.com/terraform/language/import">Terraform import</a>입니다.</p>
+</div></main><footer>흰색 배경 · IntelliJ IDEA 라이트 스타일 · AWS 리소스 생성 미실행</footer></body></html>

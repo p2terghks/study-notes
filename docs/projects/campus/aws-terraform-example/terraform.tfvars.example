@@ -1,0 +1,10 @@
+region            = "ap-northeast-2"
+name              = "campus-tf"
+domain            = "campus.YOUR-DOMAIN.com"
+zone_id           = "REPLACE_WITH_PUBLIC_ROUTE53_ZONE_ID"
+db_engine_version = "REPLACE_WITH_SUPPORTED_POSTGRES_VERSION"
+db_multi_az       = true
+# 첫 인프라 생성 때만 false. 서비스 가동 후 false로 되돌리면 삭제 계획이 된다.
+app_enabled       = false
+image_uri         = ""
+desired_count     = 2

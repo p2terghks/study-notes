@@ -52,3 +52,9 @@
 
 - [컴퓨팅 기본 개념 · 코어·스레드·프로세스](https://p2terghks.github.io/study-notes/docs/quick-reference/computing-basics-reference.html)
 - [네트워크 기본 개념 · IP·DNS·TCP·HTTP](https://p2terghks.github.io/study-notes/docs/quick-reference/network-basics-reference.html)
+
+### 수강신청 프로젝트
+
+- [수강신청 · 전체 코드와 상세 설명](https://p2terghks.github.io/study-notes/docs/projects/campus/CODE_SUMMARY.html)
+- [수강신청 · AWS·Terraform 배포 과정](https://p2terghks.github.io/study-notes/docs/projects/campus/AWS_TERRAFORM_GUIDE.html)
+- [수강신청 · AWS·Terraform 트러블슈팅](https://p2terghks.github.io/study-notes/docs/projects/campus/AWS_TROUBLESHOOTING.html)
