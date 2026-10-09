@@ -70,6 +70,13 @@
     "format": "HTML"
   },
   {
+    "path": "docs/aws_saa_c03_guide.html",
+    "title": "AWS SAA-C03 시험 대비 총정리",
+    "category": "AWS · 클라우드",
+    "url": "docs/aws_saa_c03_guide.html?v=e780ee728219",
+    "format": "HTML"
+  },
+  {
     "path": "docs/quick-reference/github-reference.html",
     "title": "GitHub · Git · 학습 기록 작성법",
     "category": "GitHub · Docker",
