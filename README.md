@@ -27,6 +27,7 @@
 
 ### AWS · 클라우드
 
+- [Boto3 · Python AWS SDK 사용법](https://p2terghks.github.io/study-notes/docs/quick-reference/boto3-reference.html)
 - [CI/CD 통합 개발환경 · 클라우드 개발 실무](https://p2terghks.github.io/study-notes/docs/quick-reference/devops-handbook-reference.html)
 - [AWS 컴퓨팅 서비스](https://p2terghks.github.io/study-notes/docs/quick-reference/aws-reference.html)
 - [AWS CLI · 인증·프로파일·명령어](https://p2terghks.github.io/study-notes/docs/quick-reference/aws-cli-reference.html)
