@@ -11,7 +11,7 @@
   update();document.body.append(button);
  });
 })();
-</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Terraform 사용법 요약</title><style>:root{color-scheme:light;--bg:#ffffff;--panel:#fafafa;--panel2:#f5f5f5;--border:#e2e2e2;--text:#171717;--muted:#626262;--green:#292929;--blue:#171717;--pink:#333333;--yellow:#404040;--code:#f8f8f8}
+</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Terraform 아주 자세한 사용법 요약</title><style>:root{color-scheme:light;--bg:#ffffff;--panel:#fafafa;--panel2:#f5f5f5;--border:#e2e2e2;--text:#171717;--muted:#626262;--green:#292929;--blue:#171717;--pink:#333333;--yellow:#404040;--code:#f8f8f8}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--yellow);outline-offset:4px}.layout{display:flex;max-width:1600px;margin:auto}nav{width:280px;flex-shrink:0;padding:32px 18px;position:sticky;top:0;height:100vh;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}nav a{display:flex;gap:12px;padding:9px 12px;border-radius:7px;color:var(--muted);text-decoration:none;font-size:13px;line-height:1.6;margin-bottom:3px}nav a span{color:var(--blue);flex-shrink:0}nav a:hover,nav a.active{color:var(--blue);background:var(--panel2)}nav a.active{box-shadow:inset 3px 0 var(--blue)}nav .brand{font-size:17px;letter-spacing:.08em;color:var(--text);align-items:center;font-weight:750;padding:0 8px}.brand-mark{width:32px;height:32px;border:1px solid #dedede;border-radius:9px;text-align:center;background:#f3f3f3;color:var(--green)!important}.nav-label{font-size:12px;color:var(--muted);margin:14px 8px 28px}.nav-group{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.08em;margin:25px 12px 12px}.nav-note{margin:38px 12px 0;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:11px}main{min-width:0;width:100%;max-width:1040px;padding:56px 64px 70px}header{border-bottom:1px solid var(--border);padding-bottom:28px;margin-bottom:28px}.eyebrow,.section-kicker{font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--green)}h1{font-size:48px;letter-spacing:-.045em;line-height:1.22;margin:24px 0}h1 span{color:var(--text)}.lead{color:var(--muted);font-size:17px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.tags span{padding:4px 12px;background:#f5f5f5;border:1px solid #e2e2e2;border-radius:6px;font-size:12px;color:var(--blue)}.tags span:nth-child(2){color:var(--green);background:#f5f5f5;border-color:#e2e2e2}.tags span:nth-child(3){color:var(--pink);background:#f5f5f5;border-color:#e2e2e2}.hero-bottom{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font-size:12px;margin-top:28px}.reading-guide,.callout{padding:16px 20px;border:1px solid var(--border);border-left:3px solid var(--green);background:var(--panel2);border-radius:8px;margin:20px 0}.reading-guide strong{color:var(--green)}.reading-guide p,.callout p{margin:4px 0;font-size:14px}.callout{border-left-color:var(--yellow)}section{scroll-margin-top:26px;padding-top:22px;margin-top:48px}h2{color:var(--blue);font-size:26px;line-height:1.5;letter-spacing:-.03em;border-left:0;padding-left:0;margin:12px 0 24px}h3{color:var(--green);font-size:20px;margin:30px 0 12px}h4{color:var(--pink);font-size:17px}p{margin:12px 0}li{margin:7px 0}ul,ol{padding-left:24px}strong{font-weight:700}code{font-family:"SFMono-Regular",Consolas,Menlo,monospace;font-size:13px}p code,li code,td code{color:var(--blue);background:#f2f2f2;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.codebox{margin:18px 0 24px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--code)}.codebar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:#f0f0f0;border-bottom:1px solid var(--border);font-size:10px;letter-spacing:.08em;color:var(--muted)}.copy{background:transparent;color:var(--muted);border:1px solid #cccccc;border-radius:5px;padding:3px 9px;font-size:11px;letter-spacing:0}.copy:hover{color:var(--green);border-color:var(--green)}pre{margin:0;padding:20px;overflow:auto;line-height:1.8;tab-size:4}pre code{font-size:13px}.kw{color:#272727}.str{color:#424242}.an{color:var(--yellow)}.cm{color:#6b6b6b}.table-wrap{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border);min-width:110px}th{background:var(--panel2);color:var(--blue);white-space:nowrap}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#fafafa}th:last-child,td:last-child{border-right:0}.next{display:inline-block;font-size:13px;margin-top:16px;text-decoration:none;color:var(--green)}.secondary{padding:8px 14px;border-radius:7px;border:1px solid var(--border);color:var(--blue);background:var(--panel2);font-size:13px;margin-bottom:16px}.reference{border:1px solid var(--border);border-radius:9px;background:var(--panel);margin:12px 0}.reference summary{cursor:pointer;color:var(--blue);padding:16px 20px;font-size:15px;font-weight:600}.reference[open] summary{border-bottom:1px solid var(--border)}.reference-body{padding:12px 22px 22px;min-width:0}footer{border-top:1px solid var(--border);margin-top:56px;padding-top:22px;color:var(--muted);font-size:12px}.skip{position:fixed;top:-80px;left:16px;z-index:10;padding:10px;background:var(--panel)}.skip:focus{top:8px}#copy-status:empty{display:none}#copy-status{position:fixed;right:20px;bottom:20px;max-width:calc(100vw - 40px);padding:10px 18px;background:#333333;color:white;border:1px solid var(--green);border-radius:8px;font-size:13px}input[type=checkbox]{accent-color:var(--green)}
 @media(min-width:1500px){main{padding-left:80px}}@media(max-width:1000px){nav{width:235px;padding:24px 10px}main{padding:36px 28px}h1{font-size:40px}}@media(max-width:720px){.layout{display:block}nav{position:relative;height:auto;width:100%;padding:22px;border-right:0;border-bottom:1px solid var(--border)}nav a{display:inline-flex;margin:3px 2px;padding:7px 9px;font-size:12px}nav .brand{display:flex;width:max-content}.nav-label{margin:10px 8px}.nav-group{margin:18px 8px 8px}.nav-note{display:none}main{padding:30px 20px 50px}h1{font-size:38px}h2{font-size:23px}section{margin-top:36px}.reference-body{padding:10px 14px}pre{padding:16px}.hero-bottom{gap:8px 16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{html{color-scheme:light}body{background:white;color:#18212d;font-size:11pt}nav,.copy,.next,.secondary,.skip,#copy-status{display:none!important}main{max-width:none;padding:0}h1 span,h2,h3,h4,a{color:#174f73}.codebox,.codebar,.callout,.reading-guide,.reference,th,tr:nth-child(even) td{background:#f5f7f9;color:#18212d}pre{white-space:pre-wrap;overflow-wrap:anywhere}pre code,.kw,.str,.an,.cm{color:#18212d}section{break-before:auto}.reference:not([open]){display:none}.lead,.hero-bottom,footer{color:#46536a}}
@@ -29,12 +29,12 @@ html[data-theme="dark"] .home-link{background:#111318!important;color:#d7dbe3!im
 .theme-toggle:focus-visible{outline:2px solid var(--text);outline-offset:3px}
 @media print{.theme-toggle{display:none!important}html[data-theme="dark"]{color-scheme:light;--bg:#fff;--text:#171717;--muted:#626262;--panel:#fafafa;--panel2:#f5f5f5;--code:#f8f8f8;--border:#e2e2e2;--blue:#171717;--green:#292929;--pink:#333;--yellow:#404040}}
 
-.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
-
 .id{color:#075e8f}.fn{color:#8b3c0b}.num{color:#9b302f}
 html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdba74}html[data-theme="dark"] .num{color:#fda4af}
 @media print{.id,.fn,.num,html[data-theme="dark"] .id,html[data-theme="dark"] .fn,html[data-theme="dark"] .num{color:#171717}}
-</style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">TERRAFORM NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">15개 항목</p><a href="#item-0"><span>01</span>Terraform과 IaC의 의미</a><a href="#item-1"><span>02</span>설치·버전과 작업 디렉터리</a><a href="#item-2"><span>03</span>핵심 명령어: init → plan → apply</a><a href="#item-3"><span>04</span>HCL 블록·참조 읽는 법</a><a href="#item-4"><span>05</span>변수·타입·tfvars·우선순위</a><a href="#item-5"><span>06</span>Provider·resource·data의 차이</a><a href="#item-6"><span>07</span>plan 기호·저장 계획·종료 코드</a><a href="#item-7"><span>08</span>count·for_each·의존성</a><a href="#item-8"><span>09</span>모듈·환경 분리·workspace</a><a href="#item-9"><span>10</span>state·lock·Git 관리</a><a href="#item-10"><span>11</span>S3 원격 backend와 상태 잠금</a><a href="#item-11"><span>12</span>기존 자원 import·코드 이름 변경</a><a href="#item-12"><span>13</span>drift·교체·삭제를 다루는 법</a><a href="#item-13"><span>14</span>AWS 계정 없이 하는 로컬 실습</a><a href="#item-14"><span>15</span>오류 해결과 실무 순서</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-10-01<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>Terraform<br><span>문법 · 명령어</span></h1><p class="lead">인프라를 코드로 선언하고 변경을 검토하기.<br>HCL·plan/apply·모듈·state와 계정 없는 로컬 실습.</p><div class="tags"><span>HCL · 변수</span><span>명령어</span><span>상태 · 모듈</span><span>로컬 실습</span></div><div class="hero-bottom"><span>15개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>Terraform과 IaC의 의미</h2><p><strong>Terraform은 원하는 인프라 상태를 코드로 선언하고, 현재 상태와 비교하여 변경을 적용하는 도구입니다.</strong> IaC(Infrastructure as Code)는 이런 인프라 구성을 코드로 관리하는 방식입니다.</p>
+
+.search-label{display:block;margin:22px 0 6px;font-size:12px;color:var(--muted)}#search{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--code);color:var(--text);font:inherit;font-size:13px}.result-count{font-size:12px;color:var(--muted)}[hidden]{display:none!important}#empty{padding:24px;background:var(--panel2);border-radius:10px}p,li,td{word-break:keep-all;overflow-wrap:anywhere}@media print{.search-label,#search,.result-count{display:none}}
+</style></head><body><a class="home-link" href="../../index.html" style="display:block;padding:12px 20px;color:#333333;background:#ffffff;border-bottom:1px solid #e2e2e2;font:14px sans-serif">← 학습 요약 전체 목록</a><a class="skip" href="#content">본문으로 이동</a><div class="layout"><nav aria-label="목차"><a class="brand" href="#top">TERRAFORM NOTES</a><p class="nav-label">기능 · 사용법 · 간단한 설명</p><label class="search-label" for="search">항목 검색</label><input id="search" type="search" placeholder="키워드로 찾아보기"><p class="result-count" id="results" aria-live="polite">42개 항목</p><a href="#item-0"><span>01</span>Terraform과 IaC의 의미</a><a href="#item-1"><span>02</span>설치·버전과 작업 디렉터리</a><a href="#item-2"><span>03</span>핵심 명령어: init → plan → apply</a><a href="#item-3"><span>04</span>HCL 블록·참조 읽는 법</a><a href="#item-4"><span>05</span>변수·타입·tfvars·우선순위</a><a href="#item-5"><span>06</span>Provider·resource·data의 차이</a><a href="#item-6"><span>07</span>plan 기호·저장 계획·종료 코드</a><a href="#item-7"><span>08</span>count·for_each·의존성</a><a href="#item-8"><span>09</span>모듈·환경 분리·workspace</a><a href="#item-9"><span>10</span>state·lock·Git 관리</a><a href="#item-10"><span>11</span>S3 원격 backend와 상태 잠금</a><a href="#item-11"><span>12</span>기존 자원 import·코드 이름 변경</a><a href="#item-12"><span>13</span>drift·교체·삭제를 다루는 법</a><a href="#item-13"><span>14</span>AWS 계정 없이 하는 로컬 실습</a><a href="#item-14"><span>15</span>오류 해결과 실무 순서</a><a href="#item-15"><span>16</span>상세 학습 안내: 기본 사용법에서 실무까지</a><a href="#item-16"><span>17</span>HCL 한 줄씩 읽기: 주소와 실제 이름</a><a href="#item-17"><span>18</span>타입 심화: list · set · map · object · tuple</a><a href="#item-18"><span>19</span>null · 빈 값 · unknown의 차이</a><a href="#item-19"><span>20</span>조건식 · for 표현식 · splat 사용법</a><a href="#item-20"><span>21</span>문자열 함수: 이름·라벨 정리</a><a href="#item-21"><span>22</span>컬렉션 함수: 태그와 목록 다루기</a><a href="#item-22"><span>23</span>오류·기본값 함수: try · can · coalesce</a><a href="#item-23"><span>24</span>파일 · JSON · 템플릿 함수</a><a href="#item-24"><span>25</span>CIDR · 숫자 함수: 네트워크 계산</a><a href="#item-25"><span>26</span>for_each 설계와 dynamic 블록</a><a href="#item-26"><span>27</span>의존성 그래프와 병렬 실행</a><a href="#item-27"><span>28</span>lifecycle: 교체·삭제 보호의 한계</a><a href="#item-28"><span>29</span>validation · precondition · postcondition · check</a><a href="#item-29"><span>30</span>모듈 설계: 입력 → 내부 자원 → 출력</a><a href="#item-30"><span>31</span>provider alias로 여러 리전·계정 연결</a><a href="#item-31"><span>32</span>AWS 예제: 비공개 S3 버킷 전체 구성</a><a href="#item-32"><span>33</span>backend 실무: bootstrap · 이전 · 권한</a><a href="#item-33"><span>34</span>import: 기존 자원을 관리 대상으로 가져오기</a><a href="#item-34"><span>35</span>moved · removed: 실제 삭제 없이 구조 바꾸기</a><a href="#item-35"><span>36</span>state 조사·복구와 부분 실패</a><a href="#item-36"><span>37</span>sensitive · ephemeral · write-only 구분</a><a href="#item-37"><span>38</span>테스트: fmt · validate · test · 실제 동작</a><a href="#item-38"><span>39</span>Terraform CI/CD와 종료 코드 처리</a><a href="#item-39"><span>40</span>실무 변경 시나리오와 검토 기준</a><a href="#item-40"><span>41</span>오류별 원인과 해결 순서</a><a href="#item-41"><span>42</span>상세 실습 ZIP과 학습 과제</a><div class="nav-group">다른 요약본</div><a href="python-advanced-reference.html"><span>↗</span>Python 문법 심화 과정</a><a href="devops-handbook-reference.html"><span>↗</span>CI/CD 통합 개발환경 · 클라우드 개발 실무</a><a href="aws-cli-reference.html"><span>↗</span>AWS CLI 사용법</a><a href="computing-basics-reference.html"><span>↗</span>컴퓨팅 기본 개념</a><a href="network-basics-reference.html"><span>↗</span>네트워크 기본 개념</a><a href="cloud-ha-reference.html"><span>↗</span>3-Tier 고가용성 웹 서비스</a><a href="cloud-iac-reference.html"><span>↗</span>Terraform 인프라 자동화</a><a href="cloud-cicd-reference.html"><span>↗</span>Docker · ECS CI/CD</a><a href="cloud-serverless-reference.html"><span>↗</span>서버리스 이벤트 이미지 처리</a><a href="r-reference.html"><span>↗</span>R 언어 · 문법과 데이터 처리</a><a href="coding-test-reference.html"><span>↗</span>코딩 테스트 · 언어별 풀이</a><a href="github-reference.html"><span>↗</span>GitHub · Git 사용법</a><a href="docker-reference.html"><span>↗</span>Docker 사용법</a><a href="spring-reference.html"><span>↗</span>Spring 기능·사용법</a><a href="react-reference.html"><span>↗</span>React 함수·Hook</a><a href="aws-reference.html"><span>↗</span>AWS 컴퓨팅 서비스</a><a href="index.html"><span>↗</span>요약 목록</a><div class="nav-note">공식 자료 확인: 2026-10-13<br>오프라인 열람 · 코드 복사</div></nav><main id="content"><header id="top"><p class="eyebrow">QUICK REFERENCE / 필요할 때 찾아보기</p><h1>Terraform<br><span>입문부터 실무까지</span></h1><p class="lead">인프라를 코드로 선언하고 변경을 검토하기.<br>HCL·내장 함수·모듈·상태 복구·CI/CD와 직접 실행하는 실습.</p><div class="tags"><span>HCL · 변수</span><span>명령어</span><span>상태 · 모듈</span><span>로컬 실습</span></div><div class="hero-bottom"><span>42개 항목</span><span>설명 · 예제 · 주의점</span><span>공식 문서 링크 포함</span></div></header><div class="reading-guide"><strong>찾아 읽는 요약본</strong><p>왼쪽 검색창으로 필요한 항목을 찾으세요. 짧은 코드는 설명용 발췌이며, 주변 타입·설정이 필요할 수 있습니다. 전체 실행 예제는 본문의 파일 링크와 실행 방법을 함께 확인하세요.</p></div><p id="empty" hidden>검색 결과가 없습니다. 다른 키워드로 찾아보세요.</p><section id="item-0"><div class="section-kicker">REFERENCE 01</div><h2>Terraform과 IaC의 의미</h2><p><strong>Terraform은 원하는 인프라 상태를 코드로 선언하고, 현재 상태와 비교하여 변경을 적용하는 도구입니다.</strong> IaC(Infrastructure as Code)는 이런 인프라 구성을 코드로 관리하는 방식입니다.</p>
 <div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>설정 코드(.tf) + state + provider가 조회한 실제 자원
     → plan: 무엇을 만들고·바꾸고·삭제할지 계산
     → apply: 계획을 적용하고 state 갱신</code></pre></div><p>AWS CLI가 “인스턴스를 시작해” 같은 API 작업을 직접 호출한다면 Terraform은 “이 설정의 인스턴스가 존재해야 해”를 선언합니다. Terraform이 모든 수동 변경을 자동 복구하는 상시 실행 데몬인 것은 아닙니다. plan/apply 등 실행 시 상태를 비교합니다.</p>
@@ -379,7 +379,1172 @@ html[data-theme="dark"] .id{color:#7dd3fc}html[data-theme="dark"] .fn{color:#fdb
 </div><p>잠금 오류를 보고 무조건 <code>force-unlock</code>이나 <code>-lock=false</code>를 쓰지 않습니다. 실제 실행 중인 작업이 없는지 먼저 확인합니다. <code>-target</code>도 예외 복구용으로 검토하며 일상 배포에서 전체 의존성 검토를 대체하지 않습니다.</p>
 <p><strong>반복 순서:</strong> 코드 수정 → fmt → init/validate → plan 검토 → apply → output·서비스 동작 확인 → Git에 코드와 의존성 잠금 파일 기록.</p>
 <p><a href="cloud-iac-reference.html">프로젝트 2 · Terraform 인프라 자동화</a> · <a href="aws-cli-reference.html">AWS CLI 사용법</a> · <a href="github-reference.html">GitHub 기록법</a></p>
-</section><footer>공식 자료 확인일: 2026-10-01 · Terraform 사용법<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
+</section><section id="item-15"><div class="section-kicker">REFERENCE 16</div><h2>상세 학습 안내: 기본 사용법에서 실무까지</h2><p><strong>Terraform을 잘 쓴다는 것은 어떤 자원이 왜 바뀌는지 plan을 설명할 수 있다는 뜻입니다.</strong> 앞의 15개 항목은 빠른 사전이고 여기부터는 타입·함수·모듈·AWS 구성·상태 복구를 깊게 다룹니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>단계</th>
+<th>학습 내용</th>
+<th>스스로 확인할 질문</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>입문</td>
+<td>블록, 변수, 참조, init/plan/apply</td>
+<td>실제 서버 이름과 Terraform 주소가 어떻게 다른가?</td>
+</tr>
+<tr>
+<td>문법</td>
+<td>타입, 조건식, for, 내장 함수</td>
+<td>함수 결과를 실행 전에 예측할 수 있는가?</td>
+</tr>
+<tr>
+<td>구성</td>
+<td>provider, 모듈, 환경 분리</td>
+<td>의존성이 어떤 참조로 연결되는가?</td>
+</tr>
+<tr>
+<td>운영</td>
+<td>state, 잠금, import, moved, drift</td>
+<td>삭제 없이 코드 구조를 바꿀 수 있는가?</td>
+</tr>
+<tr>
+<td>팀 자동화</td>
+<td>테스트, 계획 검토, 승인, 복구</td>
+<td>실패 후 실제 자원과 state를 비교할 수 있는가?</td>
+</tr>
+</tbody></table>
+</div><p>확장판 로컬 실습은 Terraform CLI <strong>1.16.5</strong>를 기준으로 검증합니다. CLI 버전, AWS provider 버전, module 버전은 각각 다른 의존성입니다. 필요한 최소 버전이 있는 기능은 본문에서 구분합니다.</p>
+<p>짧은 코드는 설명용 발췌입니다. 모든 예제를 같은 폴더에 붙이면 이름 충돌이 생길 수 있습니다. 독립 실행용 파일은 마지막 ZIP을 사용하세요. 이번 작업에서 실제 AWS 리소스를 만들지는 않습니다.</p>
+</section><section id="item-16"><div class="section-kicker">REFERENCE 17</div><h2>HCL 한 줄씩 읽기: 주소와 실제 이름</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket&quot;</span> <span class="str">&quot;assets&quot;</span> {
+  <span class="id">bucket</span> = <span class="str">&quot;my-unique-study-assets&quot;</span>
+  <span class="id">tags</span> = {
+    <span class="id">Environment</span> = <span class="str">&quot;dev&quot;</span>
+    <span class="id">ManagedBy</span>   = <span class="str">&quot;Terraform&quot;</span>
+  }
+}</code></pre></div><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>부분</th>
+<th>의미</th>
+<th>바꿀 때 확인</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>resource</code></td>
+<td>관리 대상 선언</td>
+<td>일반 언어의 함수 호출이 아님</td>
+</tr>
+<tr>
+<td><code>aws_s3_bucket</code></td>
+<td>provider가 정의한 자원 종류</td>
+<td>provider 버전별 인수·속성</td>
+</tr>
+<tr>
+<td><code>assets</code></td>
+<td>모듈 안의 논리 이름</td>
+<td>주소 변경이므로 moved 검토</td>
+</tr>
+<tr>
+<td><code>bucket</code></td>
+<td>AWS에 전달할 실제 이름</td>
+<td>이름 변경으로 교체가 필요한지</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>문자열 map 설정</td>
+<td>비용·환경·소유자 분류</td>
+</tr>
+<tr>
+<td><code>aws_s3_bucket.assets.id</code></td>
+<td>해당 자원의 ID 참조</td>
+<td>직접 문자열 복사보다 의존성이 명확</td>
+</tr>
+</tbody></table>
+</div><p><code>aws_s3_bucket.assets</code>는 Terraform 주소이고 <code>my-unique-study-assets</code>는 AWS 이름입니다. 모듈 내부이면 <code>module.storage.aws_s3_bucket.assets</code>처럼 주소가 확장됩니다. 일반 목적 S3 버킷 이름은 같은 AWS partition 안에서 전역적으로 유일해야 합니다.</p>
+<p>인수(argument)는 내가 입력하는 설정, 속성(attribute)은 provider가 제공하는 값입니다. <code>id</code>, <code>arn</code> 등은 자원별로 다르므로 무조건 존재한다고 가정하지 않습니다. 같은 폴더의 <code>.tf</code>는 함께 읽으며 파일 이름순으로 실행하지 않습니다.</p>
+</section><section id="item-17"><div class="section-kicker">REFERENCE 18</div><h2>타입 심화: list · set · map · object · tuple</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>타입</th>
+<th>의미</th>
+<th>예</th>
+<th>주 사용처</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>string</code></td>
+<td>문자열</td>
+<td><code>&quot;dev&quot;</code></td>
+<td>이름·리전</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>숫자</td>
+<td><code>2</code>, <code>0.5</code></td>
+<td>개수·용량</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>참/거짓</td>
+<td><code>true</code></td>
+<td>옵션 활성화</td>
+</tr>
+<tr>
+<td><code>list(string)</code></td>
+<td>동일 타입, 순서 있음</td>
+<td><code>[&quot;a&quot;, &quot;b&quot;]</code></td>
+<td>순서가 의미 있는 목록</td>
+</tr>
+<tr>
+<td><code>set(string)</code></td>
+<td>중복 없음, 인덱스 없음</td>
+<td><code>toset([&quot;a&quot;, &quot;a&quot;, &quot;b&quot;])</code></td>
+<td>식별자 집합</td>
+</tr>
+<tr>
+<td><code>map(number)</code></td>
+<td>문자열 키, 값 타입 동일</td>
+<td><code>{ web = 2, api = 3 }</code></td>
+<td>이름별 설정</td>
+</tr>
+<tr>
+<td><code>object({...})</code></td>
+<td>속성별 타입 정의</td>
+<td><code>{ name = &quot;api&quot;, port = 8080 }</code></td>
+<td>설정 계약</td>
+</tr>
+<tr>
+<td><code>tuple([...])</code></td>
+<td>위치별 타입 정의</td>
+<td><code>[&quot;api&quot;, 8080, true]</code></td>
+<td>고정 구조</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">variable</span> <span class="str">&quot;services&quot;</span> {
+  <span class="id">type</span> = <span class="fn">map</span>(<span class="fn">object</span>({
+    <span class="id">port</span>     = <span class="id">number</span>
+    <span class="id">replicas</span> = <span class="fn">optional</span>(<span class="id">number</span>, <span class="num">1</span>)
+    <span class="id">enabled</span>  = <span class="fn">optional</span>(<span class="id">bool</span>, <span class="kw">true</span>)
+  }))
+  <span class="id">default</span> = {
+    <span class="id">api</span> = { <span class="id">port</span> = <span class="num">8080</span> }
+    <span class="id">web</span> = { <span class="id">port</span> = <span class="num">3000</span>, <span class="id">replicas</span> = <span class="num">2</span> }
+  }
+}</code></pre></div><p><code>optional(number, 1)</code>은 생략한 속성에 기본값을 줍니다. api의 replicas는 1입니다. optional object 속성 기본값은 Terraform 1.3 이상 기준입니다. object 변환 과정에서 선언하지 않은 속성이 제거될 수 있으므로 입력 키 오타가 반드시 오류가 된다고 믿으면 안 됩니다.</p>
+<p><code>any</code>는 실제 타입을 추론하도록 하는 표시입니다. 모듈 입력에는 구체적인 object 계약을 사용하면 잘못된 값을 일찍 찾을 수 있습니다. <a href="https://developer.hashicorp.com/terraform/language/expressions/type-constraints">타입 제약</a>.</p>
+</section><section id="item-18"><div class="section-kicker">REFERENCE 19</div><h2>null · 빈 값 · unknown의 차이</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>값</th>
+<th>의미</th>
+<th>주의</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>null</code></td>
+<td>값을 지정하지 않음</td>
+<td>빈 문자열과 다름</td>
+</tr>
+<tr>
+<td><code>&quot;&quot;</code></td>
+<td>길이 0의 문자열</td>
+<td>필수 값 검사를 대신하지 못함</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>원소가 없는 collection 표현</td>
+<td>길이가 0이며 null은 아님</td>
+</tr>
+<tr>
+<td><code>{}</code></td>
+<td>속성이 없는 object/map 표현</td>
+<td>필수 속성 타입에 맞지 않을 수 있음</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td>apply 이후 확정되는 값</td>
+<td>오류나 null이 아님</td>
+</tr>
+</tbody></table>
+</div><p>선택 인수에 null을 주면 보통 생략한 것처럼 처리하지만 provider 스키마를 확인해야 합니다. <code>nullable = false</code>는 변수 자체의 null을 제한하며 중첩 속성의 null까지 전부 막는 것은 아닙니다.</p>
+<p><code>for_each</code>의 key/집합 원소는 plan 때 알아야 합니다. <code>{ api = aws_vpc.main.id }</code>는 key가 이미 알려져 있지만 <code>toset([aws_vpc.main.id])</code>는 아직 생성하지 않은 ID를 식별자로 쓰므로 문제가 될 수 있습니다.</p>
+<p><code>try(unknown, &quot;fallback&quot;)</code>은 fallback을 선택하지 않습니다. try는 동적 평가 오류를 처리할 뿐 아직 모르는 값을 바꾸는 함수가 아닙니다.</p>
+</section><section id="item-19"><div class="section-kicker">REFERENCE 20</div><h2>조건식 · for 표현식 · splat 사용법</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">locals</span> {
+  <span class="id">size</span> = <span class="id">var</span>.<span class="id">environment</span> == <span class="str">&quot;prod&quot;</span> ? <span class="num">3</span> : <span class="num">1</span>
+  <span class="id">enabled_names</span> = [<span class="kw">for</span> <span class="id">name</span>, <span class="id">cfg</span> <span class="kw">in</span> <span class="id">var</span>.<span class="id">services</span> : <span class="id">name</span> <span class="kw">if</span> <span class="id">cfg</span>.<span class="id">enabled</span>]
+  <span class="id">enabled_services</span> = {
+    <span class="kw">for</span> <span class="id">name</span>, <span class="id">cfg</span> <span class="kw">in</span> <span class="id">var</span>.<span class="id">services</span> : <span class="id">name</span> =&gt; <span class="id">cfg</span> <span class="kw">if</span> <span class="id">cfg</span>.<span class="id">enabled</span>
+  }
+}</code></pre></div><p><code>조건 ? 참일 때 값 : 거짓일 때 값</code>의 두 결과는 호환되는 타입이어야 합니다. <code>for</code>는 새 값을 만드는 표현식이고, resource의 <code>for_each</code>는 관리 인스턴스를 나누는 메타 인수입니다. 두 개념을 구분하세요.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>표현</th>
+<th>기능</th>
+<th>결과 형태</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[for x in list : upper(x)]</code></td>
+<td>각 문자열 변환</td>
+<td>리스트/튜플</td>
+</tr>
+<tr>
+<td><code>{ for k, v in map : k =&gt; v.port }</code></td>
+<td>키별 포트만 추출</td>
+<td>object/map</td>
+</tr>
+<tr>
+<td><code>[for x in list : x if x != &quot;&quot;]</code></td>
+<td>조건에 맞는 값만 유지</td>
+<td>필터링 목록</td>
+</tr>
+<tr>
+<td><code>aws_instance.web[*].id</code></td>
+<td>count 기반 항목의 id 추출</td>
+<td>목록</td>
+</tr>
+<tr>
+<td><code>[for x in aws_instance.api : x.id]</code></td>
+<td>for_each 기반 map의 id 추출</td>
+<td>목록</td>
+</tr>
+</tbody></table>
+</div><p>마지막 두 줄은 해당 resource가 정의된 구성의 발췌입니다. map의 순회를 원래 입력 순서 보장으로 해석하지 않습니다. 복잡한 중첩 변환은 여러 local로 나누면 검토가 쉬워집니다. <a href="https://developer.hashicorp.com/terraform/language/expressions">표현식</a>.</p>
+</section><section id="item-20"><div class="section-kicker">REFERENCE 21</div><h2>문자열 함수: 이름·라벨 정리</h2><p>빈 실습 폴더에서 <code>terraform console</code>을 실행하고 아래 식을 입력하세요. 먼저 결과를 예상한 뒤 확인하면 좋습니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>함수·입력</th>
+<th>결과</th>
+<th>목적</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>lower(&quot;API-DEV&quot;)</code></td>
+<td><code>&quot;api-dev&quot;</code></td>
+<td>이름 규칙 통일</td>
+</tr>
+<tr>
+<td><code>upper(&quot;dev&quot;)</code></td>
+<td><code>&quot;DEV&quot;</code></td>
+<td>표시용 라벨</td>
+</tr>
+<tr>
+<td><code>trimspace(&quot; dev &quot;)</code></td>
+<td><code>&quot;dev&quot;</code></td>
+<td>양끝 공백 제거</td>
+</tr>
+<tr>
+<td><code>replace(&quot;team_api&quot;, &quot;_&quot;, &quot;-&quot;)</code></td>
+<td><code>&quot;team-api&quot;</code></td>
+<td>치환</td>
+</tr>
+<tr>
+<td><code>format(&quot;%s-%02d&quot;, &quot;web&quot;, 3)</code></td>
+<td><code>&quot;web-03&quot;</code></td>
+<td>번호 형식</td>
+</tr>
+<tr>
+<td><code>join(&quot;-&quot;, [&quot;team&quot;, &quot;dev&quot;, &quot;api&quot;])</code></td>
+<td><code>&quot;team-dev-api&quot;</code></td>
+<td>여러 값 연결</td>
+</tr>
+<tr>
+<td><code>split(&quot;,&quot;, &quot;web,api&quot;)</code></td>
+<td><code>[&quot;web&quot;, &quot;api&quot;]</code></td>
+<td>구분자 분리</td>
+</tr>
+<tr>
+<td><code>startswith(&quot;prod-api&quot;, &quot;prod-&quot;)</code></td>
+<td><code>true</code></td>
+<td>접두사 검사</td>
+</tr>
+<tr>
+<td><code>trimprefix(&quot;env-dev&quot;, &quot;env-&quot;)</code></td>
+<td><code>&quot;dev&quot;</code></td>
+<td>접두사 제거</td>
+</tr>
+<tr>
+<td><code>substr(&quot;terraform&quot;, 0, 5)</code></td>
+<td><code>&quot;terra&quot;</code></td>
+<td>문자열 일부</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">locals</span> {
+  <span class="id">prefix</span> = <span class="fn">lower</span>(<span class="fn">join</span>(<span class="str">&quot;-&quot;</span>, [<span class="id">var</span>.<span class="id">project</span>, <span class="id">var</span>.<span class="id">environment</span>]))
+  <span class="id">name</span>   = <span class="str">&quot;${local.prefix}-api&quot;</span>
+}</code></pre></div><p>소문자로 바꾸었다고 AWS 이름 길이·허용 문자까지 모두 만족한 것은 아닙니다. 입력 validation도 구성합니다. 이름에 <code>timestamp()</code>를 넣으면 실행마다 변경이 발생할 수 있으므로 안정적인 자원 이름으로 적합하지 않습니다. <a href="https://developer.hashicorp.com/terraform/language/functions">함수 분류</a>.</p>
+</section><section id="item-21"><div class="section-kicker">REFERENCE 22</div><h2>컬렉션 함수: 태그와 목록 다루기</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>함수·식</th>
+<th>결과·동작</th>
+<th>주의</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>length([&quot;web&quot;, &quot;api&quot;])</code></td>
+<td>2</td>
+<td>null에는 사용 불가</td>
+</tr>
+<tr>
+<td><code>contains([&quot;dev&quot;, &quot;prod&quot;], &quot;dev&quot;)</code></td>
+<td>true</td>
+<td>부분 문자열 검색은 strcontains</td>
+</tr>
+<tr>
+<td><code>lookup({ dev = 1 }, &quot;prod&quot;, 2)</code></td>
+<td>2</td>
+<td>키가 없으면 기본값</td>
+</tr>
+<tr>
+<td><code>merge({env=&quot;dev&quot;}, {env=&quot;prod&quot;})</code></td>
+<td>env=prod</td>
+<td>뒤 map 우선</td>
+</tr>
+<tr>
+<td><code>concat([&quot;a&quot;], [&quot;b&quot;, &quot;a&quot;])</code></td>
+<td>a, b, a</td>
+<td>중복 유지</td>
+</tr>
+<tr>
+<td><code>distinct([&quot;b&quot;, &quot;a&quot;, &quot;b&quot;])</code></td>
+<td>b, a</td>
+<td>첫 등장 순서 유지</td>
+</tr>
+<tr>
+<td><code>sort([&quot;b&quot;, &quot;a&quot;])</code></td>
+<td>a, b</td>
+<td>문자열 정렬</td>
+</tr>
+<tr>
+<td><code>flatten([[&quot;a&quot;], [&quot;b&quot;, &quot;c&quot;]])</code></td>
+<td>a, b, c</td>
+<td>중첩 리스트 평탄화</td>
+</tr>
+<tr>
+<td><code>keys({web=2, api=1})</code></td>
+<td>api, web</td>
+<td>키 사전순</td>
+</tr>
+<tr>
+<td><code>values({web=2, api=1})</code></td>
+<td>1, 2</td>
+<td>키 정렬 순서의 값</td>
+</tr>
+<tr>
+<td><code>zipmap([&quot;a&quot;,&quot;b&quot;],[1,2])</code></td>
+<td>a=1, b=2</td>
+<td>키·값 개수 일치 필요</td>
+</tr>
+<tr>
+<td><code>toset([&quot;a&quot;,&quot;a&quot;,&quot;b&quot;])</code></td>
+<td>a, b 집합</td>
+<td>순서·인덱스에 의존 금지</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">locals</span> {
+  <span class="id">common_tags</span> = { <span class="id">Project</span> = <span class="str">&quot;study&quot;</span>, <span class="id">Environment</span> = <span class="id">var</span>.<span class="id">environment</span> }
+  <span class="id">tags</span>        = <span class="fn">merge</span>(<span class="id">local</span>.<span class="id">common_tags</span>, <span class="id">var</span>.<span class="id">extra_tags</span>)
+}</code></pre></div><p>이 순서는 extra_tags가 Environment까지 덮어쓸 수 있습니다. 공통 값을 강제하려면 순서를 반대로 합니다. merge는 깊은 병합이 아닙니다. <code>merge({a={x=1}}, {a={y=2}})</code>는 a 전체를 대체하므로 x를 보존하지 않습니다. <a href="https://developer.hashicorp.com/terraform/language/functions/merge">merge</a>, <a href="https://developer.hashicorp.com/terraform/language/functions/flatten">flatten</a>.</p>
+</section><section id="item-22"><div class="section-kicker">REFERENCE 23</div><h2>오류·기본값 함수: try · can · coalesce</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>함수</th>
+<th>기능</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>try(a, b)</code></td>
+<td>첫 번째 오류 없는 평가 결과</td>
+<td><code>try({}.name, &quot;unnamed&quot;)</code> → unnamed</td>
+</tr>
+<tr>
+<td><code>can(expr)</code></td>
+<td>동적 평가 오류가 없는지 bool</td>
+<td><code>can(tonumber(&quot;abc&quot;))</code> → false</td>
+</tr>
+<tr>
+<td><code>coalesce(a, b)</code></td>
+<td>첫 non-null·non-empty-string</td>
+<td><code>coalesce(null, &quot;&quot;, &quot;dev&quot;)</code> → dev</td>
+</tr>
+<tr>
+<td><code>coalescelist(a, b)</code></td>
+<td>첫 비어 있지 않은 목록</td>
+<td><code>coalescelist([], [&quot;api&quot;])</code></td>
+</tr>
+<tr>
+<td><code>tonumber(&quot;8080&quot;)</code></td>
+<td>문자열을 숫자로</td>
+<td>8080</td>
+</tr>
+<tr>
+<td><code>tostring(8080)</code></td>
+<td>숫자를 문자열로</td>
+<td><code>&quot;8080&quot;</code></td>
+</tr>
+</tbody></table>
+</div><p>try로 선언하지 않은 변수 참조 같은 정적 오류까지 숨길 수는 없습니다. 외부 JSON 선택 필드를 정규화하는 local에서 사용하고 모든 오류를 기본값으로 덮지 않습니다. coalesce는 모든 인수가 null/빈 문자열이면 오류이며 호환되는 타입이 필요합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">variable</span> <span class="str">&quot;project&quot;</span> {
+  <span class="id">type</span> = <span class="id">string</span>
+  <span class="id">validation</span> {
+    <span class="id">condition</span>     = <span class="fn">can</span>(<span class="fn">regex</span>(<span class="str">&quot;^[a-z][a-z0-9-]{2,19}$&quot;</span>, <span class="id">var</span>.<span class="id">project</span>))
+    <span class="id">error_message</span> = <span class="str">&quot;3~20자, 소문자로 시작하며 소문자·숫자·하이픈만 사용하세요.&quot;</span>
+  }
+}</code></pre></div><p>regex는 일치하지 않으면 오류이므로 can으로 감싸 검사 결과를 bool로 만듭니다. regexall은 일치 목록을 반환하므로 length로 검사할 수도 있습니다. <a href="https://developer.hashicorp.com/terraform/language/functions/try">try</a>, <a href="https://developer.hashicorp.com/terraform/language/functions/can">can</a>, <a href="https://developer.hashicorp.com/terraform/language/functions/coalesce">coalesce</a>.</p>
+</section><section id="item-23"><div class="section-kicker">REFERENCE 24</div><h2>파일 · JSON · 템플릿 함수</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>함수</th>
+<th>기능</th>
+<th>사용처</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>file(path)</code></td>
+<td>기존 UTF-8 파일 읽기</td>
+<td>정책·설정 입력</td>
+</tr>
+<tr>
+<td><code>templatefile(path, vars)</code></td>
+<td>템플릿에 변수 채우기</td>
+<td>cloud-init, 앱 설정</td>
+</tr>
+<tr>
+<td><code>jsonencode(value)</code></td>
+<td>HCL 값 → JSON 문자열</td>
+<td>IAM 정책·task definition</td>
+</tr>
+<tr>
+<td><code>jsondecode(text)</code></td>
+<td>JSON → HCL 값</td>
+<td>외부 설정</td>
+</tr>
+<tr>
+<td><code>yamlencode(value)</code></td>
+<td>HCL 값 → YAML 문자열</td>
+<td>도구 설정</td>
+</tr>
+<tr>
+<td><code>yamldecode(text)</code></td>
+<td>지원되는 YAML 부분집합 해석</td>
+<td>YAML 입력</td>
+</tr>
+<tr>
+<td><code>filebase64(path)</code></td>
+<td>파일 바이트 base64 인코딩</td>
+<td>바이너리 입력</td>
+</tr>
+<tr>
+<td><code>filesha256(path)</code></td>
+<td>내용 해시 계산</td>
+<td>변경 감지</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">locals</span> {
+  <span class="id">policy</span> = <span class="fn">jsonencode</span>({
+    <span class="id">Version</span> = <span class="str">&quot;2012-10-17&quot;</span>
+    <span class="id">Statement</span> = [{
+      <span class="id">Effect</span>   = <span class="str">&quot;Allow&quot;</span>
+      <span class="id">Action</span>   = [<span class="str">&quot;s3:GetObject&quot;</span>]
+      <span class="id">Resource</span> = [<span class="str">&quot;${aws_s3_bucket.assets.arn}/*&quot;</span>]
+    }]
+  })
+}</code></pre></div><p>이 예제는 정책 문자열을 만들 뿐 IAM 역할에 자동 연결하지 않습니다. 직접 JSON 따옴표·쉼표를 조립하는 것보다 jsonencode가 안전합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">locals</span> {
+  <span class="id">rendered</span> = <span class="fn">templatefile</span>(<span class="str">&quot;${path.module}/app.conf.tftpl&quot;</span>, {
+    <span class="id">app_name</span> = <span class="str">&quot;study-api&quot;</span>
+    <span class="id">port</span>     = <span class="num">8080</span>
+  })
+}</code></pre></div><p><code>app.conf.tftpl</code>은 다음 텍스트 파일입니다.</p>
+<div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>name=${app_name}
+port=${port}</code></pre></div><p>path.module은 현재 모듈 폴더입니다. file/templatefile은 파일 생성 순서를 관리하는 자원이 아니므로 같은 apply에서 나중에 만들어질 파일을 읽게 하지 않습니다. secret을 렌더링하면 결과와 state에 남을 수 있습니다. <a href="https://developer.hashicorp.com/terraform/language/functions/templatefile">templatefile</a>, <a href="https://developer.hashicorp.com/terraform/language/functions/jsonencode">jsonencode</a>.</p>
+</section><section id="item-24"><div class="section-kicker">REFERENCE 25</div><h2>CIDR · 숫자 함수: 네트워크 계산</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>식</th>
+<th>결과</th>
+<th>해석</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cidrsubnet(&quot;10.20.0.0/16&quot;, 8, 0)</code></td>
+<td>10.20.0.0/24</td>
+<td>prefix에 8비트 추가, 0번</td>
+</tr>
+<tr>
+<td><code>cidrsubnet(&quot;10.20.0.0/16&quot;, 8, 1)</code></td>
+<td>10.20.1.0/24</td>
+<td>1번 subnet</td>
+</tr>
+<tr>
+<td><code>cidrhost(&quot;10.20.1.0/24&quot;, 10)</code></td>
+<td>10.20.1.10</td>
+<td>host 주소</td>
+</tr>
+<tr>
+<td><code>cidrsubnets(&quot;10.20.0.0/16&quot;, 8, 8)</code></td>
+<td>10.20.0.0/24, 10.20.1.0/24</td>
+<td>연속 구간</td>
+</tr>
+<tr>
+<td><code>min(3, 8)</code> / <code>max(3, 8)</code></td>
+<td>3 / 8</td>
+<td>작은 값·큰 값</td>
+</tr>
+<tr>
+<td><code>ceil(2.2)</code> / <code>floor(2.8)</code></td>
+<td>3 / 2</td>
+<td>올림·내림</td>
+</tr>
+<tr>
+<td><code>range(3)</code></td>
+<td>0, 1, 2</td>
+<td>반복용 숫자 목록</td>
+</tr>
+</tbody></table>
+</div><p>newbits=8은 subnet 8개가 아니라 prefix 길이를 8 늘린다는 뜻입니다. /16을 /24로 나누면 이론상 256개 구간, 번호는 0~255입니다. 계산 성공이 AWS 예약 IP와 서비스별 subnet 크기 제한을 모두 만족한다는 뜻은 아닙니다.</p>
+<p>이미 적용한 CIDR 순서를 바꾸면 실제 subnet 교체로 이어질 수 있습니다. 기존 할당을 보존한 채 확장합니다. <a href="https://developer.hashicorp.com/terraform/language/functions/cidrsubnet">cidrsubnet</a>, <a href="https://developer.hashicorp.com/terraform/language/functions/cidrsubnets">cidrsubnets</a>.</p>
+</section><section id="item-25"><div class="section-kicker">REFERENCE 26</div><h2>for_each 설계와 dynamic 블록</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;terraform_data&quot;</span> <span class="str">&quot;service&quot;</span> {
+  <span class="id">for_each</span> = {
+    <span class="kw">for</span> <span class="id">name</span>, <span class="id">cfg</span> <span class="kw">in</span> <span class="id">var</span>.<span class="id">services</span> : <span class="id">name</span> =&gt; <span class="id">cfg</span> <span class="kw">if</span> <span class="id">cfg</span>.<span class="id">enabled</span>
+  }
+  <span class="id">input</span> = {
+    <span class="id">name</span> = <span class="id">each</span>.<span class="id">key</span>
+    <span class="id">port</span> = <span class="id">each</span>.<span class="id">value</span>.<span class="id">port</span>
+  }
+}</code></pre></div><p>each.key는 api 같은 식별자, each.value는 그 설정입니다. web을 frontend로 바꾸면 주소가 달라지므로 이름만 변경하는 것인지 삭제/생성하는 것인지 moved로 의도를 표현합니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>요구</th>
+<th>방법</th>
+<th>주의</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>동일한 항목 N개</td>
+<td>count</td>
+<td>인덱스가 식별자</td>
+</tr>
+<tr>
+<td>이름별 서비스</td>
+<td>map for_each</td>
+<td>안정적인 key 사용</td>
+</tr>
+<tr>
+<td>선택적 1개</td>
+<td>count=enabled?1:0</td>
+<td>미생성 시 <code>[0]</code> 참조 주의</td>
+</tr>
+<tr>
+<td>리소스 내부 블록 반복</td>
+<td>dynamic</td>
+<td>provider가 지원하는 중첩 블록만</td>
+</tr>
+<tr>
+<td>값 변환</td>
+<td>for 표현식</td>
+<td>자원을 생성하지 않음</td>
+</tr>
+</tbody></table>
+</div><p>AWS SG 내부 ingress 반복의 발췌입니다. vpc_id와 allowed_cidrs 입력 선언이 필요합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;aws_security_group&quot;</span> <span class="str">&quot;web&quot;</span> {
+  <span class="id">name</span>   = <span class="str">&quot;study-web&quot;</span>
+  <span class="id">vpc_id</span> = <span class="id">var</span>.<span class="id">vpc_id</span>
+  <span class="kw">dynamic</span> <span class="str">&quot;ingress&quot;</span> {
+    <span class="id">for_each</span> = <span class="fn">toset</span>([<span class="num">80</span>, <span class="num">443</span>])
+    <span class="id">iterator</span> = <span class="id">rule</span>
+    <span class="id">content</span> {
+      <span class="id">from_port</span>   = <span class="id">rule</span>.<span class="id">value</span>
+      <span class="id">to_port</span>     = <span class="id">rule</span>.<span class="id">value</span>
+      <span class="id">protocol</span>    = <span class="str">&quot;tcp&quot;</span>
+      <span class="id">cidr_blocks</span> = <span class="id">var</span>.<span class="id">allowed_cidrs</span>
+    }
+  }
+}</code></pre></div><p>dynamic은 lifecycle 같은 메타 블록을 만들 수 없습니다. SG 규칙을 별도 aws_vpc_security_group_ingress_rule로 관리할 수도 있지만 같은 규칙을 inline과 별도 자원으로 중복 관리하지 않습니다. <a href="https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks">dynamic</a>.</p>
+</section><section id="item-26"><div class="section-kicker">REFERENCE 27</div><h2>의존성 그래프와 병렬 실행</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;aws_subnet&quot;</span> <span class="str">&quot;app&quot;</span> {
+  <span class="id">vpc_id</span>            = <span class="id">aws_vpc</span>.<span class="id">main</span>.<span class="id">id</span>
+  <span class="id">cidr_block</span>        = <span class="str">&quot;10.20.1.0/24&quot;</span>
+  <span class="id">availability_zone</span> = <span class="str">&quot;ap-northeast-2a&quot;</span>
+}</code></pre></div><p>aws_vpc.main.id 참조로 VPC → subnet 의존성을 알 수 있습니다. 파일 이름의 01, 02가 순서를 지정하는 것은 아닙니다. 독립적인 자원은 병렬로 처리합니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>상황</th>
+<th>접근</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>다른 자원 ID 필요</td>
+<td>직접 속성 참조</td>
+</tr>
+<tr>
+<td>참조 없는 실제 선행 조건</td>
+<td>최소 범위 depends_on 검토</td>
+</tr>
+<tr>
+<td>상호 참조 Cycle</td>
+<td>별도 rule/attachment로 관계 분리</td>
+</tr>
+<tr>
+<td>API rate limit</td>
+<td>재시도·구성 분리·parallelism 검토</td>
+</tr>
+<tr>
+<td>서버 생성 후 앱 미준비</td>
+<td>배포·헬스체크에서 확인</td>
+</tr>
+</tbody></table>
+</div><p>module 전체에 depends_on을 붙이면 보수적 계획과 unknown 값이 늘 수 있습니다. 서버가 생성됐다는 것과 애플리케이션이 정상 응답한다는 것은 다릅니다.</p>
+</section><section id="item-27"><div class="section-kicker">REFERENCE 28</div><h2>lifecycle: 교체·삭제 보호의 한계</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>기능</th>
+<th>한계</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>create_before_destroy</td>
+<td>새 자원 먼저 생성</td>
+<td>이름 충돌·quota·여유 용량 필요</td>
+</tr>
+<tr>
+<td>prevent_destroy</td>
+<td>규칙이 있는 동안 파괴적 계획 거부</td>
+<td>resource 블록 삭제 시 보호도 사라짐</td>
+</tr>
+<tr>
+<td>ignore_changes</td>
+<td>갱신 계획에서 지정 속성 무시</td>
+<td>잘못된 설정도 놓칠 수 있음</td>
+</tr>
+<tr>
+<td>replace_triggered_by</td>
+<td>다른 관리 대상 변경으로 교체</td>
+<td>일반 변수 값을 직접 넣는 용도 아님</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;terraform_data&quot;</span> <span class="str">&quot;release&quot;</span> {
+  <span class="id">triggers_replace</span> = <span class="id">var</span>.<span class="id">release_version</span>
+}</code></pre></div><p>값 기반 교체 기준을 관리할 때 terraform_data를 사용할 수 있습니다. 변경 시 교체가 정말 필요한지 먼저 판단합니다. prevent_destroy는 AWS 콘솔이나 다른 도구의 삭제를 막지 않으며 중요한 데이터에는 서비스 삭제 보호·백업·IAM도 필요합니다.</p>
+<p>ECS 앱 배포처럼 다른 도구가 담당하는 속성만 명확히 분리합니다. ignore_changes=all로 계획을 조용하게 만들면 실제 관리 책임도 사라질 수 있습니다. <a href="https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle">lifecycle</a>.</p>
+</section><section id="item-28"><div class="section-kicker">REFERENCE 29</div><h2>validation · precondition · postcondition · check</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>검사</th>
+<th>목적</th>
+<th>실패 결과</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>variable validation</td>
+<td>입력 계약</td>
+<td>잘못된 입력 차단</td>
+</tr>
+<tr>
+<td>precondition</td>
+<td>작업 선행 조건</td>
+<td>확인되는 시점에 관련 작업 차단</td>
+</tr>
+<tr>
+<td>postcondition</td>
+<td>결과 조건</td>
+<td>이미 만든 자원이 자동 롤백되지는 않음</td>
+</tr>
+<tr>
+<td>check</td>
+<td>독립적인 상태 점검</td>
+<td>일반 plan/apply에서는 경고, 배포 게이트로 착각 금지</td>
+</tr>
+<tr>
+<td>test assert</td>
+<td>테스트 기대 결과</td>
+<td>테스트 실패</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;terraform_data&quot;</span> <span class="str">&quot;settings&quot;</span> {
+  <span class="id">input</span> = <span class="id">var</span>.<span class="id">replicas</span>
+  <span class="id">lifecycle</span> {
+    <span class="id">precondition</span> {
+      <span class="id">condition</span>     = <span class="id">var</span>.<span class="id">environment</span> != <span class="str">&quot;prod&quot;</span> || <span class="id">var</span>.<span class="id">replicas</span> &gt;= <span class="num">2</span>
+      <span class="id">error_message</span> = <span class="str">&quot;prod는 replicas가 2 이상이어야 합니다.&quot;</span>
+    }
+  }
+}</code></pre></div><p>unknown 때문에 일부 검사는 apply 시점으로 미뤄질 수 있습니다. 입력·출력 계약을 나누고 어느 단계에서 실패해야 하는지 결정하세요. <a href="https://developer.hashicorp.com/terraform/language/expressions/custom-conditions">사용자 정의 조건</a>.</p>
+</section><section id="item-29"><div class="section-kicker">REFERENCE 30</div><h2>모듈 설계: 입력 → 내부 자원 → 출력</h2><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>infra/
+  environments/dev/main.tf
+  environments/prod/main.tf
+  modules/service-contract/
+    main.tf
+    variables.tf
+    outputs.tf</code></pre></div><p>child module에서 variable을 선언하고 root에서 전달합니다. root의 var.environment가 child로 자동 전달되지는 않습니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">module</span> <span class="str">&quot;api&quot;</span> {
+  <span class="id">source</span>       = <span class="str">&quot;../../modules/service-contract&quot;</span>
+  <span class="id">environment</span>  = <span class="str">&quot;dev&quot;</span>
+  <span class="id">service_name</span> = <span class="str">&quot;api&quot;</span>
+  <span class="id">port</span>         = <span class="num">8080</span>
+}
+<span class="kw">output</span> <span class="str">&quot;api_config&quot;</span> {
+  <span class="id">value</span> = <span class="kw">module</span>.<span class="id">api</span>.<span class="id">config</span>
+}</code></pre></div><p>이 발췌는 해당 입력과 config output을 가진 child module이 필요합니다. 다운로드에는 실제 모듈 실습을 제공합니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>설계</th>
+<th>기준</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>입력</td>
+<td>바뀌는 값만 공개, 타입·설명·validation</td>
+</tr>
+<tr>
+<td>출력</td>
+<td>소비자가 필요한 ID·ARN·계약만 노출</td>
+</tr>
+<tr>
+<td>크기</td>
+<td>함께 변경되는 자원 단위</td>
+</tr>
+<tr>
+<td>예제</td>
+<td>최소 호출 예·테스트 포함</td>
+</tr>
+<tr>
+<td>호환성</td>
+<td>입력 삭제·주소 변경·타입 변경을 기록</td>
+</tr>
+<tr>
+<td>버전</td>
+<td>Registry는 version, Git source는 ref 고정</td>
+</tr>
+</tbody></table>
+</div><p>Registry module의 version과 provider version은 다릅니다. <code>.terraform.lock.hcl</code>은 원격 module 버전을 잠그는 파일이 아닙니다. provider 설정은 보통 root에서 관리하여 child에 전달합니다. <a href="https://developer.hashicorp.com/terraform/language/modules/develop">모듈 개발</a>.</p>
+</section><section id="item-30"><div class="section-kicker">REFERENCE 31</div><h2>provider alias로 여러 리전·계정 연결</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">provider</span> <span class="str">&quot;aws&quot;</span> {
+  <span class="id">region</span> = <span class="str">&quot;ap-northeast-2&quot;</span>
+}
+<span class="kw">provider</span> <span class="str">&quot;aws&quot;</span> {
+  <span class="id">alias</span>  = <span class="str">&quot;virginia&quot;</span>
+  <span class="id">region</span> = <span class="str">&quot;us-east-1&quot;</span>
+}
+<span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket&quot;</span> <span class="str">&quot;secondary&quot;</span> {
+  <span class="kw">provider</span>      = <span class="id">aws</span>.<span class="id">virginia</span>
+  <span class="id">bucket_prefix</span> = <span class="str">&quot;study-secondary-&quot;</span>
+}</code></pre></div><p>alias는 provider 설정의 별칭이며 AWS 이름 suffix가 아닙니다. 다른 계정은 assume role 등의 인증도 별도로 필요합니다. provider 두 개를 선언했다고 모든 자원이 양쪽에 복제되지는 않습니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">module</span> <span class="str">&quot;secondary&quot;</span> {
+  <span class="id">source</span> = <span class="str">&quot;../../modules/storage&quot;</span>
+  <span class="id">providers</span> = {
+    <span class="id">aws</span> = <span class="id">aws</span>.<span class="id">virginia</span>
+  }
+}</code></pre></div><p>storage 모듈이 있을 때 적용하는 발췌입니다. child가 내부에서 alias를 직접 쓰면 required_providers의 configuration_aliases도 선언합니다. state 자원이 참조하는 provider 설정은 자원 이전/정리 전에 제거하지 않습니다. <a href="https://developer.hashicorp.com/terraform/language/providers/configuration">provider 설정</a>.</p>
+</section><section id="item-31"><div class="section-kicker">REFERENCE 32</div><h2>AWS 예제: 비공개 S3 버킷 전체 구성</h2><p>ZIP의 aws-storage/main.tf는 버전·provider 설정까지 포함합니다. 아래는 핵심 자원입니다. state backend용 버킷과 앱 저장용 버킷은 목적을 분리합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket&quot;</span> <span class="str">&quot;assets&quot;</span> {
+  <span class="id">bucket_prefix</span> = <span class="str">&quot;study-assets-&quot;</span>
+  <span class="id">force_destroy</span> = <span class="kw">false</span>
+  <span class="id">tags</span> = {
+    <span class="id">Project</span>     = <span class="str">&quot;terraform-study&quot;</span>
+    <span class="id">Environment</span> = <span class="str">&quot;dev&quot;</span>
+  }
+}
+<span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket_public_access_block&quot;</span> <span class="str">&quot;assets&quot;</span> {
+  <span class="id">bucket</span>                  = <span class="id">aws_s3_bucket</span>.<span class="id">assets</span>.<span class="id">id</span>
+  <span class="id">block_public_acls</span>       = <span class="kw">true</span>
+  <span class="id">block_public_policy</span>     = <span class="kw">true</span>
+  <span class="id">ignore_public_acls</span>      = <span class="kw">true</span>
+  <span class="id">restrict_public_buckets</span> = <span class="kw">true</span>
+}
+<span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket_versioning&quot;</span> <span class="str">&quot;assets&quot;</span> {
+  <span class="id">bucket</span> = <span class="id">aws_s3_bucket</span>.<span class="id">assets</span>.<span class="id">id</span>
+  <span class="id">versioning_configuration</span> {
+    <span class="id">status</span> = <span class="str">&quot;Enabled&quot;</span>
+  }
+}
+<span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket_server_side_encryption_configuration&quot;</span> <span class="str">&quot;assets&quot;</span> {
+  <span class="id">bucket</span> = <span class="id">aws_s3_bucket</span>.<span class="id">assets</span>.<span class="id">id</span>
+  <span class="id">rule</span> {
+    <span class="id">apply_server_side_encryption_by_default</span> {
+      <span class="id">sse_algorithm</span> = <span class="str">&quot;AES256&quot;</span>
+    }
+  }
+}</code></pre></div><p>bucket_prefix로 유일한 suffix를 붙입니다. force_destroy=false이면 내용이 남은 버킷을 자동 비우기 하지 않습니다. 버전 관리로 이전 데이터 복구를 도울 수 있지만 과거 객체도 저장 비용을 차지합니다.</p>
+<p>AWS 적용은 예상 계정·IAM·SCP·리전을 확인하고 plan을 검토한 뒤 진행합니다. 이 문서에서는 실제 AWS 적용을 수행하지 않았습니다. <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket">S3 provider 문서</a>.</p>
+</section><section id="item-32"><div class="section-kicker">REFERENCE 33</div><h2>backend 실무: bootstrap · 이전 · 권한</h2><p>backend는 일반 자원보다 먼저 초기화됩니다. 같은 root에서 state 버킷을 만들면서 최초 init부터 그 버킷을 쓰려면 순환 문제가 생기므로 별도 bootstrap 또는 기존 버킷이 필요합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># backend.tf</span>
+<span class="kw">terraform</span> {
+  <span class="id">backend</span> <span class="str">&quot;s3&quot;</span> {}
+}</code></pre></div><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code># dev.s3.tfbackend: 비밀키를 넣지 않음
+bucket       = &quot;EXISTING_STATE_BUCKET&quot;
+key          = &quot;team/dev/terraform.tfstate&quot;
+region       = &quot;ap-northeast-2&quot;
+encrypt      = true
+use_lockfile = true</code></pre></div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">terraform</span> <span class="id">init</span> -<span class="id">backend</span>-<span class="id">config</span>=<span class="id">dev</span>.<span class="id">s3</span>.<span class="id">tfbackend</span>
+<span class="cm"># 기존 local state를 옮기는 경우에만 검토 후 사용</span>
+<span class="id">terraform</span> <span class="id">init</span> -<span class="id">migrate</span>-<span class="id">state</span> -<span class="id">backend</span>-<span class="id">config</span>=<span class="id">dev</span>.<span class="id">s3</span>.<span class="id">tfbackend</span></code></pre></div><p>migrate-state는 상태 이전 흐름입니다. reconfigure는 저장된 backend 설정을 다시 구성하며 상태 이전 대체 명령이 아닙니다. 혼동하면 빈 state로 기존 자원을 중복 생성하려 할 수 있습니다.</p>
+<p>state 객체의 읽기/쓰기, <code>.tflock</code>의 읽기/쓰기/삭제, 버킷 목록 권한을 구분합니다. KMS를 쓰면 키 정책도 필요합니다. dev/prod key만 나눠도 같은 역할이 모두 접근하면 권한 격리는 아닙니다. <a href="https://developer.hashicorp.com/terraform/language/backend/s3">S3 backend</a>.</p>
+</section><section id="item-33"><div class="section-kicker">REFERENCE 34</div><h2>import: 기존 자원을 관리 대상으로 가져오기</h2><p>import는 기존 자원 ID와 Terraform 주소를 연결합니다. 먼저 다른 state가 이미 관리하는지 확인합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">resource</span> <span class="str">&quot;aws_s3_bucket&quot;</span> <span class="str">&quot;legacy&quot;</span> {
+  <span class="id">bucket</span> = <span class="str">&quot;EXISTING_BUCKET_NAME&quot;</span>
+}
+<span class="id">import</span> {
+  <span class="id">to</span> = <span class="id">aws_s3_bucket</span>.<span class="id">legacy</span>
+  <span class="id">id</span> = <span class="str">&quot;EXISTING_BUCKET_NAME&quot;</span>
+}</code></pre></div><p>1.5 이상 import block으로 계획에 포함할 수 있습니다. plan에서 import 외 원치 않는 변경·교체가 없는지 확인합니다. 버킷 import 하나가 versioning·policy·public access block까지 모두 연결해 주는 것은 아닙니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># resource 선언을 준비한 후 명령형으로 연결하는 대안</span>
+<span class="id">terraform</span> <span class="id">import</span> <span class="id">aws_s3_bucket</span>.<span class="id">legacy</span> <span class="id">EXISTING_BUCKET_NAME</span>
+<span class="id">terraform</span> <span class="id">plan</span></code></pre></div><p>명령형 import는 즉시 state를 바꿉니다. 기존 설정을 완벽한 HCL로 만들어 주는 명령은 아닙니다. import block과 plan의 generate-config-out 옵션으로 설정을 생성하더라도 기본값·중복·조직 정책을 직접 정리해야 합니다. <a href="https://developer.hashicorp.com/terraform/language/import">Import</a>.</p>
+</section><section id="item-34"><div class="section-kicker">REFERENCE 35</div><h2>moved · removed: 실제 삭제 없이 구조 바꾸기</h2><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">moved</span> {
+  <span class="id">from</span> = <span class="id">terraform_data</span>.<span class="id">old</span>
+  <span class="id">to</span>   = <span class="id">terraform_data</span>.<span class="id">service</span>
+}</code></pre></div><p>moved는 1.1 이상에서 주소 이전을 선언합니다. 실제 AWS 이름을 바꾸지 않습니다. 모든 환경과 module 사용자의 이전을 고려해 기록을 유지합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 1.7 이상: 실제 자원은 남기고 관리 연결만 제거</span>
+<span class="id">removed</span> {
+  <span class="id">from</span> = <span class="id">aws_s3_bucket</span>.<span class="id">legacy</span>
+  <span class="id">lifecycle</span> {
+    <span class="id">destroy</span> = <span class="kw">false</span>
+  }
+}</code></pre></div><p>removed는 기존 resource 선언을 제거하는 변경과 함께 검토합니다. 이후 그 자원은 해당 state의 관리 밖으로 나가므로 새 담당자와 운영 절차가 필요합니다.</p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>작업</th>
+<th>검토</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>논리 이름 변경</td>
+<td>moved, 불필요 생성·삭제 없는지</td>
+</tr>
+<tr>
+<td>root → module</td>
+<td>새 module 주소로 이전</td>
+</tr>
+<tr>
+<td>count → for_each</td>
+<td>각 이전 인덱스와 새 key 매핑</td>
+</tr>
+<tr>
+<td>관리만 종료</td>
+<td>removed destroy=false 또는 통제된 state rm</td>
+</tr>
+</tbody></table>
+</div><p><a href="https://developer.hashicorp.com/terraform/language/modules/develop/refactoring">리팩터링</a>, <a href="https://developer.hashicorp.com/terraform/language/state/remove">관리 대상 제거</a>.</p>
+</section><section id="item-35"><div class="section-kicker">REFERENCE 36</div><h2>state 조사·복구와 부분 실패</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>명령</th>
+<th>목적</th>
+<th>주의</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>state list</td>
+<td>관리 주소 목록</td>
+<td>읽기</td>
+</tr>
+<tr>
+<td>state show &#39;주소&#39;</td>
+<td>저장 속성 확인</td>
+<td>비밀 출력 주의</td>
+</tr>
+<tr>
+<td>state pull</td>
+<td>state JSON 추출</td>
+<td>파일 접근 보호</td>
+</tr>
+<tr>
+<td>state mv &#39;이전&#39; &#39;새주소&#39;</td>
+<td>주소 즉시 이전</td>
+<td>state 변경</td>
+</tr>
+<tr>
+<td>state rm &#39;주소&#39;</td>
+<td>관리 연결 제거</td>
+<td>실제 자원 유지</td>
+</tr>
+<tr>
+<td>force-unlock LOCK_ID</td>
+<td>남은 잠금 해제</td>
+<td>진행 중 작업이 없는지 확인</td>
+</tr>
+<tr>
+<td>plan -refresh-only</td>
+<td>외부 변경을 state에 반영할 계획</td>
+<td>계획만</td>
+</tr>
+<tr>
+<td>apply -refresh-only</td>
+<td>외부 변경을 state에 반영</td>
+<td>코드대로 인프라 복원하는 기능 아님</td>
+</tr>
+</tbody></table>
+</div><p>apply 실패 시 자동 전체 롤백을 가정하지 않습니다. VPC 생성 후 subnet이 실패했다면 VPC가 남을 수 있습니다. 로그 → 실제 자원 → state → 원인 수정 → 새 plan 순서로 확인하세요.</p>
+<p>state 저장 실패 시 복구 안내와 임시 state를 먼저 보존합니다. 임의로 빈 state나 오래된 백업을 덮지 않습니다. 수동 push는 lineage·serial·최신 변경을 확인해야 하는 복구 작업입니다. state 버전 복원은 실제 인프라를 과거 상태로 복원하는 것과 다릅니다.</p>
+</section><section id="item-36"><div class="section-kicker">REFERENCE 37</div><h2>sensitive · ephemeral · write-only 구분</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>기능</th>
+<th>보호 범위</th>
+<th>한계</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sensitive=true</td>
+<td>일반 출력에서 값 가림</td>
+<td>state/plan 저장될 수 있음</td>
+</tr>
+<tr>
+<td>ephemeral</td>
+<td>지원 문맥에서 plan/state 미보관</td>
+<td>1.10+와 사용 위치 제약</td>
+</tr>
+<tr>
+<td>write-only 인수</td>
+<td>provider에 쓰되 값 미보관</td>
+<td>1.11+와 해당 자원 지원 필요</td>
+</tr>
+<tr>
+<td>외부 secret 저장소</td>
+<td>접근 통제·회전</td>
+<td>일반 인수로 읽으면 state에 다시 남을 수 있음</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="kw">variable</span> <span class="str">&quot;api_token&quot;</span> {
+  <span class="id">type</span>      = <span class="id">string</span>
+  <span class="id">sensitive</span> = <span class="kw">true</span>
+  <span class="id">ephemeral</span> = <span class="kw">true</span>
+}</code></pre></div><p>이 선언을 모든 resource 인수에 전달할 수 있는 것은 아닙니다. 영속 식별자나 일반 output에서 ephemeral을 써 저장을 회피할 수 없습니다.</p>
+<p>output -raw/-json, plan JSON, debug 로그는 민감 값을 드러낼 수 있습니다. artifact 보관 기간·다운로드 권한을 제한합니다. 코드에서 키를 지워도 기존 state snapshot·Git 이력·로그에서 자동 제거되지 않습니다. <a href="https://developer.hashicorp.com/terraform/language/manage-sensitive-data">민감 데이터</a>.</p>
+</section><section id="item-37"><div class="section-kicker">REFERENCE 38</div><h2>테스트: fmt · validate · test · 실제 동작</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>검증</th>
+<th>알아내는 것</th>
+<th>한계</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fmt</td>
+<td>표준 서식</td>
+<td>권한·설계 검사 아님</td>
+</tr>
+<tr>
+<td>validate</td>
+<td>구문·타입·참조</td>
+<td>실제 계정·quota 보장 아님</td>
+</tr>
+<tr>
+<td>test plan</td>
+<td>입력과 계획의 기대값</td>
+<td>실제 서비스 확인 아님</td>
+</tr>
+<tr>
+<td>mock_provider</td>
+<td>API 없이 module 계약</td>
+<td>AWS 실제 동작 대체 불가</td>
+</tr>
+<tr>
+<td>격리 apply</td>
+<td>자원 생성·연결</td>
+<td>부하·장애 전체 보장 아님</td>
+</tr>
+<tr>
+<td>업무 smoke</td>
+<td>사용자 경로</td>
+<td>장기 안정성 별도</td>
+</tr>
+</tbody></table>
+</div><p>현재 test 프레임워크는 1.6 이상, provider mocking은 1.7 이상 기준입니다. <strong>run의 기본 command는 apply</strong>이므로 AWS 구성에서 무심코 test하면 자원을 만들 수 있습니다. 계획만 필요하면 command=plan을 명시합니다.</p>
+<div class="codebox"><div class="codebar"><span>hcl</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="id">run</span> <span class="str">&quot;default_contract&quot;</span> {
+  <span class="id">command</span> = <span class="id">plan</span>
+  <span class="id">assert</span> {
+    <span class="id">condition</span>     = <span class="kw">output</span>.<span class="id">service_count</span> == <span class="num">2</span>
+    <span class="id">error_message</span> = <span class="str">&quot;활성 서비스는 2개여야 합니다.&quot;</span>
+  }
+}</code></pre></div><p>이 코드는 해당 output이 있는 모듈의 tests/contract.tftest.hcl에 둡니다. test는 별도 테스트 state를 쓰고 정리를 시도하지만 실패 시 잔여 자원을 조사해야 합니다. 이번 ZIP local-contract는 외부 provider·provisioner 없이 terraform_data만 사용합니다. <a href="https://developer.hashicorp.com/terraform/language/tests">Tests</a>.</p>
+</section><section id="item-38"><div class="section-kicker">REFERENCE 39</div><h2>Terraform CI/CD와 종료 코드 처리</h2><div class="codebox"><div class="codebar"><span>text</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code>PR → fmt → init → validate → test → 신뢰하는 권한 환경에서 plan
+                                    ↓ 변경 검토·정책 검사
+main 확정 commit → 최종 plan → 환경 승인 → 같은 plan apply → 검증</code></pre></div><p>fork PR의 임의 코드를 운영 AWS 권한으로 실행하지 않습니다. plan 권한도 state와 data source를 읽으므로 민감할 수 있습니다. OIDC의 저장소·환경 subject와 역할을 제한합니다.</p>
+<div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm">#!/usr/bin/env bash</span>
+<span class="kw">set</span> -<span class="id">euo</span> <span class="id">pipefail</span>
+<span class="id">terraform</span> <span class="id">init</span> -<span class="id">input</span>=<span class="id">false</span> -<span class="id">lockfile</span>=<span class="kw">readonly</span>
+<span class="id">terraform</span> <span class="id">validate</span>
+<span class="id">code</span>=<span class="num">0</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">input</span>=<span class="id">false</span> -<span class="id">lock</span>-<span class="id">timeout</span>=5<span class="id">m</span> \
+  -<span class="id">detailed</span>-<span class="id">exitcode</span> -<span class="id">out</span>=<span class="id">review</span>.<span class="id">tfplan</span> || <span class="id">code</span>=$?
+<span class="kw">case</span> <span class="str">&quot;$code&quot;</span> <span class="kw">in</span>
+  <span class="num">0</span>) <span class="kw">echo</span> <span class="str">'변경 없음'</span> ;;
+  <span class="num">2</span>) <span class="kw">echo</span> <span class="str">'변경 있음: 계획 검토와 승인 필요'</span> ;;
+  *) <span class="kw">echo</span> <span class="str">'계획 실패'</span> &gt;&amp;<span class="num">2</span>; <span class="id">exit</span> <span class="str">&quot;$code&quot;</span> ;;
+<span class="kw">esac</span></code></pre></div><p>lockfile이 사전에 생성·검토·커밋된 root의 예입니다. 같은 backend key의 작업끼리 concurrency를 묶고 진행 중 apply를 새 push 때문에 취소하지 않습니다. plan과 commit SHA·환경·provider 버전·artifact 무결성을 연결합니다. 저장 plan apply는 추가 yes 없이 적용됨을 기억하세요.</p>
+<p>Terraform과 앱 CD가 ECS task definition 같은 속성을 동시에 바꾸면 충돌합니다. 소유권을 나누고 필요한 속성에 한해 ignore_changes 등을 검토합니다. <a href="devops-handbook-reference.html">전체 CI/CD 가이드</a>.</p>
+</section><section id="item-39"><div class="section-kicker">REFERENCE 40</div><h2>실무 변경 시나리오와 검토 기준</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>요청</th>
+<th>코드 변경</th>
+<th>plan 확인</th>
+<th>적용 후</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>태그 추가</td>
+<td>tags/map</td>
+<td>제자리 갱신인지</td>
+<td>누락·비용 태그</td>
+</tr>
+<tr>
+<td>subnet 추가</td>
+<td>안정적인 key</td>
+<td>기존 subnet 교체 없는지</td>
+<td>라우트·AZ·SG</td>
+</tr>
+<tr>
+<td>서버 크기 변경</td>
+<td>instance_type 등</td>
+<td>정지·교체 여부</td>
+<td>앱·비용·메트릭</td>
+</tr>
+<tr>
+<td>module 분리</td>
+<td>module + moved</td>
+<td>불필요 생성·삭제 없는지</td>
+<td>output 소비자</td>
+</tr>
+<tr>
+<td>기존 자원 인수</td>
+<td>resource + import</td>
+<td>import 외 변경</td>
+<td>중복 관리 없는지</td>
+</tr>
+<tr>
+<td>provider 갱신</td>
+<td>제약·lockfile</td>
+<td>대량 diff·deprecated</td>
+<td>회귀 검증</td>
+</tr>
+<tr>
+<td>관리 종료</td>
+<td>removed</td>
+<td>실제 삭제 아닌지</td>
+<td>새 소유자</td>
+</tr>
+</tbody></table>
+</div><p>PR에는 목적, 대상 계정·환경, 교체·삭제 여부, 데이터 보존, 테스트, 실패 시 복구 절차를 적습니다. plan의 0 to destroy만으로 무중단을 확정하지 말고 실제 서비스 영향을 읽으세요.</p>
+<p>적용 전에는 workspace, 계정, backend key, 변수, commit, lockfile, plan 최신성을 확인합니다. 적용 후에는 output뿐 아니라 API·로그·DB 연결·알람을 확인합니다.</p>
+</section><section id="item-40"><div class="section-kicker">REFERENCE 41</div><h2>오류별 원인과 해결 순서</h2><div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>오류·증상</th>
+<th>흔한 원인</th>
+<th>해결 접근</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Unsupported argument</td>
+<td>버전/블록 위치 불일치</td>
+<td>설치된 provider 문서 확인</td>
+</tr>
+<tr>
+<td>undeclared resource</td>
+<td>이름 오타·다른 module 직접 참조</td>
+<td>주소·output 확인</td>
+</tr>
+<tr>
+<td>Invalid for_each argument</td>
+<td>unknown key·잘못된 타입</td>
+<td>고정 key map 설계</td>
+</tr>
+<tr>
+<td>Invalid index</td>
+<td>빈 count·없는 key</td>
+<td>입력 계약·분기</td>
+</tr>
+<tr>
+<td>조건식 타입 불일치</td>
+<td>양쪽 구조가 다름</td>
+<td>명시적 타입 통일</td>
+</tr>
+<tr>
+<td>Cycle</td>
+<td>상호 참조</td>
+<td>rule/attachment 분리</td>
+</tr>
+<tr>
+<td>Provider configuration not present</td>
+<td>참조 provider 제거</td>
+<td>기존 설정 복구 후 이전</td>
+</tr>
+<tr>
+<td>Resource already exists</td>
+<td>자원은 있으나 state 연결 없음</td>
+<td>중복 생성 대신 import 검토</td>
+</tr>
+<tr>
+<td>Saved plan is stale</td>
+<td>계획 후 state 변경</td>
+<td>새 plan·재검토</td>
+</tr>
+<tr>
+<td>권한 오류</td>
+<td>IAM·SCP·세션</td>
+<td>실행 주체·거부 작업 확인</td>
+</tr>
+<tr>
+<td>예상치 않은 대량 삭제</td>
+<td>잘못된 환경·변수</td>
+<td>apply 중단, 대상 비교</td>
+</tr>
+</tbody></table>
+</div><p>TF_LOG 진단 로그는 요청 정보나 비밀이 포함될 수 있어 필요한 범위에서만 사용합니다. 오류를 숨기거나 모든 자원에 ignore_changes를 붙여 해결하지 않습니다.</p>
+</section><section id="item-41"><div class="section-kicker">REFERENCE 42</div><h2>상세 실습 ZIP과 학습 과제</h2><p><a href="sample-files/terraform-detailed.zip">Terraform 상세 실습 ZIP 다운로드</a></p>
+<div class="table-wrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>폴더</th>
+<th>내용</th>
+<th>실행 특성</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>local-contract</td>
+<td>타입, 함수, for_each, child module, output</td>
+<td>AWS 계정·외부 provider 없이 실행</td>
+</tr>
+<tr>
+<td>local-contract/tests</td>
+<td>기본값·환경 변경·잘못된 입력 검증</td>
+<td>plan 기반</td>
+</tr>
+<tr>
+<td>aws-storage</td>
+<td>비공개 S3 버킷 전체 구성</td>
+<td>실제 적용은 AWS 자원 변경 가능</td>
+</tr>
+<tr>
+<td>README.md</td>
+<td>폴더별 실행과 예상 결과</td>
+<td>실습별로 별도 실행</td>
+</tr>
+</tbody></table>
+</div><div class="codebox"><div class="codebar"><span>bash</span><button type="button" class="copy">코드 복사</button></div><pre tabindex="0"><code><span class="cm"># 압축 해제 후 local-contract 안에서</span>
+<span class="id">terraform</span> <span class="id">init</span> -<span class="id">input</span>=<span class="id">false</span>
+<span class="id">terraform</span> <span class="id">fmt</span> -<span class="id">check</span> -<span class="id">recursive</span>
+<span class="id">terraform</span> <span class="id">validate</span>
+<span class="id">terraform</span> <span class="id">test</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">out</span>=<span class="kw">local</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">show</span> <span class="kw">local</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">apply</span> <span class="kw">local</span>.<span class="id">tfplan</span>
+<span class="id">terraform</span> <span class="id">output</span>
+<span class="id">terraform</span> <span class="id">plan</span> -<span class="id">detailed</span>-<span class="id">exitcode</span></code></pre></div><p>기본 활성 서비스는 api/web 2개이고 CIDR은 10.20.0.0/24, 10.20.1.0/24입니다. 같은 입력으로 재계획하면 종료 코드 0입니다. prod 입력으로 plan하면 환경·이름 변경을 볼 수 있습니다.</p>
+<p>과제: api 포트 변경 → worker 추가 → web 비활성화 → 이름 변경과 moved 설명 → 잘못된 port가 validation에서 차단되는지 확인. 종료 시 local-contract에서만 terraform destroy로 로컬 관리 항목을 정리합니다.</p>
+<p>확장판 확인일 <strong>2026-10-13</strong>. ZIP의 VERIFICATION.md에 검증 범위를 기록합니다. AWS 실제 배포·과금 테스트는 수행하지 않았습니다.</p>
+</section><footer>공식 자료 확인일: 2026-10-13 · Terraform 아주 자세한 사용법<br>본문의 공식 링크에서 세부 조건과 업데이트를 확인할 수 있습니다.</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div><script>
 const status=document.querySelector('#copy-status');
 for (const button of document.querySelectorAll('.copy')) button.addEventListener('click',async()=>{
  const text=button.closest('.codebox').querySelector('code').textContent;

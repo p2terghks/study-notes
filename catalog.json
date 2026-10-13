@@ -155,9 +155,9 @@
   },
   {
     "path": "docs/quick-reference/terraform-reference.html",
-    "title": "Terraform · 문법·명령어·상태 관리",
+    "title": "Terraform 상세 가이드 · 문법·함수·모듈·상태·CI/CD",
     "category": "AWS · 클라우드",
-    "url": "docs/quick-reference/terraform-reference.html?v=7b8c054f467b",
+    "url": "docs/quick-reference/terraform-reference.html?v=c8cb50b3ad2b",
     "format": "HTML"
   },
   {
