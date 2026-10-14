@@ -1,0 +1,368 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>파이썬 챗봇 · 코드와 실행 흐름</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;font:16px/1.85 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}a{text-underline-offset:4px}p{margin:12px 0}h3{margin-top:30px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border);min-width:110px}.table-wrap{overflow:auto}code{font:13px/1.8 ui-monospace,Menlo,Consolas,monospace}pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:0}section{margin-top:48px}.source-file{margin-top:28px}.file-meta{font-size:12px}summary{cursor:pointer;padding:12px 0}.reading-guide{padding:16px 20px;border:1px solid var(--border);background:var(--panel);border-radius:8px}footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--border);font-size:12px}</style><link rel="stylesheet" href="campus-theme.css?v=20261014"><script src="campus-theme.js?v=20261014"></script></head><body><a class="home-link" href="../../../index.html">← 학습 요약 전체 목록</a><div class="layout"><aside class="sidebar" aria-label="문서 목차"><p class="brand">PYTHON CHATBOT NOTES</p><p class="nav-label">코드 · 함수 · 구조 · 설명 요약</p><label for="toc-search">목차 검색</label><input id="toc-search" type="search" placeholder="키워드로 찾아보기"><p id="toc-count" class="result-count" aria-live="polite"></p><nav class="chapter-links" aria-label="항목 목록"><a href="#item-0"><span>01</span>챗봇의 역할과 범위</a><a href="#item-1"><span>02</span>파일 구성과 구조도</a><a href="#item-2"><span>03</span>함수별 역할</a><a href="#item-3"><span>04</span>질문 처리와 추천 기준</a><a href="#item-4"><span>05</span>실행·설정·실패 처리</a><a href="#item-5"><span>06</span>Python 전체 코드</a><a href="#item-6"><span>07</span>검증 방법과 읽는 순서</a></nav><p class="nav-group">다른 요약본</p><a href="R_ANALYTICS_SUMMARY.html">↗ R언어 분석 · 코드와 실행 흐름</a><a href="CODE_SUMMARY.html">↗ 수강신청 전체 코드</a><a href="../../../index.html">↗ 요약 파일들 전체 목록</a><p class="nav-note">2026-10-14 코드 기준<br>다크모드 · 코드 복사</p></aside><main id="page-content"><header><p class="eyebrow">PROJECT NOTES / 2026.10.14</p><h1>파이썬 챗봇 · 코드와 실행 흐름</h1><p>규칙 기반 학사 상담과 선택형 FastAPI·ONNX·TensorFlow 연동</p></header><div class="reading-guide">실제 프로젝트 코드를 기준으로 기능·함수·실행 흐름을 따로 정리했습니다. 전체 코드 영역은 펼쳐서 읽고 복사할 수 있습니다.</div><section id="item-0"><h2>1. 챗봇의 역할과 범위</h2><p>로그인한 학생의 강의·신청 내역·학적 정보를 받아 질문을 분류하고, 시간표·수업 추천·잔여 좌석·충돌·졸업요건을 안내합니다. 기본은 Python 규칙형입니다. FastAPI는 선택형 내부 서비스이며 ONNX·TensorFlow 모델은 별도 준비가 필요합니다. OpenAI API와 Streamlit은 사용하지 않습니다.</p><p>현재 React의 수강 도우미가 Spring 상담 API와 연결되어 있습니다. Python은 추천과 답변을 만들며, 추천 카드의 신청·장바구니 동작은 기존 Spring API가 최종 검증합니다.</p></section><section id="item-1"><h2>2. 파일 구성과 구조도</h2><div class="codebox"><div class="codebar"><span>TEXT</span><button class="copy" type="button" aria-label="text 코드 복사">복사</button></div><pre><code data-language="text">React 수강 도우미
+  → Spring /api/advisor/chat (인증·입력 검증·DB 조회)
+  → PythonAdvisor
+      ├─ AI_ENGINE_URL 설정: 내부 FastAPI /chat
+      │    → 규칙 엔진 reply() → 선택형 SemanticRanker.rank()
+      └─ 미설정 또는 연결 실패: 로컬 Python 프로세스
+           → advisor.py의 reply() → JSON 답변
+  ← topic · message · points · recommendations · sources · suggestions · engine · filters
+
+src/main/resources/python/advisor.py   규칙·조건 추출·답변
+ai-engine/app/main.py                  FastAPI 요청·인증·동시 처리
+ai-engine/app/semantic.py              선택형 ONNX·TensorFlow 순위
+ai-engine/requirements.txt             FastAPI·uvicorn 의존성</code></pre></div></section><section id="item-2"><h2>3. 함수별 역할</h2><div class="table-wrap"><table><thead><tr><th>함수·클래스</th><th>역할</th></tr></thead><tbody><tr><td>answer()</td><td>공통 답변 필드 구성</td></tr><tr><td>extract_filters()</td><td>요일 포함/제외·오전/오후·시각 조건 추출</td></tr><tr><td>matches_filters()</td><td>강의 시간이 추출 조건과 맞는지 검사</td></tr><tr><td>reply(payload, ranker=None)</td><td>질문 분류·기본 상태 계산·답변 분기</td></tr><tr><td>unavailable()</td><td>이미 신청·정원·학점·시간 충돌 검사</td></tr><tr><td>recommend()</td><td>신청 가능한 개별 후보를 조건별로 추리고 최대 3개 추천</td></tr><tr><td>graduation() / timetable()</td><td>등록 졸업 정책과 현재 신청 내역 안내</td></tr><tr><td>health() / chat()</td><td>내부 엔진 상태 조회·인증된 질문 처리</td></tr><tr><td>SemanticRanker.encode()</td><td>로컬 ONNX 모델로 문장 임베딩 생성</td></tr><tr><td>SemanticRanker.rank()</td><td>같은 모델 공간에서 코사인 유사도로 후보 순서 결정</td></tr></tbody></table></div><p>unavailable·recommend·graduation·timetable은 reply 내부 함수입니다. 이전 주제를 전달하면 일부 후속 질문을 연결하며, 전체 대화를 이해하는 생성형 모델 방식은 아닙니다.</p></section><section id="item-3"><h2>4. 질문 처리와 추천 기준</h2><p>질문에서 소문자·공백을 정리하고 키워드로 졸업요건·취소·장바구니·추천·강의 상세·시간표·좌석·충돌 등을 분기합니다. 추천은 현재 신청 내역, 잔여 정원, 학점, 시간 충돌을 먼저 검사한 뒤 학과·교양·관심 분야·요일·시간 조건을 반영합니다.</p><div class="codebox"><div class="codebar"><span>PYTHON</span><button class="copy" type="button" aria-label="python 코드 복사">복사</button></div><pre><code data-language="python"><span class="str">&quot;&quot;&quot;학사 상담 엔진. 표준 입력 JSON → 표준 출력 JSON (Python 3.10+).&quot;&quot;&quot;</span>
+<span class="kw">import</span> <span class="id">json</span>
+<span class="kw">import</span> <span class="id">re</span>
+<span class="kw">import</span> <span class="id">sys</span>
+
+<span class="id">DAYS</span> = <span class="str">&#x27;월화수목금&#x27;</span>
+<span class="id">SUGGESTIONS</span> = [<span class="str">&#x27;졸업요건 알려줘&#x27;</span>, <span class="str">&#x27;수업 추천해줘&#x27;</span>, <span class="str">&#x27;내 시간표 알려줘&#x27;</span>]
+
+
+<span class="kw">def</span> <span class="fn">answer</span>(<span class="id">topic</span>, <span class="id">message</span>, <span class="id">points</span>=(), <span class="id">recommendations</span>=(), <span class="id">sources</span>=(), <span class="id">suggestions</span>=<span class="id">SUGGESTIONS</span>):
+    <span class="kw">return</span> <span class="fn">dict</span>(<span class="id">topic</span>=<span class="id">topic</span>, <span class="id">message</span>=<span class="id">message</span>, <span class="id">points</span>=<span class="fn">list</span>(<span class="id">points</span>),
+                <span class="id">recommendations</span>=<span class="fn">list</span>(<span class="id">recommendations</span>), <span class="id">sources</span>=<span class="fn">list</span>(<span class="id">sources</span>), <span class="id">suggestions</span>=<span class="fn">list</span>(<span class="id">suggestions</span>))
+
+
+<span class="kw">def</span> <span class="fn">extract_filters</span>(<span class="id">message</span>):
+    <span class="str">&quot;&quot;&quot;명시적인 요일·오전/오후·시각 조건을 추출한다. 복잡한 발화는 추측하지 않는다.&quot;&quot;&quot;</span>
+    <span class="id">text</span> = <span class="fn">re.sub</span>(<span class="id">r</span><span class="str">&#x27;\s+&#x27;</span>, <span class="str">&#x27;&#x27;</span>, <span class="fn">message.lower</span>())
+    <span class="id">excluded</span> = [<span class="id">i</span> <span class="kw">for</span> <span class="id">i</span>, <span class="id">d</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="id">DAYS</span>)
+                <span class="kw">if</span> <span class="fn">re.search</span>(<span class="id">d</span> + <span class="id">r</span><span class="str">&#x27;(?:요일)?(?:은|는|에는)?(?:공강|빼|제외|피하|쉬)&#x27;</span>, <span class="id">text</span>)]
+    <span class="id">included</span> = [<span class="id">i</span> <span class="kw">for</span> <span class="id">i</span>, <span class="id">d</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="id">DAYS</span>) <span class="kw">if</span> <span class="id">d</span> + <span class="str">&#x27;요일&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">and</span> <span class="id">i</span> <span class="kw">not</span> <span class="kw">in</span> <span class="id">excluded</span>]
+    <span class="id">after</span>, <span class="id">before</span> = (<span class="num">720</span>, <span class="num">1080</span>) <span class="kw">if</span> <span class="str">&#x27;오후&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">else</span> (<span class="num">540</span>, <span class="num">720</span>) <span class="kw">if</span> <span class="str">&#x27;오전&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">else</span> (<span class="num">0</span>, <span class="num">1440</span>)
+    <span class="id">times</span> = <span class="fn">list</span>(<span class="fn">re.finditer</span>(<span class="id">r</span><span class="str">&#x27;(\d{1,2})시(?:(\d{1,2})분)?&#x27;</span>, <span class="id">text</span>))
+    <span class="kw">def</span> <span class="fn">minute</span>(<span class="id">m</span>):
+        <span class="id">h</span>, <span class="id">n</span> = <span class="fn">int</span>(<span class="id">m</span>[<span class="num">1</span>]), <span class="fn">int</span>(<span class="id">m</span>[<span class="num">2</span>] <span class="kw">or</span> <span class="num">0</span>)
+        <span class="kw">if</span> <span class="kw">not</span> <span class="num">0</span> &lt;= <span class="id">h</span> &lt;= <span class="num">23</span> <span class="kw">or</span> <span class="kw">not</span> <span class="num">0</span> &lt;= <span class="id">n</span> &lt;= <span class="num">59</span>:
+            <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&#x27;시각은 0~23시, 분은 0~59분으로 입력해주세요.&#x27;</span>)
+        <span class="kw">if</span> <span class="str">&#x27;오후&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">and</span> <span class="id">h</span> &lt; <span class="num">12</span>: <span class="id">h</span> += <span class="num">12</span>
+        <span class="kw">if</span> <span class="str">&#x27;오전&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">and</span> <span class="id">h</span> == <span class="num">12</span>: <span class="id">h</span> = <span class="num">0</span>
+        <span class="kw">return</span> <span class="id">h</span> * <span class="num">60</span> + <span class="id">n</span>
+    <span class="kw">if</span> <span class="fn">len</span>(<span class="id">times</span>) == <span class="num">2</span>:
+        <span class="id">after</span>, <span class="id">before</span> = <span class="fn">minute</span>(<span class="id">times</span>[<span class="num">0</span>]), <span class="fn">minute</span>(<span class="id">times</span>[<span class="num">1</span>])
+    <span class="kw">elif</span> <span class="fn">len</span>(<span class="id">times</span>) == <span class="num">1</span>:
+        <span class="id">value</span> = <span class="fn">minute</span>(<span class="id">times</span>[<span class="num">0</span>])
+        <span class="kw">if</span> <span class="fn">any</span>(<span class="id">w</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">for</span> <span class="id">w</span> <span class="kw">in</span> (<span class="str">&#x27;이전&#x27;</span>, <span class="str">&#x27;전까지&#x27;</span>)): <span class="id">before</span> = <span class="id">value</span>
+        <span class="kw">else</span>: <span class="id">after</span> = <span class="id">value</span>
+    <span class="kw">if</span> <span class="id">after</span> &gt;= <span class="id">before</span>: <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&#x27;시작 시각은 종료 시각보다 빨라야 해요.&#x27;</span>)
+    <span class="kw">return</span> <span class="fn">dict</span>(<span class="id">days</span>=<span class="id">included</span>, <span class="id">excludedDays</span>=<span class="id">excluded</span>, <span class="id">start</span>=<span class="id">after</span>, <span class="id">end</span>=<span class="id">before</span>)
+
+
+<span class="kw">def</span> <span class="fn">matches_filters</span>(<span class="id">course</span>, <span class="id">filters</span>):
+    <span class="kw">return</span> <span class="fn">bool</span>(<span class="id">course</span>[<span class="str">&#x27;meetings&#x27;</span>]) <span class="kw">and</span> <span class="fn">all</span>(
+        (<span class="kw">not</span> <span class="id">filters</span>[<span class="str">&#x27;days&#x27;</span>] <span class="kw">or</span> <span class="id">m</span>[<span class="str">&#x27;day&#x27;</span>] <span class="kw">in</span> <span class="id">filters</span>[<span class="str">&#x27;days&#x27;</span>])
+        <span class="kw">and</span> <span class="id">m</span>[<span class="str">&#x27;day&#x27;</span>] <span class="kw">not</span> <span class="kw">in</span> <span class="id">filters</span>[<span class="str">&#x27;excludedDays&#x27;</span>]
+        <span class="kw">and</span> <span class="id">m</span>[<span class="str">&#x27;start&#x27;</span>] &gt;= <span class="id">filters</span>[<span class="str">&#x27;start&#x27;</span>] <span class="kw">and</span> <span class="id">m</span>[<span class="str">&#x27;end&#x27;</span>] &lt;= <span class="id">filters</span>[<span class="str">&#x27;end&#x27;</span>]
+        <span class="kw">for</span> <span class="id">m</span> <span class="kw">in</span> <span class="id">course</span>[<span class="str">&#x27;meetings&#x27;</span>])
+
+
+</code></pre></div><p>각 추천은 현재 시간표에 대한 개별 후보입니다. 후보끼리 겹칠 수 있으며 최종 신청 가능 여부는 신청 API가 다시 검사합니다. 실제 이수 성적표가 없어 졸업 충족 여부를 판정하지 않습니다.</p></section><section id="item-4"><h2>5. 실행·설정·실패 처리</h2><div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="bash 코드 복사">복사</button></div><pre><code data-language="bash"># 기본 로컬 규칙 엔진: 수강2 루트에서
+python3 --version
+./mvnw spring-boot:run
+
+# 선택형 FastAPI 내부 엔진
+python3 -m venv ai-engine/.venv
+ai-engine/.venv/bin/pip install -r ai-engine/requirements.txt
+export AI_ENGINE_KEY=$(openssl rand -hex 32)
+ai-engine/.venv/bin/python -m uvicorn app.main:app --app-dir ai-engine --host 127.0.0.1 --port 8000
+# Spring에도 같은 AI_ENGINE_KEY와 AI_ENGINE_URL=http://127.0.0.1:8000 설정</code></pre></div><p>FastAPI /chat은 X-Engine-Key로 인증하고 최대 강의 2,000개·동시 요청 2개를 제한합니다. Spring의 원격 연결 실패 시 로컬 규칙 응답으로 전환하고 engine은 rules-fallback으로 안내합니다. 모델 활성화에는 ONNX_MODEL_PATH·TOKENIZER_PATH·SYLLABI_PATH와 별도 ML 의존성이 필요합니다. 실제 모델을 준비한 경로의 실행 검증 결과는 이 요약에서 주장하지 않습니다.</p></section><section id="item-5"><h2>6. Python 전체 코드</h2><div class="source-file"><h3>src/main/resources/python/advisor.py</h3><p class="file-meta">현재 원본 전체 196줄 · 2026-10-14 기준</p><details class="source-details"><summary>전체 코드 보기 · 접기</summary><div class="codebox"><div class="codebar"><span>PYTHON</span><button class="copy" type="button" aria-label="python 코드 복사">복사</button></div><pre><code data-language="python"><span class="str">&quot;&quot;&quot;학사 상담 엔진. 표준 입력 JSON → 표준 출력 JSON (Python 3.10+).&quot;&quot;&quot;</span>
+<span class="kw">import</span> <span class="id">json</span>
+<span class="kw">import</span> <span class="id">re</span>
+<span class="kw">import</span> <span class="id">sys</span>
+
+<span class="id">DAYS</span> = <span class="str">&#x27;월화수목금&#x27;</span>
+<span class="id">SUGGESTIONS</span> = [<span class="str">&#x27;졸업요건 알려줘&#x27;</span>, <span class="str">&#x27;수업 추천해줘&#x27;</span>, <span class="str">&#x27;내 시간표 알려줘&#x27;</span>]
+
+
+<span class="kw">def</span> <span class="fn">answer</span>(<span class="id">topic</span>, <span class="id">message</span>, <span class="id">points</span>=(), <span class="id">recommendations</span>=(), <span class="id">sources</span>=(), <span class="id">suggestions</span>=<span class="id">SUGGESTIONS</span>):
+    <span class="kw">return</span> <span class="fn">dict</span>(<span class="id">topic</span>=<span class="id">topic</span>, <span class="id">message</span>=<span class="id">message</span>, <span class="id">points</span>=<span class="fn">list</span>(<span class="id">points</span>),
+                <span class="id">recommendations</span>=<span class="fn">list</span>(<span class="id">recommendations</span>), <span class="id">sources</span>=<span class="fn">list</span>(<span class="id">sources</span>), <span class="id">suggestions</span>=<span class="fn">list</span>(<span class="id">suggestions</span>))
+
+
+<span class="kw">def</span> <span class="fn">extract_filters</span>(<span class="id">message</span>):
+    <span class="str">&quot;&quot;&quot;명시적인 요일·오전/오후·시각 조건을 추출한다. 복잡한 발화는 추측하지 않는다.&quot;&quot;&quot;</span>
+    <span class="id">text</span> = <span class="fn">re.sub</span>(<span class="id">r</span><span class="str">&#x27;\s+&#x27;</span>, <span class="str">&#x27;&#x27;</span>, <span class="fn">message.lower</span>())
+    <span class="id">excluded</span> = [<span class="id">i</span> <span class="kw">for</span> <span class="id">i</span>, <span class="id">d</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="id">DAYS</span>)
+                <span class="kw">if</span> <span class="fn">re.search</span>(<span class="id">d</span> + <span class="id">r</span><span class="str">&#x27;(?:요일)?(?:은|는|에는)?(?:공강|빼|제외|피하|쉬)&#x27;</span>, <span class="id">text</span>)]
+    <span class="id">included</span> = [<span class="id">i</span> <span class="kw">for</span> <span class="id">i</span>, <span class="id">d</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="id">DAYS</span>) <span class="kw">if</span> <span class="id">d</span> + <span class="str">&#x27;요일&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">and</span> <span class="id">i</span> <span class="kw">not</span> <span class="kw">in</span> <span class="id">excluded</span>]
+    <span class="id">after</span>, <span class="id">before</span> = (<span class="num">720</span>, <span class="num">1080</span>) <span class="kw">if</span> <span class="str">&#x27;오후&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">else</span> (<span class="num">540</span>, <span class="num">720</span>) <span class="kw">if</span> <span class="str">&#x27;오전&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">else</span> (<span class="num">0</span>, <span class="num">1440</span>)
+    <span class="id">times</span> = <span class="fn">list</span>(<span class="fn">re.finditer</span>(<span class="id">r</span><span class="str">&#x27;(\d{1,2})시(?:(\d{1,2})분)?&#x27;</span>, <span class="id">text</span>))
+    <span class="kw">def</span> <span class="fn">minute</span>(<span class="id">m</span>):
+        <span class="id">h</span>, <span class="id">n</span> = <span class="fn">int</span>(<span class="id">m</span>[<span class="num">1</span>]), <span class="fn">int</span>(<span class="id">m</span>[<span class="num">2</span>] <span class="kw">or</span> <span class="num">0</span>)
+        <span class="kw">if</span> <span class="kw">not</span> <span class="num">0</span> &lt;= <span class="id">h</span> &lt;= <span class="num">23</span> <span class="kw">or</span> <span class="kw">not</span> <span class="num">0</span> &lt;= <span class="id">n</span> &lt;= <span class="num">59</span>:
+            <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&#x27;시각은 0~23시, 분은 0~59분으로 입력해주세요.&#x27;</span>)
+        <span class="kw">if</span> <span class="str">&#x27;오후&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">and</span> <span class="id">h</span> &lt; <span class="num">12</span>: <span class="id">h</span> += <span class="num">12</span>
+        <span class="kw">if</span> <span class="str">&#x27;오전&#x27;</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">and</span> <span class="id">h</span> == <span class="num">12</span>: <span class="id">h</span> = <span class="num">0</span>
+        <span class="kw">return</span> <span class="id">h</span> * <span class="num">60</span> + <span class="id">n</span>
+    <span class="kw">if</span> <span class="fn">len</span>(<span class="id">times</span>) == <span class="num">2</span>:
+        <span class="id">after</span>, <span class="id">before</span> = <span class="fn">minute</span>(<span class="id">times</span>[<span class="num">0</span>]), <span class="fn">minute</span>(<span class="id">times</span>[<span class="num">1</span>])
+    <span class="kw">elif</span> <span class="fn">len</span>(<span class="id">times</span>) == <span class="num">1</span>:
+        <span class="id">value</span> = <span class="fn">minute</span>(<span class="id">times</span>[<span class="num">0</span>])
+        <span class="kw">if</span> <span class="fn">any</span>(<span class="id">w</span> <span class="kw">in</span> <span class="id">text</span> <span class="kw">for</span> <span class="id">w</span> <span class="kw">in</span> (<span class="str">&#x27;이전&#x27;</span>, <span class="str">&#x27;전까지&#x27;</span>)): <span class="id">before</span> = <span class="id">value</span>
+        <span class="kw">else</span>: <span class="id">after</span> = <span class="id">value</span>
+    <span class="kw">if</span> <span class="id">after</span> &gt;= <span class="id">before</span>: <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&#x27;시작 시각은 종료 시각보다 빨라야 해요.&#x27;</span>)
+    <span class="kw">return</span> <span class="fn">dict</span>(<span class="id">days</span>=<span class="id">included</span>, <span class="id">excludedDays</span>=<span class="id">excluded</span>, <span class="id">start</span>=<span class="id">after</span>, <span class="id">end</span>=<span class="id">before</span>)
+
+
+<span class="kw">def</span> <span class="fn">matches_filters</span>(<span class="id">course</span>, <span class="id">filters</span>):
+    <span class="kw">return</span> <span class="fn">bool</span>(<span class="id">course</span>[<span class="str">&#x27;meetings&#x27;</span>]) <span class="kw">and</span> <span class="fn">all</span>(
+        (<span class="kw">not</span> <span class="id">filters</span>[<span class="str">&#x27;days&#x27;</span>] <span class="kw">or</span> <span class="id">m</span>[<span class="str">&#x27;day&#x27;</span>] <span class="kw">in</span> <span class="id">filters</span>[<span class="str">&#x27;days&#x27;</span>])
+        <span class="kw">and</span> <span class="id">m</span>[<span class="str">&#x27;day&#x27;</span>] <span class="kw">not</span> <span class="kw">in</span> <span class="id">filters</span>[<span class="str">&#x27;excludedDays&#x27;</span>]
+        <span class="kw">and</span> <span class="id">m</span>[<span class="str">&#x27;start&#x27;</span>] &gt;= <span class="id">filters</span>[<span class="str">&#x27;start&#x27;</span>] <span class="kw">and</span> <span class="id">m</span>[<span class="str">&#x27;end&#x27;</span>] &lt;= <span class="id">filters</span>[<span class="str">&#x27;end&#x27;</span>]
+        <span class="kw">for</span> <span class="id">m</span> <span class="kw">in</span> <span class="id">course</span>[<span class="str">&#x27;meetings&#x27;</span>])
+
+
+<span class="kw">def</span> <span class="fn">reply</span>(<span class="id">payload</span>, <span class="id">ranker</span>=<span class="kw">None</span>):
+    <span class="id">state</span>, <span class="id">profile</span> = <span class="id">payload</span>[<span class="str">&#x27;state&#x27;</span>], <span class="id">payload</span>[<span class="str">&#x27;profile&#x27;</span>]
+    <span class="id">query</span> = <span class="fn">re.sub</span>(<span class="id">r</span><span class="str">&#x27;\s+&#x27;</span>, <span class="str">&#x27;&#x27;</span>, <span class="id">payload</span>[<span class="str">&#x27;message&#x27;</span>].<span class="fn">lower</span>())
+    <span class="kw">try</span>:
+        <span class="id">filters</span> = <span class="fn">extract_filters</span>(<span class="id">payload</span>[<span class="str">&#x27;message&#x27;</span>])
+    <span class="kw">except</span> <span class="id">ValueError</span> <span class="kw">as</span> <span class="id">e</span>:
+        <span class="kw">return</span> <span class="fn">dict</span>(<span class="fn">answer</span>(<span class="str">&#x27;clarify&#x27;</span>, <span class="fn">str</span>(<span class="id">e</span>)), <span class="id">mode</span>=<span class="str">&#x27;rules&#x27;</span>, <span class="id">filters</span>={})
+    <span class="id">student</span> = <span class="id">state</span>[<span class="str">&#x27;student&#x27;</span>]
+    <span class="id">enrolled</span> = [<span class="id">c</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;courses&#x27;</span>] <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;id&#x27;</span>] <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;enrolledIds&#x27;</span>]]
+    <span class="id">credits</span> = <span class="fn">sum</span>(<span class="id">c</span>[<span class="str">&#x27;credits&#x27;</span>] <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">enrolled</span>)
+    <span class="id">has</span> = <span class="kw">lambda</span> *<span class="id">words</span>: <span class="fn">any</span>(<span class="id">word</span> <span class="kw">in</span> <span class="id">query</span> <span class="kw">for</span> <span class="id">word</span> <span class="kw">in</span> <span class="id">words</span>)
+
+    <span class="kw">def</span> <span class="fn">unavailable</span>(<span class="id">course</span>):
+        <span class="kw">if</span> <span class="id">course</span>[<span class="str">&#x27;id&#x27;</span>] <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;enrolledIds&#x27;</span>]:
+            <span class="kw">return</span> <span class="str">&#x27;이미 신청한 강의예요.&#x27;</span>
+        <span class="kw">if</span> <span class="id">course</span>[<span class="str">&#x27;enrolled&#x27;</span>] &gt;= <span class="id">course</span>[<span class="str">&#x27;capacity&#x27;</span>]:
+            <span class="kw">return</span> <span class="str">&#x27;현재 정원이 마감됐어요.&#x27;</span>
+        <span class="kw">if</span> <span class="id">credits</span> + <span class="id">course</span>[<span class="str">&#x27;credits&#x27;</span>] &gt; <span class="id">student</span>[<span class="str">&#x27;maxCredits&#x27;</span>]:
+            <span class="kw">return</span> <span class="str">&#x27;현재 남은 신청 학점을 초과해요.&#x27;</span>
+        <span class="kw">if</span> <span class="fn">any</span>(<span class="id">a</span>[<span class="str">&#x27;day&#x27;</span>] == <span class="id">b</span>[<span class="str">&#x27;day&#x27;</span>] <span class="kw">and</span> <span class="id">a</span>[<span class="str">&#x27;start&#x27;</span>] &lt; <span class="id">b</span>[<span class="str">&#x27;end&#x27;</span>] <span class="kw">and</span> <span class="id">b</span>[<span class="str">&#x27;start&#x27;</span>] &lt; <span class="id">a</span>[<span class="str">&#x27;end&#x27;</span>]
+               <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">enrolled</span> <span class="kw">for</span> <span class="id">a</span> <span class="kw">in</span> <span class="id">c</span>[<span class="str">&#x27;meetings&#x27;</span>] <span class="kw">for</span> <span class="id">b</span> <span class="kw">in</span> <span class="id">course</span>[<span class="str">&#x27;meetings&#x27;</span>]):
+            <span class="kw">return</span> <span class="str">&#x27;이미 신청한 강의와 시간이 겹쳐요.&#x27;</span>
+        <span class="kw">return</span> <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">meeting_text</span>(<span class="id">course</span>):
+        <span class="kw">def</span> <span class="fn">clock</span>(<span class="id">minutes</span>):
+            <span class="kw">return</span> <span class="id">f</span><span class="str">&#x27;{minutes // 60:02d}:{minutes % 60:02d}&#x27;</span>
+        <span class="kw">return</span> <span class="str">&#x27;, &#x27;</span>.<span class="fn">join</span>(<span class="id">f</span><span class="str">&quot;{DAYS[m[&#x27;day&#x27;]]} {clock(m[&#x27;start&#x27;])}–{clock(m[&#x27;end&#x27;])}&quot;</span> <span class="kw">for</span> <span class="id">m</span> <span class="kw">in</span> <span class="id">course</span>[<span class="str">&#x27;meetings&#x27;</span>])
+
+    <span class="kw">def</span> <span class="fn">welcome</span>():
+        <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;welcome&#x27;</span>, <span class="id">f</span><span class="str">&quot;{profile[&#x27;name&#x27;]}님, 안녕하세요. {profile[&#x27;department&#x27;]} 학기 준비를 함께할게요.&quot;</span>,
+                      [<span class="str">&#x27;시간표·잔여 정원·학점을 확인해 수업을 추천해요.&#x27;</span>,
+                       <span class="str">&#x27;졸업요건은 대학·학과·입학년도에 맞춰 등록된 공식 자료만 안내해요.&#x27;</span>,
+                       <span class="str">&#x27;이수 성적표가 연결되지 않아 졸업 가능 여부나 남은 졸업 학점은 계산하지 않아요.&#x27;</span>])
+
+    <span class="kw">def</span> <span class="fn">graduation</span>():
+        <span class="kw">if</span> <span class="fn">profile.get</span>(<span class="str">&#x27;university&#x27;</span>) <span class="id">is</span> <span class="kw">None</span> <span class="kw">or</span> <span class="fn">profile.get</span>(<span class="str">&#x27;admissionYear&#x27;</span>) <span class="id">is</span> <span class="kw">None</span>:
+            <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;graduation&#x27;</span>, <span class="str">&#x27;대학과 입학년도를 먼저 알려주세요. 상단의 ‘학적 정보’에서 저장할 수 있어요.&#x27;</span>,
+                          [<span class="id">f</span><span class="str">&quot;현재 학과: {profile[&#x27;department&#x27;]}&quot;</span>, <span class="str">&#x27;학번 숫자만으로 입학년도를 추정하지 않아요.&#x27;</span>,
+                           <span class="str">&#x27;본인에게 적용되는 대학·학과·입학년도가 모두 일치하는 자료만 안내해요.&#x27;</span>])
+        <span class="id">policy</span> = <span class="fn">payload.get</span>(<span class="str">&#x27;policy&#x27;</span>)
+        <span class="kw">if</span> <span class="kw">not</span> <span class="id">policy</span>:
+            <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;graduation&#x27;</span>, <span class="id">f</span><span class="str">&quot;{profile[&#x27;university&#x27;]} · {profile[&#x27;department&#x27;]} · {profile[&#x27;admissionYear&#x27;]}학번의 공식 졸업요건이 아직 등록되지 않았어요.&quot;</span>,
+                          [<span class="str">&#x27;학과 홈페이지의 졸업요건·교육과정표를 운영자에게 전달하면 연결할 수 있어요.&#x27;</span>,
+                           <span class="str">&#x27;총 이수학점, 전공필수, 교양 영역, 졸업논문·인증 여부를 공식 문서에서 확인하세요.&#x27;</span>,
+                           <span class="str">&#x27;현재 신청 학점은 이수 완료 학점이 아니므로 졸업 잔여 학점으로 계산하지 않아요.&#x27;</span>])
+        <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;graduation&#x27;</span>, <span class="id">f</span><span class="str">&quot;{policy[&#x27;university&#x27;]} {policy[&#x27;department&#x27;]} {policy[&#x27;admissionYear&#x27;]}학번 기준으로 등록된 졸업요건이에요.&quot;</span>,
+                      <span class="id">policy</span>[<span class="str">&#x27;requirements&#x27;</span>] + [<span class="id">f</span><span class="str">&quot;공식 자료 확인일: {policy[&#x27;verifiedOn&#x27;]}. 이후 개정·개인별 예외 적용은 학과에 확인하세요.&quot;</span>,
+                                                <span class="str">&#x27;현재 앱에는 누적 이수 성적표가 없으므로 개인의 졸업 충족 여부는 판정하지 않아요.&#x27;</span>],
+                      <span class="id">sources</span>=[<span class="fn">dict</span>(<span class="id">title</span>=<span class="id">policy</span>[<span class="str">&#x27;title&#x27;</span>], <span class="id">url</span>=<span class="id">policy</span>[<span class="str">&#x27;sourceUrl&#x27;</span>], <span class="id">checkedOn</span>=<span class="id">policy</span>[<span class="str">&#x27;verifiedOn&#x27;</span>])])
+
+    <span class="kw">def</span> <span class="fn">timetable</span>():
+        <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;timetable&#x27;</span>, <span class="id">f</span><span class="str">&#x27;현재 {len(enrolled)}과목, {credits}학점을 신청했어요.&#x27;</span>,
+                      [<span class="id">f</span><span class="str">&quot;{c[&#x27;name&#x27;]} · {c[&#x27;credits&#x27;]}학점 · {meeting_text(c)}&quot;</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">enrolled</span>] +
+                      [<span class="id">f</span><span class="str">&quot;이번 학기 추가 신청 가능 학점: {student[&#x27;maxCredits&#x27;] - credits}학점&quot;</span>,
+                       <span class="str">&#x27;이 수치는 현재 수강신청 기준이며 누적 이수학점이나 졸업 잔여 학점이 아니에요.&#x27;</span>])
+
+    <span class="kw">def</span> <span class="fn">recommend</span>(<span class="id">text</span>):
+        <span class="id">general</span> = <span class="str">&#x27;교양&#x27;</span> <span class="kw">in</span> <span class="id">text</span>
+        <span class="id">major</span> = <span class="kw">not</span> <span class="id">general</span> <span class="kw">and</span> <span class="str">&#x27;전공&#x27;</span> <span class="kw">in</span> <span class="id">text</span>
+        <span class="id">interest</span> = <span class="kw">next</span>((<span class="id">w</span> <span class="kw">for</span> <span class="id">w</span> <span class="kw">in</span> [<span class="str">&#x27;인공지능&#x27;</span>, <span class="str">&#x27;데이터&#x27;</span>, <span class="str">&#x27;웹&#x27;</span>, <span class="str">&#x27;네트워크&#x27;</span>, <span class="str">&#x27;디자인&#x27;</span>, <span class="str">&#x27;심리&#x27;</span>, <span class="str">&#x27;수학&#x27;</span>, <span class="str">&#x27;경영&#x27;</span>, <span class="str">&#x27;운영체제&#x27;</span>, <span class="str">&#x27;자료구조&#x27;</span>, <span class="str">&#x27;글쓰기&#x27;</span>, <span class="str">&#x27;프로젝트&#x27;</span>] <span class="kw">if</span> <span class="id">w</span> <span class="kw">in</span> <span class="id">text</span>), <span class="str">&#x27;&#x27;</span>)
+        <span class="id">excluded</span> = [<span class="id">DAYS</span>[<span class="id">d</span>] <span class="kw">for</span> <span class="id">d</span> <span class="kw">in</span> <span class="id">filters</span>[<span class="str">&#x27;excludedDays&#x27;</span>]]
+        <span class="id">candidates</span> = [<span class="id">c</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;courses&#x27;</span>] <span class="kw">if</span> <span class="fn">unavailable</span>(<span class="id">c</span>) <span class="id">is</span> <span class="kw">None</span>
+                      <span class="kw">and</span> (<span class="id">c</span>[<span class="str">&#x27;category&#x27;</span>].<span class="fn">startswith</span>(<span class="str">&#x27;교양&#x27;</span>) <span class="kw">if</span> <span class="id">general</span> <span class="kw">else</span>
+                           <span class="id">c</span>[<span class="str">&#x27;department&#x27;</span>] == <span class="id">student</span>[<span class="str">&#x27;department&#x27;</span>] <span class="kw">or</span> (<span class="kw">not</span> <span class="id">major</span> <span class="kw">and</span> <span class="id">c</span>[<span class="str">&#x27;category&#x27;</span>].<span class="fn">startswith</span>(<span class="str">&#x27;교양&#x27;</span>)))
+                      <span class="kw">and</span> <span class="fn">matches_filters</span>(<span class="id">c</span>, <span class="id">filters</span>)]
+        <span class="id">mode</span> = <span class="str">&#x27;rules&#x27;</span>
+        <span class="kw">if</span> <span class="id">ranker</span> <span class="kw">and</span> <span class="id">candidates</span>:
+            <span class="id">order</span>, <span class="id">mode</span> = <span class="fn">ranker</span>(<span class="id">payload</span>[<span class="str">&#x27;message&#x27;</span>], <span class="id">candidates</span>)
+            <span class="id">ranks</span> = {<span class="id">id</span>: <span class="id">i</span> <span class="kw">for</span> <span class="id">i</span>, <span class="id">id</span> <span class="kw">in</span> <span class="fn">enumerate</span>(<span class="id">order</span>)}
+            <span class="kw">if</span> <span class="fn">mode.startswith</span>(<span class="str">&#x27;rules&#x27;</span>): <span class="fn">candidates.sort</span>(<span class="id">key</span>=<span class="kw">lambda</span> <span class="id">c</span>: (<span class="fn">ranks.get</span>(<span class="id">c</span>[<span class="str">&#x27;id&#x27;</span>], <span class="fn">len</span>(<span class="id">order</span>)), <span class="id">c</span>[<span class="str">&#x27;code&#x27;</span>]))
+        <span class="kw">else</span>:
+            <span class="kw">if</span> <span class="id">interest</span>:
+                <span class="id">candidates</span> = [<span class="id">c</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">candidates</span> <span class="kw">if</span> <span class="id">interest</span> <span class="kw">in</span> <span class="id">c</span>[<span class="str">&#x27;name&#x27;</span>] <span class="kw">or</span> <span class="id">interest</span> <span class="kw">in</span> <span class="id">c</span>[<span class="str">&#x27;department&#x27;</span>]]
+        <span class="fn">candidates.sort</span>(<span class="id">key</span>=<span class="kw">lambda</span> <span class="id">c</span>: (<span class="num">0</span> <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;department&#x27;</span>] == <span class="id">student</span>[<span class="str">&#x27;department&#x27;</span>] <span class="kw">and</span> <span class="id">c</span>[<span class="str">&#x27;category&#x27;</span>] == <span class="str">&#x27;전공필수&#x27;</span>
+                                       <span class="kw">else</span> <span class="num">1</span> <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;department&#x27;</span>] == <span class="id">student</span>[<span class="str">&#x27;department&#x27;</span>] <span class="kw">else</span> <span class="num">2</span>, <span class="id">c</span>[<span class="str">&#x27;code&#x27;</span>]))
+        <span class="id">recommendations</span> = [<span class="fn">dict</span>(<span class="id">course</span>=<span class="id">c</span>, <span class="id">reason</span>=(<span class="id">f</span><span class="str">&quot;내 학과 {c[&#x27;category&#x27;]}&quot;</span> <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;department&#x27;</span>] == <span class="id">student</span>[<span class="str">&#x27;department&#x27;</span>] <span class="kw">else</span> <span class="id">c</span>[<span class="str">&#x27;category&#x27;</span>]) +
+                                <span class="id">f</span><span class="str">&quot; · 현재 시간표와 겹치지 않음 · 잔여 {c[&#x27;capacity&#x27;] - c[&#x27;enrolled&#x27;]}자리&quot;</span>) <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">candidates</span>[:<span class="num">5</span>]]
+        <span class="id">points</span> = [<span class="id">f</span><span class="str">&quot;기준: {student[&#x27;department&#x27;]} · 현재 {credits}/{student[&#x27;maxCredits&#x27;]}학점&quot;</span>]
+        <span class="kw">if</span> <span class="id">filters</span>[<span class="str">&#x27;days&#x27;</span>]:
+            <span class="fn">points.append</span>(<span class="str">&#x27;요일 조건: &#x27;</span> + <span class="str">&#x27;, &#x27;</span>.<span class="fn">join</span>(<span class="id">DAYS</span>[<span class="id">d</span>] + <span class="str">&#x27;요일&#x27;</span> <span class="kw">for</span> <span class="id">d</span> <span class="kw">in</span> <span class="id">filters</span>[<span class="str">&#x27;days&#x27;</span>]))
+        <span class="kw">if</span> <span class="id">filters</span>[<span class="str">&#x27;start&#x27;</span>] <span class="kw">or</span> <span class="id">filters</span>[<span class="str">&#x27;end&#x27;</span>] != <span class="num">1440</span>:
+            <span class="fn">points.append</span>(<span class="id">f</span><span class="str">&quot;시간 조건: {filters[&#x27;start&#x27;]//60:02d}:{filters[&#x27;start&#x27;]%60:02d}~{filters[&#x27;end&#x27;]//60:02d}:{filters[&#x27;end&#x27;]%60:02d} (모든 수업 시간에 적용)&quot;</span>)
+        <span class="kw">if</span> <span class="id">excluded</span>:
+            <span class="fn">points.append</span>(<span class="str">&#x27;공강 요청 반영: &#x27;</span> + <span class="str">&#x27;, &#x27;</span>.<span class="fn">join</span>(<span class="id">excluded</span>) + <span class="str">&#x27;요일 제외&#x27;</span>)
+        <span class="kw">if</span> <span class="id">interest</span>:
+            <span class="fn">points.append</span>(<span class="str">&#x27;관심 분야: &#x27;</span> + <span class="id">interest</span>)
+        <span class="id">points</span> += [<span class="str">&#x27;각 강의는 현재 시간표 기준의 개별 후보예요. 후보끼리 시간이 겹치거나 함께 신청하면 학점이 초과될 수 있어요.&#x27;</span>,
+                   <span class="str">&#x27;과거 이수·선수과목·실제 졸업 인정 여부는 확인되지 않았어요. 정원은 신청 시 다시 검사해요.&#x27;</span>]
+        <span class="id">result</span> = <span class="fn">answer</span>(<span class="str">&#x27;recommend&#x27;</span>, <span class="str">&#x27;현재 시간표에 맞는 강의를 최대 5개 골랐어요.&#x27;</span> <span class="kw">if</span> <span class="id">recommendations</span> <span class="kw">else</span>
+                      <span class="str">&#x27;현재 조건에서 바로 신청할 수 있는 추천 강의를 찾지 못했어요.&#x27;</span>, <span class="id">points</span>, <span class="id">recommendations</span>,
+                      [<span class="fn">dict</span>(<span class="id">title</span>=<span class="str">&#x27;현재 개설 강의·개인 신청 내역&#x27;</span>, <span class="id">url</span>=<span class="kw">None</span>, <span class="id">checkedOn</span>=<span class="kw">None</span>)],
+                      [<span class="str">&#x27;화요일 목요일 오후 수업 추천&#x27;</span>, <span class="str">&#x27;잔여 좌석 알려줘&#x27;</span>, <span class="str">&#x27;시간표 충돌 확인&#x27;</span>])
+        <span class="kw">return</span> <span class="fn">dict</span>(<span class="id">result</span>, <span class="id">mode</span>=<span class="id">mode</span>, <span class="id">filters</span>=<span class="id">filters</span>)
+
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;졸업&#x27;</span>, <span class="str">&#x27;이수요건&#x27;</span>, <span class="str">&#x27;졸논&#x27;</span>, <span class="str">&#x27;논문&#x27;</span>, <span class="str">&#x27;인증&#x27;</span>, <span class="str">&#x27;토익&#x27;</span>, <span class="str">&#x27;졸업학점&#x27;</span>):
+        <span class="kw">return</span> <span class="fn">graduation</span>()
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;취소&#x27;</span>, <span class="str">&#x27;철회&#x27;</span>, <span class="str">&#x27;삭제&#x27;</span>):
+        <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;cancel&#x27;</span>, <span class="str">&#x27;수강 취소는 신청 내역에서 할 수 있어요.&#x27;</span>,
+                      [<span class="str">&#x27;내 시간표 또는 신청 내역에서 취소 → 확인을 누르세요.&#x27;</span>, <span class="str">&#x27;취소된 강의는 시간표에서 삭제되고 정원이 반환돼요.&#x27;</span>,
+                       <span class="str">&#x27;채팅에서는 신청·취소를 자동 실행하지 않아요.&#x27;</span>], <span class="id">suggestions</span>=[<span class="str">&#x27;내 시간표 알려줘&#x27;</span>])
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;장바구니&#x27;</span>, <span class="str">&#x27;찜&#x27;</span>):
+        <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;cart&#x27;</span>, <span class="id">f</span><span class="str">&quot;장바구니에 {len(state[&#x27;cartIds&#x27;])}과목이 담겨 있어요.&quot;</span>,
+                      [<span class="str">&#x27;장바구니는 관심 강의 목록이며 자리를 예약하지 않아요.&#x27;</span>, <span class="str">&#x27;강의 목록의 가방 아이콘으로 담거나 뺄 수 있어요.&#x27;</span>,
+                       <span class="str">&#x27;수강신청이 성공하면 해당 강의는 장바구니에서 빠져요.&#x27;</span>], <span class="id">suggestions</span>=[<span class="str">&#x27;수업 추천해줘&#x27;</span>])
+    <span class="id">named</span> = [<span class="id">c</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;courses&#x27;</span>] <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;code&#x27;</span>].<span class="fn">lower</span>() <span class="kw">in</span> <span class="id">query</span>
+             <span class="kw">or</span> <span class="fn">re.sub</span>(<span class="id">r</span><span class="str">&#x27;\s+&#x27;</span>, <span class="str">&#x27;&#x27;</span>, <span class="id">c</span>[<span class="str">&#x27;name&#x27;</span>].<span class="fn">lower</span>()) <span class="kw">in</span> <span class="id">query</span>]
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;잔여&#x27;</span>, <span class="str">&#x27;좌석&#x27;</span>, <span class="str">&#x27;정원&#x27;</span>, <span class="str">&#x27;마감&#x27;</span>) <span class="kw">and</span> <span class="kw">not</span> <span class="fn">has</span>(<span class="str">&#x27;추천&#x27;</span>):
+        <span class="id">selected</span> = <span class="id">named</span> <span class="kw">or</span> [<span class="id">c</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;courses&#x27;</span>] <span class="kw">if</span> <span class="fn">matches_filters</span>(<span class="id">c</span>, <span class="id">filters</span>)]
+        <span class="kw">return</span> <span class="fn">dict</span>(<span class="fn">answer</span>(<span class="str">&#x27;seats&#x27;</span>, <span class="str">&#x27;현재 DB 조회 기준 잔여 좌석이에요.&#x27;</span>,
+                    [<span class="id">f</span><span class="str">&quot;{c[&#x27;name&#x27;]} ({c[&#x27;code&#x27;]}) · 잔여 {max(0, c[&#x27;capacity&#x27;]-c[&#x27;enrolled&#x27;])}자리&quot;</span> +
+                     (<span class="str">&#x27; · 마감&#x27;</span> <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;enrolled&#x27;</span>] &gt;= <span class="id">c</span>[<span class="str">&#x27;capacity&#x27;</span>] <span class="kw">else</span> <span class="str">&#x27;&#x27;</span>) <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">selected</span>[:<span class="num">20</span>]],
+                    [<span class="fn">dict</span>(<span class="id">course</span>=<span class="id">c</span>, <span class="id">reason</span>=<span class="str">&#x27;마감&#x27;</span> <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;enrolled&#x27;</span>] &gt;= <span class="id">c</span>[<span class="str">&#x27;capacity&#x27;</span>] <span class="kw">else</span> <span class="str">&#x27;좌석 확인&#x27;</span>) <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">selected</span>[:<span class="num">5</span>]]),
+                    <span class="id">mode</span>=<span class="str">&#x27;rules&#x27;</span>, <span class="id">filters</span>=<span class="id">filters</span>)
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;충돌&#x27;</span>, <span class="str">&#x27;겹&#x27;</span>):
+        <span class="id">selected</span> = <span class="id">named</span> <span class="kw">or</span> [<span class="id">c</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;courses&#x27;</span>] <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;id&#x27;</span>] <span class="kw">not</span> <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;enrolledIds&#x27;</span>] <span class="kw">and</span> <span class="fn">matches_filters</span>(<span class="id">c</span>, <span class="id">filters</span>)]
+        <span class="kw">return</span> <span class="fn">dict</span>(<span class="fn">answer</span>(<span class="str">&#x27;conflict&#x27;</span>, <span class="str">&#x27;현재 신청 내역과 후보 강의를 비교했어요.&#x27;</span>,
+                    [<span class="id">f</span><span class="str">&quot;{c[&#x27;name&#x27;]}: {unavailable(c) or &#x27;시간·학점·정원 기준 신청 가능&#x27;}&quot;</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">selected</span>[:<span class="num">20</span>]],
+                    [<span class="fn">dict</span>(<span class="id">course</span>=<span class="id">c</span>, <span class="id">reason</span>=<span class="fn">unavailable</span>(<span class="id">c</span>) <span class="kw">or</span> <span class="str">&#x27;현재 시간표와 충돌 없음&#x27;</span>) <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">selected</span>[:<span class="num">5</span>]]),
+                    <span class="id">mode</span>=<span class="str">&#x27;rules&#x27;</span>, <span class="id">filters</span>=<span class="id">filters</span>)
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;추천&#x27;</span>, <span class="str">&#x27;들을만&#x27;</span>, <span class="str">&#x27;뭐들&#x27;</span>, <span class="str">&#x27;공강&#x27;</span>, <span class="str">&#x27;수업찾&#x27;</span>, <span class="str">&#x27;강의찾&#x27;</span>) <span class="kw">or</span> ((<span class="id">filters</span>[<span class="str">&#x27;days&#x27;</span>] <span class="kw">or</span> <span class="id">filters</span>[<span class="str">&#x27;start&#x27;</span>] &gt; <span class="num">0</span> <span class="kw">or</span> <span class="id">filters</span>[<span class="str">&#x27;end&#x27;</span>] &lt; <span class="num">1440</span>) <span class="kw">and</span> <span class="fn">has</span>(<span class="str">&#x27;수업&#x27;</span>, <span class="str">&#x27;강의&#x27;</span>)):
+        <span class="kw">return</span> <span class="fn">recommend</span>(<span class="id">query</span>)
+    <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">state</span>[<span class="str">&#x27;courses&#x27;</span>]:
+        <span class="kw">if</span> <span class="id">c</span>[<span class="str">&#x27;code&#x27;</span>].<span class="fn">lower</span>() <span class="kw">in</span> <span class="id">query</span> <span class="kw">or</span> <span class="fn">re.sub</span>(<span class="id">r</span><span class="str">&#x27;\s+&#x27;</span>, <span class="str">&#x27;&#x27;</span>, <span class="id">c</span>[<span class="str">&#x27;name&#x27;</span>].<span class="fn">lower</span>()) <span class="kw">in</span> <span class="id">query</span>:
+            <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;course&#x27;</span>, <span class="id">f</span><span class="str">&quot;{c[&#x27;name&#x27;]} ({c[&#x27;code&#x27;]}) 안내예요.&quot;</span>,
+                          [<span class="id">f</span><span class="str">&quot;{c[&#x27;professor&#x27;]} 교수 · {c[&#x27;department&#x27;]} · {c[&#x27;category&#x27;]} · {c[&#x27;credits&#x27;]}학점&quot;</span>,
+                           <span class="id">f</span><span class="str">&quot;{meeting_text(c)} · {c[&#x27;room&#x27;]}&quot;</span>, <span class="id">f</span><span class="str">&quot;신청 {c[&#x27;enrolled&#x27;]}/{c[&#x27;capacity&#x27;]}명&quot;</span>,
+                           <span class="fn">unavailable</span>(<span class="id">c</span>) <span class="kw">or</span> <span class="str">&#x27;현재 시간표와 학점 기준으로 신청 가능한 후보예요. 선수과목·과거 이수는 별도 확인이 필요해요.&#x27;</span>],
+                          [<span class="fn">dict</span>(<span class="id">course</span>=<span class="id">c</span>, <span class="id">reason</span>=<span class="str">&#x27;강의 목록에서 자세히 확인할 수 있어요.&#x27;</span>)],
+                          [<span class="fn">dict</span>(<span class="id">title</span>=<span class="str">&#x27;현재 개설 강의·개인 신청 내역&#x27;</span>, <span class="id">url</span>=<span class="kw">None</span>, <span class="id">checkedOn</span>=<span class="kw">None</span>)])
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;시간표&#x27;</span>, <span class="str">&#x27;내수업&#x27;</span>, <span class="str">&#x27;내강의&#x27;</span>, <span class="str">&#x27;신청내역&#x27;</span>, <span class="str">&#x27;몇학점&#x27;</span>, <span class="str">&#x27;남은학점&#x27;</span>, <span class="str">&#x27;현재학점&#x27;</span>):
+        <span class="kw">return</span> <span class="fn">timetable</span>()
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;충돌&#x27;</span>, <span class="str">&#x27;겹&#x27;</span>, <span class="str">&#x27;중복&#x27;</span>, <span class="str">&#x27;정원&#x27;</span>, <span class="str">&#x27;동시&#x27;</span>, <span class="str">&#x27;마감&#x27;</span>, <span class="str">&#x27;최대&#x27;</span>, <span class="str">&#x27;18학점&#x27;</span>, <span class="str">&#x27;신청방법&#x27;</span>, <span class="str">&#x27;수강신청&#x27;</span>, <span class="str">&#x27;학점제한&#x27;</span>):
+        <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;rules&#x27;</span>, <span class="str">&#x27;이 사이트의 수강신청 기준을 알려드릴게요.&#x27;</span>,
+                      [<span class="id">f</span><span class="str">&quot;학기당 최대 {student[&#x27;maxCredits&#x27;]}학점까지 신청할 수 있어요.&quot;</span>,
+                       <span class="str">&#x27;같은 요일에 시간이 겹치는 수업과 이미 신청한 강의는 중복 신청할 수 없어요.&#x27;</span>,
+                       <span class="str">&#x27;마감된 강의는 신청할 수 없어요. 여러 사람이 동시에 신청해도 서버가 정원을 다시 검사해요.&#x27;</span>,
+                       <span class="str">&#x27;강의 행에 커서를 올리면 미리보기, 신청 버튼을 누르면 서버 확인 후 시간표에 반영돼요.&#x27;</span>])
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;다시&#x27;</span>, <span class="str">&#x27;자세히&#x27;</span>, <span class="str">&#x27;더알려&#x27;</span>, <span class="str">&#x27;그거&#x27;</span>) <span class="kw">and</span> <span class="fn">payload.get</span>(<span class="str">&#x27;previousTopic&#x27;</span>):
+        <span class="kw">return</span> {<span class="str">&#x27;graduation&#x27;</span>: <span class="id">graduation</span>, <span class="str">&#x27;recommend&#x27;</span>: <span class="kw">lambda</span>: <span class="fn">recommend</span>(<span class="str">&#x27;추천&#x27;</span>), <span class="str">&#x27;timetable&#x27;</span>: <span class="id">timetable</span>}.<span class="fn">get</span>(<span class="id">payload</span>[<span class="str">&#x27;previousTopic&#x27;</span>], <span class="id">welcome</span>)()
+    <span class="kw">if</span> <span class="fn">has</span>(<span class="str">&#x27;안녕&#x27;</span>, <span class="str">&#x27;도움&#x27;</span>, <span class="str">&#x27;뭘&#x27;</span>, <span class="str">&#x27;시작&#x27;</span>, <span class="str">&#x27;반가&#x27;</span>):
+        <span class="kw">return</span> <span class="fn">welcome</span>()
+    <span class="kw">return</span> <span class="fn">answer</span>(<span class="str">&#x27;help&#x27;</span>, <span class="str">&#x27;현재 확인할 수 있는 학사 데이터 안에서 답변해요. 이 질문은 아직 정확히 답할 자료가 없어요.&#x27;</span>,
+                  [<span class="str">&#x27;졸업요건, 시간표, 수업 추천, 강의명·학수번호, 수강신청 방법을 물어보세요.&#x27;</span>,
+                   <span class="str">&#x27;등록금·장학금·휴복학·학교별 학사 일정은 공식 공지나 학과 사무실의 확인이 필요해요.&#x27;</span>])
+
+
+<span class="kw">if</span> <span class="id">__name__</span> == <span class="str">&#x27;__main__&#x27;</span>:
+    <span class="fn">json.dump</span>(<span class="fn">reply</span>(<span class="fn">json.load</span>(<span class="id">sys.stdin</span>)), <span class="id">sys.stdout</span>, <span class="id">ensure_ascii</span>=<span class="kw">False</span>)
+</code></pre></div></details></div><div class="source-file"><h3>ai-engine/app/main.py</h3><p class="file-meta">현재 원본 전체 46줄 · 2026-10-14 기준</p><details class="source-details"><summary>전체 코드 보기 · 접기</summary><div class="codebox"><div class="codebar"><span>PYTHON</span><button class="copy" type="button" aria-label="python 코드 복사">복사</button></div><pre><code data-language="python"><span class="kw">import</span> <span class="id">importlib.util</span>
+<span class="kw">import</span> <span class="id">os</span>
+<span class="kw">from</span> <span class="id">pathlib</span> <span class="kw">import</span> <span class="id">Path</span>
+<span class="kw">from</span> <span class="id">threading</span> <span class="kw">import</span> <span class="id">BoundedSemaphore</span>
+<span class="kw">import</span> <span class="id">secrets</span>
+<span class="kw">from</span> <span class="id">fastapi</span> <span class="kw">import</span> <span class="id">FastAPI</span>, <span class="id">Header</span>, <span class="id">HTTPException</span>
+<span class="kw">from</span> <span class="id">pydantic</span> <span class="kw">import</span> <span class="id">BaseModel</span>, <span class="id">Field</span>
+<span class="kw">from</span> .<span class="id">semantic</span> <span class="kw">import</span> <span class="id">SemanticRanker</span>
+
+<span class="id">script</span> = <span class="fn">Path</span>(<span class="fn">os.getenv</span>(<span class="str">&#x27;ADVISOR_SCRIPT&#x27;</span>, <span class="fn">str</span>(<span class="fn">Path</span>(<span class="id">__file__</span>).<span class="fn">resolve</span>().<span class="id">parents</span>[<span class="num">2</span>] / <span class="str">&#x27;src/main/resources/python/advisor.py&#x27;</span>)))
+<span class="id">spec</span> = <span class="fn">importlib.util.spec_from_file_location</span>(<span class="str">&#x27;campus_rules&#x27;</span>, <span class="id">script</span>)
+<span class="id">rules</span> = <span class="fn">importlib.util.module_from_spec</span>(<span class="id">spec</span>)
+<span class="fn">spec.loader.exec_module</span>(<span class="id">rules</span>)
+<span class="id">ranker</span> = <span class="fn">SemanticRanker</span>()
+<span class="id">app</span> = <span class="fn">FastAPI</span>(<span class="id">title</span>=<span class="str">&#x27;Campus AI Engine&#x27;</span>, <span class="id">docs_url</span>=<span class="kw">None</span>, <span class="id">redoc_url</span>=<span class="kw">None</span>)
+<span class="id">slots</span> = <span class="fn">BoundedSemaphore</span>(<span class="num">2</span>)
+<span class="id">key</span> = <span class="fn">os.getenv</span>(<span class="str">&#x27;AI_ENGINE_KEY&#x27;</span>, <span class="str">&#x27;&#x27;</span>)
+<span class="kw">if</span> <span class="kw">not</span> <span class="id">key</span>:
+    <span class="kw">raise</span> <span class="fn">RuntimeError</span>(<span class="str">&#x27;AI_ENGINE_KEY must be configured for the internal engine&#x27;</span>)
+
+
+<span class="kw">class</span> <span class="fn">ChatInput</span>(<span class="id">BaseModel</span>):
+    <span class="id">state</span>: <span class="id">dict</span>
+    <span class="id">profile</span>: <span class="id">dict</span>
+    <span class="id">message</span>: <span class="id">str</span> = <span class="fn">Field</span>(<span class="id">min_length</span>=<span class="num">1</span>, <span class="id">max_length</span>=<span class="num">1000</span>)
+    <span class="id">previousTopic</span>: <span class="id">str</span> | <span class="kw">None</span> = <span class="fn">Field</span>(<span class="id">default</span>=<span class="kw">None</span>, <span class="id">max_length</span>=<span class="num">30</span>)
+    <span class="id">policy</span>: <span class="id">dict</span> | <span class="kw">None</span> = <span class="kw">None</span>
+
+
+@<span class="fn">app.get</span>(<span class="str">&#x27;/health&#x27;</span>)
+<span class="kw">def</span> <span class="fn">health</span>():
+    <span class="kw">return</span> {<span class="str">&#x27;status&#x27;</span>: <span class="str">&#x27;UP&#x27;</span>, <span class="str">&#x27;model&#x27;</span>: <span class="str">&#x27;onnx-tensorflow&#x27;</span> <span class="kw">if</span> <span class="id">ranker.enabled</span> <span class="kw">else</span> <span class="str">&#x27;rules&#x27;</span>}
+
+
+@<span class="fn">app.post</span>(<span class="str">&#x27;/chat&#x27;</span>)
+<span class="kw">def</span> <span class="fn">chat</span>(<span class="id">payload</span>: <span class="id">ChatInput</span>, <span class="id">x_engine_key</span>: <span class="id">str</span> = <span class="fn">Header</span>(<span class="id">default</span>=<span class="str">&#x27;&#x27;</span>)):
+    <span class="kw">if</span> <span class="kw">not</span> <span class="fn">secrets.compare_digest</span>(<span class="id">key</span>, <span class="id">x_engine_key</span>):
+        <span class="kw">raise</span> <span class="fn">HTTPException</span>(<span class="num">401</span>, <span class="str">&#x27;Unauthorized engine request&#x27;</span>)
+    <span class="kw">if</span> <span class="fn">len</span>(<span class="fn">payload.state.get</span>(<span class="str">&#x27;courses&#x27;</span>, [])) &gt; <span class="num">2000</span>:
+        <span class="kw">raise</span> <span class="fn">HTTPException</span>(<span class="num">413</span>, <span class="str">&#x27;Course catalog is too large&#x27;</span>)
+    <span class="kw">if</span> <span class="kw">not</span> <span class="fn">slots.acquire</span>(<span class="id">blocking</span>=<span class="kw">False</span>):
+        <span class="kw">raise</span> <span class="fn">HTTPException</span>(<span class="num">503</span>, <span class="str">&#x27;Engine capacity exceeded&#x27;</span>)
+    <span class="kw">try</span>:
+        <span class="kw">return</span> <span class="fn">rules.reply</span>(<span class="fn">payload.model_dump</span>(), <span class="id">ranker.rank</span> <span class="kw">if</span> <span class="id">ranker.enabled</span> <span class="kw">else</span> <span class="kw">None</span>)
+    <span class="kw">finally</span>:
+        <span class="fn">slots.release</span>()
+</code></pre></div></details></div><div class="source-file"><h3>ai-engine/app/semantic.py</h3><p class="file-meta">현재 원본 전체 55줄 · 2026-10-14 기준</p><details class="source-details"><summary>전체 코드 보기 · 접기</summary><div class="codebox"><div class="codebar"><span>PYTHON</span><button class="copy" type="button" aria-label="python 코드 복사">복사</button></div><pre><code data-language="python"><span class="str">&quot;&quot;&quot;학습 모델이 명시적으로 설치된 경우에만 ONNX/TF 추천을 활성화한다.&quot;&quot;&quot;</span>
+<span class="kw">import</span> <span class="id">hashlib</span>
+<span class="kw">import</span> <span class="id">json</span>
+<span class="kw">import</span> <span class="id">os</span>
+<span class="kw">from</span> <span class="id">pathlib</span> <span class="kw">import</span> <span class="id">Path</span>
+<span class="kw">from</span> <span class="id">threading</span> <span class="kw">import</span> <span class="id">Lock</span>
+
+
+<span class="kw">class</span> <span class="id">SemanticRanker</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="id">self</span>):
+        <span class="id">self.enabled</span> = <span class="fn">bool</span>(<span class="fn">os.getenv</span>(<span class="str">&#x27;ONNX_MODEL_PATH&#x27;</span>))
+        <span class="id">self.cache</span>, <span class="id">self.lock</span> = {}, <span class="fn">Lock</span>()
+        <span class="id">self.syllabi</span> = {}
+        <span class="kw">if</span> <span class="kw">not</span> <span class="id">self.enabled</span>:
+            <span class="kw">return</span>
+        <span class="kw">import</span> <span class="id">onnxruntime</span> <span class="kw">as</span> <span class="id">ort</span>
+        <span class="kw">import</span> <span class="id">tensorflow</span> <span class="kw">as</span> <span class="id">tf</span>
+        <span class="kw">from</span> <span class="id">transformers</span> <span class="kw">import</span> <span class="id">AutoTokenizer</span>
+        <span class="id">self.tf</span> = <span class="id">tf</span>
+        <span class="id">self.session</span> = <span class="fn">ort.InferenceSession</span>(<span class="id">os.environ</span>[<span class="str">&#x27;ONNX_MODEL_PATH&#x27;</span>], <span class="id">providers</span>=[<span class="str">&#x27;CPUExecutionProvider&#x27;</span>])
+        <span class="id">self.tokenizer</span> = <span class="fn">AutoTokenizer.from_pretrained</span>(<span class="id">os.environ</span>[<span class="str">&#x27;TOKENIZER_PATH&#x27;</span>], <span class="id">local_files_only</span>=<span class="kw">True</span>)
+        <span class="kw">source</span> = <span class="fn">Path</span>(<span class="id">os.environ</span>[<span class="str">&#x27;SYLLABI_PATH&#x27;</span>])
+        <span class="id">self.syllabi</span> = <span class="fn">json.loads</span>(<span class="fn">source.read_text</span>(<span class="id">encoding</span>=<span class="str">&#x27;utf-8&#x27;</span>))
+        <span class="kw">if</span> <span class="kw">not</span> <span class="fn">isinstance</span>(<span class="id">self.syllabi</span>, <span class="id">dict</span>) <span class="kw">or</span> <span class="kw">not</span> <span class="id">self.syllabi</span>:
+            <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&#x27;SYLLABI_PATH must map course codes to actual syllabus text&#x27;</span>)
+
+    <span class="kw">def</span> <span class="fn">encode</span>(<span class="id">self</span>, <span class="id">texts</span>):
+        <span class="kw">import</span> <span class="id">numpy</span> <span class="kw">as</span> <span class="id">np</span>
+        <span class="id">tokens</span> = <span class="fn">self.tokenizer</span>(<span class="id">texts</span>, <span class="id">padding</span>=<span class="kw">True</span>, <span class="id">truncation</span>=<span class="kw">True</span>, <span class="id">max_length</span>=<span class="num">256</span>, <span class="id">return_tensors</span>=<span class="str">&#x27;np&#x27;</span>)
+        <span class="id">inputs</span> = {<span class="id">i.name</span>: <span class="id">tokens</span>[<span class="id">i.name</span>].<span class="fn">astype</span>(<span class="id">np.int64</span>) <span class="kw">for</span> <span class="id">i</span> <span class="kw">in</span> <span class="fn">self.session.get_inputs</span>()}
+        <span class="id">embeddings</span> = <span class="fn">self.session.run</span>([<span class="str">&#x27;embeddings&#x27;</span>], <span class="id">inputs</span>)[<span class="num">0</span>]
+        <span class="kw">if</span> <span class="id">embeddings.ndim</span> != <span class="num">2</span> <span class="kw">or</span> <span class="id">embeddings.shape</span>[<span class="num">0</span>] != <span class="fn">len</span>(<span class="id">texts</span>) <span class="kw">or</span> <span class="kw">not</span> <span class="fn">np.isfinite</span>(<span class="id">embeddings</span>).<span class="fn">all</span>():
+            <span class="kw">raise</span> <span class="fn">ValueError</span>(<span class="str">&#x27;Invalid embedding output&#x27;</span>)
+        <span class="kw">return</span> <span class="id">embeddings</span>
+
+    <span class="kw">def</span> <span class="fn">rank</span>(<span class="id">self</span>, <span class="id">query</span>, <span class="id">courses</span>):
+        <span class="kw">if</span> <span class="kw">not</span> <span class="id">self.enabled</span>:
+            <span class="kw">return</span> [<span class="id">c</span>[<span class="str">&#x27;id&#x27;</span>] <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">courses</span>], <span class="str">&#x27;rules&#x27;</span>
+        <span class="cm"># 일부 계획서만 등록된 상태에서 나머지 과목을 임의 의미 벡터로 만들지 않는다.</span>
+        <span class="kw">if</span> <span class="fn">any</span>(<span class="kw">not</span> <span class="fn">isinstance</span>(<span class="fn">self.syllabi.get</span>(<span class="id">c</span>[<span class="str">&#x27;code&#x27;</span>]), <span class="id">str</span>) <span class="kw">or</span> <span class="kw">not</span> <span class="id">self.syllabi</span>[<span class="id">c</span>[<span class="str">&#x27;code&#x27;</span>]].<span class="fn">strip</span>() <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">courses</span>):
+            <span class="kw">return</span> [<span class="id">c</span>[<span class="str">&#x27;id&#x27;</span>] <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">courses</span>], <span class="str">&#x27;rules-missing-syllabi&#x27;</span>
+        <span class="id">texts</span> = [<span class="id">f</span><span class="str">&quot;{c[&#x27;name&#x27;]}\n{self.syllabi[c[&#x27;code&#x27;]]}&quot;</span> <span class="kw">for</span> <span class="id">c</span> <span class="kw">in</span> <span class="id">courses</span>]
+        <span class="id">key</span> = <span class="fn">hashlib.sha256</span>(<span class="fn">json.dumps</span>(<span class="id">texts</span>, <span class="id">ensure_ascii</span>=<span class="kw">False</span>).<span class="fn">encode</span>()).<span class="fn">hexdigest</span>()
+        <span class="kw">with</span> <span class="id">self.lock</span>:
+            <span class="kw">if</span> <span class="id">key</span> <span class="kw">not</span> <span class="kw">in</span> <span class="id">self.cache</span>:
+                <span class="kw">if</span> <span class="fn">len</span>(<span class="id">self.cache</span>) &gt;= <span class="num">16</span>: <span class="fn">self.cache.clear</span>()
+                <span class="id">self.cache</span>[<span class="id">key</span>] = <span class="fn">self.encode</span>(<span class="id">texts</span>)
+            <span class="id">matrix</span> = <span class="id">self.cache</span>[<span class="id">key</span>]
+        <span class="id">tf</span> = <span class="id">self.tf</span>
+        <span class="cm"># 같은 ONNX 모델 공간의 벡터끼리 정규화 후 행렬곱: 코사인 유사도.</span>
+        <span class="id">q</span> = <span class="fn">tf.math.l2_normalize</span>(<span class="fn">tf.convert_to_tensor</span>(<span class="fn">self.encode</span>([<span class="id">query</span>])), <span class="id">axis</span>=<span class="num">1</span>)
+        <span class="id">corpus</span> = <span class="fn">tf.math.l2_normalize</span>(<span class="fn">tf.convert_to_tensor</span>(<span class="id">matrix</span>), <span class="id">axis</span>=<span class="num">1</span>)
+        <span class="id">scores</span> = <span class="fn">tf.linalg.matmul</span>(<span class="id">q</span>, <span class="id">corpus</span>, <span class="id">transpose_b</span>=<span class="kw">True</span>)[<span class="num">0</span>]
+        <span class="id">order</span> = <span class="fn">tf.argsort</span>(<span class="id">scores</span>, <span class="id">direction</span>=<span class="str">&#x27;DESCENDING&#x27;</span>, <span class="id">stable</span>=<span class="kw">True</span>).<span class="fn">numpy</span>().<span class="fn">tolist</span>()
+        <span class="kw">return</span> [<span class="id">courses</span>[<span class="id">i</span>][<span class="str">&#x27;id&#x27;</span>] <span class="kw">for</span> <span class="id">i</span> <span class="kw">in</span> <span class="id">order</span>], <span class="str">&#x27;onnx-tensorflow&#x27;</span>
+</code></pre></div></details></div></section><section id="item-6"><h2>7. 검증 방법과 읽는 순서</h2><div class="codebox"><div class="codebar"><span>BASH</span><button class="copy" type="button" aria-label="bash 코드 복사">복사</button></div><pre><code data-language="bash">python3 -m unittest discover -s src/test/python
+python3 -m unittest discover -s ai-engine/tests
+./mvnw test</code></pre></div><p>명령은 검증 방법이며 이번 요약 분리 작업에서 앱 테스트를 새로 실행했다는 뜻은 아닙니다. reply → extract_filters → recommend → unavailable → answer 순서로 읽은 뒤, 필요하면 FastAPI chat과 SemanticRanker를 확인하세요.</p></section><footer>수강2 · 파이썬 챗봇 · 코드와 실행 흐름 · 2026-10-14 · 코드·문서 분리본</footer></main></div><div id="copy-status" role="status" aria-live="polite"></div></body></html>

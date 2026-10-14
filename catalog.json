@@ -175,6 +175,20 @@
     "format": "HTML"
   },
   {
+    "path": "docs/projects/campus/PYTHON_CHATBOT_SUMMARY.html",
+    "title": "파이썬 챗봇 · 코드·함수·구조·실행 흐름",
+    "category": "수강신청 프로젝트",
+    "url": "docs/projects/campus/PYTHON_CHATBOT_SUMMARY.html?v=e8630159322b",
+    "format": "HTML"
+  },
+  {
+    "path": "docs/projects/campus/R_ANALYTICS_SUMMARY.html",
+    "title": "R언어 분석 · CSV·Shiny·집계·리포트",
+    "category": "수강신청 프로젝트",
+    "url": "docs/projects/campus/R_ANALYTICS_SUMMARY.html?v=b57a98eef290",
+    "format": "HTML"
+  },
+  {
     "path": "docs/projects/campus/AWS_TERRAFORM_GUIDE.html",
     "title": "수강신청 · AWS·Terraform 배포 과정",
     "category": "수강신청 프로젝트",
