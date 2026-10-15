@@ -56,11 +56,10 @@
 
 ### 수강신청 프로젝트
 
-- [수강신청 · React·Spring·Python 전체 코드와 상세 설명](https://p2terghks.github.io/study-notes/docs/projects/campus/CODE_SUMMARY.html)
+- [수강신청 · React·Spring 전체 코드와 상세 설명](https://p2terghks.github.io/study-notes/docs/projects/campus/CODE_SUMMARY.html)
 - [수강신청 · AWS·Terraform 배포 과정](https://p2terghks.github.io/study-notes/docs/projects/campus/AWS_TERRAFORM_GUIDE.html)
 - [수강신청 · AWS·Terraform 트러블슈팅](https://p2terghks.github.io/study-notes/docs/projects/campus/AWS_TROUBLESHOOTING.html)
 
-수강신청 프로젝트의 2026-10-08 버전 소스는 [examples/campus](examples/campus)에 있습니다. [Python 챗봇](examples/campus/src/main/resources/python/advisor.py) · [백엔드 요약](docs/projects/campus/BACKEND_SUMMARY.md) · [프론트 요약](docs/projects/campus/REACT_SUMMARY.md)
+수강신청 프로젝트의 2026-10-15 버전 소스는 [examples/campus](examples/campus)에 있습니다. [백엔드 요약](docs/projects/campus/BACKEND_SUMMARY.md) · [프론트 요약](docs/projects/campus/REACT_SUMMARY.md)
 
-- [파이썬 챗봇 요약](https://p2terghks.github.io/study-notes/docs/projects/campus/PYTHON_CHATBOT_SUMMARY.html)
 - [R언어 분석 요약](https://p2terghks.github.io/study-notes/docs/projects/campus/R_ANALYTICS_SUMMARY.html)

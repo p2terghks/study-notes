@@ -3,13 +3,14 @@ export async function getCsrf() {
   const response = await fetch('/api/csrf', { credentials: 'same-origin' });
   if (!response.ok) throw new Error('서버에 연결할 수 없습니다.');
   csrf = await response.json();
+  return csrf;
 }
 export function clearCsrf() {
   csrf = null;
 }
 // 세션 쿠키와 CSRF를 유지한다. 변경 요청은 실패해도 자동 재전송하지 않는다.
-export async function request(url, method = 'GET', body) {
-  const headers = {};
+export async function request(url, method = 'GET', body, extraHeaders = {}) {
+  const headers = { ...extraHeaders };
   if (method !== 'GET') {
     if (!csrf) await getCsrf();
     headers[csrf.headerName] = csrf.token;

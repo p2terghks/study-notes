@@ -1,6 +1,5 @@
 package kr.ac.campus.exception;
 
-import kr.ac.campus.advisor.controller.AdvisorController;
 
 import java.util.Map;
 import org.springframework.dao.CannotAcquireLockException;
@@ -24,14 +23,6 @@ class ApiErrors {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ResponseEntity<Map<String, String>> invalid(MethodArgumentNotValidException exception) {
-        if (exception.getParameter().getContainingClass() == AdvisorController.class) {
-            return ResponseEntity.badRequest().body(
-                Map.of(
-                    "message",
-                    "질문은 1~1000자, 학적 정보는 대학·학과·입학년도(1980~2100)를 확인해주세요."
-                )
-            );
-        }
         return ResponseEntity.badRequest().body(
             Map.of("message", "학번 8~12자리, 이름, 비밀번호 8~64자를 확인해주세요.")
         );

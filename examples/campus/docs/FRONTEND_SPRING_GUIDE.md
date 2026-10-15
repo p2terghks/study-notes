@@ -117,6 +117,5 @@ cart.findById(key).ifPresent(cart::delete);
 - `ddl-auto=validate`: 테이블 구조 검증만 합니다. 로컬은 schema.sql, 운영은 Flyway가 스키마를 관리합니다.
 - 운영 세션 저장은 Spring Session JDBC를 유지합니다. JPA 전환 대상은 업무 데이터입니다.
 - 학기 표시는 샘플 고정값이며 실제 대학 시스템 연동이 아닙니다.
-- 챗봇 개발은 중단 상태로 서버 코드를 보존하고 React 화면에는 노출하지 않습니다.
 
 도구 선택 배경은 [React의 직접 앱 구성 가이드](https://react.dev/learn/build-a-react-app-from-scratch)와 [Vite 시작 가이드](https://vite.dev/guide/)를 참고하세요.

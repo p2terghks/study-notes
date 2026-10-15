@@ -1,6 +1,6 @@
 # 기능별 폴더 분류
 
-수강신청 앱과 독립 학사 도우미를 분리한 상태로 파일 위치를 정리했습니다. URL·DB 구조·업무 규칙은 변경하지 않았습니다.
+수강신청 앱의 기능별 파일 위치를 정리했습니다. URL·DB 구조·업무 규칙은 변경하지 않았습니다.
 
 ## 수강신청 React
 
@@ -35,7 +35,6 @@ campus/
 ├── course/                # 강의·수업 시간 entity·repository·service
 ├── enrollment/            # 신청 entity·repository
 ├── cart/                  # 장바구니 entity·repository
-├── advisor/               # 상담 API·프로필·Python 연결: controller·service·catalog·entity·repository
 ├── shared/entity/         # 학생·강의 복합키
 ├── config/                # 보안·운영 세션
 ├── exception/             # 공통 오류 응답
@@ -43,26 +42,6 @@ campus/
 ```
 
 수강신청 트랜잭션은 기존 CourseService에 유지합니다. enrollment/cart로 파일을 분류했다고 트랜잭션을 여러 서비스로 나누지는 않았습니다. api/ApiController는 회원가입·강의·장바구니를 연결하는 기존 공통 진입점입니다.
-
-## 별도 학사 챗봇
-
-```text
-academic-advisor/
-├── frontend/src/
-│   ├── features/advisor/   # Advisor.jsx·advisor.css
-│   ├── shared/api/         # HTTP·CSRF
-│   └── tests/              # 화면 테스트
-├── src/main/java/kr/ac/advisor/
-│   ├── AdvisorApplication.java
-│   ├── controller/
-│   ├── service/
-│   └── config/
-└── src/main/resources/advising/  # 교육과정 자료
-```
-
-수강신청 서버의 advisor 패키지는 로컬 Python 상담 엔진과 연결되어 있습니다. 현재 수강신청 화면에는 상담 UI가 없으며 별도 챗봇 프로젝트는 기존 Java 구현을 유지합니다.
-
-Python 원본: `src/main/resources/python/advisor.py`, 연결 코드: `advisor/service/PythonAdvisor.java`, Python 테스트: `src/test/python/test_advisor.py`.
 
 ## 그대로 유지한 위치
 
@@ -73,3 +52,14 @@ Python 원본: `src/main/resources/python/advisor.py`, 연결 코드: `advisor/s
 - 루트의 pom.xml·Dockerfile·Maven Wrapper: 실행·빌드 진입점
 
 생성물인 target/과 node_modules/는 직접 분류하지 않습니다. 프론트 원본은 frontend/src, 서버 원본은 src/main/java를 수정하세요.
+
+## 2026-10-14 추가 기능
+
+- src/main/java/kr/ac/campus/enrollment/queue/: 선택형 Redis FIFO 입장 제어
+- src/main/resources/redis/: 대기열 Lua
+- r-user-analytics/: 독립 RStudio·Shiny·명령행 분석 프로젝트
+
+## 독립 Python 졸업요건 분석
+
+- graduation-ai/: 사진·텍스트 입력, 이수표 검토, 졸업요건 비교와 HTML 결과 저장
+- graduation-ai/GUIDE.html: 실행 방법과 전체 코드 설명

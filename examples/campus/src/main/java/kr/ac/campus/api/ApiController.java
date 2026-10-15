@@ -1,5 +1,8 @@
 package kr.ac.campus.api;
 
+import kr.ac.campus.enrollment.queue.EnrollmentQueue;
+import org.springframework.web.bind.annotation.RequestHeader;
+
 import kr.ac.campus.auth.service.RegistrationService;
 import kr.ac.campus.course.service.CourseService;
 
@@ -27,10 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 class ApiController {
 
     private final CourseService service;
+    private final EnrollmentQueue queue;
     private final RegistrationService registrationService;
 
-    ApiController(CourseService service, RegistrationService registrationService) {
+    ApiController(CourseService service, RegistrationService registrationService, EnrollmentQueue queue) {
         this.service = service;
+        this.queue = queue;
         this.registrationService = registrationService;
     }
 
@@ -39,7 +44,7 @@ class ApiController {
 
     @GetMapping("/config")
     Map<String, Boolean> config() {
-        return Map.of("demoEnabled", demoEnabled);
+        return Map.of("demoEnabled", demoEnabled, "enrollmentQueueEnabled", queue.enabled());
     }
 
     // 브라우저는 이 토큰을 변경 요청의 헤더에 넣는다. 로그인 성공 후에는 새 토큰을 받는다.
@@ -73,8 +78,8 @@ class ApiController {
 
     @PostMapping("/enrollments/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void enroll(Principal principal, @PathVariable long id) {
-        service.enroll(principal.getName(), id);
+    void enroll(Principal principal, @PathVariable long id, @RequestHeader(value = "X-Queue-Ticket", required = false) String ticket) {
+        queue.enroll(principal.getName(), ticket, () -> service.enroll(principal.getName(), id));
     }
 
     @DeleteMapping("/enrollments/{id}")

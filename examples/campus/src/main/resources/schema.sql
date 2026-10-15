@@ -24,9 +24,3 @@ CREATE TABLE IF NOT EXISTS cart (
  student_id BIGINT NOT NULL REFERENCES students(id), course_id BIGINT NOT NULL REFERENCES courses(id),
  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY(student_id, course_id)
 );
-
-CREATE TABLE IF NOT EXISTS advising_profiles (
-    student_id BIGINT PRIMARY KEY REFERENCES students(id),
-    university VARCHAR(100) NOT NULL,
-    admission_year INT NOT NULL CHECK (admission_year BETWEEN 1980 AND 2100)
-);

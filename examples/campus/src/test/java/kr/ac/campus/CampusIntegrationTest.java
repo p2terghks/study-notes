@@ -45,7 +45,6 @@ class CampusIntegrationTest {
     @BeforeEach
     void setup() {
         for (String table : List.of(
-            "advising_profiles",
             "cart",
             "enrollments",
             "meetings",
@@ -252,59 +251,6 @@ class CampusIntegrationTest {
         mvc.perform(formLogin("/api/login").user("20260001").password("wrong")).andExpect(
             status().isUnauthorized()
         );
-    }
-
-    @Test
-    void pythonChatUsesAuthenticatedStateAndPreservesResponseContract() throws Exception {
-        long id = course("PY101", 10, 3, 0, 600, 660);
-        service.enroll("20260001", id);
-        mvc.perform(post("/api/advisor/chat").with(user("20260001")).with(csrf())
-                .contentType("application/json").content("{\"message\":\"내 시간표 알려줘\"}"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.topic").value("timetable"))
-            .andExpect(jsonPath("$.message").value("현재 1과목, 3학점을 신청했어요."))
-            .andExpect(jsonPath("$.recommendations").isArray())
-            .andExpect(jsonPath("$.sources").isArray());
-        student("20260002");
-        mvc.perform(post("/api/advisor/chat").with(user("20260002")).with(csrf())
-                .contentType("application/json").content("{\"message\":\"내 시간표 알려줘\"}"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.message").value("현재 0과목, 0학점을 신청했어요."));
-        mvc.perform(post("/api/advisor/chat").with(user("20260001")).with(csrf())
-                .contentType("application/json").content("{\"message\":\" \"}"))
-            .andExpect(status().isBadRequest());
-        mvc.perform(post("/api/advisor/chat").with(csrf())
-                .contentType("application/json").content("{\"message\":\"안녕\"}"))
-            .andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void advisingProfileJpaInsertUpdateAndIsolation() throws Exception {
-        student("20260002");
-        for (int year : new int[] { 2024, 2025 }) {
-            mvc.perform(
-                put("/api/advisor/profile")
-                    .with(user("20260001"))
-                    .with(csrf())
-                    .contentType("application/json")
-                    .content(
-                        "{\"university\":\"테스트대학교\",\"department\":\"인공지능학부\",\"admissionYear\":" +
-                            year +
-                            "}"
-                    )
-            )
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.admissionYear").value(year));
-        }
-        mvc.perform(get("/api/advisor/profile").with(user("20260001")))
-            .andExpect(jsonPath("$.department").value("인공지능학부"))
-            .andExpect(jsonPath("$.admissionYear").value(2025));
-        mvc.perform(get("/api/advisor/profile").with(user("20260002"))).andExpect(
-            jsonPath("$.university").doesNotExist()
-        );
-        assertThat(
-            db.queryForObject("SELECT COUNT(*) FROM advising_profiles", Integer.class)
-        ).isEqualTo(1);
     }
 
     @Test

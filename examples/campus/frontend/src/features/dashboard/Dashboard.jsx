@@ -6,7 +6,7 @@ import Schedule from '../timetable/Schedule.jsx';
 import Modal from '../../shared/ui/Modal.jsx';
 import { credits, filterCourses } from '../courses/courses.js';
 const defaults = { search: '', department: '', category: '', available: false };
-export default function Dashboard({ state, busy, logout, refresh, mutate, onDialogChange }) {
+export default function Dashboard({ state, busy, logout, refresh, mutate, onDialogChange, onSessionExpired }) {
   const [tab, setTab] = useState('all'),
     [filters, setFilters] = useState(defaults),
     [previewId, setPreviewId] = useState(null),

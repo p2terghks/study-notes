@@ -3,6 +3,7 @@ import { request, getCsrf, clearCsrf } from '../../shared/api/api.js';
 export default function useCampus() {
   const [state, setState] = useState(null),
     [loading, setLoading] = useState(true),
+    [queueEnabled, setQueueEnabled] = useState(false),
     [demoEnabled, setDemoEnabled] = useState(false),
     [error, setError] = useState(''),
     [busy, setBusy] = useState(false),
@@ -44,6 +45,7 @@ export default function useCampus() {
         const config = await request('/api/config');
         if (!active) return;
         setDemoEnabled(config.demoEnabled);
+        setQueueEnabled(!!config.enrollmentQueueEnabled);
         await getCsrf();
         if (active) await refresh();
       } catch (e) {
@@ -117,10 +119,25 @@ export default function useCampus() {
       removeCart: ['cart', 'DELETE', '장바구니에서 삭제했어요.'],
     }[action];
     let committed = false;
+    let ticket = null;
     try {
       // 진행 중인 조회를 먼저 끝내야 변경 전 응답이 최신 상태를 덮어쓰지 않는다.
       if (pending.current) await pending.current;
-      await request(`/api/${config[0]}/${id}`, config[1]);
+      if (action === 'enroll' && queueEnabled) {
+        const entry = await request('/api/enrollment-queue', 'POST');
+        ticket = entry.ticket;
+        const deadline = Date.now() + 45000;
+        while (true) {
+          const status = await request(`/api/enrollment-queue/${ticket}`);
+          if (status.status === 'admitted') break;
+          if (status.status !== 'waiting' || Date.now() > deadline)
+            throw new Error('대기 시간이 끝났어요. 신청 내역을 확인하고 다시 시도해주세요.');
+          notify(`수강신청 대기 중 · 앞에 최대 ${status.position}명`);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+      }
+      await request(`/api/${config[0]}/${id}`, config[1], undefined,
+        ticket ? { 'X-Queue-Ticket': ticket } : {});
       committed = true;
       await refresh();
       notify(config[2]);
@@ -135,12 +152,16 @@ export default function useCampus() {
           await refresh();
         } catch {}
     } finally {
+      if (ticket) {
+        try { await request(`/api/enrollment-queue/${ticket}`, 'DELETE'); } catch { }
+      }
       lock.current = false;
       setBusy(false);
     }
   }
   return {
     state,
+    onSessionExpired: expire,
     loading,
     demoEnabled,
     error,

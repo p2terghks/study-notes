@@ -1,20 +1,7 @@
 # React 코드 설명 요약본
 
-프론트엔드 설명입니다. 서버 코드는 [백엔드 Spring·JPA·Python 요약본](BACKEND_SUMMARY.md)을 참고하세요.
+프론트엔드 설명입니다. 서버 코드는 [백엔드 Spring·JPA 요약본](BACKEND_SUMMARY.md)을 참고하세요.
 
-수강2의 실제 React 코드를 기준으로 정리했습니다. 짧게 읽을 수 있도록 일부 코드는 핵심만 발췌하거나 간추렸습니다. 수강신청 프론트 원본은 `frontend/src`, 별도 학사 챗봇은 `academic-advisor/frontend/src`이며 서로 연결하지 않았습니다.
-
-### 2026-10-08 챗봇 변경 반영
-
-이번 Python 전환에서 `frontend/src`와 `academic-advisor/frontend/src`의 React 코드는 수정하지 않았습니다. 수강신청 서버의 상담 처리는 Java → 로컬 Python 호출로 바뀌었지만, 현재 수강신청 React 화면에는 상담 API 호출 UI가 없습니다. 별도 챗봇 화면의 `Advisor.send()`는 별도 Spring 서버의 `CurriculumService.answer()`를 계속 호출하므로 Python 엔진에 연결된 화면으로 해석하면 안 됩니다.
-
-```text
-수강신청 화면 → 기존 수강신청 Spring API
-수강신청 서버의 상담 API → AdvisorService → PythonAdvisor → advisor.py
-별도 챗봇 화면 → 별도 AdvisorController → Java CurriculumService
-```
-
-상담 API 주소·응답 형식은 유지했으며 Python 전환을 위한 신규 JSX·CSS·프론트 의존성은 없습니다. Python 상담 엔진의 함수와 실행 설정은 백엔드 요약본 11절에 정리했습니다.
 
 ## 1. 파일 구조
 
@@ -318,44 +305,6 @@ const response = await fetch(url, {
 
 설정·package.json 경로만 프로젝트 루트 기준입니다. node_modules는 설치 결과, 서버의 static 폴더는 빌드 결과입니다.
 
-## 15. 별도 챗봇 React
-
-원본은 `academic-advisor/frontend/src/`입니다. 수강신청 React의 App에 연결하지 않은 별도 실행 앱입니다.
-
-```text
-main.jsx                         # 소개 화면과 Advisor 렌더링
-features/advisor/Advisor.jsx      # 학적 폼·대화·추천 질문
-features/advisor/advisor.css      # 챗봇 패널 스타일
-shared/api/api.js                # HTTP·CSRF 공통 처리
-styles.css                      # 소개 화면 기본 스타일
-tests/                          # 챗봇 화면 테스트
-```
-
-| 함수·상태 | 기능 |
-| --- | --- |
-| `Advisor()` | 학적 정보 폼과 대화 패널 구성 |
-| `fail(e)` | 오류 표시, 401이면 전달받은 세션 만료 콜백 실행 |
-| `toggle()` | 패널 열기/닫기, 열 때 서버 프로필 조회 |
-| `close()` | 패널 닫기, 실행 버튼으로 초점 복원 |
-| `save(e)` | 프로필 PUT 요청, 대화·추천 질문 초기화 |
-| `send(value)` | 공백 검사 → 질문 표시 → POST 요청 → 답변 표시 |
-| `open`, `editing`, `profile` | 패널·프로필 수정 영역·학적 정보 |
-| `messages`, `question`, `suggestions` | 현재 대화·입력·추천 질문 |
-| `busy`, `error`, `inFlight` | 처리 표시·오류·중복 요청 제한 |
-| `input`, `launcher`, `log` | 질문 입력·실행 버튼·대화 목록 DOM 참조 |
-| `active` | 화면 제거 후 비동기 결과 반영 방지 |
-| `topic` | 이전 주제 전달용 값. 현재 독립 서버에서는 사용하지 않음 |
-
-```jsx
-const answer = await request('/api/advisor/chat', 'POST', {
-  message: text,
-  previousTopic: topic,
-});
-setMessages((m) => [...m, { role: 'assistant', ...answer }]);
-```
-
-핵심 발췌입니다. 기존 대화 배열에 새 답변을 추가합니다. 현재 독립 서버의 Question은 message만 받고 Answer에는 topic이 없으므로, 이전 대화의 맥락을 이해하는 기능으로 해석하면 안 됩니다. 프로필은 서버 세션에, 대화는 브라우저 메모리에 보관합니다. 새로고침하면 대화가 사라집니다.
-
 ## 16. 기능별로 코드 따라 읽기
 
 ```text
@@ -364,7 +313,6 @@ setMessages((m) => [...m, { role: 'assistant', ...answer }]);
 취소: Dashboard.onAction → Modal 확인 → mutate('cancel', id) → API → refresh
 미리보기: CourseRows.onMouseEnter/onFocus → previewId → Schedule
 검색: 입력 onChange → updateFilter → filterCourses → CourseRows
-챗봇: Advisor.send → request → 독립 AdvisorController.chat → CurriculumService.answer
 ```
 
-백엔드 처리는 [Spring·JPA·Python 코드 설명 요약본](BACKEND_SUMMARY.md), 전체 파일 분류는 [폴더 구조 안내](FOLDER_STRUCTURE.md)를 이어서 읽으면 됩니다.
+백엔드 처리는 [Spring·JPA 코드 설명 요약본](BACKEND_SUMMARY.md), 전체 파일 분류는 [폴더 구조 안내](FOLDER_STRUCTURE.md)를 이어서 읽으면 됩니다.

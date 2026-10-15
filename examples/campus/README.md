@@ -100,7 +100,7 @@ java -jar target/campus-1.0.0.jar
 
 ## 구성 및 운영 범위
 
-- `src/main/java/kr/ac/campus`: `auth`, `student`, `course`, `enrollment`, `cart`, `advisor` 기능별 패키지와 공통 설정. [구조 설명](docs/CODE_GUIDE.md#패키지-구조) 참고.
+- `src/main/java/kr/ac/campus`: `auth`, `student`, `course`, `enrollment`, `cart` 기능별 패키지와 공통 설정. [구조 설명](docs/CODE_GUIDE.md#패키지-구조) 참고.
 - 업무 DB 접근은 Spring Data JPA입니다. 운영 로그인 세션 저장은 Spring Session JDBC를 유지합니다.
 - `frontend/src`: React 컴포넌트·Hook·CSS 원본
 - `src/main/resources/static`: Vite가 생성한 배포용 HTML·JS·CSS
@@ -114,20 +114,16 @@ java -jar target/campus-1.0.0.jar
 
 ## 프론트·백엔드 코드 요약본
 
-- [프론트엔드: 폴더·컴포넌트·함수·CSS·챗봇](docs/REACT_SUMMARY.md)
-- [백엔드: 폴더·API·서비스·JPA·동시 신청·챗봇](docs/BACKEND_SUMMARY.md)
+- [프론트엔드: 폴더·컴포넌트·함수·CSS](docs/REACT_SUMMARY.md)
+- [백엔드: 폴더·API·서비스·JPA·동시 신청](docs/BACKEND_SUMMARY.md)
 
 기존 요약본과 같은 코드 예시와 해설 형식으로 정리했습니다.
 
-## Python 챗봇
 
-질문 분석, 시간표 안내, 수업 추천, 졸업요건 답변은 `src/main/resources/python/advisor.py`에서 처리합니다. Python 표준 라이브러리만 사용하므로 pip 설치나 AI API 키가 필요하지 않습니다. 로그인·학적 저장·DB 조회는 Spring이 담당하고 인증된 사용자 데이터만 로컬 Python 프로세스로 전달합니다. 기존 `/api/advisor/chat` 주소와 응답 구조를 유지합니다. 현재 수강신청 React에는 상담 UI가 없으며, 별도 `academic-advisor` 화면은 기존 Java 서버를 사용합니다.
+## 독립 Python 졸업요건 분석 앱
 
-```sh
-python3 --version
-./mvnw spring-boot:run
-```
+사진·텍스트를 읽고 이수 내역과 졸업요건을 비교하는 별도 앱: [실행·전체 코드 가이드](graduation-ai/GUIDE.html).
 
-Python 실행 파일이 다른 위치에 있으면 `APP_ADVISOR_PYTHON_EXECUTABLE=/absolute/path/to/python3` 환경 변수를 지정하세요. Windows에서는 설치된 환경에 따라 `APP_ADVISOR_PYTHON_EXECUTABLE=python`을 사용하세요. Docker 실행 이미지에도 Python을 포함합니다. 엔진 실행 실패나 10초 초과 시 상담 API는 503을 반환합니다.
+R 사용자 입력 분석 프로젝트는 별도로 유지합니다: [R 가이드](r-user-analytics/GUIDE.html).
 
-Python 검증: `python3 -m unittest discover -s src/test/python`
+수강신청의 Redis 대기열은 APP_REDIS_ENABLED와 ENROLLMENT_QUEUE_ENABLED로 선택적으로 사용합니다. 최종 정원·학점 검증은 DB 트랜잭션에서 처리합니다.

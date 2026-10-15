@@ -63,12 +63,9 @@ pre.full-code{padding:12px 0;font-size:13px;line-height:1.9}
 <td><code>deploy/deploy.sh</code></td>
 <td>기존 CloudFormation 배포 스크립트</td>
 </tr>
-<tr>
-<td><code>academic-advisor/</code></td>
-<td>독립 챗봇. 현재 Docker 이미지에서 제외됨</td>
-</tr>
+
 </tbody></table></div>
-<p>독립 챗봇은 이번 경로에 자동으로 합쳐지지 않습니다. 별도 배포하려면 별도 이미지·ECS 서비스·라우팅과 세션 저장 방식을 준비해야 합니다. 현재 수강 서버에 남아 있는 <code>campus/advisor</code> Java 패키지는 JAR에 포함되지만, 별도 챗봇 React 화면과는 다릅니다.</p>
+
 <h2 id="chapter-2">2. 전체 연결 구조</h2>
 <div class="codebox"><div class="codebar"><span>PLAINTEXT</span><button class="copy" type="button" aria-label="PLAINTEXT 코드 복사">복사</button></div><pre data-language="plaintext"><code class="language-text">사용자 브라우저
     │ https://campus.내도메인
@@ -512,7 +509,7 @@ IMAGE_URI=<span class="hljs-string">"<span class="hljs-variable">$REPOSITORY_URL
 </code></pre></div>
 <p>마지막 <code>.</code>은 현재 디렉터리를 Docker 빌드 입력으로 사용한다는 뜻입니다. <code>infra/terraform</code> 안에서 실행하면 루트 Dockerfile을 찾지 못하므로 프로젝트 루트로 돌아옵니다. Apple Silicon Mac에서도 명시한 linux/amd64가 ECS의 X86_64와 일치해야 합니다.</p>
 <p>ECR 태그는 IMMUTABLE이라 같은 태그로 덮어쓰기하지 않습니다. 매번 새 IMAGE_TAG를 사용하고 실제 배포는 <code>@sha256:...</code> digest로 고정합니다. digest가 <code>None</code>이면 업로드와 태그를 확인하고 진행하지 않습니다. <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html">ECR 이미지 업로드</a></p>
-<p>Dockerfile은 React 테스트·빌드 → Maven verify → JRE 실행 이미지 순으로 묶습니다. Node 개발 서버는 운영에서 실행되지 않습니다. 독립 academic-advisor 디렉터리는 <code>.dockerignore</code>로 제외됩니다. PostgreSQL 전용 테스트는 별도 임시 DB 검증이며 이미지 빌드 성공만으로 실제 RDS 접속을 확인한 것은 아닙니다.</p>
+
 <h2 id="chapter-19">19. 2차 적용 — 앱 태스크와 서비스 시작</h2>
 <p><code>infra/terraform/terraform.tfvars</code>에서 두 값을 수정하여 <strong>파일에 유지</strong>합니다. CLI의 임시 <code>-var</code>만 쓰고 파일을 false로 남겨두면 다음 plan이 앱을 제거할 수 있습니다.</p>
 <div class="codebox"><div class="codebar"><span>HCL</span><button class="copy" type="button" aria-label="HCL 코드 복사">복사</button></div><pre data-language="hcl"><code class="language-hcl"><span class="hljs-attr">app_enabled</span> = <span class="hljs-literal">true</span>

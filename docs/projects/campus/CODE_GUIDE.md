@@ -2,7 +2,7 @@
 
 짧은 코드 예시로 복습하려면 [프론트엔드 React 요약본](REACT_SUMMARY.md)과 [백엔드 Spring·JPA 요약본](BACKEND_SUMMARY.md)을 참고하세요.
 
-처음부터 학습하려면 [React·Spring 상세 가이드](../../../examples/campus/docs/FRONTEND_SPRING_GUIDE.md)를 읽어보세요. 실제 React 컴포넌트와 Spring API의 연결을 설명합니다.
+처음부터 학습하려면 [React·Spring 상세 가이드](FRONTEND_SPRING_GUIDE.md)를 읽어보세요. 실제 React 컴포넌트와 Spring API의 연결을 설명합니다.
 
 ## 패키지 구조
 
@@ -17,18 +17,16 @@ campus/
 ├── course/                # 강의·수업 시간 entity·repository·service
 ├── enrollment/            # 신청 entity·repository
 ├── cart/                  # 장바구니 entity·repository
-├── advisor/               # 상담 API·프로필·Python 연결: controller·service·catalog·entity·repository
 ├── shared/entity/         # 학생·강의 복합키
 ├── config/                # 보안·운영 세션
 ├── exception/             # 공통 오류 응답
 └── bootstrap/             # 샘플 데이터
 ```
 
-업무 DB 접근은 **Spring Data JPA**입니다. `entity`에는 학생·강의·시간·신청·장바구니·상담 프로필 매핑을, `repository`에는 조회와 잠금 쿼리를 둡니다. Controller → Service → Repository → DB 순서입니다. 운영 세션은 Spring Session JDBC, 테스트의 데이터 준비·DB 직접 검증은 JdbcTemplate을 유지합니다.
+업무 DB 접근은 **Spring Data JPA**입니다. `entity`에는 학생·강의·시간·신청·장바구니 매핑을, `repository`에는 조회와 잠금 쿼리를 둡니다. Controller → Service → Repository → DB 순서입니다. 운영 세션은 Spring Session JDBC, 테스트의 데이터 준비·DB 직접 검증은 JdbcTemplate을 유지합니다.
 
 `@Lock(PESSIMISTIC_WRITE)`가 사용자와 강의 행을 순서대로 잠급니다. 서비스의 `@Transactional` 안에서 신청 저장과 관리 엔티티의 인원 변경을 함께 커밋합니다. `ddl-auto=validate`로 스키마만 검증하고 실제 테이블 생성은 로컬 schema.sql, 운영 Flyway가 담당합니다. 자동 스키마 변경은 사용하지 않습니다.
 
-요청·응답용 `record`는 기존처럼 컨트롤러/서비스 내부에 있습니다. 예를 들어 `CourseService.Course`는 API 응답 DTO이며 JPA 엔티티가 아닙니다. `advisor/catalog`는 DB 저장소가 아닌 공식 자료 설정 파일의 조회 역할입니다. 상담 답변 로직은 `src/main/resources/python/advisor.py`에 있습니다. `AdvisorService.reply()`가 인증 사용자 데이터를 조회하고 `PythonAdvisor.reply()`가 로컬 Python에 JSON을 전달합니다. 현재 수강신청 화면에는 상담 UI가 없습니다.
 
 ## 서버
 
@@ -63,7 +61,6 @@ campus/
 
 React가 상태에서 화면을 렌더링하므로 `innerHTML`로 목록을 만들거나 이벤트를 다시 연결하지 않습니다. 사용자 문자열은 JSX 텍스트로 출력됩니다. 서버가 최종 신청 규칙을 검증합니다.
 
-`npm --prefix frontend run build`는 `src/main/resources/static`에 배포 결과물을 생성합니다. 원본을 수정한 뒤 빌드해야 Spring 화면에 반영됩니다. 수강신청 서버의 Python 상담 API는 화면에 연결되어 있지 않습니다. 별도 `academic-advisor` React 화면은 기존 Java 상담 서버에 연결됩니다.
 
 ## 설정과 서식
 

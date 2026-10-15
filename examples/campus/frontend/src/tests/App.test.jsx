@@ -29,6 +29,7 @@ function response(data, status = 200) {
 }
 beforeEach(() => {
   clearCsrf();
+  vi.unstubAllGlobals();
   logged = false;
   config = { demoEnabled: true };
   requests = [];
@@ -84,6 +85,8 @@ beforeEach(() => {
         state.cartIds = state.cartIds.filter((x) => x !== id);
         return response(null, 204);
       }
+      if (url === '/api/enrollment-queue') return response({ ticket: 'test-ticket', status: 'waiting', position: 0 });
+      if (url === '/api/enrollment-queue/test-ticket') return response({ ticket: 'test-ticket', status: 'admitted', position: 0 });
       throw new Error('Unexpected URL ' + url);
     }),
   );
@@ -166,7 +169,15 @@ describe('React 학사 화면', () => {
       filterCourses(state, 'all', { search: '', department: '', category: '', available: true }),
     ).toEqual([]);
   });
-  it('403 변경 요청을 자동 재전송하지 않는다', async () => {
+  it('선택형 대기열 입장 후 대기표를 신청 요청에 전달한다', async () => {
+    config.enrollmentQueueEnabled = true;
+    await demo();
+    const row = screen.getByRole('row', { name: '웹 프로그래밍 시간표 미리보기' });
+    await userEvent.click(within(row).getByRole('button', { name: '신청' }));
+    await within(row).findByRole('button', { name: '취소' });
+    expect(requests.find(([u]) => u === '/api/enrollments/2')[1].headers['X-Queue-Ticket']).toBe('test-ticket');
+  });
+  it('403 변경 요청을 자동 재전송하지 않는다' , async () => {
     vi.mocked(fetch).mockImplementation(async (url) =>
       url === '/api/csrf'
         ? response({ headerName: 'X-CSRF-TOKEN', token: 'test-token' })
