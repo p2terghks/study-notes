@@ -65,3 +65,9 @@
 수강신청 프로젝트의 2026-10-15 버전 소스는 [examples/campus](examples/campus)에 있습니다. [백엔드 요약](docs/projects/campus/BACKEND_SUMMARY.md) · [프론트 요약](docs/projects/campus/REACT_SUMMARY.md)
 
 - [R언어 분석 요약](https://p2terghks.github.io/study-notes/docs/projects/campus/R_ANALYTICS_SUMMARY.html)
+
+### 시험 대비 핵심 요약
+
+- [네트워크 해킹과 보안 · Chapter 02~06](network-security-summary.md)
+- [빅데이터실무 · R언어 실습 1~6](r-practice-summary.md)
+- [고급AI프로그래밍 · Python·NumPy·PyTorch 실습 1~6](ai-python-summary.md)
