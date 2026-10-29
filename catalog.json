@@ -1,5 +1,26 @@
 [
   {
+    "path": "graduation-photo-ai/FUNCTION_DIAGRAM.html",
+    "title": "졸업요건 AI · 클릭형 함수 흐름과 문법 설명",
+    "category": "졸업요건 AI 프로젝트",
+    "url": "graduation-photo-ai/FUNCTION_DIAGRAM.html?v=6e11fc0a58ea",
+    "format": "HTML"
+  },
+  {
+    "path": "graduation-photo-ai/DETAILED_CODE_GUIDE.html",
+    "title": "졸업요건 AI · 전체 코드·함수·Streamlit 상세 해설",
+    "category": "졸업요건 AI 프로젝트",
+    "url": "graduation-photo-ai/DETAILED_CODE_GUIDE.html?v=04515592c9d2",
+    "format": "HTML"
+  },
+  {
+    "path": "graduation-photo-ai/CODE_GUIDE.html",
+    "title": "졸업요건 AI · 핵심 코드와 발표 가이드",
+    "category": "졸업요건 AI 프로젝트",
+    "url": "graduation-photo-ai/CODE_GUIDE.html?v=fd2f6ea44dbe",
+    "format": "HTML"
+  },
+  {
     "path": "docs/quick-reference/kubernetes-terraform-guide.html",
     "title": "쿠버네티스 · 테라폼 강의 노트 · 기초부터 실습까지",
     "category": "AWS · 클라우드",

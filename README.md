@@ -66,6 +66,15 @@
 
 - [R언어 분석 요약](https://p2terghks.github.io/study-notes/docs/projects/campus/R_ANALYTICS_SUMMARY.html)
 
+
+### 졸업요건 AI 프로젝트
+
+- [졸업요건 AI · 클릭형 함수 흐름과 문법 설명](https://p2terghks.github.io/study-notes/graduation-photo-ai/FUNCTION_DIAGRAM.html)
+- [졸업요건 AI · 전체 코드·함수·Streamlit 상세 해설](https://p2terghks.github.io/study-notes/graduation-photo-ai/DETAILED_CODE_GUIDE.html)
+- [졸업요건 AI · 핵심 코드와 발표 가이드](https://p2terghks.github.io/study-notes/graduation-photo-ai/CODE_GUIDE.html)
+
+PyTorch 기반 성적표 OCR과 졸업요건 사전 점검 프로젝트입니다. [전체 소스와 실행 안내](graduation-photo-ai/README.md)를 함께 제공합니다. 클릭형 다이어그램에서는 19개 단계의 코드·기능과 `st`, `st.checkbox()`, `with` 등 46개 기초 설명을 볼 수 있습니다.
+
 ### 시험 대비 핵심 요약
 
 - [네트워크 해킹과 보안 · Chapter 02~06](network-security-summary.md)
