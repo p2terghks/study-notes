@@ -2,7 +2,7 @@ import copy
 import json
 import unittest
 from pathlib import Path
-from graduation.engine import audit, parse_lines
+from graduation.engine import audit, parse_lines, parse_lines_with_review
 
 DATA=json.loads((Path(__file__).resolve().parents[1]/'data/curriculum.json').read_text())
 P=next(p for p in DATA['profiles'] if p['id']=='2025-인공지능빅데이터')
@@ -46,7 +46,7 @@ class AuditTests(unittest.TestCase):
     def test_passed_minima_not_final_graduation(self):
         p=copy.deepcopy(P); p['minimums']={'총학점':3}
         r=audit([row()],p)
-        self.assertEqual(r['status'],'입력한 학점·지정 과목 기준 충족')
+        self.assertEqual(r['status'],'입력한 학점·지정 과목 기준 충족 (공식 요건 확인 대기)')
         self.assertTrue(r['pending'])
     def test_parse_preserves_course_number_and_never_confirms(self):
         rows=parse_lines(['컴퓨터프로그래밍1 3 A+','총학점 127','JAVA 3','자료구조 3 F'],P)
@@ -62,5 +62,41 @@ class AuditTests(unittest.TestCase):
         r=parse_lines(['C언어응용 3 A+'],P)[0]
         self.assertEqual(r['과목명'],'C언어응용')
         self.assertEqual(r['이수구분'],'미분류')
+
+class ReviewRegressionTests(unittest.TestCase):
+    def test_catalog_mismatch_is_not_counted(self):
+        for bad in [row(credits=30), row(category='기초교양')]:
+            result = audit([bad], P)
+            self.assertEqual(result['total'], 0)
+            self.assertTrue(result['issues'])
+
+    def test_unknown_major_needs_official_mapping(self):
+        result = audit([row(name='JAVA대체과목')], P)
+        self.assertEqual(result['total'], 0)
+        self.assertIn('대체', result['issues'][0])
+
+    def test_unknown_general_course_can_be_reviewed(self):
+        self.assertEqual(audit([row(name='교양 과목', category='기초교양')], P)['total'], 3)
+
+    def test_korean_completed_grade(self):
+        rows, rejected = parse_lines_with_review(['JAVA 3 이수완료'], P)
+        self.assertFalse(rejected)
+        self.assertEqual(rows[0]['성적'], '이수완료')
+
+    def test_grade_points_not_mistaken_for_credits(self):
+        rows, rejected = parse_lines_with_review(['JAVA 3 A+ 4.5'], P)
+        self.assertFalse(rejected)
+        self.assertEqual((rows[0]['과목명'], rows[0]['학점'], rows[0]['성적']), ('JAVA', 3, 'A+'))
+
+    def test_merged_courses_and_bad_grade_are_preserved(self):
+        lines = ['JAVA 3 A+ 자료구조 3 B0', 'JAVA 3 BO', '이름만 있는 행']
+        rows, rejected = parse_lines_with_review(lines, P)
+        self.assertFalse(rows)
+        self.assertEqual([r['text'] for r in rejected], lines)
+
+    def test_missing_grade_not_confused_with_gpa(self):
+        rows, rejected = parse_lines_with_review(['JAVA 3 4.5'], P)
+        self.assertFalse(rows)
+        self.assertEqual(len(rejected), 1)
 
 if __name__=='__main__': unittest.main()

@@ -19,9 +19,10 @@ def recognize(image_bytes):
     import io
     import numpy as np
     from PIL import Image, ImageOps
-    image=ImageOps.exif_transpose(Image.open(io.BytesIO(image_bytes))).convert('RGB')
-    if image.width*image.height>24_000_000:
+    source = Image.open(io.BytesIO(image_bytes))
+    if source.width*source.height>24_000_000:
         raise ValueError('이미지는 2,400만 화소 이하로 줄여주세요.')
+    image=ImageOps.exif_transpose(source).convert('RGB')
     image.thumbnail((2600,2600))
     detections=get_reader().readtext(np.array(image),detail=1,paragraph=False)
     boxes=[]

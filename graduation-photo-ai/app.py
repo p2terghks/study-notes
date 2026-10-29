@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import pandas as pd
 import streamlit as st
-from graduation.engine import CATEGORIES, audit, parse_lines
+from graduation.engine import CATEGORIES, audit, parse_lines, parse_lines_with_review
 from graduation.ocr import recognize
 
 ROOT=Path(__file__).resolve().parent
@@ -33,9 +33,13 @@ if st.session_state.get('context')!=context:
     st.session_state['rows']=[]
     st.session_state['version']=st.session_state.get('version',0)+1
     st.session_state.pop('result',None)
+    st.session_state['unparsed']=[]
+    st.session_state.pop('ocr_lines',None)
 
-def replace(rows):
+def replace(rows, unparsed=None):
     st.session_state['rows']=rows
+    st.session_state['unparsed']=unparsed or []
+    st.session_state.pop('ocr_lines',None)
     st.session_state['version']+=1
     st.session_state.pop('result',None)
 
@@ -55,13 +59,15 @@ with input_tab:
         if photos:
             st.image(photos[0],width=400)
             if st.button('사진에서 이수 내역 읽기',type='primary'):
-                rows=[]; raw=[]
+                rows=[]; raw=[]; unparsed=[]
                 try:
                     with st.spinner('한국어 문자 인식 중입니다. 최초 실행은 모델을 내려받아 시간이 걸릴 수 있습니다.'):
                         for photo in photos:
                             lines,_=recognize(photo.getvalue())
-                            raw.extend(lines); rows.extend(parse_lines(lines,profile))
-                    replace(rows); st.session_state['ocr_lines']=raw
+                            raw.extend(lines)
+                            candidates, rejected = parse_lines_with_review(lines,profile)
+                            rows.extend(candidates); unparsed.extend(rejected)
+                    replace(rows, unparsed); st.session_state['ocr_lines']=raw
                     st.success(f'{len(rows)}개 과목 후보를 찾았습니다. 아래 표를 원문과 비교해 수정하세요.')
                     if not rows: st.warning('과목 행을 찾지 못했습니다. 인식한 원문을 텍스트 입력으로 정리하거나 표에 직접 입력하세요.')
                 except Exception as exc:
@@ -73,7 +79,7 @@ with input_tab:
     elif mode=='텍스트 입력':
         text=st.text_area('한 줄에 과목명 학점 성적 순서로 입력',placeholder='컴퓨터프로그래밍1 3 A+\nJAVA 3 B0\nDB이론및실습 3 P',height=160)
         if st.button('텍스트에서 과목 가져오기'):
-            rows=parse_lines(text.splitlines(),profile); replace(rows)
+            rows, unparsed=parse_lines_with_review(text.splitlines(),profile); replace(rows, unparsed)
             st.info(f'{len(rows)}행을 가져왔습니다. 인식되지 않은 줄은 아래 표에서 직접 추가하세요.')
     else:
         st.download_button('CSV 양식 받기','과목명,학점,이수구분,성적\n컴퓨터프로그래밍1,3,전공필수,A+\n'.encode('utf-8-sig'),file_name='transcript-template.csv',mime='text/csv')
@@ -90,6 +96,12 @@ with input_tab:
     if st.button('예시 이수 내역으로 체험'):
         replace(parse_lines(['컴퓨터프로그래밍1 3 A+','컴퓨터프로그래밍2 3 A0','JAVA 3 B+','DB이론및실습 3 P','자료구조 3 B0','운영체제 3 F'],profile))
     st.subheader('02  인식 결과 검토')
+    unparsed = st.session_state.get('unparsed', [])
+    unresolved_ok = True
+    if unparsed:
+        st.warning(f'{len(unparsed)}개 행을 해석하지 못했습니다. 누락 과목은 아래 표에 직접 추가하세요.')
+        st.dataframe(pd.DataFrame(unparsed).rename(columns={'text':'원문','reason':'검토 사유'}),hide_index=True)
+        unresolved_ok = st.checkbox('미해석 행을 확인하고 필요한 과목을 표에 추가했습니다.',key=f'unparsed-{context}-{st.session_state["version"]}')
     st.caption('이수구분·학점·성적을 확인하고 각 행의 확인 칸을 선택하세요. F·미이수·수강중은 취득학점에서 제외됩니다. 표 하단에서 과목을 추가할 수 있습니다.')
     frame=pd.DataFrame(st.session_state['rows'],columns=COLUMNS)
     frame['학점']=pd.to_numeric(frame['학점'],errors='coerce')
@@ -106,8 +118,8 @@ with input_tab:
         key=f'mandatory-{context}',help='원문의 필수 목록 전체를 의무로 단정하지 않습니다. 학과 확인 후 선택하세요.')
     consent=st.checkbox('원문과 비교하여 과목 누락, 이수구분, 재수강·대체과목 인정 여부를 확인했습니다.',key=f'consent-{context}')
     payload=edited.fillna('').to_dict('records')
-    signature=hashlib.sha256(json.dumps([payload,context,mandatory,advanced,consent],ensure_ascii=False,default=str).encode()).hexdigest()
-    if st.button('졸업요건 사전 점검',type='primary',disabled=not consent or edited.empty):
+    signature=hashlib.sha256(json.dumps([payload,context,mandatory,advanced,consent,unresolved_ok],ensure_ascii=False,default=str).encode()).hexdigest()
+    if st.button('졸업요건 사전 점검',type='primary',disabled=not consent or not unresolved_ok or edited.empty):
         st.session_state['result']=(signature,audit(payload,profile,mandatory,advanced))
     stored=st.session_state.get('result')
     if stored and stored[0]!=signature: st.info('입력이나 기준이 변경되었습니다. 사전 점검을 다시 실행하세요.')
@@ -116,8 +128,8 @@ with input_tab:
         st.subheader('03  나의 점검 결과')
         st.info(result['status'])
         cols=st.columns(3)
-        cols[0].metric('인정한 취득학점',f'{result["total"]:g} / 127')
-        cols[1].metric('총학점 부족',f'{max(0,127-result["total"]):g}학점')
+        cols[0].metric('인정한 취득학점',f'{result["total"]:g} / {profile["minimums"]["총학점"]:g}')
+        cols[1].metric('총학점 부족',f'{max(0,profile["minimums"]["총학점"]-result["total"]):g}학점')
         cols[2].metric('검토할 입력',f'{len(result["issues"])}개')
         st.dataframe(pd.DataFrame(result['checks']),hide_index=True,width='stretch')
         for issue in result['issues']: st.warning(issue)
@@ -126,6 +138,6 @@ with input_tab:
             st.dataframe(pd.DataFrame(result['uncompleted_catalog_required']),hide_index=True)
         if result['excluded']:
             with st.expander('제외·중복 처리 내역'): st.write('\n\n'.join(result['excluded']))
-        st.warning('학점 조건을 충족해도 졸업 확정을 의미하지 않습니다.')
+        st.warning('공식 졸업요건 확인 대기: 학점 충족과 별개로 아래 항목은 아직 자동 판정하지 못합니다.')
         for pending in result['pending']: st.write('• '+pending)
         st.download_button('점검 보고서 JSON 저장',json.dumps(result,ensure_ascii=False,indent=2),file_name='graduation-check.json',mime='application/json')

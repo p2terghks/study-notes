@@ -31,3 +31,16 @@ class AppTests(unittest.TestCase):
         self.assertTrue(any('입력 기준 미충족' in x.value for x in at.info))
         at.selectbox[0].select(2022).run()
         self.assertNotIn('result',at.session_state)
+
+    def test_unparsed_rows_gate_audit(self):
+        at=AppTest.from_file(str(Path(__file__).resolve().parents[1]/'app.py'),default_timeout=30).run()
+        at.radio[0].set_value('텍스트 입력').run()
+        at.text_area[0].set_value('JAVA 3 A+\nJAVA 3 BO').run()
+        next(b for b in at.button if b.label=='텍스트에서 과목 가져오기').click().run()
+        next(c for c in at.checkbox if '원문과 비교' in c.label).check().run()
+        self.assertTrue(next(b for b in at.button if b.label=='졸업요건 사전 점검').disabled)
+        next(c for c in at.checkbox if '미해석 행을 확인' in c.label).check().run()
+        self.assertFalse(next(b for b in at.button if b.label=='졸업요건 사전 점검').disabled)
+        next(b for b in at.button if b.label=='텍스트에서 과목 가져오기').click().run()
+        self.assertFalse(next(c for c in at.checkbox if '미해석 행을 확인' in c.label).value)
+        self.assertFalse(at.exception)
