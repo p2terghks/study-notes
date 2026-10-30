@@ -1,5 +1,26 @@
 [
   {
+    "path": "cloudtrail-analysis/cloudtrail-summary.html",
+    "title": "CloudTrail · 자료형 변화와 핵심 코드 요약",
+    "category": "CloudTrail 분석 프로젝트",
+    "url": "cloudtrail-analysis/cloudtrail-summary.html?v=4979e77b99fd",
+    "format": "HTML"
+  },
+  {
+    "path": "cloudtrail-analysis/cloudtrail-interactive-diagram.html",
+    "title": "CloudTrail · 클릭형 함수 흐름도",
+    "category": "CloudTrail 분석 프로젝트",
+    "url": "cloudtrail-analysis/cloudtrail-interactive-diagram.html?v=30cce2764108",
+    "format": "HTML"
+  },
+  {
+    "path": "cloudtrail-analysis/cloudtrail-code-guide.html",
+    "title": "CloudTrail · 전체 코드와 발표 해설",
+    "category": "CloudTrail 분석 프로젝트",
+    "url": "cloudtrail-analysis/cloudtrail-code-guide.html?v=b9d2192b62b4",
+    "format": "HTML"
+  },
+  {
     "path": "graduation-photo-ai/FUNCTION_DIAGRAM.html",
     "title": "졸업요건 AI · 클릭형 함수 흐름과 문법 설명",
     "category": "졸업요건 AI 프로젝트",
