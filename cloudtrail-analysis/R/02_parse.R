@@ -62,6 +62,7 @@ load_all_events <- function(manifest) {
     mutate(events = map(raw_path, read_cloudtrail_file)) |>
     select(id, technique, scenario, events) |>
     unnest(events) |>
+    filter(event_name == "ConsoleLogin") |>
     mutate(
       event_time = ymd_hms(event_time, quiet = TRUE),
       hour       = floor_date(event_time, "hour")

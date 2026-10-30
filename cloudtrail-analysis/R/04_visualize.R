@@ -21,34 +21,6 @@ theme_ct <- function() {
     )
 }
 
-# 1) 가장 많이 나온 API 호출 상위 N
-plot_top_events <- function(events, n = 12) {
-  events |>
-    count(event_name, sort = TRUE) |>
-    slice_head(n = n) |>
-    mutate(event_name = fct_reorder(event_name, n)) |>
-    ggplot(aes(n, event_name)) +
-    geom_col(fill = "#2a78d6", width = 0.7) +
-    geom_text(aes(label = n), hjust = -0.2, colour = INK2, size = 3.2) +
-    scale_x_continuous(expand = expansion(mult = c(0, 0.12))) +
-    labs(title = "Most frequent API calls", subtitle = sprintf("%d events across %d scenarios", nrow(events), n_distinct(events$id)),
-         x = NULL, y = NULL) +
-    theme_ct() + theme(panel.grid.major.y = element_blank())
-}
-
-# 2) 심각도별 탐지 건수
-plot_severity <- function(findings) {
-  findings |>
-    count(severity, .drop = FALSE) |>
-    ggplot(aes(severity, n, fill = severity)) +
-    geom_col(width = 0.65, show.legend = FALSE) +
-    geom_text(aes(label = n), vjust = -0.4, colour = INK2, size = 3.4) +
-    scale_fill_manual(values = SEV_COLORS) +
-    scale_y_continuous(expand = expansion(mult = c(0, 0.12))) +
-    labs(title = "Findings by severity", x = NULL, y = "findings") +
-    theme_ct() + theme(panel.grid.major.x = element_blank())
-}
-
 # 3) 규칙 x 시나리오 탐지 매트릭스 (칸 = 발동 건수, 색 = 해당 칸의 최고 심각도)
 plot_detection_matrix <- function(findings, coverage) {
   cells <- findings |>
@@ -91,8 +63,6 @@ plot_login_timeline <- function(events) {
 
 save_all_figures <- function(events, findings, coverage, dir = DIR_FIG) {
   figs <- list(
-    top_events        = list(plot_top_events(events),                  7, 4.2),
-    severity          = list(plot_severity(findings),                  5, 3.6),
     detection_matrix  = list(plot_detection_matrix(findings, coverage), 9, 7.5),
     login_timeline    = list(plot_login_timeline(events),              9, 6)
   )

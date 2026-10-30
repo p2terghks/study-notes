@@ -31,7 +31,7 @@ IPV4 <- "^\\d{1,3}(\\.\\d{1,3}){3}$"
 # 실패도 "burst"로 잡히므로 의미가 없다.) 몇 시간~며칠에 걸친 low-and-slow 공격은 이 규칙으로 못 잡는다.
 rule_login_failure_burst <- function(ev, threshold = 3, window_min = 60) {
   ev |>
-    filter(event_name == "ConsoleLogin", login_result == "Failure") |>
+    filter(event_name == "ConsoleLogin", login_result == "Failure", !is.na(event_time)) |>
     group_by(id, technique, principal) |>
     summarise(
       n_total = n(),
@@ -47,16 +47,17 @@ rule_login_failure_burst <- function(ev, threshold = 3, window_min = 60) {
 }
 
 # ---- R02: 같은 주체가 짧은 간격으로 서로 다른 IP 사용 (세션 탈취/자격증명 도용 의심) ------------
-# 대상: Root/IAMUser + IPv4 출발지만 (AWS 내부 서비스 호출 등 노이즈 제외)
+# 대상: ConsoleLogin 중 Root/IAMUser + IPv4 출발지
 rule_multi_ip <- function(ev, window_min = 10) {
   ev |>
-    filter(user_type %in% c("Root", "IAMUser"), str_detect(source_ip, IPV4)) |>
+    filter(event_name == "ConsoleLogin",
+           user_type %in% c("Root", "IAMUser"), str_detect(source_ip, IPV4), !is.na(event_time)) |>
     arrange(id, principal, event_time) |>
     group_by(id, technique, principal) |>
     mutate(prev_ip = lag(source_ip),
            gap = as.numeric(difftime(event_time, lag(event_time), units = "mins"))) |>
     ungroup() |>
-    filter(!is.na(prev_ip), prev_ip != source_ip, gap <= window_min) |>
+    filter(!is.na(prev_ip), prev_ip != source_ip, gap >= 0, gap <= window_min) |>
     mutate(severity = if_else(user_type == "Root", "high", "medium"),
            detail = sprintf("%.1f분 간격으로 IP 변경 (%s -> %s)", gap, prev_ip, source_ip)) |>
     finalize()
@@ -73,162 +74,12 @@ rule_login_without_mfa <- function(ev) {
     finalize()
 }
 
-# ---- R04: 루트 계정 활동 (이벤트 종류별 집계) --------------------------------------------------
-rule_root_activity <- function(ev) {
-  ev |>
-    filter(user_type == "Root") |>
-    group_by(id, technique, principal, event_name) |>
-    summarise(n = n(), event_time = min(event_time),
-              source_ip = paste(unique(source_ip), collapse = ","), .groups = "drop") |>
-    mutate(severity = "high", detail = sprintf("루트 계정이 %s 실행 (%d건)", event_name, n)) |>
-    finalize()
-}
-
-# ---- R05: 로깅·모니터링·보안 서비스 무력화 -----------------------------------------------------
-LOG_TAMPER <- c("StopLogging", "DeleteTrail", "UpdateTrail", "PutEventSelectors",
-                "DeleteLogGroup", "DeleteLogStream", "DeleteFlowLogs", "DeleteDetector",
-                "DeleteIPSet", "DeleteWebACL", "DeleteRule", "DisableSecurityHub",
-                "StopConfigurationRecorder", "DeleteConfigurationRecorder", "DeleteDeliveryChannel")
-rule_logging_tamper <- function(ev) {
-  ev |>
-    filter(event_name %in% LOG_TAMPER) |>
-    mutate(severity = if_else(is.na(error_code), "high", "medium"),
-           detail = paste0("로깅/탐지 서비스 변경: ", event_name, fail_tag(error_code))) |>
-    finalize()
-}
-
-# ---- R06: 로그 저장 버킷 수명주기 변경 (증거 자동 삭제) ----------------------------------------
-rule_log_bucket_lifecycle <- function(ev) {
-  ev |>
-    filter(str_starts(event_name, "PutBucketLifecycle"),
-           str_detect(request_params, regex("\"bucketName\":\"[^\"]*(cloudtrail|log)", ignore_case = TRUE))) |>
-    mutate(severity = "high", detail = "로그 버킷 수명주기 규칙 변경") |>
-    finalize()
-}
-
-# ---- R07: IAM 권한 상승 / 지속성 확보 -----------------------------------------------------------
-IAM_PRIVESC <- c("CreatePolicyVersion", "SetDefaultPolicyVersion", "AttachUserPolicy", "AttachRolePolicy",
-                 "AttachGroupPolicy", "PutUserPolicy", "PutRolePolicy", "PutGroupPolicy",
-                 "AddUserToGroup", "UpdateAssumeRolePolicy")
-IAM_PERSIST <- c("CreateAccessKey", "CreateLoginProfile", "UpdateLoginProfile", "CreateUser")
-rule_iam_changes <- function(ev) {
-  ev |>
-    filter(event_name %in% c(IAM_PRIVESC, IAM_PERSIST)) |>
-    mutate(severity = case_when(!is.na(error_code)         ~ "low",     # 실패한 시도
-                                event_name %in% IAM_PRIVESC ~ "high",
-                                TRUE                        ~ "medium"),
-           detail = paste0("IAM 변경: ", event_name, fail_tag(error_code))) |>
-    finalize()
-}
-
-# ---- R08: MFA 장치 변경 -------------------------------------------------------------------------
-MFA_EVENTS <- c("CreateVirtualMFADevice", "EnableMFADevice", "DeactivateMFADevice",
-                "DeleteVirtualMFADevice", "ResyncMFADevice")
-rule_mfa_tamper <- function(ev) {
-  ev |>
-    filter(event_name %in% MFA_EVENTS) |>
-    mutate(severity = if_else(event_name %in% c("DeactivateMFADevice", "DeleteVirtualMFADevice"), "high", "medium"),
-           detail = paste0("MFA 장치 변경: ", event_name, " (주체: ", user_type, ")")) |>
-    finalize()
-}
-
-# ---- R09: AMI/스냅샷 외부 공유 ------------------------------------------------------------------
-SHARE_EVENTS <- c("ModifyImageAttribute", "ModifySnapshotAttribute",
-                  "ModifyDBSnapshotAttribute", "ModifyDBClusterSnapshotAttribute")
-# "추가(add)"만 위협으로 본다. 공유 해제(remove)나 내용이 빈 add는 제외한다.
-#  - EC2(AMI/스냅샷): {"add":{"items":[{"group":"all"}]}} 또는 {"add":{"items":[{"userId":"..."}]}}
-#  - RDS 스냅샷:      {"valuesToAdd":["all"]} 또는 계정 ID 목록
-rule_resource_sharing <- function(ev) {
-  ec2_add <- "\"add\":\\{\"items\":\\[[^]]*"
-  public_pat  <- paste0(ec2_add, "\"group\":\"all\"|\"valuesToAdd\":\\[[^]]*\"all\"")
-  account_pat <- paste0(ec2_add, "\"userId\"|\"valuesToAdd\":\\[[^]]*\"\\d{12}\"")
-  ev |>
-    filter(event_name %in% SHARE_EVENTS) |>
-    mutate(share_type = case_when(str_detect(request_params, public_pat)  ~ "public",
-                                  str_detect(request_params, account_pat) ~ "account",
-                                  TRUE                                    ~ NA_character_)) |>
-    filter(!is.na(share_type)) |>
-    mutate(severity = if_else(share_type == "public", "critical", "medium"),
-           detail   = paste0(event_name, if_else(share_type == "public", ": 전체 공개로 공유", ": 다른 계정에 공유"))) |>
-    finalize()
-}
-
-# ---- R10: 대량 데이터 이동 설정 (DataSync 작업 / S3 복제) ---------------------------------------
-rule_bulk_data_movement <- function(ev) {
-  ev |>
-    filter((event_name == "CreateTask" & str_detect(event_source, "datasync")) |
-             event_name == "PutBucketReplication") |>
-    mutate(severity = "medium", detail = paste0("데이터 이동 설정 생성: ", event_name)) |>
-    finalize()
-}
-
-# ---- R11: S3 영향(Impact) 징후 - 버전관리 중지, KMS 재암호화 -----------------------------------
-rule_s3_impact <- function(ev) {
-  bind_rows(
-    ev |> filter(event_name == "PutBucketVersioning", str_detect(request_params, "\"Status\":\"Suspended\"")) |>
-      mutate(severity = "high", detail = "S3 버전 관리 중지 (복구 수단 제거)"),
-    ev |> filter(event_name %in% c("CopyObject", "PutObject"),
-                 str_detect(request_params, "server-side-encryption-aws-kms-key-id")) |>
-      mutate(severity = "medium", detail = paste0("KMS 키 지정 객체 쓰기: ", event_name, fail_tag(error_code)))
-  ) |> finalize()
-}
-
-# ---- R12: 비밀번호 정책 조회/약화 ---------------------------------------------------------------
-rule_password_policy <- function(ev) {
-  ev |>
-    filter(event_name %in% c("GetAccountPasswordPolicy", "UpdateAccountPasswordPolicy", "DeleteAccountPasswordPolicy")) |>
-    mutate(severity = if_else(event_name == "GetAccountPasswordPolicy", "low", "medium"),
-           detail = paste0("계정 비밀번호 정책: ", event_name)) |>
-    finalize()
-}
-
-# ---- R13: Lambda 코드 변경 -----------------------------------------------------------------------
-rule_lambda_code_update <- function(ev) {
-  ev |>
-    filter(str_starts(event_name, "UpdateFunctionCode")) |>
-    mutate(severity = "medium", detail = paste0("Lambda 함수 코드 변경: ", event_name)) |>
-    finalize()
-}
-
-# ---- R14: RDS 마스터 비밀번호 변경 ---------------------------------------------------------------
-rule_rds_password_reset <- function(ev) {
-  ev |>
-    filter(event_name == "ModifyDBInstance", str_detect(request_params, "masterUserPassword")) |>
-    mutate(severity = "high", detail = "RDS 마스터 비밀번호 변경") |>
-    finalize()
-}
-
-# ---- R15: 접근 거부 반복 (범용 규칙, MITRE 매핑 없음) --------------------------------------------
-rule_access_denied_burst <- function(ev, threshold = 3) {
-  ev |>
-    filter(str_detect(error_code, regex("AccessDenied|Unauthorized", ignore_case = TRUE))) |>
-    group_by(id, technique, principal) |>
-    summarise(n = n(), event_time = min(event_time),
-              source_ip = paste(unique(source_ip), collapse = ","),
-              event_name = paste(unique(event_name), collapse = ","), .groups = "drop") |>
-    filter(n >= threshold) |>
-    mutate(severity = "medium", detail = sprintf("접근 거부 %d회 반복", n)) |>
-    finalize()
-}
-
 # 규칙 목록: mitre에 적힌 기법은 "이 규칙이 잡으려는 대상". 범용 규칙은 NA.
 rules <- tribble(
   ~rule_id, ~rule_name,                        ~mitre,                       ~fn,
   "R01", "콘솔 로그인 실패 반복",              list(c("T1110.001")),               rule_login_failure_burst,
   "R02", "짧은 간격 다중 IP 사용",             list(c("T1586.003", "T1185")),      rule_multi_ip,
-  "R03", "MFA 없는 콘솔 로그인",               list(c("T1078.004")),               rule_login_without_mfa,
-  "R04", "루트 계정 활동",                     list(c("T1078.004")),               rule_root_activity,
-  "R05", "로깅/보안 서비스 무력화",            list(c("T1562.008")),               rule_logging_tamper,
-  "R06", "로그 버킷 수명주기 변경",            list(c("T1562.008")),               rule_log_bucket_lifecycle,
-  "R07", "IAM 권한 상승/지속성",               list(c("T1078")),                   rule_iam_changes,
-  "R08", "MFA 장치 변경",                      list(c("T1556.006", "T1621")),      rule_mfa_tamper,
-  "R09", "AMI/스냅샷 외부 공유",               list(c("T1537")),                   rule_resource_sharing,
-  "R10", "대량 데이터 이동 설정",              list(c("T1119", "T1537")),          rule_bulk_data_movement,
-  "R11", "S3 영향 징후",                       list(c("T1486", "T1490")),          rule_s3_impact,
-  "R12", "비밀번호 정책 조회/약화",            list(c("T1201")),                   rule_password_policy,
-  "R13", "Lambda 코드 변경",                   list(c("T1204")),                   rule_lambda_code_update,
-  "R14", "RDS 마스터 비밀번호 변경",           list(c("T1110.002")),               rule_rds_password_reset,
-  "R15", "접근 거부 반복",                     list(NA_character_),          rule_access_denied_burst
+  "R03", "MFA 없는 콘솔 로그인",               list(c("T1078.004")),               rule_login_without_mfa
 ) |>
   mutate(mitre = map(mitre, unlist))  # tribble이 리스트 셀을 한 겹 더 감싸므로 풀어준다
 

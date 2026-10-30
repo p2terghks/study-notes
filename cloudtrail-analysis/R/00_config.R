@@ -23,27 +23,7 @@ manifest <- tribble(
   "T1110.001", "aws_login_failure",                         "aws_cloudtrail_events.json",
   "T1586.003", "aws_console_login_multiple_ips",            "cloudtrail.json",
   "T1078.004", "aws_login_sfa",                             "cloudtrail.json",
-  "T1621",     "aws_mfa_disabled",                          "cloudtrail.json",
-  "T1556.006", "aws_new_mfa_method_registered_for_user",    "cloudtrail.json",
-  "T1185",     "aws_concurrent_sessions_from_different_ips","cloudtrail.json",
-  "T1562.008", "stop_delete_cloudtrail",                    "aws_cloudtrail_events.json",
-  "T1562.008", "update_cloudtrail",                         "aws_cloudtrail_events.json",
-  "T1562.008", "delete_cloudwatch_log_group",               "aws_cloudtrail_events.json",
-  "T1562.008", "aws_delete_security_services",              "aws_cloudtrail_events.json",
-  "T1562.008", "put_bucketlifecycle",                       "aws_cloudtrail_events.json",
-  "T1078",     "aws_create_policy_version",                 "aws_cloudtrail_events.json",
-  "T1078",     "aws_setdefaultpolicyversion",               "aws_cloudtrail_events.json",
-  "T1078",     "aws_createaccesskey",                       "aws_cloudtrail_events.json",
-  "T1078",     "aws_createloginprofile",                    "aws_cloudtrail_events.json",
-  "T1078",     "aws_updateloginprofile",                    "aws_cloudtrail_events.json",
-  "T1537",     "aws_ami_shared_public",                     "aws_cloudtrail_events.json",
-  "T1537",     "aws_snapshot_exfil",                        "aws_cloudtrail_events.json",
-  "T1119",     "aws_exfil_datasync",                        "cloudtrail.json",
-  "T1486",     "s3_file_encryption",                        "aws_cloudtrail_events.json",
-  "T1490",     "aws_bucket_version",                        "cloudtrail.json",
-  "T1201",     "aws_password_policy",                       "cloudtrail.json",
-  "T1204",     "aws_updatelambdafunctioncode",              "aws_cloudtrail_events.json",
-  "T1110.002", "aws_rds_password_reset",                    "aws_cloudtrail_events.json"
+  "T1185",     "aws_concurrent_sessions_from_different_ips","cloudtrail.json"
 ) |>
   mutate(
     id       = paste(technique, scenario, sep = "__"),

@@ -82,7 +82,7 @@ PyTorch 기반 성적표 OCR과 졸업요건 사전 점검 프로젝트입니다
 - [CloudTrail · 전체 코드와 발표 해설](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
 - [CloudTrail · 전체 소스와 실행 안내](cloudtrail-analysis/README.md)
 
-공개 AWS CloudTrail 로그를 R로 정규화하고 15개 규칙으로 탐지·평가하는 프로젝트입니다. 클릭형 흐름도에서 각 함수의 원본 코드와 설명을 확인할 수 있습니다. 원본 로그와 이벤트별 분석 결과는 공개 사본에서 제외했습니다.
+공개 AWS CloudTrail 콘솔 로그인 시나리오 4개에서 실패 반복·IP 변경·MFA 없는 로그인 성공의 3개 규칙으로 분석하는 프로젝트입니다. 클릭형 흐름도에서 각 함수의 원본 코드와 설명을 확인할 수 있습니다. 원본 로그와 이벤트별 분석 결과는 공개 사본에서 제외했습니다.
 
 ### 시험 대비 핵심 요약
 
