@@ -22,23 +22,23 @@
   },
   {
     "path": "cloudtrail-analysis/cloudtrail-summary.html",
-    "title": "CloudTrail 로그인 · 3개 규칙 핵심 요약",
+    "title": "CloudTrail · 로그인 기록 추출 요약",
     "category": "CloudTrail 분석 프로젝트",
-    "url": "cloudtrail-analysis/cloudtrail-summary.html?v=902968638651",
+    "url": "cloudtrail-analysis/cloudtrail-summary.html?v=acf6cb71392e",
     "format": "HTML"
   },
   {
     "path": "cloudtrail-analysis/cloudtrail-interactive-diagram.html",
-    "title": "CloudTrail 로그인 · 클릭형 함수 흐름도",
+    "title": "CloudTrail · 로그인 기록 처리 순서",
     "category": "CloudTrail 분석 프로젝트",
-    "url": "cloudtrail-analysis/cloudtrail-interactive-diagram.html?v=ea8d84160893",
+    "url": "cloudtrail-analysis/cloudtrail-interactive-diagram.html?v=cd3b62835c98",
     "format": "HTML"
   },
   {
     "path": "cloudtrail-analysis/cloudtrail-code-guide.html",
-    "title": "CloudTrail 로그인 · 코드와 발표 해설",
+    "title": "CloudTrail · 로그인 기록 추출 전체 코드",
     "category": "CloudTrail 분석 프로젝트",
-    "url": "cloudtrail-analysis/cloudtrail-code-guide.html?v=2d0a42941e60",
+    "url": "cloudtrail-analysis/cloudtrail-code-guide.html?v=ccc10c8cecdd",
     "format": "HTML"
   },
   {

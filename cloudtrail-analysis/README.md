@@ -1,47 +1,44 @@
-# R을 활용한 AWS CloudTrail 로그인 이상 징후 분석
+# CloudTrail 콘솔 로그인 기록 추출
 
-공개 로그인 시나리오 4개에서 ConsoleLogin 이벤트만 추출하고 3개 규칙으로 분석합니다.
-
-| 규칙 | 조건 | 기본값 |
-|---|---|---|
-| R01 | 같은 주체의 로그인 실패 집중 | 60분 내 3회 이상 |
-| R02 | 콘솔 로그인의 직전 IP와 변경 | Root/IAMUser, IPv4, 10분 이내 |
-| R03 | MFA 없는 콘솔 로그인 성공 | Root/IAMUser, Success, MFAUsed=No |
-
-R02는 성공·실패를 모두 비교합니다. 로그인 외 API 이벤트는 제외합니다.
+CloudTrail JSON에서 ConsoleLogin 이벤트만 골라 시간·사용자·IP·성공/실패를 출력하고 CSV로 저장합니다.
 
 ## 실행
 
-R >= 4.1 및 tidyverse, jsonlite, lubridate, rmarkdown과 Pandoc이 필요합니다.
-프로젝트 루트에서 `Rscript run_pipeline.R`을 실행합니다.
-코드 규모: R 407줄(주석·빈 줄 포함). Dockerfile은 실행 검증하지 않았습니다.
+R과 jsonlite가 필요합니다.
 
-## 구조
+```sh
+Rscript -e 'install.packages("jsonlite")'
+Rscript login_records.R 로그.json
+Rscript login_records.R 로그.json 결과.csv
+```
 
-- R/00_config.R: 시나리오 목록과 경로
-- R/01_download.R: 원본 다운로드
-- R/02_parse.R: JSON 정규화와 ConsoleLogin 선택
-- R/03_detect.R: R01·R02·R03, 결과 통합과 라벨 비교
-- R/04_visualize.R: 로그인 타임라인과 탐지 매트릭스
-- run_pipeline.R: 전체 순서 관리
-- report.Rmd: 현재 실행에서 계산한 결과를 담는 보고서
+출력 경로 기본값은 output/login_records.csv입니다. ConsoleLogin이 없으면 헤더만 저장합니다.
+사용자 이름이 없으면 ARN을 사용하고, 누락된 필드는 CSV 빈칸으로 저장합니다.
+Records 문서·이벤트 배열·단일 이벤트·NDJSON을 지원합니다. UTF-8 입력을 읽습니다.
+입력과 출력은 서로 다른 경로를 지정하세요. 출력 경로에 기존 파일이 있으면 덮어씁니다.
 
-## 자료
+## 코드 규모
 
-- [핵심 요약](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-summary.html)
-- [클릭형 흐름도](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html)
-- [코드 해설](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
+실행 코드 login_records.R 하나, 주석·빈 줄 포함 73줄입니다. 테스트와 설명 문서는 별도입니다.
+이전 반복 실패·IP 변경·MFA 탐지 규칙, 자동 다운로드, 기법 라벨 평가와 차트는 제거했습니다.
+이전 버전은 Git 커밋 기록에서 확인할 수 있습니다.
 
-## 검증과 한계
+## 설명 자료
 
-R 파일 문법 검사 통과. 현재 환경의 필요한 R 패키지 부재로 전체 파이프라인을 재실행하지 않았습니다.
-새 범위의 탐지 건수·커버리지는 아직 제시하지 않습니다. 이전 전체 분석의 24/24·151건 수치는 이 버전 결과가 아닙니다.
-정상 로그·독립 데이터가 없어 정확도와 오탐률을 주장할 수 없습니다.
-R01 결과 시간은 그룹 전체 최초 실패이며, R02는 탈취 확정이 아닌 IP 변경 정황입니다.
-시나리오 기준 집계와 표시용 principal은 운영 환경에 맞게 보강해야 합니다.
-원본 로그·이벤트별 결과는 공개 저장소에서 제외하며 실행 시 다운로드·생성합니다.
-데이터 출처: [Splunk attack_data](https://github.com/splunk/attack_data). 사용 조건은 원본 저장소를 확인하세요.
+- [간단 요약](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-summary.html)
+- [전체 코드 설명](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
+- [처리 순서](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html)
 
-## 설명 문서 구성
+## 검증
 
-요약본은 세 규칙과 자료형 변화·가상 예시를 중심으로 구성했습니다. 전체 코드 해설은 9개 파일의 원본과 19개 함수의 입력·출력·실행 순서를 설명합니다. 각 발췌 코드는 현재 소스의 줄 번호와 대조했습니다. 클릭형 흐름도에도 같은 상세 설명을 반영했습니다.
+가상 이벤트로 실제 R 실행과 CSV 저장을 확인했습니다.
+Records·배열·단일 이벤트·NDJSON·빈 파일·로그인 없는 파일·잘못된 JSON,
+성공/실패 유지·시간 정렬·ARN 대체·누락값 검사를 통과했습니다.
+
+```sh
+Rscript tests/test_login_records.R
+```
+
+실제 로그인·공격 데이터로 성능을 평가한 결과는 아닙니다. 입력 로그와 CSV 결과는 공개 저장소에 포함하지 않습니다.
+시각 정렬은 CloudTrail의 일반적인 UTC ISO 시각 문자열을 전제로 합니다. 중복 이벤트는 제거하지 않습니다.
+파일 전체를 메모리에 읽습니다. 이 도구가 AWS에서 직접 로그를 수집하지는 않습니다.

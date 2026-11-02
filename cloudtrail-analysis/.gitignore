@@ -1,15 +1,5 @@
-# 재다운로드/재생성 가능한 데이터
-data/raw/
-data/processed/
-
-# R
+output/
+data/
 .Rhistory
 .RData
-.Rproj.user/
-*.Rproj
-.Rapp.history
-report_cache/
-report_files/
-
-# Generated reports may contain event identities and IPs
-output/
+.DS_Store
