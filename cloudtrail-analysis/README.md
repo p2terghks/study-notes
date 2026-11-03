@@ -25,9 +25,8 @@ Records 문서·이벤트 배열·단일 이벤트·NDJSON을 지원합니다. U
 
 ## 설명 자료
 
-- [간단 요약](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-summary.html)
 - [전체 코드 설명](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
-- [처리 순서](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html)
+- [클릭형 요약본](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html)
 
 ## 검증
 
@@ -45,4 +44,4 @@ Rscript tests/test_login_records.R
 
 ## R 입문자 설명
 
-입문 요약에 변수·벡터·리스트·표·함수와 $/[]/[[ ]] 구분, 가상 JSON의 자료형 변화, 실행 방법을 추가했습니다. 전체 코드 해설과 클릭형 처리 순서에는 각 실행 줄의 문법과 역할을 설명합니다. 함수는 정의한 뒤 호출할 때 실행되며, 마지막 표현식을 자동 반환한다는 R의 동작도 예시로 설명합니다.
+기본 요약본은 클릭형 처리 순서 페이지입니다. 각 상자를 누르면 관련 코드의 줄별 설명을 확인할 수 있습니다. 전체 코드 해설과 클릭형 처리 순서에는 각 실행 줄의 문법과 역할을 설명합니다. 함수는 정의한 뒤 호출할 때 실행되며, 마지막 표현식을 자동 반환한다는 R의 동작도 예시로 설명합니다.
