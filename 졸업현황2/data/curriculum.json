@@ -1,0 +1,6170 @@
+{
+  "source": "curriculum-2011-2025.pdf",
+  "sha256": "dc5b47730fd6a1afb47762450202049f212fa561254d80836f1567a6b13fc36b",
+  "profiles": [
+    {
+      "id": "2022-인공지능빅데이터",
+      "year": 2022,
+      "track": "인공지능빅데이터",
+      "page": 20,
+      "extraction": "이미지 원문 육안 확인 및 수기 전사 (원문 표기: 멀콘 / 정보 / 인공)",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 12,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 36,
+        "전공필수": 54,
+        "전공선택": 21,
+        "전공합계": 75
+      },
+      "optional_advanced": null,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "알고리즘",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "전산통계학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "현장실습1",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "현장실습2",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "네트워크프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "빅데이터실무",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        }
+      ],
+      "warnings": [
+        "2022 원문은 트랙을 멀콘·정보·인공으로 표시합니다. 화면에서는 대응하는 현재 명칭을 사용합니다.",
+        "2022 상단의 학부공통+전공필수(30+24) 54학점과 하단 목록의 과목 총학점이 다릅니다. 의무 과목 및 이수 인정 범위를 학과에 확인하세요.",
+        "전공심화는 2022 표에 최소학점 수치가 없어 자동 판정하지 않습니다."
+      ]
+    },
+    {
+      "id": "2022-정보통신보안",
+      "year": 2022,
+      "track": "정보통신보안",
+      "page": 20,
+      "extraction": "이미지 원문 육안 확인 및 수기 전사 (원문 표기: 멀콘 / 정보 / 인공)",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 12,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 36,
+        "전공필수": 54,
+        "전공선택": 21,
+        "전공합계": 75
+      },
+      "optional_advanced": null,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터네트워크응용",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "정보보호개론",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "시스템보안실무",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "전산통계학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "현장실습1",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "현장실습2",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "네트워크프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "네트워크보안실무",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        }
+      ],
+      "warnings": [
+        "2022 원문은 트랙을 멀콘·정보·인공으로 표시합니다. 화면에서는 대응하는 현재 명칭을 사용합니다.",
+        "2022 상단의 학부공통+전공필수(30+24) 54학점과 하단 목록의 과목 총학점이 다릅니다. 의무 과목 및 이수 인정 범위를 학과에 확인하세요.",
+        "전공심화는 2022 표에 최소학점 수치가 없어 자동 판정하지 않습니다."
+      ]
+    },
+    {
+      "id": "2022-스마트미디어",
+      "year": 2022,
+      "track": "스마트미디어",
+      "page": 20,
+      "extraction": "이미지 원문 육안 확인 및 수기 전사 (원문 표기: 멀콘 / 정보 / 인공)",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 12,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 36,
+        "전공필수": 54,
+        "전공선택": 21,
+        "전공합계": 75
+      },
+      "optional_advanced": null,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "일러스트레이션",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "웹디자인",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "멀티미디어이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "영상편집실무1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "3D그래픽",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "영상편집실무2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "3D그래픽응용",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "디지털애니메이션",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "멀티미디어신호처리",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "메트페인팅",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "전산통계학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "현장실습1",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 20
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "현장실습2",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "UI/UX디자인",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "컴퓨터비전및응용",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        },
+        {
+          "name": "VFX",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 2,
+          "page": 20
+        }
+      ],
+      "warnings": [
+        "2022 원문은 트랙을 멀콘·정보·인공으로 표시합니다. 화면에서는 대응하는 현재 명칭을 사용합니다.",
+        "2022 상단의 학부공통+전공필수(30+24) 54학점과 하단 목록의 과목 총학점이 다릅니다. 의무 과목 및 이수 인정 범위를 학과에 확인하세요.",
+        "전공심화는 2022 표에 최소학점 수치가 없어 자동 판정하지 않습니다."
+      ]
+    },
+    {
+      "id": "2023-인공지능빅데이터",
+      "year": 2023,
+      "track": "인공지능빅데이터",
+      "page": 21,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 12,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 36,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "알고리즘",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "네트워크프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "멀티미디어신호처리",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "빅데이터실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "컴퓨터비전및응용",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 21
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 21
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 21
+        }
+      ],
+      "warnings": [
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2023-정보통신보안",
+      "year": 2023,
+      "track": "정보통신보안",
+      "page": 22,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 12,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 36,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "컴퓨터네트워크응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "정보보호개론",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "JSP&Servlet",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "시스템보안실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "네크워크프로그래밍",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "네크워크보안실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 22
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 22
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 22
+        }
+      ],
+      "warnings": [
+        "22쪽: 과목명이 비어 있는 3학점 셀이 있어 자동 목록에서 제외했습니다.",
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2023-스마트미디어",
+      "year": 2023,
+      "track": "스마트미디어",
+      "page": 23,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 12,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 36,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "일러스트레이션",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "웹디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "멀티미디어이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "영상편집실무1",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "영상편집실무2",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "3D그래픽",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "3D그래픽응용",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "디지털애니메이션",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "멀티미디어신호처리",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "컴퓨터비전및응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "매트페인팅",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "UI/UX디자인",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "VFX",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 23
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 23
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 23
+        }
+      ],
+      "warnings": [
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2024-인공지능빅데이터",
+      "year": 2024,
+      "track": "인공지능빅데이터",
+      "page": 24,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 10,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 34,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "알고리즘",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "네트워크프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "멀티미디어신호처리",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "빅데이터실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "컴퓨터비전및응용",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 24
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 24
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 24
+        }
+      ],
+      "warnings": [
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2024-정보통신보안",
+      "year": 2024,
+      "track": "정보통신보안",
+      "page": 25,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 10,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 34,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "컴퓨터네트워크응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "정보보호개론",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "JSP&Servlet",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "시스템보안실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "네크워크프로그래밍",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "네크워크보안실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 25
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 25
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 25
+        }
+      ],
+      "warnings": [
+        "25쪽: 과목명이 비어 있는 3학점 셀이 있어 자동 목록에서 제외했습니다.",
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2024-스마트미디어",
+      "year": 2024,
+      "track": "스마트미디어",
+      "page": 26,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 10,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 34,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "일러스트레이션",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "웹디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "멀티미디어이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "영상편집실무1",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "영상편집실무2",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "3D그래픽",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "3D그래픽응용",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "디지털애니메이션",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "멀티미디어신호처리",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "컴퓨터비전및응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "매트페인팅",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "UI/UX디자인",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "VFX",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 26
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 26
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 26
+        }
+      ],
+      "warnings": [
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2025-인공지능빅데이터",
+      "year": 2025,
+      "track": "인공지능빅데이터",
+      "page": 27,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 10,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 34,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "알고리즘",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "네트워크프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "멀티미디어신호처리",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "빅데이터실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "컴퓨터비전및응용",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 27
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 27
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 27
+        }
+      ],
+      "warnings": [
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2025-정보통신보안",
+      "year": 2025,
+      "track": "정보통신보안",
+      "page": 28,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 10,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 34,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "이산구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "객체지향프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "컴퓨터네트워크응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "컴퓨터구조",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "자료구조",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "운영체제",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "컴퓨터네트워크",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "정보보호개론",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "JSP&Servlet",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "시스템프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "소프트웨어공학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "시스템보안실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "네크워크프로그래밍",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "네크워크보안실무",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 28
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 28
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 28
+        }
+      ],
+      "warnings": [
+        "28쪽: 과목명이 비어 있는 3학점 셀이 있어 자동 목록에서 제외했습니다.",
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    },
+    {
+      "id": "2025-스마트미디어",
+      "year": 2025,
+      "track": "스마트미디어",
+      "page": 29,
+      "extraction": "PDF 표 추출",
+      "minimums": {
+        "총학점": 127,
+        "기초교양": 10,
+        "나사렛교양": 6,
+        "핵심교양": 15,
+        "소양교양": 3,
+        "교양합계": 34,
+        "전공필수": 12,
+        "전공선택": 24,
+        "전공합계": 36
+      },
+      "optional_advanced": 21,
+      "courses": [
+        {
+          "name": "파이썬프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "컴퓨터프로그래밍2",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "컴퓨터프로그래밍1",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "웹프로그래밍기초",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 1,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "컴퓨터그래픽기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "일러스트레이션",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "IT개론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "웹디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "대학수학",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "Lab2(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "Lab1(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 1,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "JAVA",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "DB이론및실습",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "멀티미디어이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "JAVA실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "UNIX",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "서버구축실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "촬영실무",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "콘텐츠기획론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "2D융합디자인",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "JSP/Servlet",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "Lab3(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "윈도우즈프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "Lab4(기초설계)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "영상편집실무1",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "영상편집실무2",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "3D그래픽",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "3D그래픽응용",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "디지털애니메이션",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 2,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "모바일프로그래밍",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "멀티미디어신호처리",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "컴퓨터비전및응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "시스코네트워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "JAVA프레임워크",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "고급웹프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "모바일프로그래밍응용",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "게임프로그래밍기초",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "고급게임프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "그래픽프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "고급AI프로그래밍",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "데이터분석론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "임베디드시스템",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "3D영상제작",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "Lab6(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "인공지능이론및실습",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "Lab5(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "매트페인팅",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "UI/UX디자인",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "VFX",
+          "credits": 3,
+          "category": "전공심화",
+          "level": 3,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "프로젝트실무1(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "프로젝트실무2(종합설계)",
+          "credits": 3,
+          "category": "전공필수",
+          "level": 4,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "증강및가상현실",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "IT실무특강",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "디지털포렌식",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "현장실습2(ICT프로젝트인턴쉽2)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "정보통신특론",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "Lab8(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 2,
+          "page": 29
+        },
+        {
+          "name": "데이터마이닝",
+          "credits": 3,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "현장실습1(ICT프로젝트인턴쉽1)",
+          "credits": 12,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 29
+        },
+        {
+          "name": "Lab7(종합설계Startup)",
+          "credits": 1,
+          "category": "전공선택",
+          "level": 4,
+          "semester": 1,
+          "page": 29
+        }
+      ],
+      "warnings": [
+        "상단 전공필수 최소 12학점과 하단 전공필수 목록 총학점이 다릅니다. 의무 이수 과목은 학과 확인 후 지정하세요."
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "text": "정보통신학과\n2011학년도\n교양과목 전공과목\n이수구분 일반선택 총계\n필수 선택 소계 필수 선택 소계\n학점 19 7 26 57 27 84 17 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\n데이터통신 3 3\n자료구조및알고리즘 3 3 DB이론및실습 2 3\n전공 정보통신기초 3 3\n컴퓨터구조 3 3 시스템프로그래밍 3 3 졸업프로젝트Ⅰ 2 3\n필수 C언어및실습 2 3\nJAVA 3 3 객체지향프로그래밍 3 3\n전\n웹프로그래밍기초 3 3\n공 소프트웨어공학 3 3\n서버구축실무 3 3\n전공 모바일콘텐츠 3 3\n시스코네트워크 3 3\n선택 유비쿼터스컴퓨팅 3 3\n정보보안실습 3 3\n정보통신특론 3 3\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\n운영체제 3 3\nC언어응용 2 3\n전공 컴퓨터네트워크 3 3 임베디드시스템 3 3\nOOP기초 3 3 졸업프로젝트Ⅱ 2 3\n필수 UNIX 3 3 SW개발프로젝트 2 3\n정보통신수학 3 3\n전 고급웹프로그래밍 3 3\n공\n고급DB실무 3 3\n전공 정보보호개론 3 3 네트워크보안실무 3 3\n컴퓨터그래픽 3 3 웹응용실무 3 3\n선택 윈도우즈프로그래밍 3 3 IT실무특강 3 3\n네트워크프로그래밍 3 3\n구분 이수학점 지정 교과목명\nC언어및실습, C언어응용, OOP기초, 데이터통신, 자료구조및알고리즘, 컴퓨터구조, JAVA, 웹프로그래밍기초,\n복수전공자 지정 교과목 41학점\n운영체제, 컴퓨터네트워크, UNIX, DB이론및실습, 임베디드시스템, 졸업프로젝트Ⅰ, 졸업프로젝트Ⅱ\nC언어및실습, C언어응용, OOP기초, 데이터통신, 자료구조및알고리즘, 컴퓨터구조, JAVA, 운영체제,\n부전공자 지정 교과목 24학점\nDB이론및실습,",
+      "image_only": false
+    },
+    {
+      "page": 2,
+      "text": "멀티미디어학과\n2011학년도\n교양과목 전공과목\n이수구분 일반선택 총계\n필수 선택 소계 필수 선택 소계\n학점 17 16 33 29 54 83 11 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\n전공 C언어및실습 3 3 멀티미디어개론 3 3 통계패키지 3 3\n필수 컴퓨터활용1 1 2 자료구조 3 3 운영체제 3 3\n전\n소프트웨어공학 3 3\n데이터베이스 3 3\n공 데이터마이닝 3 3\nC++ 3 3 윈도우즈프로그래밍 3 3\n전공 그래픽프로그래밍 3 3\n알고리즘 3 3 디지털영상처리 3 3\n선택 임베디드시스템설계 3 3\n웹프로그래밍 3 3 멀티미디어통신 3 3\n프로젝트실무1 3 3\n정보˙컴퓨터교과교육론 3 3\n정보˙컴퓨터논리및논술 2 2\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\nC언어활용 3 3\n전공\n미적분학 3 3 컴퓨터구조 3 3 시스템분석및설계 3 3\n필수\n컴퓨터활용2 1 2\n전\n전산통계학 3 3\n수치해석 3 3 멀티미디어특론 3 3\n공 멀티미디어통신실무 3 3\n웹디자인 3 3 지능형로봇시스템 3 3\n전공 시스템프로그래밍 3 3\n전산수학 3 3 논리회로및실습 3 3 시뮬레이션 3 3\n선택 영상편집실무 3 3\n리눅스 3 3 기업연수 3 3\n정보˙컴퓨터교과교재연 3 3\nJAVA 3 3 프로젝트실무2 3 3\n구및지도법\n구분 이수학점 지정 교과목명\nC언어및실습, C언어활용, 미적분학, C++, JAVA, 멀티미디어개론, 자료구조, 컴퓨터구조, 운영체제, 시스템분\n석및설계 이상 학과 전공필수 교과목 중 8과목\n복수전공자 지정 교과목 36학점\n알고리즘, 웹프로그래밍, 디지털영상처리, 웹디자인, 멀티미디어통신, 그래픽프로그래밍, 지능형로봇시스템\n이상 학과 전공선택 교과목 중 4과목\nC언어및실습, C++, JAVA, 멀티미디어개론, 자료구조, 컴퓨터구조, 운영체제, 시스템분석및설계 이상 학괒 \n공필수 교과목 중 6과목\n부전공자 지정 교과목 24학점\n웹프로그래밍, 디지털영상처리, 웹디자인, 멀티미디어통신, 그래픽프로그래밍, 지능형로봇시스템 이상 학과\n전공선택 교과목 중 2과목",
+      "image_only": false
+    },
+    {
+      "page": 3,
+      "text": "정보통신학과\n2012학년도\n교양과목 전공과목\n이수구분 일반선택 총계\n필수 선택 소계 필수 선택 소계\n학점 27 7 34 63 27 90 3 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\n데이터통신 3 3\n자료구조및알고리즘 3 3 DB이론및실습 3 3\n전공 정보통신기초 3 3\n컴퓨터구조 3 3 시스템프로그래밍 3 3 졸업프로젝트Ⅰ 3 3\n필수 C언어및실습 3 3\nJAVA 3 3 객체지향프로그래밍 3 3\n전\n웹프로그래밍기초 3 3\n공 소프트웨어공학 3 3\n서버구축실무 3 3\n전공 모바일콘텐츠 3 3\n시스코네트워크 3 3\n선택 유비쿼터스컴퓨팅 3 3\n정보보안실습 3 3\n정보통신특론 3 3\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\n운영체제 3 3\nC언어응용 3 3\n전공 컴퓨터네트워크 3 3 임베디드시스템 3 3\nOOP기초 3 3 졸업프로젝트Ⅱ 3 3\n필수 UNIX 3 3 SW개발프로젝트 3 3\n정보통신수학 3 3\n전 고급웹프로그래밍 3 3\n공\n고급DB실무 3 3\n전공 정보보호개론 3 3 네트워크보안실무 3 3\n컴퓨터그래픽 3 3 웹응용실무 3 3\n선택 윈도우즈프로그래밍 3 3 IT실무특강 3 3\n네트워크프로그래밍 3 3\n구분 이수학점 지정 교과목명\nC언어및실습, C언어응용, OOP기초, 데이터통신, 자료구조및알고리즘, 컴퓨터구조, JAVA, 웹프로그래밍기초,\n복수전공자 지정 교과목 41학점\n운영체제, 컴퓨터네트워크, UNIX, DB이론및실습, 임베디드시스템, 졸업프로젝트Ⅰ, 졸업프로젝트Ⅱ\nC언어및실습, C언어응용, OOP기초, 데이터통신, 자료구조및알고리즘, 컴퓨터구조, JAVA, 운영체제,\n부전공자 지정 교과목 24학점\nDB이론및실습,",
+      "image_only": false
+    },
+    {
+      "page": 4,
+      "text": "멀티미디어학과\n2012학년도\n교양과목 전공과목\n이수구분 일반선택 총계\n필수 선택 소계 필수 선택 소계\n학점 27 9 36 51 40 91 - 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\n멀티미디어개론 3 3 멀티미디어신호처리 3 3\n전공 컴퓨터프로그래밍1 3 3\n자료구조 3 3 윈도우즈프로그래밍 3 3 프로젝트실무1 3 3\n필수 디지털디자인기초 3 3\n객체지향프로그래밍 3 3 데이터베이스 3 3\n전\n공 멀티미디어통신 3 3\n모바일프로그래밍 3 3\n전공 디지털시스템실험 3 3 알고리즘 3 3\n임베디드시스템설계 3 3\n선택 웹프로그래밍 3 3 운영체제 3 3\n데이터마이닝 3 3\n데이터분석론 3 3\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과목명 과목명 과목명 과목명\n이수구분 점 수 점 수 점 수 점 수\n영상편집실무 3 3 디지털영상처리 3 3\n전공 컴퓨터프로그래밍2 3 3\n컴퓨터구조 3 3 소프트웨어공학 3 3\n필수 미적분학 3 3\nJAVA 3 3 네트워크프로그래밍 3 3\n전\n공 그래픽프로그래밍 3 3\n멀티미디어특론 3 3\n전공 컨텐츠제작및실습 3 3 시스템프로그래밍 3 3\n이산구조 3 3 프로젝트실무2 3 3\n선택 리눅스 3 3 지능형로봇시스템 3 3\nHCI 3 3\n전산통계학 3 3\n구분 이수학점 지정 교과목명\n복수전공자 지정 교과목 36학점 학과 전공필수 과목 중 8과목 이상, 학과 전공선택 과목 중 4과목 이상\n부전공자 지정 교과목 24학점 학과 전공필수 과목 중 6과목 이상, 학과 전공선택 중 2과목 이상",
+      "image_only": false
+    },
+    {
+      "page": 5,
+      "text": "정보통신학과\n2013학년도\n교양과목 전공과목\n이수 일반\n총계\n구분 교양필수 교양선택 소계 전공필수 전공선택 소계 선택\n학점 22 12 34 63 27 90 3 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n데이터통신 3 3\n자료구조및알고리즘 3 3 DB이론및실습 3 3\n전공 정보통신기초 3 3\n컴퓨터구조 3 3 시스템프로그래밍 3 3 졸업프로젝트Ⅰ 3 3\n필수 C언어및실습 3 3\nJAVA 3 3 객체지향프로그래밍 3 3\n전 웹프로그래밍기초 3 3\n공\n소프트웨어공학 3 3\n서버구축실무 3 3\n전공 모바일콘텐츠 3 3\n시스코네트워크 3 3\n선택 유비쿼터스컴퓨팅 3 3\n정보보안실습 3 3\n정보통신특론 3 3\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n운영체제 3 3\nC언어응용 3 3\n전공 컴퓨터네트워크 3 3 임베디드시스템 3 3\nOOP기초 3 3 졸업프로젝트Ⅱ 3 3\n필수 UNIX 3 3 SW개발프로젝트 3 3\n정보통신수학 3 3\n고급웹프로그래밍 3 3\n전\n공\n고급DB실무 3 3\n전공 정보보호개론 3 3 네트워크보안실무 3 3\n컴퓨터그래픽 3 3 웹응용실무 3 3\n선택 윈도우즈프로그래밍 3 3 IT실무특강 3 3\n네트워크프로그래밍 3 3\n구분 이수학점 지정 교과목명\nC언어및실습, C언어응용, OOP기초, 데이터통신, 자료구조및알고리즘, 컴퓨터구조, JAVA, 웹프로\n복수전공자 지정\n41학점 그래밍기초, 운영체제, 컴퓨터네트워크, UNIX, DB이론및실습, 임베디드시스템, 졸업프로젝트Ⅰ, 졸\n교과목\n업프로젝트Ⅱ\nC언어및실습, C언어응용, OOP기초, 데이터통신, 자료구조및알고리즘, 컴퓨터구조, JAVA, 운영체\n부전공자 지정 교과목 24학점 제,\nDB이론및실습,",
+      "image_only": false
+    },
+    {
+      "page": 6,
+      "text": "멀티미디어학과\n2013학년도\n교양과목 전공과목\n이수 일반\n총계\n구분 교양필수 교양선택 소계 전공필수 전공선택 소계 선택\n학점 22 12 34 51 42 93 - 127\n※ 졸업학점은 127학점 이상으로 변동 없음\n1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학년학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n멀티미디어개론 3 3 멀티미디어신호처리 3 3\n컴퓨터프로그래밍1 3 3\n전공필수 자료구조 3 3 윈도우즈프로그래밍 3 3 프로젝트 실무1 3 3\n디지털디자인 기초 3 3\n객체지향 프로그래밍 3 3 데이터베이스 3 3\n멀티미디어통신 3 3\n모바일프로그래밍 3 3\n알고리즘 3 3\n디지털시스템실험 3 3 임베디드시스템설계 3 3\n전공선택 운영체제 3 3\n웹프로그래밍 3 3 데이터마이닝 3 3\n데이터분석론 3 3\n*정보·컴퓨터논리및논술 3 3\n*정보·컴퓨터교과교육론 3 3\n1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학년학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n영상편집실무 3 3 디지털영상처리 3 3\n컴퓨터프로그래밍2 3 3\n전공필수 컴퓨터구조 3 3 소프트웨어공학 3 3\n미적분학 3 3\nJAVA 3 3 네트워크프로그래밍 3 3\n그래픽프로그래밍 3 3\n시스템프로그래밍 3 3\n멀티미디어특론 3 3\n컨텐츠제작및실습 3 3 전산통계학 3 3\n전공선택 이산구조 3 3 프로젝트실무2 3 3\n리눅스 3 3 지능형로봇시스템 3 3\nHCI 3 3\n*정보·컴퓨터교과교재연구 3 3\n및지도법\n* 표시 교직과정으로\n구분 이수학점 지정교과목명\n복수전공자지정교과목 36 학과 전공필수 과목 중 8과목 이상, 학과 전공선택 과목 중 4과목 이상\n부전공자 지정 교과목\n24 학과 전공필수 과목 중 6과목 이상, 학과 전공선택 중 2과목 이상\n(특수교육관련학과)\n* 복수 전공시 이수해야할 학점을 지정하되 45학점 이내로 지정함",
+      "image_only": false
+    },
+    {
+      "page": 7,
+      "text": "IT융합학부 - 정보통신학과\n2014학년도\n■ 교육목표\n- 지식 기반형 정보 사회를 선도할 창의적 정보통신인 양성\n- 심오한 전공지식과 풍부한 실무 경험을 갖춘 전문성 있는 정보통신인 양성\n- 국가와 사회 발전에 공헌할 수 있는 미래 지향적 정보통신인 양성\n교양과목 전공과목\n이수 일반\n총계\n구분 교양필수 교양선택 소계 전공필수 전공선택 소계 선택\n학점 22 12 34 72 18 90 3 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n3 3\n데이터통신\n3 3\n정보통신기초 3 3 자료구조 3\n전공 3 3 UNIX시스템프로그래밍\n컴퓨터프로그래밍1 3 3 컴퓨터구조 졸업프로젝트Ⅰ 3 3\n필수 3 3 JAVA고급프로그래밍\n컴퓨터그래픽기초 3 3 JAVA 3\n3 3\n전 UNIX\n3 3\n공\n고급DB실무 3 정보통신특론 3 3\n전공 시스코네트워크 3 모바일콘텐츠 3 3\n선택 C#윈도우프로그래밍 3 네트워크보안실무 3 3\n자바스크립트/XML 3 임베디드시스템 3 3\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n운영체제 3 3\n컴퓨터프로그래밍2 3 3\nDB이론및실습 3 3 소프트웨어공학 3 3\n전공 OOP기초 3 3\n컴퓨터네트워크 3 3 모바일프로그래밍 3 3 졸업프로젝트Ⅱ 3 3\n필수 이산수학 3 3\n정보보호개론 3 3 네트워크프로그래밍 3 3\n웹프로그래밍기초 3 3\n전 JSP/Servlet 3 3\n공\n해킹이론및실습 3 3\n전공\n서버구축실무(*) 3 3 JAVA프레임워크 3 3 IT실무특강 3 3\n선택\n마이크로프로세서 3 3\n구분 이수학점 지정 교과목명\n복수전공자 지정\n42학점 전공필수 과목 중 42학점 이상\n교과목\n부전공자 지정 교과목 24학점 전공필수 과목 중 24학점 이상",
+      "image_only": false
+    },
+    {
+      "page": 8,
+      "text": "멀티미디어학과\n2014학년도\n교양과목 전공과목\n이수 일반\n총계\n구분 교양필수 교양선택 소계 전공필수 전공선택 소계 선택\n학점 22 12 34 54 39 93 - 127\n1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학년학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n컴퓨터 그래픽 기초 3 3 멀티미디어개론 3 3 멀티미디어신호처리 3 3\n전공필수 컴퓨터프로그래밍1 3 3 자료구조 3 3 윈도우즈프로그래밍 3 3 프로젝트실무1 3 3\n미적분학 3 3 JAVA 3 3 운영체제 3 3\n멀티미디어통신 3 3 모바일프로그래밍 3 3\n디지털시스템실험 3 3 그래픽프로그래밍 3 3 임베디드시스템설계 3 3\n전공선택\n웹프로그래밍 3 3 데이터분석론 3 3 데이터마이닝 3 3\n정보컴퓨터교과교육론 3 3 정보컴퓨터논리및논술 3 3\n1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학년학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n영상편집실무 3 디지털영상처리 3 3\n컴퓨터프로그래밍2 3 3\n전공필수 컴퓨터구조 3 3 소프트웨어공학 3 3\n객체지향프로그래밍 3 3\nDB이론및실습 3 네트워크프로그래밍 3 3\n시스템프로그래밍 3 3\n전산통계학 3 3\n멀티미디어특론 3 3\n컨텐츠제작및실습 지능형로봇시스템 3 3\n전공선택 이산구조 3 3 3 3 프로젝트실무2 3 3\n리눅스\nHCI 3 3\n정보컴퓨터교과교재연 2 2\n구및지도법\n(1) 복수전공 및 부전공\n구분 이수학점 지정교과목명\n복수전공자\n45 학과 전공필수 과목 중 8과목 이상, 학과 전공선택 과목 중 4과목 이상\n이수학점 및 교과목\n부전공자\n21 학과 전공필수 과목 중 6과목 이상, 학과 전공선택 중 2과목 이상\n이수학점 및 교과목",
+      "image_only": false
+    },
+    {
+      "page": 9,
+      "text": "IT학부 - 정보통신학과\n2015학년도\n교양과목 전공과목\n이수 일반\n학부공통 전공 졸업학점\n구분 교양필수 교양선택 소계 소계 선택\n필수 필수 선택\n학점 22 12 34 54 12 27 93 - 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nJAVA 3 3\n학부 컴퓨터과학개론 3 3 자료구조 3 3 UNIX시스템프로그래\n필수 3 3 프로젝트실무Ⅰ 3 3\n공통 컴퓨터프로그래밍1 3 3 컴퓨터구조 3 3 밍\nUNIX 3 3\n필수 데이터통신 3 3 정보보호개론 3 3\n윈도우즈프로그래밍 3 3 임베디드시스템설계 3 3\n고급DB실무 3 3 정보통신특론 3 3\n전공 시스코네트워크 3 3 네트워크보안실무 3 3\n대학수학 3 3 컨텐츠제작및실습 3 3\n선택 AJAX실무 3 3 모바일콘텐츠 3 3\n컴퓨터그래픽기초 3 3 디지털시스템실험 3 3\n그래픽프로그래밍 3 3 데이터마이닝 3 3\n데이터분석론 3 3 *정보·컴퓨터논리및논 2 2\n*정보·컴퓨터교과교육론 3 3 술\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n이산구조 3 3\n운영체제 3 3\n학부 컴퓨터프로그래밍2 3 3 소프트웨어공학 3 3\n필수 DB이론및실습 3 3 프로젝트실무Ⅱ 3 3\n공통 객체지향프로그래밍 3 3 네트워크프로그래밍 3 3\nJSP/Servlet 3 3\n웹프로그래밍기초 3 3\n필수 컴퓨터네트워크 3 3 시스템보안실무 3 3\n모바일프로그래밍 3 3\nJAVA프레임워크 3 3\n전공 마이크로프로세서 3 3 IT실무특강 3 3\nJAVA실무 3 3\n선택 전산통계학 3 3 멀티미디어특론 3 3\n서버구축실무 3 3\n지능형로봇시스템 3 3 HCI 3 3\n*정보·컴퓨터교과교재연 3 3\n구및지도법\n*표시는 중등특수교육학과 표시교과목임\n■ 복수전공 및 부전공\n구분 이수학점 지정교과목명\n복수전공자 학부공통필수 과목 24학점 이상 및 복수전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학\n42학점\n이수학점 및 교과목 점 이상 (총 42학점 중 필수과목 36학점 이상)\n부전공자 학부공통필수 과목 12학점 이상 및 부전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학점\n24학점\n이수학점 및 교과목 이상",
+      "image_only": false
+    },
+    {
+      "page": 10,
+      "text": "IT학부-멀티미디어학과\n2015학년도\n교양과목 전공과목\n이수 일반\n학부공통 전공 졸업학점\n구분 교양필수 교양선택 소계 소계 선택\n필수 필수 선택\n학점 22 12 34 54 12 27 93 - 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nJAVA 3 3\n학부 컴퓨터과학개론 3 3 자료구조 3 3 UNIX시스템프로그래\n필수 3 3 프로젝트실무Ⅰ 3 3\n공통 컴퓨터프로그래밍1 3 3 컴퓨터구조 3 3 밍\nUNIX 3 3\n필수 멀티미디어개론 3 3 멀티미디어신호처리 3 3\n임베디드시스템설\n윈도우즈프로그래밍 3 3 3 3\n계\n고급DB실무 3 3 3 3\n정보통신특론\n전공 시스코네트워크 3 3 3 3\n대학수학 3 3 컨텐츠제작및실습 3 3 네트워크보안실무\n선택 AJAX실무 3 3 3 3\n컴퓨터그래픽기초 3 3 디지털시스템실험 3 3 모바일콘텐츠\n그래픽프로그래밍 3 3 3 3\n데이터마이닝\n데이터분석론 3 3 2 2\n*정보·컴퓨터논리및논\n*정보·컴퓨터교과교육론 3 3\n술\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n이산구조 3 3\n운영체제 3 3\n학부 컴퓨터프로그래밍2 3 3 소프트웨어공학 3 3\n필수 DB이론및실습 3 3 프로젝트실무Ⅱ 3 3\n공통 객체지향프로그래밍 3 3 네트워크프로그래밍 3 3\nJSP/Servlet 3 3\n웹프로그래밍기초 3 3\n필수 영상편집실무 3 3 디지털영상처리 3 3\n모바일프로그래밍 3 3\nJAVA프레임워크 3 3\n전공 마이크로프로세서 3 3 IT실무특강 3 3\nJAVA실무 3 3\n선택 전산통계학 3 3 멀티미디어특론 3 3\n서버구축실무 3 3\n지능형로봇시스템 3 3 HCI 3 3\n*정보·컴퓨터교과교재연 3 3\n구및지도법\n*표시는 중등특수교육학과 표시교과목임\n■ 복수전공 및 부전공\n구분 이수학점 지정교과목명\n복수전공자 학부공통필수 과목 24학점 이상 및 복수전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학\n42학점\n이수학점 및 교과목 점 이상 (총 42학점 중 필수과목 36학점 이상)\n부전공자 학부공통필수 과목 12학점 이상 및 부전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학점\n24학점\n이수학점 및 교과목 이상",
+      "image_only": false
+    },
+    {
+      "page": 11,
+      "text": "IT학부 - 정보통신학전공\n2016학년도\n■ 교육목표\n- 지도자적 인재 양성을 위한 기본 소양 교육\n- 전문적인 프로그래밍 교육\n- 네트워크 전문가 교육\n- 멀티미디어 콘텐츠 제작 교육\n- 실험과 실습을 바탕으로 하는 심화된 기술교육\n교양과목 전공과목\n이수 일반\n학부공통 전공 졸업학점\n구분 교양필수 교양선택 소계 소계 선택\n필수 필수 선택\n학점 17 13 30 54 12 27 93 4 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nJAVA 3 3\n학부 컴퓨터과학개론 3 3 자료구조 3 3 UNIX시스템프로그래\n필수 3 3 프로젝트실무Ⅰ 3 3\n공통 컴퓨터프로그래밍1 3 3 컴퓨터구조 3 3 밍\nUNIX 3 3\n필수 데이터통신 3 3 정보보호개론 3 3\n임베디드시스템설\n윈도우즈프로그래밍 3 3 3 3\n계\n고급DB실무 3 3 3 3\n정보통신특론\n전공 시스코네트워크 3 3 3 3\n대학수학 3 3 컨텐츠제작및실습 3 3 네트워크보안실무\n선택 AJAX실무 3 3 3 3\n컴퓨터그래픽기초 3 3 디지털시스템실험 3 3 모바일콘텐츠\n그래픽프로그래밍 3 3 3 3\n데이터마이닝\n데이터분석론 3 3 2 2\n*정보·컴퓨터논리및논\n*정보·컴퓨터교과교육론 3 3\n술\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n이산구조 3 3\n운영체제 3 3\n학부 컴퓨터프로그래밍2 3 3 소프트웨어공학 3 3\n필수 DB이론및실습 3 3 프로젝트실무Ⅱ 3 3\n공통 객체지향프로그래밍 3 3 네트워크프로그래밍 3 3\nJSP/Servlet 3 3\n웹프로그래밍기초 3 3\n필수 컴퓨터네트워크 3 3 시스템보안실무 3 3\n모바일프로그래밍 3 3\nJAVA프레임워크 3 3\n전공 마이크로프로세서 3 3 IT실무특강 3 3\nJAVA실무 3 3\n선택 전산통계학 3 3 멀티미디어특론 3 3\n서버구축실무 3 3\n지능형로봇시스템 3 3 HCI 3 3\n*정보·컴퓨터교과교재연 3 3\n구및지도법\n*표시는 중등특수교육학과 표시교과목임\n■ 복수전공 및 부전공\n구분 이수학점 지정교과목명\n복수전공자 학부공통필수 과목 24학점 이상 및 복수전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학\n42학점\n이수학점 및 교과목 점 이상 (총 42학점 중 필수과목 36학점 이상)\n부전공자 학부공통필수 과목 12학점 이상 및 부전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학점\n24학점\n이수학점 및 교과목 이상",
+      "image_only": false
+    },
+    {
+      "page": 12,
+      "text": "IT학부(멀티미디어전공)\n2016학년도\n교양과목 전공과목\n이수 일반\n학부공통 전공 졸업학점\n구분 선택\n교양필수 교양선택 소계 소계\n필수 필수 선택\n학점 17 13 30 54 12 27 93 4 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nJAVA 3 3\n학부 컴퓨터과학개론 3 3 자료구조 3 3 UNIX시스템프로그래\n필수 3 3 프로젝트실무Ⅰ 3 3\n공통 컴퓨터프로그래밍1 3 3 컴퓨터구조 3 3 밍\nUNIX 3 3\n필수 멀티미디어개론 3 3 멀티미디어신호처리 3 3\n임베디드시스템설\n윈도우즈프로그래밍 3 3 3 3\n계\n고급DB실무 3 3 3 3\n정보통신특론\n전공 시스코네트워크 3 3 3 3\n대학수학 3 3 컨텐츠제작및실습 3 3 네트워크보안실무\n선택 AJAX실무 3 3 3 3\n컴퓨터그래픽기초 3 3 디지털시스템실험 3 3 모바일콘텐츠\n그래픽프로그래밍 3 3 3 3\n데이터마이닝\n데이터분석론 3 3 2 2\n*정보·컴퓨터논리및논\n*정보·컴퓨터교과교육론 3 3\n술\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n이산구조 3 3\n운영체제 3 3\n학부 컴퓨터프로그래밍2 3 3 소프트웨어공학 3 3\n필수 DB이론및실습 3 3 프로젝트실무Ⅱ 3 3\n공통 객체지향프로그래밍 3 3 네트워크프로그래밍 3 3\nJSP/Servlet 3 3\n웹프로그래밍기초 3 3\n필수 영상편집실무 3 3 디지털영상처리 3 3\n모바일프로그래밍 3 3\nJAVA프레임워크 3 3\n전공 마이크로프로세서 3 3 IT실무특강 3 3\nJAVA실무 3 3\n선택 전산통계학 3 3 멀티미디어특론 3 3\n서버구축실무 3 3\n지능형로봇시스템 3 3 HCI 3 3\n*정보·컴퓨터교과교재연 3 3\n구및지도법\n*표시는 중등특수교육학과 표시교과목임\n■ 복수전공 및 부전공\n구분 이수학점 지정교과목명\n복수전공자 학부공통필수 과목 24학점 이상 및 복수전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학\n42학점\n이수학점 및 교과목 점 이상 (총 42학점 중 필수과목 36학점 이상)\n부전공자 학부공통필수 과목 12학점 이상 및 부전공 (멀티미디어/정보통신 중 택1) 필수 과목 12학점\n24학점\n이수학점 및 교과목 이상",
+      "image_only": false
+    },
+    {
+      "page": 13,
+      "text": "IT융합학부\n2017학년도\n교양과목 전공과목\n이수 일반\n학부공통 전공 졸업학점\n구분 공통기초 핵심교양 소계 소계 선택\n필수 필수 선택\n학점 17 13 30 39 39 15 93 4 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nIT개론 3 3\n학부 JAVA 3 3\n필수 컴퓨터프로그래밍1 3 3 모바일프로그래밍 3 3 프로젝트실무1 3 3\n공통 UNIX 3 3\n컴퓨터그래픽기초 3 3\n멀티미디어이론및실습 3 3\n멀 멀티미디어신호처리 3 3\n영상편집실무1 3 3\n콘 메트페인팅 3 3\n3D그래픽 3 3\n자료구조 3 3 UNIX시스템프로그래\n필 정 3 3\n컴퓨터네트워크1 3 3 밍\n수 보 3 3\n컴퓨터구조 3 3 시스템보안실무\n자료구조 3 3 UNIX시스템프로그래\n컴 3 3\n컴퓨터네트워크1 3 3 밍\n소 3 3\n전공 컴퓨터구조 3 3 고급DB실무\n시스코네트워크 3 3 증강및가상현실 3 3\n고급웹프로그래밍 3 3 디지털포렌식 3 3\n촬영실무 3 3 게임프로그래밍기초 3 3 정보통신특론 3 3\n선택 대학수학 3 3 2D융합디자인 3 3 그래픽프로그래밍 3 3 데이터마이닝 3 3\n디지털시스템실험 3 3 데이터분석론 3 3 현장실습1 12 12\n3D영상제작 3 3 *정보·컴퓨터논리및논 2 2\n*정보·컴퓨터교과교육론 3 3 술\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n학부 컴퓨터프로그래밍2 3 3 DB이론및실습 3 3\n필수 UI/UX디자인 3 3 프로젝트실무2 3 3\n공통 웹프로그래밍기초 3 3 JSP/Servlet 3 3\n영상편집실무2 3 3 디지털영상처리 3 3\n멀일러스트레이션 3 3\n3D그래픽응용 3 3 캡스톤디자인 3 3\n콘웹디자인 3 3\n디지털애니메이션 3 3 VFX 3 3\n운영체제 3 3 소프트웨어공학 3 3\n정이산구조 3 3\n필 보객체지향프로그래밍 3 3 컴퓨터네트워크2 3 3 네트워크프로그래밍 3 3\n수 정보보호개론 3 3 네트워크보안실무 3 3\n운영체제\n3 3 소프트웨어공학 3 3\n컴이산구조 3 3 알고리즘\n3 3 네트워크프로그래밍 3 3\n소객체지향프로그래밍 3 3 윈도우즈프로그래\n3 3 빅데이터실무 3 3\n밍\n전공\n3 3\nJAVA프레임워크 3 3\n모바일프로그래밍응용 3 3\n고급게임프로그래밍 3 3\nJAVA실무 3 3 IT실무특강 3 3\n인공지능 3 3\n선택 서버구축실무 3 3 멀티미디어특론 3 3\n임베디드시스템 3 3\n콘텐츠기획론 3 3 현장실습2 12 12\n전산통계학 3 3\n*정보·컴퓨터교과교재연 3 3\n구및지도법 3 3",
+      "image_only": false
+    },
+    {
+      "page": 14,
+      "text": "■ 복수전공 및 부전공\n구분 이수학점 지정교과목명\n복수전공자 학부공통필수 과목 15학점 이상 및 복수전공 (멀티미디어콘텐츠학/정보통신보안학/컴퓨터소\n42학점\n이수학점 및 교과목 프트웨어학 중 택1) 필수 과목 27학점 이상\n부전공자 학부공통필수 과목 12학점 이상 및 부전공 (멀티미디어콘텐츠학/정보통신보안학/컴퓨터소프\n24학점\n이수학점 및 교과목 트웨어학 중 택1) 필수 과목 12학점 이상",
+      "image_only": false
+    },
+    {
+      "page": 15,
+      "text": "IT융합학부\n2018학년도\n교양과목 전공과목\n이수 자율\n학부공통 전공 졸업학점\n구분 교양필수 교양선택 소계 소계 선택\n필수 필수 선택\n학점 18 18 36 36 27 18 81 10 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nIT개론 3 3\n학부 JAVA 3 3 프로젝트실무1(종\n필수 컴퓨터프로그래밍1 3 3 모바일프로그래밍 3 3 3 3\n공통 UNIX 3 3 합설계)\n컴퓨터그래픽기초 3 3\n멀티미디어이론및실습 3 3\n멀 멀티미디어신호처리 3 3\n영상편집실무1 3 3\n콘 메트페인팅 3 3\n3D그래픽 3 3\n자료구조 3 3 UNIX시스템프로그래\n필 정 3 3\n컴퓨터네트워크1 3 3 밍\n수 보 3 3\n컴퓨터구조 3 3 시스템보안실무\n자료구조 3 3 UNIX시스템프로그래\n컴 3 3\n컴퓨터네트워크1 3 3 밍\n소 3 3\n전공 컴퓨터구조 3 3 고급DB실무\n시스코네트워크 3 3 증강및가상현실 3 3\n고급웹프로그래밍 3 3 디지털포렌식 3 3\n촬영실무 3 3 게임프로그래밍기초 3 3 정보통신특론 3 3\n선택 대학수학 3 3 2D융합디자인 3 3 그래픽프로그래밍 3 3 데이터마이닝 3 3\n디지털시스템실험 3 3 데이터분석론 3 3 현장실습1 12 12\n3D영상제작 3 3 *정보·컴퓨터논리및논 2 2\n*정보·컴퓨터교과교육론 3 3 술\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n학부 컴퓨터프로그래밍2 3 3 DB이론및실습 3 3 프로젝트실무2(종\n필수 3 3\n공통 웹프로그래밍기초 3 3 JSP/Servlet 3 3 합설계)\n영상편집실무2 3 3 디지털영상처리 3 3\n멀일러스트레이션 3 3\n3D그래픽응용 3 3 캡스톤디자인 3 3\n콘웹디자인 3 3\n디지털애니메이션 3 3 VFX 3 3\n운영체제 3 3 소프트웨어공학 3 3\n정이산구조 3 3\n필 보객체지향프로그래밍 3 3 컴퓨터네트워크2 3 3 네트워크프로그래밍 3 3\n수 정보보호개론 3 3 네트워크보안실무 3 3\n운영체제\n3 3 소프트웨어공학 3 3\n컴이산구조 3 3 알고리즘\n3 3 네트워크프로그래밍 3 3\n소객체지향프로그래밍 3 3 윈도우즈프로그래\n3 3 빅데이터실무 3 3\n밍\n전공\n3 3\nJAVA프레임워크\n3 3\n모바일프로그래밍응용\n3 3\n고급게임프로그래밍\n3 3\nJAVA실무 3 3 인공지능 IT실무특강 3 3\n3 3\n선택 서버구축실무 3 3 임베디드시스템 멀티미디어특론 3 3\n3 3\n콘텐츠기획론 3 3 전산통계학 현장실습2 12 12\n3 3\nUI/UX디자인\n3 3\n*정보·컴퓨터교과교재연\n3 3\n구및지도법",
+      "image_only": false
+    },
+    {
+      "page": 16,
+      "text": "IT융합학부\n2019학년도\n전공\n교양 자율선택\n전공 최소인정\n졸업이수\n학부공통+ ※전공\n기초 나사렛 핵심 소양 교양 복수, 연계, 융합, 학생설계전공, 학점\n전공필수( 전공선택 합계 심화\n교양 교양 교양 교양 합계 부전공, 타전공 일선, 교양 일선 등\n36+24)\n12 6 15 3 36 60 21 81 10 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nIT개론 3 3\n학부 JAVA 3 3 프로젝트실무1(종\n필수 컴퓨터프로그래밍1 3 3 모바일프로그래밍 3 3 3 3\n공통 UNIX 3 3 합설계)\n컴퓨터그래픽기초 3 3\n멀티미디어이론및실습 3 3\n멀 멀티미디어신호처리 3 3\n영상편집실무1 3 3\n콘 메트페인팅 3 3\n3D그래픽 3 3\n자료구조 3 3 UNIX시스템프로그래\n필 정 3 3\n컴퓨터네트워크1 3 3 밍\n수 보 3 3\n컴퓨터구조 3 3 시스템보안실무\n자료구조 3 3 UNIX시스템프로그래\n컴 3 3\n컴퓨터네트워크1 3 3 밍\n소 3 3\n전공 컴퓨터구조 3 3 고급DB실무\n시스코네트워크 3 3\n증강및가상현실 3 3\n고급웹프로그래밍 3 3\n촬영실무 3 3 디지털포렌식 3 3\n게임프로그래밍기초 3 3\n선택 대학수학 3 3 2D융합디자인 3 3 정보통신특론 3 3\n그래픽프로그래밍 3 3\n디지털시스템실험 3 3 데이터마이닝 3 3\n데이터분석론 3 3\n현장실습1 12 12\n3D영상제작 3 3\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n학부 컴퓨터프로그래밍2 3 3 DB이론및실습 3 3 프로젝트실무2(종\n필수 3 3\n공통 웹프로그래밍기초 3 3 JSP/Servlet 3 3 합설계)\n영상편집실무2 3 3 디지털영상처리 3 3\n멀일러스트레이션 3 3\n3D그래픽응용 3 3 캡스톤디자인 3 3\n콘웹디자인 3 3\n디지털애니메이션 3 3 VFX 3 3\n운영체제 3 3 소프트웨어공학 3 3\n정이산구조 3 3\n필 보객체지향프로그래밍 3 3 컴퓨터네트워크2 3 3 네트워크프로그래밍 3 3\n수 정보보호개론 3 3 네트워크보안실무 3 3\n운영체제\n3 3 소프트웨어공학 3 3\n컴이산구조 3 3 알고리즘\n3 3 네트워크프로그래밍 3 3\n소객체지향프로그래밍 3 3 윈도우즈프로그래\n3 3 빅데이터실무 3 3\n전공 밍\nJAVA프레임워크 3 3\n모바일프로그래밍응용 3 3\nJAVA실무 3 3 고급게임프로그래밍 3 3 IT실무특강 3 3\n선택 서버구축실무 3 3 인공지능 3 3 멀티미디어특론 3 3\n콘텐츠기획론 3 3 임베디드시스템 3 3 현장실습2 12 12\n전산통계학 3 3\nUI/UX디자인 3 3",
+      "image_only": false
+    },
+    {
+      "page": 17,
+      "text": "IT융합학부(IT·방송영상융합학부)\n2020학년도\n전공\n교양 자율선택\n전공 최소인정\n졸업이수\n학부공통+ ※전공\n기초 나사렛 핵심 소양 교양 복수, 연계, 융합, 학생설계전공, 학점\n전공필수( 전공선택 합계 심화\n교양 교양 교양 교양 합계 부전공, 타전공 일선, 교양 일선 등\n36+24)\n12 6 15 3 36 60 21 81 10 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\nIT개론 3 3\n학부 JAVA 3 3 프로젝트실무1(종\n필수 컴퓨터프로그래밍1 3 3 모바일프로그래밍 3 3 3 3\n공통 UNIX 3 3 합설계)\n컴퓨터그래픽기초 3 3\n멀티미디어이론및실습 3 3\n멀 멀티미디어신호처리 3 3\n영상편집실무1 3 3\n콘 메트페인팅 3 3\n3D그래픽 3 3\n자료구조 3 3 UNIX시스템프로그래\n필 정 3 3\n컴퓨터네트워크1 3 3 밍\n수 보 3 3\n컴퓨터구조 3 3 시스템보안실무\n자료구조 3 3 UNIX시스템프로그래\n인 3 3\n컴퓨터네트워크1 3 3 밍\n공 3 3\n전공 컴퓨터구조 3 3 고급DB실무\n시스코네트워크 3 3\n증강및가상현실 3 3\n고급웹프로그래밍 3 3\n촬영실무 3 3 디지털포렌식 3 3\n게임프로그래밍기초 3 3\n대학수학 3 3 2D융합디자인 3 3 정보통신특론 3 3\n선택 그래픽프로그래밍 3 3\nLab1(기초설계) 1 1 디지털시스템실험 3 3 데이터마이닝 3 3\n데이터분석론 3 3\nLab3(기초설계) 1 1 현장실습1 12 12\n3D영상제작 3 3\nLab7(종합설계) 1 1\nLab5(종합설계) 1 1\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n학부 컴퓨터프로그래밍2 3 3 DB이론및실습 3 3 프로젝트실무2(종\n필수 3 3\n공통 웹프로그래밍기초 3 3 JSP/Servlet 3 3 합설계)\n영상편집실무2 3 3 디지털영상처리 3 3\n멀일러스트레이션 3 3\n3D그래픽응용 3 3 캡스톤디자인 3 3\n콘웹디자인 3 3\n디지털애니메이션 3 3 VFX 3 3\n운영체제 3 3 소프트웨어공학 3 3\n정이산구조 3 3\n필 보객체지향프로그래밍 3 3 컴퓨터네트워크2 3 3 네트워크프로그래밍 3 3\n수 정보보호개론 3 3 네트워크보안실무 3 3\n운영체제\n3 3 소프트웨어공학 3 3\n인이산구조 3 3 알고리즘\n3 3 네트워크프로그래밍 3 3\n공객체지향프로그래밍 3 3 윈도우즈프로그래\n3 3 빅데이터실무 3 3\n밍\n전공\nJAVA프레임워크 3 3\n모바일프로그래밍응용 3 3\nJAVA실무 3 3 고급게임프로그래밍 3 3\nIT실무특강 3 3\n서버구축실무 3 3 인공지능 3 3\n선택 Lab2(기초설계) 1 1 현장실습2 12 12\n콘텐츠기획론 3 3 임베디드시스템 3 3\nLab8(종합설계) 1 1\nLab4(기초설계) 1 1 전산통계학 3 3\nUI/UX디자인 3 3\nLab6(종합설계) 1 1",
+      "image_only": false
+    },
+    {
+      "page": 18,
+      "text": "IT인공지능학부\n2021학년도\n전공\n교양 자율선택\n전공 최소인정\n졸업이수\n학부공통+ ※전공\n기초 나사렛 핵심 소양 교양 복수, 연계, 융합, 학생설계전공, 학점\n전공필수( 전공선택 합계 심화\n교양 교양 교양 교양 합계 부전공, 타전공 일선, 교양 일선 등\n36+24)\n12 6 15 3 36 60 21 81 10 127\n학년학기 1학년 1학기 2학년 1학기 3학년 1학기 4학년 1학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n파이썬프로그래밍 3 3\n학부 JAVA 3 3 프로젝트실무1(종\n필수 컴퓨터프로그래밍1 3 3 모바일프로그래밍 3 3 3 3\n공통 UNIX 3 3 합설계)\n컴퓨터그래픽기초 3 3\n멀티미디어이론및실습 3 3\n멀 멀티미디어신호처리 3 3\n영상편집실무1 3 3\n콘 메트페인팅 3 3\n3D그래픽 3 3\n자료구조 3 3\n필 정 시스템프로그래밍 3 3\n컴퓨터네트워크 3 3\n수 보 시스템보안실무 3 3\n컴퓨터구조 3 3\n자료구조 3 3\n인 시스템프로그래밍 3 3\n컴퓨터네트워크 3 3\n공 인공지능이론및실습 3 3\n전공 컴퓨터구조 3 3\n시스코네트워크 3 3 증강및가상현실\n3 3\n고급웹프로그래밍 3 3 디지털포렌식\n3 3\nIT개론 3 3 촬영실무 3 3 게임프로그래밍기초 3 3 정보통신특론\n3 3\n선택 대학수학 3 3 2D융합디자인 3 3 그래픽프로그래밍 3 3 데이터마이닝\n3 3\nLab1(기초설계) 1 1 Lab3(기초설계) 1 1 데이터분석론 3 3 현장실습1\n12 12\n3D영상제작 3 3 Lab7( 종합설계\n1 1\nLab5(종합설계Startup) 1 1 Startup)\n학년학기 1학년 2학기 2학년 2학기 3학년 2학기 4학년 2학기\n학 시 학 시 학 시 학 시\n과 목 명 과 목 명 과 목 명 과 목 명\n이수구분 점 수 점 수 점 수 점 수\n학부 컴퓨터프로그래밍2 3 3 DB이론및실습 3 3 프로젝트실무2(종\n필수 3 3\n공통 웹프로그래밍기초 3 3 JSP/Servlet 3 3 합설계)\n영상편집실무2 3 3 UI/UX디자인 3 3\n멀일러스트레이션 3 3\n3D그래픽응용 3 3 컴퓨터비전및응용 3 3\n콘웹디자인 3 3\n디지털애니메이션 3 3 VFX 3 3\n운영체제\n3 3 소프트웨어공학 3 3\n정이산구조 3 3 컴퓨터네트워크\n필 보객체지향프로그래밍 3 3 응용 3 3 네트워크프로그래밍 3 3\n수 3 3 네트워크보안실무 3 3\n정보보호개론\n운영체제\n3 3 소프트웨어공학 3 3\n인이산구조 3 3 알고리즘\n3 3 네트워크프로그래밍 3 3\n공객체지향프로그래밍 3 3 윈도우즈프로그래\n전공 3 3 빅데이터실무 3 3\n밍\nJAVA프레임워크 3 3\n모바일프로그래밍응용 3 3\nJAVA실무 3 3 IT실무특강\n고급게임프로그래밍 3 3 3 3\n서버구축실무 3 3 현장실습2\n선택 Lab2(기초설계) 1 1 고급AI프로그래밍 3 3 12 12\n콘텐츠기획론 3 3 Lab8( 종합설계\n임베디드시스템 3 3 1 1\nLab4(기초설계) 1 1 Startup)\n전산통계학 3 3\nLab6(종합설계Startup) 1 1",
+      "image_only": false
+    },
+    {
+      "page": 19,
+      "text": "과목명칭 변경 교과목(~2021학년도까지)\n변경 전 변경 후\n데이터통신 / 컴퓨터네트워크1(1학기) 컴퓨터네트워크(1학기)\n컴퓨터네트워크(2학기) 컴퓨터네트워크응용\nJAVA고급프로그래밍 JAVA실무\n자료구조및알고리즘 자료구조\n컴퓨터과학개론 / 정보통신기초 IT개론\n멀티미디어개론 멀티미디어이론및실습\nUNIX시스템프로그래밍 시스템프로그래밍\n컴퓨터그래픽 컴퓨터그래픽기초\n해킹이론및실습 정보보안실습\n고급웹프로그래밍 JSP/Servlet(16학번 이전 정보통신학과만 해당)\nC언어및실습 컴퓨터프로그래밍1\nC언어응용 컴퓨터프로그래밍2\nC#윈도우프로그래밍(14학번 정보통신학과만 해당) 윈도우즈프로그래밍\n임베디드시스템설계 임베디드시스템\n이산수학 이산구조\n영상편집실무 영상편집실무1\nAJAX실무 고급웹프로그래밍\n지능형로봇시스템 인공지능\n졸업프로젝트1 / 프로젝트실무1 프로젝트실무1(종합설계)\n졸업프로젝트2 / 프로젝트실무2 프로젝트실무2(종합설계)\nLab5(종합설계) Lab5(종합설계Startup)\nLab6(종합설계) Lab6(종합설계Startup)\nLab7(종합설계) Lab7(종합설계Startup)\nLab8(종합설계) Lab8(종합설계Startup)\n디지털영상처리 컴퓨터비전및응용\n인공지능 고급AI프로그래밍\n메트페인트 메트페인팅\n고급DB실무 인공지능이론및실습\n현재 개설되지 않는 교과목(전공필수였던 교과목 한정)\n현재 개설되지 않는 교과목(대체 교과목 없음)\nOOP기초\n3D그래픽\n임베디드시스템\nSW개발프로젝트",
+      "image_only": false
+    },
+    {
+      "page": 20,
+      "text": "",
+      "image_only": true
+    },
+    {
+      "page": 21,
+      "text": "인공지능빅데이터 트랙\n2023학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 12 6 15 3 36 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 이산구조 3 3\n1\nIT개론 3 2 1 객체지향프로그래밍 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\nUNIX 3 2 1 운영체제 3 2 1\n컴퓨터네트워크 3 2 1 윈도우즈프로그래밍 3 2 1\n촬영실무 3 2 1 JAVA실무 3 2 1\n전공선택 2D융합디자인 3 2 1 서버구축실무 3 2 1\n2\nLab3(기초설계) 1 1 콘텐츠기획론 3 2 1\nJSP/Servlet 3 2 1\nLab4(기초설계) 1 1\n자료구조 3 2 1 알고리즘 3 2 1\n전공심화\n컴퓨터구조 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n시스템프로그래밍 3 2 1 소프트웨어공학 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택\n그래픽프로그래밍 3 2 1 임베디드시스템 3 2 1\n3\n데이터분석론 3 2 1 네트워크프로그래밍 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\nLab5(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1 고급AI프로그래밍 3 2 1\n전공심화 멀티미디어신호처리 3 2 1 빅데이터실무 3 2 1\n컴퓨터비전및응용 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 55 42 교과목수 : 28개 85 47 38",
+      "image_only": false
+    },
+    {
+      "page": 22,
+      "text": "정보통신보안 트랙\n2023학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 12 6 15 3 36 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 이산구조 3 3\n1\nIT개론 3 2 1 객체지향프로그래밍 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\nUNIX 3 2 1 컴퓨터네트워크응용 3 2 1\n컴퓨터구조 3 2 1 JAVA실무 3 2 1\n촬영실무 3 2 1 서버구축실무 3 2 1\n전공선택\n2D융합디자인 3 2 1 콘텐츠기획론 3 2 1\n2\nLab3(기초설계) 1 1 윈도우즈프로그래밍 3 2 1\nLab4(기초설계) 1 1\n자료구조 3 2 1 운영체제 3 2 1\n전공심화 컴퓨터네트워크 3 2 1 정보보호개론 3 3\nJSP&Servlet 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n시스템프로그래밍 3 2 1 소프트웨어공학 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택 그래픽프로그래밍 3 2 1 임베디드시스템 3 2 1\n3\n데이터분석론 3 2 1 고급AI프로그래밍 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1\nLab5(종합설계Startup) 1 1\n시스템보안실무 3 2 1 네크워크프로그래밍 3 2 1\n전공심화\n3 2 1 네크워크보안실무 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 55 42 교과목수 : 27개 82 46 36",
+      "image_only": false
+    },
+    {
+      "page": 23,
+      "text": "스마트미디어 트랙\n2023학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 12 6 15 3 36 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 일러스트레이션 3 2 1\n1\nIT개론 3 2 1 웹디자인 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\n멀티미디어이론및실습 3 2 1 JAVA실무 3 2 1\nUNIX 3 2 1 서버구축실무 3 2 1\n촬영실무 3 2 1 콘텐츠기획론 3 2 1\n전공선택\n2D융합디자인 3 2 1 JSP/Servlet 3 2 1\n2\nLab3(기초설계) 1 1 윈도우즈프로그래밍 3 2 1\nLab4(기초설계) 1 1\n영상편집실무1 3 2 1 영상편집실무2 3 2 1\n전공심화 3D그래픽 3 2 1 3D그래픽응용 3 2 1\n디지털애니메이션 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n멀티미디어신호처리 3 2 1 컴퓨터비전및응용 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택 그래픽프로그래밍 3 2 1 고급AI프로그래밍 3 2 1\n3\n데이터분석론 3 2 1 임베디드시스템 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1\nLab5(종합설계Startup) 1 1\n매트페인팅 3 2 1 UI/UX디자인 3 2 1\n전공심화\nVFX 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 54 43 교과목수 : 28개 85 46 39",
+      "image_only": false
+    },
+    {
+      "page": 24,
+      "text": "인공지능빅데이터 트랙\n2024학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 10 6 15 3 34 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 이산구조 3 3\n1\nIT개론 3 2 1 객체지향프로그래밍 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\nUNIX 3 2 1 운영체제 3 2 1\n컴퓨터네트워크 3 2 1 윈도우즈프로그래밍 3 2 1\n촬영실무 3 2 1 JAVA실무 3 2 1\n전공선택 2D융합디자인 3 2 1 서버구축실무 3 2 1\n2\nLab3(기초설계) 1 1 콘텐츠기획론 3 2 1\nJSP/Servlet 3 2 1\nLab4(기초설계) 1 1\n자료구조 3 2 1 알고리즘 3 2 1\n전공심화\n컴퓨터구조 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n시스템프로그래밍 3 2 1 소프트웨어공학 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택\n그래픽프로그래밍 3 2 1 임베디드시스템 3 2 1\n3\n데이터분석론 3 2 1 네트워크프로그래밍 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\nLab5(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1 고급AI프로그래밍 3 2 1\n전공심화 멀티미디어신호처리 3 2 1 빅데이터실무 3 2 1\n컴퓨터비전및응용 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 55 42 교과목수 : 28개 85 47 38",
+      "image_only": false
+    },
+    {
+      "page": 25,
+      "text": "정보통신보안 트랙\n2024학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 10 6 15 3 34 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 이산구조 3 3\n1\nIT개론 3 2 1 객체지향프로그래밍 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\nUNIX 3 2 1 컴퓨터네트워크응용 3 2 1\n컴퓨터구조 3 2 1 JAVA실무 3 2 1\n촬영실무 3 2 1 서버구축실무 3 2 1\n전공선택\n2D융합디자인 3 2 1 콘텐츠기획론 3 2 1\n2\nLab3(기초설계) 1 1 윈도우즈프로그래밍 3 2 1\nLab4(기초설계) 1 1\n자료구조 3 2 1 운영체제 3 2 1\n전공심화 컴퓨터네트워크 3 2 1 정보보호개론 3 3\nJSP&Servlet 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n시스템프로그래밍 3 2 1 소프트웨어공학 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택 그래픽프로그래밍 3 2 1 임베디드시스템 3 2 1\n3\n데이터분석론 3 2 1 고급AI프로그래밍 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1\nLab5(종합설계Startup) 1 1\n시스템보안실무 3 2 1 네크워크프로그래밍 3 2 1\n전공심화\n3 2 1 네크워크보안실무 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 55 42 교과목수 : 27개 82 46 36",
+      "image_only": false
+    },
+    {
+      "page": 26,
+      "text": "스마트미디어 트랙\n2024학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 10 6 15 3 34 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 일러스트레이션 3 2 1\n1\nIT개론 3 2 1 웹디자인 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\n멀티미디어이론및실습 3 2 1 JAVA실무 3 2 1\nUNIX 3 2 1 서버구축실무 3 2 1\n촬영실무 3 2 1 콘텐츠기획론 3 2 1\n전공선택\n2D융합디자인 3 2 1 JSP/Servlet 3 2 1\n2\nLab3(기초설계) 1 1 윈도우즈프로그래밍 3 2 1\nLab4(기초설계) 1 1\n영상편집실무1 3 2 1 영상편집실무2 3 2 1\n전공심화 3D그래픽 3 2 1 3D그래픽응용 3 2 1\n디지털애니메이션 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n멀티미디어신호처리 3 2 1 컴퓨터비전및응용 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택 그래픽프로그래밍 3 2 1 고급AI프로그래밍 3 2 1\n3\n데이터분석론 3 2 1 임베디드시스템 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1\nLab5(종합설계Startup) 1 1\n매트페인팅 3 2 1 UI/UX디자인 3 2 1\n전공심화\nVFX 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 54 43 교과목수 : 28개 85 46 39",
+      "image_only": false
+    },
+    {
+      "page": 27,
+      "text": "인공지능빅데이터 트랙\n2025학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 10 6 15 3 34 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 이산구조 3 3\n1\nIT개론 3 2 1 객체지향프로그래밍 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\nUNIX 3 2 1 운영체제 3 2 1\n컴퓨터네트워크 3 2 1 윈도우즈프로그래밍 3 2 1\n촬영실무 3 2 1 JAVA실무 3 2 1\n전공선택 2D융합디자인 3 2 1 서버구축실무 3 2 1\n2\nLab3(기초설계) 1 1 콘텐츠기획론 3 2 1\nJSP/Servlet 3 2 1\nLab4(기초설계) 1 1\n자료구조 3 2 1 알고리즘 3 2 1\n전공심화\n컴퓨터구조 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n시스템프로그래밍 3 2 1 소프트웨어공학 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택\n그래픽프로그래밍 3 2 1 임베디드시스템 3 2 1\n3\n데이터분석론 3 2 1 네트워크프로그래밍 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\nLab5(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1 고급AI프로그래밍 3 2 1\n전공심화 멀티미디어신호처리 3 2 1 빅데이터실무 3 2 1\n컴퓨터비전및응용 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 55 42 교과목수 : 28개 85 47 38",
+      "image_only": false
+    },
+    {
+      "page": 28,
+      "text": "정보통신보안 트랙\n2025학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 10 6 15 3 34 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 이산구조 3 3\n1\nIT개론 3 2 1 객체지향프로그래밍 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\nUNIX 3 2 1 컴퓨터네트워크응용 3 2 1\n컴퓨터구조 3 2 1 JAVA실무 3 2 1\n촬영실무 3 2 1 서버구축실무 3 2 1\n전공선택\n2D융합디자인 3 2 1 콘텐츠기획론 3 2 1\n2\nLab3(기초설계) 1 1 윈도우즈프로그래밍 3 2 1\nLab4(기초설계) 1 1\n자료구조 3 2 1 운영체제 3 2 1\n전공심화 컴퓨터네트워크 3 2 1 정보보호개론 3 3\nJSP&Servlet 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n시스템프로그래밍 3 2 1 소프트웨어공학 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택 그래픽프로그래밍 3 2 1 임베디드시스템 3 2 1\n3\n데이터분석론 3 2 1 고급AI프로그래밍 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1\nLab5(종합설계Startup) 1 1\n시스템보안실무 3 2 1 네크워크프로그래밍 3 2 1\n전공심화\n3 2 1 네크워크보안실무 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 55 42 교과목수 : 27개 82 46 36",
+      "image_only": false
+    },
+    {
+      "page": 29,
+      "text": "스마트미디어 트랙\n2025학년도\n전공\n교양 졸업\n최저이수학점 전공\n구분 자율선택 이수\n기초 나사렛 핵심 소양 교양 전공 전공 합계 심화 학점\n교양 교양 교양 교양 합계 필수 선택 (선택)\n학점 10 6 15 3 34 12 24 36 21 잔여학점 127\n1학기 2학기\n이수 시수 시수\n구분 학 학\n구분 교과목명 이 실 교과목명 이 실\n점 점\n론 습 론 습\n파이썬프로그래밍 3 2 1 컴퓨터프로그래밍2 3 2 1\n전공필수\n컴퓨터프로그래밍1 3 2 1 웹프로그래밍기초 3 2 1\n컴퓨터그래픽기초 3 2 1 일러스트레이션 3 2 1\n1\nIT개론 3 2 1 웹디자인 3 2 1\n전공선택\n대학수학 3 2 1 Lab2(기초설계) 1 1\nLab1(기초설계) 1 1\n전공필수 JAVA 3 2 1 DB이론및실습 3 2 1\n멀티미디어이론및실습 3 2 1 JAVA실무 3 2 1\nUNIX 3 2 1 서버구축실무 3 2 1\n촬영실무 3 2 1 콘텐츠기획론 3 2 1\n전공선택\n2D융합디자인 3 2 1 JSP/Servlet 3 2 1\n2\nLab3(기초설계) 1 1 윈도우즈프로그래밍 3 2 1\nLab4(기초설계) 1 1\n영상편집실무1 3 2 1 영상편집실무2 3 2 1\n전공심화 3D그래픽 3 2 1 3D그래픽응용 3 2 1\n디지털애니메이션 3 2 1\n전공필수 모바일프로그래밍 3 2 1\n멀티미디어신호처리 3 2 1 컴퓨터비전및응용 3 2 1\n시스코네트워크 3 2 1 JAVA프레임워크 3 2 1\n고급웹프로그래밍 3 2 1 모바일프로그래밍응용 3 2 1\n게임프로그래밍기초 3 2 1 고급게임프로그래밍 3 2 1\n전공선택 그래픽프로그래밍 3 2 1 고급AI프로그래밍 3 2 1\n3\n데이터분석론 3 2 1 임베디드시스템 3 2 1\n3D영상제작 3 2 1 Lab6(종합설계Startup) 1 1\n인공지능이론및실습 3 2 1\nLab5(종합설계Startup) 1 1\n매트페인팅 3 2 1 UI/UX디자인 3 2 1\n전공심화\nVFX 3 2 1\n전공필수 프로젝트실무1(종합설계) 3 2 1 프로젝트실무2(종합설계) 3 2 1\n증강및가상현실 3 2 1 IT실무특강 3 2 1\n디지털포렌식 3 2 1 현장실습2(ICT프로젝트인턴쉽2) 12 12\n4 정보통신특론 3 2 1 Lab8(종합설계Startup) 1 1\n전공선택\n데이터마이닝 3 2 1\n현장실습1(ICT프로젝트인턴쉽1) 12 12\nLab7(종합설계Startup) 1 1\n계 교과목수 : 32개 97 54 43 교과목수 : 28개 85 46 39",
+      "image_only": false
+    }
+  ]
+}

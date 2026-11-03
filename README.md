@@ -88,3 +88,12 @@ ConsoleLogin 이벤트만 찾아 시간·사용자·IP·성공/실패를 출력�
 - [네트워크 해킹과 보안 · Chapter 02~06](network-security-summary.md)
 - [빅데이터실무 · R언어 실습 1~6](r-practice-summary.md)
 - [고급AI프로그래밍 · Python·NumPy·PyTorch 실습 1~6](ai-python-summary.md)
+
+
+## 졸업현황2 — HTML 버전
+
+- [코드·실행 안내](졸업현황2/README.md)
+- [변경 요약](졸업현황2/PROJECT_SUMMARY.md)
+- [브라우저로 상세 설명 보기](https://p2terghks.github.io/study-notes/%EC%A1%B8%EC%97%85%ED%98%84%ED%99%A92/CODE_GUIDE.html)
+
+HTML·JavaScript 화면과 Flask/Python OCR 서버로 구성합니다. 설명 문서는 웹에서 열 수 있고, 실제 앱은 Python 서버를 실행해야 합니다.
