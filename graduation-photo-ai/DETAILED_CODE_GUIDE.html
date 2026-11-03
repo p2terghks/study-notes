@@ -1826,107 +1826,57 @@ with rules_tab:
         <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span>
     <span class="p">]</span>
     <span class="k">return</span> <span class="n">lines</span><span class="p">,</span> <span class="n">boxes</span>
-</code></pre></details></section><section id="file-graduation-engine-py"><div class="section-no">DETAILED CODE REFERENCE</div><h2>graduation/engine.py 전체 코드 해설</h2><p class="lead">문자열 구조화와 학점 비교 모듈</p><p>Streamlit이나 OCR 모델에 의존하지 않는 계산 부분이다. 단순한 Python 데이터로 호출할 수 있어 단위 테스트가 가능하다.</p><div class="explainer-label">처리 구간별 상세 설명 · 항목을 펼쳐 코드와 함께 읽기</div><details class="explained-block"><summary>1–9행 · 범주와 성적 규칙</summary><p>학점 영역 목록과 합격·제외 성적 집합을 정의한다. 집합은 특정 성적이 포함되어 있는지 검사하는 데 사용한다.</p><p class="note">정의되지 않은 성적을 통과로 추정하지 않는다. 학교별 성적 제도가 다르면 상수를 검토해야 한다.</p><div class="code-label">graduation/engine.py · 원본 1–9행</div><pre class="python-code" tabindex="0"><code><span class="sd">"""Deterministic credit audit; OCR never decides graduation eligibility."""</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">difflib</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_close_matches</span>
-
-<span class="n">CATEGORIES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"전공필수"</span><span class="p">,</span>
-    <span class="s2">"전공선택"</span><span class="p">,</span>
-    <span class="s2">"전공심화"</span><span class="p">,</span>
-    <span class="s2">"기초교양"</span><span class="p">,</span>
-    <span class="s2">"나사렛교양"</span><span class="p">,</span>
-    <span class="s2">"핵심교양"</span><span class="p">,</span>
-    <span class="s2">"소양교양"</span><span class="p">,</span>
-    <span class="s2">"자율선택"</span><span class="p">,</span>
-    <span class="s2">"미분류"</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">PASS_GRADES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"A+"</span><span class="p">,</span>
-    <span class="s2">"A0"</span><span class="p">,</span>
-    <span class="s2">"A"</span><span class="p">,</span>
-    <span class="s2">"A-"</span><span class="p">,</span>
-    <span class="s2">"B+"</span><span class="p">,</span>
-    <span class="s2">"B0"</span><span class="p">,</span>
-    <span class="s2">"B"</span><span class="p">,</span>
-    <span class="s2">"B-"</span><span class="p">,</span>
-    <span class="s2">"C+"</span><span class="p">,</span>
-    <span class="s2">"C0"</span><span class="p">,</span>
-    <span class="s2">"C"</span><span class="p">,</span>
-    <span class="s2">"C-"</span><span class="p">,</span>
-    <span class="s2">"D+"</span><span class="p">,</span>
-    <span class="s2">"D0"</span><span class="p">,</span>
-    <span class="s2">"D"</span><span class="p">,</span>
-    <span class="s2">"D-"</span><span class="p">,</span>
-    <span class="s2">"P"</span><span class="p">,</span>
-    <span class="s2">"PASS"</span><span class="p">,</span>
-    <span class="s2">"S"</span><span class="p">,</span>
-    <span class="s2">"이수"</span><span class="p">,</span>
-    <span class="s2">"이수완료"</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">FAIL_GRADES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"F"</span><span class="p">,</span>
-    <span class="s2">"NP"</span><span class="p">,</span>
-    <span class="s2">"N"</span><span class="p">,</span>
-    <span class="s2">"U"</span><span class="p">,</span>
-    <span class="s2">"FAIL"</span><span class="p">,</span>
-    <span class="s2">"W"</span><span class="p">,</span>
-    <span class="s2">"철회"</span><span class="p">,</span>
-    <span class="s2">"미이수"</span><span class="p">,</span>
-    <span class="s2">"수강중"</span><span class="p">,</span>
-<span class="p">}</span>
-</code></pre></details><details class="explained-block"><summary>11–21행 · 정규화와 이름 검색</summary><p>정규화된 이름으로 검색 인덱스를 만들고 정확한 일치 또는 유사 후보를 반환한다.</p><p class="note">get_close_matches는 문자열 유사도 함수이며 이 단계는 신경망 추론이 아니다.</p><div class="code-label">graduation/engine.py · 원본 11–21행</div><pre class="python-code" tabindex="0"><code><span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+</code></pre></details></section><section id="file-graduation-engine-py"><div class="section-no">ENGINE · VARIABLES EXPLAINED</div><h2>engine.py · 변수에 담기는 값과 코드</h2><p class="lead">변수 이름 → 자료형 → 담는 값 → 주석이 달린 코드 순서로 읽으세요.</p><p>아래 코드는 현재 engine.py에 <strong>학습용 한국어 주석만 추가한 표시용 코드</strong>입니다. 실행 파일과 계산 동작은 변경하지 않았습니다. 추가된 주석 때문에 화면의 줄 수는 원본 파일과 다릅니다.</p><p><a href="#engine-vars-audit">audit() 변수·주석 코드 바로 보기 ↓</a></p><details open><summary>공통 상수</summary><p>여러 함수에서 공통으로 사용하는 기준입니다. 대문자 이름은 수정하지 않는 기준값이라는 관례입니다.</p><div class="table-wrap"><table><thead><tr><th>변수</th><th>자료형</th><th>무엇을 담나요?</th><th>예시·주의</th></tr></thead><tbody><tr><td>CATEGORIES</td><td>list[str]</td><td>사용 가능한 이수구분 이름 목록</td><td>[&#x27;전공필수&#x27;, &#x27;전공선택&#x27;, ..., &#x27;미분류&#x27;]</td></tr><tr><td>PASS_GRADES</td><td>set[str]</td><td>학점 인정 대상으로 다루는 성적 집합</td><td>{&#x27;A+&#x27;, &#x27;B0&#x27;, &#x27;P&#x27;, &#x27;이수완료&#x27;, ...}</td></tr><tr><td>FAIL_GRADES</td><td>set[str]</td><td>취득학점에서 제외하는 성적 집합</td><td>{&#x27;F&#x27;, &#x27;NP&#x27;, &#x27;수강중&#x27;, ...}</td></tr></tbody></table></div></details><details id="engine-vars-normalize" open><summary>normalize() · 1개 변수 설명</summary><p>입력값을 과목명 비교용 문자열로 정리합니다.</p><div class="table-wrap"><table><thead><tr><th>변수</th><th>자료형</th><th>무엇을 담나요?</th><th>예시·주의</th></tr></thead><tbody><tr><td>value</td><td>입력값 · 보통 str</td><td>정리할 원래 값. 이 함수에서는 과목명을 전달합니다.</td><td>&#x27; JAVA &#x27; → 반환값 &#x27;java&#x27;</td></tr></tbody></table></div><h3>변수 설명 주석이 있는 코드</h3><pre class="python-code"><code><span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="c1"># value: 정리할 원래 과목명. 반환값은 공백·대소문자를 정리한 비교용 문자열입니다.</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
         <span class="sa">r</span><span class="s2">"\s+"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s2">"NFKC"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">))</span>
     <span class="p">)</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">catalog_index</span><span class="p">(</span><span class="n">profile</span><span class="p">):</span>
+</code></pre></details><details id="engine-vars-catalog_index" open><summary>catalog_index() · 2개 변수 설명</summary><p>과목 목록을 이름으로 찾기 쉬운 사전으로 바꿉니다.</p><div class="table-wrap"><table><thead><tr><th>변수</th><th>자료형</th><th>무엇을 담나요?</th><th>예시·주의</th></tr></thead><tbody><tr><td>profile</td><td>dict</td><td>선택한 입학연도·트랙의 교육과정 한 묶음. courses와 minimums 등을 포함합니다.</td><td>{&#x27;id&#x27;:&#x27;2025-인공지능빅데이터&#x27;, &#x27;courses&#x27;: [...], &#x27;minimums&#x27;: {...}, ...}</td></tr><tr><td>c</td><td>dict</td><td>profile[&#x27;courses&#x27;]를 순회할 때 현재 과목 하나</td><td>{&#x27;name&#x27;:&#x27;JAVA&#x27;, &#x27;credits&#x27;:3, &#x27;category&#x27;:&#x27;전공필수&#x27;, ...}</td></tr></tbody></table></div><h3>변수 설명 주석이 있는 코드</h3><pre class="python-code"><code><span class="k">def</span><span class="w"> </span><span class="nf">catalog_index</span><span class="p">(</span><span class="n">profile</span><span class="p">):</span>
+    <span class="c1"># profile: 선택한 교육과정 / c: courses 목록에서 꺼낸 현재 과목 딕셔너리</span>
     <span class="k">return</span> <span class="p">{</span><span class="n">normalize</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]):</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"courses"</span><span class="p">]}</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
+</code></pre></details><details id="engine-vars-suggest" open><summary>suggest() · 5개 변수 설명</summary><p>입력 이름에 정확히 일치하는 과목이나 비슷한 후보를 찾습니다.</p><div class="table-wrap"><table><thead><tr><th>변수</th><th>자료형</th><th>무엇을 담나요?</th><th>예시·주의</th></tr></thead><tbody><tr><td>name</td><td>str</td><td>검색하려는 과목 이름</td><td>&#x27;JAVA&#x27; 또는 &#x27;JAVAA&#x27;</td></tr><tr><td>profile</td><td>dict</td><td>검색할 교육과정의 기준 자료</td><td>2025 인공지능빅데이터 프로필</td></tr><tr><td>catalog</td><td>dict[str, dict]</td><td>정규화한 과목명 → 과목 정보의 검색용 사전</td><td>{&#x27;java&#x27;: {&#x27;name&#x27;:&#x27;JAVA&#x27;,&#x27;credits&#x27;:3,...}, ...}</td></tr><tr><td>key</td><td>str</td><td>입력 name을 normalize한 검색 키</td><td>name=&#x27; JAVA &#x27;이면 key=&#x27;java&#x27;</td></tr><tr><td>near</td><td>list[str]</td><td>유사도 기준을 통과한 후보 키. n=1이라 최대 1개입니다.</td><td>[&#x27;java&#x27;] 또는 []</td></tr></tbody></table></div><h3>변수 설명 주석이 있는 코드</h3><pre class="python-code"><code><span class="k">def</span><span class="w"> </span><span class="nf">suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
+    <span class="c1"># catalog: 이름별 기준 과목 사전 / key: name을 정리한 검색 키(예: 'java')</span>
     <span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog_index</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
     <span class="n">key</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">catalog</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">catalog</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="kc">True</span>
+    <span class="c1"># near: 비슷한 후보 키 목록. 후보가 없으면 [], 있으면 최대 1개입니다.</span>
     <span class="n">near</span> <span class="o">=</span> <span class="n">get_close_matches</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">catalog</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">catalog</span><span class="p">[</span><span class="n">near</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="kc">False</span><span class="p">)</span> <span class="k">if</span> <span class="n">near</span> <span class="k">else</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-</code></pre></details><details class="explained-block"><summary>23–39행 · 문자열 파싱</summary><p>문자열과 OCR 딕셔너리 입력을 모두 받는다. 정규표현식으로 분리한 뒤 정확히 일치한 과목만 자동 분류하고 나머지는 후보를 남긴다.</p><p class="note">성적 그룹은 선택 사항이다. 성적이 없으면 빈칸을 유지하며 실제 인정 여부는 audit에서 확인한다.</p><div class="code-label">graduation/engine.py · 원본 23–63행</div><pre class="python-code" tabindex="0"><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_lines_with_review</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
+</code></pre></details><details id="engine-vars-parse_lines_with_review" open><summary>parse_lines_with_review() · 18개 변수 설명</summary><p>OCR 또는 텍스트의 각 행을 과목 후보와 미해석 행으로 나눕니다. 여기서 credits는 처음에는 문자열입니다.</p><div class="table-wrap"><table><thead><tr><th>변수</th><th>자료형</th><th>무엇을 담나요?</th><th>예시·주의</th></tr></thead><tbody><tr><td>lines</td><td>list[str] 또는 list[dict]</td><td>읽을 전체 행들. OCR이면 text·confidence를 담은 딕셔너리 목록입니다.</td><td>[&#x27;JAVA 3 A+&#x27;] 또는 [{&#x27;text&#x27;:&#x27;JAVA 3 A+&#x27;,&#x27;confidence&#x27;:0.9}]</td></tr><tr><td>profile</td><td>dict</td><td>과목명과 이수구분을 찾을 교육과정</td><td>선택한 연도·트랙의 기준</td></tr><tr><td>rows</td><td>list[dict]</td><td>해석에 성공한 과목 후보들을 차례로 모은 목록</td><td>[{&#x27;과목명&#x27;:&#x27;JAVA&#x27;,&#x27;학점&#x27;:3.0,&#x27;확인&#x27;:False,...}]</td></tr><tr><td>rejected</td><td>list[dict]</td><td>해석하지 못한 행의 원문과 이유를 모은 목록</td><td>[{&#x27;text&#x27;:&#x27;JAVA 3 BO&#x27;,&#x27;reason&#x27;:&#x27;과목명·학점·성적 열을 확인하세요.&#x27;}]</td></tr><tr><td>grades</td><td>list[str]</td><td>통과·제외 성적을 합쳐 글자 길이가 긴 순서로 정렬한 목록</td><td>&#x27;이수완료&#x27;처럼 긴 표현을 앞에 배치</td></tr><tr><td>g</td><td>str</td><td>성적 패턴을 만들 때 현재 성적 문자열 하나</td><td>&#x27;A+&#x27;</td></tr><tr><td>grade_pattern</td><td>str</td><td>허용 성적들을 |로 연결한 정규표현식 문자열</td><td>(?:...|A\+|...|F|...)</td></tr><tr><td>pattern</td><td>re.Pattern</td><td>과목명·학점·성적과 선택적 평점 열을 읽는 컴파일된 정규표현식</td><td>pattern.fullmatch(text)로 검사</td></tr><tr><td>line</td><td>str 또는 dict</td><td>lines를 반복할 때 현재 행 하나</td><td>{&#x27;text&#x27;:&#x27;JAVA 3 A+&#x27;,&#x27;confidence&#x27;:0.9}</td></tr><tr><td>text</td><td>str</td><td>현재 행에서 꺼낸 문자열. 앞뒤 공백을 제거합니다.</td><td>&#x27;JAVA 3 A+&#x27;</td></tr><tr><td>confidence</td><td>숫자 · 보통 float</td><td>현재 OCR 행의 신뢰도. 직접 입력이나 누락 시 기본 1.0입니다.</td><td>0.9 / 기본 1.0은 실제 측정된 인식률이 아님</td></tr><tr><td>match</td><td>re.Match 또는 None</td><td>전체 행 패턴이 일치한 결과. 없으면 None입니다.</td><td>일치하면 match.groups()로 세 값을 꺼냄</td></tr><tr><td>name</td><td>str</td><td>패턴이 추출한 과목명</td><td>&#x27;JAVA&#x27;</td></tr><tr><td>credits</td><td>str</td><td>패턴이 추출한 학점 문자열. rows에 저장할 때 float로 바꿉니다.</td><td>&#x27;3&#x27; → float(credits) → 3.0</td></tr><tr><td>grade</td><td>str</td><td>추출된 성적. 성적 없는 허용 후보는 빈 문자열입니다.</td><td>&#x27;A+&#x27; 또는 &#x27;&#x27;</td></tr><tr><td>missing_grade</td><td>re.Match 또는 None</td><td>성적 없이 과목명·학점만 있는 형식인지 검사한 결과</td><td>&#x27;JAVA 3&#x27;에서는 일치하지만 &#x27;JAVA 3 BO&#x27;에서는 미일치</td></tr><tr><td>course</td><td>dict 또는 None</td><td>suggest가 찾은 교육과정 과목 정보. 유사 후보일 수도 있습니다.</td><td>{&#x27;name&#x27;:&#x27;JAVA&#x27;,&#x27;credits&#x27;:3,&#x27;category&#x27;:&#x27;전공필수&#x27;,...}</td></tr><tr><td>exact</td><td>bool</td><td>과목명이 정규화 후 정확히 일치했는지 여부</td><td>True면 자동 분류, False면 미분류와 후보 메모</td></tr></tbody></table></div><h3>변수 설명 주석이 있는 코드</h3><pre class="python-code"><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_lines_with_review</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Return candidates and every nonempty unparsed line for manual review."""</span>
+    <span class="c1"># rows: 과목 후보 목록 / rejected: 해석 실패 원문·사유 목록</span>
     <span class="n">rows</span><span class="p">,</span> <span class="n">rejected</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="c1"># grades: 허용 성적들을 길이순으로 정렬한 목록</span>
     <span class="n">grades</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">PASS_GRADES</span> <span class="o">|</span> <span class="n">FAIL_GRADES</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># g: 현재 성적 문자열 / grade_pattern: 성적들을 OR(|)로 연결한 패턴 문자열</span>
     <span class="n">grade_pattern</span> <span class="o">=</span> <span class="s2">"(?:"</span> <span class="o">+</span> <span class="s2">"|"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grades</span><span class="p">)</span> <span class="o">+</span> <span class="s2">")"</span>
+    <span class="c1"># pattern: 전체 행에서 과목명·학점·성적을 추출할 정규표현식 객체</span>
     <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
         <span class="sa">rf</span><span class="s2">"^\s*(.+?)\s+(\d+(?:\.\d+)?)\s*(?:학점\s*)?"</span>
         <span class="sa">rf</span><span class="s2">"(</span><span class="si">{</span><span class="n">grade_pattern</span><span class="si">}</span><span class="s2">)(?:\s+(?:[0-4](?:\.\d+)?|5(?:\.0+)?))?\s*$"</span><span class="p">,</span>
         <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="c1"># lines: 전체 입력 행 / line: 이번에 처리할 행 하나</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="c1"># text: 실제 인식 문자열 / confidence: 이 행의 인식 신뢰도</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">line</span>
         <span class="n">confidence</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"confidence"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
-            <span class="k">else</span> <span class="mf">1.0</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"confidence"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="mf">1.0</span>
         <span class="p">)</span>
         <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
-            <span class="sa">r</span><span class="s2">"^(총학점|합계|취득학점|평균|신청학점)(?:\s|$)"</span><span class="p">,</span> <span class="n">text</span>
-        <span class="p">):</span>
+        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">"^(총학점|합계|취득학점|평균|신청학점)(?:\s|$)"</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
             <span class="k">continue</span>
+        <span class="c1"># match: 일치 결과 객체. 패턴에 맞지 않으면 None입니다.</span>
         <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="c1"># name: 과목명 / credits: 아직 문자열인 학점 / grade: 성적 문자열</span>
             <span class="n">name</span><span class="p">,</span> <span class="n">credits</span><span class="p">,</span> <span class="n">grade</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
             <span class="c1"># A prior grade/credit pair indicates merged columns or two courses.</span>
             <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-                <span class="sa">rf</span><span class="s2">"\s\d+(?:\.\d+)?\s+</span><span class="si">{</span><span class="n">grade_pattern</span><span class="si">}</span><span class="s2">(?=\s|$)"</span><span class="p">,</span>
-                <span class="n">name</span><span class="p">,</span>
-                <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">,</span>
+                <span class="sa">rf</span><span class="s2">"\s\d+(?:\.\d+)?\s+</span><span class="si">{</span><span class="n">grade_pattern</span><span class="si">}</span><span class="s2">(?=\s|$)"</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">I</span>
             <span class="p">):</span>
                 <span class="n">rejected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="p">{</span>
@@ -1936,23 +1886,18 @@ with rules_tab:
                 <span class="p">)</span>
                 <span class="k">continue</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">missing_grade</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span>
-                <span class="sa">r</span><span class="s2">"(.+?)\s+(\d+(?:\.\d+)?)\s*"</span><span class="p">,</span> <span class="n">text</span>
-            <span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span>
-                <span class="ow">not</span> <span class="n">missing_grade</span>
-                <span class="ow">or</span> <span class="ow">not</span> <span class="n">suggest</span><span class="p">(</span><span class="n">missing_grade</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">profile</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="p">):</span>
+            <span class="c1"># missing_grade: 성적 없이 과목명·학점만 있는지 검사한 결과</span>
+            <span class="n">missing_grade</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="sa">r</span><span class="s2">"(.+?)\s+(\d+(?:\.\d+)?)\s*"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">missing_grade</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">suggest</span><span class="p">(</span><span class="n">missing_grade</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">profile</span><span class="p">)[</span><span class="mi">1</span><span class="p">]:</span>
                 <span class="n">rejected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="p">{</span>
-                        <span class="s2">"text"</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-                        <span class="s2">"reason"</span><span class="p">:</span> <span class="s2">"과목명·학점·성적 열을 확인하세요."</span><span class="p">,</span>
-                    <span class="p">}</span>
+                    <span class="p">{</span><span class="s2">"text"</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="s2">"reason"</span><span class="p">:</span> <span class="s2">"과목명·학점·성적 열을 확인하세요."</span><span class="p">}</span>
                 <span class="p">)</span>
                 <span class="k">continue</span>
             <span class="n">name</span><span class="p">,</span> <span class="n">credits</span> <span class="o">=</span> <span class="n">missing_grade</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
             <span class="n">grade</span> <span class="o">=</span> <span class="s2">""</span>
+        <span class="c1"># course: 찾은 기준 과목 또는 None / exact: 이름이 정확히 일치했는지</span>
         <span class="n">course</span><span class="p">,</span> <span class="n">exact</span> <span class="o">=</span> <span class="n">suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">profile</span><span class="p">)</span>
+        <span class="c1"># 한 과목 딕셔너리를 rows에 추가합니다. 학점은 float, 확인은 False로 저장합니다.</span>
         <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
             <span class="p">{</span>
                 <span class="s2">"과목명"</span><span class="p">:</span> <span class="n">course</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="k">if</span> <span class="n">exact</span> <span class="k">else</span> <span class="n">name</span><span class="p">,</span>
@@ -1972,29 +1917,36 @@ with rules_tab:
                 <span class="p">),</span>
             <span class="p">}</span>
         <span class="p">)</span>
+    <span class="c1"># 후보 목록과 미해석 목록을 두 값의 튜플로 묶어 반환합니다.</span>
     <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">rejected</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">parse_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
+</code></pre></details><details id="engine-vars-parse_lines" open><summary>parse_lines() · 2개 변수 설명</summary><p>기존 호출부와 호환하기 위한 짧은 함수입니다. 새 파서를 호출한 뒤 첫 번째 반환값인 후보 목록만 꺼냅니다.</p><div class="table-wrap"><table><thead><tr><th>변수</th><th>자료형</th><th>무엇을 담나요?</th><th>예시·주의</th></tr></thead><tbody><tr><td>lines</td><td>list</td><td>파서에 넘길 입력 행 목록</td><td>[&#x27;JAVA 3 A+&#x27;]</td></tr><tr><td>profile</td><td>dict</td><td>적용할 교육과정</td><td>parse_lines_with_review에 그대로 전달</td></tr></tbody></table></div><h3>변수 설명 주석이 있는 코드</h3><pre class="python-code"><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Compatibility helper; interactive imports use parse_lines_with_review."""</span>
+    <span class="c1"># lines와 profile을 넘기고 [0]으로 과목 후보 목록만 꺼냅니다.</span>
     <span class="k">return</span> <span class="n">parse_lines_with_review</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</code></pre></details><details class="explained-block"><summary>41–56행 · 감사 초기화와 기본 검사</summary><p>accepted는 중복 판단, totals는 영역별 합계, issues는 검토 사유, excluded는 제외 사유를 저장한다. 행마다 이름·확인·분류·학점을 검사한다.</p><p class="note">continue는 해당 행만 건너뛰며 전체 검사를 중단하지 않는다. 모든 행을 확인한 것으로 일괄 처리하지 않는다.</p><div class="code-label">graduation/engine.py · 원본 65–80행</div><pre class="python-code" tabindex="0"><code><span class="k">def</span><span class="w"> </span><span class="nf">audit</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="p">(),</span> <span class="n">advanced</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+</code></pre></details><details id="engine-vars-audit" open><summary>audit() · 24개 변수 설명</summary><p>사용자가 검토한 rows를 실제 학점 기준과 비교합니다. 같은 이름의 변수라도 파서 함수 안의 변수와는 별개의 지역변수입니다.</p><div class="table-wrap"><table><thead><tr><th>변수</th><th>자료형</th><th>무엇을 담나요?</th><th>예시·주의</th></tr></thead><tbody><tr><td>rows</td><td>list[dict]</td><td>검토 표에서 전달받은 전체 이수 내역</td><td>[{&#x27;과목명&#x27;:&#x27;JAVA&#x27;,&#x27;학점&#x27;:3,&#x27;성적&#x27;:&#x27;A+&#x27;,&#x27;확인&#x27;:True,...}]</td></tr><tr><td>profile</td><td>dict</td><td>최소학점·과목 목록·심화 기준 등 점검에 필요한 교육과정</td><td>minimums[&#x27;총학점&#x27;]=127</td></tr><tr><td>mandatory</td><td>tuple[str] 또는 list[str]</td><td>학과 확인 후 사용자가 의무 이수로 지정한 과목명들. 기본값은 빈 튜플입니다.</td><td>(&#x27;JAVA&#x27;, &#x27;컴퓨터프로그래밍1&#x27;) 또는 []</td></tr><tr><td>advanced</td><td>bool</td><td>선택한 전공심화 최소학점도 별도로 검사할지 여부</td><td>False가 기본 / True이면 심화 검사 추가</td></tr><tr><td>catalog</td><td>dict[str, dict]</td><td>교육과정의 정규화된 이름 → 과목 정보 사전</td><td>catalog[&#x27;java&#x27;]는 JAVA의 기준 정보</td></tr><tr><td>totals</td><td>dict[str, float]</td><td>이수구분별로 인정된 학점을 누적하고 총합도 넣는 사전</td><td>{&#x27;전공필수&#x27;:3.0, ..., &#x27;총학점&#x27;:3.0}</td></tr><tr><td>accepted</td><td>dict[str, dict]</td><td>검사를 통과한 과목만 정규화한 이름 키로 저장한 사전</td><td>{&#x27;java&#x27;: {&#x27;과목명&#x27;:&#x27;JAVA&#x27;,&#x27;학점&#x27;:3.0,...}}</td></tr><tr><td>issues</td><td>list[str]</td><td>수정이나 확인이 필요한 입력 문제 목록</td><td>[&#x27;1행 JAVA: 원문 확인이 필요합니다.&#x27;]</td></tr><tr><td>excluded</td><td>list[str]</td><td>F·중복 등 제외된 이유 목록</td><td>[&#x27;자료구조: F (취득학점 제외)&#x27;]</td></tr><tr><td>i</td><td>int</td><td>현재 입력 행 번호. enumerate(rows, 1)이므로 1부터 시작합니다.</td><td>1, 2, 3, ...</td></tr><tr><td>row</td><td>dict</td><td>rows 안에서 현재 검사 중인 한 과목의 정보</td><td>{&#x27;과목명&#x27;:&#x27;JAVA&#x27;,&#x27;학점&#x27;:3,&#x27;이수구분&#x27;:&#x27;전공필수&#x27;,...}</td></tr><tr><td>name</td><td>str</td><td>현재 행에서 꺼내 앞뒤 공백을 제거한 과목명</td><td>&#x27;JAVA&#x27;</td></tr><tr><td>category</td><td>str</td><td>현재 행에 입력된 이수구분. 없으면 미분류입니다.</td><td>&#x27;전공필수&#x27;</td></tr><tr><td>credits</td><td>float</td><td>현재 행의 학점을 float로 변환한 값. 변환 실패 시 NaN입니다.</td><td>3.0 / NaN은 유효성 검사에서 제외</td></tr><tr><td>grade</td><td>str</td><td>앞뒤 공백 제거·대문자 통일을 거친 성적</td><td>&#x27;b0&#x27; → &#x27;B0&#x27;</td></tr><tr><td>key</td><td>str</td><td>행 검사에서는 정규화한 과목명. checks 컴프리헨션에서는 기준 항목명입니다.</td><td>행 검사: &#x27;java&#x27; / checks: &#x27;총학점&#x27;</td></tr><tr><td>course</td><td>dict 또는 None</td><td>catalog에서 정확히 일치하는 이름으로 찾은 기준 과목</td><td>입력과 course[&#x27;credits&#x27;]·course[&#x27;category&#x27;]를 비교</td></tr><tr><td>old</td><td>dict</td><td>이미 accepted에 저장된 같은 이름의 이전 인정 내역</td><td>중복 행과 학점·구분을 비교할 대상</td></tr><tr><td>checks</td><td>list[dict]</td><td>총학점·교양·전공 등 항목별 필요·인정·부족학점 결과 목록</td><td>[{&#x27;항목&#x27;:&#x27;총학점&#x27;,&#x27;필요학점&#x27;:127,&#x27;인정학점&#x27;:3,&#x27;부족학점&#x27;:124}, ...]</td></tr><tr><td>value</td><td>int 또는 float</td><td>checks에서는 해당 항목의 최소학점, 심화 분기에서는 심화 최소학점</td><td>총학점 기준이면 127 / 심화이면 21</td></tr><tr><td>missing</td><td>list[str]</td><td>사용자가 지정한 mandatory 중 인정 내역에 없는 과목명 목록</td><td>[&#x27;컴퓨터프로그래밍1&#x27;]</td></tr><tr><td>uncompleted</td><td>list[dict]</td><td>교육과정의 전공필수 목록 중 인정 내역에 없는 과목 정보 목록</td><td>missing과 달리 과목명 문자열이 아니라 기준 과목 딕셔너리들</td></tr><tr><td>status</td><td>str</td><td>입력 문제·부족학점·의무 과목 누락을 종합한 결과 문구</td><td>&#x27;입력 검토 필요&#x27; / &#x27;입력 기준 미충족&#x27; / 조건 충족 안내</td></tr><tr><td>c</td><td>str 또는 dict · 위치에 따라 다름</td><td>totals 생성·합계에서는 이수구분 문자열, uncompleted에서는 과목 딕셔너리, any에서는 검사 결과 딕셔너리</td><td>totals[c]의 c와 c[&#x27;부족학점&#x27;]의 c는 같은 의미가 아님</td></tr></tbody></table></div><h3>변수 설명 주석이 있는 코드</h3><pre class="python-code"><code><span class="k">def</span><span class="w"> </span><span class="nf">audit</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="p">(),</span> <span class="n">advanced</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="c1"># rows: 검토된 전체 내역 / profile: 적용 기준 / mandatory: 지정 의무 과목 / advanced: 심화 검사 여부</span>
     <span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog_index</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
+    <span class="c1"># totals: 구분별 누적 학점. 여기서 c는 이수구분 문자열입니다.</span>
     <span class="n">totals</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">CATEGORIES</span><span class="p">}</span>
+    <span class="c1"># accepted: 인정 과목 사전 / issues: 검토 문제 / excluded: F·중복 제외 사유</span>
     <span class="n">accepted</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">issues</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">excluded</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># i: 1부터 시작하는 행 번호 / row: 이번에 검사하는 과목 딕셔너리</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># name: 현재 행의 과목명. 앞뒤 공백을 제거합니다.</span>
         <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"과목명"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
             <span class="k">continue</span>
         <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"확인"</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 원문 확인이 필요합니다."</span><span class="p">)</span>
             <span class="k">continue</span>
+        <span class="c1"># category: 현재 행의 이수구분(예: '전공필수')</span>
         <span class="n">category</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"이수구분"</span><span class="p">,</span> <span class="s2">"미분류"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CATEGORIES</span> <span class="ow">or</span> <span class="n">category</span> <span class="o">==</span> <span class="s2">"미분류"</span><span class="p">:</span>
             <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 이수구분을 지정하세요."</span><span class="p">)</span>
             <span class="k">continue</span>
+        <span class="c1"># credits: 숫자로 바꾼 학점. 파서 함수의 문자열 credits와는 별개입니다.</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">credits</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"학점"</span><span class="p">))</span>
         <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
@@ -2004,304 +1956,7 @@ with rules_tab:
                 <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 유효한 학점(0 초과 30 이하)을 입력하세요."</span>
             <span class="p">)</span>
             <span class="k">continue</span>
-</code></pre></details><details class="explained-block"><summary>57–71행 · 성적·중복 검사와 합산</summary><p>F 등 제외 성적을 처리하고 불명확한 성적은 검토 요청한다. 이미 인정한 과목은 중복 합산하지 않고, 유효한 새 과목만 저장하고 더한다.</p><p class="note">충돌하는 중복 행을 만나도 첫 번째로 인정한 행은 남는다. 결과 상태가 검토 필요이므로 그 총학점을 확정값으로 보면 안 된다.</p><div class="code-label">graduation/engine.py · 원본 81–102행</div><pre class="python-code" tabindex="0"><code><span class="n">grade</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"성적"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">FAIL_GRADES</span><span class="p">:</span>
-    <span class="n">excluded</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">grade</span><span class="si">}</span><span class="s2"> (취득학점 제외)"</span><span class="p">)</span>
-    <span class="k">continue</span>
-<span class="k">if</span> <span class="n">grade</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">PASS_GRADES</span><span class="p">:</span>
-    <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 성적을 확인하세요."</span><span class="p">)</span>
-    <span class="k">continue</span>
-<span class="n">key</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="n">course</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">course</span> <span class="ow">and</span> <span class="p">(</span>
-    <span class="n">credits</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="n">course</span><span class="p">[</span><span class="s2">"credits"</span><span class="p">])</span>
-    <span class="ow">or</span> <span class="n">category</span> <span class="o">!=</span> <span class="n">course</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span>
-<span class="p">):</span>
-    <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">: 교육과정은 </span><span class="si">{</span><span class="n">course</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">course</span><span class="p">[</span><span class="s2">"credits"</span><span class="p">]</span><span class="si">}</span><span class="s1">학점입니다. 입력을 수정하거나 학과에서 인정 기준을 확인하세요.'</span>
-    <span class="p">)</span>
-    <span class="k">continue</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">course</span> <span class="ow">and</span> <span class="n">category</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"전공"</span><span class="p">):</span>
-    <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 교육과정에 없는 전공 과목입니다. 과목명·대체 인정 여부를 확인하세요."</span>
-    <span class="p">)</span>
-    <span class="k">continue</span>
-<span class="c1"># Conflicting repeated records require a user decision, never a silent sum.</span>
-<span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">accepted</span><span class="p">:</span>
-    <span class="n">old</span> <span class="o">=</span> <span class="n">accepted</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">old</span><span class="p">[</span><span class="s2">"학점"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">credits</span> <span class="ow">or</span> <span class="n">old</span><span class="p">[</span><span class="s2">"이수구분"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">category</span><span class="p">:</span>
-        <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 중복 내역의 학점 또는 구분이 다릅니다. 한 행만 남기세요."</span>
-        <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">excluded</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 중복 취득은 1회만 계산"</span><span class="p">)</span>
-    <span class="k">continue</span>
-<span class="n">accepted</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"과목명"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
-    <span class="s2">"학점"</span><span class="p">:</span> <span class="n">credits</span><span class="p">,</span>
-    <span class="s2">"이수구분"</span><span class="p">:</span> <span class="n">category</span><span class="p">,</span>
-    <span class="s2">"성적"</span><span class="p">:</span> <span class="n">grade</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">+=</span> <span class="n">credits</span>
-</code></pre></details><details class="explained-block"><summary>72–85행 · 합계와 최소학점 비교</summary><p>총학점·교양합계·전공합계를 계산한 다음 전공심화를 전공선택 최소학점의 인정값에 포함한다. 기준마다 max(0, 필요-인정)으로 부족 학점을 구한다.</p><p class="note">각 부족 학점은 서로 겹치는 조건의 차이이므로 모든 부족 값을 단순히 더해 추가 수강량으로 해석하면 안 된다.</p><div class="code-label">graduation/engine.py · 원본 103–116행</div><pre class="python-code" tabindex="0"><code><span class="n">totals</span><span class="p">[</span><span class="s2">"총학점"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-<span class="n">totals</span><span class="p">[</span><span class="s2">"교양합계"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
-    <span class="n">totals</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"기초교양"</span><span class="p">,</span> <span class="s2">"나사렛교양"</span><span class="p">,</span> <span class="s2">"핵심교양"</span><span class="p">,</span> <span class="s2">"소양교양"</span><span class="p">]</span>
-<span class="p">)</span>
-<span class="n">totals</span><span class="p">[</span><span class="s2">"전공합계"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
-    <span class="n">totals</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"전공필수"</span><span class="p">,</span> <span class="s2">"전공선택"</span><span class="p">,</span> <span class="s2">"전공심화"</span><span class="p">]</span>
-<span class="p">)</span>
-<span class="c1"># Advanced courses contribute to elective minima; no double counting in total.</span>
-<span class="n">totals</span><span class="p">[</span><span class="s2">"전공선택"</span><span class="p">]</span> <span class="o">+=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"전공심화"</span><span class="p">]</span>
-<span class="n">checks</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span>
-        <span class="s2">"항목"</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
-        <span class="s2">"필요학점"</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
-        <span class="s2">"인정학점"</span><span class="p">:</span> <span class="n">totals</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
-        <span class="s2">"부족학점"</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span> <span class="o">-</span> <span class="n">totals</span><span class="p">[</span><span class="n">key</span><span class="p">]),</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"minimums"</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-<span class="p">]</span>
-<span class="k">if</span> <span class="n">advanced</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"optional_advanced"</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="s2">"이 연도의 전공심화 최소학점이 제공되지 않아 확인이 필요합니다."</span>
-        <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"optional_advanced"</span><span class="p">]</span>
-        <span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">"항목"</span><span class="p">:</span> <span class="s2">"선택한 전공심화"</span><span class="p">,</span>
-                <span class="s2">"필요학점"</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
-                <span class="s2">"인정학점"</span><span class="p">:</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"전공심화"</span><span class="p">],</span>
-                <span class="s2">"부족학점"</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span> <span class="o">-</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"전공심화"</span><span class="p">]),</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-</code></pre></details><details class="explained-block"><summary>86–94행 · 지정 의무 과목과 최종 상태</summary><p>accepted에 없는 지정 의무 과목을 찾고, 별도로 교육과정의 미이수 전공필수 목록을 만든다. issues를 우선해 상태를 정하고 보고서를 반환한다.</p><p class="note">교육과정 전공필수 목록 전체를 자동 의무로 강제하지 않는다. 수동 지정하지 않은 필수과목의 의무 여부는 별도 학과 확인이 필요하다.</p><div class="code-label">graduation/engine.py · 원본 117–126행</div><pre class="python-code" tabindex="0"><code><span class="n">missing</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">mandatory</span> <span class="k">if</span> <span class="n">normalize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">accepted</span>
-<span class="p">]</span>
-<span class="n">uncompleted</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">c</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">catalog</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"전공필수"</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">accepted</span>
-<span class="p">]</span>
-<span class="n">status</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s2">"입력 검토 필요"</span>
-    <span class="k">if</span> <span class="n">issues</span>
-    <span class="k">else</span> <span class="p">(</span>
-        <span class="s2">"입력 기준 미충족"</span>
-        <span class="k">if</span> <span class="n">missing</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"부족학점"</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">checks</span><span class="p">)</span>
-        <span class="k">else</span> <span class="s2">"입력한 학점·지정 과목 기준 충족 (공식 요건 확인 대기)"</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-<span class="k">return</span> <span class="p">{</span>
-    <span class="s2">"status"</span><span class="p">:</span> <span class="n">status</span><span class="p">,</span>
-    <span class="s2">"checks"</span><span class="p">:</span> <span class="n">checks</span><span class="p">,</span>
-    <span class="s2">"missing_mandatory"</span><span class="p">:</span> <span class="n">missing</span><span class="p">,</span>
-    <span class="s2">"uncompleted_catalog_required"</span><span class="p">:</span> <span class="n">uncompleted</span><span class="p">,</span>
-    <span class="s2">"issues"</span><span class="p">:</span> <span class="n">issues</span><span class="p">,</span>
-    <span class="s2">"excluded"</span><span class="p">:</span> <span class="n">excluded</span><span class="p">,</span>
-    <span class="s2">"accepted"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">accepted</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
-    <span class="s2">"total"</span><span class="p">:</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"총학점"</span><span class="p">],</span>
-    <span class="s2">"pending"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">"과목코드·수강학기·대체과목의 공식 대응표가 없어 재수강 인정은 별도 확인 필요"</span><span class="p">,</span>
-        <span class="s2">"학과의 의무 이수 과목 및 대체과목 인정 확인"</span><span class="p">,</span>
-        <span class="s2">"복수전공·부전공·교직 등 개인별 적용 기준 확인"</span><span class="p">,</span>
-        <span class="s2">"졸업시험·논문·인증·교양 필수과목 등 교육과정표 외 졸업요건 확인"</span><span class="p">,</span>
-    <span class="p">],</span>
-    <span class="s2">"assumptions"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">"전공심화 이수학점을 전공선택 최소학점에 포함합니다. 학과의 인정 방식이 다르면 이수구분을 수정하세요."</span>
-    <span class="p">],</span>
-    <span class="s2">"profile"</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"year"</span><span class="p">:</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"year"</span><span class="p">],</span>
-        <span class="s2">"track"</span><span class="p">:</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"track"</span><span class="p">],</span>
-        <span class="s2">"page"</span><span class="p">:</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"page"</span><span class="p">],</span>
-    <span class="p">},</span>
-<span class="p">}</span>
-</code></pre></details><details class="full-source"><summary>이 파일 전체 코드 한 번에 보기</summary><pre class="python-code"><code><span class="sd">"""Deterministic credit audit; OCR never decides graduation eligibility."""</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">difflib</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_close_matches</span>
-
-<span class="n">CATEGORIES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"전공필수"</span><span class="p">,</span>
-    <span class="s2">"전공선택"</span><span class="p">,</span>
-    <span class="s2">"전공심화"</span><span class="p">,</span>
-    <span class="s2">"기초교양"</span><span class="p">,</span>
-    <span class="s2">"나사렛교양"</span><span class="p">,</span>
-    <span class="s2">"핵심교양"</span><span class="p">,</span>
-    <span class="s2">"소양교양"</span><span class="p">,</span>
-    <span class="s2">"자율선택"</span><span class="p">,</span>
-    <span class="s2">"미분류"</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">PASS_GRADES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"A+"</span><span class="p">,</span>
-    <span class="s2">"A0"</span><span class="p">,</span>
-    <span class="s2">"A"</span><span class="p">,</span>
-    <span class="s2">"A-"</span><span class="p">,</span>
-    <span class="s2">"B+"</span><span class="p">,</span>
-    <span class="s2">"B0"</span><span class="p">,</span>
-    <span class="s2">"B"</span><span class="p">,</span>
-    <span class="s2">"B-"</span><span class="p">,</span>
-    <span class="s2">"C+"</span><span class="p">,</span>
-    <span class="s2">"C0"</span><span class="p">,</span>
-    <span class="s2">"C"</span><span class="p">,</span>
-    <span class="s2">"C-"</span><span class="p">,</span>
-    <span class="s2">"D+"</span><span class="p">,</span>
-    <span class="s2">"D0"</span><span class="p">,</span>
-    <span class="s2">"D"</span><span class="p">,</span>
-    <span class="s2">"D-"</span><span class="p">,</span>
-    <span class="s2">"P"</span><span class="p">,</span>
-    <span class="s2">"PASS"</span><span class="p">,</span>
-    <span class="s2">"S"</span><span class="p">,</span>
-    <span class="s2">"이수"</span><span class="p">,</span>
-    <span class="s2">"이수완료"</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="n">FAIL_GRADES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"F"</span><span class="p">,</span>
-    <span class="s2">"NP"</span><span class="p">,</span>
-    <span class="s2">"N"</span><span class="p">,</span>
-    <span class="s2">"U"</span><span class="p">,</span>
-    <span class="s2">"FAIL"</span><span class="p">,</span>
-    <span class="s2">"W"</span><span class="p">,</span>
-    <span class="s2">"철회"</span><span class="p">,</span>
-    <span class="s2">"미이수"</span><span class="p">,</span>
-    <span class="s2">"수강중"</span><span class="p">,</span>
-<span class="p">}</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
-        <span class="sa">r</span><span class="s2">"\s+"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s2">"NFKC"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">))</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">catalog_index</span><span class="p">(</span><span class="n">profile</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">normalize</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]):</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"courses"</span><span class="p">]}</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
-    <span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog_index</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">catalog</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">catalog</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="kc">True</span>
-    <span class="n">near</span> <span class="o">=</span> <span class="n">get_close_matches</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">catalog</span><span class="p">),</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.65</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">catalog</span><span class="p">[</span><span class="n">near</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="kc">False</span><span class="p">)</span> <span class="k">if</span> <span class="n">near</span> <span class="k">else</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">parse_lines_with_review</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Return candidates and every nonempty unparsed line for manual review."""</span>
-    <span class="n">rows</span><span class="p">,</span> <span class="n">rejected</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-    <span class="n">grades</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">PASS_GRADES</span> <span class="o">|</span> <span class="n">FAIL_GRADES</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">grade_pattern</span> <span class="o">=</span> <span class="s2">"(?:"</span> <span class="o">+</span> <span class="s2">"|"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">grades</span><span class="p">)</span> <span class="o">+</span> <span class="s2">")"</span>
-    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
-        <span class="sa">rf</span><span class="s2">"^\s*(.+?)\s+(\d+(?:\.\d+)?)\s*(?:학점\s*)?"</span>
-        <span class="sa">rf</span><span class="s2">"(</span><span class="si">{</span><span class="n">grade_pattern</span><span class="si">}</span><span class="s2">)(?:\s+(?:[0-4](?:\.\d+)?|5(?:\.0+)?))?\s*$"</span><span class="p">,</span>
-        <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">else</span> <span class="n">line</span>
-        <span class="n">confidence</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">line</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"confidence"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
-            <span class="k">else</span> <span class="mf">1.0</span>
-        <span class="p">)</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
-            <span class="sa">r</span><span class="s2">"^(총학점|합계|취득학점|평균|신청학점)(?:\s|$)"</span><span class="p">,</span> <span class="n">text</span>
-        <span class="p">):</span>
-            <span class="k">continue</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-            <span class="n">name</span><span class="p">,</span> <span class="n">credits</span><span class="p">,</span> <span class="n">grade</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
-            <span class="c1"># A prior grade/credit pair indicates merged columns or two courses.</span>
-            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-                <span class="sa">rf</span><span class="s2">"\s\d+(?:\.\d+)?\s+</span><span class="si">{</span><span class="n">grade_pattern</span><span class="si">}</span><span class="s2">(?=\s|$)"</span><span class="p">,</span>
-                <span class="n">name</span><span class="p">,</span>
-                <span class="n">re</span><span class="o">.</span><span class="n">I</span><span class="p">,</span>
-            <span class="p">):</span>
-                <span class="n">rejected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="p">{</span>
-                        <span class="s2">"text"</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-                        <span class="s2">"reason"</span><span class="p">:</span> <span class="s2">"한 줄에 여러 과목이 있어 분리해야 합니다."</span><span class="p">,</span>
-                    <span class="p">}</span>
-                <span class="p">)</span>
-                <span class="k">continue</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">missing_grade</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span>
-                <span class="sa">r</span><span class="s2">"(.+?)\s+(\d+(?:\.\d+)?)\s*"</span><span class="p">,</span> <span class="n">text</span>
-            <span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span>
-                <span class="ow">not</span> <span class="n">missing_grade</span>
-                <span class="ow">or</span> <span class="ow">not</span> <span class="n">suggest</span><span class="p">(</span><span class="n">missing_grade</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">profile</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="p">):</span>
-                <span class="n">rejected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="p">{</span>
-                        <span class="s2">"text"</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-                        <span class="s2">"reason"</span><span class="p">:</span> <span class="s2">"과목명·학점·성적 열을 확인하세요."</span><span class="p">,</span>
-                    <span class="p">}</span>
-                <span class="p">)</span>
-                <span class="k">continue</span>
-            <span class="n">name</span><span class="p">,</span> <span class="n">credits</span> <span class="o">=</span> <span class="n">missing_grade</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
-            <span class="n">grade</span> <span class="o">=</span> <span class="s2">""</span>
-        <span class="n">course</span><span class="p">,</span> <span class="n">exact</span> <span class="o">=</span> <span class="n">suggest</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">profile</span><span class="p">)</span>
-        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">"과목명"</span><span class="p">:</span> <span class="n">course</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="k">if</span> <span class="n">exact</span> <span class="k">else</span> <span class="n">name</span><span class="p">,</span>
-                <span class="s2">"학점"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">credits</span><span class="p">),</span>
-                <span class="s2">"이수구분"</span><span class="p">:</span> <span class="n">course</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span> <span class="k">if</span> <span class="n">exact</span> <span class="k">else</span> <span class="s2">"미분류"</span><span class="p">,</span>
-                <span class="s2">"성적"</span><span class="p">:</span> <span class="n">grade</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
-                <span class="s2">"확인"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-                <span class="s2">"인식신뢰도"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">confidence</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
-                <span class="s2">"메모"</span><span class="p">:</span> <span class="p">(</span>
-                    <span class="s2">""</span>
-                    <span class="k">if</span> <span class="n">exact</span>
-                    <span class="k">else</span> <span class="p">(</span>
-                        <span class="sa">f</span><span class="s1">'과목 후보: </span><span class="si">{</span><span class="n">course</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span>
-                        <span class="k">if</span> <span class="n">course</span>
-                        <span class="k">else</span> <span class="s2">"교육과정 목록에 없음"</span>
-                    <span class="p">)</span>
-                <span class="p">),</span>
-            <span class="p">}</span>
-        <span class="p">)</span>
-    <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">rejected</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">parse_lines</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Compatibility helper; interactive imports use parse_lines_with_review."""</span>
-    <span class="k">return</span> <span class="n">parse_lines_with_review</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">profile</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">audit</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">profile</span><span class="p">,</span> <span class="n">mandatory</span><span class="o">=</span><span class="p">(),</span> <span class="n">advanced</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog_index</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
-    <span class="n">totals</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">CATEGORIES</span><span class="p">}</span>
-    <span class="n">accepted</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">issues</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">excluded</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"과목명"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"확인"</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 원문 확인이 필요합니다."</span><span class="p">)</span>
-            <span class="k">continue</span>
-        <span class="n">category</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"이수구분"</span><span class="p">,</span> <span class="s2">"미분류"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CATEGORIES</span> <span class="ow">or</span> <span class="n">category</span> <span class="o">==</span> <span class="s2">"미분류"</span><span class="p">:</span>
-            <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 이수구분을 지정하세요."</span><span class="p">)</span>
-            <span class="k">continue</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">credits</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"학점"</span><span class="p">))</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
-            <span class="n">credits</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"nan"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">credits</span><span class="p">)</span> <span class="ow">or</span> <span class="n">credits</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">credits</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
-            <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 유효한 학점(0 초과 30 이하)을 입력하세요."</span>
-            <span class="p">)</span>
-            <span class="k">continue</span>
+        <span class="c1"># grade: 공백을 제거하고 대문자로 맞춘 성적 문자열</span>
         <span class="n">grade</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"성적"</span><span class="p">,</span> <span class="s2">""</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">FAIL_GRADES</span><span class="p">:</span>
             <span class="n">excluded</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">grade</span><span class="si">}</span><span class="s2"> (취득학점 제외)"</span><span class="p">)</span>
@@ -2309,11 +1964,11 @@ with rules_tab:
         <span class="k">if</span> <span class="n">grade</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">PASS_GRADES</span><span class="p">:</span>
             <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 성적을 확인하세요."</span><span class="p">)</span>
             <span class="k">continue</span>
+        <span class="c1"># key: 현재 과목명의 비교 키 / course: 그 이름으로 찾은 교육과정 정보</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="n">course</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">course</span> <span class="ow">and</span> <span class="p">(</span>
-            <span class="n">credits</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="n">course</span><span class="p">[</span><span class="s2">"credits"</span><span class="p">])</span>
-            <span class="ow">or</span> <span class="n">category</span> <span class="o">!=</span> <span class="n">course</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span>
+            <span class="n">credits</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="n">course</span><span class="p">[</span><span class="s2">"credits"</span><span class="p">])</span> <span class="ow">or</span> <span class="n">category</span> <span class="o">!=</span> <span class="n">course</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span>
         <span class="p">):</span>
             <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">: 교육과정은 </span><span class="si">{</span><span class="n">course</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">course</span><span class="p">[</span><span class="s2">"credits"</span><span class="p">]</span><span class="si">}</span><span class="s1">학점입니다. 입력을 수정하거나 학과에서 인정 기준을 확인하세요.'</span>
@@ -2326,6 +1981,7 @@ with rules_tab:
             <span class="k">continue</span>
         <span class="c1"># Conflicting repeated records require a user decision, never a silent sum.</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">accepted</span><span class="p">:</span>
+            <span class="c1"># old: 이미 인정 목록에 있는 동일 과목. 현재 row와 비교합니다.</span>
             <span class="n">old</span> <span class="o">=</span> <span class="n">accepted</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
             <span class="k">if</span> <span class="n">old</span><span class="p">[</span><span class="s2">"학점"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">credits</span> <span class="ow">or</span> <span class="n">old</span><span class="p">[</span><span class="s2">"이수구분"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">category</span><span class="p">:</span>
                 <span class="n">issues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -2334,6 +1990,7 @@ with rules_tab:
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">excluded</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: 중복 취득은 1회만 계산"</span><span class="p">)</span>
             <span class="k">continue</span>
+        <span class="c1"># 검사를 통과한 행만 accepted에 저장하고 totals[category]에 학점을 더합니다.</span>
         <span class="n">accepted</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"과목명"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
             <span class="s2">"학점"</span><span class="p">:</span> <span class="n">credits</span><span class="p">,</span>
@@ -2343,14 +2000,14 @@ with rules_tab:
         <span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">+=</span> <span class="n">credits</span>
     <span class="n">totals</span><span class="p">[</span><span class="s2">"총학점"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
     <span class="n">totals</span><span class="p">[</span><span class="s2">"교양합계"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
-        <span class="n">totals</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"기초교양"</span><span class="p">,</span> <span class="s2">"나사렛교양"</span><span class="p">,</span> <span class="s2">"핵심교양"</span><span class="p">,</span> <span class="s2">"소양교양"</span><span class="p">]</span>
+        <span class="n">totals</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"기초교양"</span><span class="p">,</span> <span class="s2">"나사렛교양"</span><span class="p">,</span> <span class="s2">"핵심교양"</span><span class="p">,</span> <span class="s2">"소양교양"</span><span class="p">]</span>
     <span class="p">)</span>
     <span class="n">totals</span><span class="p">[</span><span class="s2">"전공합계"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
         <span class="n">totals</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"전공필수"</span><span class="p">,</span> <span class="s2">"전공선택"</span><span class="p">,</span> <span class="s2">"전공심화"</span><span class="p">]</span>
     <span class="p">)</span>
     <span class="c1"># Advanced courses contribute to elective minima; no double counting in total.</span>
     <span class="n">totals</span><span class="p">[</span><span class="s2">"전공선택"</span><span class="p">]</span> <span class="o">+=</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"전공심화"</span><span class="p">]</span>
+    <span class="c1"># checks: 항목별 결과 목록 / 여기의 key: 기준 항목명 / value: 필요학점</span>
     <span class="n">checks</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span>
             <span class="s2">"항목"</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
@@ -2366,6 +2023,7 @@ with rules_tab:
                 <span class="s2">"이 연도의 전공심화 최소학점이 제공되지 않아 확인이 필요합니다."</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># value: 이 분기에서는 선택한 전공심화 최소학점입니다.</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"optional_advanced"</span><span class="p">]</span>
             <span class="n">checks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="p">{</span>
@@ -2375,14 +2033,15 @@ with rules_tab:
                     <span class="s2">"부족학점"</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span> <span class="o">-</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"전공심화"</span><span class="p">]),</span>
                 <span class="p">}</span>
             <span class="p">)</span>
-    <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">mandatory</span> <span class="k">if</span> <span class="n">normalize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">accepted</span>
-    <span class="p">]</span>
+    <span class="c1"># missing: 지정 의무 과목 중 미이수한 이름 목록</span>
+    <span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">mandatory</span> <span class="k">if</span> <span class="n">normalize</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">accepted</span><span class="p">]</span>
+    <span class="c1"># uncompleted: 교육과정 전공필수 중 미이수 과목 정보 목록. 여기의 c는 과목 딕셔너리입니다.</span>
     <span class="n">uncompleted</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">c</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">catalog</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">c</span><span class="p">[</span><span class="s2">"category"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"전공필수"</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">accepted</span>
     <span class="p">]</span>
+    <span class="c1"># status: 최종 안내 문구. any 안의 c는 checks에서 꺼낸 검사 결과 딕셔너리입니다.</span>
     <span class="n">status</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"입력 검토 필요"</span>
         <span class="k">if</span> <span class="n">issues</span>
@@ -2392,6 +2051,7 @@ with rules_tab:
             <span class="k">else</span> <span class="s2">"입력한 학점·지정 과목 기준 충족 (공식 요건 확인 대기)"</span>
         <span class="p">)</span>
     <span class="p">)</span>
+    <span class="c1"># 아래 'status', 'checks' 등 따옴표 이름은 반환 딕셔너리의 키입니다.</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">"status"</span><span class="p">:</span> <span class="n">status</span><span class="p">,</span>
         <span class="s2">"checks"</span><span class="p">:</span> <span class="n">checks</span><span class="p">,</span>
@@ -2416,7 +2076,7 @@ with rules_tab:
             <span class="s2">"page"</span><span class="p">:</span> <span class="n">profile</span><span class="p">[</span><span class="s2">"page"</span><span class="p">],</span>
         <span class="p">},</span>
     <span class="p">}</span>
-</code></pre></details></section><section id="file-tools-import_curriculum-py"><div class="section-no">DETAILED CODE REFERENCE</div><h2>tools/import_curriculum.py 전체 코드 해설</h2><p class="lead">교육과정 기준 데이터를 만드는 도구</p><p>앱 실행 전 준비 과정에 해당한다. Python PDF 표 추출과 수기 전사 구조를 조합해 JSON을 만든다.</p><div class="explainer-label">처리 구간별 상세 설명 · 항목을 펼쳐 코드와 함께 읽기</div><details class="explained-block"><summary>1–18행 · 원본 보관과 준비</summary><p>프로젝트 경로와 트랙 순서를 정하고 PDF 원본을 reference에 복사한다. 같은 경로면 자기 자신에 대한 복사를 피한다.</p><p class="note">build는 자료를 다시 만들 때 실행하는 도구다. 사진 분석 때마다 호출되지 않는다.</p><div class="code-label">tools/import_curriculum.py · 원본 1–18행</div><pre class="python-code" tabindex="0"><code><span class="sd">"""Rebuild auditable profiles from the supplied PDF. 2022 is manually transcribed."""</span>
+</code></pre></details><h3>같은 이름이 다른 뜻일 때</h3><ul><li><code>rows</code>: 파서에서는 새로 만든 후보 목록, audit에서는 전달받은 검토 내역입니다.</li><li><code>credits</code>: 파서에서 추출 직후에는 문자열 '3', audit에서 변환 후에는 실수 3.0입니다.</li><li><code>key</code>: 과목 조회에서는 'java', checks 컴프리헨션에서는 '총학점' 같은 항목명입니다. 컴프리헨션의 반복 변수는 그 내부 범위를 갖습니다.</li><li><code>c</code>: 반복할 목록에 따라 구분 문자열·과목 딕셔너리·검사 딕셔너리를 담습니다. 약어만 보고 자료형을 단정하지 마세요.</li></ul><h3>JAVA 한 과목이 계산되는 예</h3><ol><li>row = {'과목명': 'JAVA', '학점': 3, '이수구분': '전공필수', '성적': 'A+', '확인': True}</li><li>name = 'JAVA', credits = 3.0, category = '전공필수', grade = 'A+'</li><li>key = 'java', course = 교육과정의 JAVA 정보</li><li>모든 검사를 통과하면 accepted['java']에 인정 내역을 저장합니다.</li><li>totals['전공필수']는 0.0 → 3.0, 총학점도 3.0이 됩니다.</li><li>총학점 기준 127과 비교한 checks의 부족학점은 124입니다.</li><li>입력 문제는 없어도 학점이 부족하므로 status는 '입력 기준 미충족'입니다.</li></ol><h3>변수와 딕셔너리 키는 다릅니다</h3><p><code>return {'status': status}</code>에서 따옴표 안의 'status'는 결과의 항목 이름(키), 오른쪽 status는 계산한 문구를 담은 변수입니다. 'pending'과 'assumptions'는 별도 지역변수 없이 반환 딕셔너리에 직접 만든 목록입니다. 또한 내부의 accepted는 딕셔너리지만 반환할 때 <code>list(accepted.values())</code>로 바뀌어 결과의 accepted에는 리스트가 담깁니다.</p></section><section id="file-tools-import_curriculum-py"><div class="section-no">DETAILED CODE REFERENCE</div><h2>tools/import_curriculum.py 전체 코드 해설</h2><p class="lead">교육과정 기준 데이터를 만드는 도구</p><p>앱 실행 전 준비 과정에 해당한다. Python PDF 표 추출과 수기 전사 구조를 조합해 JSON을 만든다.</p><div class="explainer-label">처리 구간별 상세 설명 · 항목을 펼쳐 코드와 함께 읽기</div><details class="explained-block"><summary>1–18행 · 원본 보관과 준비</summary><p>프로젝트 경로와 트랙 순서를 정하고 PDF 원본을 reference에 복사한다. 같은 경로면 자기 자신에 대한 복사를 피한다.</p><p class="note">build는 자료를 다시 만들 때 실행하는 도구다. 사진 분석 때마다 호출되지 않는다.</p><div class="code-label">tools/import_curriculum.py · 원본 1–18행</div><pre class="python-code" tabindex="0"><code><span class="sd">"""Rebuild auditable profiles from the supplied PDF. 2022 is manually transcribed."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
