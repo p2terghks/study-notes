@@ -4,6 +4,8 @@
 
 ## 설명 문서
 
+- [engine.py 동작 흐름만 보기 — 요구사항·해결 방법·계산 공식](https://p2terghks.github.io/study-notes/%EC%A1%B8%EC%97%85%ED%98%84%ED%99%A92/ENGINE_FLOW_GUIDE.html)
+
 - [바뀐 코드와 데이터 흐름 요약](PROJECT_SUMMARY.md)
 - [브라우저용 코드 상세 해설](CODE_GUIDE.html)
 - [웹에서 설명 바로 보기](https://p2terghks.github.io/study-notes/%EC%A1%B8%EC%97%85%ED%98%84%ED%99%A92/CODE_GUIDE.html)
