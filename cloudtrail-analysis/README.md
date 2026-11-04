@@ -1,74 +1,80 @@
-# CloudTrail 콘솔 로그인 기록 추출
+# CloudTrail 로그인 기록 추출과 실패 시각화
 
-CloudTrail JSON에서 ConsoleLogin 이벤트만 골라 시간·사용자·IP·성공/실패를 출력하고 CSV로 저장합니다.
-
-## 실행
-
-R과 jsonlite가 필요합니다.
-
-```sh
-Rscript -e 'install.packages("jsonlite")'
-Rscript login_records.R 로그.json
-Rscript login_records.R 로그.json 결과.csv
-```
-
-출력 경로 기본값은 output/login_records.csv입니다. ConsoleLogin이 없으면 헤더만 저장합니다.
-사용자 이름이 없으면 ARN을 사용하고, 누락된 필드는 CSV 빈칸으로 저장합니다.
-Records 문서·이벤트 배열·단일 이벤트·NDJSON을 지원합니다. UTF-8 입력을 읽습니다.
-입력과 출력은 서로 다른 경로를 지정하세요. 출력 경로에 기존 파일이 있으면 덮어씁니다.
-
-## 코드 규모
-
-기존 추출 코드 login_records.R는 73줄입니다. failure_charts.R(실패 집계·그림)과 run_analysis.R(CSV·PNG 통합 실행)을 추가했습니다. 테스트와 설명 문서는 별도입니다.
-이전 반복 실패·IP 변경·MFA 탐지 규칙, 자동 다운로드, 기법 라벨 평가와 차트는 제거했습니다.
-이전 버전은 Git 커밋 기록에서 확인할 수 있습니다.
+CloudTrail JSON에서 ConsoleLogin 이벤트만 골라 시간·사용자·IP·성공/실패를 CSV로 저장하고, 실패 기록을 UTC 날짜별·시간대별 그래프로 보여 주는 R 프로젝트입니다.
 
 ## 설명 자료
 
-- [전체 코드 설명](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
-- [클릭형 요약본](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html)
+- [프로젝트 상세 설명 — 실행 흐름·변수·함수·시각화·발표 가이드](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-project-guide.html)
+- [GitHub에서 상세 설명 읽기](PROJECT_GUIDE.md)
+- [클릭형 처리 순서와 코드](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html)
+- [기존 전체 코드 줄별 해설](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
 
-## 검증
+## 코드 구성
 
-가상 이벤트로 실제 R 실행과 CSV 저장을 확인했습니다.
-Records·배열·단일 이벤트·NDJSON·빈 파일·로그인 없는 파일·잘못된 JSON,
-성공/실패 유지·시간 정렬·ARN 대체·누락값 검사를 통과했습니다.
+| 파일 | 줄 수(주석·빈 줄 포함) | 역할 |
+| --- | --- | --- |
+| login_records.R | 73 | 파일 읽기·JSON 해석·로그인 선택·네 열로 변환 |
+| failure_charts.R | 48 | 실패 집계·RStudio 그래프·PNG 저장 |
+| run_analysis.R | 14 | CSV와 PNG를 한 번에 생성 |
+| 합계 | 135 | 테스트와 설명 문서 별도 |
 
-```sh
-Rscript tests/test_login_records.R
-```
+## 실행
 
-실제 로그인·공격 데이터로 성능을 평가한 결과는 아닙니다. 입력 로그와 CSV 결과는 공개 저장소에 포함하지 않습니다.
-시각 정렬은 CloudTrail의 일반적인 UTC ISO 시각 문자열을 전제로 합니다. 중복 이벤트는 제거하지 않습니다.
-파일 전체를 메모리에 읽습니다. 이 도구가 AWS에서 직접 로그를 수집하지는 않습니다.
-
-## R 입문자 설명
-
-기본 요약본은 클릭형 처리 순서 페이지입니다. 각 상자를 누르면 관련 코드의 줄별 설명을 확인할 수 있습니다. 전체 코드 해설과 클릭형 처리 순서에는 각 실행 줄의 문법과 역할을 설명합니다. 함수는 정의한 뒤 호출할 때 실행되며, 마지막 표현식을 자동 반환한다는 R의 동작도 예시로 설명합니다.
-
-## 로그인 실패 기록 시각화
-
-R 기본 그래픽으로 실패 기록을 UTC 날짜별·시각대별 막대그래프로 그립니다. 새 패키지는 필요하지 않습니다. 원본의 중복 기록은 그대로 집계하며 누락·잘못된 시각은 막대에서 제외하고 제목에 건수를 표시합니다. 시각대 그래프는 모든 날짜를 합산합니다.
-
-```sh
-# 프로젝트 폴더에서 실행: 로그 입력 → CSV와 PNG 저장
-Rscript run_analysis.R 로그.json output
-```
-
-RStudio에서는 다음처럼 Plots 창에서 볼 수 있습니다.
+R과 jsonlite가 필요합니다. RStudio 작업 폴더를 이 폴더로 맞추고 입력 파일을 준비하세요. 아래 data/logs.json은 사용자가 준비할 경로 예시입니다.
 
 ```r
+install.packages("jsonlite")  # 최초 한 번
 source("login_records.R")
 source("failure_charts.R")
-records <- login_records(read_events("로그.json"))
+records <- login_records(read_events("data/logs.json"))
+View(records)
 plot_login_failures(records)
 save_failure_chart(records, "output/login_failures.png")
 ```
 
-공개 테스트 로그 90건은 실패 82건(중복 포함), eventID 중복 제거본 43건은 실패 39건입니다. 집계 그림만 예시로 포함하며 개별 로그·CSV는 공개하지 않습니다.
+터미널에서 CSV와 PNG를 함께 저장하려면 프로젝트 폴더에서 실행합니다.
 
 ```sh
+Rscript run_analysis.R data/logs.json output
+```
+
+결과: output/login_records.csv와 output/login_failures.png. 추출만 실행할 때는 `Rscript login_records.R data/logs.json output/login_records.csv`를 사용합니다. 입력과 출력은 서로 다른 경로로 지정하세요. 기존 출력 파일은 덮어씁니다.
+
+## 처리 기준
+
+Records 문서·이벤트 배열·단일 이벤트·NDJSON을 지원합니다. 사용자명이 없으면 ARN으로 대체하고, 누락 필드는 CSV 빈칸으로 저장합니다. 로그인 이벤트가 없으면 헤더만 저장합니다. 성공과 실패 모두 CSV에 포함하지만 그래프는 result가 정확히 Failure인 행만 셉니다.
+
+중복 기록은 제거하지 않습니다. 실패 시각이 없거나 해석되지 않으면 막대에서 제외하고 제목에 제외 건수를 표시합니다. 날짜 그래프는 실패가 있었던 날짜만 같은 간격으로 표시하고, 시간대 그래프는 모든 날짜의 같은 UTC 시간을 합칩니다.
+
+## 확인한 결과
+
+공개 Splunk 보안 테스트 로그 6개를 합친 로그인 90건에서 실패 82건·성공 8건을 확인했습니다. 별도의 eventID 중복 제거 입력은 43건(실패 39건·성공 4건)입니다. 사용자의 운영 로그가 아니며 공격 판정 정확도를 평가한 결과도 아닙니다. [원본 6개 링크와 해석 기준](PROJECT_GUIDE.md#9-실제-공개-테스트-로그로-확인한-결과)을 함께 확인하세요.
+
+![실패 기록 집계 예시](login-failures-example.png)
+
+## 그래프 오류 해결
+
+RStudio에서 발생했던 figure margins too large 오류는 두 그래프의 여백이 창 높이보다 커서 발생했습니다. 현재 코드는 5인치 미만 장치에서 여백 단위와 글자 크기를 줄입니다. 수정 파일을 다시 source한 뒤 실행하세요. 아주 작은 창은 Plots를 넓히거나 Zoom을 사용합니다.
+
+```r
+# 필요한 기존 그래프를 저장한 후 초기화
+# graphics.off()는 열려 있는 그래프 장치를 모두 닫습니다.
+graphics.off()
+source("failure_charts.R")
+plot_login_failures(records)
+```
+
+Source로 함수만 불러오면 그래프가 자동으로 나오지 않습니다. plot_login_failures(records)를 호출해야 합니다. run_analysis.R는 터미널 인자를 받는 실행 파일이므로 RStudio에서는 위 함수 호출 예시를 사용하세요.
+
+## 검증
+
+```sh
+Rscript tests/test_login_records.R
 Rscript tests/test_failure_charts.R
 ```
 
-실패만 집계, UTC 날짜·24시간대, 소수점 초, 누락·잘못된 시각, 빈 표·성공만 있는 표의 PNG 생성을 검사했습니다.
+입력 형식·누락 필드·정렬·오류 처리·UTC 날짜 및 24시간대·소수점 초·빈 결과·PNG 생성·작은 그래프 장치의 여백 오류를 검사합니다. RStudio에서도 공개 테스트 로그의 날짜별·시간대별 그래프 표시를 확인했습니다.
+
+## 범위와 한계
+
+AWS에서 직접 로그를 수집하지 않습니다. 전체 파일을 메모리에 읽습니다. 원본 시각 문자열 정렬은 동일한 UTC ISO 형식을 전제로 합니다. 실패 기록을 고르는 기능이며 공격 여부를 판정하는 모델은 없습니다. 개별 사용자·IP가 있는 원본 로그와 CSV는 저장소에 포함하지 않고 집계 그림만 예시로 제공합니다.

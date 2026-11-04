@@ -77,11 +77,13 @@ PyTorch 기반 성적표 OCR과 졸업요건 사전 점검 프로젝트입니다
 
 ### CloudTrail 로그인 기록 추출
 
+- [CloudTrail · 프로젝트 상세 설명과 발표 가이드](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-project-guide.html)
+
 - [로그인 기록 추출 · 새 요약본 (클릭하여 코드·설명 보기)](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html?v=2596306)
 - [로그인 기록 추출 · 전체 코드 한 줄씩 설명](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
 - [전체 소스와 실행 안내](cloudtrail-analysis/README.md)
 
-ConsoleLogin 이벤트만 찾아 시간·사용자·IP·성공/실패를 출력하고 CSV로 저장합니다. 기존 추출 코드 73줄에 실패 기록의 UTC 날짜별·시간대별 시각화를 추가했습니다. 새 요약본에서 각 처리 단계를 누르면 R 입문자를 위한 코드 설명이 열립니다.
+ConsoleLogin 이벤트만 찾아 시간·사용자·IP·성공/실패를 출력하고 CSV로 저장합니다. 핵심 R 코드 3개 파일, 총 135줄로 구성되며 실패 기록의 UTC 날짜별·시간대별 시각화를 제공합니다. 새 요약본에서 각 처리 단계를 누르면 R 입문자를 위한 코드 설명이 열립니다.
 
 ### 시험 대비 핵심 요약
 

@@ -13,7 +13,11 @@ plot_login_failures <- function(records) {
   counts <- failure_counts(records)
   previous <- par(no.readonly = TRUE)
   on.exit(par(previous))
-  par(mfrow = c(2, 1), mar = c(5, 4, 3, 1), oma = c(1, 0, 3, 0))
+  par(mfrow = c(2, 1))
+  # 작은 RStudio Plots 창에서도 여백이 그릴 영역을 넘지 않게 합니다.
+  compact <- dev.size("in")[[2]] < 5
+  par(mar = c(4, 4, 3, 1), oma = c(1, 0, 3, 0),
+      mex = if (compact) 0.45 else 1, cex = if (compact) 0.7 else 1)
   if (length(counts$daily)) {
     positions <- barplot(counts$daily, col = "#d97745", border = NA,
       main = "Failed logins by date (UTC)", ylab = "Failure records",
