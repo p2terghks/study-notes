@@ -35,24 +35,31 @@
     "format": "HTML"
   },
   {
+    "path": "cloudtrail-analysis/cloudtrail-function-summary.html",
+    "title": "CloudTrail · 함수·조건문·반복문 상세 요약본",
+    "category": "CloudTrail 분석 프로젝트",
+    "format": "HTML",
+    "url": "cloudtrail-analysis/cloudtrail-function-summary.html?v=d133b27215d7"
+  },
+  {
     "path": "cloudtrail-analysis/cloudtrail-project-guide.html",
     "title": "CloudTrail · 프로젝트 상세 설명·매개변수·실패 시각화·발표 가이드",
     "category": "CloudTrail 분석 프로젝트",
-    "url": "cloudtrail-analysis/cloudtrail-project-guide.html?v=d88668bf39f5",
+    "url": "cloudtrail-analysis/cloudtrail-project-guide.html?v=786aac5811c0",
     "format": "HTML"
   },
   {
     "path": "cloudtrail-analysis/cloudtrail-interactive-diagram.html",
     "title": "CloudTrail · 로그인 기록 클릭형 요약본",
     "category": "CloudTrail 분석 프로젝트",
-    "url": "cloudtrail-analysis/cloudtrail-interactive-diagram.html?v=66b04e38edc9",
+    "url": "cloudtrail-analysis/cloudtrail-interactive-diagram.html?v=6dff942001d4",
     "format": "HTML"
   },
   {
     "path": "cloudtrail-analysis/cloudtrail-code-guide.html",
     "title": "CloudTrail · 로그인 기록 추출 전체 코드",
     "category": "CloudTrail 분석 프로젝트",
-    "url": "cloudtrail-analysis/cloudtrail-code-guide.html?v=800e175cb426",
+    "url": "cloudtrail-analysis/cloudtrail-code-guide.html?v=874407fbd796",
     "format": "HTML"
   },
   {
