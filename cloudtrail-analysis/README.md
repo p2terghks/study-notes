@@ -7,8 +7,6 @@ CloudTrail JSON에서 ConsoleLogin 이벤트만 골라 시간·사용자·IP·�
 - [함수·조건문·반복문 상세 요약본](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-function-summary.html)
 - [상세 요약본 Markdown](FUNCTION_SUMMARY.md)
 
-- [프로젝트 상세 설명 — 실행 흐름·변수·함수·시각화·발표 가이드](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-project-guide.html)
-- [GitHub에서 상세 설명 읽기](PROJECT_GUIDE.md)
 
 ## 코드 구성
 
@@ -49,7 +47,7 @@ Records 문서·이벤트 배열·단일 이벤트·NDJSON을 지원합니다. �
 
 ## 확인한 결과
 
-공개 Splunk 보안 테스트 로그 6개를 합친 로그인 90건에서 실패 82건·성공 8건을 확인했습니다. 별도의 eventID 중복 제거 입력은 43건(실패 39건·성공 4건)입니다. 사용자의 운영 로그가 아니며 공격 판정 정확도를 평가한 결과도 아닙니다. [원본 6개 링크와 해석 기준](PROJECT_GUIDE.md#9-실제-공개-테스트-로그로-확인한-결과)을 함께 확인하세요.
+공개 Splunk 보안 테스트 로그 6개를 합친 로그인 90건에서 실패 82건·성공 8건을 확인했습니다. 별도의 eventID 중복 제거 입력은 43건(실패 39건·성공 4건)입니다. 사용자의 운영 로그가 아니며 공격 판정 정확도를 평가한 결과도 아닙니다. [원본 6개 링크와 해석 기준](FUNCTION_SUMMARY.md#원본-출처)을 함께 확인하세요.
 
 ![실패 기록 집계 예시](login-failures-example.png)
 

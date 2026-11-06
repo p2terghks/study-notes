@@ -424,3 +424,14 @@ fromJSON은 글자를 객체로 해석하고, event_list는 객체의 바깥 구
 함수 정의와 호출은 다릅니다. source한 뒤 데이터를 읽고 plot_login_failures(records)를 호출해야 합니다. 작은 창에서는 mfrow를 먼저 설정한 뒤 mex·cex를 줄입니다.
 공개 테스트 로그는 중복 포함 90건 중 실패 82·성공 8건이었습니다. 별도 eventID 중복 제거 입력은 43건 중 실패 39·성공 4건입니다. 현재 코드는 자동 중복 제거·공격 여부 판정을 하지 않습니다.
 시간 정렬은 같은 UTC ISO 문자열 형식을 전제로 하며 파일 전체를 메모리에 읽습니다. 원본 로그·개별 사용자와 IP가 있는 CSV는 공개 저장소에 포함하지 않습니다.
+
+## 원본 출처
+
+Splunk attack_data 공개 보안 테스트 로그입니다.
+
+- [aws_mulitple_failed_console_login · 로그인 31건](https://github.com/splunk/attack_data/blob/master/datasets/attack_techniques/T1110.003/aws_mulitple_failed_console_login/aws_cloudtrail.json)
+- [aws_multiple_login_fail_per_user · 로그인 28건](https://github.com/splunk/attack_data/blob/master/datasets/attack_techniques/T1110.003/aws_multiple_login_fail_per_user/cloudtrail.json)
+- [aws_failed_mfa · 로그인 14건](https://github.com/splunk/attack_data/blob/master/datasets/attack_techniques/T1621/aws_failed_mfa/cloudtrail.json)
+- [multiple-ips · 로그인 8건](https://github.com/splunk/attack_data/blob/master/datasets/attack_techniques/T1586.003/aws_console_login_multiple_ips/cloudtrail.json)
+- [login-failure · 로그인 7건](https://github.com/splunk/attack_data/blob/master/datasets/attack_techniques/T1110.001/aws_login_failure/aws_cloudtrail_events.json)
+- [login-sfa · 로그인 2건](https://github.com/splunk/attack_data/blob/master/datasets/attack_techniques/T1078.004/aws_login_sfa/cloudtrail.json)

@@ -79,7 +79,6 @@ PyTorch 기반 성적표 OCR과 졸업요건 사전 점검 프로젝트입니다
 
 - [CloudTrail · 함수·조건문·반복문 상세 요약본](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-function-summary.html)
 
-- [CloudTrail · 프로젝트 상세 설명과 발표 가이드](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-project-guide.html)
 
 - [전체 소스와 실행 안내](cloudtrail-analysis/README.md)
 
