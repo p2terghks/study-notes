@@ -9,8 +9,6 @@ CloudTrail JSON에서 ConsoleLogin 이벤트만 골라 시간·사용자·IP·�
 
 - [프로젝트 상세 설명 — 실행 흐름·변수·함수·시각화·발표 가이드](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-project-guide.html)
 - [GitHub에서 상세 설명 읽기](PROJECT_GUIDE.md)
-- [클릭형 처리 순서와 코드](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-interactive-diagram.html)
-- [기존 전체 코드 줄별 해설](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-code-guide.html)
 
 ## 코드 구성
 
