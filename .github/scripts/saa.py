@@ -98,10 +98,28 @@ if not file.exists():
     prior=set()
     for existing in archive.glob('*.js'):
         prior.update(q['stem'] for q in json.loads(existing.read_text().removeprefix('show(').removesuffix(');')))
-    if any(q['stem'] in prior for q in items):
-        # Repeated numerical exercises are eligible for spaced review.
-        for q in items:
-            q['review']=q['stem'] in prior
+    # Keep an architectural decision once; use a new workload when it recurs.
+    for i, q in enumerate(items):
+        if q['stem'] in prior:
+            items[i] = numeric[i]
+        q = items[i]
+        if q['stem'] in prior:
+            # A capacity-planning extension: independent identical workloads
+            # each require the calculated capacity. All quantities are additive.
+            copies = 2
+            stem = q['stem']
+            while True:
+                q['stem'] = f'{stem} 같은 조건의 독립 구성 {copies}개를 각각 운영한다. 위에서 구한 수량을 모든 구성에 합산한 값은?'
+                if q['stem'] not in prior:
+                    break
+                copies += 1
+            q['options'] = [(str(int(value)*copies), f'단일 구성 기준: {why} 이 선택지는 구성당 {value}에 구성 수 {copies}를 곱한 값이다.', correct)
+                            for value, why, correct in q['options']]
+    assert len(items) == 5 and len({q['stem'] for q in items} - prior) == 5
+    for q in items:
+        assert len(q['options']) == len({v for v, _, _ in q['options']}) == 4
+        assert sum(correct for _, _, correct in q['options']) == 1
+        assert all(reason for _, reason, _ in q['options']) and q['tip']
     file.write_text('show('+json.dumps(items,ensure_ascii=False)+');')
 dates=sorted((f.stem for f in archive.glob('*.js')),reverse=True)
 (root/'dates.js').write_text('const dates='+json.dumps(dates)+';')
