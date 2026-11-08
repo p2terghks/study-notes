@@ -1,0 +1,33 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AWS SAA · 데일리 연습장</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f6f5ef;color:#182e30;font:16px/1.65 "Apple SD Gothic Neo",system-ui,sans-serif}header{background:#143b3c;color:white;padding:16px max(6%,calc((100% - 860px)/2));letter-spacing:.04em}main{max-width:900px;margin:auto;padding:32px 20px}h1{font-size:clamp(32px,6vw,55px);letter-spacing:-.07em;line-height:1.15;margin:12px 0}h2{font-size:19px;line-height:1.65}article,aside{background:white;border:1px solid #d0dcd4;border-radius:16px;padding:clamp(18px,4vw,32px);margin:18px 0}button,select{font:inherit;color:inherit;background:white;border:1px solid #b5c5be;border-radius:8px;padding:9px 14px}button{cursor:pointer}button:hover:enabled,button:focus-visible{background:#e4efe9}button:disabled{color:#425452}.choice{display:block;width:100%;text-align:left;margin:7px 0}.right{background:#d8f0da}.wrong{background:#f9dfda}.tag,strong,a{color:#096354}aside{display:flex;gap:12px;align-items:center;flex-wrap:wrap}pre{white-space:pre-wrap;font:inherit}summary{cursor:pointer;padding:8px}#status{font-weight:700}small{color:#45625c}
+</style>
+<header>AWS 학습 노트　/　SAA-C03</header><main><small>매일 오전 9시 KST · 5문제</small><h1>오늘의 아키텍처 연습장</h1>
+<aside><label>회차 선택　<select id="edition"></select></label><span id="status" aria-live="polite"></span><button id="reset">다시 풀기</button></aside><section id="quiz"></section><h2>ChatGPT 복습 기록</h2><section id="notes"></section></main>
+<script src="history.js"></script><script src="dates.js"></script><script>
+const el=(tag,txt)=>{const n=document.createElement(tag);n.textContent=txt;return n};
+const picker=document.querySelector('#edition'), area=document.querySelector('#quiz'), statusText=document.querySelector('#status');
+dates.forEach(d=>picker.add(new Option(d,d)));
+const day=dates.includes(location.hash.slice(1))?location.hash.slice(1):dates[0];picker.value=day;
+picker.onchange=()=>{location.hash=picker.value;location.reload()};
+const key='saa-daily/'+day;
+let answers={};try{answers=JSON.parse(localStorage.getItem(key))||{}}catch{}
+function show(items){
+ area.replaceChildren();let score=0,done=0;
+ items.forEach((q,i)=>{
+ const card=el('article',''), picked=answers[i], answered=Number.isInteger(picked)&&picked>=0&&picked<4;
+ card.append(el('small',(i+1)+' / 5　·　'+q.domain+(q.review?'　·　반복 복습':'')),el('h2',q.stem));
+ q.options.forEach(([label,why,correct],j)=>{
+ const b=el('button','ABCD'[j]+'.　'+label);b.className='choice';b.disabled=answered;
+ if(answered){if(correct){b.classList.add('right');b.textContent+='　✓ 정답'}else if(j===picked){b.classList.add('wrong');b.textContent+='　× 내 답'}}
+ b.onclick=()=>{answers[i]=j;try{localStorage.setItem(key,JSON.stringify(answers))}catch{}show(items);area.children[i].querySelector('strong').focus()};
+ card.append(b)});
+ if(answered){done++;const good=q.options[picked][2];score+=Number(good);const verdict=el('strong',good?'정답입니다':'오답입니다');verdict.tabIndex=-1;card.append(verdict);
+ q.options.forEach((v,j)=>card.append(el('p','ABCD'[j]+' · '+v[1])));card.append(el('p','암기 포인트　'+q.tip));const a=el('a','AWS 공식 문서 ↗');a.href=q.doc;card.append(a)}
+ area.append(card)});
+ statusText.textContent=done+'/5 응답　·　'+score+'점';
+ document.querySelector('#reset').onclick=()=>{answers={};try{localStorage.removeItem(key)}catch{}show(items)}
+}
+historyNotes.forEach((note,i)=>{const d=el('details','');d.append(el('summary',(i+5)+'회차 · 복습표와 해설'),el('pre',note.trim()));document.querySelector('#notes').prepend(d)});
+const script=document.createElement('script');script.src='archive/'+day+'.js';document.body.append(script);
+</script></html>

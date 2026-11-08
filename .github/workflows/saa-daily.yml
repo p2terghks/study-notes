@@ -1,0 +1,29 @@
+name: SAA daily quiz
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: saa-daily-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/scripts/saa.py
+      - name: Archive and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add saa-daily/archive saa-daily/dates.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish daily SAA quiz"
+            git push
+          fi
+          gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds"
