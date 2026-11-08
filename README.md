@@ -56,18 +56,9 @@
 - [컴퓨팅 기본 개념 · 코어·스레드·프로세스](https://p2terghks.github.io/study-notes/docs/quick-reference/computing-basics-reference.html)
 - [네트워크 기본 개념 · IP·DNS·TCP·HTTP](https://p2terghks.github.io/study-notes/docs/quick-reference/network-basics-reference.html)
 
-### 수강신청 프로젝트
-
-- [수강신청 · React·Spring 전체 코드와 상세 설명](https://p2terghks.github.io/study-notes/docs/projects/campus/CODE_SUMMARY.html)
-- [수강신청 · AWS·Terraform 배포 과정](https://p2terghks.github.io/study-notes/docs/projects/campus/AWS_TERRAFORM_GUIDE.html)
-- [수강신청 · AWS·Terraform 트러블슈팅](https://p2terghks.github.io/study-notes/docs/projects/campus/AWS_TROUBLESHOOTING.html)
-
-수강신청 프로젝트의 2026-10-15 버전 소스는 [examples/campus](examples/campus)에 있습니다. [백엔드 요약](docs/projects/campus/BACKEND_SUMMARY.md) · [프론트 요약](docs/projects/campus/REACT_SUMMARY.md)
-
-- [R언어 분석 요약](https://p2terghks.github.io/study-notes/docs/projects/campus/R_ANALYTICS_SUMMARY.html)
-
-
 ### 졸업요건 AI 프로젝트
+
+- [과목명 AI 분류 시스템 · 요구사항과 단계별 코드 설명](https://p2terghks.github.io/study-notes/docs/ai-classification-guide.html)
 
 - [졸업요건 AI · 클릭형 함수 흐름과 문법 설명](https://p2terghks.github.io/study-notes/graduation-photo-ai/FUNCTION_DIAGRAM.html)
 - [졸업요건 AI · 전체 코드·함수·Streamlit 상세 해설](https://p2terghks.github.io/study-notes/graduation-photo-ai/DETAILED_CODE_GUIDE.html)
@@ -83,13 +74,6 @@ PyTorch 기반 성적표 OCR과 졸업요건 사전 점검 프로젝트입니다
 - [전체 소스와 실행 안내](cloudtrail-analysis/README.md)
 
 ConsoleLogin 이벤트만 찾아 시간·사용자·IP·성공/실패를 출력하고 CSV로 저장합니다. 핵심 R 코드 3개 파일, 총 135줄로 구성되며 실패 기록의 UTC 날짜별·시간대별 시각화를 제공합니다. 새 요약본에서는 함수별 입력·출력과 조건문의 참·거짓 경로를 읽고 코드 줄을 눌러 설명을 확인할 수 있습니다.
-
-### 시험 대비 핵심 요약
-
-- [네트워크 해킹과 보안 · Chapter 02~06](network-security-summary.md)
-- [빅데이터실무 · R언어 실습 1~6](r-practice-summary.md)
-- [고급AI프로그래밍 · Python·NumPy·PyTorch 실습 1~6](ai-python-summary.md)
-
 
 ## 졸업현황2 — HTML 버전
 
