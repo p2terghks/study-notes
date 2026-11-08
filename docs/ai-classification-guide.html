@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>과목명 AI 분류 시스템 · 요구사항과 코드</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f2f5f5;color:#182e33;font:16px/1.75 'Inter',system-ui,sans-serif;word-break:keep-all}header{background:#153b40;color:white;padding:40px max(5vw,24px)}h1{line-height:1.25;font-size:clamp(28px,4vw,44px)}main{max-width:1160px;margin:28px auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;padding:0 20px}aside{align-self:start;position:sticky;top:16px}nav a{display:block;padding:5px;color:#185c62}section,article{background:white;border:1px solid #dce5e3;padding:clamp(16px,3vw,32px);margin-bottom:18px;border-radius:14px}h2{margin:0;font-size:22px}dt{font-weight:700;color:#14636a}dd{margin:2px 0 12px}.flow{padding:12px;background:#e8f5ef;border-radius:6px}summary{cursor:pointer;font-weight:650;color:#1e626a}details{margin:12px 0}pre{white-space:pre;overflow:auto;background:#152b32;color:#eff9fb;padding:16px;border-radius:8px;font:13px/1.7 'IBM Plex Mono',monospace}th,td{text-align:left;padding:5px 22px 5px 0}button{padding:7px 10px;cursor:pointer} @media(max-width:800px){main{display:block}aside{position:static;margin-bottom:18px}} 
+:root{color-scheme:dark;--bg:#101820;--panel:#19252f;--ink:#e6eff7;--accent:#85dcdb;--line:#394b59;--flow:#203b40;--head:#18363e;--code:#101a23;--kw:#d4a6ff;--str:#a7deaa;--num:#ffbf88;--fn:#94caff;--comment:#a2b6bb}
+:root.light{color-scheme:light;--bg:#eff4f6;--panel:#fff;--ink:#203340;--accent:#07656a;--line:#b6c8d0;--flow:#e4f3f1;--head:#153b40;--code:#f0f4f7;--kw:#73299a;--str:#226234;--num:#944411;--fn:#154e91;--comment:#4c626c}
+body{background:var(--bg);color:var(--ink);overflow-wrap:anywhere}header{background:var(--head)}article,section{background:var(--panel);border-color:var(--line);min-width:0}main>div{min-width:0}button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:6px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent)}nav a,dt,summary{color:var(--accent)}.flow{background:var(--flow)}pre{background:var(--code);color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;tab-size:4}pre code{white-space:inherit;font:inherit}.tok-kw{color:var(--kw)}.tok-str{color:var(--str)}.tok-num{color:var(--num)}.tok-fn{color:var(--fn)}.tok-comment{color:var(--comment)}body{line-height:1.8}th,td{border-bottom:1px solid var(--line)}
+main.toc-hidden{grid-template-columns:minmax(0,1fr)}#guide-sidebar[hidden]{display:none}</style><header><h1>과목명 AI 분류 시스템</h1><p>두 이름이 같은 과목인지 학습하고, 성적표의 과목명을 등록된 표준 이름으로 보정하는 과정</p><button id="theme" type="button">밝은 화면으로</button> <button id="toggle-toc" type="button" aria-controls="guide-sidebar" aria-expanded="true">목차 숨기기</button></header><main><aside id="guide-sidebar"><nav><a href="#s1">1. 표준 과목 목록 준비</a><a href="#s2">2. 학습·평가 과목 분리</a><a href="#s3">3. 오타와 정답 만들기</a><a href="#s4">4. 두 문자열을 특징 6개로 변환</a><a href="#s5">5. 로지스틱 회귀 학습과 저장</a><a href="#s6">6. 입력 이름과 기존 규칙 확인</a><a href="#s7">7. 후보 점수 계산·정렬</a><a href="#s8">8. 네 글자 한글 오타 보정</a><a href="#s9">9. 결과 평가와 앱 연결</a></nav><button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">코드 모두 열기</button> <button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">접기</button></aside><div><article><h2>학습할 때와 앱을 사용할 때</h2><p><b>학습</b>　등록 과목 → 합성 오타와 정답 → 특징 6개 → 가중치 저장</p><p><b>앱 실행</b>　OCR이 읽은 이름 → 규칙 확인 → 학습 모델로 후보 정렬 → 필요하면 자모 비교 → 표준 이름 또는 원문</p><p>전공필수·전공선택 등 이수 영역은 보정된 이름으로 교육과정 사전을 조회해 정합니다.</p></article><section id="s1"><h2>1. 표준 과목 목록 준비</h2><p><b>요구사항</b> 전공별 과목과 별칭을 같은 기준으로 조회할 수 있어야 합니다.</p><p class="flow">전공 문자열 → catalog → {검색용 이름: 표준 이름}</p><dl><dt>key(s)</dt><dd>split·join으로 공백을 지우고 casefold로 대소문자를 통일합니다.</dd><dt>names(track), known</dt><dd>catalog의 (표준 이름, 영역)에서 이름만 꺼냅니다. 예를 들어 독서와구술을 조회하면 발표와토론을 얻습니다. @lru_cache는 전공별 결과를 재사용합니다.</dd></dl><details open><summary>rules.py · 68–69행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">key</span>(s):
+    <span class="tok-kw">return</span> <span class="tok-str">&quot;&quot;</span>.<span class="tok-fn">join</span>(s.<span class="tok-fn">split</span>()).<span class="tok-fn">casefold</span>()</code></pre></details><details open><summary>matcher.py · 12–17행</summary><pre><code>@lru_cache
+<span class="tok-kw">def</span> <span class="tok-fn">names</span>(track):
+    known = {alias: pair[<span class="tok-num">0</span>] <span class="tok-kw">for</span> alias, pair <span class="tok-kw">in</span> <span class="tok-fn">catalog</span>(track).<span class="tok-fn">items</span>()}
+    <span class="tok-comment"># 확인된 0학점 과목을 검색 목록에 추가</span>
+    known.<span class="tok-fn">update</span>({<span class="tok-str">&quot;tlc5&quot;</span>: <span class="tok-str">&quot;TLC5&quot;</span>, <span class="tok-str">&quot;채플5&quot;</span>: <span class="tok-str">&quot;채플5&quot;</span>})
+    <span class="tok-kw">return</span> known</code></pre></details></section><section id="s2"><h2>2. 학습·평가 과목 분리</h2><p><b>요구사항</b> 같은 과목의 별칭이 학습과 평가에 동시에 포함되지 않도록 분리합니다.</p><p class="flow">표준 과목명 → 약 ¼ 평가용 / 나머지 학습용</p><dl><dt>courses, rng.shuffle</dt><dd>중복을 제거한 표준 이름을 고정 시드 2022로 섞습니다.</dd><dt>held, train</dt><dd>held는 평가용 표준 이름 집합입니다. train은 해당 과목의 모든 별칭을 제외한 학습 사전입니다.</dd></dl><details open><summary>train_model.py · 23–32행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">main</span>():
+    rng = random.<span class="tok-fn">Random</span>(<span class="tok-num">2022</span>)
+    lookup = <span class="tok-fn">names</span>(<span class="tok-str">&quot;정보&quot;</span>)
+    courses = <span class="tok-fn">sorted</span>(<span class="tok-fn">set</span>(lookup.<span class="tok-fn">values</span>()))
+    <span class="tok-comment"># 고정 시드로 과목 순서를 섞어 학습용·평가용 분할을 준비</span>
+    rng.<span class="tok-fn">shuffle</span>(courses)
+    held = <span class="tok-fn">set</span>(courses[: <span class="tok-fn">len</span>(courses) // <span class="tok-num">4</span>])
+    train = {a: n <span class="tok-kw">for</span> a, n <span class="tok-kw">in</span> lookup.<span class="tok-fn">items</span>() <span class="tok-kw">if</span> n <span class="tok-kw">not</span> <span class="tok-kw">in</span> held}
+    rows = []</code></pre></details></section><section id="s3"><h2>3. 오타와 정답 만들기</h2><p><b>요구사항</b> 분류기가 배울 수 있도록 두 이름이 같은 과목이면 1, 다른 과목이면 0을 붙입니다.</p><p class="flow">자료구조 → 자료조 → (자료조, 자료구조)는 정답 1</p><dl><dt>variants(s), i</dt><dd>가운데 위치에서 글자 삭제·오로 대체·반복을 수행합니다. 집합에서 원문을 빼서 합성 오타만 반환합니다.</dd><dt>noisy, negatives</dt><dd>noisy는 만든 오타입니다. get_close_matches는 다른 과목의 이름 중 비슷한 후보를 최대 4개 고릅니다.</dd><dt>rows.append</dt><dd>(비교 특징 6개, 정답)을 학습 리스트에 추가합니다.</dd></dl><details open><summary>train_model.py · 13–19행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">variants</span>(s):
+    i = <span class="tok-fn">len</span>(s) // <span class="tok-num">2</span>
+    <span class="tok-kw">return</span> {
+        s[:i] + s[i + <span class="tok-num">1</span> :],
+        s[:i] + <span class="tok-str">&quot;오&quot;</span> + s[i + <span class="tok-num">1</span> :],
+        s[:i] + s[i : i + <span class="tok-num">1</span>] + s[i:],
+    } - {s}</code></pre></details><details open><summary>train_model.py · 33–40행</summary><pre><code>    <span class="tok-kw">for</span> alias, n <span class="tok-kw">in</span> train.<span class="tok-fn">items</span>():
+        others = [a <span class="tok-kw">for</span> a <span class="tok-kw">in</span> train <span class="tok-kw">if</span> train[a] != n]
+        negatives = <span class="tok-fn">get_close_matches</span>(alias, others, n=<span class="tok-num">4</span>, cutoff=<span class="tok-num">0</span>)
+        <span class="tok-kw">for</span> noisy <span class="tok-kw">in</span> <span class="tok-fn">sorted</span>(<span class="tok-fn">variants</span>(alias)):
+            rows.<span class="tok-fn">append</span>((<span class="tok-fn">features</span>(noisy, alias), <span class="tok-num">1</span>))
+            <span class="tok-kw">for</span> other <span class="tok-kw">in</span> negatives:
+                rows.<span class="tok-fn">append</span>((<span class="tok-fn">features</span>(noisy, other), <span class="tok-num">0</span>))</code></pre></details></section><section id="s4"><h2>4. 두 문자열을 특징 6개로 변환</h2><p><b>요구사항</b> 학습과 실제 보정에서 동일한 방식으로 두 과목명을 숫자로 표현합니다.</p><p class="flow">(입력 이름, 후보 이름) → 숫자 6개의 리스트</p><dl><dt>similarity, SequenceMatcher.ratio()</dt><dd>전체 문자열의 일치 구간을 비교해 유사도를 구합니다.</dd><dt>jamo, normalize</dt><dd>NFD로 한글을 자모 단위로 분해한 뒤 다시 유사도를 비교합니다.</dd><dt>features(a, b)</dt><dd>반환 순서는 문자열 유사도, 자모 유사도, 길이 비율, 앞 두 글자 일치, 뒤 두 글자 일치, 단계 일치입니다.</dd><dt>markers(s), re.findall</dt><dd>숫자와 영어 과목명의 끝 단계 표기를 꺼냅니다. 예를 들어 practicalenglishii에서 ii를 얻습니다.</dd></dl><details open><summary>matcher.py · 21–36행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">features</span>(a, b):
+    <span class="tok-comment"># 두 문자열의 유사도를 0부터 1 사이의 숫자로 계산</span>
+    <span class="tok-kw">def</span> <span class="tok-fn">similarity</span>(x, y):
+        <span class="tok-comment"># 문자열의 일치 구간을 비교해 0~1 유사도 계산</span>
+        <span class="tok-kw">return</span> <span class="tok-fn">SequenceMatcher</span>(<span class="tok-kw">None</span>, x, y, autojunk=<span class="tok-kw">False</span>).<span class="tok-fn">ratio</span>()
+
+    <span class="tok-comment"># 한글을 초성·중성·종성으로 분해해 작은 글자 차이까지 비교</span>
+    jamo = [unicodedata.<span class="tok-fn">normalize</span>(<span class="tok-str">&quot;NFD&quot;</span>, x) <span class="tok-kw">for</span> x <span class="tok-kw">in</span> (a, b)]
+    <span class="tok-kw">return</span> [
+        <span class="tok-fn">similarity</span>(a, b),
+        <span class="tok-fn">similarity</span>(*jamo),
+        <span class="tok-fn">min</span>(<span class="tok-fn">len</span>(a), <span class="tok-fn">len</span>(b)) / <span class="tok-fn">max</span>(<span class="tok-fn">len</span>(a), <span class="tok-fn">len</span>(b), <span class="tok-num">1</span>),
+        <span class="tok-fn">float</span>(a[:<span class="tok-num">2</span>] == b[:<span class="tok-num">2</span>]),
+        <span class="tok-fn">float</span>(a[-<span class="tok-num">2</span>:] == b[-<span class="tok-num">2</span>:]),
+        <span class="tok-fn">float</span>(<span class="tok-fn">markers</span>(a) == <span class="tok-fn">markers</span>(b)),
+    ]</code></pre></details><details open><summary>matcher.py · 40–42행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">markers</span>(s):
+    <span class="tok-comment"># 정규식과 일치하는 숫자·영어 단계 표기들을 목록으로 추출</span>
+    <span class="tok-kw">return</span> re.<span class="tok-fn">findall</span>(<span class="tok-str">r&quot;\d+|(?&lt;=english)i+$&quot;</span>, s)</code></pre></details></section><section id="s5"><h2>5. 로지스틱 회귀 학습과 저장</h2><p><b>요구사항</b> 같은 과목 쌍에 높은 점수를 주도록 가중치를 조정하고 앱에서 재사용합니다.</p><p class="flow">특징 배열 x + 정답 배열 y → 5,000회 갱신 → weights.py</p><dl><dt>x, y, w</dt><dd>x의 각 행은 [1, 특징 6개]입니다. y는 정답 0·1이고 w는 처음에 모두 0인 학습 계수 7개입니다.</dd><dt>prediction, gradient</dt><dd>x @ w를 0~1 점수로 바꿉니다. 예측과 정답의 차이로 수정 방향을 계산하고 학습률 0.8을 적용합니다.</dd><dt>gradient[1:]</dt><dd>편향을 제외한 가중치가 지나치게 커지지 않도록 조정합니다.</dd><dt>Path.write_text, BIAS, WEIGHTS</dt><dd>학습한 첫 숫자는 편향, 나머지 여섯 숫자는 특징별 가중치로 파일에 저장합니다.</dd></dl><details open><summary>train_model.py · 42–56행</summary><pre><code>    x = np.<span class="tok-fn">array</span>([[<span class="tok-num">1</span>, *f] <span class="tok-kw">for</span> f, y <span class="tok-kw">in</span> rows])
+    <span class="tok-comment"># 이미지 또는 숫자 목록을 배열로 변환</span>
+    y = np.<span class="tok-fn">array</span>([y <span class="tok-kw">for</span> f, y <span class="tok-kw">in</span> rows])
+    <span class="tok-comment"># 가중치를 학습하기 전 모두 0으로 초기화</span>
+    w = np.<span class="tok-fn">zeros</span>(x.shape[<span class="tok-num">1</span>])
+
+    <span class="tok-kw">for</span> _ <span class="tok-kw">in</span> <span class="tok-fn">range</span>(<span class="tok-num">5000</span>):
+        prediction = <span class="tok-num">1</span> / (<span class="tok-num">1</span> + np.<span class="tok-fn">exp</span>(-(x @ w)))
+        gradient = x.T @ (prediction - y) / <span class="tok-fn">len</span>(y)
+        gradient[<span class="tok-num">1</span>:] += <span class="tok-num">0.00025</span> * w[<span class="tok-num">1</span>:]
+        w -= <span class="tok-num">0.8</span> * gradient
+
+    <span class="tok-fn">Path</span>(__file__).<span class="tok-fn">with_name</span>(<span class="tok-str">&quot;weights.py&quot;</span>).<span class="tok-fn">write_text</span>(
+        f&quot;# train_model.py 생성\nBIAS = {<span class="tok-fn">float</span>(w[<span class="tok-num">0</span>])!r}\nWEIGHTS = {w[<span class="tok-num">1</span>:].<span class="tok-fn">tolist</span>()!r}\n&quot;
+    )</code></pre></details><details open><summary>weights.py · 1–10행</summary><pre><code><span class="tok-comment"># train_model.py 생성</span>
+BIAS = -<span class="tok-num">15.098877475746177</span>
+WEIGHTS = [
+    <span class="tok-num">7.553210559798821</span>,
+    <span class="tok-num">5.2492452402932015</span>,
+    -<span class="tok-num">0.11713291097771988</span>,
+    <span class="tok-num">1.5877640975864238</span>,
+    <span class="tok-num">0.586002890993471</span>,
+    <span class="tok-num">3.869583549337524</span>,
+]</code></pre></details></section><section id="s6"><h2>6. 입력 이름과 기존 규칙 확인</h2><p><b>요구사항</b> 이미 등록된 이름과 기존 규칙으로 해결되는 입력은 바로 반환합니다.</p><p class="flow">입력 → 정확 일치 → tlcs 특수 처리 → baseline → 짧은 입력 검사</p><dl><dt>typed, known</dt><dd>정리한 입력이 사전의 키로 있으면 표준 이름을 반환합니다.</dd><dt>prior, complete_name</dt><dd>baseline은 길이가 같은 후보의 한글 차이와 자모 유사도를 검사합니다. 이름이 바뀌면 그 값을 채택합니다.</dd><dt>len(typed)</dt><dd>여기까지 해결되지 않은 4글자 미만 입력은 그대로 반환합니다.</dd></dl><details open><summary>matcher.py · 83–102행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">match</span>(name, track):
+    <span class="tok-kw">from</span> weights <span class="tok-kw">import</span> WEIGHTS, BIAS
+
+    typed = <span class="tok-fn">key</span>(name)
+    known = <span class="tok-fn">names</span>(track)
+    <span class="tok-comment"># 정규화한 이름이 목록에 정확히 있으면 표준 과목명을 바로 반환</span>
+    <span class="tok-kw">if</span> typed <span class="tok-kw">in</span> known:
+        <span class="tok-kw">return</span> known[typed]
+    <span class="tok-comment"># 숫자 5를 영문 s로 읽은 확인된 오류를 TLC5로 보정</span>
+    <span class="tok-kw">if</span> typed == <span class="tok-str">&quot;tlcs&quot;</span>:
+        <span class="tok-kw">return</span> <span class="tok-str">&quot;TLC5&quot;</span>  <span class="tok-comment"># v1에서 확인한 OCR 표기</span>
+    <span class="tok-kw">from</span> baseline <span class="tok-kw">import</span> complete_name
+
+    prior = <span class="tok-fn">complete_name</span>(name, track)
+    <span class="tok-comment"># 기존 규칙이 이름을 보정했으면 그 결과를 채택하고 모델 계산은 생략</span>
+    <span class="tok-kw">if</span> prior != name:
+        <span class="tok-kw">return</span> prior
+    <span class="tok-comment"># 이름이 네 글자보다 짧으면 잘못 연결할 위험이 있어 원문 유지</span>
+    <span class="tok-kw">if</span> <span class="tok-fn">len</span>(typed) &lt; <span class="tok-num">4</span>:
+        <span class="tok-kw">return</span> name</code></pre></details><details open><summary>baseline.py · 7–50행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">complete_name</span>(name, track):
+    lookup = <span class="tok-fn">catalog</span>(track)
+    typed = <span class="tok-fn">key</span>(name)
+    <span class="tok-comment"># 확인된 0학점 과목도 이름 비교에 포함</span>
+    known = {k: v[<span class="tok-num">0</span>] <span class="tok-kw">for</span> k, v <span class="tok-kw">in</span> lookup.<span class="tok-fn">items</span>()}
+    <span class="tok-comment"># 확인된 0학점 과목을 검색 목록에 추가</span>
+    known.<span class="tok-fn">update</span>({<span class="tok-str">&quot;tlc5&quot;</span>: <span class="tok-str">&quot;TLC5&quot;</span>, <span class="tok-str">&quot;채플5&quot;</span>: <span class="tok-str">&quot;채플5&quot;</span>})
+    <span class="tok-comment"># 정규화한 이름이 목록에 정확히 있으면 표준 과목명을 바로 반환</span>
+    <span class="tok-kw">if</span> typed <span class="tok-kw">in</span> known:
+        <span class="tok-kw">return</span> known[typed]
+    <span class="tok-comment"># 숫자 5를 영문 s로 읽은 확인된 오류를 TLC5로 보정</span>
+    <span class="tok-kw">if</span> typed == <span class="tok-str">&quot;tlcs&quot;</span>:  <span class="tok-comment"># 숫자 5를 영문 s로 읽은 오류를 처리</span>
+        <span class="tok-kw">return</span> <span class="tok-str">&quot;TLC5&quot;</span>
+    <span class="tok-comment"># 이름이 다섯 글자보다 짧으면 규칙 보정 대상에서 제외</span>
+    <span class="tok-kw">if</span> <span class="tok-fn">len</span>(typed) &lt; <span class="tok-num">5</span>:
+        <span class="tok-kw">return</span> name
+    scores = {}
+    <span class="tok-kw">for</span> spelling, canonical <span class="tok-kw">in</span> known.<span class="tok-fn">items</span>():
+        <span class="tok-comment"># 기존 규칙은 길이가 같은 이름끼리만 비교하므로 다른 길이는 제외</span>
+        <span class="tok-kw">if</span> <span class="tok-fn">len</span>(spelling) != <span class="tok-fn">len</span>(typed):
+            <span class="tok-kw">continue</span>
+        differences = [(a, b) <span class="tok-kw">for</span> a, b <span class="tok-kw">in</span> <span class="tok-fn">zip</span>(typed, spelling) <span class="tok-kw">if</span> a != b]
+        <span class="tok-comment"># 차이가 없거나 다른 글자 중 한글 외 문자가 있으면 이 오타 규칙에서 제외</span>
+        <span class="tok-kw">if</span> <span class="tok-kw">not</span> differences <span class="tok-kw">or</span> <span class="tok-kw">not</span> <span class="tok-fn">all</span>(
+            <span class="tok-str">&quot;가&quot;</span> &lt;= c &lt;= <span class="tok-str">&quot;힣&quot;</span> <span class="tok-kw">for</span> pair <span class="tok-kw">in</span> differences <span class="tok-kw">for</span> c <span class="tok-kw">in</span> pair
+        ):
+            <span class="tok-kw">continue</span>
+        <span class="tok-comment"># 9글자 이상은 두 글자, 그보다 짧으면 한 글자를 넘게 다를 때 후보 제외</span>
+        <span class="tok-kw">if</span> <span class="tok-fn">len</span>(differences) &gt; (<span class="tok-num">2</span> <span class="tok-kw">if</span> <span class="tok-fn">len</span>(typed) &gt;= <span class="tok-num">9</span> <span class="tok-kw">else</span> <span class="tok-num">1</span>):
+            <span class="tok-kw">continue</span>
+        <span class="tok-comment"># 문자열의 일치 구간을 비교해 0~1 유사도 계산</span>
+        score = <span class="tok-fn">SequenceMatcher</span>(
+            <span class="tok-kw">None</span>,
+            unicodedata.<span class="tok-fn">normalize</span>(<span class="tok-str">&quot;NFD&quot;</span>, typed),
+            unicodedata.<span class="tok-fn">normalize</span>(<span class="tok-str">&quot;NFD&quot;</span>, spelling),
+        ).<span class="tok-fn">ratio</span>()
+        scores[canonical] = <span class="tok-fn">max</span>(score, scores.<span class="tok-fn">get</span>(canonical, <span class="tok-num">0</span>))
+    ranked = <span class="tok-fn">sorted</span>(scores, key=scores.get, reverse=<span class="tok-kw">True</span>)
+    <span class="tok-comment"># 후보가 있고 1순위의 자모 유사도가 0.86 이상인지 확인</span>
+    <span class="tok-kw">if</span> ranked <span class="tok-kw">and</span> scores[ranked[<span class="tok-num">0</span>]] &gt;= <span class="tok-num">0.86</span>:
+        <span class="tok-comment"># 후보가 하나이거나 1·2순위 점수 차이가 0.08 이상일 때 규칙 보정 확정</span>
+        <span class="tok-kw">if</span> <span class="tok-fn">len</span>(ranked) == <span class="tok-num">1</span> <span class="tok-kw">or</span> scores[ranked[<span class="tok-num">0</span>]] - scores[ranked[<span class="tok-num">1</span>]] &gt;= <span class="tok-num">0.08</span>:
+            <span class="tok-kw">return</span> ranked[<span class="tok-num">0</span>]
+    <span class="tok-kw">return</span> name</code></pre></details></section><section id="s7"><h2>7. 후보 점수 계산·정렬</h2><p><b>요구사항</b> 단계 표기가 일치하는 후보를 비교하고 충분히 구분되는 최고 후보를 선택합니다.</p><p class="flow">입력 + 각 별칭 → 점수 → 표준 이름별 최고 점수 → 내림차순 정렬</p><dl><dt>alias, canonical</dt><dd>alias는 비교할 철자이고 canonical은 표준 과목명입니다. 단계가 다른 후보는 continue로 건너뜁니다.</dd><dt>z, score</dt><dd>특징과 가중치를 하나씩 곱해 합산하고 편향을 더합니다. 시그모이드 함수로 0~1 점수를 얻습니다.</dd><dt>scores, ranked</dt><dd>같은 표준 이름은 별칭 중 최대 점수를 남깁니다. sorted는 높은 점수 순서로 이름을 정렬합니다.</dd><dt>반환 기준</dt><dd>최고 점수 0.90 이상이고 차순위와 0.12 이상 차이가 나면 반환합니다. 후보 하나면 차이 조건은 생략합니다. 나머지는 다음 단계로 갑니다.</dd></dl><details open><summary>matcher.py · 103–119행</summary><pre><code>    scores = {}
+    <span class="tok-kw">for</span> alias, canonical <span class="tok-kw">in</span> known.<span class="tok-fn">items</span>():
+        <span class="tok-comment"># 입력과 후보의 숫자·영어 단계가 다르면 해당 후보를 건너뜀</span>
+        <span class="tok-kw">if</span> <span class="tok-fn">markers</span>(typed) != <span class="tok-fn">markers</span>(alias):
+            <span class="tok-kw">continue</span>
+        z = BIAS + <span class="tok-fn">sum</span>(w * f <span class="tok-kw">for</span> w, f <span class="tok-kw">in</span> <span class="tok-fn">zip</span>(WEIGHTS, <span class="tok-fn">features</span>(typed, alias)))
+        score = <span class="tok-num">1</span> / (<span class="tok-num">1</span> + math.<span class="tok-fn">exp</span>(-z))
+        scores[canonical] = <span class="tok-fn">max</span>(score, scores.<span class="tok-fn">get</span>(canonical, <span class="tok-num">0</span>))
+    ranked = <span class="tok-fn">sorted</span>(scores, key=scores.get, reverse=<span class="tok-kw">True</span>)
+    <span class="tok-comment"># 모델 최고 점수가 0.90 이상이고 차순위와 0.12 이상 차이 나면 이름 확정</span>
+    <span class="tok-kw">if</span> (
+        ranked
+        <span class="tok-kw">and</span> scores[ranked[<span class="tok-num">0</span>]] &gt;= <span class="tok-num">0.90</span>
+        <span class="tok-kw">and</span> (<span class="tok-fn">len</span>(ranked) == <span class="tok-num">1</span> <span class="tok-kw">or</span> scores[ranked[<span class="tok-num">0</span>]] - scores[ranked[<span class="tok-num">1</span>]] &gt;= <span class="tok-num">0.12</span>)
+    ):
+        <span class="tok-kw">return</span> ranked[<span class="tok-num">0</span>]
+    <span class="tok-kw">return</span> <span class="tok-fn">short_korean_match</span>(typed, known) <span class="tok-kw">or</span> name</code></pre></details></section><section id="s8"><h2>8. 네 글자 한글 오타 보정</h2><p><b>요구사항</b> 모델이 확정하지 않은 네 글자 입력에서 작은 자모 차이를 확인합니다.</p><p class="flow">지료구존 ↔ 자료구조 → 지/자, 존/조 → 두 위치 모두 자모 하나 차이</p><dl><dt>differences, zip</dt><dd>같은 위치에서 다른 음절 쌍만 모읍니다. 한두 쌍일 때 검사합니다.</dd><dt>left, right, close</dt><dd>NFKD로 단독 ㄹ과 음절 속 초성을 비교할 수 있게 합니다. 자모 하나 교체 또는 끝에 하나 추가·누락되면 통과합니다.</dd><dt>candidates, winners</dt><dd>모든 차이가 허용 범위면 다른 음절 수를 기록합니다. 최소 차이 후보가 하나면 반환합니다. 동점 또는 후보 없음이면 None이고 match가 원문을 유지합니다.</dd></dl><details open><summary>matcher.py · 45–79행</summary><pre><code><span class="tok-kw">def</span> <span class="tok-fn">short_korean_match</span>(typed, known):
+    <span class="tok-str">&quot;&quot;&quot;네 글자 이름에서 한두 음절의 자모가 하나씩 달라진 후보를 찾는다.&quot;&quot;&quot;</span>
+    <span class="tok-kw">if</span> <span class="tok-kw">not</span> re.<span class="tok-fn">fullmatch</span>(<span class="tok-str">r&quot;[가-힣ㄱ-ㅎ]{4}&quot;</span>, typed):
+        <span class="tok-kw">return</span> <span class="tok-kw">None</span>
+
+    candidates = {}
+    <span class="tok-kw">for</span> alias, canonical <span class="tok-kw">in</span> known.<span class="tok-fn">items</span>():
+        <span class="tok-kw">if</span> <span class="tok-kw">not</span> re.<span class="tok-fn">fullmatch</span>(<span class="tok-str">r&quot;[가-힣]{4}&quot;</span>, alias):
+            <span class="tok-kw">continue</span>
+        differences = [(a, b) <span class="tok-kw">for</span> a, b <span class="tok-kw">in</span> <span class="tok-fn">zip</span>(typed, alias) <span class="tok-kw">if</span> a != b]
+        <span class="tok-kw">if</span> <span class="tok-kw">not</span> <span class="tok-num">1</span> &lt;= <span class="tok-fn">len</span>(differences) &lt;= <span class="tok-num">2</span>:
+            <span class="tok-kw">continue</span>
+
+        <span class="tok-kw">for</span> a, b <span class="tok-kw">in</span> differences:
+            <span class="tok-comment"># NFKD는 단독 ㄹ과 &#x27;료&#x27;의 초성 ㄹ을 같은 자모로 표현한다.</span>
+            left = unicodedata.<span class="tok-fn">normalize</span>(<span class="tok-str">&quot;NFKD&quot;</span>, a)
+            right = unicodedata.<span class="tok-fn">normalize</span>(<span class="tok-str">&quot;NFKD&quot;</span>, b)
+            <span class="tok-kw">if</span> <span class="tok-fn">len</span>(left) == <span class="tok-fn">len</span>(right):
+                close = <span class="tok-fn">sum</span>(x != y <span class="tok-kw">for</span> x, y <span class="tok-kw">in</span> <span class="tok-fn">zip</span>(left, right)) == <span class="tok-num">1</span>
+            <span class="tok-kw">else</span>:
+                <span class="tok-comment"># 받침 추가·누락 또는 초성만 남은 두 자모 음절</span>
+                close = <span class="tok-fn">abs</span>(<span class="tok-fn">len</span>(left) - <span class="tok-fn">len</span>(right)) == <span class="tok-num">1</span> <span class="tok-kw">and</span> (
+                    left.<span class="tok-fn">startswith</span>(right) <span class="tok-kw">or</span> right.<span class="tok-fn">startswith</span>(left)
+                )
+            <span class="tok-kw">if</span> <span class="tok-kw">not</span> close:
+                <span class="tok-kw">break</span>
+        <span class="tok-kw">else</span>:
+            candidates[canonical] = <span class="tok-fn">min</span>(<span class="tok-fn">len</span>(differences), candidates.<span class="tok-fn">get</span>(canonical, <span class="tok-num">3</span>))
+
+    <span class="tok-kw">if</span> candidates:
+        best = <span class="tok-fn">min</span>(candidates.<span class="tok-fn">values</span>())
+        winners = [name <span class="tok-kw">for</span> name, distance <span class="tok-kw">in</span> candidates.<span class="tok-fn">items</span>() <span class="tok-kw">if</span> distance == best]
+        <span class="tok-kw">if</span> <span class="tok-fn">len</span>(winners) == <span class="tok-num">1</span>:
+            <span class="tok-kw">return</span> winners[<span class="tok-num">0</span>]
+    <span class="tok-kw">return</span> <span class="tok-kw">None</span></code></pre></details></section><section id="s9"><h2>9. 결과 평가와 앱 연결</h2><p><b>요구사항</b> 학습에서 제외한 과목으로 보정 결과를 평가하고 실제 앱에는 최종 이름을 전달합니다.</p><p class="flow">평가용 오타 → 정답·보류·오보정 집계 / OCR 행 → 이름 보정 → 학점·영역 조회</p><dl><dt>cases, answers</dt><dd>평가 과목에 합성 오타를 만든 뒤 (반환값, 입력 오타, 정답 이름)을 기록합니다. 이 평가는 합성 오타에 대한 결과입니다.</dd><dt>correct, review</dt><dd>정답 이름과 같으면 정답, 입력 오타 그대로면 보류, 나머지는 오보정입니다. v1은 baseline, v2는 규칙과 모델을 함께 쓰는 match입니다.</dd><dt>review_row, complete_name</dt><dd>app.py가 matcher.match를 complete_name이라는 이름으로 가져옵니다. 보정한 이름으로 CREDITS와 catalog에서 학점과 영역을 찾습니다.</dd></dl><details open><summary>train_model.py · 65–86행</summary><pre><code>    cases = [
+        (v, n)
+        <span class="tok-kw">for</span> n <span class="tok-kw">in</span> <span class="tok-fn">sorted</span>(held)
+        <span class="tok-kw">for</span> v <span class="tok-kw">in</span> <span class="tok-fn">sorted</span>(<span class="tok-fn">variants</span>(<span class="tok-fn">key</span>(n)))
+        <span class="tok-kw">if</span> v <span class="tok-kw">not</span> <span class="tok-kw">in</span> lookup
+    ]
+
+    <span class="tok-kw">for</span> label, fn <span class="tok-kw">in</span> [(<span class="tok-str">&quot;v1&quot;</span>, complete_name), (<span class="tok-str">&quot;v2&quot;</span>, match)]:
+        answers = [(<span class="tok-fn">fn</span>(v, <span class="tok-str">&quot;정보&quot;</span>), v, n) <span class="tok-kw">for</span> v, n <span class="tok-kw">in</span> cases]
+        correct = <span class="tok-fn">sum</span>(a == n <span class="tok-kw">for</span> a, v, n <span class="tok-kw">in</span> answers)
+        review = <span class="tok-fn">sum</span>(a == v <span class="tok-kw">for</span> a, v, n <span class="tok-kw">in</span> answers)
+        <span class="tok-fn">print</span>(
+            label,
+            <span class="tok-str">&quot;전체&quot;</span>,
+            <span class="tok-fn">len</span>(cases),
+            <span class="tok-str">&quot;정답&quot;</span>,
+            correct,
+            <span class="tok-str">&quot;보류&quot;</span>,
+            review,
+            <span class="tok-str">&quot;오보정&quot;</span>,
+            <span class="tok-fn">len</span>(cases) - correct - review,
+        )</code></pre></details><details open><summary>app.py · 10–12행</summary><pre><code><span class="tok-kw">from</span> matcher <span class="tok-kw">import</span> match <span class="tok-kw">as</span> complete_name</code></pre></details><details open><summary>app.py · 28–36행</summary><pre><code>    name = <span class="tok-fn">complete_name</span>(name, track)
+    <span class="tok-comment"># 표준화한 과목명을 키로 학점을 조회하며, 미등록 과목은 None</span>
+    credit = CREDITS.<span class="tok-fn">get</span>(<span class="tok-fn">key</span>(name))
+    <span class="tok-comment"># 조회 결과의 첫 값(이름)은 _에 받고, 사용할 두 번째 값(영역)은 category에 저장</span>
+    _, category = <span class="tok-fn">catalog</span>(track).<span class="tok-fn">get</span>(
+        <span class="tok-fn">key</span>(name), (name, <span class="tok-str">&quot;0학점&quot;</span> <span class="tok-kw">if</span> credit == <span class="tok-num">0</span> <span class="tok-kw">else</span> <span class="tok-str">&quot;확인 필요&quot;</span>)
+    )
+    <span class="tok-comment"># 학점은 문자열로 바꾸고 세 항목을 |로 연결해 검토표 한 줄을 생성</span>
+    <span class="tok-kw">return</span> <span class="tok-str">&quot; | &quot;</span>.<span class="tok-fn">join</span>([name, <span class="tok-str">&quot;&quot;</span> <span class="tok-kw">if</span> credit <span class="tok-kw">is</span> <span class="tok-kw">None</span> <span class="tok-kw">else</span> <span class="tok-fn">str</span>(credit), category])</code></pre></details></section><article><h2>정보 트랙에서 실제로 반환한 값</h2><table><tr><th>입력 문자열</th><th>match 결과</th></tr><tr><td>자료구조</td><td>자료구조</td></tr><tr><td>지료구존</td><td>자료구조</td></tr><tr><td>자ㄹ구조</td><td>자료구조</td></tr><tr><td>자료구죠</td><td>자료구조</td></tr></table></article></div></main><script>const root=document.documentElement,theme=document.getElementById('theme');function render(light){root.classList.toggle('light',light);theme.textContent=light?'어두운 화면으로':'밝은 화면으로'}let light=false;try{light=localStorage.getItem('ai-guide-theme')==='light'}catch{}render(light);theme.onclick=()=>{light=!light;render(light);try{localStorage.setItem('ai-guide-theme',light?'light':'dark')}catch{}};</script><script>
+const tocButton = document.getElementById('toggle-toc');
+const sidebar = document.getElementById('guide-sidebar');
+const layout = sidebar.closest('main');
+function setTocHidden(hidden) {
+  sidebar.hidden = hidden;
+  layout.classList.toggle('toc-hidden', hidden);
+  tocButton.setAttribute('aria-expanded', String(!hidden));
+  tocButton.textContent = hidden ? '목차 보기' : '목차 숨기기';
+}
+try { setTocHidden(localStorage.getItem('ai-guide-toc') === 'hidden'); } catch { setTocHidden(false); }
+tocButton.addEventListener('click', () => {
+  setTocHidden(!sidebar.hidden);
+  try { localStorage.setItem('ai-guide-toc', sidebar.hidden ? 'hidden' : 'visible'); } catch {}
+});
+</script></html>
