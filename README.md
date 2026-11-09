@@ -56,6 +56,21 @@
 - [컴퓨팅 기본 개념 · 코어·스레드·프로세스](https://p2terghks.github.io/study-notes/docs/quick-reference/computing-basics-reference.html)
 - [네트워크 기본 개념 · IP·DNS·TCP·HTTP](https://p2terghks.github.io/study-notes/docs/quick-reference/network-basics-reference.html)
 
+### cap_graduate v2 · 성적표 과목명 자동 보정과 졸업요건 검사
+
+정보 전공 학생의 사진에서 OCR이 `모바일프로그래망`을 읽으면, 프로그램은 이를 `모바일프로그래밍`으로 보정하고 교육과정표에서 학부공통 3학점을 조회한다.
+
+| 필요한 기능 | 구현 | 입력과 결과 |
+|---|---|---|
+| 사진 읽기 | `ocr.recognize(image_bytes)` | 사진 바이트에서 과목명 열을 읽는다. 표를 구분하기 어려우면 글자 위치로 행을 묶는다. |
+| 과목명 추출 | `app.review_row(line, track)` | OCR 행 사전에서 과목명을 꺼낸다. 전체 줄만 있으면 제목 행을 제외하고 과목번호·학점·성적 표기를 정리한다. |
+| 오독 보정 | `matcher.match(name, track)` | OCR 이름과 선택 전공을 받아 교육과정 목록의 표준 과목명을 찾는다. 판단이 모호하면 검토할 수 있도록 원문을 남긴다. |
+| 학점·영역 분류 | `CREDITS`, `rules.catalog(track)` | 보정한 이름으로 학점과 전공별 이수 영역을 조회해 검토표를 채운다. |
+| 졸업요건 검사 | `calculate()`, `rules.report(rows, track)` | 검토된 과목을 중복 없이 합산한다. 전공필수 24학점 초과분을 전공선택에 먼저 반영하고 각 영역의 초과분을 자율선택으로 보낸다. 2022학년도 기준 127학점과 영역별 부족분을 표시한다. |
+| 과목 추천 | `rules.report(rows, track)` | 부족한 영역에서 이미 이수한 과목을 제외하고 남은 교육과정 과목을 후보로 표시한다. |
+
+**모델이 예측하는 값**은 OCR 이름과 후보 이름이 같은 과목일 점수다. 정확한 이름·별칭과 기존 규칙으로 해결되지 않으면 `features(a, b)`가 글자 유사도, 한글 자모 유사도, 길이 비율, 첫 두 글자 일치, 끝 두 글자 일치, 단계 표기 일치를 계산한다. 학습한 가중치로 후보별 점수를 구해 1위가 0.90 이상이고 2위가 있으면 점수 차이가 0.12 이상일 때 채택한다. 기준에 못 미치면 네 글자 한글 보정 규칙을 확인한다.
+
 ### 졸업요건 AI 프로젝트
 
 - [과목명 AI 분류 시스템 · 요구사항과 단계별 코드 설명](https://p2terghks.github.io/study-notes/docs/ai-classification-guide.html)
