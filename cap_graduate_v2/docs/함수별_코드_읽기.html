@@ -1,0 +1,578 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>함수별 코드 읽기</title><style>*{box-sizing:border-box}body{max-width:960px;margin:auto;padding:30px 20px 60px;font:16px/1.65 system-ui,sans-serif;color:#182638;background:#f3f6fa}h1{line-height:1.25}nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}a{color:#07588b}section{background:white;padding:18px 24px;margin-top:20px;border-radius:12px}h2{font-size:21px;margin:0}summary{cursor:pointer;color:#115471;padding:8px}small{color:#586776}pre{overflow:auto;background:#132537;color:#e2eef6;padding:16px;border-radius:6px;line-height:1.5}details{border-top:1px solid #dae3ea}.role{display:block;color:#c6d3df;font:normal 15px/1.65 system-ui,sans-serif;margin:4px 0 8px 16px}.values{margin:8px 12px 18px;padding:12px 16px;border-left:3px solid #589dc1;background:#141b24}.values dt{color:#9edcf7;font-weight:650}.values dd{margin:2px 0 10px;overflow-wrap:anywhere}.code-scroll{overflow:auto}.line-table{border-collapse:collapse;width:100%;font-size:14px}.line-table td,.line-table th{padding:10px;border:1px solid #334254;vertical-align:top}.line-table td:last-child{min-width:300px;max-width:450px;line-height:1.8}.line-table pre{border:0;margin:0;padding:0;font-size:13px;min-width:360px}.line-table tr:hover{background:#253448}.blank-line td{padding-top:0!important;padding-bottom:0!important;height:16px}.blank-line pre{padding:0!important;height:16px}.blank-line td{padding-top:0!important;padding-bottom:0!important;height:16px}.blank-line pre{padding:0!important;height:16px}.blank-line td{padding-top:0!important;padding-bottom:0!important;height:16px}.blank-line pre{padding:0!important;height:16px}.blank-line td{padding-top:0!important;padding-bottom:0!important;height:16px}.blank-line pre{padding:0!important;height:16px}</style><style>
+:root{color-scheme:dark}body{background:#10141b;color:#e4eaf2}h1,h2{color:#f4f7fc}section{background:#19212c;border:1px solid #344254}nav a,summary{color:#94d9ff}summary:hover,a:hover{color:#d4f3ff}small{color:#adbccc}details{border-color:#384554}summary:focus-visible,a:focus-visible{outline:2px solid #f1c975;outline-offset:2px}pre{background:#0d1117;color:#e6edf3;border:1px solid #334050;padding:16px 20px;line-height:1.65;white-space:pre;tab-size:4}pre code{font:14px/1.65 ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace}code [class^=k],code .ow{color:#ff9bb2}code .nf,code .nc,code .fm{color:#d8b5ff}code [class^=s]{color:#a7e3aa}code [class^=m]{color:#ffc589}code [class^=c]{color:#9cacc1;font-style:italic}code .nb,code .bp,code .nd{color:#83d8ed}code .o{color:#aed5ff}::selection{background:#375575;color:white}
+</style><style>
+#line-guide .code-scroll{overflow:visible}
+#line-guide .line-table{table-layout:fixed;width:100%}
+#line-guide .line-table th:first-child,#line-guide .line-table td:first-child{width:48px;font-variant-numeric:tabular-nums}
+#line-guide .line-table th:nth-child(2){width:51%}
+#line-guide .line-table td{min-width:0;max-width:none;overflow-wrap:anywhere;padding:10px}
+#line-guide .line-table pre{min-width:0;max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;background:#0d1117;padding:8px}
+#line-guide .line-table code{font-size:13px}
+@media(max-width:680px){
+#line-guide .line-table,#line-guide .line-table tbody,#line-guide .line-table tr,#line-guide .line-table td{display:block;width:100%!important}
+#line-guide .line-table thead{display:none}
+#line-guide .line-table tr{margin-bottom:16px;border:1px solid #344254}
+#line-guide .line-table td{border:0}
+#line-guide .line-table td:first-child:before{content:"코드 줄 "}
+}
+</style><style>.flow-diagram{max-width:760px;margin:24px auto}.flow-node{background:#101923;border:1px solid #476078;border-radius:10px;padding:16px 20px}.flow-node h3{margin:0;color:#a5def9;font-size:18px}.flow-node p{margin:8px 0}.flow-node pre{white-space:pre-wrap;overflow-wrap:anywhere}.flow-fn{font-family:monospace;color:#dbb7ff}.flow-arrow{text-align:center;font-size:30px;color:#8ccee9;line-height:1.4}.model-flow{text-align:center;line-height:2;padding:18px;background:#101923;border-radius:8px}</style><h1>함수별 코드 읽기</h1><p>사진 선택 → OCR 행 추출 → 과목명 비교 → 검토 → 학점 합산. 함수 이름을 펼치면 입력값과 변수, 분기 조건을 실제 코드와 함께 볼 수 있습니다.</p><section><h2>app.py</h2><details><summary><code>review_row(line, track)</code></summary><p>line.get("과목명")에서 셀 이름이 없으면 전체 text에서 과목명을 찾는다. 제목 행이면 None을 반환한다. credit은 목록 학점, category는 이수 영역이다. _에는 조회 결과 중 사용하지 않을 이름이 들어간다.</p><dl class="values"><dt>호출 형태</dt><dd>review_row(line, track)</dd><dt>매개변수</dt><dd>line=OCR 한 행의 사전. 예: {&#x27;과목명&#x27;:&#x27;모바일프로그래망&#x27;}. 표 인식 실패 시 text 키를 사용<br>track=선택한 전공 문자열 &#x27;정보&#x27;</dd><dt>함수 안에서 쓰는 값</dt><dd>name=추출 후 보정한 과목명<br>credit=등록 학점 3<br>category=조회한 영역 &#x27;학부공통&#x27;</dd><dt>반환값 또는 실행 결과</dt><dd>&#x27;모바일프로그래밍 | 3 | 학부공통&#x27;처럼 검토용 한 줄을 반환한다. 표 머리글은 None이다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">review_row</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+    <span class="c1"># 사전에서 과목명을 조회하며, 해당 키가 없으면 None을 받음</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"과목명"</span><span class="p">)</span>
+    <span class="c1"># 과목명 셀이 따로 없으면 OCR이 읽은 전체 행에서 이름을 추출</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="c1"># 열 제목이 들어 있는 행은 수강 과목이 아니므로 제외</span>
+        <span class="k">if</span> <span class="s2">"과목명"</span> <span class="ow">in</span> <span class="n">text</span> <span class="ow">and</span> <span class="s2">"학점"</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1"># 표를 구분하지 못한 경우 행에서 학점·성적·과목번호를 제거해 과목명 추출</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
+            <span class="sa">r</span><span class="s2">"\s+\d+\s+(?:[A-DF][0+-]?|P(?:ASS)?)(?:\s.*)?$"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">I</span>
+        <span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"^.*?\b(?:[A-Z]+\d+|\d{5,})\s+"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">complete_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">track</span><span class="p">)</span>
+    <span class="c1"># 표준화한 과목명을 키로 학점을 조회하며, 미등록 과목은 None</span>
+    <span class="n">credit</span> <span class="o">=</span> <span class="n">CREDITS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="c1"># 조회 결과의 첫 값(이름)은 _에 받고, 사용할 두 번째 값(영역)은 category에 저장</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">category</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">(</span><span class="n">track</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">"0학점"</span> <span class="k">if</span> <span class="n">credit</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">"확인 필요"</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="c1"># 학점은 문자열로 바꾸고 세 항목을 |로 연결해 검토표 한 줄을 생성</span>
+    <span class="k">return</span> <span class="s2">" | "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="s2">""</span> <span class="k">if</span> <span class="n">credit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">credit</span><span class="p">),</span> <span class="n">category</span><span class="p">])</span>
+</code></pre></details><details><summary><code>main()</code></summary><p>root는 앱 창, editor는 검토표, output은 결과창이다. mainloop()가 버튼 클릭을 기다린다.</p><dl class="values"><dt>호출 형태</dt><dd>main()</dd><dt>매개변수</dt><dd>없음. 괄호 안에 값을 전달하지 않는다.</dd><dt>함수 안에서 쓰는 값</dt><dd>root=앱의 최상위 Tk 창<br>track=전공 선택 상자<br>editor=검토표 입력창<br>events=작업 결과를 담는 큐<br>output=결과 표시창</dd><dt>반환값 또는 실행 결과</dt><dd>창을 닫으면 이벤트 처리를 마치고 None을 반환한다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+    <span class="c1"># 앱 창의 제목을 지정</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"cap_graduate v2 · 졸업요건 확인"</span><span class="p">)</span>
+    <span class="c1"># 앱 창의 초기 크기를 가로 900·세로 700으로 지정</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">"900x700"</span><span class="p">)</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">bar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"x"</span><span class="p">)</span>
+
+    <span class="c1"># 제목과 선택지 목록을 받아 입학년도·전공 선택 상자를 생성</span>
+    <span class="c1"># choice() 본문은 해당 함수 항목 참조</span>
+
+    <span class="n">choice</span><span class="p">(</span><span class="s2">"입학년도"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"2022"</span><span class="p">])</span>
+    <span class="n">track</span> <span class="o">=</span> <span class="n">choice</span><span class="p">(</span><span class="s2">"전공"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"정보"</span><span class="p">,</span> <span class="s2">"멀콘"</span><span class="p">,</span> <span class="s2">"인공"</span><span class="p">])</span>
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+        <span class="n">root</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="s2">"이수 완료한 과목만 남겨 주세요. F·수강 중 과목은 삭제하세요. 행 형식: 과목명 | 학점 | 영역"</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">editor</span> <span class="o">=</span> <span class="n">ScrolledText</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span> <span class="n">undo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">editor</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"both"</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+        <span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">"직접 입력할 수 있는 영역: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">TARGET</span><span class="p">),</span> <span class="n">wraplength</span><span class="o">=</span><span class="mi">810</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">"w"</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+
+    <span class="c1"># 여러 성적표 사진을 선택받고 OCR 작업을 시작</span>
+    <span class="c1"># load() 본문은 해당 함수 항목 참조</span>
+
+    <span class="c1"># 작업 큐의 결과를 확인해 검토표·오류 메시지·진행 상태를 갱신</span>
+    <span class="c1"># poll() 본문은 해당 함수 항목 참조</span>
+
+    <span class="n">button</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">"사진 선택 (여러 장 가능)"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">load</span><span class="p">)</span>
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">button</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">()</span>
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">status</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+
+    <span class="c1"># 검토한 과목 정보를 확인하고 졸업요건 비교 결과를 화면에 표시</span>
+    <span class="c1"># calculate() 본문은 해당 함수 항목 참조</span>
+
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">"확인한 내역으로 졸업요건 비교"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">calculate</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span>
+        <span class="n">pady</span><span class="o">=</span><span class="mi">8</span>
+    <span class="p">)</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">ScrolledText</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">"disabled"</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="s2">"word"</span><span class="p">)</span>
+    <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"both"</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">poll</span><span class="p">()</span>
+    <span class="c1"># 창을 유지하며 버튼 클릭·입력 등의 이벤트를 처리</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</code></pre></details><details><summary><code>choice(label, values)</code></summary><p>box.current(0)은 values의 첫 항목을 선택한다. 반환값 box는 선택 상자 자체이고, 이후 track.get()으로 선택한 전공 문자열을 읽는다.</p><dl class="values"><dt>호출 형태</dt><dd>choice(label, values)</dd><dt>매개변수</dt><dd>label=표시할 제목 문자열 &#x27;전공&#x27;<br>values=선택지 목록 [&#x27;정보&#x27;,&#x27;멀콘&#x27;,&#x27;인공&#x27;]</dd><dt>함수 안에서 쓰는 값</dt><dd>bar=바깥 main의 상단 프레임<br>box=그 안에 만든 읽기 전용 드롭다운</dd><dt>반환값 또는 실행 결과</dt><dd>box 자체를 반환한다. 처음에는 box.get()이 &#x27;정보&#x27;다.</dd></dl><pre><code>    <span class="k">def</span><span class="w"> </span><span class="nf">choice</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">label</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">bar</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">"readonly"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        <span class="c1"># 지정한 방향·여백·확장 옵션으로 위젯을 창에 배치</span>
+        <span class="n">box</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="c1"># 선택지의 0번 항목을 기본값으로 선택</span>
+        <span class="n">box</span><span class="o">.</span><span class="n">current</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">box</span>
+</code></pre></details><details><summary><code>load()</code></summary><p>files는 선택한 사진 경로들이다. if not files는 선택 취소이므로 즉시 종료한다. selected에 현재 전공을 저장한 후 작업 스레드를 시작한다.</p><dl class="values"><dt>호출 형태</dt><dd>load()</dd><dt>매개변수</dt><dd>없음. 괄호 안에 값을 전달하지 않는다.</dd><dt>함수 안에서 쓰는 값</dt><dd>files=선택한 사진 경로 모음<br>selected=track.get()으로 읽은 전공 문자열<br>button=사진 선택 버튼</dd><dt>반환값 또는 실행 결과</dt><dd>파일을 선택하면 worker를 시작한다. 취소하면 그대로 종료한다.</dd></dl><pre><code>    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">():</span>
+        <span class="c1"># 여러 사진을 선택할 수 있는 창을 열고 선택한 파일 경로들을 반환</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilenames</span><span class="p">(</span>
+            <span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="s2">"성적표 사진"</span><span class="p">,</span> <span class="s2">"*.png *.jpg *.jpeg *.webp"</span><span class="p">),</span> <span class="p">(</span><span class="s2">"모든 파일"</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="c1"># 사진 선택을 취소했으면 OCR 작업을 시작하지 않고 종료</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="c1"># 전공 선택 상자에 현재 선택된 문자열을 읽음</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="n">track</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="c1"># OCR 처리 중 중복 요청을 막기 위해 사진 선택 버튼 비활성화</span>
+        <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">"disabled"</span><span class="p">)</span>
+        <span class="c1"># 진행 상태 문자열을 바꾸면 연결된 화면 문구도 갱신</span>
+        <span class="n">status</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"사진 읽는 중…"</span><span class="p">)</span>
+
+        <span class="c1"># 선택한 사진을 한 장씩 인식하고 검토 결과를 화면 전달 큐에 저장</span>
+        <span class="c1"># worker() 본문은 해당 함수 항목 참조</span>
+
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></details><details><summary><code>worker()</code></summary><p>for path in files로 사진을 한 장씩 읽는다. 안쪽 for line in lines는 한 사진의 OCR 행을 순회한다. review_row가 반환한 문자열을 row에 담고, 값이 있는 행만 새 리스트에 넣는다. events.put()은 그 리스트를 화면 쪽으로 전달한다.</p><dl class="values"><dt>호출 형태</dt><dd>worker()</dd><dt>매개변수</dt><dd>없음. 괄호 안에 값을 전달하지 않는다.</dd><dt>함수 안에서 쓰는 값</dt><dd>files와 selected=load에서 받은 사진 경로들과 전공<br>path=이번 사진의 경로<br>lines=사진 한 장의 OCR 행 목록<br>events=검토 행이나 오류 메시지를 전달하는 큐</dd><dt>반환값 또는 실행 결과</dt><dd>직접 반환하는 값 없이 큐에 rows 또는 error를 넣고 마지막에 done을 보낸다.</dd></dl><pre><code>        <span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">():</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># 이미지를 ocr 입력으로</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">ocr</span><span class="w"> </span><span class="kn">import</span> <span class="n">recognize</span>
+
+                <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                    <span class="c1"># 사진 파일을 바이트로 읽어 recognize에 전달하고 OCR 행 목록을 받음</span>
+                    <span class="n">lines</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">recognize</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span>
+                    <span class="c1"># 인식된 행이 하나도 없으면 파일명을 포함한 오류를 표시</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">lines</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"글자를 찾지 못했어요: "</span> <span class="o">+</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="c1"># 화면을 직접 수정하지 않고 결과·오류·완료 신호를 큐로 전달</span>
+                    <span class="n">events</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+                        <span class="p">(</span>
+                            <span class="s2">"rows"</span><span class="p">,</span>
+                            <span class="p">[</span>
+                                <span class="n">row</span>
+                                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">:=</span> <span class="n">review_row</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">selected</span><span class="p">))</span>
+                            <span class="p">],</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="c1"># 발생한 오류를 exc에 받아 사용자에게 원인을 전달</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="c1"># 화면을 직접 수정하지 않고 결과·오류·완료 신호를 큐로 전달</span>
+                <span class="n">events</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="s2">"error"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">)))</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="c1"># 화면을 직접 수정하지 않고 결과·오류·완료 신호를 큐로 전달</span>
+                <span class="n">events</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="s2">"done"</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+</code></pre></details><details><summary><code>poll()</code></summary><p>while not events.empty()는 도착한 메시지를 차례로 꺼낸다. kind가 rows이면 value는 검토 행 목록, error이면 오류 메시지다. root.after(150, poll)은 다음 확인을 예약한다.</p><dl class="values"><dt>호출 형태</dt><dd>poll()</dd><dt>매개변수</dt><dd>없음. 괄호 안에 값을 전달하지 않는다.</dd><dt>함수 안에서 쓰는 값</dt><dd>kind=큐에서 꺼낸 사건 종류 rows·error·done<br>value=각각 검토 행 목록·오류 문자열·None</dd><dt>반환값 또는 실행 결과</dt><dd>창을 갱신한 뒤 root.after(150,poll)로 다음 확인을 예약한다.</dd></dl><pre><code>    <span class="k">def</span><span class="w"> </span><span class="nf">poll</span><span class="p">():</span>
+        <span class="c1"># 큐에 처리할 사건이 남아 있는 동안 하나씩 꺼내 화면에 반영</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">events</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+            <span class="c1"># 큐에서 처리할 사건 하나를 꺼내 종류와 데이터로 나눔</span>
+            <span class="n">kind</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">events</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="c1"># 큐에서 받은 데이터가 과목 행이면 검토표에 추가</span>
+            <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">"rows"</span><span class="p">:</span>
+                <span class="c1"># 여러 과목 행을 줄바꿈으로 연결해 검토표의 지정 위치에 삽입</span>
+                <span class="n">editor</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">"end"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+            <span class="c1"># 큐에서 받은 데이터가 오류이면 오류 대화상자를 표시</span>
+            <span class="k">elif</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">"error"</span><span class="p">:</span>
+                <span class="c1"># OCR 작업의 오류 내용을 대화상자로 표시</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">"사진 읽기"</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 다른 사진을 선택할 수 있도록 버튼 활성화</span>
+                <span class="n">button</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">"normal"</span><span class="p">)</span>
+                <span class="c1"># 진행 상태 문자열을 바꾸면 연결된 화면 문구도 갱신</span>
+                <span class="n">status</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">"과목별 내용을 확인하세요."</span><span class="p">)</span>
+        <span class="c1"># 150밀리초 후 poll을 다시 호출해 작업 결과를 확인</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="n">poll</span><span class="p">)</span>
+</code></pre></details><details><summary><code>calculate()</code></summary><p>for row in rows에서 row[0]은 과목명, row[1]은 학점 문자열, row[2]는 영역이다. suggested가 입력과 다르면 changes에 변경을 기록한다. expected는 등록 학점이다. filled는 빈칸 등 잘못된 학점 입력을 채웠는지 나타낸다.</p><dl class="values"><dt>호출 형태</dt><dd>calculate()</dd><dt>매개변수</dt><dd>없음. 괄호 안에 값을 전달하지 않는다.</dd><dt>함수 안에서 쓰는 값</dt><dd>rows=검토창에서 분리한 [과목명, 학점 문자열, 영역] 목록<br>suggested=보정한 이름<br>expected=등록된 정수 학점<br>changes=확인이 필요한 변경 목록<br>result=report의 결과 문자열</dd><dt>반환값 또는 실행 결과</dt><dd>결과를 output에 표시하거나 확인 대화상자를 띄운다.</dd></dl><pre><code>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># 검토표 전체 문자열을 읽고 줄별로 나눈 뒤 | 기준으로 세 항목을 분리</span>
+            <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"|"</span><span class="p">)]</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">editor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"1.0"</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="p">]</span>
+            <span class="c1"># 입력이 없거나 과목명·학점·영역의 세 칸으로 나뉘지 않으면 계산 중단</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">rows</span> <span class="ow">or</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"각 행을 과목명 | 학점 | 영역 형식으로 입력하세요."</span><span class="p">)</span>
+            <span class="n">changes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">filled</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+                <span class="c1"># 전공 선택 상자에 현재 선택된 문자열을 읽음</span>
+                <span class="n">suggested</span> <span class="o">=</span> <span class="n">complete_name</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">track</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+                <span class="c1"># 보정한 이름이 입력 이름과 다르면 변경 목록에 기록하고 이름·영역 수정</span>
+                <span class="k">if</span> <span class="n">suggested</span> <span class="o">!=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                    <span class="n">changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">suggested</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+                    <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">suggested</span>
+                    <span class="c1"># 전공 선택 상자에 현재 선택된 문자열을 읽음</span>
+                    <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">get</span><span class="p">())</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                        <span class="n">key</span><span class="p">(</span><span class="n">suggested</span><span class="p">),</span> <span class="p">(</span><span class="n">suggested</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+                    <span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">expected</span> <span class="o">=</span> <span class="n">CREDITS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+                <span class="c1"># 등록 학점은 있지만 입력값이 빈칸 또는 숫자가 아니면 목록의 학점으로 채움</span>
+                <span class="k">if</span> <span class="n">expected</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isdecimal</span><span class="p">():</span>
+                    <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+                    <span class="n">filled</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="c1"># 입력 학점이 목록의 학점과 다르면 변경 내용을 사용자에게 확인</span>
+                <span class="k">elif</span> <span class="n">expected</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">:</span>
+                    <span class="n">changes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">: 입력 </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">학점 → 목록 </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">학점"</span><span class="p">)</span>
+                    <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+
+            <span class="c1"># 이름이나 학점의 변경 사항이 있을 때만 적용 여부를 질문</span>
+            <span class="k">if</span> <span class="n">changes</span><span class="p">:</span>
+                <span class="c1"># 사용자가 자동 변경 적용을 거절하면 이번 계산을 종료</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span>
+                    <span class="s2">"과목 정보 확인"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">changes</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">이대로 적용할까요?"</span>
+                <span class="p">):</span>
+                    <span class="k">return</span>
+            <span class="c1"># 빈 학점을 채웠거나 수정 사항이 있으면 검토표를 수정된 내용으로 다시 표시</span>
+            <span class="k">if</span> <span class="n">filled</span> <span class="ow">or</span> <span class="n">changes</span><span class="p">:</span>
+                <span class="c1"># 검토표의 첫 줄 첫 글자(1.0)부터 끝(end)까지 기존 내용을 삭제</span>
+                <span class="n">editor</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">"1.0"</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">)</span>
+                <span class="c1"># 여러 과목 행을 줄바꿈으로 연결해 검토표의 지정 위치에 삽입</span>
+                <span class="n">editor</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">"1.0"</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">" | "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">))</span>
+            <span class="c1"># 전공 선택 상자에 현재 선택된 문자열을 읽음</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">report</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">track</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="c1"># 발생한 오류를 exc에 받아 사용자에게 원인을 전달</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="c1"># 입력값을 고쳐야 하는 이유를 안내 대화상자로 표시</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">"입력 확인"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">))</span>
+            <span class="k">return</span>
+
+        <span class="c1"># 결과창에 내용을 쓸 수 있도록 잠시 편집 허용</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">"normal"</span><span class="p">)</span>
+        <span class="c1"># 이전 계산 결과를 첫 글자부터 끝까지 비움</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">"1.0"</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">)</span>
+        <span class="c1"># 새로 계산한 결과 문자열을 결과창 끝에 삽입</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">"end"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="c1"># 결과를 사용자가 직접 수정하지 못하도록 읽기 전용으로 전환</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">"disabled"</span><span class="p">)</span>
+</code></pre></details></section><section><h2>ocr.py</h2><details><summary><code>get_reader()</code></summary><p>처음 호출할 때 로컬 모델 경로로 한국어·영어 OCR 판독기를 만든다. 캐시 덕분에 다음 사진에서도 같은 판독기를 사용한다.</p><dl class="values"><dt>호출 형태</dt><dd>get_reader()</dd><dt>매개변수</dt><dd>없음. 괄호 안에 값을 전달하지 않는다.</dd><dt>함수 안에서 쓰는 값</dt><dd>ROOT=프로젝트 경로<br>ROOT/&#x27;.models&#x27;=모델 저장 위치<br>torch.cuda.is_available()=CUDA 사용 가능 여부</dd><dt>반환값 또는 실행 결과</dt><dd>한국어·영어용 easyocr.Reader 객체를 반환하고 다음 호출에 재사용한다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">get_reader</span><span class="p">():</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">certifi</span>
+
+    <span class="c1"># 인증서 경로가 설정되어 있지 않으면 certifi의 인증서 파일을 사용</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"SSL_CERT_FILE"</span><span class="p">,</span> <span class="n">certifi</span><span class="o">.</span><span class="n">where</span><span class="p">())</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">easyocr</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+    <span class="c1"># CUDA GPU가 있으면 사용하고, 없으면 CPU로 인식</span>
+    <span class="k">return</span> <span class="n">easyocr</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">"ko"</span><span class="p">,</span> <span class="s2">"en"</span><span class="p">],</span>
+        <span class="n">gpu</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span>
+        <span class="n">model_storage_directory</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">".models"</span><span class="p">),</span>
+        <span class="n">user_network_directory</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">/</span> <span class="s2">".models"</span> <span class="o">/</span> <span class="s2">"user_network"</span><span class="p">),</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></details><details><summary><code>recognize(image_bytes)</code></summary><p>table_lines가 None이 아니면 표 인식 결과를 즉시 반환한다. 전체 이미지 인식 경로에서는 for문으로 detections의 글자 상자를 boxes에 담고, y좌표가 가까운 항목들을 groups에 모은다. 각 행 안에서는 x좌표 순으로 텍스트를 연결한다.</p><dl class="values"><dt>호출 형태</dt><dd>recognize(image_bytes)</dd><dt>매개변수</dt><dd>image_bytes=Path.read_bytes()로 읽은 사진 파일 내용(bytes)</dd><dt>함수 안에서 쓰는 값</dt><dd>image=회전·크기를 정리한 이미지<br>pixels=RGB 배열<br>table_lines=표 인식 결과 또는 None<br>boxes=텍스트의 위치·내용·신뢰도 목록</dd><dt>반환값 또는 실행 결과</dt><dd>(표 행 목록, 빈 목록) 또는 (복원한 행 목록, 위치 정보 목록)을 반환한다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">recognize</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageOps</span>
+
+    <span class="c1"># 입력은 이미 app.worker에서 read_bytes()로 읽은 사진 파일의 bytes</span>
+    <span class="c1"># BytesIO: 바이트를 메모리 안의 파일처럼 감쌈 → Image.open: 이미지로 해석</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">image_bytes</span><span class="p">))</span>
+    <span class="c1"># 사진이 2,400만 픽셀을 넘으면 메모리 사용을 제한하기 위해 처리 중단</span>
+    <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">source</span><span class="o">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">24_000_000</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"이미지는 2,400만 화소 이하로 줄여주세요."</span><span class="p">)</span>
+    <span class="c1"># 사진의 EXIF 방향 정보를 반영한 뒤 빨강·초록·파랑 3채널 형식으로 통일</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">ImageOps</span><span class="o">.</span><span class="n">exif_transpose</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">"RGB"</span><span class="p">)</span>
+    <span class="c1"># 가로·세로 2600픽셀 안에 들어가도록 비율을 유지해 축소</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">thumbnail</span><span class="p">((</span><span class="mi">2600</span><span class="p">,</span> <span class="mi">2600</span><span class="p">))</span>
+    <span class="c1"># PIL 이미지 → (높이, 너비, RGB 3채널) 형태의 NumPy 숫자 배열</span>
+    <span class="n">pixels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="c1"># 먼저 표의 칸을 구분해 과목명만 읽는 방식을 시도</span>
+    <span class="n">table_lines</span> <span class="o">=</span> <span class="n">recognize_grid_table</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+
+    <span class="c1"># 표 구조를 읽었으면 그 결과를 반환하고 전체 이미지 OCR은 생략</span>
+    <span class="k">if</span> <span class="n">table_lines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">table_lines</span><span class="p">,</span> <span class="p">[]</span>
+    <span class="c1"># 표 인식 결과가 None이면 전체 이미지에서 글자 영역을 검출하고 읽음</span>
+    <span class="c1"># detections: [(네 꼭짓점 좌표, 인식 문자열, 신뢰도), ...]</span>
+    <span class="n">detections</span> <span class="o">=</span> <span class="n">get_reader</span><span class="p">()</span><span class="o">.</span><span class="n">readtext</span><span class="p">(</span>
+        <span class="n">pixels</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">paragraph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">mag_ratio</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">canvas_size</span><span class="o">=</span><span class="mi">3200</span>
+    <span class="p">)</span>
+    <span class="c1"># boxes: 글자 영역 하나마다 위치·크기·문자열·신뢰도를 담는 딕셔너리 리스트</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># box는 [[x1, y1], ..., [x4, y4]] 형태의 네 꼭짓점</span>
+    <span class="k">for</span> <span class="n">box</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">confidence</span> <span class="ow">in</span> <span class="n">detections</span><span class="p">:</span>
+        <span class="c1"># x좌표만, y좌표만 따로 꺼내 왼쪽 위치·중심 높이·영역 높이를 계산</span>
+        <span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">box</span><span class="p">]</span>
+        <span class="n">ys</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">box</span><span class="p">]</span>
+        <span class="n">boxes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">"x"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">xs</span><span class="p">)),</span>
+                <span class="s2">"y"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">),</span>
+                <span class="s2">"height"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">ys</span><span class="p">)),</span>
+                <span class="s2">"text"</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+                <span class="s2">"confidence"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">confidence</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="c1"># groups: 같은 줄에 속하는 글자 영역들을 묶은 리스트 안의 리스트</span>
+    <span class="c1"># 예: [[자료구조 영역, 3 영역, A+ 영역], [다음 행의 영역들]]</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># y좌표가 작은 위쪽 글자부터 처리</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">boxes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">"y"</span><span class="p">]):</span>
+        <span class="c1"># 기존 행의 첫 영역과 높이가 가까운 첫 그룹을 찾고, 없으면 None</span>
+        <span class="c1"># 허용 거리: 최소 7픽셀 또는 두 영역 중 작은 높이의 절반</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">g</span>
+                <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span>
+                <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"y"</span><span class="p">]</span> <span class="o">-</span> <span class="n">item</span><span class="p">[</span><span class="s2">"y"</span><span class="p">])</span>
+                <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"height"</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s2">"height"</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
+            <span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># 같은 행으로 묶을 그룹이 없으면 새 행 그룹 생성</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">item</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="c1"># 각 행 안에서는 x좌표 순으로 정렬해 왼쪽부터 문자열을 연결</span>
+    <span class="c1"># 행 신뢰도는 해당 행의 글자 영역 신뢰도 중 가장 낮은 값</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"text"</span><span class="p">:</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="s2">"x"</span><span class="p">])),</span>
+            <span class="s2">"confidence"</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="s2">"confidence"</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">g</span><span class="p">),</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span>
+    <span class="p">]</span>
+    <span class="c1"># 반환은 튜플: (행 딕셔너리 리스트, 글자 영역 딕셔너리 리스트)</span>
+    <span class="c1"># 예: lines = [{"text": "자료구조 3 A+", "confidence": 0.95}]</span>
+    <span class="c1"># app.worker는 lines만 사용하며 boxes는 _로 받아 사용하지 않음</span>
+    <span class="k">return</span> <span class="n">lines</span><span class="p">,</span> <span class="n">boxes</span>
+</code></pre></details><details><summary><code>grid_boundaries(pixels)</code></summary><p>gray는 회색조 사진, ink는 선 검출용 이진 이미지다. positions(True)와 positions(False)를 호출해 세로선과 가로선의 위치를 각각 얻는다.</p><dl class="values"><dt>호출 형태</dt><dd>grid_boundaries(pixels)</dd><dt>매개변수</dt><dd>pixels=RGB 이미지 배열. 형태는 (높이, 너비, 3)</dd><dt>함수 안에서 쓰는 값</dt><dd>gray=회색조 이미지<br>ink=선과 글씨를 강조한 이진 이미지<br>h,w=이미지 높이와 너비</dd><dt>반환값 또는 실행 결과</dt><dd>(gray, 세로선의 x좌표 목록, 가로선의 y좌표 목록)을 반환한다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">grid_boundaries</span><span class="p">(</span><span class="n">pixels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Find a fully ruled transcript table; fall back for other layouts."""</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+    <span class="c1"># RGB 색상 이미지를 회색조 밝기 이미지로 변환</span>
+    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">pixels</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span>
+    <span class="c1"># 밝기 225를 기준으로 글자·선을 강조하는 이진 이미지 생성</span>
+    <span class="n">ink</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY_INV</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># 2차원 배열의 크기: h는 높이(행 수), w는 너비(열 수)</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">gray</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># 지정한 방향의 긴 선을 찾아 각 선의 중심 좌표를 반환</span>
+    <span class="c1"># positions() 본문은 해당 함수 항목 참조</span>
+
+    <span class="c1"># 반환: 회색조 이미지, 세로선 x좌표 리스트, 가로선 y좌표 리스트</span>
+    <span class="k">return</span> <span class="n">gray</span><span class="p">,</span> <span class="n">positions</span><span class="p">(</span><span class="kc">True</span><span class="p">),</span> <span class="n">positions</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></details><details><summary><code>positions(vertical)</code></summary><p>vertical에 따라 가로·세로 중 한 방향의 긴 선을 mask에 남긴다. indices의 인접 좌표는 같은 선이므로 한 그룹에 넣고, 떨어진 좌표이면 새 그룹을 만든다. 그룹별 평균 좌표를 반환한다.</p><dl class="values"><dt>호출 형태</dt><dd>positions(vertical)</dd><dt>매개변수</dt><dd>vertical=True면 세로선, False면 가로선</dd><dt>함수 안에서 쓰는 값</dt><dd>kernel=선 검출에 쓰는 방향별 크기<br>counts=위치별 선 픽셀 수<br>groups=붙어 있는 좌표끼리 묶은 목록</dd><dt>반환값 또는 실행 결과</dt><dd>각 선의 중심 좌표 모음. 예: [43,113,186].</dd></dl><pre><code>    <span class="k">def</span><span class="w"> </span><span class="nf">positions</span><span class="p">(</span><span class="n">vertical</span><span class="p">):</span>
+        <span class="c1"># vertical=True면 세로로 긴 검사 도구, False면 가로로 긴 검사 도구</span>
+        <span class="n">kernel</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">h</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span> <span class="k">if</span> <span class="n">vertical</span> <span class="k">else</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">w</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># 가로나 세로로 긴 구조를 남겨 표 선을 검출</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">morphologyEx</span><span class="p">(</span>
+            <span class="n">ink</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_OPEN</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">MORPH_RECT</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># 각 행 또는 열에서 검출된 선 픽셀 개수를 셈</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span> <span class="k">if</span> <span class="n">vertical</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># 선 길이 조건을 만족하는 위치의 좌표를 구함</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">counts</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">h</span> <span class="k">if</span> <span class="n">vertical</span> <span class="k">else</span> <span class="n">w</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.65</span><span class="p">)</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+            <span class="c1"># 첫 좌표이거나 이전 좌표와 떨어졌으면 새로운 표 선 그룹 생성</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">groups</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">groups</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">groups</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">groups</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">))</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">]</span>
+</code></pre></details><details><summary><code>recognize_grid_table(pixels)</code></summary><p>for col은 제목 셀을 읽고 headers에 열 이름과 번호를 기록한다. 과목명 열을 못 찾으면 None을 반환한다. for row는 제목 다음 행부터 과목명 셀만 읽어 이름과 신뢰도를 lines에 추가한다.</p><dl class="values"><dt>호출 형태</dt><dd>recognize_grid_table(pixels)</dd><dt>매개변수</dt><dd>pixels=성적표의 RGB 이미지 배열</dd><dt>함수 안에서 쓰는 값</dt><dd>xs,ys=표 경계 좌표<br>headers=열 이름과 열 번호의 대응표<br>lines=과목명·신뢰도를 담은 행 목록</dd><dt>반환값 또는 실행 결과</dt><dd>예: [{&#x27;과목명&#x27;:&#x27;채플5&#x27;,&#x27;confidence&#x27;:0.95}]. 점수는 설명용 예시다. 표를 찾지 못하면 None.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">recognize_grid_table</span><span class="p">(</span><span class="n">pixels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Read explicit cells only for the seven-column transcript layout.</span>
+
+<span class="sd">    No catalog-based correction: uncertain names remain review candidates.</span>
+<span class="sd">    """</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+    <span class="c1"># xs의 이웃 좌표 두 개가 한 열, ys의 이웃 좌표 두 개가 한 행의 경계</span>
+    <span class="n">gray</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">grid_boundaries</span><span class="p">(</span><span class="n">pixels</span><span class="p">)</span>
+    <span class="c1"># 검출한 표 경계가 부족하면 전체 이미지 인식으로 넘김</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">get_reader</span><span class="p">()</span>
+
+    <span class="c1"># 지정한 행과 열의 셀을 확대해 문자열과 인식 점수를 반환</span>
+    <span class="c1"># cell() 본문은 해당 함수 항목 참조</span>
+
+    <span class="c1"># 왼쪽 외곽선이 누락된 경우 이미지 왼쪽 끝을 경계로 추가</span>
+    <span class="k">if</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="c1"># 세로 경계 좌표 목록의 맨 앞에 0을 추가</span>
+        <span class="n">xs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># headers: 표준 열 이름 → 열 번호. 예: {"과목명": 4, "학점": 5}</span>
+    <span class="c1"># 열 번호는 0부터 시작하므로 4는 다섯 번째 열</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># 경계가 N개이면 그 사이의 열은 N-1개; 0번 행을 제목 행으로 읽음</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">text</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="n">header_field</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="c1"># 열 제목을 표준 이름으로 해석했을 때만 열 번호를 기록</span>
+        <span class="k">if</span> <span class="n">field</span><span class="p">:</span>
+            <span class="n">headers</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span>
+    <span class="c1"># 과목명 칸 너비와 학점 열 위치로 예시 표의 구조인지 확인</span>
+    <span class="c1"># 경계 개수·학점 열 위치·과목명 칸 너비가 예시 표 구조에 맞으면 열 번호 보완</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+        <span class="ow">and</span> <span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"학점"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="ow">and</span> <span class="n">xs</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="n">xs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">-</span> <span class="n">xs</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+    <span class="p">):</span>
+        <span class="c1"># 확인한 표 구조에 맞는 열 이름과 번호를 사전에 반영</span>
+        <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"과목명"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"학점"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"성적"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s2">"과목번호"</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+        <span class="c1"># 8개 열을 가진 표이면 마지막 열을 교양영역으로 기록</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="n">headers</span><span class="p">[</span><span class="s2">"교양영역"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+
+    <span class="c1"># 과목명 열을 찾지 못했으면 표 셀 인식을 중단하고 다른 방식으로 읽기</span>
+    <span class="k">if</span> <span class="s2">"과목명"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="c1"># 각 행 안에서는 x좌표 순으로 정렬해 왼쪽부터 문자열을 연결</span>
+    <span class="c1"># 행 신뢰도는 해당 행의 글자 영역 신뢰도 중 가장 낮은 값</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># 0번 제목 행을 제외하고 과목명 셀만 읽음: 학점·성적 셀은 여기서 읽지 않음</span>
+    <span class="c1"># lines: [{"과목명": "자료구조", "confidence": 0.95}, ...]</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">score</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">headers</span><span class="p">[</span><span class="s2">"과목명"</span><span class="p">],</span> <span class="n">row</span><span class="p">)</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"과목명"</span><span class="p">:</span> <span class="n">name</span> <span class="ow">or</span> <span class="s2">"이름 확인 필요"</span><span class="p">,</span> <span class="s2">"confidence"</span><span class="p">:</span> <span class="n">score</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">lines</span>
+</code></pre></details><details><summary><code>cell(col, row, allowed=None)</code></summary><p>col과 row는 0부터 세는 열·행 번호다. crop은 테두리를 제외한 셀 이미지다. 비어 있으면 빈 문자열과 0점을 반환한다. reader.recognize()의 결과 found에서 문자열을 이어 붙이고 가장 낮은 신뢰도를 반환한다.</p><dl class="values"><dt>호출 형태</dt><dd>cell(col, row, allowed=None)</dd><dt>매개변수</dt><dd>col=0부터 세는 열 번호<br>row=0부터 세는 행 번호(0은 머리글)<br>allowed=인식 허용 문자 문자열, 기본값 None은 제한 없음</dd><dt>함수 안에서 쓰는 값</dt><dd>crop=지정한 칸을 자르고 확대한 이미지<br>found=판독기가 반환한 인식 결과 목록</dd><dt>반환값 또는 실행 결과</dt><dd>(문자열, 신뢰도)를 반환한다. 빈 영역이면 (&#x27;&#x27;,0.0)이다.</dd></dl><pre><code>    <span class="k">def</span><span class="w"> </span><span class="nf">cell</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">allowed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># 배열은 [세로 범위, 가로 범위]로 자름; 테두리 선을 피하려고 3픽셀씩 안쪽 사용</span>
+        <span class="n">crop</span> <span class="o">=</span> <span class="n">gray</span><span class="p">[</span><span class="n">ys</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">:</span> <span class="n">ys</span><span class="p">[</span><span class="n">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span><span class="p">,</span> <span class="n">xs</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">:</span> <span class="n">xs</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span><span class="p">]</span>
+        <span class="c1"># 잘라낸 셀에 픽셀이 없으면 빈 문자열과 0점 반환</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">crop</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">""</span><span class="p">,</span> <span class="mf">0.0</span>
+        <span class="c1"># 작은 셀의 글자를 가로·세로 두 배로 확대</span>
+        <span class="n">crop</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fy</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_CUBIC</span><span class="p">)</span>
+        <span class="c1"># 셀 가장자리에 흰색 여백 12픽셀을 추가</span>
+        <span class="n">crop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+        <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">crop</span><span class="o">.</span><span class="n">shape</span>
+        <span class="c1"># 셀 전체를 하나의 글자 영역으로 지정해 OCR 문자열·점수를 받음</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span>
+            <span class="n">crop</span><span class="p">,</span>
+            <span class="n">horizontal_list</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">h</span><span class="p">]],</span>
+            <span class="n">free_list</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">detail</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">allowlist</span><span class="o">=</span><span class="n">allowed</span><span class="p">,</span>
+            <span class="n">paragraph</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># found의 각 결과에서 v[1]은 문자열, v[2]는 신뢰도</span>
+        <span class="c1"># 반환: (셀의 문자열, 최저 신뢰도); 결과가 없으면 신뢰도는 0</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">found</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span>
+            <span class="nb">min</span><span class="p">((</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">found</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="p">)</span>
+</code></pre></details><details><summary><code>header_field(text)</code></summary><p>text는 OCR이 읽은 열 제목이다. re.sub()로 한글만 남긴 key를 만들고 사전의 get()으로 표준 열 이름을 찾는다. 등록되지 않은 제목은 None이다.</p><dl class="values"><dt>호출 형태</dt><dd>header_field(text)</dd><dt>매개변수</dt><dd>text=OCR이 읽은 열 제목 문자열. 예: &#x27;교과목명&#x27;</dd><dt>함수 안에서 쓰는 값</dt><dd>key=한글 이외 문자를 제거한 제목</dd><dt>반환값 또는 실행 결과</dt><dd>예: &#x27;과목명&#x27;. 사전에 없는 표기는 None이다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">header_field</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+    <span class="c1"># 한글 이외의 문자·공백을 제거해 열 제목을 비교하기 쉽게 정리</span>
+    <span class="c1"># 이 key는 문자열 변수이며 rules.py의 key() 함수와는 별개</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">"[^가-힣]"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># 대응표에 없는 제목이면 get()은 None 반환</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"과목명"</span><span class="p">:</span> <span class="s2">"과목명"</span><span class="p">,</span>
+        <span class="s2">"교양영역"</span><span class="p">:</span> <span class="s2">"교양영역"</span><span class="p">,</span>
+        <span class="s2">"과목영"</span><span class="p">:</span> <span class="s2">"과목명"</span><span class="p">,</span>
+        <span class="s2">"교과목명"</span><span class="p">:</span> <span class="s2">"과목명"</span><span class="p">,</span>
+        <span class="s2">"학점"</span><span class="p">:</span> <span class="s2">"학점"</span><span class="p">,</span>
+        <span class="s2">"취득학점"</span><span class="p">:</span> <span class="s2">"학점"</span><span class="p">,</span>
+        <span class="s2">"성적"</span><span class="p">:</span> <span class="s2">"성적"</span><span class="p">,</span>
+        <span class="s2">"등급"</span><span class="p">:</span> <span class="s2">"성적"</span><span class="p">,</span>
+        <span class="s2">"과목번호"</span><span class="p">:</span> <span class="s2">"과목번호"</span><span class="p">,</span>
+        <span class="s2">"과목코드"</span><span class="p">:</span> <span class="s2">"과목번호"</span><span class="p">,</span>
+        <span class="s2">"이수구분"</span><span class="p">:</span> <span class="s2">"원문이수구분"</span><span class="p">,</span>
+        <span class="s2">"년도학기"</span><span class="p">:</span> <span class="s2">"수강학기"</span><span class="p">,</span>
+        <span class="s2">"연도학기"</span><span class="p">:</span> <span class="s2">"수강학기"</span><span class="p">,</span>
+        <span class="s2">"년되학기"</span><span class="p">:</span> <span class="s2">"수강학기"</span><span class="p">,</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</code></pre></details></section><section><h2>matcher.py</h2><details><summary><code>names(track)</code></summary><p>catalog(track).items()에서 alias는 검색할 이름, entry는 (표준명, 영역)이다. 사전 컴프리헨션이 alias를 entry[0]에 연결한다. for문은 0학점 과목 두 개도 검색 대상에 넣는다.</p><p>track = "정보" → {검색 이름: 표준 과목명} 사전</p><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">track</span><span class="p">):</span>
+    <span class="n">known</span> <span class="o">=</span> <span class="p">{</span><span class="n">alias</span><span class="p">:</span> <span class="n">entry</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">alias</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">catalog</span><span class="p">(</span><span class="n">track</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"TLC5"</span><span class="p">,</span> <span class="s2">"채플5"</span><span class="p">):</span>
+        <span class="n">known</span><span class="p">[</span><span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">known</span>
+</code></pre></details><details><summary><code>match(name, track)</code></summary><p>known은 검색 이름 → 표준명 사전이다. typed가 빈 문자열이면 원문, 등록된 키이면 해당 표준명을 돌려준다. for문은 모든 별칭의 자모열 candidate를 입력 자모열 query와 비교한다. ratio()가 계산한 score를 표준명별로 모아 scores에 최고값만 남긴다. ranked는 점수가 높은 순서의 이름 목록이다. 최고점이 0.80 미만이거나 2위와의 차이가 0.04 미만이면 원문을 유지한다.</p><p>name = "모바일프로그래망", track = "정보" → "모바일프로그래밍"</p><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">match</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+    <span class="n">known</span> <span class="o">=</span> <span class="n">names</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+    <span class="c1"># 공백과 영문 대소문자를 통일해 등록 이름 및 별칭부터 조회한다.</span>
+    <span class="n">typed</span> <span class="o">=</span> <span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">typed</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">name</span>
+    <span class="k">if</span> <span class="n">typed</span> <span class="ow">in</span> <span class="n">known</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">known</span><span class="p">[</span><span class="n">typed</span><span class="p">]</span>
+
+    <span class="c1"># 한글 한 음절의 일부만 다를 때에도 나머지 자모가 점수에 반영된다.</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s2">"NFKD"</span><span class="p">,</span> <span class="n">typed</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">alias</span><span class="p">,</span> <span class="n">canonical</span> <span class="ow">in</span> <span class="n">known</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">candidate</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s2">"NFKD"</span><span class="p">,</span> <span class="n">alias</span><span class="p">)</span>
+        <span class="c1"># 두 자모열에서 일치한 길이의 두 배를 두 열의 전체 길이 합으로 나눈다.</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">candidate</span><span class="p">,</span> <span class="n">autojunk</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">ratio</span><span class="p">()</span>
+        <span class="c1"># 같은 과목의 공식 별칭들은 하나의 후보로 합친다.</span>
+        <span class="n">scores</span><span class="p">[</span><span class="n">canonical</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">canonical</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">score</span><span class="p">)</span>
+
+    <span class="n">ranked</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">scores</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># 가장 닮은 이름도 기준에 미달하면 OCR 원문을 검토표에 남긴다.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ranked</span> <span class="ow">or</span> <span class="n">scores</span><span class="p">[</span><span class="n">ranked</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">MIN_SIMILARITY</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">name</span>
+    <span class="c1"># 서로 다른 두 과목이 비슷하게 닮았으면 하나를 임의로 고르지 않는다.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ranked</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">scores</span><span class="p">[</span><span class="n">ranked</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">-</span> <span class="n">scores</span><span class="p">[</span><span class="n">ranked</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="n">MIN_MARGIN</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">ranked</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></details></section><section><h2>rules.py</h2><details><summary><code>key(s)</code></summary><p>split()으로 공백을 기준으로 나눈 조각들을 join()으로 붙이고 casefold()로 영문 대소문자를 통일한다.</p><dl class="values"><dt>호출 형태</dt><dd>key(s)</dd><dt>매개변수</dt><dd>s=정규화할 문자열. 예: &#x27;College English I&#x27;</dd><dt>함수 안에서 쓰는 값</dt><dd>s.split()은 단어 목록, join은 공백 없는 문자열을 만든다.</dd><dt>반환값 또는 실행 결과</dt><dd>&#x27;collegeenglishi&#x27;를 반환한다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">key</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">())</span><span class="o">.</span><span class="n">casefold</span><span class="p">()</span>
+</code></pre></details><details><summary><code>catalog(track)</code></summary><p>바깥 for문은 과목 그룹, 안쪽 for문은 그룹 안의 이름을 순회한다. group이 track과 같으면 전공필수다. 교양은 entry를 =로 나누고 모든 alias를 첫 이름 names[0]과 같은 영역에 연결한다.</p><dl class="values"><dt>호출 형태</dt><dd>catalog(track)</dd><dt>매개변수</dt><dd>track=전공 문자열 &#x27;정보&#x27;, &#x27;멀콘&#x27;, &#x27;인공&#x27; 중 하나</dd><dt>함수 안에서 쓰는 값</dt><dd>group=지금 처리하는 과목 묶음<br>category=인정할 영역<br>result=이름·별칭별 대응표</dd><dt>반환값 또는 실행 결과</dt><dd>사전의 한 항목 예: &#x27;시스템보안실무&#x27; → (&#x27;시스템보안실무&#x27;,&#x27;전공필수&#x27;) (정보 전공).</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">catalog</span><span class="p">(</span><span class="n">track</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"멀콘"</span><span class="p">,</span> <span class="s2">"정보"</span><span class="p">,</span> <span class="s2">"인공"</span><span class="p">,</span> <span class="s2">"전공선택"</span><span class="p">,</span> <span class="n">track</span><span class="p">,</span> <span class="s2">"학부공통"</span><span class="p">]:</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">"전공필수"</span>
+            <span class="k">if</span> <span class="n">group</span> <span class="o">==</span> <span class="n">track</span>
+            <span class="k">else</span> <span class="s2">"학부공통"</span> <span class="k">if</span> <span class="n">group</span> <span class="o">==</span> <span class="s2">"학부공통"</span> <span class="k">else</span> <span class="s2">"전공선택"</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">GROUPS</span><span class="p">[</span><span class="n">group</span><span class="p">]:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">entries</span> <span class="ow">in</span> <span class="n">GENERAL</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"="</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">alias</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">(</span><span class="n">alias</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">category</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></details><details><summary><code>report(rows, track)</code></summary><p>enumerate(rows, 1)은 검토 행에 1번부터 번호를 붙인다. passed에는 표준 이름별 (정수 학점, 영역)을 저장한다. 같은 과목인데 값이 다르면 오류를 낸다. passed.values()를 돌며 totals에 더하고, missing이 양수인 영역에서 이미 이수한 이름을 제외한 후보를 모은다.</p><dl class="values"><dt>호출 형태</dt><dd>report(rows, track)</dd><dt>매개변수</dt><dd>rows=학생이 검토한 행 목록. 예: [[&#x27;시스템보안실무&#x27;,&#x27;3&#x27;,&#x27;전공필수&#x27;]]<br>track=선택 전공. 예: &#x27;정보&#x27;</dd><dt>함수 안에서 쓰는 값</dt><dd>passed=과목별 중복 제거 사전. 예: {&#x27;시스템보안실무&#x27;:(3,&#x27;전공필수&#x27;)}<br>totals=영역별 인정 학점<br>minimum=영역 기준<br>missing=남은 학점<br>lines=출력할 문장 목록</dd><dt>반환값 또는 실행 결과</dt><dd>예시 한 행만 있으면 전공필수 3 / 24학점과 21학점 부족을 포함한 문자열을 반환한다.</dd></dl><pre><code><span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">track</span><span class="p">):</span>
+    <span class="n">lookup</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">(</span><span class="n">track</span><span class="p">)</span>
+    <span class="n">passed</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">number</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">credit</span><span class="p">,</span> <span class="n">category</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># 과목명이 비었거나 학점이 정수 문자열이 아니면 입력 확인 요청</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">credit</span><span class="o">.</span><span class="n">isdecimal</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2">행의 과목명·학점을 확인하세요."</span><span class="p">)</span>
+        <span class="n">name</span><span class="p">,</span> <span class="n">category</span> <span class="o">=</span> <span class="n">lookup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">category</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+        <span class="c1"># 0학점이 아닌 과목의 영역이 졸업요건에 없으면 분류 확인 요청</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">credit</span><span class="p">)</span> <span class="ow">and</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TARGET</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2">행 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">의 영역을 확인하세요."</span><span class="p">)</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">credit</span><span class="p">),</span> <span class="n">category</span>
+        <span class="c1"># 동일 과목의 중복 기록에서 학점 또는 영역이 다르면 충돌을 알림</span>
+        <span class="k">if</span> <span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">in</span> <span class="n">passed</span> <span class="ow">and</span> <span class="n">passed</span><span class="p">[</span><span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">!=</span> <span class="n">record</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">의 중복 행에서 학점 또는 영역이 다릅니다."</span><span class="p">)</span>
+        <span class="n">passed</span><span class="p">[</span><span class="n">key</span><span class="p">(</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">record</span>
+    <span class="c1"># 키가 중복되지 않는 사전을 생성</span>
+    <span class="n">totals</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">TARGET</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">credit</span><span class="p">,</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">passed</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="c1"># 0학점 과목은 영역 합산에서 건너뛰고 양수 학점만 누적</span>
+        <span class="k">if</span> <span class="n">credit</span><span class="p">:</span>
+            <span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">+=</span> <span class="n">credit</span>
+    <span class="n">totals</span><span class="p">[</span><span class="s2">"전공선택"</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"전공필수"</span><span class="p">]</span> <span class="o">-</span> <span class="mi">24</span><span class="p">)</span>
+    <span class="n">totals</span><span class="p">[</span><span class="s2">"전공필수"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="n">totals</span><span class="p">[</span><span class="s2">"전공필수"</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">minimum</span> <span class="ow">in</span> <span class="n">TARGET</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># 다른 영역의 초과 학점만 자율선택으로 이동</span>
+        <span class="k">if</span> <span class="n">category</span> <span class="o">!=</span> <span class="s2">"자율선택"</span><span class="p">:</span>
+            <span class="n">totals</span><span class="p">[</span><span class="s2">"자율선택"</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">-</span> <span class="n">minimum</span><span class="p">)</span>
+            <span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">minimum</span><span class="p">,</span> <span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">])</span>
+
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"총 취득 </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="si">}</span><span class="s2">학점 / 졸업 기준 127학점"</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">minimum</span> <span class="ow">in</span> <span class="n">TARGET</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">missing</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">minimum</span> <span class="o">-</span> <span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">])</span>
+        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">totals</span><span class="p">[</span><span class="n">category</span><span class="p">]</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">minimum</span><span class="si">}</span><span class="s2">학점  ·  "</span>
+            <span class="o">+</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">missing</span><span class="si">}</span><span class="s2">학점 부족"</span> <span class="k">if</span> <span class="n">missing</span> <span class="k">else</span> <span class="s2">"충족"</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># 부족 학점이 있을 때만 해당 영역의 미이수 후보를 검색</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="c1"># 키가 중복되지 않는 사전을 생성</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span>
+                <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">lookup</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">category</span> <span class="ow">and</span> <span class="n">key</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">passed</span>
+            <span class="p">)</span>
+            <span class="c1"># 추천할 미이수 후보가 한 과목 이상 있을 때만 후보 문장을 추가</span>
+            <span class="k">if</span> <span class="n">names</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"이수 후보: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</code></pre></details></section></html>
