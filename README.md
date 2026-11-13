@@ -40,10 +40,6 @@
 - [GitHub · Git · 학습 기록 작성법](https://p2terghks.github.io/study-notes/docs/quick-reference/github-reference.html)
 - [Docker 사용법](https://p2terghks.github.io/study-notes/docs/quick-reference/docker-reference.html)
 
-### 코딩 테스트
-
-- [코딩 테스트 · 언어별 풀이](https://p2terghks.github.io/study-notes/docs/quick-reference/coding-test-reference.html)
-
 ### 클라우드 프로젝트
 
 - [프로젝트 1 · 3-Tier 고가용성](https://p2terghks.github.io/study-notes/docs/quick-reference/cloud-ha-reference.html)
@@ -60,7 +56,6 @@
 
 - [전체 19개 함수 관계 다이어그램](https://p2terghks.github.io/study-notes/cap_graduate_v2/docs/함수_관계_다이어그램.html)
 - [함수별 코드 읽기 · 매개변수·변수·메서드·반복문·조건문](https://p2terghks.github.io/study-notes/cap_graduate_v2/docs/함수별_코드_읽기.html)
-- [전체 Python 소스와 Mac·Windows 실행 안내](cap_graduate_v2/README.md)
 
 Tkinter 데스크톱 앱에서 사진을 선택하면 로컬 EasyOCR이 과목명을 읽습니다. 과목명과 공식 별칭을 자모 유사도로 비교한 뒤 교육과정의 학점·영역을 조회하고, 사용자가 검토한 내역을 중복 없이 합산해 2022학번 졸업요건 127학점과 비교합니다.
 
