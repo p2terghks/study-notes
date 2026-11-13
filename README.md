@@ -23,7 +23,7 @@
 - [Python 문법 가이드](https://p2terghks.github.io/study-notes/docs/python-syntax-guide.html)
 - [C 문법 가이드](https://p2terghks.github.io/study-notes/docs/c-syntax-guide.html)
 - [C++ 문법 가이드](https://p2terghks.github.io/study-notes/docs/cpp-syntax-guide.html)
-- [R 언어 · 문법과 데이터 처리](https://p2terghks.github.io/study-notes/docs/quick-reference/r-reference.html)
+- [R · CloudTrail 일반 활동·공격 비교 — 함수·변수·코드 흐름](https://p2terghks.github.io/study-notes/docs/quick-reference/r-cloudtrail-activity-summary.html)
 
 ### AWS · 클라우드
 
