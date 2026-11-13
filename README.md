@@ -56,39 +56,17 @@
 - [컴퓨팅 기본 개념 · 코어·스레드·프로세스](https://p2terghks.github.io/study-notes/docs/quick-reference/computing-basics-reference.html)
 - [네트워크 기본 개념 · IP·DNS·TCP·HTTP](https://p2terghks.github.io/study-notes/docs/quick-reference/network-basics-reference.html)
 
-### cap_graduate v2 · 성적표 과목명 자동 보정과 졸업요건 검사
+### 졸업요건 AI 프로젝트 · cap_graduate v2
 
-정보 전공 학생의 사진에서 OCR이 `모바일프로그래망`을 읽으면, 프로그램은 이를 `모바일프로그래밍`으로 보정하고 교육과정표에서 학부공통 3학점을 조회한다.
+- [전체 19개 함수 관계 다이어그램](https://p2terghks.github.io/study-notes/cap_graduate_v2/docs/함수_관계_다이어그램.html)
+- [함수별 코드 읽기 · 매개변수·변수·메서드·반복문·조건문](https://p2terghks.github.io/study-notes/cap_graduate_v2/docs/함수별_코드_읽기.html)
+- [전체 Python 소스와 Mac·Windows 실행 안내](cap_graduate_v2/README.md)
 
-| 필요한 기능 | 구현 | 입력과 결과 |
-|---|---|---|
-| 사진 읽기 | `ocr.recognize(image_bytes)` | 사진 바이트에서 과목명 열을 읽는다. 표를 구분하기 어려우면 글자 위치로 행을 묶는다. |
-| 과목명 추출 | `app.review_row(line, track)` | OCR 행 사전에서 과목명을 꺼낸다. 전체 줄만 있으면 제목 행을 제외하고 과목번호·학점·성적 표기를 정리한다. |
-| 오독 보정 | `matcher.match(name, track)` | OCR 이름과 선택 전공을 받아 교육과정 목록의 표준 과목명을 찾는다. 판단이 모호하면 검토할 수 있도록 원문을 남긴다. |
-| 학점·영역 분류 | `CREDITS`, `rules.catalog(track)` | 보정한 이름으로 학점과 전공별 이수 영역을 조회해 검토표를 채운다. |
-| 졸업요건 검사 | `calculate()`, `rules.report(rows, track)` | 검토된 과목을 중복 없이 합산한다. 전공필수 24학점 초과분을 전공선택에 먼저 반영하고 각 영역의 초과분을 자율선택으로 보낸다. 2022학년도 기준 127학점과 영역별 부족분을 표시한다. |
-| 과목 추천 | `rules.report(rows, track)` | 부족한 영역에서 이미 이수한 과목을 제외하고 남은 교육과정 과목을 후보로 표시한다. |
+Tkinter 데스크톱 앱에서 사진을 선택하면 로컬 EasyOCR이 과목명을 읽습니다. 과목명과 공식 별칭을 자모 유사도로 비교한 뒤 교육과정의 학점·영역을 조회하고, 사용자가 검토한 내역을 중복 없이 합산해 2022학번 졸업요건 127학점과 비교합니다.
 
-**모델이 예측하는 값**은 OCR 이름과 후보 이름이 같은 과목일 점수다. 정확한 이름·별칭과 기존 규칙으로 해결되지 않으면 `features(a, b)`가 글자 유사도, 한글 자모 유사도, 길이 비율, 첫 두 글자 일치, 끝 두 글자 일치, 단계 표기 일치를 계산한다. 학습한 가중치로 후보별 점수를 구해 1위가 0.90 이상이고 2위가 있으면 점수 차이가 0.12 이상일 때 채택한다. 기준에 못 미치면 네 글자 한글 보정 규칙을 확인한다.
+`load → worker → recognize → review_row → match → 검토표 → calculate → report` 순서로 처리합니다. 표의 과목명 열을 찾지 못하면 전체 OCR 결과를 좌표로 묶습니다.
 
-### 졸업요건 AI 프로젝트
-
-- [과목명 AI 분류 시스템 · 요구사항과 단계별 코드 설명](https://p2terghks.github.io/study-notes/docs/ai-classification-guide.html)
-
-- [졸업요건 AI · 클릭형 함수 흐름과 문법 설명](https://p2terghks.github.io/study-notes/graduation-photo-ai/FUNCTION_DIAGRAM.html)
-- [졸업요건 AI · 전체 코드·함수·Streamlit 상세 해설](https://p2terghks.github.io/study-notes/graduation-photo-ai/DETAILED_CODE_GUIDE.html)
-- [졸업요건 AI · 핵심 코드와 발표 가이드](https://p2terghks.github.io/study-notes/graduation-photo-ai/CODE_GUIDE.html)
-
-PyTorch 기반 성적표 OCR과 졸업요건 사전 점검 프로젝트입니다. [전체 소스와 실행 안내](graduation-photo-ai/README.md)를 함께 제공합니다. 클릭형 다이어그램에서는 19개 단계의 코드·기능과 `st`, `st.checkbox()`, `with` 등 46개 기초 설명을 볼 수 있습니다.
-
-### CloudTrail 로그인 기록 추출
-
-- [CloudTrail · 함수·조건문·반복문 상세 요약본](https://p2terghks.github.io/study-notes/cloudtrail-analysis/cloudtrail-function-summary.html)
-
-
-- [전체 소스와 실행 안내](cloudtrail-analysis/README.md)
-
-ConsoleLogin 이벤트만 찾아 시간·사용자·IP·성공/실패를 출력하고 CSV로 저장합니다. 핵심 R 코드 3개 파일, 총 135줄로 구성되며 실패 기록의 UTC 날짜별·시간대별 시각화를 제공합니다. 새 요약본에서는 함수별 입력·출력과 조건문의 참·거짓 경로를 읽고 코드 줄을 눌러 설명을 확인할 수 있습니다.
+현재 보정 기준은 최소 유사도 **0.80**, 1·2위 차이 **0.04**입니다. 2026-11-13 사진 한 장을 재시험한 결과 0.80에서는 9개 행 중 8개가 연결되고 `TLCs`는 확인 대상으로 남았습니다. 0.75 테스트에서는 9개가 연결되어 총 18학점을 계산했습니다. 0.75는 테스트에만 적용했으며, Windows 실제 실행은 아직 검증하지 않았습니다.
 
 ## 졸업현황2 — HTML 버전
 
