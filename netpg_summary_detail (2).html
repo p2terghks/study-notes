@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>네트워크 프로그래밍 상세 정리</title>
+<style>
+:root{
+  --bg:#f6f7fb;--card:#ffffff;--text:#1c2230;--muted:#5b6579;--line:#dfe3ee;
+  --accent:#2563eb;--accent-soft:#e7efff;--code-bg:#f3f5fa;
+  --c-fn:#1d4ed8;--c-type:#c2410c;--c-arg:#7e22ce;--c-ret:#15803d;--c-err:#b91c1c;--c-num:#0f766e;--c-kw:#be185d;--c-str:#a16207;--c-cmt:#6b7280;
+  --warn:#fff4e0;--warn-line:#f0a63a;--ok:#e6f6ec;--ok-line:#33a066;--bad:#fdeaea;--bad-line:#dc4c4c;--info:#e8f1ff;--info-line:#4b86f0;
+  --proc:#2563eb;--thr:#16a34a;--mux:#d97706;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#12151c;--card:#1b1f29;--text:#e7eaf2;--muted:#9ba5ba;--line:#2b3140;
+  --accent:#6b9bff;--accent-soft:#1f2c4d;--code-bg:#10131a;
+  --c-fn:#7fb0ff;--c-type:#ffa066;--c-arg:#c99bff;--c-ret:#5fd68a;--c-err:#ff7b7b;--c-num:#4fd1c5;--c-kw:#ff7fb5;--c-str:#e8c36a;--c-cmt:#8590a5;
+  --warn:#3a2f1a;--warn-line:#b8872f;--ok:#14301f;--ok-line:#2f9a5f;--bad:#3a1b1b;--bad-line:#c04646;--info:#18284a;--info-line:#4b78d6;
+  --proc:#6b9bff;--thr:#4ade80;--mux:#fbbf24;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+ font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.8;font-size:15.5px}
+.layout{display:flex;max-width:1240px;margin:0 auto}
+nav{position:sticky;top:0;align-self:flex-start;height:100vh;overflow:auto;width:260px;flex-shrink:0;padding:22px 14px;border-right:1px solid var(--line)}
+nav h2{font-size:14px;margin:0 0 10px;color:var(--muted)}
+nav a{display:block;color:var(--text);text-decoration:none;padding:4px 10px;border-radius:6px;font-size:13.5px}
+nav a:hover{background:var(--accent-soft);color:var(--accent)}
+nav a.sub{padding-left:22px;color:var(--muted);font-size:12.5px}
+nav a.top{font-weight:700;margin-top:10px}
+main{flex:1;min-width:0;padding:28px 34px 90px}
+h1{font-size:28px;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 20px}
+section.lec{margin-top:56px}
+h2.lec-title{font-size:23px;padding:10px 16px;background:var(--accent-soft);border-left:6px solid var(--accent);border-radius:6px;margin:0 0 20px}
+h3{font-size:19px;margin:34px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+h4{font-size:16px;margin:22px 0 6px;color:var(--accent)}
+p{margin:8px 0}
+ul,ol{margin:6px 0 12px;padding-left:22px}
+li{margin:4px 0}
+code{font-family:"JetBrains Mono",Consolas,Menlo,monospace;font-size:13px;background:var(--code-bg);padding:1px 6px;border-radius:4px}
+pre{background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:10px 0 16px;line-height:1.6}
+pre code{background:none;padding:0;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:10px 0 18px;background:var(--card);font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:12px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.layout{display:block}nav{position:static;height:auto;width:auto;border-right:0;border-bottom:1px solid var(--line)}main{padding:20px 16px 60px}.cols,.cols3{grid-template-columns:1fr}}
+
+/* callouts */
+.box{border-left:5px solid;border-radius:8px;padding:10px 16px;margin:14px 0;font-size:14.5px}
+.box b.t{display:block;margin-bottom:2px}
+.warn{background:var(--warn);border-color:var(--warn-line)}
+.ok{background:var(--ok);border-color:var(--ok-line)}
+.bad{background:var(--bad);border-color:var(--bad-line)}
+.info{background:var(--info);border-color:var(--info-line)}
+
+/* color words */
+.fn{color:var(--c-fn);font-weight:700}
+.ty{color:var(--c-type)}
+.ag{color:var(--c-arg);font-weight:600}
+.rt{color:var(--c-ret);font-weight:700}
+.er{color:var(--c-err);font-weight:700}
+.nu{color:var(--c-num);font-weight:600}
+.kw{color:var(--c-kw);font-weight:600}
+.cm{color:var(--c-cmt)}
+.st{color:var(--c-str)}
+.pr{color:var(--proc);font-weight:700}
+.th{color:var(--thr);font-weight:700}
+.mx{color:var(--mux);font-weight:700}
+
+/* function card */
+.fcard{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c-fn);border-radius:10px;padding:14px 18px 10px;margin:18px 0}
+.fcard .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px}
+.fcard .name{font-size:19px;font-weight:800;color:var(--c-fn);font-family:Consolas,Menlo,monospace}
+.fcard .tag{font-size:12.5px;background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:12px}
+.sig{font-family:Consolas,Menlo,"JetBrains Mono",monospace;font-size:13.5px;line-height:1.75;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:10px 14px;overflow-x:auto;white-space:pre;margin:8px 0 12px}
+.row{display:grid;grid-template-columns:130px 1fr;gap:4px 14px;padding:6px 0;border-top:1px dashed var(--line);font-size:14.5px}
+.row:first-of-type{border-top:0}
+.row .k{font-family:Consolas,Menlo,monospace;font-weight:700}
+.row .k.arg{color:var(--c-arg)}
+.row .k.ret{color:var(--c-ret)}
+.row .k.err{color:var(--c-err)}
+.row .k.ana{color:var(--c-str)}
+.row .k.note{color:var(--c-type)}
+.row .k.sz{color:var(--muted)}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+
+/* flow */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0}
+.flow span{background:var(--card);border:1px solid var(--accent);color:var(--accent);padding:4px 12px;border-radius:16px;font-size:13.5px;font-family:Consolas,Menlo,monospace}
+.flow i{color:var(--muted);font-style:normal}
+
+/* svg */
+svg{max-width:100%;height:auto;display:block;margin:0 auto}
+.sb{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+.sp{fill:var(--accent-soft);stroke:var(--proc);stroke-width:1.5}
+.st2{fill:var(--ok);stroke:var(--thr);stroke-width:1.5}
+.sm{fill:var(--warn);stroke:var(--mux);stroke-width:1.5}
+.sx{font-size:12.5px;fill:var(--text);font-family:inherit}
+.sxm{font-size:11.5px;fill:var(--muted);font-family:inherit}
+.sxb{font-size:13px;font-weight:700;fill:var(--text);font-family:inherit}
+.sl{stroke:var(--muted);stroke-width:1.5;fill:none}
+.sh{fill:var(--muted)}
+
+/* compare badges */
+.badge{display:inline-block;padding:0 9px;border-radius:10px;font-size:12.5px;font-weight:700}
+.b-good{background:var(--ok);color:var(--c-ret);border:1px solid var(--ok-line)}
+.b-mid{background:var(--warn);color:var(--c-type);border:1px solid var(--warn-line)}
+.b-bad{background:var(--bad);color:var(--c-err);border:1px solid var(--bad-line)}
+.cmp td:nth-child(2) b.h,.cmp th.pr{color:var(--proc)}
+.cmp th.th{color:var(--thr)}
+.cmp th.mx{color:var(--mux)}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h2>목차</h2>
+  <a class="top" href="#b01">기초편 L01 · 소켓의 개념</a>
+  <a class="top" href="#b02">기초편 L02 · 소켓 동작 원리</a>
+  <a class="top" href="#b03">기초편 L03 · 소켓 생성/종료</a>
+  <a class="sub" href="#b03-fd">저수준 파일 입출력</a>
+  <a class="sub" href="#b03-sock">socket / close / shutdown</a>
+  <a class="top" href="#b04">기초편 L04 · 주소 구조체/bind</a>
+  <a class="sub" href="#b04-addr">sockaddr_in</a>
+  <a class="sub" href="#b04-end">바이트 순서</a>
+  <a class="sub" href="#b04-ip">IP 주소 변환</a>
+  <a class="sub" href="#b04-mem">memset/memcpy/memcmp</a>
+  <a class="sub" href="#b04-bind">bind()</a>
+  <a class="top" href="#b05">기초편 L05 · listen/accept/connect</a>
+  <a class="sub" href="#b05-io">write·send / read·recv</a>
+  <a class="sub" href="#b05-ex">TCP 에코 예제</a>
+  <a class="top" href="#br4">기초편 · Report #4 (myadd)</a>
+  <a class="top" href="#b06">기초편 L06 · UDP</a>
+  <a class="top" href="#b07">기초편 L07 · 도메인 변환</a>
+  <a class="top" href="#intro">0. 먼저 큰 그림부터</a>
+  <a class="sub" href="#intro-why">왜 다중 접속 서버?</a>
+  <a class="sub" href="#intro-ana">식당 비유로 보는 3방식</a>
+  <a class="top" href="#cmp">1. 세 방식 상세 비교</a>
+  <a class="sub" href="#cmp-tbl">비교표</a>
+  <a class="sub" href="#cmp-code">코드 뼈대 나란히</a>
+  <a class="sub" href="#cmp-pick">무엇을 고를까</a>
+  <a class="sub" href="#cmp-bug">흔한 실수</a>
+  <a class="top" href="#l08">2. 멀티 프로세스</a>
+  <a class="sub" href="#l08-sock">서버 소켓 함수</a>
+  <a class="sub" href="#l08-fork">fork / getpid</a>
+  <a class="sub" href="#l08-wait">wait / waitpid</a>
+  <a class="sub" href="#l08-zom">좀비 프로세스</a>
+  <a class="sub" href="#l08-sig">signal</a>
+  <a class="sub" href="#l08-full">완성 서버 코드</a>
+  <a class="top" href="#l09">3. 멀티 스레드</a>
+  <a class="sub" href="#l09-mem">메모리 구조</a>
+  <a class="sub" href="#l09-api">pthread 함수</a>
+  <a class="sub" href="#l09-race">경쟁 상태</a>
+  <a class="sub" href="#l09-mutex">뮤텍스</a>
+  <a class="sub" href="#l09-sem">세마포어</a>
+  <a class="sub" href="#l09-full">완성 서버 코드</a>
+  <a class="top" href="#l10">4. I/O 멀티플렉싱</a>
+  <a class="sub" href="#l10-idea">핵심 아이디어</a>
+  <a class="sub" href="#l10-fd">fd_set 매크로</a>
+  <a class="sub" href="#l10-sel">select()</a>
+  <a class="sub" href="#l10-full">완성 서버 코드</a>
+  <a class="top" href="#j1">5. Java I/O Stream</a>
+  <a class="sub" href="#j1-base">스트림 기본</a>
+  <a class="sub" href="#j1-fn">메서드 설명</a>
+  <a class="sub" href="#j1-buf">버퍼/flush</a>
+  <a class="sub" href="#j1-file">File 클래스</a>
+  <a class="top" href="#gl">6. 용어 사전</a>
+</nav>
+
+<main>
+<h1>네트워크 프로그래밍 상세 정리</h1>
+<p class="lead">KorNU IT NetPG · 기초편(Lecture 01~07, Report #4) + Lecture 08~10 (다중 접속 서버) + JavaNet 1 (I/O Stream) · 초보자용 상세판</p>
+
+<div class="card">
+<b>이 문서의 글자 색 규칙</b><br>
+<span class="fn">함수 이름</span> ·
+<span class="ty">자료형</span> ·
+<span class="ag">인자(매개변수)</span> ·
+<span class="rt">정상 반환값</span> ·
+<span class="er">오류/실패/주의</span> ·
+<span class="nu">숫자·상수</span><br>
+방식별 색: <span class="pr">멀티 프로세스(파랑)</span> · <span class="th">멀티 스레드(초록)</span> · <span class="mx">I/O 멀티플렉싱(주황)</span>
+</div>
+
+<!-- ================= BASIC L01 ================= -->
+<section class="lec" id="b01">
+<h2 class="lec-title">기초편 · Lecture 01. 소켓의 개념</h2>
+
+<div class="box info"><b class="t">기초편 읽는 순서</b>
+소켓이 무엇인지(L01) → 전화에 비유한 동작 순서(L02) → 소켓을 만들고 닫는 법(L03) → 주소 구조체, 바이트 순서, bind(L04) → listen/accept/connect와 송수신(L05) → 숫자 전송 실습(Report #4) → UDP(L06) → 도메인 이름 변환(L07). 뒤쪽 Lecture 08~10(다중 접속 서버)은 이 기초 위에서 동작합니다.</div>
+
+<h3>네트워크 프로그래밍의 계층별 분류</h3>
+<table>
+<tr><th>계층</th><th>프로그래밍 종류</th><th>예</th></tr>
+<tr><td>응용 계층</td><td>응용 계층 프로그래밍</td><td>http, ftp, mail, RPC 등</td></tr>
+<tr><td>↓ (응용과 TCP/IP 사이)</td><td><b>소켓 프로그래밍</b> ← 이 수업</td><td>Socket(1982, 유닉스/BSD), Winsock(1992, 윈도우)</td></tr>
+<tr><td>TCP/IP</td><td></td><td></td></tr>
+<tr><td>네트워크 디바이스</td><td>디바이스 드라이버 프로그래밍</td><td>Packet driver, NDIS, ODI 등</td></tr>
+</table>
+
+<h3>소켓의 세 가지 관점</h3>
+<div class="cols3">
+<div class="card"><b>관점 1. 응용 인터페이스(API)</b><br>
+응용 프로그램이 네트워크로 데이터를 입출력할 수 있도록 <b>운영체제가 제공하는 인터페이스</b> (OS의 한 부분).<br>
+<b>비유</b>: 전화기. 내부 통신망의 복잡한 원리를 몰라도 전화기만 쓰면 통화가 됨.</div>
+<div class="card"><b>관점 2. 통신 종단점(End point)</b><br>
+원격에 있는 <b>두 호스트를 연결해 주는 매개체</b>. 한쪽 끝이 소켓 하나입니다.<br>
+<b>비유</b>: 통화에서 양쪽 수화기.</div>
+<div class="card"><b>관점 3. 파일 디스크립터(핸들)</b><br>
+OS가 관리하는 통신 데이터를 <b>간접적으로 참조</b>하는 핸들. 생성/설정이 끝나면 간편한 정수 타입으로 통신 작업을 함.<br>
+<b>비유</b>: 은행 번호표. 번호만 들고 있으면 됨.</div>
+</div>
+
+<svg viewBox="0 0 640 250" role="img" aria-label="소켓 인터페이스 계층">
+ <rect class="sb" x="30" y="10" width="130" height="34" rx="5"/><text class="sx" x="95" y="32" text-anchor="middle">애플리케이션</text>
+ <rect class="sb" x="190" y="10" width="130" height="34" rx="5"/><text class="sx" x="255" y="32" text-anchor="middle">애플리케이션</text>
+ <rect class="sb" x="350" y="10" width="130" height="34" rx="5"/><text class="sx" x="415" y="32" text-anchor="middle">애플리케이션</text>
+ <rect class="sp" x="30" y="75" width="450" height="34" rx="5"/><text class="sxb" x="255" y="97" text-anchor="middle">소켓 인터페이스 (sd = 소켓 번호)</text>
+ <rect class="st2" x="30" y="140" width="130" height="34" rx="5"/><text class="sx" x="95" y="162" text-anchor="middle">TCP (연결형)</text>
+ <rect class="st2" x="190" y="140" width="130" height="34" rx="5"/><text class="sx" x="255" y="162" text-anchor="middle">UDP (비연결형)</text>
+ <rect class="sm" x="350" y="140" width="130" height="34" rx="5"/><text class="sx" x="415" y="162" text-anchor="middle">ICMP, IGMP</text>
+ <rect class="sb" x="30" y="205" width="450" height="34" rx="5"/><text class="sx" x="255" y="227" text-anchor="middle">IP (IP 주소) · 포트 번호는 TCP/UDP 계층에서 구분</text>
+ <path class="sl" d="M95 44 V75 M255 44 V75 M415 44 V75 M95 109 V140 M255 109 V140 M415 109 V140 M95 174 V205 M255 174 V205 M415 174 V205"/>
+ <text class="sxm" x="500" y="97">응용은 소켓으로 접근</text>
+</svg>
+
+<h4>소켓 번호 · 포트 번호 · IP 주소는 각각 어디서 쓰이나?</h4>
+<table>
+<tr><th>계층</th><th>식별자</th><th>예</th></tr>
+<tr><td>응용 프로그램</td><td>소켓 번호(sd)</td><td>sd=3, sd=4 ...</td></tr>
+<tr><td>트랜스포트(TCP/UDP)</td><td>포트 번호</td><td>3000, 3001, 3002, 3003</td></tr>
+<tr><td>인터넷(IP)</td><td>IP 주소</td><td>192.203.144.11</td></tr>
+</table>
+
+<h4>통신 종단점 예 (슬라이드)</h4>
+<table>
+<tr><th></th><th>클라이언트 소켓</th><th>서버 소켓</th></tr>
+<tr><td>프로토콜</td><td>TCP/IP</td><td>TCP/IP</td></tr>
+<tr><td>IP 주소</td><td>147.46.114.70</td><td>61.72.244.22</td></tr>
+<tr><td>포트 번호</td><td>12023</td><td>9001</td></tr>
+</table>
+<p>클라이언트가 <code>send(sock, ...)</code> 하면 서버가 <code>recv(sock, ...)</code> 로 받습니다. 연결의 양 끝은 <b>(프로토콜, IP, 포트)</b> 조합으로 식별됩니다.</p>
+
+<h4>관점 3: 파일과 소켓은 거의 같은 방식으로 다룬다</h4>
+<div class="cols">
+<div><pre><code>// 파일
+int fd = open("myfile", ...);
+read(fd, ...)    // 읽기
+write(fd, ...)   // 쓰기</code></pre></div>
+<div><pre><code>// 소켓
+int sock = socket(...);
+read(sock, ...)  // 받기
+write(sock, ...) // 보내기</code></pre></div>
+</div>
+
+<div class="box ok"><b class="t">점검문제: 소켓의 개념을 설명하라 (모범 답안)</b>
+소켓은 응용 프로그램이 네트워크로 데이터를 주고받을 수 있도록 운영체제가 제공하는 <b>인터페이스(API)</b>이며, 원격의 두 호스트를 연결하는 <b>통신 종단점</b>이다. 프로그래머에게는 파일 디스크립터와 같은 정수형 핸들로 보여서, 생성 후 파일처럼 <code>read/write</code>로 데이터를 주고받을 수 있다.</div>
+</section>
+
+<!-- ================= BASIC L02 ================= -->
+<section class="lec" id="b02">
+<h2 class="lec-title">기초편 · Lecture 02. 소켓의 동작 원리와 이해</h2>
+
+<h3>전화와 소켓의 3단계 비교</h3>
+<table>
+<tr><th>단계</th><th>전화</th><th>소켓</th></tr>
+<tr><td class="nu">0</td><td>전화기와 번호를 준비한다</td><td>소켓과 주소(IP, Port)를 준비한다</td></tr>
+<tr><td class="nu">1</td><td>한쪽에서 연결을 시도하고, 다른 쪽에서는 연결을 대기한다</td><td>한쪽에서는 연결을 시도하고, 다른 쪽에서는 연결을 받아들인다</td></tr>
+<tr><td class="nu">2</td><td>연결 후 통화를 한다</td><td>데이터 통신을 한다</td></tr>
+<tr><td class="nu">3</td><td>연결을 종료한다</td><td>통신을 끊는다</td></tr>
+</table>
+
+<h3>클라이언트와 서버</h3>
+<div class="cols">
+<div class="card"><b>클라이언트</b>: 인터넷에서 데이터를 <b>요청</b>하는 호스트<br>예) 웹 브라우저(크롬, IE, 파이어폭스)</div>
+<div class="card"><b>서버</b>: 요청을 <b>처리</b>하는 호스트<br>예) 웹 서버 프로그램(IIS, 아파치, nginx). 하나의 서버가 여러 클라이언트를 상대함</div>
+</div>
+
+<h3>전화기 비유로 보는 소켓 함수</h3>
+<table>
+<tr><th>전화</th><th>소켓 함수</th><th>하는 일</th></tr>
+<tr><td>전화기를 준비한다</td><td><span class="fn">socket</span>()</td><td>소켓 생성</td></tr>
+<tr><td>전화번호를 준비한다</td><td><span class="fn">bind</span>()</td><td>소켓에 인터넷 주소(IP, 포트) 설정</td></tr>
+<tr><td>전화번호를 누르고 연결 시도</td><td><span class="fn">connect</span>()</td><td>(클라이언트) 서버에 연결 요청</td></tr>
+<tr><td>연결을 기다린다</td><td><span class="fn">listen</span>()</td><td>(서버) 연결 요청 대기 상태</td></tr>
+<tr><td>전화를 받는다</td><td><span class="fn">accept</span>()</td><td>(서버) 연결 요청이 들어왔을 때 수락</td></tr>
+<tr><td>대화한다</td><td><span class="fn">write</span>()/<span class="fn">send</span>(), <span class="fn">read</span>()/<span class="fn">recv</span>()</td><td>송신 / 수신</td></tr>
+<tr><td>전화를 끊는다</td><td><span class="fn">close</span>()</td><td>연결 종료</td></tr>
+</table>
+
+<h3>서버와 클라이언트 함수 흐름</h3>
+<svg viewBox="0 0 560 390" role="img" aria-label="TCP 서버 클라이언트 함수 흐름">
+ <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="sh" d="M0 0 L10 5 L0 10 z"/></marker></defs>
+ <text class="sxb" x="110" y="16" text-anchor="middle">서버 (Server)</text>
+ <text class="sxb" x="450" y="16" text-anchor="middle">클라이언트 (Client)</text>
+ <rect class="sp" x="50" y="26" width="120" height="34" rx="5"/><text class="sx" x="110" y="48" text-anchor="middle">socket()</text>
+ <rect class="sp" x="50" y="76" width="120" height="34" rx="5"/><text class="sx" x="110" y="98" text-anchor="middle">bind()</text>
+ <rect class="sp" x="50" y="126" width="120" height="34" rx="5"/><text class="sx" x="110" y="148" text-anchor="middle">listen()</text>
+ <rect class="sp" x="50" y="176" width="120" height="34" rx="5"/><text class="sx" x="110" y="198" text-anchor="middle">accept()</text>
+ <rect class="sp" x="50" y="226" width="120" height="34" rx="5"/><text class="sx" x="110" y="248" text-anchor="middle">read()</text>
+ <rect class="sp" x="50" y="276" width="120" height="34" rx="5"/><text class="sx" x="110" y="298" text-anchor="middle">write()</text>
+ <rect class="sm" x="390" y="126" width="120" height="34" rx="5"/><text class="sx" x="450" y="148" text-anchor="middle">socket()</text>
+ <rect class="sm" x="390" y="176" width="120" height="34" rx="5"/><text class="sx" x="450" y="198" text-anchor="middle">connect()</text>
+ <rect class="sm" x="390" y="226" width="120" height="34" rx="5"/><text class="sx" x="450" y="248" text-anchor="middle">write()</text>
+ <rect class="sm" x="390" y="276" width="120" height="34" rx="5"/><text class="sx" x="450" y="298" text-anchor="middle">read()</text>
+ <rect class="sm" x="390" y="326" width="120" height="34" rx="5"/><text class="sx" x="450" y="348" text-anchor="middle">close()</text>
+ <path class="sl" d="M110 60 V76 M110 110 V126 M110 160 V176 M110 210 V226 M110 260 V276 M450 160 V176 M450 210 V226 M450 260 V276 M450 310 V326"/>
+ <path class="sl" d="M390 193 H170" marker-end="url(#ar)"/><text class="sxm" x="280" y="186" text-anchor="middle">연결 요청</text>
+ <path class="sl" d="M390 243 H170" marker-end="url(#ar)"/><text class="sxm" x="280" y="236" text-anchor="middle">데이터 요청</text>
+ <path class="sl" d="M170 293 H390" marker-end="url(#ar)"/><text class="sxm" x="280" y="286" text-anchor="middle">데이터 수신</text>
+ <path class="sl" d="M50 293 H28 V143 H50" marker-end="url(#ar)"/><text class="sxm" x="22" y="218" transform="rotate(-90 22 218)" text-anchor="middle">반복</text>
+</svg>
+
+<div class="cols">
+<div class="card"><b>서버 동작 순서</b><ol>
+<li>소켓 생성: <span class="fn">socket</span>()</li>
+<li>소켓에 인터넷 주소 부여: <span class="fn">bind</span>()</li>
+<li>연결 요청 대기: <span class="fn">listen</span>()</li>
+<li>연결 수락: <span class="fn">accept</span>()</li>
+<li>데이터 읽기: <span class="fn">read</span>()</li>
+<li>데이터 쓰기: <span class="fn">write</span>()</li>
+<li>다시 대기로 돌아감 (슬라이드는 3번)</li></ol></div>
+<div class="card"><b>클라이언트 동작 순서</b><ol>
+<li>소켓 생성: <span class="fn">socket</span>()</li>
+<li>서버에 연결: <span class="fn">connect</span>()</li>
+<li>데이터 쓰기: <span class="fn">write</span>()</li>
+<li>데이터 읽기: <span class="fn">read</span>()</li>
+<li>연결 종료: <span class="fn">close</span>()</li></ol>
+<p class="cm">서버는 <code>bind</code>로 주소를 직접 지정하지만, 클라이언트는 <code>connect</code> 때 OS가 자동으로 IP/포트를 붙여 줍니다.</p></div>
+</div>
+
+<div class="box ok"><b class="t">점검문제: 서버/클라이언트 함수의 동작 순서와 상호 관련성 (모범 답안)</b>
+서버는 socket → bind → listen → accept → read/write 순서, 클라이언트는 socket → connect → write/read → close 순서로 동작한다. <b>클라이언트의 connect가 서버의 listen 대기 큐로 연결 요청을 보내고, 서버의 accept가 이를 수락</b>하여 연결이 성립한다. 이후 클라이언트의 write(데이터 요청)는 서버의 read와, 서버의 write(응답)는 클라이언트의 read와 짝을 이룬다.</div>
+</section>
+
+<!-- ================= BASIC L03 ================= -->
+<section class="lec" id="b03">
+<h2 class="lec-title">기초편 · Lecture 03. TCP 서버/클라이언트(1): 소켓의 생성과 종료</h2>
+
+<h3>TCP(연결형) 작성 절차</h3>
+<table>
+<tr><th>Iterative TCP 서버</th><th>TCP 클라이언트</th></tr>
+<tr><td><code>socket()</code> 소켓 개설<br><code>bind()</code> 소켓번호와 소켓주소를 결합<br><code>listen()</code> 연결을 기다림<br><code>accept()</code> 연결 수락<br><code>read()</code> → 서비스 처리 → <code>write()</code> (클라이언트 요구를 처리한 뒤 결과 전송)<br>finished? N이면 accept로 반복, Y이면 <code>close()</code></td>
+<td><code>socket()</code> 소켓 개설<br><code>sockaddr_in</code> 구성 (서버의 IP 주소와 포트번호 지정)<br><code>connect()</code> 서버로 연결 요청<br><code>send()</code>/<code>recv()</code> 데이터 송수신<br><code>close()</code></td></tr>
+</table>
+
+<h3 id="b03-fd">저수준(Low level) 파일 입출력</h3>
+<p><b>저수준 파일 입출력</b> = 운영체제(리눅스/윈도우)가 제공하는 파일 입출력 함수로 파일을 직접 다루는 것(생성/삭제, 입력/출력). 표준 입출력 함수(<code>printf</code>, <code>fgets</code> 등)와 구분됩니다. <b>리눅스(유닉스)는 모든 것을 파일로 관리</b>하므로 소켓도 파일과 똑같이 다룹니다.</p>
+
+<table>
+<tr><th>파일 디스크립터</th><th>대상</th></tr>
+<tr><td class="nu">0</td><td>표준 입력 (키보드)</td></tr>
+<tr><td class="nu">1</td><td>표준 출력 (화면)</td></tr>
+<tr><td class="nu">2</td><td>표준 에러 출력</td></tr>
+<tr><td class="nu">3, 4, 5 ...</td><td>이후 open/socket으로 만들 때마다 <b>비어 있는 가장 작은 번호</b>를 OS가 부여 (파일이든 소켓이든 구분 없이)</td></tr>
+</table>
+<p>파일 디스크립터 = <b>OS가 파일(소켓)을 구분하기 위해 붙인 번호(ID)</b>.</p>
+
+<div class="fcard">
+<div class="head"><span class="name">open</span><span class="tag">파일 열기</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;fcntl.h&gt;   &lt;sys/types.h&gt;   &lt;sys/stat.h&gt;
+<span class="ty">int</span> <span class="fn">open</span>(<span class="ty">const char *</span><span class="ag">path</span>, <span class="ty">int</span> <span class="ag">flag</span>);</div>
+<div class="row"><span class="k arg">path</span><span>파일명 (경로 포함)</span></div>
+<div class="row"><span class="k arg">flag</span><span>파일 모드. 여러 개는 <code>|</code>로 조합 (예: <code>O_WRONLY|O_CREAT|O_TRUNC</code>)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 파일 디스크립터</span> / <span class="er">실패: -1</span></span></div>
+</div>
+<table>
+<tr><th>MODE</th><th>의미</th></tr>
+<tr><td><span class="nu">O_CREAT</span></td><td>필요한 경우 파일을 생성</td></tr>
+<tr><td><span class="nu">O_TRUNC</span></td><td>존재하던 데이터를 모두 삭제</td></tr>
+<tr><td><span class="nu">O_APPEND</span></td><td>존재하던 데이터를 보존하고 뒤에 이어서 저장</td></tr>
+<tr><td><span class="nu">O_RDONLY</span></td><td>읽기 전용으로 오픈</td></tr>
+<tr><td><span class="nu">O_WRONLY</span></td><td>쓰기 전용으로 오픈</td></tr>
+<tr><td><span class="nu">O_RDWR</span></td><td>읽기/쓰기 겸용으로 오픈</td></tr>
+</table>
+
+<div class="fcard">
+<div class="head"><span class="name">read / write (저수준)</span><span class="tag">데이터 읽기 / 쓰기</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;unistd.h&gt;
+<span class="ty">ssize_t</span> <span class="fn">read</span> (<span class="ty">int</span> <span class="ag">fd</span>, <span class="ty">void *</span><span class="ag">buf</span>,        <span class="ty">size_t</span> <span class="ag">nbytes</span>);
+<span class="ty">ssize_t</span> <span class="fn">write</span>(<span class="ty">int</span> <span class="ag">fd</span>, <span class="ty">const void *</span><span class="ag">buf</span>, <span class="ty">size_t</span> <span class="ag">nbytes</span>);</div>
+<div class="row"><span class="k arg">fd</span><span>파일(소켓) 디스크립터</span></div>
+<div class="row"><span class="k arg">buf</span><span>데이터를 받을/보낼 버퍼의 포인터</span></div>
+<div class="row"><span class="k arg">nbytes</span><span>받을/보낼 바이트 수</span></div>
+<div class="row"><span class="k ret">read 반환값</span><span><span class="rt">성공: 수신한 바이트 수</span> (<span class="nu">0</span> = 파일의 끝 EOF을 만남) / <span class="er">-1: 실패</span></span></div>
+<div class="row"><span class="k ret">write 반환값</span><span><span class="rt">성공: 전달한 바이트 수</span> / <span class="er">-1: 실패</span></span></div>
+<div class="row"><span class="k sz">타입</span><span><code>ssize_t</code>: signed 정수 / <code>size_t</code>: unsigned 정수 (&lt;sys/types.h&gt;)</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">close</span><span class="tag">파일/소켓 닫기</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">close</span>(<span class="ty">int</span> <span class="ag">fd</span>);</div>
+<div class="row"><span class="k arg">fd</span><span>닫을 파일(소켓) 디스크립터. 닫힌 디스크립터는 <b>더 이상 참조하거나 사용할 수 없음</b></span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+</div>
+
+<h3 id="b03-sock">소켓의 생성: socket()</h3>
+<div class="fcard">
+<div class="head"><span class="name">socket</span><span class="tag">소켓 생성, 디스크립터 반환</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;sys/types.h&gt;   &lt;sys/socket.h&gt;
+<span class="ty">int</span> <span class="fn">socket</span>(<span class="ty">int</span> <span class="ag">family</span>, <span class="ty">int</span> <span class="ag">type</span>, <span class="ty">int</span> <span class="ag">protocol</span>);</div>
+<div class="row"><span class="k arg">family</span><span>프로토콜 패밀리. <span class="nu">PF_INET</span> = IPv4 (<span class="nu">PF_INET6</span> = IPv6). <code>AF_INET</code>도 쓰이며 <code>#define AF_INET PF_INET</code> 이라 같은 값</span></div>
+<div class="row"><span class="k arg">type</span><span><span class="nu">SOCK_STREAM</span> = 연결형(TCP) / <span class="nu">SOCK_DGRAM</span> = 비연결형(UDP)</span></div>
+<div class="row"><span class="k arg">protocol</span><span>보통 <span class="nu">0</span> (type에 맞는 프로토콜 자동 선택: TCP는 IPPROTO_TCP, UDP는 IPPROTO_UDP)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 소켓(파일) 디스크립터</span> / <span class="er">실패: -1</span></span></div>
+</div>
+<table>
+<tr><th>CASE</th><th>Domain</th><th>Type</th><th>Protocol</th></tr>
+<tr><td>1 (TCP)</td><td>PF_INET</td><td>SOCK_STREAM</td><td>IPPROTO_TCP (0)</td></tr>
+<tr><td>2 (UDP)</td><td>PF_INET</td><td>SOCK_DGRAM</td><td>IPPROTO_UDP (0)</td></tr>
+</table>
+<pre><code>int sd;
+sd = socket(PF_INET, SOCK_STREAM, 0);     // IPv4 TCP 소켓</code></pre>
+<p><b>소켓 디스크립터의 정체</b>: 디스크립터 테이블의 번호(3, 4, 5)가 포인터를 통해 파일 또는 소켓 정보 구조체(family=PF_INET, service=SOCK_STREAM, local IP/port, remote IP/port ...)를 가리킵니다. <code>socket()</code> 직후에는 프로토콜만 정해지고, 나머지 ② 자신의 IP ③ 자신의 포트 ④ 상대 IP ⑤ 상대 포트는 <code>bind</code>/<code>connect</code>/<code>accept</code>로 채워집니다.</p>
+
+<div class="fcard">
+<div class="head"><span class="name">shutdown</span><span class="tag">부분 종료 (Partial close)</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">shutdown</span>(<span class="ty">int</span> <span class="ag">sd</span>, <span class="ty">int</span> <span class="ag">direction</span>);</div>
+<div class="row"><span class="k arg">direction</span><span><span class="nu">0</span>: 수신 종료 / <span class="nu">1</span>: 송신 종료 / <span class="nu">2</span>: 송수신 모두 종료 (close와 비슷)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">참고</span><span>슬라이드의 프로토타입은 <code>close(int sd, int direction)</code>로 적혀 있지만 <b>오타</b>이고 실제 함수 이름은 <code>shutdown</code>입니다. 헤더는 &lt;sys/socket.h&gt;. close는 참조 횟수를 줄여 닫는 반면, shutdown은 연결 자체의 방향을 끊는다는 점이 다릅니다 (예: 보내기만 끝내고 상대 응답은 계속 읽기).</span></div>
+</div>
+
+<h4>실습 socket_open.c</h4>
+<pre><code>fd = open("/usr/include/stdio.h", O_RDONLY);
+printf("Descriptor of 1st file : %d\n", fd);   // 보통 3 (0,1,2는 이미 사용 중)
+
+sd = socket(PF_INET, SOCK_STREAM, 0);
+printf("Descriptor of 1st socket : %d\n", sd);  // 보통 4
+
+close(fd);
+close(sd);</code></pre>
+<p>파일과 소켓이 <b>같은 번호 체계</b>에서 순서대로 번호를 받는다는 것을 확인하는 예제입니다.</p>
+</section>
+
+<!-- ================= BASIC L04 ================= -->
+<section class="lec" id="b04">
+<h2 class="lec-title">기초편 · Lecture 04. 소켓 주소 구조체, 주소 변환, bind()</h2>
+
+<h3 id="b04-addr">IPv4 소켓 주소 구조체</h3>
+<pre><code>struct sockaddr_in {
+    sa_family_t    sin_family;   /* 주소 체계 (AF_INET) */
+    uint16_t       sin_port;     /* 포트 번호 (16 bits)  NBO */
+    struct in_addr sin_addr;     /* IP 주소 (32 bits)    NBO */
+    char           sin_zero[8];  /* 16바이트 크기를 맞추기 위한 dummy */
+};
+struct in_addr {
+    uint32_t       s_addr;       /* 32비트 IP 주소 */
+};</code></pre>
+<table>
+<tr><th>필드</th><th>크기</th><th>설명</th></tr>
+<tr><td><span class="ag">sin_family</span></td><td>2 byte</td><td>주소 체계. IPv4는 <span class="nu">AF_INET</span></td></tr>
+<tr><td><span class="ag">sin_port</span></td><td>2 byte</td><td>포트 번호. <span class="er">네트워크 바이트 순서(NBO)</span> 필수 → <code>htons()</code></td></tr>
+<tr><td><span class="ag">sin_addr</span></td><td>4 byte</td><td>IP 주소. <span class="er">NBO</span> 필수 → <code>htonl()</code>, <code>inet_addr()</code></td></tr>
+<tr><td><span class="ag">sin_zero</span></td><td>8 byte</td><td>dummy. <code>memset()</code>/<code>bzero()</code>로 <b>모두 0</b>으로 채워야 함</td></tr>
+</table>
+<table>
+<tr><th>데이터 유형 (POSIX)</th><th>설명</th></tr>
+<tr><td><code>sa_family_t</code></td><td>unsigned short int</td></tr>
+<tr><td><code>uint16_t</code></td><td>unsigned 16-bit 정수</td></tr>
+<tr><td><code>uint32_t</code></td><td>unsigned 32-bit 정수</td></tr>
+</table>
+<div class="box info"><b class="t">sockaddr vs sockaddr_in</b>
+둘 다 크기는 <span class="nu">16 byte</span>로 같습니다. 범용 구조체 <code>sockaddr</code>은 <code>sa_family(2) + sa_data(14)</code>이고, IPv4용 <code>sockaddr_in</code>은 <code>sin_family(2) + sin_port(2) + sin_addr(4) + sin_zero(8)</code>입니다. 소켓 함수(bind, connect, accept 등)가 <code>struct sockaddr *</code>을 요구하므로, 보통 <code>sockaddr_in</code>에 값을 채운 뒤 <code>(struct sockaddr *)&amp;addr</code>로 <b>캐스팅</b>해서 넘깁니다.</div>
+
+<h3 id="b04-end">바이트 순서 (Byte Order)</h3>
+<p>CPU가 여러 바이트짜리 데이터를 메모리에 저장하는 순서가 CPU마다 다릅니다. 정수 <code>0x12345678</code>을 12~15번지에 저장하면:</p>
+<table>
+<tr><th>번지</th><th class="pr">Big-endian</th><th class="th">Little-endian</th></tr>
+<tr><td>12번지 (낮은 주소)</td><td>0x12 (상위 바이트)</td><td>0x78 (하위 바이트)</td></tr>
+<tr><td>13번지</td><td>0x34</td><td>0x56</td></tr>
+<tr><td>14번지</td><td>0x56</td><td>0x34</td></tr>
+<tr><td>15번지 (높은 주소)</td><td>0x78</td><td>0x12</td></tr>
+<tr><td>예</td><td>Motorola 68000 계열</td><td>Intel 80x86 계열 (우리가 쓰는 PC)</td></tr>
+</table>
+<ul>
+ <li><b>Big-endian</b>: <b>상위</b> 바이트가 낮은 번지에 먼저 저장 (사람이 숫자를 쓰는 순서와 같음)</li>
+ <li><b>Little-endian</b>: <b>하위</b> 바이트가 낮은 번지에 먼저 저장</li>
+ <li><b>호스트 바이트 순서(HBO)</b>: 내 CPU의 저장 방식 / <b>네트워크 바이트 순서(NBO)</b>: <b>Big-endian으로 약속</b></li>
+</ul>
+<div class="box warn"><b class="t">왜 필요한가? (불일치 문제)</b>
+Big-endian 컴퓨터가 <code>0x1234</code>를 <code>12 34</code> 순서로 보내면, Little-endian 컴퓨터는 앞 바이트를 하위로 읽어 <code>0x3412</code>로 해석합니다. 해결책은 <b>송수신 때 항상 네트워크 바이트 순서(Big-endian)로 통일</b>하는 것입니다.</div>
+
+<div class="fcard">
+<div class="head"><span class="name">htons / ntohs / htonl / ntohl</span><span class="tag">바이트 순서 변환</span></div>
+<div class="sig"><span class="ty">u_short</span> <span class="fn">htons</span>(<span class="ty">u_short</span> <span class="ag">host_short</span>);      <span class="cm">// 호스트 → 네트워크, 16bit (포트)</span>
+<span class="ty">u_short</span> <span class="fn">ntohs</span>(<span class="ty">u_short</span> <span class="ag">network_short</span>);   <span class="cm">// 네트워크 → 호스트, 16bit</span>
+<span class="ty">u_long</span>  <span class="fn">htonl</span>(<span class="ty">u_long</span>  <span class="ag">host_long</span>);       <span class="cm">// 호스트 → 네트워크, 32bit (IP 주소)</span>
+<span class="ty">u_long</span>  <span class="fn">ntohl</span>(<span class="ty">u_long</span>  <span class="ag">network_long</span>);    <span class="cm">// 네트워크 → 호스트, 32bit</span></div>
+<div class="row"><span class="k note">이름 읽는 법</span><span><b>h</b>ost, <b>n</b>etwork, <b>s</b>hort(16bit), <b>l</b>ong(32bit). <code>htons</code> = host to network short</span></div>
+<div class="row"><span class="k ret">반환값</span><span>변환된 값. Big-endian 컴퓨터에서는 변환해도 값이 그대로(아무 일도 안 함)</span></div>
+<div class="row"><span class="k er">주의</span><span>바이트 순서를 맞춰야 하는 것은 <b>포트 번호, IP 주소, 정수 같은 숫자 값</b>입니다. <b>텍스트 문서, binary 파일 같은 일반 사용자 데이터는 변환할 필요 없음</b> (바이트 단위로 보내므로 순서가 바뀌지 않음).</span></div>
+</div>
+
+<pre><code>// endian_conv.c
+unsigned short host_port = 0x1234;
+unsigned short net_port  = htons(host_port);
+unsigned long  host_addr = 0x12345678;
+unsigned long  net_addr  = htonl(host_addr);
+printf("Host ordered port : %#x \n", host_port);    // 0x1234
+printf("Network ordered port : %#x \n", net_port);  // 0x3412   (Little-endian PC)
+printf("Host ordered address : %#lx \n", host_addr);   // 0x12345678
+printf("Network ordered address : %#lx \n", net_addr); // 0x78563412</code></pre>
+<p class="cm">Little-endian PC에서 실행한 결과입니다. 바이트가 뒤집혀 보이는 이유는, 메모리의 Big-endian 배치를 숫자로 다시 읽었기 때문입니다.</p>
+
+<div class="box ok"><b class="t">점검문제: Big-endian에서 4바이트 정수 12를 Little-endian으로 전송 (모범 답안)</b>
+Big-endian 메모리 배치는 <code>00 00 00 0C</code>입니다. 송신 측이 <code>htonl(12)</code>를 호출하면 Big-endian 컴퓨터에서는 변환이 없어 그대로 <code>00 00 00 0C</code>가 전송됩니다 (네트워크 순서 = Big-endian). Little-endian 수신 측은 받은 값에 <code>ntohl()</code>을 적용해 <code>0C 00 00 00</code> 배치(= 값 12)로 뒤집어 저장하므로 12를 올바르게 얻습니다. <b>변환하지 않으면</b> 그대로 읽어 <code>0x0C000000</code>(= 201,326,592)이 됩니다.</div>
+
+<h3 id="b04-ip">IP 주소 변환</h3>
+<p>IP 주소의 세 가지 표현 방법: <b>도메인 네임</b>(<code>www.kornu.ac.kr</code>) ↔ <b>32비트 binary NBO</b>(<code>01110100 01000100 00100000 00010000</code>) ↔ <b>dotted decimal</b>(<code>116.68.32.16</code>).</p>
+<table>
+<tr><th>변환 방향</th><th>함수</th></tr>
+<tr><td>도메인 ↔ IP 주소</td><td><code>gethostbyname()</code> / <code>gethostbyaddr()</code> (Lecture 07)</td></tr>
+<tr><td>dotted decimal → binary(NBO)</td><td><code>inet_addr()</code>, <code>inet_aton()</code></td></tr>
+<tr><td>binary(NBO) → dotted decimal</td><td><code>inet_ntoa()</code></td></tr>
+</table>
+<p>헤더: <code>&lt;sys/socket.h&gt;</code>, <code>&lt;netinet/in.h&gt;</code>, <code>&lt;arpa/inet.h&gt;</code></p>
+
+<div class="fcard">
+<div class="head"><span class="name">inet_addr</span><span class="tag">문자열 IP → 32비트 NBO</span></div>
+<div class="sig"><span class="ty">u_long</span> <span class="fn">inet_addr</span>(<span class="ty">const char *</span><span class="ag">strptr</span>);</div>
+<div class="row"><span class="k arg">strptr</span><span>dotted-decimal 문자열 (예: <code>"210.105.156.238"</code>)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 32비트 binary NBO IPv4 주소</span> / <span class="er">실패: INADDR_NONE (-1, 모든 비트 1)</span></span></div>
+<div class="row"><span class="k er">한계</span><span><code>255.255.255.255</code>(제한된 브로드캐스트 주소)는 -1과 값이 같아 <b>오류와 구분 불가</b> → <code>inet_aton()</code> 권장</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">inet_aton</span><span class="tag">문자열 IP → in_addr (권장)</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">inet_aton</span>(<span class="ty">const char *</span><span class="ag">strptr</span>, <span class="ty">struct in_addr *</span><span class="ag">addrptr</span>);</div>
+<div class="row"><span class="k arg">strptr</span><span>dotted-decimal 문자열</span></div>
+<div class="row"><span class="k arg">addrptr</span><span>변환 결과(NBO)가 저장될 in_addr 구조체의 주소</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">1: 유효한 문자열</span> / <span class="er">0: 오류</span> (다른 함수와 반대로 성공이 1)</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">inet_ntoa</span><span class="tag">32비트 NBO → 문자열 IP</span></div>
+<div class="sig"><span class="ty">char *</span><span class="fn">inet_ntoa</span>(<span class="ty">struct in_addr</span> <span class="ag">inaddr</span>);</div>
+<div class="row"><span class="k arg">inaddr</span><span><span class="er">구조체 포인터가 아니라 구조체 변수 자체</span>를 인자로 전달 (<code>ina.sin_addr</code>)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">dotted-decimal 문자열의 포인터</span> / <span class="er">0: 오류</span></span></div>
+<div class="row"><span class="k note">참고</span><span>반환 문자열은 내부 정적 버퍼라 <b>다음 호출 때 덮어써집니다</b>. 오래 쓰려면 복사해 두세요.</span></div>
+</div>
+<pre><code>char *cp = "210.105.156.238", *ptr;
+struct sockaddr_in ina;
+ina.sin_addr.s_addr = inet_addr(cp);   // 또는 inet_aton(cp, &amp;ina.sin_addr);
+ptr = inet_ntoa(ina.sin_addr);
+printf("%s", ptr);                      // 210.105.156.238</code></pre>
+
+<h3 id="b04-mem">바이트 조정 함수 (memset / memcpy / memcmp)</h3>
+<p>네트워크 프로그래밍에서는 구조체/필드를 초기화하고, 복사하고, 비교해야 합니다. 그런데 <code>strcpy</code>, <code>strcmp</code> 같은 <b>문자열 함수는 NULL 문자(<code>\0</code>)에서 멈추므로</b> 바이너리 데이터(주소 구조체, 숫자)에는 쓸 수 없습니다. 헤더: <code>&lt;string.h&gt;</code></p>
+<div class="fcard">
+<div class="head"><span class="name">memset / memcpy / memcmp</span><span class="tag">바이트 단위 초기화, 복사, 비교</span></div>
+<div class="sig"><span class="ty">void *</span><span class="fn">memset</span>(<span class="ty">void *</span><span class="ag">dest</span>, <span class="ty">int</span> <span class="ag">chr</span>, <span class="ty">int</span> <span class="ag">len</span>);
+<span class="ty">void *</span><span class="fn">memcpy</span>(<span class="ty">void *</span><span class="ag">dest</span>, <span class="ty">const void *</span><span class="ag">src</span>, <span class="ty">int</span> <span class="ag">len</span>);
+<span class="ty">int</span>    <span class="fn">memcmp</span>(<span class="ty">const void *</span><span class="ag">first</span>, <span class="ty">const void *</span><span class="ag">second</span>, <span class="ty">int</span> <span class="ag">len</span>);</div>
+<div class="row"><span class="k arg">memset</span><span>dest부터 len 바이트를 chr 값으로 채움. 예: <code>memset(&amp;x, 0, sizeof(x));</code> → x를 0으로 초기화</span></div>
+<div class="row"><span class="k arg">memcpy</span><span>src의 len 바이트를 dest로 복사. 예: <code>memcpy(&amp;x, &amp;y, sizeof(x));</code> → y 값을 x로 복사 (첫 인자가 목적지)</span></div>
+<div class="row"><span class="k arg">memcmp</span><span>두 영역의 처음 len 바이트를 비교. 예: <code>memcmp(&amp;x, &amp;y, 10);</code></span></div>
+<div class="row"><span class="k ret">memcmp 반환값</span><span><span class="nu">0</span>: 같음 / <span class="rt">양수</span>: first가 더 큼 / <span class="er">음수</span>: first가 더 작음</span></div>
+</div>
+
+<h3 id="b04-bind">bind(): 소켓과 주소의 결합</h3>
+<div class="fcard">
+<div class="head"><span class="name">bind</span><span class="tag">소켓 번호 + 로컬 소켓 주소 연결</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;sys/types.h&gt;   &lt;sys/socket.h&gt;
+<span class="ty">int</span> <span class="fn">bind</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">struct sockaddr *</span><span class="ag">my_addr</span>, <span class="ty">int</span> <span class="ag">addrlen</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>소켓 번호 (socket()이 반환한 값)</span></div>
+<div class="row"><span class="k arg">my_addr</span><span><b>로컬 컴퓨터(서버 자신)</b>의 소켓 주소 구조체 포인터</span></div>
+<div class="row"><span class="k arg">addrlen</span><span>소켓 주소 구조체 *my_addr의 길이 (<code>sizeof(addr)</code>)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">언제 호출?</span><span>주로 <b>서버</b>에서 호출 (클라이언트는 connect 시 OS가 주소를 자동 부여). 특수한 경우에만 클라이언트에서도 호출.</span></div>
+</div>
+<pre><code>#define SERV_IP_ADDR "203.252.65.3"
+#define SERV_PORT 3000
+int sd = socket(PF_INET, SOCK_STREAM, 0);
+
+struct sockaddr_in server_addr;
+memset(&amp;server_addr, 0, sizeof(server_addr));        // sin_zero 포함 전체 0 초기화
+server_addr.sin_family = AF_INET;
+server_addr.sin_port   = htons(SERV_PORT);           // 포트: 호스트 → 네트워크
+/* server_addr.sin_port = htons(0);  → 사용 안 하는 포트를 OS가 임의 선택 */
+server_addr.sin_addr.s_addr = inet_addr(SERV_IP_ADDR);
+/* server_addr.sin_addr.s_addr = htonl(INADDR_ANY); → 내 컴퓨터의 어떤 IP로 오든 수신 */
+
+bind(sd, (struct sockaddr *)&amp;server_addr, sizeof(server_addr));</code></pre>
+<div class="box info"><b class="t">INADDR_ANY란?</b>
+서버 컴퓨터에 랜카드(IP)가 여러 개일 때 특정 IP 하나에 묶지 않고 <b>"이 컴퓨터로 들어오는 모든 IP"</b>로 받겠다는 뜻입니다. 서버에서는 보통 <code>htonl(INADDR_ANY)</code>를 씁니다.</div>
+
+<div class="box ok"><b class="t">점검문제: 주소 할당이 필요한 이유와 함수 (모범 답안)</b>
+소켓은 생성만 해서는 <b>어떤 IP/포트로 데이터를 받을지</b> 정해지지 않았기 때문에, 클라이언트가 서버를 찾아올 수 있도록 서버 소켓에 고정된 주소(IP, 포트)를 부여해야 한다. 이를 위해 호출하는 함수가 <code>bind()</code>이다.<br>
+<b>Big/Little Endian과 NBO 설명</b>: 위 바이트 순서 절 참고. 네트워크 바이트 순서는 Big-endian으로 약속한 전송 순서이며, CPU 종류가 달라도 같은 숫자로 해석하게 하려고 필요하다.</div>
+</section>
+
+<!-- ================= BASIC L05 ================= -->
+<section class="lec" id="b05">
+<h2 class="lec-title">기초편 · Lecture 05. TCP 서버/클라이언트(3): listen, accept, connect, 송수신</h2>
+
+<div class="fcard">
+<div class="head"><span class="name">listen</span><span class="tag">연결 요청 대기 상태로 진입 (TCP 서버만)</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;sys/socket.h&gt;
+<span class="ty">int</span> <span class="fn">listen</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">int</span> <span class="ag">backlog</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>서버 소켓 번호</span></div>
+<div class="row"><span class="k arg">backlog</span><span><code>accept()</code>를 처리하는 동안 대기(queuing)시킬 수 있는 <b>connect() 요청 수</b> = 접속 대기 큐의 최대 크기. 보통 5~10 (대부분 20 정도로 제한). 예: <code>listen(s, 5);</code></span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">의미</span><span>서버가 서버 소켓으로 연결 요청을 수락할 준비가 됐음을 OS에 알리고, 클라이언트의 연결 요청은 <b>큐(Queue)에 저장</b>됩니다. 비유: 가게의 <b>대기실</b>을 여는 것.</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">accept</span><span class="tag">연결 요청 수락 → 새 소켓 생성 (TCP 서버만)</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;sys/types.h&gt;   &lt;sys/socket.h&gt;
+<span class="ty">int</span> <span class="fn">accept</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">struct sockaddr *</span><span class="ag">clientaddr</span>, <span class="ty">int *</span><span class="ag">clientaddrlen</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span><code>listen()</code> 중인 서버 소켓</span></div>
+<div class="row"><span class="k arg">clientaddr</span><span>연결 요청한 <b>클라이언트의 소켓 주소</b>가 저장될 구조체 (누가 접속했는지 확인용)</span></div>
+<div class="row"><span class="k arg">clientaddrlen</span><span>구조체 크기가 담긴 <b>변수의 주소</b>. 호출 후 실제 크기로 갱신됨</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 새로 만들어진 통신 소켓 디스크립터</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">동작</span><span>대기 큐의 연결 요청을 수락해 <b>새 소켓</b>을 개설하고 그 소켓으로 클라이언트와 통신(자식 서버 개념). 원래의 서버 소켓은 다음 연결을 계속 기다립니다. 큐가 비어 있으면 요청이 올 때까지 <span class="er">계속 블록(Block)</span>됩니다.</span></div>
+</div>
+<div class="box warn"><b class="t">슬라이드 질문: <code>&amp;sizeof(struct sockaddr_in)</code> 가능?</b>
+<b>불가능합니다.</b> <code>sizeof</code>는 값(상수)을 만들어낼 뿐 메모리에 주소가 있는 변수가 아니라서 <code>&amp;</code>를 붙일 수 없습니다. accept의 세 번째 인자는 값이 들어 있는 <b>변수의 주소</b>여야 하므로, <code>sin_size = sizeof(struct sockaddr_in);</code>로 변수에 먼저 담고 <code>&amp;sin_size</code>를 전달합니다 (호출 후 실제 크기로 값이 바뀌는 입출력 인자이기도 함).</div>
+<pre><code>#define MYPORT 3490
+#define BACKLOG 10
+int sockfd, new_sd;
+struct sockaddr_in my_addr, their_addr;
+int sin_size;
+
+sockfd = socket(PF_INET, SOCK_STREAM, 0);          /* 에러 체크 필요 */
+memset(&amp;my_addr, 0, sizeof(my_addr));
+my_addr.sin_family      = AF_INET;                 /* HBO */
+my_addr.sin_port        = htons(MYPORT);           /* short, NBO */
+my_addr.sin_addr.s_addr = htonl(INADDR_ANY);       /* 자동 주소 지정 */
+bind(sockfd, (struct sockaddr *)&amp;my_addr, sizeof(struct sockaddr));
+listen(sockfd, BACKLOG);
+
+sin_size = sizeof(struct sockaddr_in);
+new_sd = accept(sockfd, (struct sockaddr *)&amp;their_addr, &amp;sin_size);  // 새 클라이언트 전용 소켓</code></pre>
+<p>클라이언트 #1이 연결된 뒤에도 서버 소켓은 대기 상태를 유지하고, 클라이언트 #2가 오면 accept로 또 다른 새 소켓을 만들어 통신합니다 (서버 소켓 1개 + 통신 소켓 N개).</p>
+
+<div class="fcard">
+<div class="head"><span class="name">connect</span><span class="tag">서버에 연결 요청 (TCP 클라이언트)</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">connect</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">struct sockaddr *</span><span class="ag">serveraddr</span>, <span class="ty">int</span> <span class="ag">serveraddrlen</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>클라이언트의 소켓 번호</span></div>
+<div class="row"><span class="k arg">serveraddr</span><span><b>원격지(상대 서버)</b>의 소켓 주소 구조체 포인터 (서버의 IP, 포트)</span></div>
+<div class="row"><span class="k arg">serveraddrlen</span><span>구조체 *serveraddr의 크기</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">참고</span><span><b>클라이언트의 소켓 주소(IP, 포트)는 connect() 호출 시 커널이 자동으로 생성</b>합니다. 그래서 클라이언트는 bind가 필요 없습니다.</span></div>
+</div>
+<pre><code>#define DEST_IP   "192.168.10.1"
+#define DEST_PORT 3490
+struct sockaddr_in dest_addr;                       /* 목적지 주소를 저장할 구조체 */
+sockfd = socket(PF_INET, SOCK_STREAM, 0);
+
+memset(&amp;dest_addr, 0, sizeof(dest_addr));
+dest_addr.sin_family      = AF_INET;
+dest_addr.sin_port        = htons(DEST_PORT);       /* short, NBO */
+dest_addr.sin_addr.s_addr = inet_addr(DEST_IP);
+
+connect(sockfd, (struct sockaddr *)&amp;dest_addr, sizeof(struct sockaddr));</code></pre>
+
+<h3 id="b05-io">write()/send(), read()/recv()</h3>
+<div class="fcard">
+<div class="head"><span class="name">write / send</span><span class="tag">메시지 송신</span></div>
+<div class="sig"><span class="ty">ssize_t</span> <span class="fn">write</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">const void *</span><span class="ag">msgbuf</span>, <span class="ty">size_t</span> <span class="ag">buflen</span>);          <span class="cm">// &lt;unistd.h&gt;</span>
+<span class="ty">int</span>     <span class="fn">send</span> (<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">const void *</span><span class="ag">msgbuf</span>, <span class="ty">size_t</span> <span class="ag">buflen</span>, <span class="ty">int</span> <span class="ag">flags</span>);  <span class="cm">// &lt;sys/socket.h&gt;</span></div>
+<div class="row"><span class="k arg">sockfd</span><span>통신 소켓</span></div>
+<div class="row"><span class="k arg">msgbuf / buflen</span><span>보낼 데이터가 있는 버퍼 / 보낼 바이트 수</span></div>
+<div class="row"><span class="k arg">flags</span><span>호출 시 특별한 동작을 지정. 대부분 사용 안 함 → <span class="nu">0</span></span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 실제로 보낸 바이트 수</span> / <span class="er">실패: -1</span></span></div>
+</div>
+<div class="fcard">
+<div class="head"><span class="name">read / recv</span><span class="tag">메시지 수신</span></div>
+<div class="sig"><span class="ty">ssize_t</span> <span class="fn">read</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">void *</span><span class="ag">rcvbuf</span>, <span class="ty">size_t</span> <span class="ag">rcvbuflen</span>);          <span class="cm">// &lt;unistd.h&gt;</span>
+<span class="ty">int</span>     <span class="fn">recv</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">void *</span><span class="ag">rcvbuf</span>, <span class="ty">size_t</span> <span class="ag">rcvbuflen</span>, <span class="ty">int</span> <span class="ag">flags</span>);  <span class="cm">// &lt;sys/socket.h&gt;</span></div>
+<div class="row"><span class="k arg">rcvbuf / rcvbuflen</span><span>받은 데이터를 저장할 버퍼 / 버퍼 크기 (슬라이드에는 const로 적혀 있지만 실제로는 <b>쓰기 가능한 버퍼</b>)</span></div>
+<div class="row"><span class="k arg">flags</span><span>대부분 <span class="nu">0</span></span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 읽은 바이트 수</span> / <span class="nu">0: EOF (상대가 연결 종료)</span> / <span class="er">-1: 오류</span></span></div>
+<div class="row"><span class="k er">주의</span><span>TCP는 <b>데이터 경계가 없어서</b> 요청한 만큼 한 번에 안 올 수 있습니다 (Lecture 06 참고). 반환값만큼만 유효한 데이터입니다.</span></div>
+</div>
+
+<h3 id="b05-ex">TCP 에코 예제 (myecho)</h3>
+<table>
+<tr><th>예제</th><th>구성</th></tr>
+<tr><td>Example 1</td><td>like_server.c / like_client.c</td></tr>
+<tr><td>Example 2</td><td>myecho_server.c / myecho_client1.c / myecho_client2.c</td></tr>
+</table>
+<div class="flow"><span>클라이언트 fgets()</span><i>→</i><span>write()</span><i>→</i><span>서버 read()</span><i>→</i><span>printf()</span><i>→</i><span>write()</span><i>→</i><span>클라이언트 read()</span><i>→</i><span>printf()</span></div>
+<p>클라이언트가 키보드에서 한 줄(<code>fgets</code>)을 읽어 서버로 보내면(<code>write</code>), 서버가 받아서(<code>read</code>) 화면에 출력하고 그대로 되돌려 보내고(<code>write</code>), 클라이언트가 다시 받아(<code>read</code>) 출력하는 구조입니다.</p>
+<pre><code>// 서버 (뼈대)
+ssock = socket(PF_INET, SOCK_STREAM, 0);
+memset(&amp;addr, 0, sizeof(addr));
+addr.sin_family = AF_INET;
+addr.sin_addr.s_addr = htonl(INADDR_ANY);
+addr.sin_port = htons(port);
+bind(ssock, (struct sockaddr *)&amp;addr, sizeof(addr));
+listen(ssock, 5);
+len = sizeof(clnt_addr);
+csock = accept(ssock, (struct sockaddr *)&amp;clnt_addr, &amp;len);
+while ((n = read(csock, buf, sizeof(buf))) &gt; 0)
+    write(csock, buf, n);          // 받은 만큼 되돌려 보냄
+close(csock);  close(ssock);
+
+// 클라이언트 (뼈대)
+sd = socket(PF_INET, SOCK_STREAM, 0);
+... serv_addr 채우기 (inet_addr, htons) ...
+connect(sd, (struct sockaddr *)&amp;serv_addr, sizeof(serv_addr));
+while (fgets(buf, sizeof(buf), stdin) != NULL) {
+    write(sd, buf, strlen(buf));
+    n = read(sd, buf, sizeof(buf) - 1);
+    buf[n] = '\0';
+    printf("%s", buf);
+}
+close(sd);</code></pre>
+</section>
+
+<!-- ================= REPORT 4 ================= -->
+<section class="lec" id="br4">
+<h2 class="lec-title">기초편 · Report #4 해석: 두 정수를 보내 합을 돌려받는 myadd</h2>
+
+<p>클라이언트가 <code>200 300</code>처럼 정수 2개를 서버로 보내고, 서버가 합을 계산해 돌려주는 프로그램입니다. <b>버퍼 종류(int형 / char형)</b>와 <b>바이트 순서 처리 여부</b>에 따라 3가지 버전이 있습니다.</p>
+
+<table>
+<tr><th>버전</th><th>버퍼</th><th>바이트 순서</th><th>특징</th></tr>
+<tr><td>01 (Ex.1)</td><td>int형 <code>buf[2]</code></td><td>고려 안 함</td><td>양쪽 컴퓨터의 엔디안이 같을 때만 정상</td></tr>
+<tr><td>02 (Ex.2)</td><td>int형 <code>buf[2]</code></td><td><code>htonl/ntohl</code> 사용</td><td>엔디안이 달라도 정상</td></tr>
+<tr><td>03 (Ex.3)</td><td>char형 <code>buf[8]</code></td><td><code>htonl/ntohl</code> 사용</td><td>바이트 배열에 포인터 캐스팅으로 정수를 넣고 꺼냄</td></tr>
+</table>
+
+<h3>Ex.1 int형 버퍼 (바이트 순서 무시)</h3>
+<div class="cols">
+<div><b>클라이언트 (myadd_client_int 200 300)</b>
+<pre><code>int buf[2];  int result;
+buf[0] = atoi(argv[1]);    // 200
+buf[1] = atoi(argv[2]);    // 300
+write(sd, buf, 8);         // int 2개 = 8바이트
+read(sd, &amp;result, 4);      // 결과 int 1개 = 4바이트
+printf("Result : %d\n", result);</code></pre></div>
+<div><b>서버 (myadd_server_int &lt;port&gt;)</b>
+<pre><code>int buf[2];  int result;
+read(clnt_sd, buf, 8);
+result = buf[0] + buf[1];
+write(clnt_sd, &amp;result, 4);</code></pre></div>
+</div>
+<div class="box warn">같은 종류의 CPU끼리는 잘 되지만, Little-endian과 Big-endian 컴퓨터가 통신하면 <code>200(0x000000C8)</code>이 <code>0xC8000000</code>으로 읽혀 <span class="er">엉뚱한 합</span>이 나옵니다.</div>
+
+<h3>Ex.2 int형 버퍼 + 바이트 순서 고려</h3>
+<div class="cols">
+<div><b>클라이언트</b>
+<pre><code>operand1 = atoi(argv[1]);
+operand2 = atoi(argv[2]);
+buf[0] = (int)htonl(operand1);   // 호스트 → 네트워크
+buf[1] = (int)htonl(operand2);
+write(sd, buf, 8);
+read(sd, &amp;result, 4);</code></pre></div>
+<div><b>서버</b>
+<pre><code>read(clnt_sd, buf, 8);
+operand1 = (int)ntohl((uint32_t)buf[0]); // 네트워크 → 호스트
+operand2 = (int)ntohl((uint32_t)buf[1]);
+result = operand1 + operand2;
+write(clnt_sd, &amp;result, 4);</code></pre></div>
+</div>
+<p><code>htonl/ntohl</code>은 <code>uint32_t</code>를 받고 돌려주므로 <code>(int)</code>, <code>(uint32_t)</code> 캐스팅이 들어갑니다.</p>
+
+<h3>Ex.3 char형 버퍼 + 바이트 순서 고려</h3>
+<div class="cols">
+<div><b>클라이언트 (BUF_SIZE 8)</b>
+<pre><code>char buf[8];
+*(uint32_t *)&amp;buf[0] = htonl(operand1);  // 앞 4바이트
+*(uint32_t *)&amp;buf[4] = htonl(operand2);  // 뒤 4바이트
+write(sd, buf, 8);
+read(sd, &amp;result, 4);</code></pre></div>
+<div><b>서버</b>
+<pre><code>char buf[8];
+read(clnt_sd, buf, 8);
+operand1 = (int)ntohl(*(uint32_t *)&amp;buf[0]);
+operand2 = (int)ntohl(*(uint32_t *)&amp;buf[4]);
+result = operand1 + operand2;
+write(clnt_sd, &amp;result, 4);</code></pre></div>
+</div>
+<p>char 배열은 바이트 단위이므로, <code>&amp;buf[0]</code>, <code>&amp;buf[4]</code> 위치를 <code>uint32_t *</code>로 <b>해석(캐스팅)</b>해서 4바이트씩 정수를 넣고 꺼냅니다. 이런 방식은 <b>프로토콜 헤더처럼 바이트 배열 안에 여러 필드를 배치</b>할 때 쓰는 기본기입니다.</p>
+
+<div class="box info"><b class="t">슬라이드 코드에서 더 챙길 점</b>
+① 결과값 <code>result</code>는 변환 없이 전송되므로, 엄밀히는 서버에서 <code>htonl(result)</code>로 보내고 클라이언트에서 <code>ntohl</code>로 받아야 엔디안이 다른 환경에서도 안전합니다.<br>
+② TCP는 경계가 없어서 <code>read(…, 8)</code>이 8바이트보다 적게 반환될 수 있으니, 실무에서는 반환값을 보고 8바이트가 찰 때까지 반복해서 읽습니다.<br>
+③ char 배열을 <code>uint32_t *</code>로 캐스팅하면 정렬(alignment) 문제나 strict aliasing 문제가 생길 수 있어서 실무에서는 <code>memcpy</code>를 권장합니다. (슬라이드 코드는 학습용으로 단순화)</div>
+
+<h3>참고: 포인터 캐스팅 (1)</h3>
+<pre><code>int a = 3;
+*&amp;a = 4;                        // &amp;a 로 주소를 구하고 * 로 값에 접근 → a = 4
+printf("%d\n", a);               // 4
+*(float *)&amp;a = 3.1f;            // a의 메모리를 float 으로 '해석'해서 3.1f 를 기록
+printf("%d\n", a);               // 1078355558  (같은 비트를 int로 읽은 값)
+printf("%f\n", *(float *)&amp;a);    // 3.100000    (같은 비트를 float로 읽은 값)</code></pre>
+<p><b>핵심</b>: 메모리의 비트는 그대로이고, <b>어떤 타입으로 해석하느냐</b>에 따라 값이 다르게 보입니다.<br>
+3.1f의 이진수는 <code>11.00011001100110011…₂</code>이고, 부동소수점(IEEE 754) 표현은 <b>부호 0 | 지수 10000000 | 가수 10001100110011001100110</b> = <code>0x40466666</code> = 정수 <code>1078355558</code>입니다.</p>
+
+<h3>참고: 포인터 캐스팅 (2) — char 버퍼에 다양한 타입 넣기</h3>
+<ul>
+ <li><code>&amp;buf[0] == buf</code> (배열 이름은 첫 원소의 주소)</li>
+ <li><code>*&amp;buf[0] == buf[0]</code>, <code>*buf == buf[0]</code></li>
+ <li><code>buf+1 == &amp;buf[1]</code> ... <code>buf+7 == &amp;buf[7]</code></li>
+</ul>
+<pre><code>char buf[8];
+buf[0] = 'A';                       printf("%c\n",  buf[0]);               // A
+buf[0] = 200;                       printf("%d\n",  buf[0]);               // -56  (signed char: 200-256)
+*(int *)&amp;buf[0] = 200;              printf("%d\n",  *(int *)&amp;buf[0]);      // 200
+*(float *)&amp;buf[0] = 3.1f;           printf("%f\n",  *(float *)&amp;buf[0]);    // 3.100000
+*(double *)&amp;buf[0] = 3.1;           printf("%lf\n", *(double *)&amp;buf[0]);   // 3.100000</code></pre>
+<p>같은 8바이트 버퍼에 <code>char</code>(1바이트), <code>int</code>(4), <code>float</code>(4), <code>double</code>(8)을 번갈아 써 보는 예제이고, <code>char buf[8]</code>이 최대 <code>double</code> 하나를 담을 수 있는 크기입니다.</p>
+</section>
+
+<!-- ================= BASIC L06 ================= -->
+<section class="lec" id="b06">
+<h2 class="lec-title">기초편 · Lecture 06. UDP 서버/클라이언트 프로그래밍</h2>
+
+<h3>UDP 프로토콜의 특징</h3>
+<table>
+<tr><th>특징</th><th>설명</th></tr>
+<tr><td><b>비연결형</b></td><td>연결 설정 과정이 없음 → <code>listen()</code>, <code>accept()</code> 불필요 (<code>connect()</code>는 선택: Connected UDP 소켓)</td></tr>
+<tr><td><b>비신뢰성</b></td><td>수신 확인, 재전송을 하지 않음. 송신 버퍼가 없어 유실되면 끝</td></tr>
+<tr><td><b>흐름제어 안 함</b></td><td>상대 버퍼 상태를 고려하지 않고 보냄</td></tr>
+<tr><td><b>빠른 속도</b></td><td>오버헤드가 적음. 응용 예: 실시간 영상/음성(인터넷 방송), SNMP</td></tr>
+<tr><td><b>UDP 소켓은 오직 하나</b></td><td>서버 소켓/클라이언트(통신) 소켓 분리가 필요 없음. <b>TCP는 전화, UDP는 편지</b></td></tr>
+<tr><td><b>전송 데이터의 경계 있음</b></td><td>보낸 횟수만큼 받아야 함 (송신/수신 함수의 개수가 반드시 일치)</td></tr>
+<tr><td><b>매번 목적지 주소 지정</b></td><td>편지마다 받는 사람 주소를 적는 것처럼 <code>sendto()</code>, <code>recvfrom()</code> 사용</td></tr>
+</table>
+<div class="box info"><b class="t">Connected UDP 소켓</b>
+UDP 클라이언트에서도 <code>connect()</code>를 호출할 수 있습니다 (연결을 맺는 것이 아니라 <b>목적지 주소를 소켓에 기억</b>시킴). 이 경우 매번 주소를 쓰는 <code>sendto/recvfrom</code> 대신 <code>read()</code>/<code>write()</code>를 쓸 수 있습니다.</div>
+
+<h3>sendto / recvfrom</h3>
+<div class="fcard">
+<div class="head"><span class="name">sendto</span><span class="tag">UDP 데이터 송신</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;sys/types.h&gt;   &lt;sys/socket.h&gt;
+<span class="ty">int</span> <span class="fn">sendto</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">const void *</span><span class="ag">buf</span>, <span class="ty">int</span> <span class="ag">buflen</span>, <span class="ty">int</span> <span class="ag">flags</span>,
+             <span class="ty">const struct sockaddr *</span><span class="ag">toaddr</span>, <span class="ty">int</span> <span class="ag">toaddrlen</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>소켓 번호</span></div>
+<div class="row"><span class="k arg">buf / buflen</span><span>전송할 메시지 버퍼 포인터 / 버퍼의 길이</span></div>
+<div class="row"><span class="k arg">flags</span><span>보통 <span class="nu">0</span></span></div>
+<div class="row"><span class="k arg">toaddr</span><span><b>수신 측</b> 소켓 주소 포인터 (보낼 곳)</span></div>
+<div class="row"><span class="k arg">toaddrlen</span><span>구조체 *toaddr의 크기</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 보낸 바이트 수</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k er">길이 제한</span><span>최대 전송 길이 <span class="nu">65507 bytes</span>. 넘으면 <code>EMSGSIZE</code> 오류.</span></div>
+</div>
+<div class="box ok"><b class="t">슬라이드 질문: 왜 65507 bytes?</b>
+UDP 데이터그램의 전체 길이 필드가 16비트라서 최대 <span class="nu">65,535</span> bytes인데, 여기서 <b>IP 헤더 20 bytes</b>와 <b>UDP 헤더 8 bytes</b>를 빼면 <code>65535 − 20 − 8 = 65507</code> bytes가 순수 데이터 최대치입니다.</div>
+
+<div class="fcard">
+<div class="head"><span class="name">recvfrom</span><span class="tag">UDP 데이터 수신</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">recvfrom</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">void *</span><span class="ag">buf</span>, <span class="ty">int</span> <span class="ag">buflen</span>, <span class="ty">int</span> <span class="ag">flags</span>,
+               <span class="ty">struct sockaddr *</span><span class="ag">fromaddr</span>, <span class="ty">int *</span><span class="ag">fromaddrlen</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>소켓 번호</span></div>
+<div class="row"><span class="k arg">buf / buflen</span><span>수신 메시지를 저장할 버퍼 / 버퍼 길이</span></div>
+<div class="row"><span class="k arg">flags</span><span>보통 <span class="nu">0</span></span></div>
+<div class="row"><span class="k arg">fromaddr</span><span><b>송신 측</b> 소켓 주소가 채워질 구조체 포인터 (누가 보냈는지, 답장 보낼 주소)</span></div>
+<div class="row"><span class="k arg">fromaddrlen</span><span>fromaddr 구조체 길이가 담긴 변수의 <b>포인터</b> (입출력 인자)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 받은 바이트 수</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">참고</span><span>슬라이드의 <code>const</code>는 오타성 표기이고 buf, fromaddr은 <b>쓰기 가능</b>해야 합니다. 서버는 recvfrom으로 받은 <code>fromaddr</code>에 그대로 <code>sendto</code> 하면 답장이 됩니다.</span></div>
+</div>
+
+<h3>UDP 서버/클라이언트 함수 흐름</h3>
+<table>
+<tr><th>UDP 서버 (udp_server.c)</th><th>UDP 클라이언트 (udp_client.c)</th></tr>
+<tr><td><code>socket()</code> → 주소 구성 → <code>bind()</code><br><code>recvfrom()</code> ← 클라이언트의 "I miss you already"<br><code>sendto()</code> → "I miss you"<br><code>close()</code></td>
+<td><code>socket()</code> → 주소 구성(서버 주소)<br><code>sendto()</code> → 서버로 전송<br><code>recvfrom()</code> ← 서버의 응답<br><code>close()</code></td></tr>
+</table>
+<p>TCP와 달리 <b>listen/accept/connect가 없고</b>, 클라이언트는 bind도 생략할 수 있습니다 (첫 sendto 때 OS가 포트를 자동 부여).</p>
+
+<h3>전송 데이터의 경계 (Boundary)</h3>
+<div class="cols">
+<div class="card"><b class="pr">TCP: 경계가 없다 (바이트 스트림)</b>
+<ul>
+<li>write/send를 호출한 횟수와 read/recv 호출 횟수가 <b>일치하지 않아도</b> 됨</li>
+<li>write 1번이 항상 패킷 1개가 되는 것은 아님. 예: 서버가 MSG1, MSG2를 두 번 보냈는데 클라이언트가 한 번에 <code>MSG1+MSG2</code>를 받을 수 있음</li>
+<li><b>흐름제어(Flow control, 슬라이딩 윈도우)</b>: 수신 버퍼가 받을 수 있는 크기 이상은 전송하지 않음</li>
+<li>예제: tcp_server_noboundary.c / tcp_client_noboundary.c</li>
+</ul></div>
+<div class="card"><b class="th">UDP: 경계가 있다 (데이터그램)</b>
+<ul>
+<li>sendto 1번 = 데이터그램 1개, recvfrom 1번이 정확히 그 1개를 받음 → <b>송수신 함수 호출 횟수가 반드시 일치</b>해야 함</li>
+<li>MSG1, MSG2, MSG3을 세 번에 걸쳐 보내면 세 번에 걸쳐 받음</li>
+<li>TCP와 달리 송신 버퍼가 없어 <b>재전송 안 함</b></li>
+<li>예제: udp_server_boundary.c / udp_client_boundary.c</li>
+</ul></div>
+</div>
+<div class="box warn"><b class="t">TCP에서 메시지 경계를 지키려면?</b>
+TCP는 경계를 보장하지 않으므로, 응용 계층에서 <b>메시지 길이를 먼저 보내거나 끝 표시(구분자)</b>를 정해 직접 경계를 구분해야 합니다. (Report #4에서 정수 2개를 정확히 8바이트로 약속한 것도 같은 맥락)</div>
+
+<h3>TCP vs UDP 한눈에</h3>
+<table>
+<tr><th></th><th>TCP</th><th>UDP</th></tr>
+<tr><td>비유</td><td>전화</td><td>편지</td></tr>
+<tr><td>연결</td><td>연결형 (listen/accept/connect)</td><td>비연결형</td></tr>
+<tr><td>신뢰성</td><td>수신 확인, 재전송</td><td>없음</td></tr>
+<tr><td>흐름제어</td><td>있음 (슬라이딩 윈도우)</td><td>없음</td></tr>
+<tr><td>데이터 경계</td><td>없음 (스트림)</td><td>있음 (데이터그램)</td></tr>
+<tr><td>소켓 타입</td><td>SOCK_STREAM</td><td>SOCK_DGRAM</td></tr>
+<tr><td>송수신 함수</td><td>read/write, send/recv</td><td>sendto/recvfrom (Connected UDP는 read/write)</td></tr>
+<tr><td>서버 소켓 수</td><td>서버 소켓 + 클라이언트별 통신 소켓</td><td>소켓 1개</td></tr>
+<tr><td>응용 예</td><td>웹, 파일 전송, 메일</td><td>실시간 영상/음성, SNMP</td></tr>
+</table>
+</section>
+
+<!-- ================= BASIC L07 ================= -->
+<section class="lec" id="b07">
+<h2 class="lec-title">기초편 · Lecture 07. 도메인 네임과 IP 주소 변환</h2>
+<p>사람은 <code>www.kornu.ac.kr</code> 같은 이름을 쓰고, 소켓은 IP 주소가 필요합니다. 이름과 IP를 서로 바꿔 주는 것이 <b>Name Resolver 함수</b>이며 DNS를 이용합니다. 헤더: <code>&lt;netdb.h&gt;</code></p>
+
+<div class="fcard">
+<div class="head"><span class="name">gethostbyname</span><span class="tag">도메인 네임 → hostent</span></div>
+<div class="sig"><span class="ty">struct hostent *</span><span class="fn">gethostbyname</span>(<span class="ty">const char *</span><span class="ag">hostname</span>);</div>
+<div class="row"><span class="k arg">hostname</span><span>도메인 이름 문자열 (예: <code>"www.kornu.ac.kr"</code>)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: hostent 구조체의 포인터</span> / <span class="er">실패: NULL</span></span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">gethostbyaddr</span><span class="tag">IP 주소 → hostent</span></div>
+<div class="sig"><span class="ty">struct hostent *</span><span class="fn">gethostbyaddr</span>(<span class="ty">const char *</span><span class="ag">addr</span>, <span class="ty">int</span> <span class="ag">len</span>, <span class="ty">int</span> <span class="ag">family</span>);</div>
+<div class="row"><span class="k arg">addr</span><span>실제로는 변환할 IP가 저장된 <b>in_addr 구조체 변수</b>. IPv6도 고려한 <code>char *</code> 형태라 <code>(char *)&amp;addr</code> 로 전달 (addr.s_addr에 IP 주소가 들어 있어야 함)</span></div>
+<div class="row"><span class="k arg">len</span><span>입력된 주소 구조체(in_addr)의 길이: <span class="nu">4</span>(IPv4), <span class="nu">16</span>(IPv6)</span></div>
+<div class="row"><span class="k arg">family</span><span>주소 체계: <span class="nu">AF_INET</span>, <span class="nu">AF_INET6</span></span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: hostent 구조체의 포인터</span> / <span class="er">실패: NULL</span></span></div>
+</div>
+
+<h3>hostent 구조체</h3>
+<pre><code>struct hostent {
+    char  *h_name;        // 공식 이름 (Official name)
+    char **h_aliases;     // 별칭 리스트 (Alias list), NULL로 끝남
+    int    h_addrtype;    // 주소 타입 (예: AF_INET = 2)
+    int    h_length;      // 주소 길이 (예: IPv4 = 4)
+    char **h_addr_list;   // IP 주소 리스트 (in_addr 구조체들), NULL로 끝남
+};
+#define h_addr  h_addr_list[0]     /* 첫 번째 주소 */</code></pre>
+<table>
+<tr><th>필드</th><th>설명</th></tr>
+<tr><td><span class="ag">h_name</span></td><td>호스트의 공식 이름 문자열</td></tr>
+<tr><td><span class="ag">h_aliases</span></td><td>별칭(alias) 문자열 배열. 마지막은 NULL</td></tr>
+<tr><td><span class="ag">h_addrtype</span></td><td>주소 종류. IPv4는 AF_INET(2)</td></tr>
+<tr><td><span class="ag">h_length</span></td><td>주소 길이. IPv4는 4</td></tr>
+<tr><td><span class="ag">h_addr_list</span></td><td>IP 주소들(in_addr 구조체)의 포인터 배열. 도메인 하나에 IP가 여러 개일 수 있음. 마지막은 NULL</td></tr>
+<tr><td><span class="ag">h_addr</span></td><td>매크로. 첫 번째 주소 = <code>h_addr_list[0]</code></td></tr>
+</table>
+
+<h4>사용 예 (get_host_byname.c 구조)</h4>
+<pre><code>struct hostent *host = gethostbyname("www.kornu.ac.kr");
+if (host == NULL) { printf("이름 변환 실패\n"); return -1; }
+
+printf("공식 이름 : %s\n", host-&gt;h_name);
+for (int i = 0; host-&gt;h_aliases[i] != NULL; i++)
+    printf("별칭 %d : %s\n", i + 1, host-&gt;h_aliases[i]);
+printf("주소 타입 : %s\n", host-&gt;h_addrtype == AF_INET ? "AF_INET" : "기타");
+for (int i = 0; host-&gt;h_addr_list[i] != NULL; i++)
+    printf("IP %d : %s\n", i + 1, inet_ntoa(*(struct in_addr *)host-&gt;h_addr_list[i]));
+
+// get_host_byaddr.c : IP → 이름
+struct in_addr addr;
+addr.s_addr = inet_addr("116.68.32.16");
+host = gethostbyaddr((char *)&amp;addr, 4, AF_INET);</code></pre>
+<div class="box info"><b class="t">참고 (슬라이드 외)</b>
+<code>gethostbyname</code>/<code>gethostbyaddr</code>는 IPv4 중심의 오래된 함수라서 최근에는 IPv4/IPv6를 모두 지원하는 <code>getaddrinfo()</code>를 권장합니다. 시험/수업 범위는 슬라이드의 두 함수와 hostent 구조체입니다.</div>
+</section>
+
+<!-- ================= 0. INTRO ================= -->
+<section class="lec" id="intro">
+<h2 class="lec-title">0. 먼저 큰 그림부터</h2>
+
+<h3 id="intro-why">왜 "다중 접속 서버"가 필요할까?</h3>
+<p>서버는 클라이언트(손님)가 접속하면 요청을 받아서 처리해 줍니다. 그런데 손님이 한 명씩만 처리된다면 어떻게 될까요?</p>
+<div class="cols">
+ <div class="card"><b>Iterative 서버 (순차 처리)</b><br>
+  한 번에 <b>한 명</b>만 상대합니다.<br>
+  A가 오래 걸리면 B, C는 <span class="er">줄 서서 계속 기다림</span>.<br>
+  구현은 쉽지만 실서비스에는 못 씁니다.</div>
+ <div class="card"><b>Concurrent 서버 (동시 처리)</b><br>
+  <b>여러 명</b>을 동시에 상대합니다.<br>
+  이 수업에서는 3가지 방법을 배웁니다.<br>
+  <span class="pr">① 프로세스</span> / <span class="th">② 스레드</span> / <span class="mx">③ I/O 멀티플렉싱</span></div>
+</div>
+
+<h3 id="intro-ana">식당 비유로 보는 세 방식</h3>
+<div class="cols3">
+<div class="card">
+<svg viewBox="0 0 220 190" role="img" aria-label="멀티 프로세스">
+ <rect class="sp" x="70" y="8" width="80" height="34" rx="6"/><text class="sxb" x="110" y="30" text-anchor="middle">부모(접수)</text>
+ <path class="sl" d="M85 42 L40 80"/><path class="sl" d="M110 42 L110 80"/><path class="sl" d="M135 42 L180 80"/>
+ <rect class="sp" x="5" y="80" width="70" height="34" rx="6"/><text class="sx" x="40" y="102" text-anchor="middle">자식1</text>
+ <rect class="sp" x="75" y="80" width="70" height="34" rx="6"/><text class="sx" x="110" y="102" text-anchor="middle">자식2</text>
+ <rect class="sp" x="145" y="80" width="70" height="34" rx="6"/><text class="sx" x="180" y="102" text-anchor="middle">자식3</text>
+ <text class="sxm" x="40" y="135" text-anchor="middle">손님1</text><text class="sxm" x="110" y="135" text-anchor="middle">손님2</text><text class="sxm" x="180" y="135" text-anchor="middle">손님3</text>
+ <text class="sxm" x="110" y="165" text-anchor="middle">각자 독립된 주방</text>
+</svg>
+<b class="pr">멀티 프로세스</b><br>
+손님이 올 때마다 <b>직원(+주방)을 통째로 복제</b>해서 1:1 전담시킴.<br>
+서로 완전히 분리되어 안전하지만, 복제 비용이 큼.
+</div>
+<div class="card">
+<svg viewBox="0 0 220 190" role="img" aria-label="멀티 스레드">
+ <rect class="st2" x="10" y="8" width="200" height="120" rx="8"/><text class="sxb" x="110" y="28" text-anchor="middle">하나의 프로세스(공유 주방)</text>
+ <rect class="sb" x="22" y="45" width="56" height="34" rx="6"/><text class="sx" x="50" y="67" text-anchor="middle">스레드1</text>
+ <rect class="sb" x="82" y="45" width="56" height="34" rx="6"/><text class="sx" x="110" y="67" text-anchor="middle">스레드2</text>
+ <rect class="sb" x="142" y="45" width="56" height="34" rx="6"/><text class="sx" x="170" y="67" text-anchor="middle">스레드3</text>
+ <rect class="sb" x="22" y="92" width="176" height="24" rx="5"/><text class="sxm" x="110" y="108" text-anchor="middle">공유: Heap / Data / Code</text>
+ <text class="sxm" x="110" y="150" text-anchor="middle">손님마다 직원(스레드) 한 명씩</text>
+ <text class="sxm" x="110" y="168" text-anchor="middle">주방은 같이 씀</text>
+</svg>
+<b class="th">멀티 스레드</b><br>
+<b>같은 주방</b>에서 직원(팔)만 늘려서 손님을 나눠 맡음.<br>
+가볍고 재료(데이터) 공유가 쉽지만, 동시에 같은 재료를 만지면 <span class="er">사고(경쟁 상태)</span>.
+</div>
+<div class="card">
+<svg viewBox="0 0 220 190" role="img" aria-label="I/O 멀티플렉싱">
+ <rect class="sm" x="70" y="8" width="80" height="40" rx="6"/><text class="sxb" x="110" y="26" text-anchor="middle">직원 1명</text><text class="sxm" x="110" y="41" text-anchor="middle">select()</text>
+ <path class="sl" d="M90 48 L40 92"/><path class="sl" d="M110 48 L110 92"/><path class="sl" d="M130 48 L180 92"/>
+ <rect class="sb" x="10" y="92" width="60" height="30" rx="6"/><text class="sx" x="40" y="112" text-anchor="middle">소켓1</text>
+ <rect class="sm" x="80" y="92" width="60" height="30" rx="6"/><text class="sx" x="110" y="112" text-anchor="middle">소켓2 ●</text>
+ <rect class="sb" x="150" y="92" width="60" height="30" rx="6"/><text class="sx" x="180" y="112" text-anchor="middle">소켓3</text>
+ <text class="sxm" x="110" y="145" text-anchor="middle">● = 호출벨(데이터 도착)</text>
+ <text class="sxm" x="110" y="165" text-anchor="middle">벨 울린 테이블만 응대</text>
+</svg>
+<b class="mx">I/O 멀티플렉싱</b><br>
+직원은 <b>딱 1명</b>. 모든 테이블에 호출벨을 달아두고 <b>벨이 울린 테이블만</b> 찾아가서 응대.<br>
+직원을 늘릴 필요가 없어 가볍지만, 한 테이블 응대가 길어지면 다른 테이블이 기다림.
+</div>
+</div>
+</section>
+
+<!-- ================= 1. COMPARE ================= -->
+<section class="lec" id="cmp">
+<h2 class="lec-title">1. 멀티 프로세스 · 멀티 스레드 · I/O 멀티플렉싱 상세 비교</h2>
+
+<h3 id="cmp-tbl">한 장 비교표</h3>
+<table class="cmp">
+<tr><th>비교 항목</th><th class="pr">멀티 프로세스</th><th class="th">멀티 스레드</th><th class="mx">I/O 멀티플렉싱</th></tr>
+<tr><td><b>한 줄 정의</b></td><td>접속마다 <b>프로세스를 복제</b>(fork)</td><td>접속마다 <b>스레드를 추가</b>(pthread_create)</td><td><b>하나의 흐름</b>이 여러 소켓을 번갈아 처리(select)</td></tr>
+<tr><td><b>핵심 함수</b></td><td><span class="fn">fork</span>, <span class="fn">wait</span>/<span class="fn">waitpid</span>, <span class="fn">signal</span></td><td><span class="fn">pthread_create</span>, <span class="fn">pthread_join</span>/<span class="fn">detach</span>, <span class="fn">pthread_mutex_*</span></td><td><span class="fn">select</span>, <span class="fn">FD_SET</span>/<span class="fn">FD_ISSET</span>/<span class="fn">FD_CLR</span>/<span class="fn">FD_ZERO</span></td></tr>
+<tr><td><b>동시에 일하는 주체</b></td><td>자식 프로세스 N개</td><td>워커 스레드 N개</td><td>프로세스 1개, 스레드 1개</td></tr>
+<tr><td><b>메모리</b></td><td>각자 <b>독립</b> (복사됨)<br>데이터 교환에 <span class="er">IPC(파이프 등)</span> 필요</td><td>Heap/Data/Code <b>공유</b>, Stack만 별도<br>변수로 바로 교환 가능</td><td>하나뿐이라 공유 문제 자체가 없음</td></tr>
+<tr><td><b>생성 비용</b></td><td><span class="badge b-bad">큼</span> 코드/데이터/스택 전체 복사</td><td><span class="badge b-mid">작음</span> Stack과 레지스터 정도</td><td><span class="badge b-good">없음</span> 접속마다 만들지 않음</td></tr>
+<tr><td><b>컨텍스트 스위칭</b></td><td><span class="badge b-bad">무거움</span> PCB 저장/복원</td><td><span class="badge b-mid">가벼움</span></td><td><span class="badge b-good">없음</span></td></tr>
+<tr><td><b>안정성</b></td><td><span class="badge b-good">높음</span> 한 자식이 죽어도 다른 자식은 무사</td><td><span class="badge b-bad">낮음</span> 한 스레드가 메모리를 망가뜨리면 <b>전체</b>가 영향</td><td><span class="badge b-mid">중간</span> 프로세스가 죽으면 전부 중단</td></tr>
+<tr><td><b>동기화(락) 필요</b></td><td>거의 불필요 (메모리가 따로라서)</td><td><span class="er">필수</span> 뮤텍스/세마포어</td><td>불필요</td></tr>
+<tr><td><b>추가 신경 쓸 것</b></td><td><span class="er">좀비 프로세스</span> 처리 (wait, SIGCHLD)</td><td><span class="er">경쟁 상태, 데드락</span>, join/detach</td><td><span class="er">fd_set 복사</span>, maxfd 갱신, 연결 종료 시 FD_CLR</td></tr>
+<tr><td><b>프로그래밍 난이도</b></td><td><span class="badge b-good">쉬움</span> 흐름이 직관적</td><td><span class="badge b-bad">어려움</span> 디버깅 힘듦</td><td><span class="badge b-mid">보통</span> 코드 구조가 달라서 낯섦</td></tr>
+<tr><td><b>많은 접속자(수천~)</b></td><td>부담 큼</td><td>부담 중간 (스레드 수 한계)</td><td><span class="badge b-good">가장 적합</span></td></tr>
+<tr><td><b>데이터가 크고 연속적</b></td><td><span class="badge b-good">유리</span></td><td><span class="badge b-good">유리</span></td><td><span class="badge b-bad">불리</span> 한 작업이 길면 다른 접속이 지연</td></tr>
+<tr><td><b>CPU 여러 코어 활용</b></td><td>가능</td><td>가능 (코어별 스레드 할당)</td><td><span class="er">불가</span> (단일 흐름)</td></tr>
+<tr><td><b>대표 용도</b></td><td>채팅/파일전송처럼 접속별로 독립적이고 무거운 작업</td><td>같은 데이터를 공유하며 처리하는 서버</td><td>작은 메시지를 자주 주고받는 대규모 접속 서버</td></tr>
+</table>
+
+<div class="box info"><b class="t">슬라이드 요약 (Lecture 10)</b>
+프로세스 방식은 접속마다 생성 비용이 들고 초당 수십~수천 번의 컨텍스트 스위칭이 발생합니다.<br>
+→ 송수신 데이터가 <b>크고 연속적</b>이면 프로세스/스레드, <b>작고 연속적이지 않으며 접속자가 많으면</b> I/O 멀티플렉싱이 적합합니다.</div>
+
+<h3>대응 관계 (헷갈릴 때 보는 표)</h3>
+<table>
+<tr><th>하고 싶은 일</th><th class="pr">프로세스</th><th class="th">스레드</th></tr>
+<tr><td>새 작업자 만들기</td><td><span class="fn">fork</span>()</td><td><span class="fn">pthread_create</span>()</td></tr>
+<tr><td>끝날 때까지 기다리고 정리</td><td><span class="fn">wait</span>() / <span class="fn">waitpid</span>()</td><td><span class="fn">pthread_join</span>()</td></tr>
+<tr><td>기다리지 않고 알아서 정리</td><td><span class="fn">signal</span>(SIGCHLD) + wait</td><td><span class="fn">pthread_detach</span>()</td></tr>
+<tr><td>내 번호 확인</td><td><span class="fn">getpid</span>()</td><td><span class="fn">pthread_self</span>()</td></tr>
+<tr><td>스스로 종료</td><td><span class="fn">exit</span>()</td><td><span class="fn">pthread_exit</span>()</td></tr>
+<tr><td>부모 / 자식 역할</td><td>부모 프로세스 / 자식 프로세스</td><td>Main 스레드 / Worker 스레드</td></tr>
+</table>
+
+<h3 id="cmp-code">서버 코드 뼈대 나란히 보기</h3>
+<p>세 방식 모두 <code>socket → bind → listen</code>까지는 <b>똑같고</b>, <b>accept 이후</b>가 달라집니다.</p>
+<div class="cols3">
+<div><b class="pr">① 멀티 프로세스</b>
+<pre><code>while (1) {
+  csock = accept(ssock, ...);
+  pid = fork();
+  if (pid == 0) {        // 자식
+    close(ssock);
+    read(csock, ...);
+    write(csock, ...);
+    close(csock);
+    exit(0);
+  } else {               // 부모
+    close(csock);
+  }
+}</code></pre></div>
+<div><b class="th">② 멀티 스레드</b>
+<pre><code>while (1) {
+  csock = accept(ssock, ...);
+  // 소켓마다 별도 저장
+  int *p = malloc(sizeof(int));
+  *p = csock;
+  pthread_create(&amp;tid, NULL,
+                 handler, p);
+  pthread_detach(tid);
+}
+void *handler(void *arg) {
+  int cs = *(int *)arg;
+  free(arg);
+  read(cs, ...);
+  write(cs, ...);
+  close(cs);
+  return NULL;
+}</code></pre></div>
+<div><b class="mx">③ I/O 멀티플렉싱</b>
+<pre><code>FD_SET(ssock, &amp;readfds);
+while (1) {
+  copyfds = readfds;
+  select(maxfd+1, &amp;copyfds,
+         NULL, NULL, NULL);
+  for (i=0; i&lt;=maxfd; i++) {
+    if (!FD_ISSET(i,&amp;copyfds))
+      continue;
+    if (i == ssock) {
+      csock = accept(...);
+      FD_SET(csock,&amp;readfds);
+    } else {
+      read(i, ...);
+      write(i, ...);
+    }
+  }
+}</code></pre></div>
+</div>
+
+<h3 id="cmp-pick">그래서 언제 무엇을 쓸까?</h3>
+<div class="flow"><span>접속자가 아주 많나?</span><i>→ 예 →</i><span class="mx">I/O 멀티플렉싱</span></div>
+<div class="flow"><span>아니오</span><i>→</i><span>접속끼리 데이터를 공유해야 하나?</span><i>→ 예 →</i><span class="th">멀티 스레드(+뮤텍스)</span></div>
+<div class="flow"><span>아니오</span><i>→</i><span>접속별로 독립적이고 안정성이 중요</span><i>→</i><span class="pr">멀티 프로세스</span></div>
+
+<h3 id="cmp-bug">초보자가 자주 하는 실수</h3>
+<table>
+<tr><th>방식</th><th>실수</th><th>결과 / 해결</th></tr>
+<tr><td class="pr">프로세스</td><td>자식 종료 후 <code>wait</code>를 안 함</td><td><span class="er">좀비</span>가 쌓임 → <code>signal(SIGCHLD, handler)</code>로 회수</td></tr>
+<tr><td class="pr">프로세스</td><td>자식에서 <code>ssock</code>, 부모에서 <code>csock</code>을 <code>close</code> 안 함</td><td>소켓 참조가 남아 연결이 제대로 종료되지 않거나 자원 낭비</td></tr>
+<tr><td class="th">스레드</td><td>루프 변수 <code>&amp;csock</code>을 그대로 스레드에 전달</td><td>다음 <code>accept</code>가 값을 덮어써서 <span class="er">클라이언트가 뒤섞임</span> → malloc으로 복사해 전달</td></tr>
+<tr><td class="th">스레드</td><td>공유 변수를 락 없이 수정</td><td>경쟁 상태로 <span class="er">결과가 틀림</span> → 뮤텍스</td></tr>
+<tr><td class="th">스레드</td><td><code>unlock</code> 누락</td><td><span class="er">데드락</span> (모두 영원히 대기)</td></tr>
+<tr><td class="th">스레드</td><td>join도 detach도 안 함</td><td>스레드 자원이 회수되지 않음</td></tr>
+<tr><td class="mx">select</td><td><code>readfds</code> 원본을 그대로 <code>select</code>에 전달</td><td>호출 후 <span class="er">감시 목록이 지워짐</span> → <code>copyfds = readfds</code> 복사본 사용</td></tr>
+<tr><td class="mx">select</td><td><code>nfds</code>에 fd 개수를 넣음</td><td><span class="er">가장 큰 fd + 1</span>을 넣어야 함</td></tr>
+<tr><td class="mx">select</td><td>연결이 끊겼는데 <code>FD_CLR</code> 안 함</td><td>이미 닫힌 fd를 계속 감시해 오류/무한 반복</td></tr>
+</table>
+</section>
+
+<!-- ================= 2. L08 ================= -->
+<section class="lec" id="l08">
+<h2 class="lec-title">2. Lecture 08 · 멀티 프로세스 기반 서버</h2>
+
+<h3>프로세스란?</h3>
+<p><b>프로세스</b>는 <b>"프로그램이 실행 중인 상태"</b>입니다. 프로그램(파일)과 프로세스(실행 중인 것)의 관계는 클래스와 객체의 관계와 비슷합니다. OS는 프로세스마다 고유 번호 <span class="nu">PID</span>를 줍니다.</p>
+<ul>
+ <li>프로세스는 <b>트리 구조</b>: 부모 프로세스 → 자식 프로세스. 최상위는 <code>init</code>(PID <span class="nu">1</span>)</li>
+ <li>확인 명령: <code>ps -aux</code>(모든 프로세스), <code>ps -ef</code>(풀 포맷), <code>pstree</code>(트리), <code>cat /proc/sys/kernel/pid_max</code>(PID 최대값)</li>
+</ul>
+
+<h3 id="l08-sock">서버에서 쓰는 소켓 함수 (모든 방식 공통)</h3>
+<div class="flow"><span>socket</span><i>→</i><span>bind</span><i>→</i><span>listen</span><i>→</i><span>accept</span><i>→</i><span>read / write</span><i>→</i><span>close</span></div>
+
+<div class="fcard">
+<div class="head"><span class="name">socket</span><span class="tag">소켓 만들기</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">socket</span>(<span class="ty">int</span> <span class="ag">domain</span>,
+           <span class="ty">int</span> <span class="ag">type</span>,
+           <span class="ty">int</span> <span class="ag">protocol</span>);</div>
+<div class="row"><span class="k arg">domain</span><span>주소 체계. 보통 <span class="nu">AF_INET</span> (IPv4)</span></div>
+<div class="row"><span class="k arg">type</span><span>통신 방식. <span class="nu">SOCK_STREAM</span> = TCP, <span class="nu">SOCK_DGRAM</span> = UDP</span></div>
+<div class="row"><span class="k arg">protocol</span><span>보통 <span class="nu">0</span> (type에 맞게 자동 선택)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 소켓 디스크립터(0 이상의 정수)</span><br><span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k ana">비유</span><span>전화기를 한 대 사는 것. 아직 번호도 없고 연결도 안 됨. 이 소켓이 서버의 <b>접수창구(ssock, 연결 소켓)</b>가 됩니다.</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">bind</span><span class="tag">주소(IP/포트) 붙이기</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">bind</span>(<span class="ty">int</span> <span class="ag">sockfd</span>,
+         <span class="ty">const struct sockaddr *</span><span class="ag">addr</span>,
+         <span class="ty">socklen_t</span> <span class="ag">addrlen</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>socket()이 돌려준 소켓</span></div>
+<div class="row"><span class="k arg">addr</span><span>붙일 IP 주소와 포트 번호가 담긴 구조체의 주소</span></div>
+<div class="row"><span class="k arg">addrlen</span><span>그 구조체의 크기 (<code>sizeof(addr)</code>)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span> (이미 사용 중인 포트 등)</span></div>
+<div class="row"><span class="k ana">비유</span><span>전화기에 <b>전화번호(포트)</b>를 등록하는 것.</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">listen</span><span class="tag">접속 대기 시작</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">listen</span>(<span class="ty">int</span> <span class="ag">sockfd</span>, <span class="ty">int</span> <span class="ag">backlog</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>bind까지 끝난 소켓</span></div>
+<div class="row"><span class="k arg">backlog</span><span>접속 대기 큐의 크기 (accept 되기 전에 줄 설 수 있는 최대 인원)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k ana">비유</span><span>"이제부터 전화 받겠습니다" 하고 대기 상태로 전환.</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">accept</span><span class="tag">접속 수락 → 새 소켓 생성</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">accept</span>(<span class="ty">int</span> <span class="ag">sockfd</span>,
+           <span class="ty">struct sockaddr *</span><span class="ag">addr</span>,
+           <span class="ty">socklen_t *</span><span class="ag">addrlen</span>);</div>
+<div class="row"><span class="k arg">sockfd</span><span>listen 중인 <b>연결 소켓(ssock)</b></span></div>
+<div class="row"><span class="k arg">addr</span><span>접속한 <b>클라이언트의 주소 정보</b>가 채워질 구조체 (필요 없으면 NULL)</span></div>
+<div class="row"><span class="k arg">addrlen</span><span>구조체 크기가 담긴 변수의 주소 (호출 후 실제 크기로 갱신)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 이 클라이언트 전용 <b>통신 소켓(csock)</b></span><br><span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">핵심</span><span><b>손님이 올 때마다 새 소켓이 하나씩 생깁니다.</b> 접수창구(ssock)는 그대로 두고, 손님 전담 소켓(csock)을 자식 프로세스/스레드에 넘기는 것이 다중 접속 서버의 핵심입니다.<br>연결 요청이 없으면 이 함수에서 <span class="er">블로킹(멈춤)</span> 상태로 기다립니다.</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">read / write / close</span><span class="tag">송수신과 종료</span></div>
+<div class="sig"><span class="ty">ssize_t</span> <span class="fn">read</span> (<span class="ty">int</span> <span class="ag">fd</span>, <span class="ty">void *</span><span class="ag">buf</span>, <span class="ty">size_t</span> <span class="ag">count</span>);
+<span class="ty">ssize_t</span> <span class="fn">write</span>(<span class="ty">int</span> <span class="ag">fd</span>, <span class="ty">const void *</span><span class="ag">buf</span>, <span class="ty">size_t</span> <span class="ag">count</span>);
+<span class="ty">int</span>     <span class="fn">close</span>(<span class="ty">int</span> <span class="ag">fd</span>);</div>
+<div class="row"><span class="k arg">fd</span><span>통신 소켓 (csock)</span></div>
+<div class="row"><span class="k arg">buf</span><span>받은 데이터를 저장할 / 보낼 데이터가 있는 메모리</span></div>
+<div class="row"><span class="k arg">count</span><span>최대 읽을 / 보낼 바이트 수</span></div>
+<div class="row"><span class="k ret">read 반환값</span><span><span class="rt">양수: 실제로 읽은 바이트 수</span><br><span class="nu">0</span>: <b>상대가 연결을 끊음</b>(EOF)<br><span class="er">-1: 오류</span></span></div>
+<div class="row"><span class="k ret">write 반환값</span><span><span class="rt">실제로 보낸 바이트 수</span> / <span class="er">-1: 오류</span></span></div>
+<div class="row"><span class="k note">참고</span><span>이 수업의 에코 서버 예제처럼 <code>read</code>로 받은 만큼을 그대로 <code>write</code>로 돌려보내면 에코가 됩니다.</span></div>
+</div>
+
+<h3 id="l08-fork">프로세스 복제: fork() 와 PID 함수</h3>
+
+<div class="fcard">
+<div class="head"><span class="name">getpid / getppid</span><span class="tag">PID 확인</span></div>
+<div class="sig"><span class="ty">pid_t</span> <span class="fn">getpid</span> (<span class="ty">void</span>);   <span class="cm">// 내 PID</span>
+<span class="ty">pid_t</span> <span class="fn">getppid</span>(<span class="ty">void</span>);   <span class="cm">// 부모의 PID</span></div>
+<div class="row"><span class="k ret">반환값</span><span>해당 프로세스의 PID (<code>pid_t</code>는 정수 타입)</span></div>
+<div class="row"><span class="k note">헤더</span><span><code>&lt;sys/types.h&gt;</code>, <code>&lt;unistd.h&gt;</code></span></div>
+<div class="row"><span class="k ana">비유</span><span>getpid = 내 주민번호, getppid = 부모님 주민번호.</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">fork</span><span class="tag">자식 프로세스 생성 (복사)</span></div>
+<div class="sig"><span class="ty">pid_t</span> <span class="fn">fork</span>(<span class="ty">void</span>);</div>
+<div class="row"><span class="k arg">인자</span><span>없음</span></div>
+<div class="row"><span class="k ret">부모에게</span><span><span class="rt">생성된 자식의 PID (양수)</span></span></div>
+<div class="row"><span class="k ret">자식에게</span><span><span class="nu">0</span></span></div>
+<div class="row"><span class="k err">실패 시</span><span><span class="er">-1</span> (자식이 안 만들어짐)</span></div>
+<div class="row"><span class="k note">핵심</span><span><b>한 번 호출했는데 리턴은 두 번</b> 일어납니다. 부모에서 한 번, 자식에서 한 번.<br>
+호출 <b>이후</b>의 코드는 부모와 자식이 <b>둘 다</b> 실행하므로, 반환값으로 "나는 부모인가 자식인가"를 구분합니다.<br>
+코드/데이터/스택이 <b>복사</b>되므로 이후 변수를 바꿔도 서로 영향을 주지 않습니다.</span></div>
+<div class="row"><span class="k ana">비유</span><span>나를 <b>복사기</b>로 복사. 복사본(자식)은 복사된 순간부터 따로 행동합니다.</span></div>
+</div>
+
+<pre><code>pid_t pid = fork();
+if (pid == 0) {
+    // 자식만 실행: fork()가 0을 돌려받았으므로
+} else if (pid &gt; 0) {
+    // 부모만 실행: fork()가 자식 PID를 돌려받았으므로
+} else {
+    // pid == -1 : fork 실패
+}</code></pre>
+
+<h4>슬라이드 예제로 따라가 보기</h4>
+<div class="cols">
+<div class="card"><b>예제 1: fork 1번</b>
+<pre><code>printf("Hello World\n");
+fork();
+printf("Bye World\n");</code></pre>
+출력: <br>
+<code>Hello World</code> ← 부모만 (fork 전)<br>
+<code>Bye World</code> ← 부모<br>
+<code>Bye World</code> ← 자식<br>
+<span class="er">fork 이전 코드는 1번, 이후 코드는 2번</span> 실행됩니다.</div>
+<div class="card"><b>예제 2: fork 2번</b>
+<pre><code>printf("Parent\n");
+fork();
+printf("Parent and first child\n");
+fork();
+printf("Parent, first child, second child and grandchild\n");</code></pre>
+출력 횟수: 1번 → 2번 → <span class="nu">4번</span><br>
+fork가 n번이면 프로세스는 <span class="nu">2<sup>n</sup></span>개가 됩니다.</div>
+</div>
+
+<h3 id="l08-wait">자식 회수: wait() / waitpid()</h3>
+
+<div class="fcard">
+<div class="head"><span class="name">wait</span><span class="tag">아무 자식이나 끝나길 기다림</span></div>
+<div class="sig"><span class="ty">pid_t</span> <span class="fn">wait</span>(<span class="ty">int *</span><span class="ag">status</span>);</div>
+<div class="row"><span class="k arg">status</span><span>자식의 <b>종료 값</b>이 저장될 변수의 주소. 필요 없으면 <code>NULL</code><br>
+슬라이드는 <code>status/256</code>으로 꺼내지만, 정석은 <code>WEXITSTATUS(status)</code> 매크로 (종료 값이 상위 바이트에 저장되기 때문)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">종료된 자식의 PID</span> / <span class="er">-1: 자식이 없거나 오류</span></span></div>
+<div class="row"><span class="k note">동작</span><span>종료된 자식이 있을 때까지 부모가 <span class="er">블로킹(멈춤)</span>.<br>자식이 이미 종료되어 있다면 바로 회수하고 리턴.<br><code>wait(&amp;s)</code> 는 <code>waitpid(-1, &amp;s, 0)</code> 과 같음.</span></div>
+</div>
+
+<div class="fcard">
+<div class="head"><span class="name">waitpid</span><span class="tag">골라서 / 멈추지 않고 기다림</span></div>
+<div class="sig"><span class="ty">pid_t</span> <span class="fn">waitpid</span>(<span class="ty">pid_t</span> <span class="ag">pid</span>, <span class="ty">int *</span><span class="ag">status</span>, <span class="ty">int</span> <span class="ag">options</span>);</div>
+<div class="row"><span class="k arg">pid</span><span><span class="nu">-1</span>: 임의의 자식 (wait와 동일)<br>양수: 그 PID의 자식만 기다림</span></div>
+<div class="row"><span class="k arg">status</span><span>종료 값 저장 (wait와 동일)</span></div>
+<div class="row"><span class="k arg">options</span><span><span class="nu">0</span>: wait처럼 블로킹<br><span class="nu">WNOHANG</span>: 종료된 자식이 없어도 <b>즉시 리턴</b> (무한 대기 방지)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">종료된 자식 PID</span><br><span class="nu">0</span>: WNOHANG인데 종료된 자식이 아직 없음<br><span class="er">-1: 오류</span></span></div>
+<div class="row"><span class="k ana">비유</span><span>wait는 "누구든 퇴근할 때까지 문 앞에서 기다리기", waitpid(WNOHANG)는 "문을 슬쩍 열어보고 없으면 바로 내 일 하러 가기".</span></div>
+</div>
+
+<h4>예제 child_wait.c 해설</h4>
+<pre><code>pid = fork();
+if (pid &gt; 0) {                         // 부모
+    pid = wait(&amp;pstatus);                // 자식이 끝날 때까지 대기
+    printf("종료된 자식 프로세스 : %d\n", pid);
+    printf("종료 값 : %d\n", pstatus/256);   // 100 출력
+} else if (pid == 0) {                  // 자식
+    sleep(2);                           // 2초 뒤
+    exit(100);                          // 종료 값 100을 남기고 종료
+}</code></pre>
+<p>자식이 <code>exit(100)</code>으로 남긴 값 <span class="nu">100</span>을 부모가 <code>wait</code>로 받아서 출력하는 예제입니다.</p>
+
+<h3 id="l08-zom">좀비(Zombie) 프로세스</h3>
+<div class="card">
+<b>정의</b>: 프로세스는 <b>이미 종료</b>되었는데, 종료 정보(PID, 리턴 값)가 OS의 PCB에 계속 <b>남아 있는</b> 상태. <code>ps</code>에서 <code>&lt;defunct&gt;</code>로 보입니다.<br>
+<b>왜 생기나?</b> 자식이 끝나면 OS는 "부모가 종료 값을 물어볼 수도 있으니" 정보를 일단 보관합니다. 부모가 <code>wait</code>로 가져가야 그제서야 지웁니다.<br>
+<b>언제 사라지나?</b> ① 부모가 <code>wait()/waitpid()</code>로 회수 ② 부모 프로세스가 종료될 때<br>
+<b>비유</b>: 퇴근한 직원의 사원증이 아직 반납되지 않아 명단에 남아 있는 상태.
+</div>
+<div class="flow"><span>자식 exit(0)</span><i>→</i><span class="er">좀비 (정보만 남음)</span><i>→</i><span>부모 wait()</span><i>→</i><span class="rt">완전 소멸</span></div>
+<div class="box warn"><b class="t">서버에서 왜 문제인가?</b>
+서버(부모)는 계속 <code>accept</code>만 하며 돌고 있습니다. 클라이언트가 끝날 때마다 좀비가 쌓이고, PID(최대 65536, 버전에 따라 조정 가능) 같은 자원이 고갈됩니다. 슬라이드 예제 2-1(fork_server.c)을 실행하고 클라이언트만 종료한 뒤 <code>ps -a</code>를 보면 좀비가 보이는 이유입니다.</div>
+
+<h3 id="l08-sig">시그널(signal)로 좀비 자동 처리</h3>
+<p><b>시그널</b>은 "시스템에 특정 상황이 생겼음을 커널이나 다른 프로세스가 알려주는 신호"입니다. 자식이 종료되면 커널이 부모에게 <b>SIGCHLD</b>를 보내고, 부모는 이 신호가 올 때 <code>wait</code>를 호출하도록 등록해 두면 됩니다.</p>
+
+<table>
+<tr><th>번호</th><th>이름</th><th>언제 발생?</th></tr>
+<tr><td class="nu">1</td><td>SIGHUP</td><td>터미널 연결이 끊겼을 때</td></tr>
+<tr><td class="nu">2</td><td>SIGINT</td><td>Ctrl+C 입력</td></tr>
+<tr><td class="nu">9</td><td>SIGKILL</td><td>강제 종료 (<span class="er">핸들러로 잡을 수 없음</span>)</td></tr>
+<tr><td class="nu">10 / 12</td><td>SIGUSR1 / SIGUSR2</td><td>사용자가 정의해서 쓰는 시그널</td></tr>
+<tr><td class="nu">11</td><td>SIGSEGV</td><td>잘못된 메모리 참조 (포인터 오용)</td></tr>
+<tr><td class="nu">13</td><td>SIGPIPE</td><td>끊어진 연결에 쓰기를 시도</td></tr>
+<tr><td class="nu">14</td><td>SIGALRM</td><td><code>alarm()</code>으로 예약한 시간이 됨</td></tr>
+<tr><td class="nu">17</td><td><b>SIGCHLD</b></td><td><b>자식 프로세스가 종료됨</b></td></tr>
+<tr><td class="nu">19</td><td>SIGSTOP</td><td>일시 중단 (Ctrl+Z)</td></tr>
+<tr><td colspan="3">전체 목록 확인: <code>kill -l</code></td></tr>
+</table>
+
+<div class="fcard">
+<div class="head"><span class="name">signal</span><span class="tag">시그널 핸들러 등록</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;signal.h&gt;
+<span class="ty">sighandler_t</span> <span class="fn">signal</span>(<span class="ty">int</span> <span class="ag">signum</span>, <span class="ty">sighandler_t</span> <span class="ag">handler</span>);</div>
+<div class="row"><span class="k arg">signum</span><span>처리하고 싶은 시그널 번호/이름 (예: <span class="nu">SIGCHLD</span>, <span class="nu">SIGINT</span>)</span></div>
+<div class="row"><span class="k arg">handler</span><span>시그널이 오면 <b>자동 호출될 함수</b>의 이름(함수 포인터)<br>특수값: <span class="nu">SIG_IGN</span>(무시), <span class="nu">SIG_DFL</span>(기본 동작)</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">이전에 등록되어 있던 핸들러</span> / <span class="er">실패: SIG_ERR</span></span></div>
+<div class="row"><span class="k ana">비유</span><span>"문 앞에 <b>초인종</b>을 달고, 울리면 이 함수를 실행해" 라고 등록하는 것.</span></div>
+</div>
+
+<pre><code>void zombie_handler(int signo)       // SIGCHLD가 오면 자동 실행
+{
+    int status;
+    wait(&amp;status);                   // 종료된 자식을 회수 → 좀비 제거
+}
+
+int main(void)
+{
+    signal(SIGCHLD, zombie_handler); // 핸들러 등록 (accept 루프 전에!)
+    ...
+}</code></pre>
+<div class="box warn"><b class="t">더 안전한 형태</b>
+여러 자식이 동시에 끝나면 SIGCHLD가 한 번만 전달되어 일부 좀비가 남을 수 있습니다. 핸들러 안에서 <code>while (waitpid(-1, NULL, WNOHANG) &gt; 0);</code> 로 <b>끝난 자식을 전부</b> 회수하세요.</div>
+
+<h3 id="l08-full">완성 서버 코드 (예제 2-3 fork_server2.c 구조)</h3>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;sys/wait.h&gt;
+
+void zombie_handler(int signo)
+{
+    while (waitpid(-1, NULL, WNOHANG) &gt; 0);   // 끝난 자식 전부 회수
+}
+
+int main(void)
+{
+    int ssock, csock;
+    pid_t pid;
+
+    signal(SIGCHLD, zombie_handler);         // 좀비 방지
+
+    ssock = socket(...);   bind(...);   listen(...);
+
+    while (1) {
+        csock = accept(ssock, ...);          // 손님 접수 → 전용 소켓 생성
+        pid = fork();                        // 전담 직원 복제
+
+        if (pid == 0) {                      // ── 자식 ──
+            close(ssock);                    // 접수창구는 자식에게 불필요
+            read(csock, ...);                // 손님 응대
+            write(csock, ...);
+            close(csock);
+            exit(0);                         // 종료 → SIGCHLD 발생
+        }
+        else if (pid &gt; 0) {                  // ── 부모 ──
+            close(csock);                    // 손님 소켓은 자식이 담당
+        }
+    }
+}
+// 확인: ps -ef | grep fork_server</code></pre>
+</section>
+
+<!-- ================= 3. L09 ================= -->
+<section class="lec" id="l09">
+<h2 class="lec-title">3. Lecture 09 · 멀티 스레드 기반 서버</h2>
+
+<h3 id="l09-mem">스레드란? 프로세스와 메모리 구조 차이</h3>
+<p><b>스레드</b>는 한 프로세스 안의 <b>별도 실행 흐름</b>입니다 (세미 프로세스, 경량 프로세스 LWP라고도 부름).</p>
+<svg viewBox="0 0 720 230" role="img" aria-label="프로세스와 스레드의 메모리 구조">
+ <text class="sxb" x="120" y="18" text-anchor="middle">프로세스 3개 (메모리 각자)</text>
+ <rect class="sp" x="10" y="30" width="70" height="170" rx="6"/><text class="sx" x="45" y="50" text-anchor="middle">프로세스 A</text>
+ <rect class="sb" x="18" y="60" width="54" height="40" rx="4"/><text class="sxm" x="45" y="84" text-anchor="middle">Data</text>
+ <rect class="sb" x="18" y="106" width="54" height="40" rx="4"/><text class="sxm" x="45" y="130" text-anchor="middle">Heap</text>
+ <rect class="sb" x="18" y="152" width="54" height="40" rx="4"/><text class="sxm" x="45" y="176" text-anchor="middle">Stack</text>
+ <rect class="sp" x="90" y="30" width="70" height="170" rx="6"/><text class="sx" x="125" y="50" text-anchor="middle">프로세스 B</text>
+ <rect class="sb" x="98" y="60" width="54" height="40" rx="4"/><text class="sxm" x="125" y="84" text-anchor="middle">Data</text>
+ <rect class="sb" x="98" y="106" width="54" height="40" rx="4"/><text class="sxm" x="125" y="130" text-anchor="middle">Heap</text>
+ <rect class="sb" x="98" y="152" width="54" height="40" rx="4"/><text class="sxm" x="125" y="176" text-anchor="middle">Stack</text>
+ <rect class="sp" x="170" y="30" width="70" height="170" rx="6"/><text class="sx" x="205" y="50" text-anchor="middle">프로세스 C</text>
+ <rect class="sb" x="178" y="60" width="54" height="40" rx="4"/><text class="sxm" x="205" y="84" text-anchor="middle">Data</text>
+ <rect class="sb" x="178" y="106" width="54" height="40" rx="4"/><text class="sxm" x="205" y="130" text-anchor="middle">Heap</text>
+ <rect class="sb" x="178" y="152" width="54" height="40" rx="4"/><text class="sxm" x="205" y="176" text-anchor="middle">Stack</text>
+ <text class="sxm" x="125" y="220" text-anchor="middle">서로 접근 불가 → 통신하려면 IPC</text>
+
+ <text class="sxb" x="510" y="18" text-anchor="middle">프로세스 1개 + 스레드 3개</text>
+ <rect class="st2" x="300" y="30" width="410" height="170" rx="8"/>
+ <rect class="sb" x="315" y="45" width="120" height="50" rx="4"/><text class="sx" x="375" y="66" text-anchor="middle">스레드 1</text><text class="sxm" x="375" y="84" text-anchor="middle">Stack + 레지스터</text>
+ <rect class="sb" x="450" y="45" width="120" height="50" rx="4"/><text class="sx" x="510" y="66" text-anchor="middle">스레드 2</text><text class="sxm" x="510" y="84" text-anchor="middle">Stack + 레지스터</text>
+ <rect class="sb" x="585" y="45" width="115" height="50" rx="4"/><text class="sx" x="642" y="66" text-anchor="middle">스레드 3</text><text class="sxm" x="642" y="84" text-anchor="middle">Stack + 레지스터</text>
+ <rect class="sm" x="315" y="115" width="385" height="70" rx="4"/><text class="sxb" x="507" y="140" text-anchor="middle">공유 영역: Heap / Data(전역변수) / Code / 열린 파일</text><text class="sxm" x="507" y="162" text-anchor="middle">전역변수로 바로 데이터 교환 가능 (대신 동기화 필요)</text>
+ <text class="sxm" x="505" y="220" text-anchor="middle">Stack만 따로 가짐</text>
+</svg>
+
+<table>
+<tr><th>장점</th><th>단점</th></tr>
+<tr><td>
+<span class="rt">✔</span> 프로세스보다 생성 자원이 적음<br>
+<span class="rt">✔</span> 메모리 공유로 데이터 교환이 편함 (IPC 불필요)<br>
+<span class="rt">✔</span> 컨텍스트 스위치가 빠름<br>
+<span class="rt">✔</span> 멀티코어에서 코어별로 스레드 할당 가능
+</td><td>
+<span class="er">✘</span> 프로그래밍이 어려움<br>
+<span class="er">✘</span> 디버깅이 어려움<br>
+<span class="er">✘</span> 한 스레드가 메모리를 잘못 쓰면 <b>모든 스레드에 영향</b> (불안정할 수 있음)
+</td></tr>
+</table>
+
+<h3 id="l09-api">pthread(POSIX thread) 함수</h3>
+<div class="box info"><b class="t">컴파일 방법</b>
+<code>gcc -D_REENTRANT -o pthread1 pthread1.c -lpthread</code><br>
+<span class="ag">-lpthread</span>: pthread 라이브러리를 링크 (이게 없으면 링크 오류)<br>
+<span class="ag">-D_REENTRANT</span>: 스레드에 안전한 버전의 함수를 쓰도록 하는 매크로 (이 방식이면 thread-safe/unsafe 함수를 따로 구분할 필요 없음 — 슬라이드)</div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">pthread_create</span><span class="tag">스레드 생성 (fork에 대응)</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">pthread_create</span>(<span class="ty">pthread_t *</span><span class="ag">thread</span>,
+                   <span class="ty">const pthread_attr_t *</span><span class="ag">attr</span>,
+                   <span class="ty">void *</span>(*<span class="ag">start_routine</span>)(<span class="ty">void *</span>),
+                   <span class="ty">void *</span><span class="ag">arg</span>);</div>
+<div class="row"><span class="k arg">thread</span><span>생성된 스레드의 <b>ID가 저장될 변수의 주소</b> (<code>&amp;tid</code>)</span></div>
+<div class="row"><span class="k arg">attr</span><span>스레드 속성. 보통 <span class="nu">NULL</span> (기본 속성)</span></div>
+<div class="row"><span class="k arg">start_routine</span><span>스레드가 <b>실행할 함수</b>. 형태가 반드시 <code>void* 함수명(void*)</code> 이어야 함</span></div>
+<div class="row"><span class="k arg">arg</span><span><code>start_routine</code>에 넘겨줄 <b>인자의 주소</b> (<code>void*</code>로 캐스팅). 여러 값을 넘기려면 구조체/배열의 주소를 사용</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span><br><span class="er">실패: 0이 아닌 값</span> (errno가 아니라 오류 번호를 직접 반환)</span></div>
+<div class="row"><span class="k ana">비유</span><span>직원 한 명을 새로 뽑아 "이 업무(start_routine)를 이 자료(arg)로 처리해"라고 시키는 것. 시킨 뒤 Main은 기다리지 않고 바로 다음 줄로 갑니다.</span></div>
+</div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">pthread_join</span><span class="tag">스레드 종료 대기 (wait에 대응)</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">pthread_join</span>(<span class="ty">pthread_t</span> <span class="ag">thread</span>, <span class="ty">void **</span><span class="ag">thread_return</span>);</div>
+<div class="row"><span class="k arg">thread</span><span>끝나길 기다릴 스레드의 ID</span></div>
+<div class="row"><span class="k arg">thread_return</span><span>스레드 함수가 <code>return</code>한 값(<code>void*</code>)을 받을 <b>포인터 변수의 주소</b> (이중 포인터). 필요 없으면 <span class="nu">NULL</span></span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: 오류 번호</span></span></div>
+<div class="row"><span class="k note">동작</span><span>그 스레드가 끝날 때까지 호출한 쪽이 <span class="er">블로킹</span>되고, 끝나면 스레드 <b>자원을 정리</b>합니다.<br>
+<span class="er">주의</span>: main이 join 없이 먼저 끝나면 <b>프로세스 종료와 함께 스레드도 강제 종료</b>됩니다. (그래서 예제에서 main 끝에 join을 둠)</span></div>
+</div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">pthread_detach</span><span class="tag">스레드 분리(자동 정리)</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">pthread_detach</span>(<span class="ty">pthread_t</span> <span class="ag">thread</span>);</div>
+<div class="row"><span class="k arg">thread</span><span>분리할 스레드의 ID</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: 오류 번호</span></span></div>
+<div class="row"><span class="k note">효과</span><span>main 스레드와 분리되어, 스레드가 종료되면 <b>자동으로 자원 반환(free)</b>. 이후 <code>pthread_join</code> <span class="er">필요 없음(호출하면 안 됨)</span>.<br>→ 서버에서 접속마다 스레드를 만들고 신경 쓰지 않을 때 사용.</span></div>
+</div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">pthread_exit / pthread_self</span><span class="tag">종료 / 내 ID</span></div>
+<div class="sig"><span class="ty">void</span>      <span class="fn">pthread_exit</span>(<span class="ty">void *</span><span class="ag">retval</span>);
+<span class="ty">pthread_t</span> <span class="fn">pthread_self</span>(<span class="ty">void</span>);</div>
+<div class="row"><span class="k arg">retval</span><span>스레드의 반환값. <code>pthread_join</code>의 <code>thread_return</code>으로 전달됨 (스레드 함수에서 <code>return</code> 해도 동일)</span></div>
+<div class="row"><span class="k ret">self 반환값</span><span>호출한 스레드 자신의 ID (프로세스의 <code>getpid</code>에 대응)</span></div>
+</div>
+
+<h4>예제 pthread1.c 해설</h4>
+<pre><code>void *print_msg_func(void *ptr)          // 스레드가 실행할 함수 (형태 고정)
+{
+    char *message = (char *)ptr;         // void*를 원래 타입으로 되돌림
+    printf("%s \n", message);
+}
+
+int main(void)
+{
+    pthread_t thread1, thread2;
+    char *msg1 = "Thread 1";
+    char *msg2 = "Thread 2";
+
+    pthread_create(&amp;thread1, NULL, print_msg_func, (void*)msg1);  // 스레드 1 시작
+    pthread_create(&amp;thread2, NULL, print_msg_func, (void*)msg2);  // 스레드 2 시작
+
+    pthread_join(thread1, NULL);         // 둘 다 끝날 때까지 대기
+    pthread_join(thread2, NULL);         // (안 하면 main이 먼저 끝나 스레드가 잘림)
+    return 0;
+}</code></pre>
+
+<h3 id="l09-race">임계영역과 경쟁 상태 (Race Condition)</h3>
+<p><b>임계영역(Critical Section)</b>: 둘 이상의 스레드가 <b>공유 메모리에 접근하는 코드 구간</b>입니다.<br>
+<code>num++</code>은 한 줄이지만 실제로는 <b>읽기 → 더하기 → 쓰기</b> 3단계입니다.</p>
+<table>
+<tr><th>순서</th><th>스레드 1</th><th>스레드 2</th><th>num</th></tr>
+<tr><td class="nu">1</td><td>num을 읽음 (<span class="nu">99</span>)</td><td></td><td>99</td></tr>
+<tr><td class="nu">2</td><td></td><td>num을 읽음 (<span class="nu">99</span>)</td><td>99</td></tr>
+<tr><td class="nu">3</td><td>99+1 = 100 계산 후 씀</td><td></td><td>100</td></tr>
+<tr><td class="nu">4</td><td></td><td>99+1 = 100 계산 후 씀</td><td><span class="er">100 (101이어야 함!)</span></td></tr>
+</table>
+<div class="box bad"><b class="t">pthread3.c 예제</b>
+전역변수 <code>sum</code>에 두 스레드가 각각 1~5, 6~10을 더합니다. 기대값은 <span class="nu">55</span>인데, 동기화가 없으면 위 표처럼 <span class="er">값이 덮어써져 결과가 틀릴 수 있습니다.</span></div>
+<p><b>동기화</b>: 임계영역에 둘 이상의 스레드가 <b>동시에 들어가지 못하게</b> 막고, 실행 순서를 조정하는 것. 방법은 <b>뮤텍스</b>와 <b>세마포어</b>입니다.</p>
+
+<h3 id="l09-mutex">뮤텍스 (Mutex = Mutual Exclusion, 상호 배제)</h3>
+<div class="card"><b>핵심</b>: 한 번에 <b>스레드 하나만</b> 임계영역에 들어갈 수 있습니다.<br>
+<b>비유</b>: <b>1칸짜리 화장실의 자물쇠</b>. 열쇠(lock)를 잡은 사람만 들어가고, 나올 때 풀어(unlock) 줘야 다음 사람이 들어갑니다. 값이 1인 세마포어와 같습니다.</div>
+<div class="flow"><span>Thread A: lock 성공</span><i>→</i><span>임계영역 실행</span><i>→</i><span>unlock</span><i>→</i><span>Thread B: 대기 끝, lock 성공</span></div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">pthread_mutex_init / destroy</span><span class="tag">뮤텍스 만들기 / 없애기</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">pthread_mutex_init</span>   (<span class="ty">pthread_mutex_t *</span><span class="ag">mutex</span>, <span class="ty">const pthread_mutexattr_t *</span><span class="ag">attr</span>);
+<span class="ty">int</span> <span class="fn">pthread_mutex_destroy</span>(<span class="ty">pthread_mutex_t *</span><span class="ag">mutex</span>);</div>
+<div class="row"><span class="k arg">mutex</span><span>뮤텍스 변수의 주소 (<code>pthread_mutex_t mutex;</code> 로 선언)</span></div>
+<div class="row"><span class="k arg">attr</span><span>속성. 보통 <span class="nu">NULL</span></span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: 오류 번호</span></span></div>
+</div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">pthread_mutex_lock / unlock</span><span class="tag">잠그기 / 풀기</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">pthread_mutex_lock</span>  (<span class="ty">pthread_mutex_t *</span><span class="ag">mutex</span>);   <span class="cm">// 임계영역 시작</span>
+<span class="cm">// ... 임계영역 ...</span>
+<span class="ty">int</span> <span class="fn">pthread_mutex_unlock</span>(<span class="ty">pthread_mutex_t *</span><span class="ag">mutex</span>);   <span class="cm">// 임계영역 끝</span></div>
+<div class="row"><span class="k ret">lock</span><span>이미 다른 스레드가 잠갔다면 <span class="er">블로킹되어 대기</span>, 열리면 잠그고 진입</span></div>
+<div class="row"><span class="k ret">unlock</span><span>잠금을 풀고 기다리던 스레드 중 하나를 진입시킴</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: 오류 번호</span></span></div>
+<div class="row"><span class="k note">주의</span><span><span class="er">unlock을 빼먹으면 데드락</span>(모두가 영원히 대기). 임계영역은 <b>최소 범위</b>만 감싸야 병렬성이 유지됩니다.</span></div>
+</div>
+
+<pre><code>pthread_mutex_t mutex;                    // 전역 뮤텍스
+
+void *thread_sum(void *arg) {
+    int start = ((int *)arg)[0];
+    int end   = ((int *)arg)[1];
+    while (start &lt;= end) {
+        pthread_mutex_lock(&amp;mutex);         // 🔒 들어가기 전에 잠금
+        sum += start;                       //    임계영역 (공유 변수 수정)
+        pthread_mutex_unlock(&amp;mutex);       // 🔓 나오면서 해제
+        start++;
+    }
+    return NULL;
+}
+// main: pthread_mutex_init(&amp;mutex, NULL);  ... join ...  pthread_mutex_destroy(&amp;mutex);
+// 예제 비교: thread_mutex.c (락 있음) vs thread_no_mutex.c (락 없음)</code></pre>
+
+<h3 id="l09-sem">세마포어 (Semaphore)</h3>
+<div class="card"><b>핵심</b>: 카운트 값만큼 <b>동시에 접근</b>할 수 있습니다. 카운트가 <span class="nu">0</span>이면 대기.<br>
+<b>비유</b>: <b>N칸짜리 화장실의 남은 열쇠 개수</b>. 열쇠를 하나 가져가면(wait) 개수가 줄고, 반납하면(post) 늘어납니다. 열쇠가 0개면 줄을 서야 합니다.</div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">sem_init / sem_destroy</span><span class="tag">세마포어 만들기 / 없애기</span></div>
+<div class="sig"><span class="ty">#include</span> &lt;semaphore.h&gt;
+<span class="ty">int</span> <span class="fn">sem_init</span>   (<span class="ty">sem_t *</span><span class="ag">sem</span>, <span class="ty">int</span> <span class="ag">pshared</span>, <span class="ty">unsigned int</span> <span class="ag">value</span>);
+<span class="ty">int</span> <span class="fn">sem_destroy</span>(<span class="ty">sem_t *</span><span class="ag">sem</span>);</div>
+<div class="row"><span class="k arg">sem</span><span>세마포어 변수의 주소</span></div>
+<div class="row"><span class="k arg">pshared</span><span><span class="nu">0</span>: 하나의 프로세스 안의 스레드끼리만 공유</span></div>
+<div class="row"><span class="k arg">value</span><span>초기 카운트. <span class="nu">1</span>이면 Binary Semaphore(뮤텍스처럼 동작), <span class="nu">N</span>이면 N개까지 동시 진입</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+</div>
+
+<div class="fcard" style="border-top-color:var(--thr)">
+<div class="head"><span class="name" style="color:var(--thr)">sem_wait / sem_post</span><span class="tag">카운트 -1 / +1</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">sem_wait</span>(<span class="ty">sem_t *</span><span class="ag">sem</span>);   <span class="cm">// 카운트 -1 (열쇠 가져가기)</span>
+<span class="cm">// ... 임계영역 ...</span>
+<span class="ty">int</span> <span class="fn">sem_post</span>(<span class="ty">sem_t *</span><span class="ag">sem</span>);   <span class="cm">// 카운트 +1 (열쇠 반납)</span></div>
+<div class="row"><span class="k ret">sem_wait</span><span>카운트가 <span class="nu">0</span>이면 <span class="er">블로킹</span> 상태로 대기, 1 이상이면 -1 하고 진입</span></div>
+<div class="row"><span class="k ret">sem_post</span><span>카운트 +1, 대기 중인 스레드를 깨움</span></div>
+<div class="row"><span class="k ret">반환값</span><span><span class="rt">성공: 0</span> / <span class="er">실패: -1</span></span></div>
+<div class="row"><span class="k note">슬라이드 설명</span><span>하나의 스레드가 <code>sem_wait</code>로 들어가면(값 1→0), 그 스레드가 <code>sem_post</code>로 값을 1로 돌려놓기 전까지 다른 스레드는 임계영역에 접근할 수 없습니다. (예제 semaphore.c)</span></div>
+</div>
+
+<table>
+<tr><th></th><th>뮤텍스</th><th>세마포어</th></tr>
+<tr><td>비유</td><td>1칸 화장실 자물쇠</td><td>N칸 화장실 열쇠 개수</td></tr>
+<tr><td>값</td><td>locked / unlocked</td><td>카운트 (0이면 대기)</td></tr>
+<tr><td>함수</td><td>lock / unlock</td><td>wait / post</td></tr>
+<tr><td>주 용도</td><td>상호 배제 (한 번에 하나)</td><td>동시 접근 수 제한, 실행 순서 제어</td></tr>
+</table>
+
+<h3 id="l09-full">멀티 스레드 서버 완성 코드</h3>
+<pre><code>void *client_handler(void *arg)
+{
+    int csock = *(int *)arg;
+    free(arg);                                // 복사해 온 소켓 번호 메모리 해제
+    char buf[1024];
+    int len;
+    while ((len = read(csock, buf, sizeof(buf))) &gt; 0)
+        write(csock, buf, len);               // 에코
+    close(csock);                             // read가 0 → 클라이언트 종료
+    return NULL;
+}
+
+int main(void)
+{
+    pthread_t tid;
+    ssock = socket(...);   bind(...);   listen(...);
+
+    while (1) {
+        csock = accept(ssock, ...);
+        int *p = malloc(sizeof(int));         // ★ csock을 스레드별로 복사
+        *p = csock;                           //   (&amp;csock을 그냥 넘기면 덮어써짐)
+        pthread_create(&amp;tid, NULL, client_handler, p);
+        pthread_detach(tid);                  // 종료 시 자동 정리, join 불필요
+    }
+}</code></pre>
+<div class="box warn"><b class="t">왜 malloc으로 복사할까?</b>
+<code>pthread_create(..., &amp;csock)</code>로 변수 주소를 넘기면, 스레드가 값을 읽기도 전에 main이 다음 <code>accept</code> 결과로 <code>csock</code>을 덮어쓸 수 있습니다. 그러면 <b>두 스레드가 같은 클라이언트 소켓</b>을 처리하게 됩니다.</div>
+</section>
+
+<!-- ================= 4. L10 ================= -->
+<section class="lec" id="l10">
+<h2 class="lec-title">4. Lecture 10 · I/O 멀티플렉싱 기반 서버</h2>
+
+<h3 id="l10-idea">핵심 아이디어</h3>
+<p>멀티플렉싱(Multiplexing)은 <b>"하나의 통로로 여러 신호를 섞어서 처리"</b>한다는 뜻입니다. 서버는 <b>프로세스/스레드 1개</b>로 모든 소켓을 맡고, 소켓의 데이터 입출력을 <b>이벤트</b>로 간주해 <b>이벤트가 발생한 소켓만</b> 처리합니다.</p>
+
+<h4>동작 5단계</h4>
+<ol>
+ <li><b>그룹화</b>: 감시할 소켓들을 <code>fd_set</code>(비트 표)에 모음</li>
+ <li><b>감시</b>: <code>select()</code>를 호출 → 데이터 온 소켓이 생길 때까지 대기. OS가 이벤트 발생 소켓을 표에 체크</li>
+ <li><b>검사</b>: 표를 순서대로 훑으며 체크된 소켓 찾기 (<code>FD_ISSET</code>)</li>
+ <li><b>처리</b>: 체크된 소켓에서 <code>read</code>로 읽고 처리</li>
+ <li>2~4 반복</li>
+</ol>
+
+<svg viewBox="0 0 700 200" role="img" aria-label="fd_set 비트 표와 select 호출 전후">
+ <text class="sxb" x="10" y="20">select 호출 전 (감시 대상 등록) : fd 0, 2, 4, 7</text>
+ <g id="b1"></g>
+ <text class="sxb" x="10" y="120">select 호출 후 (데이터가 온 fd만 1로 남음) : fd 2, 4</text>
+ <g id="b2"></g>
+ <script>
+ (function(){
+  var ns="http://www.w3.org/2000/svg";
+  function draw(id,y,on,hot){
+   var g=document.getElementById(id);
+   for(var i=0;i<9;i++){
+    var r=document.createElementNS(ns,"rect");
+    r.setAttribute("x",10+i*52);r.setAttribute("y",y);r.setAttribute("width",46);r.setAttribute("height",34);r.setAttribute("rx",5);
+    r.setAttribute("class",on.indexOf(i)>=0?(hot&&hot.indexOf(i)>=0?"sm":"sp"):"sb");
+    g.appendChild(r);
+    var t=document.createElementNS(ns,"text");
+    t.setAttribute("x",33+i*52);t.setAttribute("y",y+22);t.setAttribute("text-anchor","middle");t.setAttribute("class","sxb");
+    t.textContent=on.indexOf(i)>=0?"1":"0";g.appendChild(t);
+    var n=document.createElementNS(ns,"text");
+    n.setAttribute("x",33+i*52);n.setAttribute("y",y+52);n.setAttribute("text-anchor","middle");n.setAttribute("class","sxm");
+    n.textContent="fd "+i;g.appendChild(n);
+   }
+  }
+  draw("b1",32,[0,2,4,7],[]);
+  draw("b2",132,[2,4],[2,4]);
+ })();
+ </script>
+</svg>
+<p class="cm">※ 호출 후에는 이벤트가 없는 0번, 7번이 <b>0으로 지워집니다.</b> 그래서 원본 표를 복사해서 넘겨야 합니다.</p>
+
+<h3 id="l10-fd">fd_set 자료형과 매크로</h3>
+<ul>
+ <li><code>fd_set</code> = 파일(소켓) 디스크립터를 모아두는 <b>비트 단위 배열</b>. 기본 <span class="nu">1,024</span>비트(128바이트) → 최대 1,024개 관리 (<code>FD_SETSIZE</code>)</li>
+ <li>상태 변화(이벤트) 3종류 → fd_set도 <b>3개 변수</b> 필요
+   <ul>
+    <li><b>수신</b>: 읽을 데이터가 입력 버퍼에 있는가? (<code>readfds</code>)</li>
+    <li><b>전송</b>: 출력 버퍼에 여유가 있어 보낼 수 있는가? (<code>writefds</code>)</li>
+    <li><b>예외</b>: 소켓에서 예외(Out-of-Band 메시지 등)가 발생했는가? (<code>exceptfds</code>)</li>
+   </ul></li>
+</ul>
+
+<div class="fcard" style="border-top-color:var(--mux)">
+<div class="head"><span class="name" style="color:var(--mux)">FD_ZERO / FD_SET / FD_CLR / FD_ISSET</span><span class="tag">fd_set 조작 매크로</span></div>
+<div class="sig"><span class="fn">FD_ZERO</span> (<span class="ty">fd_set *</span><span class="ag">fdset</span>);
+<span class="fn">FD_SET</span>  (<span class="ty">int</span> <span class="ag">fd</span>, <span class="ty">fd_set *</span><span class="ag">fdset</span>);
+<span class="fn">FD_CLR</span>  (<span class="ty">int</span> <span class="ag">fd</span>, <span class="ty">fd_set *</span><span class="ag">fdset</span>);
+<span class="fn">FD_ISSET</span>(<span class="ty">int</span> <span class="ag">fd</span>, <span class="ty">fd_set *</span><span class="ag">fdset</span>);</div>
+<div class="row"><span class="k arg">FD_ZERO</span><span>모든 비트를 <span class="nu">0</span>으로 초기화. <b>사용 전 반드시 1번 호출</b></span></div>
+<div class="row"><span class="k arg">FD_SET</span><span>fd 비트를 <span class="nu">1</span>로 → "이 소켓을 감시 대상에 등록"</span></div>
+<div class="row"><span class="k arg">FD_CLR</span><span>fd 비트를 <span class="nu">0</span>으로 → "감시 해제" (연결이 끊긴 소켓을 뺄 때)</span></div>
+<div class="row"><span class="k arg">FD_ISSET</span><span>fd 비트가 1인지 확인 → <span class="rt">1(참): 이벤트 발생</span> / <span class="nu">0</span>: 없음<br>select 호출 <b>후</b>에 "어느 소켓에 일이 생겼나" 찾는 데 사용</span></div>
+<div class="row"><span class="k note">헤더</span><span><code>&lt;sys/select.h&gt;</code> (POSIX 1003.1-2001), 그 이전은 <code>&lt;sys/time.h&gt;</code>, <code>&lt;sys/types.h&gt;</code>, <code>&lt;unistd.h&gt;</code></span></div>
+</div>
+
+<h3 id="l10-sel">select() 함수</h3>
+<div class="flow"><span>디스크립터 설정</span><i>→</i><span>검사 범위 설정</span><i>→</i><span>타임아웃 설정</span><i>→</i><span>select 호출</span><i>→</i><span>결과 확인</span></div>
+
+<div class="fcard" style="border-top-color:var(--mux)">
+<div class="head"><span class="name" style="color:var(--mux)">select</span><span class="tag">여러 소켓을 동시에 감시</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">select</span>(<span class="ty">int</span>              <span class="ag">nfds</span>,        <span class="cm">// 가장 큰 fd + 1</span>
+           <span class="ty">fd_set *</span>         <span class="ag">readfds</span>,     <span class="cm">// 읽기 이벤트 감시</span>
+           <span class="ty">fd_set *</span>         <span class="ag">writefds</span>,    <span class="cm">// 쓰기 가능 감시</span>
+           <span class="ty">fd_set *</span>         <span class="ag">exceptfds</span>,   <span class="cm">// 예외 감시</span>
+           <span class="ty">struct timeval *</span> <span class="ag">timeout</span>);    <span class="cm">// 대기 시간 제한</span></div>
+<div class="row"><span class="k arg">nfds</span><span>검사할 fd 범위. <b>가장 큰 fd 값 + 1</b>. (fd는 0번부터 시작하므로 +1) 개수가 아님에 주의</span></div>
+<div class="row"><span class="k arg">readfds</span><span>"읽을 데이터가 생겼는지" 감시할 fd 집합. 서버 소켓과 클라이언트 소켓을 넣음</span></div>
+<div class="row"><span class="k arg">writefds</span><span>"보낼 수 있는 상태인지" 감시할 집합. 쓰지 않으면 <span class="nu">NULL</span></span></div>
+<div class="row"><span class="k arg">exceptfds</span><span>"예외가 생겼는지" 감시할 집합. 쓰지 않으면 <span class="nu">NULL</span></span></div>
+<div class="row"><span class="k arg">timeout</span><span>이벤트를 기다릴 <b>최대 시간</b>. <span class="nu">NULL</span>이면 이벤트가 생길 때까지 <b>무한 대기</b></span></div>
+<div class="row"><span class="k ret">반환값 &gt; 0</span><span><span class="rt">이벤트가 발생한 fd의 총 개수</span> (어느 fd인지는 <code>FD_ISSET</code>으로 확인)</span></div>
+<div class="row"><span class="k ret">반환값 = 0</span><span><span class="nu">타임아웃</span> (시간 안에 이벤트 없음)</span></div>
+<div class="row"><span class="k err">반환값 = -1</span><span><span class="er">오류 발생</span></span></div>
+<div class="row"><span class="k note">중요</span><span><span class="er">호출 후 fd_set은 "이벤트 발생한 fd만 1"인 상태로 바뀝니다.</span> 원본은 <code>copyfds = readfds;</code> 로 복사해 보존하고, 복사본을 select에 넘기세요.</span></div>
+</div>
+
+<div class="fcard" style="border-top-color:var(--mux)">
+<div class="head"><span class="name" style="color:var(--mux)">struct timeval</span><span class="tag">타임아웃 구조체</span></div>
+<div class="sig"><span class="kw">struct</span> timeval {
+    <span class="ty">long</span> <span class="ag">tv_sec</span>;    <span class="cm">/* 초 (seconds) */</span>
+    <span class="ty">long</span> <span class="ag">tv_usec</span>;   <span class="cm">/* 마이크로초 (1/1,000,000초) */</span>
+};</div>
+<div class="row"><span class="k arg">예시</span><span><code>timeout.tv_sec = 5; timeout.tv_usec = 0;</code> → 최대 5초 대기</span></div>
+<div class="row"><span class="k err">주의</span><span>리눅스에서는 select가 남은 시간을 이 구조체에 덮어쓸 수 있으므로, <b>반복문에서는 매번 다시 설정</b>하세요.</span></div>
+</div>
+
+<h4>슬라이드 예제 따라가기</h4>
+<pre><code>fd_set readfds, copyfds;
+
+FD_ZERO(&amp;readfds);               // ① 표를 전부 0으로 초기화
+FD_SET(0, &amp;readfds);             // ② 0, 2, 4, 7번을 감시 대상으로 등록
+FD_SET(2, &amp;readfds);
+FD_SET(4, &amp;readfds);
+FD_SET(7, &amp;readfds);
+
+copyfds = readfds;               // ③ 원본 보존용 복사 (select가 표를 바꾸므로)
+
+select(8, &amp;copyfds, ...);        // ④ 가장 큰 fd(7) + 1 = 8, 반환값 2 (2번, 4번에 데이터 도착)
+
+for (i = 0; i &lt; 8; i++) {          // ⑤ 0~7번을 차례로 검사
+    if (FD_ISSET(i, &amp;copyfds)) { // 2번, 4번에서만 참
+        /* i번 소켓 read 및 처리 */
+    }
+}</code></pre>
+
+<h3 id="l10-full">select 기반 다중 접속 서버 (예제 select_server.c 구조)</h3>
+<div class="box info"><b class="t">구현 절차</b>
+① socket ② bind ③ listen ④ 연결 소켓(ssock)을 fd_set에 추가 ⑤ select 호출 ⑥ ssock 또는 csock에 읽을 데이터가 오면 select 반환 ⑦ FD_ISSET으로 어느 소켓인지 확인<br>
+&nbsp;&nbsp;1) <b>ssock</b>에 이벤트 → <code>accept()</code> 후 새 통신 소켓을 fd_set에 추가<br>
+&nbsp;&nbsp;2) <b>csock</b>에 이벤트 → <code>read()</code>로 데이터 처리<br>
+⑧ ⑤로 복귀</div>
+<pre><code>fd_set readfds, copyfds;
+int maxfd, i, n, len;
+char buf[1024];
+
+ssock = socket(...);   bind(...);   listen(...);
+
+FD_ZERO(&amp;readfds);
+FD_SET(ssock, &amp;readfds);               // 접수창구도 감시 대상에 넣는다
+maxfd = ssock;                         // 가장 큰 fd 번호 기억
+
+while (1) {
+    copyfds = readfds;                                   // 원본 보존
+    n = select(maxfd + 1, &amp;copyfds, NULL, NULL, NULL);   // 벨이 울릴 때까지 대기
+    if (n &lt; 0) break;
+
+    for (i = 0; i &lt;= maxfd; i++) {
+        if (!FD_ISSET(i, &amp;copyfds)) continue;          // 이벤트 없는 fd는 건너뜀
+
+        if (i == ssock) {                                // ① 새 손님 도착
+            csock = accept(ssock, ...);
+            FD_SET(csock, &amp;readfds);                     //    감시 대상에 추가
+            if (csock &gt; maxfd) maxfd = csock;              //    maxfd 갱신
+        } else {                                         // ② 기존 손님이 데이터 전송
+            len = read(i, buf, sizeof(buf));
+            if (len &lt;= 0) {                                //    0이면 상대가 연결 종료
+                close(i);
+                FD_CLR(i, &amp;readfds);                     //    감시 해제
+            } else {
+                write(i, buf, len);                      //    에코 응답
+            }
+        }
+    }
+}</code></pre>
+<div class="box warn"><b class="t">한계</b>
+직원이 한 명(단일 스레드)이라서, 어떤 클라이언트의 처리가 오래 걸리면 <b>그동안 다른 클라이언트는 모두 대기</b>합니다. 또한 select는 fd를 순서대로 훑으므로 수천 개 이상에서는 비효율적일 수 있습니다.</div>
+</section>
+
+<!-- ================= 5. JAVA ================= -->
+<section class="lec" id="j1">
+<h2 class="lec-title">5. JavaNet 1 · I/O Stream</h2>
+
+<h3 id="j1-base">스트림이란?</h3>
+<p><b>스트림(Stream)</b>은 <b>순서가 있는 데이터의 연속적인 흐름</b>입니다. 입출력 장치(키보드, 파일, 네트워크)와 프로그램 사이의 <b>수도관</b>이라고 생각하면 됩니다. 흘러가는 기본 단위는 <b>바이트</b>입니다.</p>
+<ul>
+ <li><b>단방향</b>: 입력과 출력을 동시에 하려면 스트림이 <span class="nu">2개</span> 필요</li>
+ <li><b>선입선출(FIFO)</b>: 먼저 들어간 데이터가 먼저 나옴</li>
+ <li><b>연결 가능</b>: 관을 이어 붙이듯 연결 (예: System.in → InputStreamReader → BufferedReader)</li>
+ <li>지연될 수 있음 (데이터가 올 때까지 기다림)</li>
+</ul>
+
+<table>
+<tr><th></th><th>입력</th><th>출력</th><th>단위 / 용도</th></tr>
+<tr><td><b>바이트 스트림</b></td><td><code>…InputStream</code></td><td><code>…OutputStream</code></td><td>1바이트(8bit). <b>binary 데이터</b>(이미지, 실행 파일) 처리. 문자도 읽고 쓸 수는 있음</td></tr>
+<tr><td><b>문자 스트림</b></td><td><code>…Reader</code></td><td><code>…Writer</code></td><td>문자(Unicode). <b>텍스트 전용</b>, binary는 처리 불가. 로컬 문자 집합으로 자동 변환</td></tr>
+</table>
+<p>이름 끝만 보면 구분됩니다: <span class="ty">~Stream</span> = 바이트, <span class="ty">~Reader/~Writer</span> = 문자. 문자 스트림은 바이트 스트림을 감싼 wrapper입니다.</p>
+
+<h3 id="j1-fn">InputStream / OutputStream 메서드</h3>
+<div class="fcard" style="border-top-color:var(--accent)">
+<div class="head"><span class="name">InputStream.read</span><span class="tag">읽기 (3가지 형태)</span></div>
+<div class="sig"><span class="ty">int</span> <span class="fn">read</span>();
+<span class="ty">int</span> <span class="fn">read</span>(<span class="ty">byte[]</span> <span class="ag">buf</span>);
+<span class="ty">int</span> <span class="fn">read</span>(<span class="ty">byte[]</span> <span class="ag">buf</span>, <span class="ty">int</span> <span class="ag">offset</span>, <span class="ty">int</span> <span class="ag">length</span>);</div>
+<div class="row"><span class="k arg">read()</span><span>1바이트를 읽어 <b>int(0~255)</b>로 반환. 읽을 값이 없으면 <span class="er">-1</span><br>(int인 이유: 바이트 값 255와 끝을 뜻하는 -1을 구분하기 위해)</span></div>
+<div class="row"><span class="k arg">read(buf)</span><span>buf의 크기만큼 읽어 buf에 저장, <span class="rt">읽은 바이트 수</span> 반환 (끝이면 <span class="er">-1</span>)</span></div>
+<div class="row"><span class="k arg">read(buf, off, len)</span><span>len개 바이트를 읽어 buf의 <b>offset 위치부터</b> 저장, 읽은 바이트 수 반환</span></div>
+</div>
+
+<div class="fcard" style="border-top-color:var(--accent)">
+<div class="head"><span class="name">OutputStream.write / close</span><span class="tag">쓰기와 닫기</span></div>
+<div class="sig"><span class="ty">void</span> <span class="fn">write</span>(<span class="ty">int</span> <span class="ag">data</span>);
+<span class="ty">void</span> <span class="fn">write</span>(<span class="ty">byte[]</span> <span class="ag">buf</span>);
+<span class="ty">void</span> <span class="fn">write</span>(<span class="ty">byte[]</span> <span class="ag">buf</span>, <span class="ty">int</span> <span class="ag">offset</span>, <span class="ty">int</span> <span class="ag">length</span>);
+<span class="ty">void</span> <span class="fn">close</span>();</div>
+<div class="row"><span class="k arg">write(data)</span><span>data의 <b>하위 8비트</b> 1바이트를 출력 (상위 비트는 버려짐)</span></div>
+<div class="row"><span class="k arg">write(buf)</span><span>배열에 저장된 바이트 전체 출력</span></div>
+<div class="row"><span class="k arg">write(buf, off, len)</span><span>buf의 offset 위치부터 length개 출력</span></div>
+<div class="row"><span class="k arg">close()</span><span>스트림을 닫고 자원 반환</span></div>
+</div>
+<p><span class="cm">Reader/Writer도 read()/write() 구조가 같고, 단위만 바이트 대신 <b>문자(char)</b>입니다.</span></p>
+
+<h4>주요 클래스 역할</h4>
+<table>
+<tr><th>클래스</th><th>역할</th><th>비유</th></tr>
+<tr><td><code>FileInputStream / FileOutputStream</code></td><td>파일에서 <b>바이트</b>를 읽기 / 파일에 쓰기</td><td>파일에 연결된 수도꼭지</td></tr>
+<tr><td><code>FileReader / FileWriter</code></td><td>파일에서 <b>문자</b>를 읽기 / 쓰기</td><td>텍스트용 수도꼭지</td></tr>
+<tr><td><code>DataInputStream / DataOutputStream</code></td><td>int, double, String 같은 <b>기본형 값</b>을 binary로 입출력</td><td>값을 통째로 포장해 주는 관</td></tr>
+<tr><td><code>InputStreamReader</code></td><td><b>바이트 → 문자</b> 변환 (인코딩 지정 가능)</td><td>번역기 (입력 방향)</td></tr>
+<tr><td><code>OutputStreamWriter</code></td><td><b>문자 → 바이트</b> 변환</td><td>번역기 (출력 방향)</td></tr>
+<tr><td><code>BufferedReader / BufferedWriter</code></td><td>문자 스트림에 <b>버퍼</b> 추가, <code>readLine()</code> 제공</td><td>물탱크</td></tr>
+<tr><td><code>BufferedInputStream / BufferedOutputStream</code></td><td>바이트 스트림에 <b>버퍼</b> 추가</td><td>물탱크</td></tr>
+<tr><td><code>PrintStream</code></td><td><code>System.out</code>/<code>System.err</code>의 타입 (<code>print</code>, <code>println</code>)</td><td>콘솔 출력관</td></tr>
+</table>
+
+<div class="fcard" style="border-top-color:var(--accent)">
+<div class="head"><span class="name">InputStreamReader / OutputStreamWriter</span><span class="tag">바이트 ↔ 문자 브릿지, 인코딩 변환</span></div>
+<div class="sig"><span class="fn">InputStreamReader</span> (<span class="ty">InputStream</span> <span class="ag">in</span>)                       <span class="cm">// OS 기본 인코딩</span>
+<span class="fn">InputStreamReader</span> (<span class="ty">InputStream</span> <span class="ag">in</span>, <span class="ty">String</span> <span class="ag">encoding</span>)       <span class="cm">// 지정 인코딩</span>
+<span class="ty">String</span> <span class="fn">getEncoding</span>()                                  <span class="cm">// 현재 인코딩 이름</span>
+<span class="fn">OutputStreamWriter</span>(<span class="ty">OutputStream</span> <span class="ag">out</span>[, <span class="ty">String</span> <span class="ag">encoding</span>])</div>
+<div class="row"><span class="k arg">encoding</span><span>한글 인코딩 예: <span class="nu">"KSC5601"</span>, <span class="nu">"euc-kr"</span>, <span class="nu">"MS949"</span></span></div>
+<div class="row"><span class="k note">언제 쓰나</span><span>파일이 euc-kr로 저장돼 있는데 기본 인코딩(UTF-8 등)으로 읽으면 한글이 깨집니다. 이때 인코딩을 지정해 읽습니다.</span></div>
+</div>
+<pre><code>// 콘솔(키보드)에서 한 줄씩 입력 받기
+InputStreamReader isr = new InputStreamReader(System.in);   // 바이트 → 문자
+BufferedReader br = new BufferedReader(isr);                // 버퍼 + readLine
+String line = br.readLine();                                // 끝이면 null
+
+// 인코딩 변환해서 읽기
+FileInputStream fis = new FileInputStream("korean.txt");
+InputStreamReader isr2 = new InputStreamReader(fis, "KSC5601");</code></pre>
+
+<h4>표준 입출력</h4>
+<table>
+<tr><th>객체</th><th>타입</th><th>용도</th></tr>
+<tr><td><code>System.in</code></td><td>InputStream</td><td>콘솔(키보드)에서 입력</td></tr>
+<tr><td><code>System.out</code></td><td>PrintStream</td><td>콘솔로 일반 출력</td></tr>
+<tr><td><code>System.err</code></td><td>PrintStream</td><td>콘솔로 오류 출력</td></tr>
+</table>
+<p>JVM이 시작될 때 <b>자동으로 생성</b>되는 스트림입니다.</p>
+
+<h3 id="j1-buf">버퍼 스트림과 flush</h3>
+<div class="card"><b>왜 필요한가?</b> 프로그램 속도는 빠른데 디스크/장치는 느립니다. <code>write</code>를 호출할 때마다 OS API가 호출되면 속도가 크게 떨어집니다.<br>
+→ <b>버퍼</b>(임시 저장소)에 데이터를 모아뒀다가 <b>한꺼번에</b> 내보내 효율을 높입니다.<br>
+<b>비유</b>: 물을 한 컵씩 나르지 않고 <b>물탱크</b>에 모아 한 번에 옮기는 것. 읽을 때도 한 번에 큰 덩어리를 읽어 놓고 하나씩 꺼내 씁니다.</div>
+
+<table>
+<tr><th>메서드 / 생성자</th><th>설명</th></tr>
+<tr><td><code>BufferedInputStream(InputStream in, int size)</code></td><td>size 바이트 크기의 버퍼를 가진 입력 스트림 (size 생략 시 기본 <span class="nu">8192</span>바이트)</td></tr>
+<tr><td><code>BufferedOutputStream(OutputStream out, int size)</code></td><td>size 바이트 버퍼를 가진 출력 스트림 (기본 <span class="nu">8192</span>)</td></tr>
+<tr><td><code><span class="fn">flush</span>()</code></td><td>버퍼에 남은 내용을 <b>모두 출력 대상으로 내보내고</b> 버퍼를 비움</td></tr>
+<tr><td><code><span class="fn">close</span>()</code></td><td><code>flush()</code> 호출 후 자원 반환</td></tr>
+</table>
+<pre><code>in  = new BufferedReader(new FileReader("input.txt"));    // 스트림 연결(체이닝)
+out = new BufferedWriter(new FileWriter("output.txt"));</code></pre>
+
+<div class="box warn"><b class="t">예제 4 해설 (버퍼 크기 5, '1'~'9' 쓰기)</b>
+<code>write</code>를 호출할 때 버퍼가 가득 찬 순간(5개) <code>12345</code>가 내보내집니다. 나머지 <code>6789</code>는 버퍼에 남아 있습니다.<br>
+<code>bos.flush()</code>나 <code>bos.close()</code> 없이 <code>fos.close()</code>만 호출하면 <span class="er">6789가 유실되어 파일에는 12345만 저장</span>됩니다.</div>
+<div class="box info"><b class="t">예제 5 해설 (버퍼 크기 5, 콘솔 출력)</b>
+<code>12345678</code> 입력 후 엔터 → 버퍼가 찼을 때 <code>12345</code>가 먼저 출력, 나머지 <code>678</code>은 입력이 끝나고 <code>bos.flush()</code>가 호출될 때 출력됩니다. (flush는 "남은 걸 다 내보내기")</div>
+
+<h3 id="j1-file">File 클래스</h3>
+<p><code>File</code>은 파일/디렉토리의 <b>경로를 추상적으로 표현</b>하고 <b>관리</b>(생성, 삭제, 이름 변경, 조회)하는 클래스입니다. <span class="er">파일의 내용을 읽고 쓰는 일은 하지 않고</span>, 그건 스트림이 합니다. (File 객체를 스트림에 연결해 접근)</p>
+<pre><code>File file = new File("data.txt");</code></pre>
+<table>
+<tr><th>생성자 / 메서드</th><th>설명</th></tr>
+<tr><td><code>File(String pathname)</code></td><td>경로 문자열로 File 객체 생성</td></tr>
+<tr><td><code>File(String parent, String child)</code></td><td>부모 경로 + 자식 이름으로 생성</td></tr>
+<tr><td><code>File(File parent, String child)</code></td><td>부모 File 객체 + 자식 이름으로 생성</td></tr>
+<tr><td><code>exists()</code></td><td>파일/디렉토리가 존재하면 <span class="rt">true</span></td></tr>
+<tr><td><code>isFile()</code> / <code>isDirectory()</code></td><td>일반 파일인가 / 디렉토리인가</td></tr>
+<tr><td><code>mkdir()</code></td><td>디렉토리 생성</td></tr>
+<tr><td><code>delete()</code></td><td>파일 또는 디렉토리 삭제</td></tr>
+<tr><td><code>renameTo(File dest)</code></td><td>이름 변경 (dest가 가리키는 이름으로)</td></tr>
+<tr><td><code>length()</code></td><td>파일 크기(바이트) 반환</td></tr>
+<tr><td><code>getName()</code> / <code>getPath()</code></td><td>파일 이름 / 전체 경로 문자열 반환</td></tr>
+<tr><td><code>list()</code> / <code>listFiles()</code></td><td>디렉토리 내 이름 문자열 배열 / File 객체 배열</td></tr>
+<tr><td><code>lastModified()</code></td><td>마지막으로 수정된 시간 반환</td></tr>
+</table>
+
+<h3>복사 예제 정리</h3>
+<table>
+<tr><th>예제</th><th>사용 스트림</th><th>대상</th><th>핵심 코드</th></tr>
+<tr><td>예제 1</td><td>FileInputStream / FileOutputStream</td><td>모든 파일(바이트)</td><td><code>while ((c = fis.read()) != -1) fos.write(c);</code></td></tr>
+<tr><td>예제 2</td><td>FileReader / FileWriter</td><td>텍스트 파일(문자)</td><td><code>while ((c = fr.read()) != -1) fw.write(c);</code></td></tr>
+<tr><td>예제 3</td><td>InputStreamReader(System.in) → FileWriter</td><td>키보드 입력을 파일로</td><td>입력 종료: Ctrl+Z(Windows) / Ctrl+D(리눅스)<br>슬라이드 코드의 <code>Sytem.in</code>은 오타</td></tr>
+<tr><td>예제 6</td><td>FileReader/Writer + BufferedReader/Writer + File</td><td>텍스트 복사</td><td><code>in.read()</code> / <code>out.write((char)c)</code></td></tr>
+<tr><td>예제 7</td><td>FileInputStream/OutputStream + BufferedInput/OutputStream</td><td>binary 복사 (exe 등)</td><td><code>bis.read()</code> / <code>bos.write(c)</code></td></tr>
+</table>
+<div class="box ok"><b class="t">정리 포인트</b>
+<span class="rt">✔</span> 텍스트는 문자 스트림, <b>이미지·exe 같은 binary는 바이트 스트림</b> (문자 스트림으로 복사하면 파일이 깨짐)<br>
+<span class="rt">✔</span> 한 바이트씩 읽고 쓰기보다 <b>버퍼 스트림이나 <code>byte[]</code> 버퍼</b>를 쓰면 훨씬 빠름<br>
+<span class="rt">✔</span> 슬라이드 예제는 <code>close()</code>를 try 안에서만 호출 → 예외 시 안 닫힘. 실제로는 <code>finally</code> 또는 <b>try-with-resources</b> 사용 권장</div>
+</section>
+
+<!-- ================= 6. GLOSSARY ================= -->
+<section class="lec" id="gl">
+<h2 class="lec-title">6. 초보자용 용어 사전</h2>
+<table>
+<tr><th>용어</th><th>쉬운 설명</th></tr>
+<tr><td><b>프로세스</b></td><td>실행 중인 프로그램. 자기만의 메모리를 가짐</td></tr>
+<tr><td><b>PID</b></td><td>프로세스 고유 번호</td></tr>
+<tr><td><b>PCB</b></td><td>OS가 프로세스 정보(PID, 상태, 리턴값 등)를 적어두는 관리표</td></tr>
+<tr><td><b>스레드</b></td><td>프로세스 안의 실행 흐름. 메모리를 공유하는 경량 작업자</td></tr>
+<tr><td><b>컨텍스트 스위칭</b></td><td>CPU가 다른 프로세스/스레드로 작업을 바꿀 때, 현재 상태를 저장하고 새 상태를 복원하는 과정 (비용이 듦)</td></tr>
+<tr><td><b>IPC</b></td><td>프로세스 간 통신 (파이프 등). 메모리가 분리되어 있어 필요함</td></tr>
+<tr><td><b>블로킹(Blocking)</b></td><td>조건이 될 때까지 함수가 리턴하지 않고 멈춰 기다리는 것 (accept, wait, read, sem_wait, select 등)</td></tr>
+<tr><td><b>좀비 프로세스</b></td><td>종료됐지만 부모가 회수하지 않아 정보가 남아 있는 프로세스</td></tr>
+<tr><td><b>시그널</b></td><td>커널/프로세스가 다른 프로세스에 보내는 알림 신호 (SIGCHLD, SIGINT ...)</td></tr>
+<tr><td><b>핸들러</b></td><td>시그널이 왔을 때 자동 실행되는 함수</td></tr>
+<tr><td><b>소켓 / 디스크립터(fd)</b></td><td>네트워크 통신 창구 / 그것을 가리키는 정수 번호. 파일도 같은 방식(fd)으로 다룸</td></tr>
+<tr><td><b>연결 소켓(ssock)</b></td><td>접속 요청을 받는 서버의 접수창구 (listen 중인 소켓)</td></tr>
+<tr><td><b>통신 소켓(csock)</b></td><td>accept가 만들어 주는, 특정 클라이언트 전용 소켓</td></tr>
+<tr><td><b>임계영역</b></td><td>공유 자원을 만지는 코드 구간. 한 번에 한 스레드만 들어가야 안전</td></tr>
+<tr><td><b>경쟁 상태</b></td><td>여러 스레드가 동시에 공유 자원을 만져 결과가 꼬이는 현상</td></tr>
+<tr><td><b>뮤텍스</b></td><td>임계영역에 한 번에 한 스레드만 들여보내는 자물쇠</td></tr>
+<tr><td><b>세마포어</b></td><td>카운트로 동시 진입 인원을 제한하는 장치</td></tr>
+<tr><td><b>데드락</b></td><td>서로 상대가 잠근 걸 기다리며 영원히 멈춘 상태 (unlock 누락 등)</td></tr>
+<tr><td><b>I/O 멀티플렉싱</b></td><td>하나의 흐름이 여러 소켓의 입출력을 이벤트 기반으로 처리하는 방식</td></tr>
+<tr><td><b>fd_set</b></td><td>감시할 fd를 비트로 표시하는 표 (최대 1024개)</td></tr>
+<tr><td><b>EOF</b></td><td>End Of File. 더 읽을 데이터가 없음 (C: read가 0, Java: read가 -1)</td></tr>
+<tr><td><b>버퍼</b></td><td>입출력 사이에서 데이터를 임시로 모아두는 메모리 공간</td></tr>
+<tr><td><b>flush</b></td><td>버퍼에 남은 데이터를 강제로 모두 내보내는 동작</td></tr>
+<tr><td><b>엔디안(Endian)</b></td><td>여러 바이트 데이터를 메모리에 저장하는 순서. Big-endian은 상위 바이트가 먼저, Little-endian은 하위 바이트가 먼저</td></tr>
+<tr><td><b>HBO / NBO</b></td><td>호스트 바이트 순서(내 CPU 방식) / 네트워크 바이트 순서(Big-endian으로 통일)</td></tr>
+<tr><td><b>htons / htonl</b></td><td>호스트 → 네트워크 바이트 순서 변환 (16bit / 32bit). 반대는 ntohs / ntohl</td></tr>
+<tr><td><b>sockaddr_in</b></td><td>IPv4 소켓 주소 구조체 (family, port, IP, 8바이트 dummy = 총 16바이트)</td></tr>
+<tr><td><b>INADDR_ANY</b></td><td>"이 컴퓨터의 모든 IP로 들어오는 접속을 받겠다"는 특수 주소값</td></tr>
+<tr><td><b>backlog</b></td><td>listen에서 지정하는 접속 대기 큐의 최대 크기</td></tr>
+<tr><td><b>PF_INET / AF_INET</b></td><td>IPv4 프로토콜(주소) 패밀리. 사실상 같은 값</td></tr>
+<tr><td><b>SOCK_STREAM / SOCK_DGRAM</b></td><td>소켓 타입: TCP(연결형, 스트림) / UDP(비연결형, 데이터그램)</td></tr>
+<tr><td><b>데이터 경계(Boundary)</b></td><td>한 번 보낸 데이터의 끝이 구분되는 성질. UDP는 있음, TCP는 없음</td></tr>
+<tr><td><b>Name Resolver</b></td><td>도메인 이름과 IP 주소를 서로 바꿔 주는 함수들 (gethostbyname, gethostbyaddr)</td></tr>
+<tr><td><b>hostent</b></td><td>호스트 정보(공식 이름, 별칭, 주소 타입, 길이, IP 리스트)를 담는 구조체</td></tr>
+</table>
+</section>
+</main>
+</div>
+
+<script>
+/* 간단한 코드 하이라이터: <pre><code> 블록 자동 색칠 */
+(function(){
+  var kw = "if|else|while|for|return|break|continue|struct|void|int|char|long|unsigned|const|static|public|class|new|try|catch|null|import|final|String|byte|sizeof|NULL|do|switch|case";
+  var re = new RegExp("(\\/\\/[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/)|(\"(?:\\\\.|[^\"\\\\\\n])*\")|(#include[^\\n]*)|\\b(" + kw + ")\\b|\\b(\\d+)\\b|\\b([A-Za-z_]\\w*)(?=\\()","g");
+  document.querySelectorAll("pre > code").forEach(function(el){
+    var t = el.textContent.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    el.innerHTML = t.replace(re, function(m,cm,st,inc,k,num,fn){
+      if(cm)  return '<span class="cm">'+m+'</span>';
+      if(st)  return '<span class="st">'+m+'</span>';
+      if(inc) return '<span class="ty">'+m+'</span>';
+      if(k)   return '<span class="kw">'+m+'</span>';
+      if(num) return '<span class="nu">'+m+'</span>';
+      if(fn)  return '<span class="fn">'+m+'</span>';
+      return m;
+    });
+  });
+})();
+</script>
+</body>
+</html>
