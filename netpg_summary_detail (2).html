@@ -170,12 +170,22 @@ svg{max-width:100%;height:auto;display:block;margin:0 auto}
   <a class="sub" href="#j1-fn">메서드 설명</a>
   <a class="sub" href="#j1-buf">버퍼/flush</a>
   <a class="sub" href="#j1-file">File 클래스</a>
-  <a class="top" href="#gl">6. 용어 사전</a>
+  <a class="top" href="#j2">6. JavaNet 2 · 인터넷 주소</a>
+  <a class="sub" href="#j2-inet">InetAddress / 호스트 조회</a>
+  <a class="sub" href="#j2-url">URL / 주소 파싱</a>
+  <a class="sub" href="#j2-conn">URLConnection / 송수신</a>
+  <a class="top" href="#j3">7. JavaNet 3 · UDP</a>
+  <a class="sub" href="#j3-base">UDP 기본 구조</a>
+  <a class="sub" href="#j3-packet">DatagramPacket</a>
+  <a class="sub" href="#j3-socket">DatagramSocket</a>
+  <a class="sub" href="#j3-ex">문자열 송수신</a>
+  <a class="sub" href="#j3-echo">완성 Echo 예제 / 실수</a>
+  <a class="top" href="#gl">8. 용어 사전</a>
 </nav>
 
 <main>
 <h1>네트워크 프로그래밍 상세 정리</h1>
-<p class="lead">KorNU IT NetPG · 기초편(Lecture 01~07, Report #4) + Lecture 08~10 (다중 접속 서버) + JavaNet 1 (I/O Stream) · 초보자용 상세판</p>
+<p class="lead">KorNU IT NetPG · 기초편(Lecture 01~07, Report #4) + Lecture 08~10 (다중 접속 서버) + JavaNet 1~3 (I/O Stream · 인터넷 주소 · UDP) · 초보자용 상세판</p>
 
 <div class="card">
 <b>이 문서의 글자 색 규칙</b><br>
@@ -1922,9 +1932,136 @@ out = new BufferedWriter(new FileWriter("output.txt"));</code></pre>
 <span class="rt">✔</span> 슬라이드 예제는 <code>close()</code>를 try 안에서만 호출 → 예외 시 안 닫힘. 실제로는 <code>finally</code> 또는 <b>try-with-resources</b> 사용 권장</div>
 </section>
 
-<!-- ================= 6. GLOSSARY ================= -->
+<section class="lec" id="j2"><h2 class="lec-title">6. JavaNet 2 · 인터넷 주소 처리</h2>
+<p class="lead">추가 자료: Lec12_JavaNet2(인터넷주소).pdf · PDF 1~10쪽(슬라이드 1~20). 아래 코드는 학습용으로 재구성했으며, 원문에서 혼동하기 쉬운 설명은 보완했습니다.</p>
+<div class="cols3"><div class="card"><b>InetAddress</b><br>호스트 이름과 IP 주소를 다루는 주소록.</div><div class="card"><b>URL</b><br>프로토콜·호스트·경로가 적힌 리소스 주소.</div><div class="card"><b>URLConnection</b><br>주소에 접근할 때의 설정과 입출력을 담당.</div></div>
+<h3 id="j2-inet">InetAddress · 호스트 이름과 IP 주소</h3><p>직접 생성하기보다 정적 메서드로 객체를 얻습니다. IP 주소만 나타내며 <b>포트 번호는 포함하지 않습니다.</b> DNS 조회 실패 등은 <code>UnknownHostException</code>으로 처리합니다.</p><table><tr><th>정적 메서드</th><th>반환형</th><th>의미</th></tr><tr><td>getByName(String host)</td><td>InetAddress</td><td>호스트명 또는 IP 문자열로 주소 하나 조회</td></tr><tr><td>getAllByName(String host)</td><td>InetAddress[]</td><td>한 이름에 대응하는 주소들을 배열로 조회</td></tr><tr><td>getLocalHost()</td><td>InetAddress</td><td>로컬 호스트 이름에 대응하는 주소 조회</td></tr><tr><td>getByAddress(byte[] addr)</td><td>InetAddress</td><td>IPv4 4바이트 또는 IPv6 16바이트로 주소 생성</td></tr></table><table><tr><th>인스턴스 메서드</th><th>반환형·설명</th></tr><tr><td>getHostName()</td><td>String · 호스트 이름. 역방향 이름 확인이 안 되면 IP 문자열일 수 있음</td></tr><tr><td>getHostAddress()</td><td>String · 숫자 형식의 IP 주소</td></tr><tr><td>getAddress()</td><td>byte[] · 원시 IP 바이트</td></tr><tr><td>toString()</td><td>String · 호스트명/IP 형태의 표현</td></tr></table><pre><code>import java.net.*;
+public class HostInfo {
+    public static void main(String[] args) throws UnknownHostException {
+        InetAddress local = InetAddress.getLocalHost();
+        System.out.println(local.getHostName() + &quot; / &quot; + local.getHostAddress());
+        String host = args.length == 0 ? &quot;localhost&quot; : args[0];
+        for (InetAddress a : InetAddress.getAllByName(host)) {
+            System.out.println(a.getHostName() + &quot; / &quot; + a.getHostAddress());
+        }
+    }
+}</code></pre><h4>예제 1~3 읽는 법</h4><ul><li><b>콘솔 호스트 조회</b>: readLine() → getByName() → 이름·IP·원시 바이트 출력. 입력 종료는 readLine()이 null일 때입니다.</li><li><b>AWT 호스트 조회</b>: TextField 입력 → 버튼의 ActionListener → 주소 조회 → TextArea 출력. 네트워크 조회가 오래 걸리면 GUI가 잠길 수 있습니다.</li><li><b>웹 로그 변환</b>: 한 줄의 첫 공백을 찾아 IP와 나머지를 분리 → IP의 호스트 이름 조회 → 원래 로그 뒷부분과 결합. 공백 없는 줄도 확인해야 합니다.</li></ul><pre><code>int index = entry.indexOf(&#x27; &#x27;);
+if (index &gt; 0) {
+    String ip = entry.substring(0, index);
+    String rest = entry.substring(index);
+    InetAddress address = InetAddress.getByName(ip);
+    System.out.println(address.getHostName() + rest);
+}</code></pre><div class="box warn"><b class="t">헷갈리기 쉬운 부분</b>슬라이드의 getAllByName 반환형은 <b>InetAddress[]</b>입니다. 웹 로그 예제의 UnknownException은 <b>UnknownHostException</b>으로 고쳐야 합니다. Java byte는 -128~127이므로 IPv4 한 바이트를 0~255로 읽으려면 <code>ip[0] &amp; 0xff</code>를 사용합니다. 첫 바이트로 A/B/C/D/E를 나누는 코드는 과거 클래스 구분 학습용이며 IPv6에 적용하면 안 됩니다. 내부 필드를 직접 다루기보다 공개 메서드를 사용합니다.</div><h3 id="j2-url">URL · 주소 생성과 파싱</h3><p>URL 객체 생성은 주소를 표현하는 단계입니다. <b>객체가 생겼다고 서버 연결이나 리소스 존재 확인이 끝난 것은 아닙니다.</b> 잘못된 URL 형식은 MalformedURLException으로 처리합니다.</p><pre><code>URL base = new URL(&quot;http://example.com/docs/&quot;);
+URL child = new URL(base, &quot;guide.html&quot;);
+// http://example.com/docs/guide.html
+URL u = new URL(&quot;http://example.com:80/docs/index.html?name=database#TOP&quot;);</code></pre><table><tr><th>메서드</th><th>위 u의 값</th></tr><tr><td>getProtocol()</td><td>http</td></tr><tr><td>getAuthority()</td><td>example.com:80</td></tr><tr><td>getHost()</td><td>example.com</td></tr><tr><td>getPort()</td><td>80 · 생략하면 -1</td></tr><tr><td>getDefaultPort()</td><td>http의 기본 포트 80</td></tr><tr><td>getPath()</td><td>/docs/index.html</td></tr><tr><td>getQuery()</td><td>name=database</td></tr><tr><td>getFile()</td><td>/docs/index.html?name=database</td></tr><tr><td>getRef()</td><td>TOP</td></tr></table><div class="box warn"><b class="t">헷갈리기 쉬운 부분</b>URL의 getFile()은 마지막 파일명만이 아니라 <b>경로 + 쿼리</b>입니다. getLocalPort()는 URL 메서드가 아닙니다. 상대 주소는 기준 URL의 마지막 경로와 끝의 / 유무에 따라 달라집니다. fragment(#TOP)는 문서 내부 위치를 나타냅니다.</div><h4>openStream() · 본문 읽기 (예제 5)</h4><p><code>openStream()</code>은 연결의 입력 스트림을 얻는 간편한 방법입니다. 바이트 스트림이므로 텍스트와 바이너리를 모두 읽을 수 있습니다. 텍스트라면 문자셋을 지정해 변환하고, 이미지 등은 byte[] 그대로 저장합니다. HTTP 헤더를 살펴보려면 URLConnection을 사용합니다.</p><pre><code>URL url = new URL(&quot;http://example.com/&quot;);
+try (BufferedReader in = new BufferedReader(
+        new InputStreamReader(url.openStream(), &quot;UTF-8&quot;))) {
+    String line;
+    while ((line = in.readLine()) != null) System.out.println(line);
+}</code></pre><h3 id="j2-conn">URLConnection · 설정 후 송수신</h3><div class="flow"><span>URL</span><i>→</i><span>openConnection()</span><i>→</i><span>입출력·타임아웃 설정</span><i>→</i><span>스트림 얻기</span><i>→</i><span>송수신·닫기</span></div><table><tr><th>메서드</th><th>역할</th></tr><tr><td>openConnection() (URL)</td><td>연결을 관리할 객체 생성. 실제 연결은 아직 하지 않음</td></tr><tr><td>connect()</td><td>명시적으로 연결. 스트림 접근 시 암묵적으로 연결될 수도 있음</td></tr><tr><td>setDoInput(boolean)</td><td>입력 허용 설정. 기본 true</td></tr><tr><td>setDoOutput(boolean)</td><td>출력 허용 설정. 기본 false</td></tr><tr><td>getInputStream() / getOutputStream()</td><td>응답 본문 읽기 / 요청 데이터 쓰기</td></tr><tr><td>getContentType()</td><td>컨텐츠 종류. 문자셋 정보가 포함될 수 있음</td></tr><tr><td>getContentEncoding()</td><td>gzip 같은 컨텐츠 인코딩. 문자셋과 다름</td></tr><tr><td>getContentLength()</td><td>길이를 모르면 -1</td></tr><tr><td>getContent() / getURL()</td><td>컨텐츠 객체 / 대상 URL</td></tr><tr><td>getDoInput() / getDoOutput()</td><td>현재 입력·출력 설정 확인</td></tr><tr><td>setConnectTimeout(int) / setReadTimeout(int)</td><td>연결·읽기 제한 시간(밀리초)</td></tr></table><div class="box warn"><b class="t">헷갈리기 쉬운 부분</b>슬라이드의 <code>new URLConnection(url)</code>은 그대로 실행할 수 없습니다. URLConnection은 추상 클래스이므로 <code>url.openConnection()</code>으로 얻습니다. 설정은 실제 연결 전에 수행합니다. URLConnection 자체는 HTTP 전용이 아니므로 HTTP 요청 방식은 HttpURLConnection으로 명확히 지정하는 편이 좋습니다.</div><h4>예제 6 · 연결 설정 후 읽기</h4><pre><code>URLConnection con = new URL(&quot;http://example.com/&quot;).openConnection();
+con.setConnectTimeout(5000);
+con.setReadTimeout(5000);
+try (BufferedReader in = new BufferedReader(
+        new InputStreamReader(con.getInputStream(), &quot;UTF-8&quot;))) {
+    String line;
+    while ((line = in.readLine()) != null) System.out.println(line);
+}</code></pre><h4>예제 7 · 폼 전송 후 응답 읽기</h4><p>아래 조각은 java.net.*와 java.io.*를 import하고 IOException을 처리하는 메서드 안에서 사용합니다. URL은 실제로 POST를 처리하는 서버 주소로 바꿉니다. 응답 문자셋은 서버 명세에 맞춰야 합니다.</p><pre><code>URL url = new URL(&quot;http://localhost:8080/posttest&quot;);
+HttpURLConnection con = (HttpURLConnection) url.openConnection();
+con.setRequestMethod(&quot;POST&quot;);
+con.setDoOutput(true);
+con.setConnectTimeout(5000);
+con.setReadTimeout(5000);
+con.setRequestProperty(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;);
+String form = &quot;fname=&quot; + URLEncoder.encode(&quot;길동&quot;, &quot;UTF-8&quot;)
+            + &quot;&amp;lname=&quot; + URLEncoder.encode(&quot;홍&quot;, &quot;UTF-8&quot;);
+try {
+    try (OutputStream out = con.getOutputStream()) {
+        out.write(form.getBytes(&quot;UTF-8&quot;));
+    }
+    int status = con.getResponseCode();
+    InputStream response = status &gt;= 400 ? con.getErrorStream() : con.getInputStream();
+    if (response != null) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(response, &quot;UTF-8&quot;))) {
+            String line;
+            while ((line = in.readLine()) != null) System.out.println(line);
+        }
+    }
+} finally {
+    con.disconnect();
+}</code></pre><div class="box ok"><b class="t">점검문제</b>① URL 생성과 실제 연결은 같은가? → 다릅니다.<br>② 출력 전에 필요한 설정은? → setDoOutput(true).<br>③ InetAddress와 URL의 차이는? → IP·호스트 주소 표현 / 프로토콜·경로까지 포함한 리소스 주소 표현.</div></section><section class="lec" id="j3"><h2 class="lec-title">7. JavaNet 3 · UDP 프로그래밍</h2><p class="lead">추가 자료: Lec13_JavaNet3(UDP).pdf · PDF 1~6쪽(슬라이드 1~12). 기존 C UDP 내용을 Java 클래스와 연결해 읽습니다.</p>
+<h3 id="j3-base">큰 그림 · 소켓은 창구, 패킷은 봉투</h3><div class="cols"><div class="card"><b>DatagramSocket</b><br>실제로 UDP를 보내고 받는 통신 창구. 서버·클라이언트 모두 같은 클래스입니다.</div><div class="card"><b>DatagramPacket</b><br>byte[] 데이터와 주소·포트·길이를 담는 봉투. 생성만으로 전송되지 않습니다.</div></div><p>UDP는 연결 설정 없이 데이터그램 단위로 통신합니다. <b>전달·순서·중복 방지를 보장하지 않습니다.</b> TCP의 ServerSocket/accept와 같은 접속 수락 단계가 없으며, 필요한 신뢰성은 응용 프로그램에서 구현합니다. MulticastSocket은 여러 수신자에게 보내는 멀티캐스트용 클래스입니다.</p>
+<h3 id="j3-packet">DatagramPacket · 생성자와 메서드</h3><table><tr><th>생성자</th><th>용도</th></tr><tr><td>DatagramPacket(byte[] buf, int length)</td><td>수신용. 이미 만든 buf에 최대 length 바이트 수신</td></tr><tr><td>DatagramPacket(byte[] buf, int offset, int length)</td><td>수신 데이터를 buf[offset]부터 저장</td></tr><tr><td>DatagramPacket(byte[] buf, int length, InetAddress addr, int port)</td><td>송신용. 목적지 주소·포트 포함</td></tr><tr><td>DatagramPacket(byte[] buf, int offset, int length, InetAddress addr, int port)</td><td>배열 일부를 목적지로 송신</td></tr></table><table><tr><th>메서드</th><th>의미·반환형</th></tr><tr><td>getData()</td><td>byte[] · 내부 버퍼 전체. 유효 데이터만 잘라 주는 메서드가 아님</td></tr><tr><td>getLength()</td><td>int · 송신할 또는 실제 수신한 바이트 수</td></tr><tr><td>getOffset()</td><td>int · 버퍼에서 유효 데이터가 시작되는 위치</td></tr><tr><td>getAddress() / getPort()</td><td>송신 패킷: 목적지 / 수신 후 패킷: 송신자 주소·포트</td></tr><tr><td>setData(byte[] buf)</td><td>버퍼 교체, offset은 0, length는 배열 길이로 설정</td></tr><tr><td>setData(byte[] buf, int offset, int length)</td><td>버퍼·시작 위치·길이 지정</td></tr><tr><td>setAddress(InetAddress) / setPort(int)</td><td>목적지 변경</td></tr><tr><td>setLength(int)</td><td>송신 길이 또는 다음 수신에서 허용할 길이 설정</td></tr></table><div class="box warn"><b class="t">헷갈리기 쉬운 부분</b>슬라이드의 송신 패킷 getAddress()는 로컬 주소가 아니라 <b>목적지 주소</b>입니다. length와 offset은 문자가 아닌 <b>바이트 단위</b>이며 배열 범위 안이어야 합니다. 수신 버퍼보다 큰 데이터그램은 잘릴 수 있으므로 충분한 크기를 정합니다.</div><h3 id="j3-socket">DatagramSocket · 생성·송수신·종료</h3><table><tr><th>생성자 / 메서드</th><th>설명</th></tr><tr><td>new DatagramSocket()</td><td>사용 가능한 임시 로컬 포트에 바인드. 주로 클라이언트</td></tr><tr><td>new DatagramSocket(int port)</td><td>지정한 로컬 포트에 바인드. 주로 서버</td></tr><tr><td>new DatagramSocket(int port, InetAddress localAddr)</td><td>특정 로컬 인터페이스 주소·포트에 바인드</td></tr><tr><td>send(DatagramPacket p)</td><td>패킷 한 개 전송. 반환형 void</td></tr><tr><td>receive(DatagramPacket p)</td><td>패킷 한 개 수신. 기본적으로 도착까지 블로킹</td></tr><tr><td>getLocalPort() / getLocalAddress()</td><td>자신에게 바인드된 포트·주소</td></tr><tr><td>getPort() / getInetAddress()</td><td>connect로 지정한 상대. 미연결 소켓은 -1 / null</td></tr><tr><td>setSoTimeout(int millis)</td><td>수신 대기 제한. 초과하면 SocketTimeoutException</td></tr><tr><td>close()</td><td>소켓 해제. try-with-resources로 자동 종료 가능</td></tr></table><div class="box warn"><b class="t">헷갈리기 쉬운 부분</b>소켓 생성 실패는 SocketException, send/receive의 입출력 실패는 IOException으로 처리합니다. 포트 충돌·주소·권한 등 여러 원인이 있습니다. 1023 이하 포트가 항상 실패하는 것은 아니며 OS와 권한에 따라 달라집니다. 0.0.0.0 바인드는 특정 기본 IP가 아니라 모든 로컬 IPv4 인터페이스를 뜻합니다. UDP connect는 기본 상대를 정하는 기능이며 TCP 연결 협상을 만들지는 않습니다.</div><h4>송신·수신 순서</h4><div class="flow"><span>수신 소켓(포트)</span><i>→</i><span>수신용 패킷</span><i>→</i><span>receive()</span><i>→</i><span>실제 길이로 해석</span></div><div class="flow"><span>송신 소켓</span><i>→</i><span>문자열 → byte[]</span><i>→</i><span>목적지 포함 패킷</span><i>→</i><span>send()</span></div>
+<h3 id="j3-ex">예제 1~2 · 로컬 포트 점검과 문자열 송수신</h3><p><b>UDP 포트 스캔 예제</b>는 각 포트에 로컬 바인드를 시도하고 닫습니다. 원격 서버를 스캔하거나 해당 서비스의 응답을 확인하는 코드가 아닙니다. 예외만으로 이미 사용 중이라고 단정할 수 없습니다.</p><h4>UDPReceiver.java · 먼저 실행</h4><pre><code>import java.net.*;
+import java.nio.charset.StandardCharsets;
+public class UDPReceiver {
+    public static void main(String[] args) throws Exception {
+        try (DatagramSocket socket = new DatagramSocket(5000)) {
+            byte[] buf = new byte[1024];
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            socket.receive(packet);
+            String text = new String(packet.getData(), packet.getOffset(),
+                    packet.getLength(), StandardCharsets.UTF_8);
+            System.out.println(text);
+            System.out.println(&quot;보낸 곳: &quot; + packet.getAddress() + &quot;:&quot; + packet.getPort());
+        }
+    }
+}</code></pre><h4>UDPSender.java</h4><pre><code>import java.net.*;
+import java.nio.charset.StandardCharsets;
+public class UDPSender {
+    public static void main(String[] args) throws Exception {
+        byte[] buf = &quot;UDP 소켓 프로그래밍&quot;.getBytes(StandardCharsets.UTF_8);
+        InetAddress address = InetAddress.getByName(&quot;127.0.0.1&quot;);
+        try (DatagramSocket socket = new DatagramSocket()) {
+            socket.send(new DatagramPacket(buf, buf.length, address, 5000));
+        }
+    }
+}</code></pre><h3 id="j3-echo">예제 3 · UDP Echo 서비스</h3><p>에코는 받은 바이트를 그대로 돌려주는 서비스입니다. 서버는 <b>수신 패킷의 송신자 주소·포트</b>로 응답해야 여러 클라이언트를 상대할 수 있습니다. 아래 예제는 원문의 고정 포트 10000·루프백 응답을 일반화했습니다.</p><h4>UDPEchoServer.java</h4><pre><code>import java.net.*;
+public class UDPEchoServer {
+    public static void main(String[] args) throws Exception {
+        try (DatagramSocket socket = new DatagramSocket(20000)) {
+            byte[] buf = new byte[2048];
+            DatagramPacket request = new DatagramPacket(buf, buf.length);
+            while (true) {
+                request.setLength(buf.length); // 이전 수신 길이를 초기화
+                socket.receive(request);
+                DatagramPacket reply = new DatagramPacket(
+                        request.getData(), request.getOffset(), request.getLength(),
+                        request.getAddress(), request.getPort());
+                socket.send(reply);
+            }
+        }
+    }
+}</code></pre><h4>UDPEchoClient.java</h4><pre><code>import java.net.*;
+import java.nio.charset.StandardCharsets;
+public class UDPEchoClient {
+    public static void main(String[] args) throws Exception {
+        InetAddress server = InetAddress.getByName(&quot;127.0.0.1&quot;);
+        byte[] data = &quot;UDP 소켓 프로그래밍&quot;.getBytes(StandardCharsets.UTF_8);
+        try (DatagramSocket socket = new DatagramSocket()) {
+            socket.connect(server, 20000); // 응답을 받을 상대 지정
+            socket.setSoTimeout(3000);
+            socket.send(new DatagramPacket(data, data.length, server, 20000));
+            byte[] buf = new byte[2048];
+            DatagramPacket reply = new DatagramPacket(buf, buf.length);
+            try {
+                socket.receive(reply);
+                System.out.println(new String(reply.getData(), reply.getOffset(),
+                        reply.getLength(), StandardCharsets.UTF_8));
+            } catch (SocketTimeoutException e) {
+                System.out.println(&quot;3초 안에 응답이 없습니다.&quot;);
+            }
+        }
+    }
+}</code></pre><h4>실행 순서</h4><pre><code>javac UDPReceiver.java UDPSender.java UDPEchoServer.java UDPEchoClient.java
+# 터미널 1: java UDPReceiver
+# 터미널 2: java UDPSender
+# 에코 실습은 별도로:
+# 터미널 1: java UDPEchoServer
+# 터미널 2: java UDPEchoClient</code></pre><table><tr><th>흔한 실수</th><th>이유·해결</th></tr><tr><td>new String(buf)로 전체 출력</td><td>뒤에 남은 0 또는 과거 데이터까지 해석. getOffset(), getLength() 사용</td></tr><tr><td>문자열 length()를 패킷 길이로 사용</td><td>UTF-8 한글은 여러 바이트. 인코딩한 byte[].length 사용</td></tr><tr><td>같은 수신 패킷을 길이 복구 없이 반복 사용</td><td>직전 수신 길이가 다음 수신 용량을 제한. receive 전 setLength(buf.length)</td></tr><tr><td>응답에 항상 127.0.0.1:10000 사용</td><td>원문의 특정 클라이언트만 지원. 수신 패킷 주소·포트로 응답</td></tr><tr><td>버퍼 전체를 에코로 전송</td><td>실제 수신한 length만 전송</td></tr><tr><td>서버 없이 클라이언트부터 실행</td><td>데이터가 유실되거나 수신 대기. 서버 먼저 실행하고 타임아웃 설정</td></tr></table><div class="box ok"><b class="t">점검문제</b>① 송신용과 수신용 패킷의 차이는? → 송신용은 목적지 주소·포트가 필요합니다.<br>② receive()는 몇 개의 데이터그램을 받는가? → 한 개입니다.<br>③ receive()가 반환한 뒤 확인할 값은? → 데이터·offset·실제 length·송신자 주소·포트입니다.<br>④ C UDP와 연결하면? → DatagramSocket은 socket/bind, send는 sendto, receive는 recvfrom의 역할에 대응합니다.</div></section>
+<!-- ================= 8. GLOSSARY ================= -->
 <section class="lec" id="gl">
-<h2 class="lec-title">6. 초보자용 용어 사전</h2>
+<h2 class="lec-title">8. 초보자용 용어 사전</h2>
 <table>
 <tr><th>용어</th><th>쉬운 설명</th></tr>
 <tr><td><b>프로세스</b></td><td>실행 중인 프로그램. 자기만의 메모리를 가짐</td></tr>
